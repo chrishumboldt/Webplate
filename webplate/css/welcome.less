@@ -1,0 +1,139 @@
+/**
+ * welcome.less
+ *
+ * Author:        Chris Modem
+ * Last Edited:   9 May 2013
+ */
+
+/*-------------------------------------------------------
+
+  Table of Contents:
+
+    Imports
+    Variables
+    Global
+    Large View
+    Adjusting View
+    Small View
+    Links
+
+---------------------------------------------------------*/
+
+
+/* IMPORTS
+--------------------------------------------------------------------------------------- */
+// Import this file to get the webplate helper functions and to get the @page_width variable
+@import "webplate.less";
+
+
+/* VARIABLES
+--------------------------------------------------------------------------------------- */
+
+
+/* Global
+--------------------------------------------------------------------------------------- */
+* {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+.webplate {
+  /* Row changes */
+  .row.inner {
+    padding: 0px 15px;
+  }
+  /* Header */
+  .header {
+    position: fixed;
+    padding: 15px 0px;
+    width: 100%;
+    background-color: #fff;
+
+    .logo {
+      display: block;
+      width: 60px;
+      height: 60px;
+      background-image: url('../images/wpexample/logo.png');
+      background-size: 100%;
+      .hide-text();
+    }
+  }
+  /* Banner */
+  .banner {
+    height: 300px;
+    background-color: #1fbba6;
+
+    h1 {
+      padding-top: 150px;
+      text-align: center;
+      font-weight: 100;
+      font-size: 3.8em;
+      color: darken(#1fbba6, 25%);
+    }
+  }
+}
+
+
+/* Large View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (min-width: 701px) {
+  .webplate {
+    .navigation {
+      margin-top: 18px;
+
+      a {
+        display: block;
+        text-align: center;
+        color: #3b3a3f;
+        font-size: 1.2em;
+      }
+      a:hover {
+        color: #00a79f;
+      }
+    }
+  }
+}
+
+
+/* Adjusting View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: @page_width) {
+}
+
+
+/* Small View (iPhone)
+--------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .webplate {
+    .header {
+      padding: 5px 0px;
+      left: 0px;
+      .animate(left, 0.3s);
+
+      .navigationTrigger {
+        margin-top: 9px;
+      }
+      .navigationTrigger:active {
+        margin-top: 10px;
+      }
+      .logo {
+        margin: 0px auto;
+        width: 55px;
+        height: 55px;
+      }
+    }
+  }
+  /* Show navigation */
+  .showNav .header {
+    left: @menu_width;
+  }
+}
+
+
+/* Links
+--------------------------------------------------------------------------------------- */
+a {
+}
+a:hover {
+}
+a:visited {
+}

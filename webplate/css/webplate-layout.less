@@ -1,0 +1,549 @@
+/**
+ * webplate-layout.less
+ *
+ * Author:        Chris Modem
+ * Last Edited:   9 May 2013
+ */
+
+/*-------------------------------------------------------
+
+  Table of Contents:
+
+    Variables
+    Presets
+    Global
+    Large View
+    Adjusting View
+    Small View
+    Links
+
+---------------------------------------------------------*/
+
+
+/* IMPORTANT NOTE
+--------------------------------------------------------------------------------------- */
+// Please know that the page widths are stored in the webplate.less file.
+// This allows the @page_width variables to be shared with any extra less files that might be added in.
+// If you want to edit the fixed and adjusting widths, do it there.
+
+
+/* VARIABLES
+--------------------------------------------------------------------------------------- */
+
+
+/* PRESETS
+--------------------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+html {
+  font-size: 0.875em;
+  position: relative;
+  color: #393939;
+  background-color: #fff;
+  -ms-text-size-adjust: 100%;
+  -webkit-texts-size-adjust: 100%;
+
+}
+div {
+  display: block;
+  direction: ltr;
+}
+body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label {
+  color: #393939;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  line-height: 20px;
+}
+input, textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  -webkit-appearance: none;
+  .rounded-corners();
+}
+input.redBorder {
+  border: 1px solid #ea2505;
+}
+ul, ol {margin:0; padding:0px;}
+a, .makeLink, a:visited {text-decoration:none; color: #65a8a6;}
+a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer; .animate(color)}
+
+/* Gloabl classes */
+.displayNone, .hiddenDiv {display:none;}
+.floatLeft {float:left;}
+.floatRight {float:right;}
+.clearFloat {clear:both;}
+.divHeight {display:block; overflow:hidden;}
+.divider {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: fadeout(#fff, 10%);
+  .dark-top-border();
+}
+.nothing {
+  .hide-text();
+}
+.txtRed {
+  color: #c60707;
+}
+.txtGrey {
+  color: fadeout(#000, 50%);
+}
+.txtLight {
+  .change-opacity();
+}
+
+/* Button elements */
+.webplateButton, a.webplateButton2 {
+  display: inline-block;
+  position: relative;
+  margin-top: 0px;
+  margin-bottom: 1px;
+  padding: 11px 12px 9px 12px;
+  color: #fff;
+  font-weight: 200;
+  font-size: 1em;
+  text-align: center;
+  background-color: #999;
+  text-shadow: none;
+  .rounded-corners();
+  z-index: 1;
+}
+.webplateButton:hover, .webplateButton2:hover {
+  cursor: pointer;
+}
+.webplateButton:active, .webplateButton2:active {
+  margin-top: 1px;
+  margin-bottom: 0px;
+}
+.webplateButton.white, .bonsaiWhite2.white {
+  color: #525252;
+  background-color: #fff;
+}
+.webplateButton.white:hover, .webplateButton2.white:hover, .webplateButton.white:active, .webplateButton2.white:active {
+  background-color: #dddddd;
+}
+.webplateButton.blue, .webplateButton2.blue {
+  background-color: #00b9d2;
+}
+.webplateButton.blue:hover, .webplateButton2.blue:hover, .webplateButton.blue:active, .webplateButton2.blue:active {
+  background-color: #04a0b4;
+}
+.webplateButton.red, .webplateButton2.red {
+  background-color: #e83352;
+}
+.webplateButton.red:hover, .webplateButton2.red:hover, .webplateButton.red:active, .webplateButton2.red:active {
+  background-color: #c32a3f;
+}
+.webplateButton.green, .webplateButton2.green {
+  background-color: #1fbba6;
+}
+.webplateButton.green:hover, .webplateButton2.green:hover, .webplateButton.green:active, .webplateButton2.green:active {
+  background-color: #17a894;
+}
+.webplateButton.orange, .webplateButton2.orange {
+  background-color: #f27935;
+}
+.webplateButton.orange:hover, .webplateButton2.orange:hover, .webplateButton.orange:active, .webplateButton2.orange:active {
+  background-color: #e16634;
+}
+.webplateButton.yellow, .webplateButton2.yellow {
+  background-color: #fcb040;
+}
+.webplateButton.yellow:hover, .webplateButton2.yellow:hover, .webplateButton.yellow:active, .webplateButton2.yellow:active {
+  background-color: #eb981e;
+}
+.webplateButton > span, .webplateButton2 > span {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+
+/* Input error */
+.inputError {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 110;
+
+  .errorText {
+    padding: 10px 10px;
+    font-size: 0.8em;
+    color: #fff;
+    background-color: #de0303;
+    .rounded-corners-top();
+  }
+
+  .errorArrow {
+    display: block;
+    width: 26px;
+    height: 6px;
+    margin-left: 10px;
+    background-image: url(../images/global/input_error_arrow.png);
+    background-position: bottom;
+  }
+}
+
+
+/* Global
+--------------------------------------------------------------------------------------- */
+.webplate {
+  position: relative;
+  width: 100%;
+
+  .webplateInner {
+    max-width: 100%;
+    margin: 0px auto;
+
+    /* Set inner width */
+    .row.inner {
+      width: @page_width;
+      margin: 0px auto;
+    }
+  }
+}
+
+/* Fixed page width setting */
+html.fixedPage .webplate .webplateInner {
+    max-width: @page_width;
+}
+
+/* Webplate pane */
+.pane {
+  display: block;
+  position: fixed;
+  width: 320px;
+  height: 100%;
+  left: 100%;
+  background-color: #fff;
+  border-left: 1px solid fadeout(#000, 90%);
+  z-index: 201;
+  .animate(left, 0.5s);
+
+  .paneInner {
+    padding: 20px;
+    overflow: hidden;
+  }
+}
+.showPane .pane {
+  left: @menu_width;
+  .animate(left, 0.5s);
+}
+.webplateSmallView.showPane .pane {
+  left: 0;
+  .animate(left, 0.5s);
+}
+.webplateSmallView .navigation ul li {
+  clear: both;
+  width: 100%;
+}
+
+/* Containers */
+.row:before, .row:after {
+  content: " ";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+.row {
+  width: 100%;
+
+  .row{
+    width: auto;
+  }
+  .span12, .span11, .span10, .span9, .span8, .span7, .span6, .span5, .span4, .span3, .span2, .span1 {
+    float: left;
+    position: relative;
+  }
+  .span12 {
+    width: 100%;
+  }
+  .span11 {
+    width: 91.66666%;
+  }
+  .span10 {
+    width: 83.33333%;
+  }
+  .span9 {
+    width: 75%;
+  }
+  .span8 {
+    width: 66.66666%;
+  }
+  .span7 {
+    width: 58.33333%;
+  }
+  .span6 {
+    width: 50%;
+  }
+  .span5 {
+    width: 41.66666%;
+  }
+  .span4 {
+    width: 33.33333%;
+  }
+  .span3 {
+    width: 25%;
+  }
+  .span2 {
+    width: 16.66666%;
+  }
+  .span1 {
+    width: 8.33333%;
+  }
+  .offset11 {
+    margin-left: 91.66666%;
+  }
+  .offset10 {
+    margin-left: 83.33333%;
+  }
+  .offset9 {
+    margin-left: 75%;
+  }
+  .offset8 {
+    margin-left: 66.66666%;
+  }
+  .offset7 {
+    margin-left: 58.33333%;
+  }
+  .offset6 {
+    margin-left: 50%;
+  }
+  .offset5 {
+    margin-left: 41.66666%;
+  }
+  .offset4 {
+    margin-left: 33.33333%;
+  }
+  .offset3 {
+    margin-left: 25%;
+  }
+  .offset2 {
+    margin-left: 16.66666%;
+  }
+  .offset1 {
+    width: 8.33333%;
+  }
+}
+
+
+/* Large View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (min-width: 701px) {
+  .smallShow {
+    display: none;
+  }
+
+  /* Navigation */
+  .navigation {
+    position: relative;
+    left: 0px;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .navigation ul, ol {
+    list-style: none;
+  }
+  .navigation.horizontal {
+    ul {
+      text-align: left;
+
+      li {
+        display: inline;
+      }
+    }
+  }
+}
+
+
+/* Adjusting View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: @page_width) {
+  .webplate {
+    .webplateInner {
+      /* Set inner width */
+      .row.inner {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+/* Small View (iPhone)
+--------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .smallHide {
+    display: none;
+  }
+  
+  /* Global */
+  .row {
+    [class *= "span"] {
+      display: block;
+      float: none;
+      width: 100%;
+    }
+    [class *= "offset"] {
+      margin-left: 0%;
+    }
+    .smallSpan12, .smallSpan11, .smallSpan10, .smallSpan9, .smallSpan8, .smallSpan7, .smallSpan6, .smallSpan5, .smallSpan4, .smallSpan3, .smallSpan2, .smallSpan1 {
+      float: left;
+      position: relative;
+    }
+    .smallSpan12 {
+      width: 100%;
+    }
+    .smallSpan11 {
+      width: 91.66666%;
+    }
+    .smallSpan10 {
+      width: 83.33333%;
+    }
+    .smallSpan9 {
+      width: 75%;
+    }
+    .smallSpan8 {
+      width: 66.66666%;
+    }
+    .smallSpan7 {
+      width: 58.33333%;
+    }
+    .smallSpan6 {
+      width: 50%;
+    }
+    .smallSpan5 {
+      width: 41.66666%;
+    }
+    .smallSpan4 {
+      width: 33.33333%;
+    }
+    .smallSpan3 {
+      width: 24%;
+    }
+    .smallSpan2 {
+      width: 16.66666%;
+    }
+    .smallSpan1 {
+      width: 8.33333%;
+    }
+    .smallOffset11 {
+      margin-left: 91.66666%;
+    }
+    .smallOffset10 {
+      margin-left: 83.33333%;
+    }
+    .smallOffset9 {
+      margin-left: 75%;
+    }
+    .smallOffset8 {
+      margin-left: 66.66666%;
+    }
+    .smallOffset7 {
+      margin-left: 58.33333%;
+    }
+    .smallOffset6 {
+      margin-left: 50%;
+    }
+    .smallOffset5 {
+      margin-left: 41.66666%;
+    }
+    .smallOffset4 {
+      margin-left: 33.33333%;
+    }
+    .smallOffset3 {
+      margin-left: 25%;
+    }
+    .smallOffset2 {
+      margin-left: 16.66666%;
+    }
+    .smallOffset1 {
+      margin-left: 8.33333%;
+    }
+  }
+
+  /* Webplate */
+  .webplateInner {
+    position: relative;
+    width: 100%;
+    left: 0;
+    .animate(left, 0.3s);
+  }
+  .showNav .webplateInner {
+    position: relative;
+    width: 100%;
+    left: @menu_width;
+  }
+
+  /* Navigation */
+  .navigationTrigger {
+    z-index: 101;
+  }
+  .navigation {
+    position: fixed;
+    top: 0px;
+    left: -@menu_width;
+    width: @menu_width;
+    height: 100%;
+    background-image: url(../images/global/nav_back.png);
+    .box-shadow-inset(rgba(0,0,0,0.5), 8px, 0px, -4px);
+    .animate(left, 0.3s);
+
+    a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #b0b0b0;
+    }
+    a:hover {
+      color: #fff;
+      .animate(color);
+    }
+  }
+  .showNav .navigation {
+    left: 0px;
+
+    .navigationInner {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+  /* Small navigation */
+  .smallNavigation {
+    .heading {
+      text-align: center;
+    }
+
+    .buffer {
+      .hide-text();
+    }
+  }
+
+  /* Content */
+  .content {
+    .errorMessage {
+      width: 75%;
+    }
+  }
+}
+
+
+/* Links
+--------------------------------------------------------------------------------------- */
+a {
+}
+a:hover {
+}
+a:visited {
+}
