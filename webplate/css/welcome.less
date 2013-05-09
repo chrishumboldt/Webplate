@@ -28,6 +28,8 @@
 
 /* VARIABLES
 --------------------------------------------------------------------------------------- */
+@dark_colour:             lighten(#000, 18%);
+@logo_colour:             #9de0ad;
 
 
 /* Global
@@ -43,31 +45,54 @@
   }
   /* Header */
   .header {
-    position: fixed;
+    position: absolute;
     padding: 15px 0px;
     width: 100%;
-    background-color: #fff;
 
     .logo {
+      float: left;
       display: block;
-      width: 60px;
-      height: 60px;
-      background-image: url('../images/wpexample/logo.png');
-      background-size: 100%;
-      .hide-text();
+      margin-top: 12px;
+
+      .primary, .secondary {
+        float: left;
+        padding-top: 1px;
+        color: #fff;
+        font-size: 2em;
+        height: 40px;
+      }
+      .primary {
+        border-right: 4px solid @logo_colour;
+        .animate(border-right);
+      }
+    }
+    .logo:hover {
+      .primary {
+        border-right: 4px solid #f0b49e;
+        .animate(border-right);
+      }
     }
   }
   /* Banner */
   .banner {
-    height: 300px;
-    background-color: #1fbba6;
+    background: url('../images/welcome/header-background.jpg') no-repeat;
+    background-size: 100%;
 
     h1 {
-      padding-top: 150px;
+      padding-top: 120px;
+      padding-bottom: 20px;
       text-align: center;
       font-weight: 100;
       font-size: 3.8em;
-      color: darken(#1fbba6, 25%);
+      color: @dark_colour;
+    }
+    h4 {
+      width: 80%;
+      margin: 0px auto;
+      margin-bottom: 60px;
+      text-align: center;
+      line-height: 1.4em;
+      color: @dark_colour;
     }
   }
 }
@@ -77,17 +102,18 @@
 --------------------------------------------------------------------------------------- */
 @media screen and (min-width: 701px) {
   .webplate {
+    /* Navigation */
     .navigation {
       margin-top: 18px;
 
       a {
         display: block;
         text-align: center;
-        color: #3b3a3f;
+        color: @dark_colour;
         font-size: 1.2em;
       }
       a:hover {
-        color: #00a79f;
+        color: #fff;
       }
     }
   }
@@ -106,8 +132,6 @@
   .webplate {
     .header {
       padding: 5px 0px;
-      left: 0px;
-      .animate(left, 0.3s);
 
       .navigationTrigger {
         margin-top: 9px;
@@ -116,15 +140,20 @@
         margin-top: 10px;
       }
       .logo {
+        float: none;
         margin: 0px auto;
-        width: 55px;
-        height: 55px;
+        margin-top: 14px;
+        width: 112px;
+
+        .primary, .secondary {
+          font-size: 1.8em;
+        }
       }
     }
-  }
-  /* Show navigation */
-  .showNav .header {
-    left: @menu_width;
+    /* Banner */
+    .banner {
+      background-size: 150%;
+    }
   }
 }
 
