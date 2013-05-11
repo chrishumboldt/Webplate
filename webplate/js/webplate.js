@@ -1,10 +1,10 @@
 /*
 	Description:	webplate.js
 	Author: 		Chris Modem
-	Last Edited:	4 May 2013
+	Last Edited:	11 May 2013
 */
 
-/* ----- WEBPLATE LOADER ----- */
+/* ----- WEBPLATE ----- */
 /*! LAB.js (LABjs :: Loading And Blocking JavaScript)
     v2.0.3 (c) Kyle Simpson
     MIT License
@@ -546,10 +546,21 @@ $LAB
                 if($('html').hasClass('showNav')){
 
                     $('html').removeClass('showNav');
+                    $('.navigation').removeAttr('style');
+//                    $('.webplateInner').animate({ left : 0 }, 'fast');
                 }
                 else{
+                    // Some variables
+                    $menu_width             = $('.navigation').width();
 
+                    // Edit the DoM
                     $('html').addClass('showNav');
+                    setTimeout($.webplate_navigation_front, 300);
+//                    $('.webplateInner').animate({ left : $menu_width }, 'fast', function(){
+//
+//                        // Bring the navigation forward
+//                        $('.navigation').css({ zIndex : 1 });
+//                    });
                 }
             });
 
@@ -566,6 +577,13 @@ $LAB
                 $(this).addClass('active');
                 $('html').removeClass('showNav');
             });
+        };
+
+        // ----- NAVIGATION BRING TO FRONT
+        jQuery.webplate_navigation_front = function(){
+
+            // Bring the navigation forward
+            $('.navigation').css({ zIndex : 1 });
         };
 
         // ----- WINDOW TYPE
@@ -593,59 +611,6 @@ $LAB
                 $('html').addClass('webplateLargeView');
             }
         };
-    })
-
-    // Webplate execute
-    .wait(function(){
-
-        $(document).ready(function(){
-
-            // ------------------------------------------------ DOM EDITS
-
-            $('body').wrapInner('<div class="webplate" />');
-            $('.webplate').wrapInner('<div class="webplateInner" />');
-            $('.pane').wrapInner('<div class="paneInner" />');
-            $('.navigation').wrapInner('<div class="navigationInner" />');
-            $('.navigation .navigationInner').prepend('<div class="divHeight smallShow" style="height:15px;" />');
-            $('.navigation .navigationInner').append('<div class="divHeight smallShow" style="height:15px;" />');
-
-
-            // ------------------------------------------------ EXECUTE
-
-            $.webplate_navigation();
-
-            $.webplate_window_type();
-
-        });
-    })
-    
-    // Load JS extras
-    .wait(function(){
-
-        // Get page JS
-        $js_extras                          = $('body').data('js-extras');
-
-        // Check that js is needed
-        if(($js_extras) && ($js_extras.length > 0)){
-
-            // Split the js
-            $split_js_extras                = $js_extras.split(',');
-
-            // Loop through and load each js extra
-            $.each($split_js_extras, function($index, $file){
-
-                // Trim the whitespace
-                $file                       = jQuery.trim($file);
-
-                // Get the extension
-                $extension                  = $.webplate_get_extension($file);
-
-                // Load the JS
-                if($extension == 'js'){
-                    $LAB.script($js_path + $file);
-                }
-            });
-        }
     })
 
     // Load CSS extras
@@ -689,10 +654,61 @@ $LAB
     })
 
     // Load the LESS
-    .script($js_path + 'webplate-less.js').wait()
+    .script($js_path + 'webplate-less.js').wait(function(){
 
-    // Display the body
+        // Display the body
+        $('body').show();
+    })
+
+    // Webplate execute
     .wait(function(){
 
-        $('body').show();
+        $(document).ready(function(){
+
+            // ------------------------------------------------ DOM EDITS
+
+            $('body').wrapInner('<div class="webplate" />');
+            $('.webplate').wrapInner('<div class="webplateInner" />');
+            $('.pane').wrapInner('<div class="paneInner" />');
+            $('.navigation').wrapInner('<div class="navigationInner" />');
+            $('.navigation .navigationInner').prepend('<div class="divHeight smallShow" style="height:15px;" />');
+            $('.navigation .navigationInner').append('<div class="divHeight smallShow" style="height:15px;" />');
+
+
+            // ------------------------------------------------ EXECUTE
+
+            $.webplate_navigation();
+
+            $.webplate_window_type();
+
+        });
+    })
+
+    // Load JS extras
+    .wait(function(){
+
+        // Get page JS
+        $js_extras                          = $('body').data('js-extras');
+
+        // Check that js is needed
+        if(($js_extras) && ($js_extras.length > 0)){
+
+            // Split the js
+            $split_js_extras                = $js_extras.split(',');
+
+            // Loop through and load each js extra
+            $.each($split_js_extras, function($index, $file){
+
+                // Trim the whitespace
+                $file                       = jQuery.trim($file);
+
+                // Get the extension
+                $extension                  = $.webplate_get_extension($file);
+
+                // Load the JS
+                if($extension == 'js'){
+                    $LAB.script($js_path + $file);
+                }
+            });
+        }
     });

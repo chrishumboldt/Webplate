@@ -29,18 +29,43 @@
 /* VARIABLES
 --------------------------------------------------------------------------------------- */
 @dark_colour:             lighten(#000, 18%);
+@light_colour:            darken(#fff, 5%);
 @logo_colour:             #9de0ad;
 
 
 /* Global
 --------------------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Lato Hairline'), local('Lato-Hairline'), url(../lato/lato-hairline.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url(../lato/lato-light.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(../lato/lato-regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(../lato/lato-bold.woff) format('woff');
+}
 * {
   font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
 }
 .webplate {
-  /* Row changes */
-  .row.inner {
+  /* Inner changes */
+  .inner {
     padding: 0px 15px;
   }
   /* Header */
@@ -76,23 +101,68 @@
   /* Banner */
   .banner {
     background: url('../images/welcome/header-background.jpg') no-repeat;
-    background-size: 100%;
+    background-size: 120%;
 
     h1 {
       padding-top: 120px;
       padding-bottom: 20px;
       text-align: center;
       font-weight: 100;
-      font-size: 3.8em;
-      color: @dark_colour;
+      font-size: 4em;
+      color: @light_colour;
     }
-    h4 {
-      width: 80%;
+    h3 {
+      width: 90%;
       margin: 0px auto;
       margin-bottom: 60px;
       text-align: center;
       line-height: 1.4em;
-      color: @dark_colour;
+      font-weight: 300;
+      color: lighten(@logo_colour, 15%);
+    }
+  }
+  /* Content */
+  .content {
+    .dark * {
+      color: #fff;
+    }
+    .row .inner {
+      padding: 50px 15px;
+    }
+    .row {
+      h2 {
+        font-weight: 100;
+        text-align: center;
+      }
+      h4 {
+        width: 90%;
+        margin: 0px auto;
+        margin-bottom: 50px;
+        text-align: center;
+        line-height: 1.6em;
+      }
+      .infoBlock {
+        padding: 20px;
+        .rounded-corners();
+      }
+      .seperator {
+        margin: 20px 0px;
+        font-size: 4em;
+        text-align: center;
+      }
+    }
+    .row.darkBlue {
+      background-color: darken(#547980, 18%);
+
+      h2 {
+        color: @logo_colour;
+      }
+      h4 {
+        color: lighten(#547980, 35%);
+      }
+      .infoBlock {
+        background-color: lighten(#547980, 0%);
+      }
     }
   }
 }
@@ -109,11 +179,15 @@
       a {
         display: block;
         text-align: center;
-        color: @dark_colour;
+        color: #fff;
         font-size: 1.2em;
+
+        span {
+          padding-right: 5px;
+        }
       }
       a:hover {
-        color: #fff;
+        color: darken(@logo_colour, 6%);
       }
     }
   }
@@ -123,6 +197,28 @@
 /* Adjusting View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
 @media screen and (max-width: @page_width) {
+  .webplate {
+    /* Banner */
+    .banner {
+      background-size: 160%;
+    }
+  }
+}
+
+
+/* Adjusting View (Close to small view)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: 825px) {
+  .webplate {
+    /* Navigation */
+    .navigation {
+      a {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 
@@ -130,6 +226,17 @@
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
   .webplate {
+    /* Navigation */
+    .navigation {
+      a {
+        span {
+          display: inline;
+          padding-right: 10px;
+          color: #1fbba6;
+        }
+      }
+    }
+    /* Header */
     .header {
       padding: 5px 0px;
 
@@ -152,7 +259,11 @@
     }
     /* Banner */
     .banner {
-      background-size: 150%;
+      background-size: 350%;
+
+      h3 {
+        font-size: 1.6em;
+      }
     }
   }
 }

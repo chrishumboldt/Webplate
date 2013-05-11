@@ -38,6 +38,9 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+html, body {
+  height: 100%;
+}
 html {
   font-size: 0.875em;
   position: relative;
@@ -45,7 +48,6 @@ html {
   background-color: #fff;
   -ms-text-size-adjust: 100%;
   -webkit-texts-size-adjust: 100%;
-
 }
 div {
   display: block;
@@ -199,13 +201,19 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
 .webplate {
   position: relative;
   width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
 
   .webplateInner {
     max-width: 100%;
+    height: 100%;
     margin: 0px auto;
+    left: 0px;
+    background-color: #fff;
+    .animate(left);
 
     /* Set inner width */
-    .row.inner {
+    .inner {
       width: @page_width;
       margin: 0px auto;
     }
@@ -226,8 +234,6 @@ html.fixedPage .webplate .webplateInner {
   left: 100%;
   background-color: #fff;
   border-left: 1px solid fadeout(#000, 90%);
-  z-index: 201;
-  .animate(left, 0.5s);
 
   .paneInner {
     padding: 20px;
@@ -236,11 +242,9 @@ html.fixedPage .webplate .webplateInner {
 }
 .showPane .pane {
   left: @menu_width;
-  .animate(left, 0.5s);
 }
 .webplateSmallView.showPane .pane {
   left: 0;
-  .animate(left, 0.5s);
 }
 .webplateSmallView .navigation ul li {
   clear: both;
@@ -348,7 +352,6 @@ html.fixedPage .webplate .webplateInner {
   .navigation {
     position: relative;
     left: 0px;
-    z-index: 100;
     overflow: hidden;
   }
   .navigation ul, ol {
@@ -372,7 +375,7 @@ html.fixedPage .webplate .webplateInner {
   .webplate {
     .webplateInner {
       /* Set inner width */
-      .row.inner {
+      .inner {
         width: 100%;
       }
     }
@@ -477,7 +480,6 @@ html.fixedPage .webplate .webplateInner {
     position: relative;
     width: 100%;
     left: 0;
-    .animate(left, 0.3s);
   }
   .showNav .webplateInner {
     position: relative;
@@ -486,33 +488,28 @@ html.fixedPage .webplate .webplateInner {
   }
 
   /* Navigation */
-  .navigationTrigger {
-    z-index: 101;
-  }
   .navigation {
     position: fixed;
-    top: 0px;
-    left: -@menu_width;
     width: @menu_width;
     height: 100%;
+    top: 0px;
+    left: 0px;
     background-color: lighten(#000, 12%);
     .box-shadow-inset(rgba(0,0,0,0.5), 12px, 0px, -4px);
-    .animate(left, 0.3s);
+    z-index: -1;
 
     a {
       display: block;
       padding: 10px 20px;
-      font-size: 1em;
+      font-size: 1.1em;
       color: #b0b0b0;
+      .animate(color);
     }
     a:hover {
       color: #fff;
-      .animate(color);
     }
   }
   .showNav .navigation {
-    left: 0px;
-
     .navigationInner {
       height: 100%;
       overflow: auto;

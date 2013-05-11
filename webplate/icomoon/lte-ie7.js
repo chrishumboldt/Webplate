@@ -30,7 +30,16 @@ window.onload = function() {
 			'icon-ok' : '&#xf00c;',
 			'icon-gift' : '&#xe002;',
 			'icon-male' : '&#xe003;',
-			'icon-female' : '&#xe004;'
+			'icon-female' : '&#xe004;',
+			'icon-text' : '&#xe006;',
+			'icon-code' : '&#xe007;',
+			'icon-stack' : '&#xe009;',
+			'icon-pointer' : '&#xe00a;',
+			'icon-plus' : '&#xe00b;',
+			'icon-arrow-down-3' : '&#xe00c;',
+			'icon-sort' : '&#xf0dc;',
+			'icon-frame' : '&#xe010;',
+			'icon-vector' : '&#xe00e;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
