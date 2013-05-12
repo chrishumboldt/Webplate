@@ -134,6 +134,9 @@
   -o-transition: @attribute @transition_speed ease-out;
   -ms-transition: @attribute @transition_speed ease-out;
   transition: @attribute @transition_speed ease-out;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0,0,0);
 }
 .hide-text() {
   text-indent: -10000px;

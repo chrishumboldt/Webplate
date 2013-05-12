@@ -531,36 +531,21 @@ $LAB
             });
         }
 
-        // ----- HIDE PANE
-        jQuery.webplate_hide_pane = function(){
-
-            $('html').removeClass('showPane');
-        };
-
         // ----- NAVIGATION
         jQuery.webplate_navigation = function(){
+
+            // Duplicate navigation
+            $('.webplate').prepend($('.navigation').clone().addClass('navigationSmall').removeClass('navigation'));
 
             // On click
             $('.navigationTrigger').on('click', function(){
 
                 if($('html').hasClass('showNav')){
 
-                    $('html').removeClass('showNav');
-                    $('.navigation').removeAttr('style');
-//                    $('.webplateInner').animate({ left : 0 }, 'fast');
+                    $('html').removeClass('showNav').addClass('hideNav');
                 }
                 else{
-                    // Some variables
-                    $menu_width             = $('.navigation').width();
-
-                    // Edit the DoM
-                    $('html').addClass('showNav');
-                    setTimeout($.webplate_navigation_front, 300);
-//                    $('.webplateInner').animate({ left : $menu_width }, 'fast', function(){
-//
-//                        // Bring the navigation forward
-//                        $('.navigation').css({ zIndex : 1 });
-//                    });
+                    $('html').addClass('showNav').removeClass('hideNav');
                 }
             });
 
@@ -571,19 +556,12 @@ $LAB
             }
 
             // Change active state and close menu
-            $('.navigation a').on('click', function(){
+            $('.navigationSmall a').on('click', function(){
 
-                $('.navigation a.active').removeClass('active');
+                $('.navigationSmall a.active').removeClass('active');
                 $(this).addClass('active');
-                $('html').removeClass('showNav');
+                $('html').removeClass('showNav').addClass('hideNav');
             });
-        };
-
-        // ----- NAVIGATION BRING TO FRONT
-        jQuery.webplate_navigation_front = function(){
-
-            // Bring the navigation forward
-            $('.navigation').css({ zIndex : 1 });
         };
 
         // ----- WINDOW TYPE
@@ -599,14 +577,18 @@ $LAB
         // ----- NAVIGATION
         jQuery.webplate_window_type_execute = function(){
 
+            $('html.showNav').removeClass('showNav').addClass('hideNav');
+
             // Some variables
             if($(window).width() <= 700){
 
+                // Set the type variable
                 $('html').addClass('webplateSmallView');
                 $('html').removeClass('webplateLargeView');
             }
             else{
 
+                // Set the type variable
                 $('html').removeClass('webplateSmallView');
                 $('html').addClass('webplateLargeView');
             }

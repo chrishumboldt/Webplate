@@ -48,6 +48,7 @@ html {
   background-color: #fff;
   -ms-text-size-adjust: 100%;
   -webkit-texts-size-adjust: 100%;
+  -webkit-backface-visibility: hidden;
 }
 div {
   display: block;
@@ -201,16 +202,17 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
 .webplate {
   position: relative;
   width: 100%;
-  height: 100%;
   -webkit-backface-visibility: hidden;
 
   .webplateInner {
+    position: relative;
+    width: 100%;
     max-width: 100%;
-    height: 100%;
     margin: 0px auto;
-    left: 0px;
     background-color: #fff;
-    .animate(left);
+    z-index: 1;
+    .box-shadow(fadeout(#000, 20%), 30px);
+    -webkit-backface-visibility: hidden;
 
     /* Set inner width */
     .inner {
@@ -218,6 +220,47 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
       margin: 0px auto;
     }
   }
+}
+/* Navigation animation */
+//.no-touch .webplateInner {
+//  .animate(left);
+//}
+//.no-touch.showNav .webplateInner {
+//  position: relative;
+//  width: 100%;
+//  left: @menu_width;
+//}
+.showNav .webplateInner {
+  animation: move 0.3s ease forwards;
+  -webkit-animation: move 0.3s ease forwards;
+}
+.touch.hideNav .webplateInner {
+  -webkit-animation: moveBackIOS 0.3s ease forwards;
+}
+.no-touch.hideNav .webplateInner {
+  animation: moveBack 0.3s ease forwards;
+  -webkit-animation: moveBack 0.3s ease forwards;
+}
+@keyframes move {
+  from { transform: translate(0px); }
+  to { transform: translate(@menu_width); }
+}
+@-webkit-keyframes move {
+  from { -webkit-transform: translate(0px); }
+  to { -webkit-transform: translate(@menu_width); }
+}
+@-webkit-keyframes moveBackIOS {
+  from { -webkit-transform: translate(0px); }
+  1% { -webkit-transform: translate(@menu_width); }
+  to { -webkit-transform: translate(0px); }
+}
+@-webkit-keyframes moveBack {
+  from { -webkit-transform: translate(@menu_width); }
+  to { -webkit-transform: translate(0px); }
+}
+@keyframes moveBack {
+  from { transform: translate(@menu_width); }
+  to { transform: translate(0px); }
 }
 
 /* Fixed page width setting */
@@ -366,6 +409,9 @@ html.fixedPage .webplate .webplateInner {
       }
     }
   }
+  .navigationSmall {
+    display: none;
+  }
 }
 
 
@@ -481,22 +527,20 @@ html.fixedPage .webplate .webplateInner {
     width: 100%;
     left: 0;
   }
-  .showNav .webplateInner {
-    position: relative;
-    width: 100%;
-    left: @menu_width;
-  }
 
   /* Navigation */
   .navigation {
-    position: fixed;
+    display: none;
+  }
+  .navigationSmall {
+    display: block;
+    position: absolute;
     width: @menu_width;
     height: 100%;
     top: 0px;
     left: 0px;
     background-color: lighten(#000, 12%);
-    .box-shadow-inset(rgba(0,0,0,0.5), 12px, 0px, -4px);
-    z-index: -1;
+    z-index: 0;
 
     a {
       display: block;
@@ -507,30 +551,6 @@ html.fixedPage .webplate .webplateInner {
     }
     a:hover {
       color: #fff;
-    }
-  }
-  .showNav .navigation {
-    .navigationInner {
-      height: 100%;
-      overflow: auto;
-    }
-  }
-
-  /* Small navigation */
-  .smallNavigation {
-    .heading {
-      text-align: center;
-    }
-
-    .buffer {
-      .hide-text();
-    }
-  }
-
-  /* Content */
-  .content {
-    .errorMessage {
-      width: 75%;
     }
   }
 }
