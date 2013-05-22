@@ -204,6 +204,14 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
   width: 100%;
   -webkit-backface-visibility: hidden;
 
+  .navigationSmall {
+    position: fixed;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-perspective: 1000;
+    -webkit-transform: translateZ(0);
+  }
+
   .webplateInner {
     position: relative;
     width: 100%;
@@ -211,56 +219,28 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
     margin: 0px auto;
     background-color: #fff;
     z-index: 1;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     .box-shadow(fadeout(#000, 20%), 30px);
     -webkit-backface-visibility: hidden;
+    transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -webkit-transition: -webkit-transform 0.2s ease;
+    -o-transition: -o-transform;
+    -moz-transition: -moz-transform;
+    transition: -moz-transform;
 
-    /* Set inner width */
     .inner {
       width: @page_width;
       margin: 0px auto;
     }
   }
 }
-/* Navigation animation */
-//.no-touch .webplateInner {
-//  .animate(left);
-//}
-//.no-touch.showNav .webplateInner {
-//  position: relative;
-//  width: 100%;
-//  left: @menu_width;
-//}
 .showNav .webplateInner {
-  animation: move 0.3s ease forwards;
-  -webkit-animation: move 0.3s ease forwards;
-}
-.touch.hideNav .webplateInner {
-  -webkit-animation: moveBackIOS 0.3s ease forwards;
-}
-.no-touch.hideNav .webplateInner {
-  animation: moveBack 0.3s ease forwards;
-  -webkit-animation: moveBack 0.3s ease forwards;
-}
-@keyframes move {
-  from { transform: translate(0px); }
-  to { transform: translate(@menu_width); }
-}
-@-webkit-keyframes move {
-  from { -webkit-transform: translate(0px); }
-  to { -webkit-transform: translate(@menu_width); }
-}
-@-webkit-keyframes moveBackIOS {
-  from { -webkit-transform: translate(0px); }
-  1% { -webkit-transform: translate(@menu_width); }
-  to { -webkit-transform: translate(0px); }
-}
-@-webkit-keyframes moveBack {
-  from { -webkit-transform: translate(@menu_width); }
-  to { -webkit-transform: translate(0px); }
-}
-@keyframes moveBack {
-  from { transform: translate(@menu_width); }
-  to { transform: translate(0px); }
+  -webkit-transform: translate3d(@menu_width, 0px, 0px);
+  -o-transform: translate3d(@menu_width, 0px, 0px);
+  -moz-transform: translate3d(@menu_width, 0px, 0px);
+  transform: translate3d(@menu_width, 0px, 0px);
 }
 
 /* Fixed page width setting */
@@ -432,11 +412,14 @@ html.fixedPage .webplate .webplateInner {
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+
+  /* Global */
+  html {
+    background-color: lighten(#000, 12%);
+  }
   .smallHide {
     display: none;
   }
-  
-  /* Global */
   .row {
     [class *= "span"] {
       display: block;
@@ -534,7 +517,6 @@ html.fixedPage .webplate .webplateInner {
   }
   .navigationSmall {
     display: block;
-    position: absolute;
     width: @menu_width;
     height: 100%;
     top: 0px;
@@ -542,15 +524,21 @@ html.fixedPage .webplate .webplateInner {
     background-color: lighten(#000, 12%);
     z-index: 0;
 
-    a {
-      display: block;
-      padding: 10px 20px;
-      font-size: 1.1em;
-      color: #b0b0b0;
-      .animate(color);
-    }
-    a:hover {
-      color: #fff;
+    .navigationInner {
+      height: 100%;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+
+      a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        color: #b0b0b0;
+        .animate(color);
+      }
+      a:hover {
+        color: #fff;
+      }
     }
   }
 }

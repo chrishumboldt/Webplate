@@ -1,7 +1,7 @@
 /*
-	Description:	webplate.js
+	Description:	webplate_engine.js
 	Author: 		Chris Modem
-	Last Edited:	11 May 2013
+	Last Edited:	22 May 2013
 */
 
 /* ----- WEBPLATE ----- */
@@ -545,9 +545,21 @@ $LAB
                 if($('html').hasClass('showNav')){
 
                     $('html').removeClass('showNav').addClass('hideNav');
+                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+
+                        if($('.webplateInner').css('position') == 'fixed'){
+                            $('.webplateInner').css({ 'position' : 'relative' });
+                        }
+                    });
                 }
                 else{
                     $('html').addClass('showNav').removeClass('hideNav');
+                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+
+                        if($('.webplateInner').css('position') == 'relative'){
+                            $('.webplateInner').css({ 'position' : 'fixed' });
+                        }
+                    });
                 }
             });
 
@@ -579,7 +591,13 @@ $LAB
         // ----- NAVIGATION
         jQuery.webplate_window_type_execute = function(){
 
-            $('html.showNav').removeClass('showNav').addClass('hideNav');
+            $('html.no-touch.showNav').removeClass('showNav').addClass('hideNav');
+            $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+
+                if($('.webplateInner').css('position') == 'fixed'){
+                    $('.webplateInner').css({ 'position' : 'relative' });
+                }
+            });
 
             // Some variables
             if($(window).width() <= 700){
@@ -651,6 +669,15 @@ $LAB
         $('body').show();
     })
 
+    // Load Fastclick if touch device
+    .wait(function(){
+
+        if($('html').hasClass('touch')){
+
+            $LAB.script($js_path + 'min/webplate-fastclick.min.js');
+        }
+    })
+
     // Webplate execute
     .wait(function(){
 
@@ -671,6 +698,11 @@ $LAB
             $.webplate_navigation();
 
             $.webplate_window_type();
+
+            if($('html').hasClass('touch')){
+
+                FastClick.attach(document.body);
+            }
 
         });
     })
