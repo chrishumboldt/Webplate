@@ -196,6 +196,20 @@ a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer;
   }
 }
 
+/* Overlay */
+.webplateOverlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, fadeout(#000, 30%), fadeout(#000, 15%) 100%);
+  background-image: -o-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+}
+
 
 /* Global
 --------------------------------------------------------------------------------------- */

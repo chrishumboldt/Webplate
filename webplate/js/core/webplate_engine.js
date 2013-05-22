@@ -320,13 +320,13 @@ $LAB
         // ----- ADD OVERLAY
         jQuery.webplate_show_overlay = function(){
 
-            $('.overlay').fadeIn();
+            $('.webplateOverlay').fadeIn('fast');
         };
 
         // ----- REMOVE OVERLAY
         jQuery.webplate_remove_overlay = function(){
 
-            $('.overlay').fadeOut();
+            $('.webplateOverlay').fadeOut('fast');
         };
 
         jQuery.webplate_show_modal = function($modal_class){
@@ -344,7 +344,7 @@ $LAB
                 //$scroll_top             = $(window).scrollTop();
 
                 // Adjust the DOM
-                $('.overlay').fadeIn();
+                $('.webplateOverlay').fadeIn();
                 $($modal_class).css({ top: -($modal_height + 50) }).show();
                 $($modal_class).animate({ top: 0 }, 'fast');
             }
@@ -362,7 +362,7 @@ $LAB
                 //$scroll_top             = $('.content').offset();
 
                 // Adjust the DOM
-                $('.overlay').fadeOut();
+                $('.webplateOverlay').fadeOut();
                 $('.modal:visible').animate({ top: -($modal_height + 50) }, 'fast', function(){
 
                     $('.modal:visible').hide();
@@ -687,6 +687,7 @@ $LAB
 
             $('body').wrapInner('<div class="webplate" />');
             $('.webplate').wrapInner('<div class="webplateInner" />');
+            $('.webplate').prepend('<div class="webplateOverlay" />');
             $('.pane').wrapInner('<div class="paneInner" />');
             $('.navigation').wrapInner('<div class="navigationInner" />');
             $('.navigation .navigationInner').prepend('<div class="divHeight smallShow" style="height:15px;" />');
