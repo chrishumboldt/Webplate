@@ -545,21 +545,11 @@ $LAB
                 if($('html').hasClass('showNav')){
 
                     $('html').removeClass('showNav').addClass('hideNav');
-                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-                        if($('.webplateInner').css('position') == 'fixed'){
-                            $('.webplateInner').css({ 'position' : 'relative' });
-                        }
-                    });
+						  $('.webplateInner').css({ 'position' : 'relative' });
                 }
                 else{
                     $('html').addClass('showNav').removeClass('hideNav');
-                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-                        if($('.webplateInner').css('position') == 'relative'){
-                            $('.webplateInner').css({ 'position' : 'fixed' });
-                        }
-                    });
+                    $('.webplateInner').css({ 'position' : 'fixed' });
                 }
             });
 
@@ -575,6 +565,7 @@ $LAB
                 $('.navigationSmall a.active').removeClass('active');
                 $(this).addClass('active');
                 $('html').removeClass('showNav').addClass('hideNav');
+					 $('.webplateInner').css({ 'position' : 'relative' });
             });
         };
 
@@ -592,12 +583,7 @@ $LAB
         jQuery.webplate_window_type_execute = function(){
 
             $('html.no-touch.showNav').removeClass('showNav').addClass('hideNav');
-            $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-                if($('.webplateInner').css('position') == 'fixed'){
-                    $('.webplateInner').css({ 'position' : 'relative' });
-                }
-            });
+            $('.webplateInner').css({ 'position' : 'relative' });
 
             // Some variables
             if($(window).width() <= 700){

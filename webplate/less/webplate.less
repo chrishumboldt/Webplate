@@ -7,140 +7,141 @@
 
 /* GLOBAL VARIABLES
 --------------------------------------------------------------------------------------- */
-@menu_width:    260px;
-@page_width:    1100px;
+@menu_width:						260px;
+@page_width:    					1100px;
+@small_nav_back_colour: 		lighten(#000, 12%);
+
+/* Form elements */
+@fe_vertical_position: 			12px;
+@fe_border_color:					#e6e6e6;     
+@fe_border_color_focus:       darken(@fe_border_color, 50%);  
+@fe_border_width:             2px; 
+@fe_rounded_corners_radius:   3px;  
 
 
 /* SOME HELPERS (required)
 --------------------------------------------------------------------------------------- */
 .rounded-corners (@radius: 2px) {
-  border-radius: @radius;
-  -o-border-radius: @radius;
-  -ms-border-radius: @radius;
-  -moz-border-radius: @radius;
-  -webkit-border-radius: @radius;
+	border-radius: @radius;
+	-o-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
 }
 .rounded-corners-left (@radius: 2px) {
-  border-radius: @radius 0px 0px @radius;
-  -o-border-radius: @radius 0px 0px @radius;
-  -ms-border-radius: @radius 0px 0px @radius;
-  -moz-border-radius: @radius 0px 0px @radius;
-  -webkit-border-radius: @radius 0px 0px @radius;
+	border-radius: @radius 0px 0px @radius;
+	-o-border-radius: @radius 0px 0px @radius;
+	-ms-border-radius: @radius 0px 0px @radius;
+	-moz-border-radius: @radius 0px 0px @radius;
+	-webkit-border-radius: @radius 0px 0px @radius;
 }
 .rounded-corners-right (@radius: 2px) {
-  border-radius: 0px @radius @radius 0px;
-  -o-border-radius: 0px @radius @radius 0px;
-  -ms-border-radius: 0px @radius @radius 0px;
-  -moz-border-radius: 0px @radius @radius 0px;
-  -webkit-border-radius: 0px @radius @radius 0px;
+	border-radius: 0px @radius @radius 0px;
+	-o-border-radius: 0px @radius @radius 0px;
+	-ms-border-radius: 0px @radius @radius 0px;
+	-moz-border-radius: 0px @radius @radius 0px;
+	-webkit-border-radius: 0px @radius @radius 0px;
 }
 .rounded-corners-top (@radius: 2px) {
-  border-radius: @radius @radius 0px 0px;
-  -o-border-radius: @radius @radius 0px 0px;
-  -ms-border-radius: @radius @radius 0px 0px;
-  -moz-border-radius: @radius @radius 0px 0px;
-  -webkit-border-radius: @radius @radius 0px 0px;
+	border-radius: @radius @radius 0px 0px;
+	-o-border-radius: @radius @radius 0px 0px;
+	-ms-border-radius: @radius @radius 0px 0px;
+	-moz-border-radius: @radius @radius 0px 0px;
+	-webkit-border-radius: @radius @radius 0px 0px;
 }
 .rounded-corners-bottom (@radius: 2px) {
-  border-radius: 0px 0px @radius @radius;
-  -o-border-radius: 0px 0px @radius @radius;
-  -ms-border-radius: 0px 0px @radius @radius;
-  -moz-border-radius: 0px 0px @radius @radius;
-  -webkit-border-radius: 0px 0px @radius @radius;
+	border-radius: 0px 0px @radius @radius;
+	-o-border-radius: 0px 0px @radius @radius;
+	-ms-border-radius: 0px 0px @radius @radius;
+	-moz-border-radius: 0px 0px @radius @radius;
+	-webkit-border-radius: 0px 0px @radius @radius;
 }
 .rounded-corners-top-right (@radius: 2px) {
-  border-radius: 0px @radius 0px 0px;
-  -o-border-radius: 0px @radius 0px 0px;
-  -ms-border-radius: 0px @radius 0px 0px;
-  -moz-border-radius: 0px @radius 0px 0px;
-  -webkit-border-radius: 0px @radius 0px 0px;
+	border-radius: 0px @radius 0px 0px;
+	-o-border-radius: 0px @radius 0px 0px;
+	-ms-border-radius: 0px @radius 0px 0px;
+	-moz-border-radius: 0px @radius 0px 0px;
+	-webkit-border-radius: 0px @radius 0px 0px;
 }
 .rounded-corners-top-left (@radius: 2px) {
-  border-radius: @radius 0px 0px 0px;
-  -o-border-radius: @radius 0px 0px 0px;
-  -ms-border-radius: @radius 0px 0px 0px;
-  -moz-border-radius: @radius 0px 0px 0px;
-  -webkit-border-radius: @radius 0px 0px 0px;
+	border-radius: @radius 0px 0px 0px;
+	-o-border-radius: @radius 0px 0px 0px;
+	-ms-border-radius: @radius 0px 0px 0px;
+	-moz-border-radius: @radius 0px 0px 0px;
+	-webkit-border-radius: @radius 0px 0px 0px;
 }
 .box-shadow (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
-  box-shadow: @horizontal_offset @vertical_offset @size @color;
-  -webkit-box-shadow: @horizontal_offset @vertical_offset @size @color;
-  -moz-box-shadow: @horizontal_offset @vertical_offset @size @color;
+	box-shadow: @horizontal_offset @vertical_offset @size @color;
+	-webkit-box-shadow: @horizontal_offset @vertical_offset @size @color;
+	-moz-box-shadow: @horizontal_offset @vertical_offset @size @color;
 }
 .box-shadow-inset (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
-  box-shadow: inset @horizontal_offset @vertical_offset @size @color;
-  -webkit-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
-  -moz-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
+	box-shadow: inset @horizontal_offset @vertical_offset @size @color;
+	-webkit-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
+	-moz-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 }
 .no-box-shadow {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
 }
 .colour-gradient (@top_colour, @bottom_colour) {
-  background: -webkit-linear-gradient(@top_colour, @bottom_colour);
-  background: -moz-linear-gradient(@top_colour, @bottom_colour);
+	background: -webkit-linear-gradient(@top_colour, @bottom_colour);
+	background: -moz-linear-gradient(@top_colour, @bottom_colour);
 }
 .button-gradient (@top_colour, @bottom_colour,  @top_highlight: 80%, @highlight_colour: #ffffff) {
-  background: -webkit-linear-gradient(@top_colour, @bottom_colour);
-  background: -moz-linear-gradient(@top_colour, @bottom_colour);
-  border-top: 1px solid fadeout(@highlight_colour, @top_highlight);
+	background: -webkit-linear-gradient(@top_colour, @bottom_colour);
+	background: -moz-linear-gradient(@top_colour, @bottom_colour);
+	border-top: 1px solid fadeout(@highlight_colour, @top_highlight);
 }
 .light-border (@top_highlight: 80%, @colour: #ffffff) {
-  border: 1px solid fadeout(@colour, @top_highlight);
+	border: 1px solid fadeout(@colour, @top_highlight);
 }
 .light-top-border (@top_highlight: 80%, @top_colour: #ffffff) {
-  border-top: 1px solid fadeout(@top_colour, @top_highlight);
+	border-top: 1px solid fadeout(@top_colour, @top_highlight);
 }
 .light-bottom-border (@bottom_highlight: 80%, @bottom_colour: #ffffff) {
-  border-bottom: 1px solid fadeout(@bottom_colour, @bottom_highlight);
+	border-bottom: 1px solid fadeout(@bottom_colour, @bottom_highlight);
 }
 .dark-bottom-border (@bottom_lowlight: 80%, @bottom_colour: #000000) {
-  border-bottom: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
+	border-bottom: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
 }
 .dark-top-border (@bottom_lowlight: 80%, @top_colour: #000000) {
-  border-top: 1px solid fadeout(@top_colour, @bottom_lowlight);
+	border-top: 1px solid fadeout(@top_colour, @bottom_lowlight);
 }
 .light-right-border (@top_highlight: 80%, @top_colour: #ffffff) {
-  border-right: 1px solid fadeout(@top_colour, @top_highlight);
+	border-right: 1px solid fadeout(@top_colour, @top_highlight);
 }
 .dark-right-border (@bottom_lowlight: 80%, @bottom_colour: #000000) {
-  border-right: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
+	border-right: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
 }
 .light-left-border (@top_highlight: 80%, @top_colour: #ffffff) {
-  border-left: 1px solid fadeout(@top_colour, @top_highlight);
+	border-left: 1px solid fadeout(@top_colour, @top_highlight);
 }
 .dark-left-border (@bottom_lowlight: 80%, @bottom_colour: #000000) {
-  border-left: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
+	border-left: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
 }
 .hide-text {
-  text-indent: -1000px;
-  overflow: hidden;
-}
-.inset-white-back (@padding: 12px) {
-  padding: @padding;
-  background-color: #ddeded;
-  box-shadow: rgba(255,255,255,0.8) 0px 1px 1px,inset rgba(0,0,0,0.2) 0px 1px 2px,inset rgba(0,0,0,0.2) 0px 0 1px;
-  -moz-box-shadow: rgba(255,255,255,0.8) 0px 1px 1px,inset rgba(0,0,0,0.2) 0px 1px 2px,inset rgba(0,0,0,0.2) 0px 0 1px;
-  -webkit-box-shadow: rgba(255,255,255,0.8) 0px 1px 1px,inset rgba(0,0,0,0.2) 0px 1px 2px,inset rgba(0,0,0,0.2) 0px 0 1px;
+	text-indent: -1000px;
+	overflow: hidden;
 }
 .change-opacity (@opacity: 0.60) {
-  -moz-opacity: @opacity;
-  opacity: @opacity;
+	-moz-opacity: @opacity;
+	opacity: @opacity;
 }
 .animate (@attribute, @transition_speed: 0.2s) {
-  -webkit-transition: @attribute @transition_speed ease-out;
-  -moz-transition: @attribute @transition_speed ease-out;
-  -o-transition: @attribute @transition_speed ease-out;
-  -ms-transition: @attribute @transition_speed ease-out;
-  transition: @attribute @transition_speed ease-out;
-  -webkit-transform: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden;
-  transform: translate3d(0,0,0);
+	-webkit-transition: @attribute @transition_speed ease-out;
+	-moz-transition: @attribute @transition_speed ease-out;
+	-o-transition: @attribute @transition_speed ease-out;
+	-ms-transition: @attribute @transition_speed ease-out;
+	transition: @attribute @transition_speed ease-out;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-backface-visibility: hidden;
+	transform: translate3d(0,0,0);
 }
 .hide-text() {
-  text-indent: -10000px;
-  overflow: hidden;
+	text-indent: -10000px;
+	overflow: hidden;
 }
 
 

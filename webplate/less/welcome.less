@@ -36,236 +36,246 @@
 /* Global
 --------------------------------------------------------------------------------------- */
 @font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 100;
-  src: local('Lato Hairline'), local('Lato-Hairline'), url(../fonts/lato/lato-hairline.woff) format('woff');
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 100;
+	src: local('Lato Hairline'), local('Lato-Hairline'), url(../fonts/lato/lato-hairline.woff) format('woff');
 }
 @font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Lato Light'), local('Lato-Light'), url(../fonts/lato/lato-light.woff) format('woff');
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Lato Light'), local('Lato-Light'), url(../fonts/lato/lato-light.woff) format('woff');
 }
 @font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url(../fonts/lato/lato-regular.woff) format('woff');
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Lato Regular'), local('Lato-Regular'), url(../fonts/lato/lato-regular.woff) format('woff');
 }
 @font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url(../fonts/lato/lato-bold.woff) format('woff');
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Lato Bold'), local('Lato-Bold'), url(../fonts/lato/lato-bold.woff) format('woff');
 }
 * {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
 }
 .webplate {
-  /* Inner changes */
-  .inner {
-    padding: 0px 15px;
-  }
-  /* Header */
-  .header {
-    position: absolute;
-    padding: 15px 0px;
-    width: 100%;
+	// Inner changes
+	.inner {
+		padding: 0px 15px;
+	}
+	// Header
+	.header {
+		width: 100%;
+		padding: 200px 0px 200px 0px;
+		background-color: #fffcf5;
 
-    .logo {
-      float: left;
-      display: block;
-      margin-top: 12px;
+		// Logo
+		.logo {
+			display: block;
+			width: 250px;
+			margin: 0px auto;
 
-      .primary, .secondary {
-        float: left;
-        padding-top: 1px;
-        color: #fff;
-        font-size: 2em;
-        height: 40px;
-      }
-      .primary {
-        border-right: 4px solid @logo_colour;
-        .animate(border-right);
-      }
-    }
-    .logo:hover {
-      .primary {
-        border-right: 4px solid #f0b49e;
-        .animate(border-right);
-      }
-    }
-  }
-  /* Banner */
-  .banner {
-    background: url('../images/welcome/header-background.jpg') no-repeat;
-    background-size: 100%;
+			.primary, .secondary {
+				float: left;
+				padding-top: 1px;
+				height: 60px;
+				color: lighten(#000, 40%);
+				font-size: 3.5em;
+			}
+			.primary {
+				padding-left: 40px;
+				border-right: 4px solid @logo_colour;
+				.animate(border-right);
+			}
+		}
+		.logo:hover {
+			.primary {
+				border-color: #f0b49e;
+				.animate(border-right);
+			}
+		}
+		// Heading
+		.heading {
+			h3 {
+				width: 80%;
+				margin: 0px auto;
+				margin-top: 40px;
+				color: lighten(#000, 40%);
+				text-align: center;
+				line-height: 1.3em;
+				font-size: 1.65em;
+			}
+		}
+		// Navigation
+		.navigation {
+			margin-top: 140px;
+		}
+	}
+	// Content
+	.content {
+		.dark * {
+			color: #fff;
+		}
+		.row .inner {
+			padding: 70px 15px;
+		}
+		.row {
+			h2 {
+				font-weight: 100;
+				text-align: center;
+			}
+			h4 {
+				width: 90%;
+				margin: 0px auto;
+				margin-bottom: 50px;
+				text-align: center;
+				line-height: 1.6em;
+			}
+			.infoBlock {
+				padding: 20px;
+				.rounded-corners();
+			}
+			.seperator {
+				margin: 20px 0px;
+				font-size: 4em;
+				text-align: center;
+			}
+		}
+		.row.darkBlue {
+			background-color: darken(#556270, 10%);
 
-    h1 {
-      padding-top: 120px;
-      padding-bottom: 20px;
-      text-align: center;
-      font-weight: 100;
-      font-size: 4em;
-      color: @light_colour;
-    }
-    h3 {
-      width: 90%;
-      margin: 0px auto;
-      margin-bottom: 60px;
-      text-align: center;
-      line-height: 1.4em;
-      font-weight: 300;
-      color: lighten(@logo_colour, 15%);
-    }
-  }
-  /* Content */
-  .content {
-    .dark * {
-      color: #fff;
-    }
-    .row .inner {
-      padding: 50px 15px;
-    }
-    .row {
-      h2 {
-        font-weight: 100;
-        text-align: center;
-      }
-      h4 {
-        width: 90%;
-        margin: 0px auto;
-        margin-bottom: 50px;
-        text-align: center;
-        line-height: 1.6em;
-      }
-      .infoBlock {
-        padding: 20px;
-        .rounded-corners();
-      }
-      .seperator {
-        margin: 20px 0px;
-        font-size: 4em;
-        text-align: center;
-      }
-    }
-    .row.darkBlue {
-      background-color: darken(#547980, 18%);
+			h2 {
+				color: @logo_colour;
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			.infoBlock {
+				background-color: darken(#556270, 0%);
+			}
+		}
+		.row.darkBlue2 {
+			background-color: lighten(#556270, 0%);
 
-      h2 {
-        color: @logo_colour;
-      }
-      h4 {
-        color: lighten(#547980, 35%);
-      }
-      .infoBlock {
-        background-color: lighten(#547980, 0%);
-      }
-    }
-  }
+			h2 {
+				color: @logo_colour;
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			.infoBlock {
+				background-color: darken(#556270, 0%);
+			}
+		}
+	}
 }
 
 
 /* Large View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
 @media screen and (min-width: 701px) {
-  .webplate {
-    /* Navigation */
-    .navigation {
-      margin-top: 18px;
+	.webplate {
+		// Navigation
+		.navigation {
+			margin-top: 18px;
 
-      a {
-        display: block;
-        text-align: center;
-        color: #fff;
-        font-size: 1.2em;
+			a {
+				display: block;
+				text-align: center;
+				color: lighten(#000, 40%);
+				font-size: 1.4em;
 
-        span {
-          padding-right: 5px;
-        }
-      }
-      a:hover {
-        color: darken(@logo_colour, 6%);
-      }
-    }
-  }
+				div {
+					font-size: 1.6em;
+					padding-bottom: 16px;
+				}
+			}
+			a:hover {
+				color: darken(#f0b49e, 10%);
+			}
+		}
+	}
 }
 
 
 /* Adjusting View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
 @media screen and (max-width: @page_width) {
-  .webplate {
-    /* Banner */
-    .banner {
-      background-size: 160%;
-    }
-  }
+	.webplate {
+	}
 }
 
 
 /* Adjusting View (Close to small view)
 --------------------------------------------------------------------------------------- */
 @media screen and (max-width: 825px) {
-  .webplate {
-    /* Navigation */
-    .navigation {
-      a {
-        span {
-          display: none;
-        }
-      }
-    }
-  }
+	.webplate {
+		// Navigation
+		.navigation {
+			a {
+				span {
+					display: none;
+				}
+			}
+		}
+	}
 }
 
 
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .webplate {
-    /* Navigation small */
-    .navigationSmall {
-      a {
-        span {
-          display: inline;
-          padding-right: 10px;
-          color: #1fbba6;
-        }
-      }
-    }
-    /* Header */
-    .header {
-      padding: 5px 0px;
+	.webplate {
+		// Navigation small
+		.navigationSmall {
+			a {
+				span {
+					display: inline;
+					padding-right: 10px;
+					color: #1fbba6;
+				}
+			}
+		}
+		// Header
+		.header {
+			padding: 5px 0px;
 
-      .navigationTrigger {
-        margin-top: 9px;
-      }
-      .navigationTrigger:active {
-        margin-top: 10px;
-      }
-      .logo {
-        float: none;
-        margin: 0px auto;
-        margin-top: 14px;
-        width: 112px;
+			.navigationTrigger {
+				margin-top: 9px;
+			}
+			.navigationTrigger:active {
+				margin-top: 10px;
+			}
+			.logo {
+				float: none;
+				margin: 0px auto;
+				margin-top: 16px;
+				margin-bottom: 60px;
+				width: 112px;
 
-        .primary, .secondary {
-          font-size: 1.8em;
-        }
-      }
-    }
-    /* Banner */
-    .banner {
-      background-size: 430%;
-
-      h3 {
-        font-size: 1.6em;
-      }
-    }
-  }
+				.primary, .secondary {
+					height: 50px;
+					font-size: 1.8em;
+				}
+				.primary {
+					padding-left: 8px;
+					border-right: 3px solid @logo_colour;
+				}
+			}
+			.heading {
+				h3 {
+					padding-bottom: 80px;
+					font-size: 1.35em;
+					line-height: 1.6em;
+				}
+			}
+		}
+	}
 }
 
 
