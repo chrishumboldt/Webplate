@@ -39,7 +39,8 @@ window.onload = function() {
 			'icon-arrow-down-3' : '&#xe00c;',
 			'icon-sort' : '&#xf0dc;',
 			'icon-frame' : '&#xe010;',
-			'icon-vector' : '&#xe00e;'
+			'icon-vector' : '&#xe00e;',
+			'icon-spinner' : '&#xe005;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

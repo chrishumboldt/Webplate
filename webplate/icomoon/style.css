@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-angle-up, .icon-angle-down, .icon-arrow-up, .icon-arrow-down, .icon-arrow-left, .icon-arrow-up-2, .icon-arrow-down-2, .icon-arrow-left-2, .icon-arrow-right, .icon-comment, .icon-map-pin-fill, .icon-location, .icon-compass, .icon-camera, .icon-users, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-heart, .icon-checkmark, .icon-food, .icon-ok, .icon-gift, .icon-male, .icon-female, .icon-text, .icon-code, .icon-stack, .icon-pointer, .icon-plus, .icon-arrow-down-3, .icon-sort, .icon-frame, .icon-vector {
+.icon-angle-up, .icon-angle-down, .icon-arrow-up, .icon-arrow-down, .icon-arrow-left, .icon-arrow-up-2, .icon-arrow-down-2, .icon-arrow-left-2, .icon-arrow-right, .icon-comment, .icon-map-pin-fill, .icon-location, .icon-compass, .icon-camera, .icon-users, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-heart, .icon-checkmark, .icon-food, .icon-ok, .icon-gift, .icon-male, .icon-female, .icon-text, .icon-code, .icon-stack, .icon-pointer, .icon-plus, .icon-arrow-down-3, .icon-sort, .icon-frame, .icon-vector, .icon-spinner {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -138,4 +138,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-vector:before {
 	content: "\e00e";
+}
+.icon-spinner:before {
+	content: "\e005";
 }
