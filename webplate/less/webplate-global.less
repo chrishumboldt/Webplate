@@ -1,0 +1,73 @@
+/**
+ * webplate-global.less
+ *
+ * Author:        Chris Modem
+ * Last Edited:   7 August 2013
+ */
+
+/*-------------------------------------------------------
+
+  Table of Contents:
+
+    Variables
+    Global
+
+---------------------------------------------------------*/
+
+
+/* VARIABLES
+--------------------------------------------------------------------------------------- */
+
+
+/* GLOBAL
+--------------------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+html {
+  font-size: 0.875em;
+  position: relative;
+  color: #393939;
+  background-color: #fff;
+  -ms-text-size-adjust: 100%;
+  -webkit-texts-size-adjust: 100%;
+  -webkit-backface-visibility: hidden;
+}
+div {
+  display: block;
+  direction: ltr;
+}
+body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label {
+  color: #393939;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  line-height: 20px;
+}
+ul, ol {margin:0; padding:0px;}
+a, .makeLink, a:visited {text-decoration:none; color: #65a8a6;}
+a:hover, .makeLink:hover {text-decoration:none; color: #216462; cursor: pointer; .animate(color)}
+
+// Global classes
+.displayNone, .hiddenDiv {display:none;}
+.floatLeft {float:left;}
+.floatRight {float:right;}
+.clearFloat {clear:both;}
+.divHeight {display:block; overflow:hidden;}
+.nothing {
+  .hide-text();
+}
+.txtRed {
+  color: #c60707;
+}
+.txtGrey {
+  color: fadeout(#000, 50%);
+}
+.txtLight {
+  .change-opacity();
+}

@@ -1,22 +1,24 @@
-.no-box-shadow{box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;}
-.hide-text{text-indent:-1000px;overflow:hidden;}
-@font-face{font-family:'Lato';font-style:normal;font-weight:100;src:local('Lato Hairline'),local('Lato-Hairline'),url(../fonts/lato/lato-hairline.woff) format('woff');}@font-face{font-family:'Lato';font-style:normal;font-weight:300;src:local('Lato Light'),local('Lato-Light'),url(../fonts/lato/lato-light.woff) format('woff');}@font-face{font-family:'Lato';font-style:normal;font-weight:400;src:local('Lato Regular'),local('Lato-Regular'),url(../fonts/lato/lato-regular.woff) format('woff');}@font-face{font-family:'Lato';font-style:normal;font-weight:700;src:local('Lato Bold'),local('Lato-Bold'),url(../fonts/lato/lato-bold.woff) format('woff');}*{font-family:'Lato',sans-serif;font-weight:300;}
-.webplate .inner{padding:0px 15px;}
-.webplate .header{width:100%;padding:200px 0px 200px 0px;background-color:#fffcf5;}.webplate .header .logo{display:block;width:250px;margin:0px auto;}.webplate .header .logo .primary,.webplate .header .logo .secondary{float:left;padding-top:1px;height:60px;color:#666666;font-size:3.5em;}
-.webplate .header .logo .primary{padding-left:40px;border-right:4px solid #9de0ad;-webkit-transition:border-right 0.2s ease-out;-moz-transition:border-right 0.2s ease-out;-o-transition:border-right 0.2s ease-out;-ms-transition:border-right 0.2s ease-out;transition:border-right 0.2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0);}
-.webplate .header .logo:hover .primary{border-color:#f0b49e;-webkit-transition:border-right 0.2s ease-out;-moz-transition:border-right 0.2s ease-out;-o-transition:border-right 0.2s ease-out;-ms-transition:border-right 0.2s ease-out;transition:border-right 0.2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0);}
-.webplate .header .heading h3{width:80%;margin:0px auto;margin-top:40px;color:#666666;text-align:center;line-height:1.3em;font-size:1.65em;}
-.webplate .header .navigation{margin-top:140px;}
-.webplate .content .dark *{color:#fff;}
-.webplate .content .row .inner{padding:70px 15px;}
-.webplate .content .row h2{font-weight:100;text-align:center;}
-.webplate .content .row h4{width:90%;margin:0px auto;margin-bottom:50px;text-align:center;line-height:1.6em;}
-.webplate .content .row .infoBlock{padding:20px;border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;}
-.webplate .content .row .seperator{margin:20px 0px;font-size:4em;text-align:center;}
-.webplate .content .row.darkBlue{background-color:#3f4953;}.webplate .content .row.darkBlue h2{color:#9de0ad;}
-.webplate .content .row.darkBlue h4{color:#c1c8d0;}
-.webplate .content .row.darkBlue .infoBlock{background-color:#556270;}
-.webplate .content .row.darkBlue2{background-color:#556270;}.webplate .content .row.darkBlue2 h2{color:#9de0ad;}
-.webplate .content .row.darkBlue2 h4{color:#c1c8d0;}
-.webplate .content .row.darkBlue2 .infoBlock{background-color:#556270;}
-@media screen and (min-width:701px){.webplate .navigation{margin-top:18px;}.webplate .navigation a{display:block;text-align:center;color:#666666;font-size:1.4em;}.webplate .navigation a div{font-size:1.6em;padding-bottom:16px;} .webplate .navigation a:hover{color:#e99272;}}@media screen and (max-width:1100px){}@media screen and (max-width:825px){.webplate .navigation a span{display:none;}}@media only screen and (max-width:700px),only screen and (max-device-width:700px),only screen and (-webkit-min-device-pixel-ratio:2){.webplate .navigationSmall a span{display:inline;padding-right:10px;color:#1fbba6;} .webplate .header{padding:5px 0px;}.webplate .header .navigationTrigger{margin-top:9px;} .webplate .header .navigationTrigger:active{margin-top:10px;} .webplate .header .logo{float:none;margin:0px auto;margin-top:16px;margin-bottom:60px;width:112px;}.webplate .header .logo .primary,.webplate .header .logo .secondary{height:50px;font-size:1.8em;} .webplate .header .logo .primary{padding-left:8px;border-right:3px solid #9de0ad;} .webplate .header .heading h3{padding-bottom:80px;font-size:1.35em;line-height:1.6em;}}
+.no-box-shadow{box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none}
+.hide-text{text-indent:-1000px;overflow:hidden}
+@font-face{font-family:'Lato';font-style:normal;font-weight:100;src:local('Lato Hairline'),local('Lato-Hairline'),url(../fonts/lato/lato-hairline.woff) format('woff')}@font-face{font-family:'Lato';font-style:normal;font-weight:300;src:local('Lato Light'),local('Lato-Light'),url(../fonts/lato/lato-light.woff) format('woff')}@font-face{font-family:'Lato';font-style:normal;font-weight:400;src:local('Lato Regular'),local('Lato-Regular'),url(../fonts/lato/lato-regular.woff) format('woff')}@font-face{font-family:'Lato';font-style:normal;font-weight:700;src:local('Lato Bold'),local('Lato-Bold'),url(../fonts/lato/lato-bold.woff) format('woff')}*{font-family:'Lato',sans-serif;font-weight:300}
+.webplate .inner{padding:0 15px}
+.webplate .header{width:100%;background-color:#fffcf5}.webplate .header .row.inner{display:table}
+.webplate .header .headerContent{display:table-cell;vertical-align:middle}
+.webplate .header .logo{display:block;width:250px;margin:0 auto}.webplate .header .logo .primary,.webplate .header .logo .secondary{float:left;padding-top:1px;height:60px;color:#666;font-size:3.5em}
+.webplate .header .logo .primary{padding-left:40px;border-right:4px solid #9de0ad;-webkit-transition:border-right .2s ease-out;-moz-transition:border-right .2s ease-out;-o-transition:border-right .2s ease-out;-ms-transition:border-right .2s ease-out;transition:border-right .2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0)}
+.webplate .header .logo:hover .primary{border-color:#f0b49e;-webkit-transition:border-right .2s ease-out;-moz-transition:border-right .2s ease-out;-o-transition:border-right .2s ease-out;-ms-transition:border-right .2s ease-out;transition:border-right .2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0)}
+.webplate .header .heading h3{width:80%;margin:0 auto;margin-top:40px;color:#666;text-align:center;line-height:1.3em;font-size:1.65em}
+.webplate .header .navigation{margin-top:80px}
+.webplate .content .dark *{color:#fff}
+.webplate .content .row .inner{padding:70px 15px}
+.webplate .content .row h2{font-weight:100;text-align:center}
+.webplate .content .row h4{width:90%;margin:0 auto;margin-bottom:50px;text-align:center;line-height:1.6em}
+.webplate .content .row .infoBlock{padding:20px;border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px}
+.webplate .content .row .seperator{margin:20px 0;font-size:4em;text-align:center}
+.webplate .content .row.darkBlue{background-color:#3f4953}.webplate .content .row.darkBlue h2{color:#9de0ad}
+.webplate .content .row.darkBlue h4{color:#c1c8d0}
+.webplate .content .row.darkBlue .infoBlock{background-color:#556270}
+.webplate .content .row.darkBlue2{background-color:#556270}.webplate .content .row.darkBlue2 h2{color:#9de0ad}
+.webplate .content .row.darkBlue2 h4{color:#c1c8d0}
+.webplate .content .row.darkBlue2 .infoBlock{background-color:#556270}
+@media screen and (min-width:701px){.webplate .navigation{margin-top:18px}.webplate .navigation a{display:block;text-align:center;color:#666;font-size:1.4em}.webplate .navigation a div{font-size:1.6em;padding-bottom:16px} .webplate .navigation a:hover{color:#e99272}}@media screen and (max-width:1100px){}@media screen and (max-width:825px){.webplate .navigation a span{display:none}}@media only screen and (max-width:700px),only screen and (max-device-width:700px),only screen and (-webkit-min-device-pixel-ratio:2){.webplate .navigationSmall .navigationInner .row{margin-top:15px} .webplate .navigationSmall a span{display:inline;padding-right:10px;color:#1fbba6} .webplate .header{padding:5px 0}.webplate .header .navigationTrigger{width:32px;padding:8px;margin-top:10px;font-size:1.3em} .webplate .header .navigationTrigger:active{margin-top:11px} .webplate .header .headerContent{vertical-align:top} .webplate .header .logo{float:none;margin:0 auto;margin-top:16px;margin-bottom:60px;width:112px}.webplate .header .logo .primary,.webplate .header .logo .secondary{height:50px;font-size:1.8em} .webplate .header .logo .primary{padding-left:8px;border-right:3px solid #9de0ad} .webplate .header .heading h3{padding-bottom:80px;font-size:1.35em;line-height:1.6em}}
