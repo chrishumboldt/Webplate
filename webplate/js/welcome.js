@@ -31,7 +31,14 @@ $(document).ready(function(){
 		$window_height						= $(window).height();
 		
 		// Adjust header
-		$('.header, .header .row.inner').height($window_height);
+		if($('html').hasClass('webplateLargeView') && $window_height > 430){
+			
+			$('.header, .header .row.inner').height($window_height);
+		}
+		else {
+			
+			$('.header, .header .row.inner').height('auto');
+		}
 	}
 
 
