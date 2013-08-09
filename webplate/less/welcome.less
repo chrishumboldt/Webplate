@@ -97,7 +97,7 @@
 		}
 		// Navigation
 		.navigation {
-			margin-top: 80px;
+			margin-top: 50px;
 		}
 	}
 	// Content
@@ -174,9 +174,15 @@
 				color: lighten(#000, 40%);
 				font-size: 1.4em;
 
-				div {
+				div.icon {
+					width: 75px;
+					height: 75px;
+					margin: 0px auto;
+					margin-bottom: 15px;
+					line-height: 74px;
 					font-size: 1.6em;
-					padding-bottom: 16px;
+					background-color: lighten(#fffcf5, 1%);
+					.rounded-corners(50%);
 				}
 			}
 			a:hover {
@@ -221,10 +227,11 @@
 				margin-top: 15px;
 			}
 			a {
-				span {
-					display: inline;
-					padding-right: 10px;
-					color: #1fbba6;
+				div.icon {
+					float: left;
+					padding-right: 12px;
+					font-size: 1.1em;
+					color: darken(#f0b49e, 10%);;
 				}
 			}
 		}
