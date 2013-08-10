@@ -53,7 +53,7 @@
 		.row.inner {
 			display: table;
 		}
-		.headerContent {
+		.header-content {
 			display: table-cell;
 			padding: 50px 0px;
 			vertical-align: middle;
@@ -102,9 +102,6 @@
 	}
 	// Content
 	.content {
-		.dark * {
-			color: #fff;
-		}
 		.row .inner {
 			padding: 70px 15px;
 		}
@@ -130,7 +127,7 @@
 				text-align: center;
 			}
 		}
-		.row.darkBlue {
+		.row.dark-blue {
 			background-color: darken(#556270, 10%);
 
 			h2 {
@@ -139,11 +136,11 @@
 			h4 {
 				color: lighten(#556270, 40%);
 			}
-			.infoBlock {
+			.info-block {
 				background-color: darken(#556270, 0%);
 			}
 		}
-		.row.darkBlue2 {
+		.row.dark-blue-2 {
 			background-color: lighten(#556270, 0%);
 
 			h2 {
@@ -152,8 +149,33 @@
 			h4 {
 				color: lighten(#556270, 40%);
 			}
-			.infoBlock {
+			.info-block {
 				background-color: darken(#556270, 0%);
+			}
+		}
+		// Downloads
+		#downloads {
+			.row.inner {
+				padding: 25px 15px;
+			}
+			a {
+				display: block;
+				margin: 10px;
+				height: 60px;
+				padding-left: 50px;
+				line-height: 60px;
+				font-size: 1.2em;
+				color: #666;
+				
+				span {
+					position: absolute;
+					margin-left: -44px;
+					margin-top: 12px;
+					font-size: 2em;
+				}
+			}
+			a:hover, a:visited {
+				color: #666;
 			}
 		}
 	}
@@ -181,7 +203,7 @@
 					margin-bottom: 15px;
 					line-height: 74px;
 					font-size: 1.6em;
-					background-color: lighten(#fffcf5, 1%);
+					background-color: #fff;
 					.rounded-corners(50%);
 				}
 			}
@@ -222,8 +244,8 @@
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.webplate {
 		// Navigation small
-		.navigationSmall {
-			.navigationInner .row {
+		.navigation-small {
+			.navigation-inner .row {
 				margin-top: 15px;
 			}
 			a {
@@ -239,19 +261,19 @@
 		.header {
 			padding: 5px 0px;
 
-			.headerContent {
+			.header-content {
 				padding: 10px 0px;
 			}
-			.navigationTrigger {
+			.navigation-trigger {
 				width: 32px;
 				padding: 8px;
 				margin-top: 10px;
 				font-size: 1.3em;
 			}
-			.navigationTrigger:active {
+			.navigation-trigger:active {
 				margin-top: 11px;
 			}
-			.headerContent {
+			.header-content {
 				vertical-align: top;
 			}
 			.logo {

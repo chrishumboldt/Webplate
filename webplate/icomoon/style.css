@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-angle-up, .icon-angle-down, .icon-arrow-up, .icon-arrow-down, .icon-arrow-left, .icon-arrow-up-2, .icon-arrow-down-2, .icon-arrow-left-2, .icon-arrow-right, .icon-comment, .icon-map-pin-fill, .icon-location, .icon-compass, .icon-camera, .icon-users, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-heart, .icon-checkmark, .icon-food, .icon-ok, .icon-gift, .icon-male, .icon-female, .icon-text, .icon-code, .icon-stack, .icon-pointer, .icon-plus, .icon-arrow-down-3, .icon-sort, .icon-frame, .icon-vector, .icon-spinner {
+.icon-heart, .icon-camera, .icon-map-pin-fill, .icon-ok, .icon-food, .icon-gift, .icon-male, .icon-female, .icon-checkmark, .icon-cross, .icon-question-sign, .icon-stack, .icon-layout, .icon-frame, .icon-code, .icon-list, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-angle-up, .icon-angle-down, .icon-database, .icon-text, .icon-arrow-left, .icon-arrow-right, .icon-arrow-down, .icon-arrow-up, .icon-download, .icon-twitter, .icon-facebook, .icon-googleplus, .icon-linkedin, .icon-flickr, .icon-vimeo, .icon-pinterest, .icon-github, .icon-skype, .icon-plus {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -37,50 +37,53 @@ you can use the generic selector below, but it's slower:
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-angle-up:before {
-	content: "\f106";
-}
-.icon-angle-down:before {
-	content: "\f107";
-}
-.icon-arrow-up:before {
-	content: "\e011";
-}
-.icon-arrow-down:before {
-	content: "\e012";
-}
-.icon-arrow-left:before {
-	content: "\e013";
-}
-.icon-arrow-up-2:before {
-	content: "\e014";
-}
-.icon-arrow-down-2:before {
-	content: "\e015";
-}
-.icon-arrow-left-2:before {
-	content: "\e016";
-}
-.icon-arrow-right:before {
-	content: "\e017";
-}
-.icon-comment:before {
-	content: "\f075";
-}
-.icon-map-pin-fill:before {
-	content: "\e023";
-}
-.icon-location:before {
-	content: "\e024";
-}
-.icon-compass:before {
-	content: "\e025";
+.icon-heart:before {
+	content: "\e000";
 }
 .icon-camera:before {
-	content: "\e028";
+	content: "\e001";
 }
-.icon-users:before {
-	content: "\e035";
+.icon-map-pin-fill:before {
+	content: "\e002";
+}
+.icon-ok:before {
+	content: "\f00c";
+}
+.icon-food:before {
+	content: "\f0f5";
+}
+.icon-gift:before {
+	content: "\e003";
+}
+.icon-male:before {
+	content: "\e004";
+}
+.icon-female:before {
+	content: "\e005";
+}
+.icon-checkmark:before {
+	content: "\e006";
+}
+.icon-cross:before {
+	content: "\e007";
+}
+.icon-question-sign:before {
+	content: "\f059";
+}
+.icon-stack:before {
+	content: "\e008";
+}
+.icon-layout:before {
+	content: "\e009";
+}
+.icon-frame:before {
+	content: "\e00a";
+}
+.icon-code:before {
+	content: "\e00b";
+}
+.icon-list:before {
+	content: "\e00c";
 }
 .icon-reorder:before {
 	content: "\f0c9";
@@ -91,54 +94,60 @@ you can use the generic selector below, but it's slower:
 .icon-angle-right:before {
 	content: "\f105";
 }
-.icon-heart:before {
-	content: "\e000";
+.icon-angle-up:before {
+	content: "\f106";
 }
-.icon-checkmark:before {
-	content: "\e001";
+.icon-angle-down:before {
+	content: "\f107";
 }
-.icon-food:before {
-	content: "\f0f5";
-}
-.icon-ok:before {
-	content: "\f00c";
-}
-.icon-gift:before {
-	content: "\e002";
-}
-.icon-male:before {
-	content: "\e003";
-}
-.icon-female:before {
-	content: "\e004";
+.icon-database:before {
+	content: "\e00d";
 }
 .icon-text:before {
-	content: "\e006";
-}
-.icon-code:before {
-	content: "\e007";
-}
-.icon-stack:before {
-	content: "\e009";
-}
-.icon-pointer:before {
-	content: "\e00a";
-}
-.icon-plus:before {
-	content: "\e00b";
-}
-.icon-arrow-down-3:before {
-	content: "\e00c";
-}
-.icon-sort:before {
-	content: "\f0dc";
-}
-.icon-frame:before {
-	content: "\e010";
-}
-.icon-vector:before {
 	content: "\e00e";
 }
-.icon-spinner:before {
-	content: "\e005";
+.icon-arrow-left:before {
+	content: "\e00f";
+}
+.icon-arrow-right:before {
+	content: "\e010";
+}
+.icon-arrow-down:before {
+	content: "\e011";
+}
+.icon-arrow-up:before {
+	content: "\e012";
+}
+.icon-download:before {
+	content: "\f01a";
+}
+.icon-twitter:before {
+	content: "\e013";
+}
+.icon-facebook:before {
+	content: "\e014";
+}
+.icon-googleplus:before {
+	content: "\e015";
+}
+.icon-linkedin:before {
+	content: "\e016";
+}
+.icon-flickr:before {
+	content: "\e017";
+}
+.icon-vimeo:before {
+	content: "\e018";
+}
+.icon-pinterest:before {
+	content: "\e019";
+}
+.icon-github:before {
+	content: "\e01a";
+}
+.icon-skype:before {
+	content: "\e01b";
+}
+.icon-plus:before {
+	content: "\e01c";
 }

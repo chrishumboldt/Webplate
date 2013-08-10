@@ -2,7 +2,7 @@
  * webplate-layout.less
  *
  * Author:        Chris Modem
- * Last Edited:   7 August 2013
+ * Last Edited:   10 August 2013
  */
 
 /*-------------------------------------------------------
@@ -32,7 +32,7 @@
 /* Global
 --------------------------------------------------------------------------------------- */
 // Overlay
-.webplateOverlay {
+.webplate-overlay {
   display: none;
   position: fixed;
   width: 100%;
@@ -50,7 +50,7 @@
   width: 100%;
   -webkit-backface-visibility: hidden;
 
-  .webplateInner {
+  .webplate-inner {
     position: relative;
     width: 100%;
     max-width: 100%;
@@ -74,7 +74,7 @@
   }
 }
 // Navigation
-.navigationSmall {
+.navigation-small {
 	display: none;
 	position: fixed;
 	-webkit-backface-visibility: hidden;
@@ -82,7 +82,7 @@
 	-webkit-perspective: 1000;
 	z-index: 0;
 }
-.showNav .webplateInner {
+.show-nav .webplate-inner {
   -webkit-transform: translate3d(@menu_width, 0px, 0px);
   -o-transform: translate3d(@menu_width, 0px, 0px);
   -moz-transform: translate3d(@menu_width, 0px, 0px);
@@ -90,32 +90,10 @@
 }
 
 // Fixed page width setting
-html.fixedPage .webplate .webplateInner {
+html.fixed-page .webplate .webplate-inner {
     max-width: @page_width;
 }
-
-// Webplate pane
-.pane {
-  display: block;
-  position: fixed;
-  width: 320px;
-  height: 100%;
-  left: 100%;
-  background-color: #fff;
-  border-left: 1px solid fadeout(#000, 90%);
-
-  .paneInner {
-    padding: 20px;
-    overflow: hidden;
-  }
-}
-.showPane .pane {
-  left: @menu_width;
-}
-.webplateSmallView.showPane .pane {
-  left: 0;
-}
-.webplateSmallView .navigation ul li {
+.webplate-small-view .navigation ul li {
   clear: both;
   width: 100%;
 }
@@ -134,110 +112,110 @@ html.fixedPage .webplate .webplateInner {
   .row{
     width: auto;
   }
-  .span12, .span11, .span10, .span9, .span8, .span7, .span6, .span5, .span4, .span3, .span2, .span1 {
+  .span-12, .span-11, .span-10, .span-9, .span-8, .span-7, .span-6, .span-5, .span-4, .span-3, .span-2, .span-1 {
     float: left;
     position: relative;
   }
-  .span12 {
+  .span-12 {
     width: 100%;
   }
-  .span11 {
+  .span-11 {
     width: 91.66666%;
   }
-  .span10 {
+  .span-10 {
     width: 83.33333%;
   }
-  .span9 {
+  .span-9 {
     width: 75%;
   }
-  .span8 {
+  .span-8 {
     width: 66.66666%;
   }
-  .span7 {
+  .span-7 {
     width: 58.33333%;
   }
-  .span6 {
+  .span-6 {
     width: 50%;
   }
-  .span5 {
+  .span-5 {
     width: 41.66666%;
   }
-  .span4 {
+  .span-4 {
     width: 33.33333%;
   }
-  .span3 {
+  .span-3 {
     width: 25%;
   }
-  .span2 {
+  .span-2 {
     width: 16.66666%;
   }
-  .span1 {
+  .span-1 {
     width: 8.33333%;
   }
-  .offset11 {
+  .offset-11 {
     margin-left: 91.66666%;
   }
-  .offset10 {
+  .offset-10 {
     margin-left: 83.33333%;
   }
-  .offset9 {
+  .offset-9 {
     margin-left: 75%;
   }
-  .offset8 {
+  .offset-8 {
     margin-left: 66.66666%;
   }
-  .offset7 {
+  .offset-7 {
     margin-left: 58.33333%;
   }
-  .offset6 {
+  .offset-6 {
     margin-left: 50%;
   }
-  .offset5 {
+  .offset-5 {
     margin-left: 41.66666%;
   }
-  .offset4 {
+  .offset-4 {
     margin-left: 33.33333%;
   }
-  .offset3 {
+  .offset-3 {
     margin-left: 25%;
   }
-  .offset2 {
+  .offset-2 {
     margin-left: 16.66666%;
   }
-  .offset1 {
+  .offset-1 {
     margin-left: 8.33333%;
   }
-  .offsetRight11 {
+  .offset-right-11 {
     margin-right: 91.66666%;
   }
-  .offsetRight10 {
+  .offset-right-10 {
     margin-right: 83.33333%;
   }
-  .offsetRight9 {
+  .offset-right-9 {
     margin-right: 75%;
   }
-  .offsetRight8 {
+  .offset-right-8 {
     margin-right: 66.66666%;
   }
-  .offsetRight7 {
+  .offset-right-7 {
     margin-right: 58.33333%;
   }
-  .offsetRight6 {
+  .offset-right-6 {
     margin-right: 50%;
   }
-  .offsetRight5 {
+  .offset-right-5 {
     margin-right: 41.66666%;
   }
-  .offsetRight4 {
+  .offset-right-4 {
     margin-right: 33.33333%;
   }
-  .offsetRight3 {
+  .offset-right-3 {
     margin-right: 25%;
   }
-  .offsetRight2 {
+  .offset-right-2 {
     margin-right: 16.66666%;
   }
-  .offsetRight1 {
+  .offset-right-1 {
     margin-right: 8.33333%;
   }
 }
@@ -246,7 +224,7 @@ html.fixedPage .webplate .webplateInner {
 /* Large View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
 @media screen and (min-width: 701px) {
-  .smallShow {
+  .small-show {
     display: none;
   }
 
@@ -268,7 +246,7 @@ html.fixedPage .webplate .webplateInner {
       }
     }
   }
-  .navigationSmall {
+  .navigation-small {
     display: none;
   }
 }
@@ -278,7 +256,7 @@ html.fixedPage .webplate .webplateInner {
 --------------------------------------------------------------------------------------- */
 @media screen and (max-width: @page_width) {
   .webplate {
-    .webplateInner {
+    .webplate-inner {
       // Set inner width
       .inner {
         width: 100%;
@@ -291,12 +269,11 @@ html.fixedPage .webplate .webplateInner {
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
-
 	// Global
 	html {
 		background-color: lighten(#000, 12%);
 	}
-	.smallHide {
+	.small-hide {
 		display: none;
 	}
 	.row {
@@ -311,116 +288,116 @@ html.fixedPage .webplate .webplateInner {
 		[class *= "offsetRight"] {
 			margin-right: 0%;
 		}
-		.smallSpan12, .smallSpan11, .smallSpan10, .smallSpan9, .smallSpan8, .smallSpan7, .smallSpan6, .smallSpan5, .smallSpan4, .smallSpan3, .smallSpan2, .smallSpan1 {
+		.small-span-12, .small-span-11, .small-span-10, .small-span-9, .small-span-8, .small-span-7, .small-span-6, .small-span-5, .small-span-4, .small-span-3, .small-span-2, .small-span-1 {
 			float: left;
 			position: relative;
 		}
-		.smallSpan12 {
+		.small-span-12 {
 			width: 100%;
 		}
-		.smallSpan11 {
+		.small-span-11 {
 			width: 91.66666%;
 		}
-		.smallSpan10 {
+		.small-span-10 {
 			width: 83.33333%;
 		}
-		.smallSpan9 {
+		.small-span-9 {
 			width: 75%;
 		}
-		.smallSpan8 {
+		.small-span-8 {
 			width: 66.66666%;
 		}
-		.smallSpan7 {
+		.small-span-7 {
 			width: 58.33333%;
 		}
-		.smallSpan6 {
+		.small-span-6 {
 			width: 50%;
 		}
-		.smallSpan5 {
+		.small-span-5 {
 			width: 41.66666%;
 		}
-		.smallSpan4 {
+		.small-span-4 {
 			width: 33.33333%;
 		}
-		.smallSpan3 {
+		.small-span-3 {
 			width: 24%;
 		}
-		.smallSpan2 {
+		.small-span-2 {
 			width: 16.66666%;
 		}
-		.smallSpan1 {
+		.small-span-1 {
 			width: 8.33333%;
 		}
-		.smallOffset11 {
+		.small-offset-11 {
 			margin-left: 91.66666%;
 		}
-		.smallOffset10 {
+		.small-offset-10 {
 			margin-left: 83.33333%;
 		}
-		.smallOffset9 {
+		.small-offset-9 {
 			margin-left: 75%;
 		}
-		.smallOffset8 {
+		.small-offset-8 {
 			margin-left: 66.66666%;
 		}
-		.smallOffset7 {
+		.small-offset-7 {
 			margin-left: 58.33333%;
 		}
-		.smallOffset6 {
+		.small-offset-6 {
 			margin-left: 50%;
 		}
-		.smallOffset5 {
+		.small-offset-5 {
 			margin-left: 41.66666%;
 		}
-		.smallOffset4 {
+		.small-offset-4 {
 			margin-left: 33.33333%;
 		}
-		.smallOffset3 {
+		.small-offset-3 {
 			margin-left: 25%;
 		}
-		.smallOffset2 {
+		.small-offset-2 {
 			margin-left: 16.66666%;
 		}
-		.smallOffset1 {
+		.small-offset-1 {
 			margin-left: 8.33333%;
 		}
-		.smallOffsetRight11 {
+		.small-offset-right-11 {
 			margin-right: 91.66666%;
 		}
-		.smallOffsetRight10 {
+		.small-offset-right-10 {
 			margin-right: 83.33333%;
 		}
-		.smallOffsetRight9 {
+		.small-offset-right-9 {
 			margin-right: 75%;
 		}
-		.smallOffsetRight8 {
+		.small-offset-right-8 {
 			margin-right: 66.66666%;
 		}
-		.smallOffsetRight7 {
+		.small-offset-right-7 {
 			margin-right: 58.33333%;
 		}
-		.smallOffsetRight6 {
+		.small-offset-right-6 {
 			margin-right: 50%;
 		}
-		.smallOffsetRight5 {
+		.small-offset-right-5 {
 			margin-right: 41.66666%;
 		}
-		.smallOffsetRight4 {
+		.small-offset-right-4 {
 			margin-right: 33.33333%;
 		}
-		.smallOffsetRight3 {
+		.small-offset-right-3 {
 			margin-right: 25%;
 		}
-		.smallOffsetRight2 {
+		.small-offset-right-2 {
 			margin-right: 16.66666%;
 		}
-		.smallOffsetRight1 {
+		.small-offset-right-1 {
 			margin-right: 8.33333%;
 		}
 	}
 
   // Webplate
-  .webplateInner {
+  .webplate-inner {
     position: relative;
     width: 100%;
     left: 0;
@@ -430,7 +407,7 @@ html.fixedPage .webplate .webplateInner {
   .navigation {
     display: none;
   }
-  .navigationSmall {
+  .navigation-small {
     display: block;
     width: @menu_width;
     height: 100%;
@@ -439,7 +416,7 @@ html.fixedPage .webplate .webplateInner {
     background-color: lighten(#000, 12%);
     z-index: 0;
 
-    .navigationInner {
+    .navigation-inner {
       height: 100%;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;

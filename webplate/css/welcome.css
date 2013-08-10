@@ -3,22 +3,24 @@
 *{font-family:'Lato',sans-serif;font-weight:300}
 .webplate .inner{padding:0 15px}
 .webplate .header{width:100%;background-color:#fffcf5}.webplate .header .row.inner{display:table}
-.webplate .header .headerContent{display:table-cell;padding:50px 0;vertical-align:middle}
+.webplate .header .header-content{display:table-cell;padding:50px 0;vertical-align:middle}
 .webplate .header .logo{display:block;width:250px;margin:0 auto}.webplate .header .logo .primary,.webplate .header .logo .secondary{float:left;padding-top:1px;height:60px;color:#666;font-size:3.5em}
 .webplate .header .logo .primary{padding-left:40px;border-right:4px solid #9de0ad;-webkit-transition:border-right .2s ease-out;-moz-transition:border-right .2s ease-out;-o-transition:border-right .2s ease-out;-ms-transition:border-right .2s ease-out;transition:border-right .2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0)}
 .webplate .header .logo:hover .primary{border-color:#f0b49e;-webkit-transition:border-right .2s ease-out;-moz-transition:border-right .2s ease-out;-o-transition:border-right .2s ease-out;-ms-transition:border-right .2s ease-out;transition:border-right .2s ease-out;-webkit-transform:translate3d(0, 0, 0);-webkit-backface-visibility:hidden;transform:translate3d(0, 0, 0)}
 .webplate .header .heading h3{width:80%;margin:0 auto;margin-top:40px;color:#666;text-align:center;line-height:1.3em;font-size:1.65em}
 .webplate .header .navigation{margin-top:50px}
-.webplate .content .dark *{color:#fff}
 .webplate .content .row .inner{padding:70px 15px}
 .webplate .content .row h2{font-weight:100;text-align:center}
 .webplate .content .row h4{width:90%;margin:0 auto;margin-bottom:50px;text-align:center;line-height:1.6em}
 .webplate .content .row .infoBlock{padding:20px;border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px}
 .webplate .content .row .seperator{margin:20px 0;font-size:4em;text-align:center}
-.webplate .content .row.darkBlue{background-color:#3f4953}.webplate .content .row.darkBlue h2{color:#9de0ad}
-.webplate .content .row.darkBlue h4{color:#c1c8d0}
-.webplate .content .row.darkBlue .infoBlock{background-color:#556270}
-.webplate .content .row.darkBlue2{background-color:#556270}.webplate .content .row.darkBlue2 h2{color:#9de0ad}
-.webplate .content .row.darkBlue2 h4{color:#c1c8d0}
-.webplate .content .row.darkBlue2 .infoBlock{background-color:#556270}
-@media screen and (min-width:701px){.webplate .navigation{margin-top:18px}.webplate .navigation a{display:block;text-align:center;color:#666;font-size:1.4em}.webplate .navigation a div.icon{width:75px;height:75px;margin:0 auto;margin-bottom:15px;line-height:74px;font-size:1.6em;background-color:#fffefa;border-radius:50%;-o-border-radius:50%;-ms-border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%} .webplate .navigation a:hover{color:#e99272}}@media screen and (max-width:1100px){}@media screen and (max-width:825px){.webplate .navigation a span{display:none}}@media only screen and (max-width:700px),only screen and (max-device-width:700px),only screen and (-webkit-min-device-pixel-ratio:2){.webplate .navigationSmall .navigationInner .row{margin-top:15px} .webplate .navigationSmall a div.icon{float:left;padding-right:12px;font-size:1.1em;color:#e99272} .webplate .header{padding:5px 0}.webplate .header .headerContent{padding:10px 0} .webplate .header .navigationTrigger{width:32px;padding:8px;margin-top:10px;font-size:1.3em} .webplate .header .navigationTrigger:active{margin-top:11px} .webplate .header .headerContent{vertical-align:top} .webplate .header .logo{float:none;margin:0 auto;margin-top:16px;margin-bottom:60px;width:112px}.webplate .header .logo .primary,.webplate .header .logo .secondary{height:50px;font-size:1.8em} .webplate .header .logo .primary{padding-left:8px;border-right:3px solid #9de0ad} .webplate .header .heading h3{padding-bottom:80px;font-size:1.35em;line-height:1.6em}}
+.webplate .content .row.dark-blue{background-color:#3f4953}.webplate .content .row.dark-blue h2{color:#9de0ad}
+.webplate .content .row.dark-blue h4{color:#c1c8d0}
+.webplate .content .row.dark-blue .info-block{background-color:#556270}
+.webplate .content .row.dark-blue-2{background-color:#556270}.webplate .content .row.dark-blue-2 h2{color:#9de0ad}
+.webplate .content .row.dark-blue-2 h4{color:#c1c8d0}
+.webplate .content .row.dark-blue-2 .info-block{background-color:#556270}
+.webplate .content #downloads .row.inner{padding:25px 15px}
+.webplate .content #downloads a{display:block;margin:10px;height:60px;padding-left:50px;line-height:60px;font-size:1.2em;color:#666}.webplate .content #downloads a span{position:absolute;margin-left:-44px;margin-top:12px;font-size:2em}
+.webplate .content #downloads a:hover,.webplate .content #downloads a:visited{color:#666}
+@media screen and (min-width:701px){.webplate .navigation{margin-top:18px}.webplate .navigation a{display:block;text-align:center;color:#666;font-size:1.4em}.webplate .navigation a div.icon{width:75px;height:75px;margin:0 auto;margin-bottom:15px;line-height:74px;font-size:1.6em;background-color:#fff;border-radius:50%;-o-border-radius:50%;-ms-border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%} .webplate .navigation a:hover{color:#e99272}}@media screen and (max-width:1100px){}@media screen and (max-width:825px){.webplate .navigation a span{display:none}}@media only screen and (max-width:700px),only screen and (max-device-width:700px),only screen and (-webkit-min-device-pixel-ratio:2){.webplate .navigation-small .navigation-inner .row{margin-top:15px} .webplate .navigation-small a div.icon{float:left;padding-right:12px;font-size:1.1em;color:#e99272} .webplate .header{padding:5px 0}.webplate .header .header-content{padding:10px 0} .webplate .header .navigation-trigger{width:32px;padding:8px;margin-top:10px;font-size:1.3em} .webplate .header .navigation-trigger:active{margin-top:11px} .webplate .header .header-content{vertical-align:top} .webplate .header .logo{float:none;margin:0 auto;margin-top:16px;margin-bottom:60px;width:112px}.webplate .header .logo .primary,.webplate .header .logo .secondary{height:50px;font-size:1.8em} .webplate .header .logo .primary{padding-left:8px;border-right:3px solid #9de0ad} .webplate .header .heading h3{padding-bottom:80px;font-size:1.35em;line-height:1.6em}}

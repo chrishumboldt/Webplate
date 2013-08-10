@@ -321,16 +321,16 @@ $LAB
             return $random_string;
         };
 
-        // ----- ADD OVERLAY
+        // ----- SHOW OVERLAY
         jQuery.webplate_show_overlay = function(){
 
-            $('.webplateOverlay').fadeIn();
+            $('.webplate-overlay').fadeIn();
         };
 
         // ----- REMOVE OVERLAY
         jQuery.webplate_remove_overlay = function(){
 
-            $('.webplateOverlay').fadeOut();
+            $('.webplate-overlay').fadeOut();
         };
 
 		  // ----- SHOW MODAL
@@ -341,7 +341,7 @@ $LAB
                 // Set the class
                 if($modal_class == ''){
 
-                    $modal_class        = '.modalBasic';
+                    $modal_class        = '.modal-basic';
                 }
 
                 // Some variables
@@ -349,7 +349,7 @@ $LAB
                 //$scroll_top             = $(window).scrollTop();
 
                 // Adjust the DOM
-                $('.webplateOverlay').fadeIn();
+                $('.webplate-overlay').fadeIn();
                 $($modal_class).css({ top: -($modal_height + 50) }).show();
                 $($modal_class).animate({ top: 0 }, 'fast');
             }
@@ -368,7 +368,7 @@ $LAB
                 //$scroll_top             = $('.content').offset();
 
                 // Adjust the DOM
-                $('.webplateOverlay').fadeOut();
+                $('.webplate-overlay').fadeOut();
                 $('.modal:visible').animate({ top: -($modal_height + 50) }, 'fast', function(){
 
                     $('.modal:visible').hide();
@@ -376,44 +376,7 @@ $LAB
             });
         };
 
-        // ----- INPUT ERROR
-        jQuery.webplate_input_error = function($element, $text){
-
-            // Some variables
-            $offset                   = $($element).offset();
-
-            // Edit the DOM
-            $('.inputError .errorText').text($text).parent().fadeIn('fast');
-            $('.inputError').css({ left : $offset.left, top : ($offset.top - 32) });
-            $($element).addClass('redBorder').focus();
-
-            // Remove on focus
-            $($element).live('keypress', function(){
-
-                if(($(this).hasClass('redBorder')) && ($(this).val().length > 0)){
-
-                    $($element).removeClass('redBorder');
-                    $('.inputError').fadeOut('fast', function(){
-
-                        $('.inputError').css({ left : 0, top : 0 });
-                    });
-                }
-            });
-
-            // Reposition
-            $(window).resize(function(){
-
-                // Some variables
-                $offset                   = $($element).offset();
-
-                // Edit the DOM
-                $('.inputError .errorText').text($text).parent().fadeIn('fast');
-                $('.inputError').css({ left : $offset.left, top : ($offset.top - 32) });
-                $($element).addClass('redBorder').focus();
-            });
-        };
-
-        // ----- IMAGE FIT
+        // ----- CONSOLE LOG
         jQuery.webplate_log = function($text){
 
             if(window.console) {
@@ -422,165 +385,48 @@ $LAB
             }
         };
 
-        // ----- IMAGE FIT
-        jQuery.webplate_image_fit = function(){
-
-            $('.webplateImageFit').each(function(){
-
-                if($(this).length > 0){
-
-                    // Some variables
-                    $this                       = $(this);
-                    $container_w                = $this.parent().width();
-                    $container_h                = $this.parent().height();
-                    $image_w                    = $this.width();
-                    $image_h                    = $this.height();
-
-                    $.webplate_log($container_w + ' -- ' + $image_w);
-
-                    // Width check
-                    if($image_w < $container_w){
-
-                        // Adjust image
-                        $ratio                  = $container_w / $image_w;
-                        $this.width($container_w - 0);
-                        $this.height($image_h * $ratio);
-
-                        // Adjust position
-                        $image_h                = $this.height();
-                        $adjustment             = ($image_h - $container_h) / 2;
-                        $this.css({ marginTop : -($adjustment) });
-                    }
-
-                    if($image_w > $container_w){
-
-                        // Adjust position
-                        $adjustment             = ($image_w - $container_w) / 2;
-                        $this.css({ marginLeft : -($adjustment) });
-                    }
-                }
-            });
-
-            $(window).resize(function(){
-
-                $('.webplateImageFit').each(function(){
-
-                    if($(this).length > 0){
-
-                        // Reset
-                        $(this).attr({ style : '' });
-
-                        // Some variables
-                        $this                       = $(this);
-                        $container_w                = $this.parent().width();
-                        $container_h                = $this.parent().height();
-                        $image_w                    = $this.width();
-                        $image_h                    = $this.height();
-
-                        // Width check
-                        if($image_w < $container_w){
-
-                            // Adjust image
-                            $ratio                  = $container_w / $image_w;
-                            $this.width($container_w - 0);
-                            $this.height($image_h * $ratio);
-
-                            // Adjust position
-                            $image_h                = $this.height();
-                            $adjustment             = ($image_h - $container_h) / 2;
-                            $this.css({ marginTop : -($adjustment) });
-                        }
-
-                        if($image_w > $container_w){
-
-                            // Adjust position
-                            $adjustment             = ($image_w - $container_w) / 2;
-                            $this.css({ marginLeft : -($adjustment) });
-                        }
-                    }
-                });
-            });
-        };
-
-        // ----- SHOW PANE
-        jQuery.webplate_show_pane = function($no_padding){
-
-            // Width
-            if(($no_padding == null) || ($no_padding == false)){
-
-                $('.paneInner').width($('.content').width() - 40).css({ padding : 20 });
-                $('.paneInner').height($(window).height() - 40).css({ padding : 20 });
-            }
-            else{
-
-                $('.paneInner').width($('.content').width()).css({ padding : 0 });
-                $('.paneInner').height($(window).height()).css({ padding : 0 });
-            }
-            $('.pane').width($('.content').width());
-
-            // Add the class
-            $('html').addClass('showPane');
-
-            // Do on resize
-            $(window).resize(function(){
-
-                // Width
-                if(($no_padding == null) || ($no_padding == false)){
-
-                    $('.paneInner').width($('.content').width() - 40).css({ padding : 20 });
-                    $('.paneInner').height($(window).height() - 40).css({ padding : 20 });
-                }
-                else{
-
-                    $('.paneInner').width($('.content').width()).css({ padding : 0 });
-                    $('.paneInner').height($(window).height()).css({ padding : 0 });
-                }
-                $('.pane').width($('.content').width());
-            });
-        }
-
         // ----- NAVIGATION
         jQuery.webplate_navigation = function(){
 
             // Duplicate navigation
-            $('.webplate').prepend($('.navigation').clone().addClass('navigationSmall').removeClass('navigation'));
+            $('.webplate').prepend($('.navigation').clone().addClass('navigation-small').removeClass('navigation'));
 
             // On click
-            $('.navigationTrigger').on('click', function(){
+            $('.navigation-trigger').on('click', function(){
 
-                if($('html').hasClass('showNav')){
+                if($('html').hasClass('show-nav')){
 
-                    $('html').removeClass('showNav').addClass('hideNav');
-                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+                    $('html').removeClass('show-nav').addClass('hide-nav');
+                    $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-                        if($('.webplateInner').css('position') == 'fixed'){
-                            $('.webplateInner').css({ 'position' : 'relative' });
+                        if($('.webplate-inner').css('position') == 'fixed'){
+                            $('.webplate-inner').css({ 'position' : 'relative' });
                         }
                     });
                 }
                 else{
-                    $('html').addClass('showNav').removeClass('hideNav');
-                    $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+                    $('html').addClass('show-nav').removeClass('hide-nav');
+                    $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-                        if($('.webplateInner').css('position') == 'relative'){
-                            $('.webplateInner').css({ 'position' : 'fixed' });
+                        if($('.webplate-inner').css('position') == 'relative'){
+                            $('.webplate-inner').css({ 'position' : 'fixed' });
                         }
                     });
                 }
             });
 
             // Show on mobile
-            if($('.navigationTrigger').hasClass('smallShow') == false){
+            if($('.navigation-trigger').hasClass('small-show') == false){
 
-                $('.navigationTrigger').addClass('smallShow');
+                $('.navigation-trigger').addClass('small-show');
             }
 
             // Change active state and close menu
-            $('.navigationSmall a').on('click', function(){
+            $('.navigation-small a').on('click', function(){
 
-                $('.navigationSmall a.active').removeClass('active');
+                $('.navigation-small a.active').removeClass('active');
                 $(this).addClass('active');
-                $('html').removeClass('showNav').addClass('hideNav');
+                $('html').removeClass('show-nav').addClass('hide-nav');
             });
         };
 
@@ -597,11 +443,11 @@ $LAB
         // ----- WINDOW TYPE EXECUTE
         jQuery.webplate_window_type_execute = function(){
 
-            $('html.no-touch.showNav').removeClass('showNav').addClass('hideNav');
-            $('.webplateInner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+            $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
+            $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-                if($('.webplateInner').css('position') == 'fixed'){
-                    $('.webplateInner').css({ 'position' : 'relative' });
+                if($('.webplate-inner').css('position') == 'fixed'){
+                    $('.webplate-inner').css({ 'position' : 'relative' });
                 }
             });
 
@@ -609,14 +455,14 @@ $LAB
             if($(window).width() <= 700){
 
                 // Set the type variable
-                $('html').addClass('webplateSmallView');
-                $('html').removeClass('webplateLargeView');
+                $('html').addClass('webplate-small-view');
+                $('html').removeClass('webplate-large-view');
             }
             else{
 
                 // Set the type variable
-                $('html').removeClass('webplateSmallView');
-                $('html').addClass('webplateLargeView');
+                $('html').removeClass('webplate-small-view');
+                $('html').addClass('webplate-large-view');
             }
         };
     })
@@ -800,10 +646,9 @@ $LAB
             // ------------------------------------------------ DOM EDITS
 
             $('body').wrapInner('<div class="webplate" />');
-            $('.webplate').wrapInner('<div class="webplateInner" />');
-            $('.webplate').prepend('<div class="webplateOverlay" />');
-            $('.pane').wrapInner('<div class="paneInner" />');
-            $('.navigation').wrapInner('<div class="navigationInner" />');
+            $('.webplate').wrapInner('<div class="webplate-inner" />');
+            $('.webplate').prepend('<div class="webplate-overlay" />');
+            $('.navigation').wrapInner('<div class="navigation-inner" />');
 
 
             // ------------------------------------------------ EXECUTE
