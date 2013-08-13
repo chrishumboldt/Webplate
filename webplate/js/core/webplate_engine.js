@@ -33,7 +33,7 @@ $LAB
     .wait(function(){
 
         // ----- LOCK A FORM FROM SUBMITTING ON ENTER
-        jQuery.webplate_lock_submit = function($element){
+        jQuery.web_lock_submit = function($element){
 
             $($element).live('keypress', function($e){
 
@@ -45,7 +45,7 @@ $LAB
         };
 
         // ----- CHECK THAT SOMETHING EXISTS
-        jQuery.webplate_exists = function($element){
+        jQuery.web_exists = function($element){
 
             if($($element).length > 0){
 
@@ -58,13 +58,13 @@ $LAB
         };
 
         // ----- GET FILE EXTENSION
-        jQuery.webplate_get_extension = function($file){
+        jQuery.web_get_extension = function($file){
 
             return $file.split('.').pop().toLowerCase();
         };
 
         // ----- CURRENT DB DATE
-        jQuery.webplate_crt_db_date = function(){
+        jQuery.web_crt_db_date = function(){
 
             $current_time 			    = new Date();
             $year						= $current_time.getFullYear();
@@ -82,7 +82,7 @@ $LAB
         };
 
         // ----- CHECK THAT SOMETHING IS IN A DATABAE DATE FORMAT (yyyy-mm-dd)
-        jQuery.webplate_check_date = function($date){
+        jQuery.web_check_date = function($date){
 
             if(($date.substr(4, 1) == '-') && ($date.substr(7, 1) == '-') && ($.scrap_is_integer($date.substr(0, 4)) == true) && ($.scrap_is_integer($date.substr(5, 2)) == true) && ($.scrap_is_integer($date.substr(8, 2)) == true) && ($date.length == 10)){
 
@@ -95,7 +95,7 @@ $LAB
         };
 
         // ----- CHECK THAT A STRING IS A TIME FORMAT
-        jQuery.webplate_is_time = function($int){
+        jQuery.web_is_time = function($int){
 
             if($int != ''){
 
@@ -121,7 +121,7 @@ $LAB
         };
 
         // ----- CHECK THAT A STRING IS ONLY INTEGERS - INLCUDING FRACTION
-        jQuery.webplate_is_integer = function($int){
+        jQuery.web_is_integer = function($int){
 
             if($int != ''){
 
@@ -147,7 +147,7 @@ $LAB
         };
 
         // ----- CHECK THAT A STRING IS ONLY INTEGERS - NOT INLCUDING FRACTION
-        jQuery.webplate_is_full_integer = function($int){
+        jQuery.web_is_full_integer = function($int){
 
             if($int != ''){
 
@@ -173,7 +173,7 @@ $LAB
         };
 
         // ----- CHECK FOR WHITE SPACE
-        jQuery.webplate_has_white_space = function($check){
+        jQuery.web_has_white_space = function($check){
 
             if($check.indexOf(' ') != -1){
 
@@ -186,7 +186,7 @@ $LAB
         };
 
         // ----- CHECK THAT THE FILE IS AN ALLOWED TYPE
-        jQuery.webplate_allowed_doc = function($file, $ar_allowed_types){
+        jQuery.web_allowed_doc = function($file, $ar_allowed_types){
 
             if($ar_allowed_types == null){
 
@@ -206,7 +206,7 @@ $LAB
         };
 
         // ----- INPUT MIRRORS
-        jQuery.webplate_input_mirror = function($input, $output){
+        jQuery.web_input_mirror = function($input, $output){
 
             $($selector).keyup(function(){
 
@@ -219,7 +219,7 @@ $LAB
         };
 
         // ----- CHECK THAT A STRING IS AN EMAIL
-        jQuery.webplate_is_email = function($email){
+        jQuery.web_is_email = function($email){
 
             if(($email.indexOf('@') != -1) && ($email.indexOf('.') != -1)){
 
@@ -232,7 +232,7 @@ $LAB
         };
 
         // ----- CHECK THAT A STRING IS A VALID PASSWORD
-        jQuery.webplate_is_password = function($password){
+        jQuery.web_is_password = function($password){
 
             if($password.length > 5){
 
@@ -267,7 +267,7 @@ $LAB
         };
 
         // ----- CHECK THAT THE FILE IS AN IMAGE
-        jQuery.webplate_is_image = function($file, $ar_allowed_types){
+        jQuery.web_is_image = function($file, $ar_allowed_types){
 
             if($ar_allowed_types == null){
 
@@ -287,7 +287,7 @@ $LAB
         };
 
         // ----- CHECK THAT INPUT IS A HEX CODE
-        jQuery.webplate_is_color = function($color){
+        jQuery.web_is_color = function($color){
 
             if($color.length == 7){
 
@@ -303,7 +303,7 @@ $LAB
         };
 
         // ----- RANDOM STRING
-        jQuery.webplate_random_string = function($string_length){
+        jQuery.web_random_string = function($string_length){
 
             $chars 				= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
             if($string_length == null){
@@ -322,19 +322,19 @@ $LAB
         };
 
         // ----- SHOW OVERLAY
-        jQuery.webplate_show_overlay = function(){
+        jQuery.web_show_overlay = function(){
 
             $('.webplate-overlay').fadeIn();
         };
 
         // ----- REMOVE OVERLAY
-        jQuery.webplate_remove_overlay = function(){
+        jQuery.web_remove_overlay = function(){
 
             $('.webplate-overlay').fadeOut();
         };
 
 		  // ----- SHOW MODAL
-        jQuery.webplate_show_modal = function($modal_class){
+        jQuery.web_show_modal = function($modal_class){
 
             if($($modal_class).is(":hidden") == true){
 
@@ -356,7 +356,7 @@ $LAB
         };
 
 		  // ----- HIDE MODAL
-        jQuery.webplate_hide_modal = function(){
+        jQuery.web_hide_modal = function(){
 
             $('.modal:visible .close').live('click', function(){
 
@@ -377,7 +377,7 @@ $LAB
         };
 
         // ----- CONSOLE LOG
-        jQuery.webplate_log = function($text){
+        jQuery.web_log = function($text){
 
             if(window.console) {
 
@@ -386,7 +386,7 @@ $LAB
         };
 
         // ----- NAVIGATION
-        jQuery.webplate_navigation = function(){
+        jQuery.web_navigation = function(){
 
             // Duplicate navigation
             $('.webplate').prepend($('.navigation').clone().addClass('navigation-small').removeClass('navigation'));
@@ -431,17 +431,17 @@ $LAB
         };
 
         // ----- WINDOW TYPE
-        jQuery.webplate_window_type = function(){
+        jQuery.web_window_type = function(){
 
-            $.webplate_window_type_execute();
+            $.web_window_type_execute();
             $(window).resize(function(){
 
-                $.webplate_window_type_execute();
+                $.web_window_type_execute();
             });
         };
 
         // ----- WINDOW TYPE EXECUTE
-        jQuery.webplate_window_type_execute = function(){
+        jQuery.web_window_type_execute = function(){
 
             $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
             $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
@@ -604,7 +604,7 @@ $LAB
                 $file                       = jQuery.trim($file);
 
                 // Get the extension
-                $extension                  = $.webplate_get_extension($file);
+                $extension                  = $.web_get_extension($file);
 
                 // Load the CSS / LESS
                 if($extension == 'css'){
@@ -653,9 +653,9 @@ $LAB
 
             // ------------------------------------------------ EXECUTE
 
-            $.webplate_navigation();
+            $.web_navigation();
 
-            $.webplate_window_type();
+            $.web_window_type();
 
             if($('html').hasClass('touch')){
 
@@ -684,7 +684,7 @@ $LAB
                 $file                       = jQuery.trim($file);
 
                 // Get the extension
-                $extension                  = $.webplate_get_extension($file);
+                $extension                  = $.web_get_extension($file);
 
                 // Load the JS
                 if($extension == 'js'){
