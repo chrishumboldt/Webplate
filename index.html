@@ -131,29 +131,33 @@
 				<!--Something 1-->
 				<div class="row">
 
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet lobortis augue, et dictum ipsum laoreet sed. Duis rutrum interdum neque, ut pulvinar massa semper non. Praesent imperdiet, erat quis feugiat fringilla, arcu ipsum fermentum diam, at sollicitudin leo dui malesuada metus. Duis euismod est a ipsum aliquet venenatis. Vivamus ac lectus at felis hendrerit pellentesque. Donec ornare placerat tellus, id vulputate tortor euismod eu. Vestibulum in porta nunc. Sed a velit nisl. Suspendisse convallis sapien id ante tempor cursus. Aliquam ac dui vel massa semper consequat pharetra vel neque.
+					<h3>Lead by example</h3>
+					<p>Before we get into the nity gritty its important to note that an example HTML file is found in the root download folder called <b>webplate-basic.html</b>.  From here you can start creating any website or webapp using webplate.  For more advanced layouts check the other <b>webplate-</b> something files.  They range from app layouts to blogs and have all the required extra CSS and Javascript already added in.</p>
+
+					<h3>Load the neccessary files</h3>
+					<p>To make any page use webplate all you need to do is drop a copy of the webplate directory you got in the download into the root or any subdirectory you have in your site.  Then go ahead and include two files that will execute the entire webplate stack.  Firstly you will need the <b>webplate.css</b> followed by the <b>webplate.js</b> files.  The CSS is loaded first so that the page renders properly before the javascript finishes doing its thing.  If you include the CSS afterwards then the page will render out as pure text before everything aligns in place with colours and layouts.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
+
+<pre class="code-block">
+<code>&lt;head&gt;
+    &lt;link href="webplate/css/webplate.css" type="text/css" rel="stylesheet" /&gt;
+    &lt;script src="webplate/js/webplate.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;</code>
+</pre>
+
+					<h3>First the CSS</h3>
+					<p>The CSS is a compressed and minified version of a LESS file found under <b>webplate/less/</b> and is an combination of many files importing into one via <b>webplate-imports.less</b>.  If you wish to include more of your own files into this core set, you can by creating a new LESS file and adding the import link (<b>Note</b> that it won't be included in any future updates and would need to be relinked every time).  You can instead use an extras include but that will be explained a bit later.</p>
+					<p>I recommend you learn about LESS via the website <a href="http://lesscss.org/" targer="_blank">lesscss.org</a>.  While webplate uses LESS it's important to note that you do <b>NOT NEED</b> any experience in it and that if you want you can style directly in CSS alone without any concerns.</p>
+					<p>So in this CSS file is a combination of things.  Firstly we include the global <b>webplate.less</b> file that has a series of helper mixins like rounded corners or drop shadows.  Include this file in any custom LESS files you create to access these useful helper mixins and to gain access to the <b>@page_width</b> variable that is crucial to webplates responsive media query checks.</p>
+					<p>Next webplate imports <a href="https://github.com/necolas/normalize.css" target="_blank">Normalize</a> which is a series of CSS resets and global styles to make cross-browser rendering more accurate.  It kind of levels the styling playing field for you.</p>
+					<p>Once the resets have taken place, webplate loads up <a href="http://typeplate.com" target="_blank">Typeplate</a> that essentially sets up a series of typographical parameters that makes your text look neat and organized right out of the webplate box.</p>
+					<p>This is followed by <b>webplate global</b>, a small LESS file of styles and useful classes that help manage some of the more universal elements.</p>
+					<p>Right afterwards the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app.  This is achieved through the usage of media queries and class names and is explained in more detail in the layout section.</p>
+					<p>Next up is the styling and resets of forms down through the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devies too.</p>
+					<p>Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
 
 				</div>
 
-				<!--Seperator-->
-				<div class="row seperator"><span class="icon-arrow-down-3"></span></div>
-
-				<!--Something 2-->
-				<div class="row info-block">
-
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet lobortis augue, et dictum ipsum laoreet sed. Duis rutrum interdum neque, ut pulvinar massa semper non. Praesent imperdiet, erat quis feugiat fringilla, arcu ipsum fermentum diam, at sollicitudin leo dui malesuada metus. Duis euismod est a ipsum aliquet venenatis. Vivamus ac lectus at felis hendrerit pellentesque. Donec ornare placerat tellus, id vulputate tortor euismod eu. Vestibulum in porta nunc. Sed a velit nisl. Suspendisse convallis sapien id ante tempor cursus. Aliquam ac dui vel massa semper consequat pharetra vel neque.
-
-				</div>
-
-				<!--Seperator-->
-				<div class="row seperator"><span class="icon-arrow-down-3"></span></div>
-
-				<!--Something 3-->
-				<div class="row info-block">
-
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet lobortis augue, et dictum ipsum laoreet sed. Duis rutrum interdum neque, ut pulvinar massa semper non. Praesent imperdiet, erat quis feugiat fringilla, arcu ipsum fermentum diam, at sollicitudin leo dui malesuada metus. Duis euismod est a ipsum aliquet venenatis. Vivamus ac lectus at felis hendrerit pellentesque. Donec ornare placerat tellus, id vulputate tortor euismod eu. Vestibulum in porta nunc. Sed a velit nisl. Suspendisse convallis sapien id ante tempor cursus. Aliquam ac dui vel massa semper consequat pharetra vel neque.
-
-				</div>
+				<!-- <div class="row seperator"><span class="icon-arrow-down-3"></span></div> -->
 
 			</div>
 

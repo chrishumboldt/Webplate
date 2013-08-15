@@ -35,7 +35,7 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
-* {
+h1, h2, h3, h4, .logo, .navigation a {
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
@@ -67,9 +67,10 @@
 			.primary, .secondary {
 				float: left;
 				padding-top: 1px;
-				height: 60px;
+				height: 70px;
+				line-height: 20px;
 				color: lighten(#000, 40%);
-				font-size: 3.5em;
+				font-size: 3.4em;
 			}
 			.primary {
 				padding-left: 40px;
@@ -133,10 +134,35 @@
 			h2 {
 				color: @logo_colour;
 			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
 			h4 {
+				margin-bottom: 20px;
 				color: lighten(#556270, 40%);
 			}
-			.info-block {
+			p {
+				color: lighten(#556270, 50%);
+				font-weight: 100;
+				
+				b {
+					color: @logo_colour;
+				}
+			}
+			a {
+				font-size: 1em;
+				font-weight: 500;
+			}
+			pre.code-block {
+				display: block;
+				padding: 15px 20px;
+				margin: 15px 0px 35px 0px;
+				font-size: 1.1em;
+				word-wrap: break-word;
+				color: #fff;
+				.rounded-corners();
+				.box-shadow-inset(fadeout(#000, 90%), 8px);
 				background-color: darken(#556270, 0%);
 			}
 		}
@@ -284,7 +310,7 @@
 				width: 112px;
 
 				.primary, .secondary {
-					height: 50px;
+					height: 45px;
 					font-size: 1.8em;
 				}
 				.primary {

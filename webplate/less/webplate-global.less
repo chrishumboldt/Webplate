@@ -30,35 +30,31 @@ html, body {
   height: 100%;
 }
 html {
-  font-size: 0.875em;
-  position: relative;
-  color: #393939;
-  background-color: #fff;
-  -ms-text-size-adjust: 100%;
-  -webkit-texts-size-adjust: 100%;
-  -webkit-backface-visibility: hidden;
+	position: relative;
+	font-size: 0.875em;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	color: lighten(#000, 80%);
+	background-color: #fff;
+	-ms-text-size-adjust: 100%;
+	-webkit-texts-size-adjust: 100%;
+	-webkit-backface-visibility: hidden;
 }
 div {
   display: block;
   direction: ltr;
 }
 body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label {
-  color: #393939;
-  font-size: 1em;
-  font-weight: 400;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  line-height: 20px;
+  color: lighten(#000, 80%);
 }
 ul, ol {margin:0; padding:0px;}
 a, .make-link, a:visited {text-decoration:none; color: #65a8a6;}
-a:hover, .make-link:hover {text-decoration:none; color: #216462; cursor: pointer; .animate(color)}
+a:hover, .make-link:hover {text-decoration:none; color: lighten(#65a8a6, 10%); cursor: pointer; .animate(color)}
 
 // Global classes
 .display-none, .hidden-div {display:none;}
 .float-left {float:left;}
 .float-right {float:right;}
 .clear-float {clear:both;}
-.div-height {display:block; overflow:hidden;}
 .nothing {
   .hide-text();
 }
