@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-heart, .icon-camera, .icon-map-pin-fill, .icon-ok, .icon-food, .icon-gift, .icon-male, .icon-female, .icon-checkmark, .icon-cross, .icon-question-sign, .icon-stack, .icon-layout, .icon-frame, .icon-code, .icon-list, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-angle-up, .icon-angle-down, .icon-database, .icon-text, .icon-arrow-left, .icon-arrow-right, .icon-arrow-down, .icon-arrow-up, .icon-download, .icon-twitter, .icon-facebook, .icon-googleplus, .icon-linkedin, .icon-flickr, .icon-vimeo, .icon-pinterest, .icon-github, .icon-skype, .icon-plus {
+.icon-heart, .icon-camera, .icon-map-pin-fill, .icon-ok, .icon-food, .icon-gift, .icon-male, .icon-female, .icon-checkmark, .icon-cross, .icon-question-sign, .icon-stack, .icon-layout, .icon-frame, .icon-code, .icon-list, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-angle-up, .icon-angle-down, .icon-database, .icon-text, .icon-arrow-left, .icon-arrow-right, .icon-arrow-down, .icon-arrow-up, .icon-download, .icon-twitter, .icon-facebook, .icon-googleplus, .icon-linkedin, .icon-flickr, .icon-vimeo, .icon-pinterest, .icon-github, .icon-skype, .icon-plus, .icon-IcoMoon {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -150,4 +150,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-plus:before {
 	content: "\e01c";
+}
+.icon-IcoMoon:before {
+	content: "\e01d";
 }

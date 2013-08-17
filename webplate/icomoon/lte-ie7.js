@@ -43,7 +43,8 @@ window.onload = function() {
 			'icon-pinterest' : '&#xe019;',
 			'icon-github' : '&#xe01a;',
 			'icon-skype' : '&#xe01b;',
-			'icon-plus' : '&#xe01c;'
+			'icon-plus' : '&#xe01c;',
+			'icon-IcoMoon' : '&#xe01d;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

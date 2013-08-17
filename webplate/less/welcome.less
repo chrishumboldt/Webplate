@@ -114,7 +114,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 			h4 {
 				width: 90%;
 				margin: 0px auto;
-				margin-bottom: 50px;
+				margin-bottom: 20px;
 				text-align: center;
 				line-height: 1.6em;
 			}
@@ -126,21 +126,6 @@ h1, h2, h3, h4, .logo, .navigation a {
 				margin: 20px 0px;
 				font-size: 4em;
 				text-align: center;
-			}
-		}
-		.row.dark-blue {
-			background-color: darken(#556270, 10%);
-
-			h2 {
-				color: @logo_colour;
-			}
-			h3 {
-				margin-top: 40px;
-				color: lighten(#556270, 20%);
-			}
-			h4 {
-				margin-bottom: 20px;
-				color: lighten(#556270, 40%);
 			}
 			p {
 				color: lighten(#556270, 50%);
@@ -161,22 +146,82 @@ h1, h2, h3, h4, .logo, .navigation a {
 				font-size: 1.1em;
 				word-wrap: break-word;
 				color: #fff;
+				background-color: #556270;
 				.rounded-corners();
-				.box-shadow-inset(fadeout(#000, 90%), 8px);
-				background-color: darken(#556270, 0%);
+			}
+			.row.example {
+				margin: 4px 0px;
+				padding: 2px;
+				color: darken(#556270, 10%);
+				text-align: center;
+				background-color: @logo_colour;
+				.rounded-corners();
+				
+				[class *= "span-"] {
+					padding: 6px;
+					border: 2px solid @logo_colour;
+					color: #fff;
+					font-weight: 100;
+					background-color: #68aa7c;
+				}
+			}
+			a.button {
+				margin: 15px 0px;
+				height: 45px;
+				line-height: 45px;
+				font-size: 1.1em;
+				color: #666;
+			}
+			a.button:hover, a.button:visited {
+				color: #666;
 			}
 		}
-		.row.dark-blue-2 {
-			background-color: lighten(#556270, 0%);
+		.row.cream {
+			background-color: #fffcf5;
+
+			h2 {
+				color: darken(#f0b49e, 10%);
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
+			h4 {
+				color: lighten(#000, 65%);
+			}
+		}
+		.row.dark-blue {
+			background-color: darken(#556270, 10%);
 
 			h2 {
 				color: @logo_colour;
 			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
 			h4 {
 				color: lighten(#556270, 40%);
 			}
-			.info-block {
-				background-color: darken(#556270, 0%);
+		}
+		.row.light-blue {
+			background-color: #556270;
+
+			h2 {
+				color: @logo_colour;
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 30%);
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 60%);
+			}
+			pre.code-block {
+				background-color: darken(#556270, 10%);
 			}
 		}
 		// Downloads

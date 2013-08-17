@@ -31,7 +31,7 @@ $(document).ready(function(){
 		$window_height						= $(window).height();
 		
 		// Adjust header
-		if($('html').hasClass('webplate-large-view') && $window_height > 430){
+		if($('html').hasClass('web-large-view') && $window_height > 430){
 			
 			$('.header, .header .row.inner').height($window_height);
 		}
