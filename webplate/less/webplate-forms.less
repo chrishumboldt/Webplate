@@ -21,11 +21,123 @@
 
 /* VARIABLES
 --------------------------------------------------------------------------------------- */ 
-@images_root:					'../images/forms';
+@images_root:						'../images/forms';
+@fe_border_color:					lighten(#000, 82%);
+@fe_border_width:             1px; 
+@fe_rounded_corners_radius:   2px;  
 
 
 /* Global
 --------------------------------------------------------------------------------------- */
+// Display inline
+.inline {
+	margin-bottom: 8px;
+	
+	[class *= "icheckbox_"], [class *= "iradio_"] {
+		position: absolute;
+	}
+	label {
+		padding-left: 35px;
+	}
+}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="radio"], input[type="checkbox"], textarea {
+	width: 100%;
+	padding: 8px;
+	border: @fe_border_width solid @fe_border_color;
+	.rounded-corners();
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus, select:focus {
+	outline: none;
+	padding: 7px;
+	border-width: 2px; 
+}
+textarea {
+	height: 80px;
+}
+// Drop down
+select {
+  border: @fe_border_width solid @fe_border_color;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  background-color: #fff;
+  -webkit-appearance: none;
+  -webkit-user-select: text;
+  -webkit-font-smoothing: antialiased;
+  .animate(border-color);
+  .rounded-corners(@fe_rounded_corners_radius);
+}
+.drop-down {
+	padding: 6px;
+	border: @fe_border_width solid @fe_border_color;
+	background-color: #fff;
+	background-image: url("@{images_root}/drop-down-arrow.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+	overflow: hidden;
+	.rounded-corners(@fe_rounded_corners_radius);
+
+	.text {
+		position: absolute;
+	}
+	select {
+		padding: 9px 30px 9px 2px;
+		font-size: 0.95em;
+		border: none;
+		background: transparent;
+		-moz-appearance: window;
+	} 
+}
+.drop-down:hover {
+	padding: 5px;
+	border-width: (@fe_border_width + 1);
+	background-image: url("@{images_root}/drop-down-arrow-hover.png");
+}
+.web-form-colour-aero {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #9cc2cb; 
+	}
+}
+.web-form-colour-blue {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #2489c5;
+	}
+}
+.web-form-colour-green { 
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #1b7e5a;
+	}
+}
+.web-form-colour-grey {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #73716e;
+	}
+}
+.web-form-colour-orange {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #de8650;
+	}
+}
+.web-form-colour-pink {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #a77a94;
+	}
+}
+.web-form-colour-purple {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #6a5a8c;
+	}
+}
+.web-form-colour-red {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #d54e21;
+	}
+}
+.web-form-colour-yellow {
+	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
+		border-color: #ffcc33;
+	}
+}
 .icheckbox_square,
 .iradio_square {
     display: block;
@@ -37,7 +149,6 @@
     border: none;
     cursor: pointer;
 }
-
 .icheckbox_square {
     background-position: 0 0;
 	 .rounded-corners();
@@ -635,14 +746,8 @@
     }
 }
 
-// Display inline
-.inline {
-	[class *= "icheckbox_"], [class *= "iradio_"] {
-		position: absolute;
-	}
-	label {
-		padding-left: 35px;
-	}
+[class *= "icheckbox_"], [class *= "iradio_"] {
+	background-color: #fff;
 }
 
 
@@ -661,4 +766,13 @@
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.drop-down {
+		display: block;
+		width: 100%;
+
+		select {
+			width: 100%;
+			padding: 4px 30px 4px 2px;
+		}
+	}
 }

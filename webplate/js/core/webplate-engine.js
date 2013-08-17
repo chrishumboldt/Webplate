@@ -590,14 +590,37 @@ $LAB
 	 
 	 // Webplate forms
 	 .wait(function(){
+		 
 		$(document).ready(function(){
 			
+			// Some variables
+			$form_colour			= '-blue';
+         $data_form_colour		= $('body').data('forms-colour');
+			$ar_form_colours		= ['red', 'green', 'blue', 'aero', 'grey', 'orange', 'yellow', 'pink', 'purple'];
+			
+         // Check that CSS is needed
+         if(($data_form_colour) && ($data_form_colour.length > 0)){
+				
+				if(jQuery.inArray($data_form_colour, $ar_form_colours) > -1){
+					
+					$form_colour	= '-' + $data_form_colour;
+				}	
+			}
+			
+			// Set the html variable
+			$('html').addClass('web-form-colour' + $form_colour);
+			
+			// Execute iCheck
 			$('input').iCheck({
 				
-				checkboxClass: 	'icheckbox_square-blue',
-				radioClass: 		'iradio_square-blue',
-				increaseArea: 		'20%' // optional
+				checkboxClass: 	'icheckbox_square' + $form_colour,
+				radioClass: 		'iradio_square' + $form_colour,
+				increaseArea: 		'20%',
+				labelHover: 		true,
 			});
+			
+			// Wrap all selects
+			$('select').wrap('<span class="drop-down"></span>');
 		});
 	 })
 

@@ -16,7 +16,7 @@
     <script src="webplate/js/webplate.js" type="text/javascript"></script>
 
 </head>
-<body style="display: none;" data-css-extras="welcome.css" data-js-extras="welcome.js">
+<body style="display: none;" data-css-extras="welcome.css" data-js-extras="welcome.js" data-forms-colour="orange">
 
 	<!--Header-->
 	<div class="header">
@@ -366,33 +366,55 @@
 				<h2>Forms</h2>
 				<h4>Write something here</h4>
 				
-				<div class="span4">
+				<div class="row">
 					
-					<div class="inline">
-						<input type="checkbox">
-						<label>Checkbox 1</label>
+					<div class="span-4 form-example">
+						
+		                <input type="text" value="Text field" />
+            
+		                <input type="password" value="Password field" />
+            
+		                <input type="date" placeholder="Date field" />
+						
 					</div>
-					
-					<div class="inline">
-						<input type="checkbox" checked>
-						<label>Checkbox 2</label>
-					</div>
-					
-					<div class="inline">
-						<input type="radio" name="iCheck">
-						<label>Radio 1</label>
-					</div>
-					
-					<div class="inline">
-						<input type="radio" name="iCheck" checked>
-						<label>Radio 2</label>
-					</div>
-				</div>
 				
-				<div class="span4">
-				</div>
+					<div class="span-5 form-example">
+						
+						<textarea>This is a test area.</textarea>
+						
+					</div>
 				
-				<div class="span4">
+					<div class="span-3 form-example">
+					
+						<div class="inline">
+							<input type="checkbox">
+							<label>Checkbox 1</label>
+						</div>
+					
+						<div class="inline">
+							<input type="checkbox" checked>
+							<label>Checkbox 2</label>
+						</div>
+					
+						<div class="inline">
+							<input type="radio" name="iCheck">
+							<label>Radio 1</label>
+						</div>
+					
+						<div class="inline">
+							<input type="radio" name="iCheck" checked>
+							<label>Radio 2</label>
+						</div>
+					
+						<select>
+							<option>Drop Down 1</option>
+							<option>Drop Down 2</option>
+							<option>Drop Down 3</option>
+							<option>Drop Down 4</option>
+						</select>
+					
+					</div>
+				
 				</div>
 				
 			</div>
