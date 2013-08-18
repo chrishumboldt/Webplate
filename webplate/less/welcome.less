@@ -84,6 +84,16 @@ h1, h2, h3, h4, .logo, .navigation a {
 				.animate(border-right);
 			}
 		}
+		.logo.make-wider {
+			width: 300px;
+			
+			.primary {
+				padding: 0px 10px 0px 0px;
+			}
+			.secondary {
+				padding: 0px 0px 0px 10px;
+			}
+		}
 		// Heading
 		.heading {
 			h3 {
@@ -414,6 +424,9 @@ h1, h2, h3, h4, .logo, .navigation a {
 					border-right: 3px solid @logo_colour;
 				}
 			}
+			.logo.make-wider {
+				width: 155px;
+			}
 			.heading {
 				h3 {
 					padding-bottom: 80px;
@@ -427,6 +440,12 @@ h1, h2, h3, h4, .logo, .navigation a {
 			// Form examples
 			.form-example {
 				padding: 20px 0px;
+			}
+		}
+		// Footer
+		.footer {
+			.text-right {
+				text-align: left;
 			}
 		}
 	}
