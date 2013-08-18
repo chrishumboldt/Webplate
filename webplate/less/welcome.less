@@ -128,7 +128,6 @@ h1, h2, h3, h4, .logo, .navigation a {
 				text-align: center;
 			}
 			p {
-				color: lighten(#556270, 50%);
 				font-weight: 100;
 				
 				b {
@@ -137,6 +136,9 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			a {
 				font-size: 1em;
+			}
+			a.button {
+				margin: 5px 5px 5px 0px;
 			}
 			pre.code-block {
 				display: block;
@@ -164,18 +166,6 @@ h1, h2, h3, h4, .logo, .navigation a {
 					background-color: #68aa7c;
 				}
 			}
-			a.button {
-				margin: 15px 0px;
-				height: 45px;
-				line-height: 45px;
-				font-size: 1.1em;
-			}
-			a.button:hover, a.button:visited {
-				margin: 15px 0px;
-				height: 45px;
-				line-height: 45px;
-				font-size: 1.1em;
-			}
 		}
 		.row.cream {
 			background-color: #fffcf5;
@@ -185,10 +175,25 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			h3 {
 				margin-top: 40px;
-				color: lighten(#556270, 20%);
+				color: lighten(#556270, 30%);
 			}
 			h4 {
 				color: lighten(#000, 65%);
+			}
+			p {
+				b {
+					color: darken(#f0b49e, 10%);
+				}
+			}
+			pre.code-block {
+				background-color: lighten(#000, 40%);
+			}
+			.example-icon {
+				font-size: 1.4em;
+				
+				span {
+					font-size: 0.9em;
+				}
 			}
 		}
 		.row.dark-blue {
@@ -203,6 +208,9 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			h4 {
 				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 50%);
 			}
 		}
 		.row.light-blue {
@@ -255,6 +263,34 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			textarea {
 				height: 155px;
+			}
+		}
+	}
+	// Footer
+	.footer {
+		background-color: darken(#556270, 10%);
+
+		.row.inner {
+			padding: 50px 15px;
+			color: lighten(#556270, 50%);
+			font-weight: 100;
+			
+			h2 {
+				color: @logo_colour;
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 50%);
+			}
+			b {
+				color: @logo_colour;
+				font-weight: 100;
 			}
 		}
 	}

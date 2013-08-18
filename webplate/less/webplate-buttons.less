@@ -161,8 +161,39 @@
   }
 }
 
+// Link colour cleanups
 a.button, a.button:hover, a.button:visited {
 	color:#666;
+}
+a.button.button-flat-primary, a.button.button-flat-primary:hover, a.button.button-flat-primary:visited,
+a.button.button-flat-action, a.button.button-flat-action:hover, a.button.button-flat-action:visited,
+a.button.button-flat-highlight, a.button.button-flat-highlight:hover, a.button.button-flat-highlight:visited,
+a.button.button-flat-caution, a.button.button-flat-caution:hover, a.button.button-flat-caution:visited,
+a.button.button-flat-royal, a.button.button-flat-royal:hover, a.button.button-flat-royal:visited,
+a.button.button-primary, a.button.button-primary:hover, a.button.button-primary:visited,
+a.button.button-action, a.button.button-action:hover, a.button.button-action:visited,
+a.button.button-highlight, a.button.button-highlight:hover, a.button.button-highlight:visited,
+a.button.button-caution, a.button.button-caution:hover, a.button.button-caution:visited,
+a.button.button-royal, a.button.button-royal:hover, a.button.button-royal:visited {
+	color: #fff;
+}
+a.button:active, a.button-flat:active {
+  color: #bbbbbb;
+}
+a.button.button-primary:active, a.button.button-flat-primary:active {
+  color: #005065;
+}
+a.button.button-action:active, a.button.button-flat-action:active {
+  color: #374f00;
+}
+a.button.button-highlight:active, a.button.button-flat-highlight:active {
+  color: #8d5303;
+}
+a.button.button-caution:active, a.button.button-flat-caution:active {
+  color: #952312;
+}
+a.button.button-royal:active, a.button.button-flat-royal:active {
+  color: #3e1740;
 }
 
 /* line 10, ../scss/buttons.scss */
@@ -183,8 +214,8 @@ a.button, a.button:hover, a.button:visited {
   zoom: 1;
   *display: inline;
   border: 1px solid #d4d4d4;
-  height: 32px;
-  line-height: 32px;
+  height: 36px;
+  line-height: 36px;
   padding: 0px 25.6px;
   font-weight: 300;
   font-size: 14px;
@@ -194,6 +225,11 @@ a.button, a.button:hover, a.button:visited {
   margin: 0;
   text-decoration: none;
   text-align: center;
+  
+  span {
+	  padding-left: 10px;
+	  font-size: 0.8em;
+  }
 }
 /* line 28, ../scss/buttons.scss */
 .button:hover {
@@ -665,27 +701,27 @@ a.button-flat-primary {
 /* line 206, ../scss/buttons.scss */
 .button-large {
   font-size: 19px;
-  height: 38.4px;
-  line-height: 38.4px;
+  height: 46.4px;
+  line-height: 46.4px;
   padding: 0px 30.72px;
 }
 
 /* line 231, ../scss/buttons.scss */
 input.button-large, button.button-large {
-  height: 40.4px;
+  height: 48.4px;
 }
 
 /* line 206, ../scss/buttons.scss */
 .button-small {
   font-size: 12px;
-  height: 25.6px;
-  line-height: 25.6px;
+  height: 28.6px;
+  line-height: 28.6px;
   padding: 0px 20.48px;
 }
 
 /* line 231, ../scss/buttons.scss */
 input.button-small, button.button-small {
-  height: 27.6px;
+  height: 30.6px;
 }
 
 /* line 206, ../scss/buttons.scss */
@@ -790,23 +826,24 @@ input.button-tiny, button.button-tiny {
   margin: 0px;
   display: block;
 }
+@hover_corner_radius:			2px;
 /* line 316, ../scss/buttons.scss */
 .button-dropdown ul li:first-child a {
-  -moz-border-radius-topleft: 3px;
-  -webkit-border-top-left-radius: 3px;
-  border-top-left-radius: 3px;
-  -moz-border-radius-topright: 3px;
-  -webkit-border-top-right-radius: 3px;
-  border-top-right-radius: 3px;
+  -moz-border-radius-topleft: @hover_corner_radius;
+  -webkit-border-top-left-radius: @hover_corner_radius;
+  border-top-left-radius: @hover_corner_radius;
+  -moz-border-radius-topright: @hover_corner_radius;
+  -webkit-border-top-right-radius: @hover_corner_radius;
+  border-top-right-radius: @hover_corner_radius;
 }
 /* line 319, ../scss/buttons.scss */
 .button-dropdown ul li:last-child a {
-  -moz-border-radius-bottomleft: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomleft: @hover_corner_radius;
+  -webkit-border-bottom-left-radius: @hover_corner_radius;
+  border-bottom-left-radius: @hover_corner_radius;
+  -moz-border-radius-bottomright: @hover_corner_radius;
+  -webkit-border-bottom-right-radius: @hover_corner_radius;
+  border-bottom-right-radius: @hover_corner_radius;
 }
 /* line 325, ../scss/buttons.scss */
 .button-dropdown ul .button-dropdown-divider {

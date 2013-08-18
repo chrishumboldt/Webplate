@@ -160,7 +160,7 @@
 
 					<p><b>Note: </b>Use a comma seperator to add in multiple files of any one type.</p>
 					
-					<a class="button button-rounded button-flat" href="http://getwebplate.com/documentation/">Read More On The Stack</a>
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation/">Read More On The Stack</a>
 
 				</div>
 
@@ -185,6 +185,23 @@
 					<p>Of course this variable is completely editable and can be set to whatever you want it to be.  In the case of web apps you can set it to 100% to fill your entire screen real estate which will essentially remove the minor difference between the two.  You will also see that as the screen scales that the webplate javascript adds a class to the <b>html</b> tag.  In the case of large and adjusting view, the class is <b>web-large-view</b> while in the case of small view the class is <b>web-small-view</b>.  This is extremely useful when styling your site or app.</p>
 					<p>Once the page scales down to less than and including 700px, webplate snaps into small view which is really the mobile device domain.  All content will now be displayed verticaly unless you state otherwise (read below for more on this).</p>
 					<p><b>Please note</b> that webplate does <b>NOT</b> follow a mobile first structure philosophy because this methodology is somewhat redundant in technical terms.  Webplate provides a framework to display information in mobile, fluid and desktop based outputs and the mobile first philosophy should be a critical part of your UX design process rather then a working constraint of the framework itself.</p>
+					
+					<h3>Navigation</h3>
+					<p>To create a naviagtion that slots into the page slider, class the containing element with the class <b>navigation</b>.  Webplate will then clone it into the page slider that is show only when any element with the class <b>navigation-trigger</b> is clicked.  View this pages navgiation to see this effect.  Below is a basic example:</p>
+					
+<pre class="code-block">
+<code>&lt;div class="navigation-trigger icon-reorder"&gt;&lt;/div&gt;
+&lt;nav class="navigation"&gt;
+	&lt;ul class="row"&gt;
+		&lt;li class="span-2"&gt;
+			&lt;a href="#"&gt;Navigation Link 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li class="span-2"&gt;
+			&lt;a href="#"&gt;Navigation Link 2&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</code>
+</pre>
 					
 					<h3>The row (.row)</h3>
 					<p>A row class is the most basic vertical element that will house the 12 columns that span across your layout or a particular part of your layout. They can be nested and respond to their container with a 100% width.</p>
@@ -349,7 +366,7 @@
 					<h3>Small show (.small-show)</h3>
 					<p>Inversely <b>small-show</b> will display the classed element in small view whislt hiding it in large view.</p>
 					
-					<a class="button button-rounded button-flat" href="http://getwebplate.com/documentation/">Read More On The Layout</a>
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation/">Read More On The Layout</a>
 
 				</div>
 
@@ -364,7 +381,27 @@
 
 				<!--Heading-->
 				<h2>Forms</h2>
-				<h4>Write something here</h4>
+				<h4>The challenge of globaly styled form elements is a big one especially when you start to consider mobile devices and tablets including the normal desktop browser.  For this reason webplate has some forms overrides and styling to make them all look the same and work universally.</h4>
+				
+				<h3>Choosing the colour for you</h3>
+				<p>There are currently 9 colour options to choose from when applying styles to your site or app.  These are <b>red</b>, <b>green</b>, <b>blue</b>, <b>aero</b>, <b>grey</b>, <b>orange</b>, <b>yellow</b>, <b>pink</b> and <b>purple</b> and are derived from the <a href="http://damirfoy.com/iCheck/" target="_blank">iCheck</a> library used by webplate.  Webplate has intergrated the colour schemes into the other forms elements like input, textareas and dropdowns.  By default the colour is set to blue, but is easily changed by adding a data attribute to the <b>body</b> tag.  See an example below.</p>
+				
+<pre class="code-block">
+<code>&lt;body data-forms-colour="orange"&gt;</code>
+</pre>
+
+				<h3>Making it all work</h3>
+				<p>Webplate will do all the work for you automatically, however if you want labels for your checkboxes or radio buttons then a wrapper div needs to be added with the class <b>inline</b>.  See the example below of what you would need to do:</p>
+				
+<pre class="code-block">
+<code>&lt;div class="inline"&gt;
+	&lt;input type="checkbox"&gt;
+	&lt;label&gt;Checkbox 1&lt;/label&gt;
+&lt;/div&gt;</code>
+</pre>
+
+				<h3>The good stuff</h3>
+				<p>Reading about it is one thing but seeing the final outcome is so much better.  Check out the examples of what would happen to the form elements below:</p>
 				
 				<div class="row">
 					
@@ -428,12 +465,187 @@
 
 				<!--Heading-->
 				<h2>Buttons</h2>
-				<h4>Write something here</h4>
+				<h4>As an element buttons have become so heavily associated with design that it has taken on a life of its own.  Webplate has for a while had its own custom button library but the maintenance invloved is so high that when <a href="http://alexwolfe.github.io/Buttons/" target="_blank">Alex Wolfe's library</a> came along, it was easy to decide to implement.</h4>
+				
+				<h3>Basic classes</h3>
+				<p>You can make two different elements a button with these cool styles, namely the <b>button</b> tag and the <b>link</b> tag. To start add in the basic minimum class of <b>button</b>.  From here on out you can style it according to your needs like making it rounded, a pill style or perhaps a drop down button.  Below is a list of example of all the style available:</p>
+				
+				<h3>Different colours</h3>
+				<p>By adding in a class you can change the colour of the button in accordance to its usage, like say the class <b>button-primary</b> or perhaps <b>button-caution</b>.  If you want the button to be of a flat design, then use the flat class name before the colour choice, for example <b>button-flat-primary</b>.  See an example below:</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button"&gt;No Colour&lt;/a&gt;
+&lt;a href="#" class="button button-primary"&gt;Primary Colour&lt;/a&gt;
+&lt;a href="#" class="button button-action"&gt;Action Colour&lt;/a&gt;
+&lt;a href="#" class="button button-highlight"&gt;Highlight Colour&lt;/a&gt;
+&lt;a href="#" class="button button-caution"&gt;Caution Colour&lt;/a&gt;
+&lt;a href="#" class="button button-royal"&gt;Royal Colour&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button">No Colour</a>
+				<a href="#" class="button button-primary">Primary Colour</a>
+				<a href="#" class="button button-action">Action Colour</a>
+				<a href="#" class="button button-highlight">Highlight Colour</a>
+				<a href="#" class="button button-caution">Caution Colour</a>
+				<a href="#" class="button button-royal">Royal Colour</a>
+				
+				<p>&nbsp;</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat"&gt;No Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary"&gt;Primary Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action"&gt;Action Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight"&gt;Highlight Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-caution"&gt;Caution Colour flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-royal"&gt;Royal Colour Flat&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat">No Colour Flat</a>
+				<a href="#" class="button button-flat-primary">Primary Colour Flat</a>
+				<a href="#" class="button button-flat-action">Action Colour Flat</a>
+				<a href="#" class="button button-flat-highlight">Highlight Colour Flat</a>
+				<a href="#" class="button button-flat-caution">Caution Colour Flat</a>
+				<a href="#" class="button button-flat-royal">Royal Colour flat</a>
+				
+				<h3>A few shapes</h3>
+				<p>Choose from 3 alterntaive shapes to the default square to get the button that you need.  They are the <b>button-rounded</b>, <b>button-pill</b> and <b>button-circle</b>.</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat"&gt;No Style&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary button-rounded"&gt;Rounded Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action button-pill"&gt;Pill Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight button-circle"&gt;Circle Button&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat">No Style</a>
+				<a href="#" class="button button-flat-primary button-rounded">Rounded Button</a>
+				<a href="#" class="button button-flat-action button-pill">Pill Button</a>
+				<a href="#" class="button button-flat-highlight button-circle">Circle Button</a>
+				
+				<h3>Choice of size</h3>
+				<p>Change the size of your button with a class alone.  Choose from <b>button-tiny</b>, <b>button-small</b> and <b>button-large</b>.</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat button-rounded button-tiny"&gt;Tiny Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary button-rounded button-small"&gt;Small Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action button-rounded"&gt;Default Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight button-rounded button-large"&gt;Large Button&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat button-rounded button-tiny">Tiny Button</a>
+				<a href="#" class="button button-flat-primary button-rounded button-small">Small Button</a>
+				<a href="#" class="button button-flat-action button-rounded">Default Button</a>
+				<a href="#" class="button button-flat-highlight button-rounded button-large">Large Button</a>
+				
+				<h3>Dropdown buttons</h3>
+				<p>Instead of using the default form dropdowns, you can use a button drop down instead.  <b>Note</b> that we are using a cool IcoMoon font for the down arrow (more on this later).  See below for some examples:</p>
+				
+<pre class="code-block">
+<code>&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat"&gt;Button Dropdown 1&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;
+
+&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat-primary"&gt;Button Dropdown 2&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul class="button-dropdown-menu-below"&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;
+
+&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat-action"&gt;Button Dropdown 3&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul class="button-dropdown-menu-above"&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;</code>
+</pre>
+				
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat">Button Dropdown 1<span class="icon-arrow-down"></span></a>
+				    <ul>
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+ 
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat-primary">Button Dropdown 2<span class="icon-arrow-down"></span></a>
+ 
+				    <ul class="button-dropdown-menu-below">
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+ 
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat-action">Button Dropdown 3<span class="icon-arrow-down"></span></a>
+ 
+				    <ul class="button-dropdown-menu-above">
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+				
+			</div>
+			
+		</div>
+		
+		<!--IcoMoon-->
+		<div id="icoMoon" class="row cream">
+			
+			<div class="inner">
+				
+				<h2>IcoMoon Icon Fonts</h2>
+				<h4>Webplate uses <a href="http://icomoon.io/" target="_blank">IcoMoon</a> for its icon fonts because not only is it free, but also rather extensive with over 3,800+ icons to choose from.  Gone are the days of tons of images to display icons and graphics and the best part is, because they are resizable and vector based, they are great for responsive sites.</h4>
+				
+				<h3>Use an icon font</h3>
+				<p>Most of the time icon fonts are used by classing a <b>span</b> tag but ultimatly can be added to any tag you wish. They are subject to any styling that can be applied to text like colour, size and even someting more advanced like text-shadow.  See an example of its usage below:</p>
+				
+<pre class="code-block">
+<code>&lt;div&gt;&lt;span class="icon-checkmark"&gt;&lt;/span&gt; Some Text&lt;/div&gt;
+&lt;div&gt;&lt;span class="icon-stack"&gt;&lt;/span&gt; Some More Text&lt;div&gt;</code>
+</pre>
+
+				<p>
+					<div class="example-icon"><span class="icon-checkmark"></span> Some Text</div>
+					<div class="example-icon"><span class="icon-stack"></span> Some More Text</div>
+				</p>
+				
+				<h3>Updating the IcoMoon library</h3>
+				<p>There is a small base set of icons included but ultimately more will need to be added to any web project.  To do so sign up to IcoMoon and start by loading the current session file into your profile.  This file is found under the <b>webplate/icomoon</b> directory with the filename <b>icomoon-session.json</b>.  From this point start adding your own icons in and select the <b>fonts</b> link below before downloading.  From there you will need to copy the contents of that download package into the <b>webplate/icomoon</b> directory.  Click the <b>View Webplate Icons</b> button below to see your added fonts.</p>
+				
+				<a class="button button-rounded button-flat-primary" href="http://icomoon.io/" target="_blank">Go To IcoMoon</a>
+				<a class="button button-rounded button-flat-highlight" href="webplate/icomoon" target="_blank">View Webplate Icons</a>
 				
 			</div>
 			
 		</div>
 
+	</div>
+	
+	<!--Footer-->
+	<div class="footer">
+		
+		<div class="row inner">
+			
+			<div class="span-4">This is a <a href="http://www.chrismodem.com" target="_blank">Chris Modem</a> project</div>
+			
+			<div class="span-8 text-right">If you wish to collaborate on webplate please contact me at <b>chris[dot]webplate[at]gmail[dot]com</b></div>
+			
+		</div>
+		
 	</div>
 
 </body>
