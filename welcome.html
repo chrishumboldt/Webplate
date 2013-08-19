@@ -28,7 +28,7 @@
 				
 				<!--Navigation trigger-->
 				<div class="small-span-2 small-show">
-					<div class="navigation-trigger icon-reorder"></div>
+					<a href="#" class="navigation-trigger icon-reorder"></a>
 				</div>
 
 				<!--Logo-->
@@ -80,7 +80,7 @@
 								</a>
 							</li>
 							<li class="span-2">
-								<a href="documentation.html">
+								<a href="http://getwebplate.com/documentation.html" target="_blank">
 									<div class="icon icon-text"></div><div>Documentation</div>
 								</a>
 							</li>
@@ -150,17 +150,17 @@
 					<p>After that the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app, followed by the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devies too.  Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
 					
 					<h3>Now the javascript</h3>
-					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsary features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ftlabs/fastclick" target="_blank">Fastclick.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
+					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsary features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ngryman/jquery.finger" target="_blank">jquery.finger.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
 					
 					<h3>What are extras?</h3>
-					<p>Extras are a way to add in your own css or javscript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the begining of a dependancy manager that I want to add in.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS file then it will load the LESS javascript file to compile your code client side.  To use the extras option, add the relevant data attributes into the pages <b>body</b> tag.  See the example below:</p>
+					<p>Extras are a way to add in your own css or javscript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the begining of a dependancy manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate-extras</b> directory.  To use the extras option, add the relevant data attributes into the pages <b>body</b> tag.  See the example below:</p>
 <pre class="code-block">
 <code>&lt;body data-css-extras="welcome.css" data-js-extras="welcome.js"&gt;</code>
 </pre>
 
 					<p><b>Note: </b>Use a comma seperator to add in multiple files of any one type.</p>
 					
-					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html">Read More On The Stack</a>
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Stack</a>
 
 				</div>
 
@@ -387,7 +387,7 @@
 					<h3>Small show (.small-show)</h3>
 					<p>Inversely <b>small-show</b> will display the classed element in small view whislt hiding it in large view.</p>
 					
-							<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html">Read More On The Layout</a>
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Layout</a>
 
 				</div>
 
@@ -648,7 +648,7 @@
 				<p>There is a small base set of icons included but ultimately more will need to be added to any web project.  To do so sign up to IcoMoon and start by loading the current session file into your profile.  This file is found under the <b>webplate/icomoon</b> directory with the filename <b>icomoon-session.json</b>.  From this point start adding your own icons in and select the <b>fonts</b> link below before downloading.  From there you will need to copy the contents of that download package into the <b>webplate/icomoon</b> directory.  Click the <b>View Webplate Icons</b> button below to see your added fonts.</p>
 				
 				<a class="button button-rounded button-flat-primary" href="http://icomoon.io/" target="_blank">Go To IcoMoon</a>
-				<a class="button button-rounded button-flat-highlight" href="webplate/icomoon" target="_blank">View Webplate Icons</a>
+				<a class="button button-rounded button-flat-highlight" href="webplate/icomoon/index.html" target="_blank">View Webplate Icons</a>
 				
 			</div>
 			
@@ -669,7 +669,7 @@
 		
 	</div>
 
-	<!--Google analytics
+	<!--Google analytics-->
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -679,7 +679,7 @@
 	  ga('create', 'UA-42874311-2', 'getwebplate.com');
 	  ga('send', 'pageview');
 
-	</script>-->
+	</script>
 
 </body>
 </html>

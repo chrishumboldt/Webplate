@@ -31,6 +31,9 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
+html, body, .webplate, .webplate-content, .webplate-navigation {
+    height: 100%;
+}
 // Overlay
 .webplate-overlay {
   display: none;
@@ -46,43 +49,51 @@
 }
 // Webplate
 .webplate {
-  position: relative;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
 
-  .webplate-inner {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    margin: 0px auto;
-    background-color: #fff;
-    z-index: 1;
-    -webkit-overflow-scrolling: touch;
-    -webkit-backface-visibility: hidden;
-    transform: translate3d(0px, 0px, 0px);
-    -webkit-transform: translate3d(0px, 0px, 0px);
-    -webkit-transition: -webkit-transform 0.2s ease;
-    -o-transition: -o-transform 0.2s ease;
-    -moz-transition: -moz-transform 0.2s ease;
-    transition: transform 0.2s ease;
-    .box-shadow(fadeout(#000, 20%), 30px);
+	.webplate-shifter {
+		position: relative;
+		left: 0;
+		height: 100%;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		transform: translate3d(0px, 0px, 0px);
+		-webkit-transform: translate3d(0px, 0px, 0px);
+		-webkit-transition: -webkit-transform 0.2s ease;
+		-o-transition: -o-transform 0.2s ease;
+		-moz-transition: -moz-transform 0.2s ease;
+		transition: transform 0.2s ease;
+	}
+	.webplate-content {
+		position: relative;
+		width: 100%;
+		max-width: 100%;
+		margin: 0px auto;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
 
-    .inner {
-      width: @page_width;
-      margin: 0px auto;
-    }
-  }
+		.inner {
+			width: @page_width;
+			margin: 0px auto;
+		}
+	}
 }
 // Navigation
-.navigation-small {
+.webplate-navigation {
 	display: none;
-	position: fixed;
+	position: absolute;
+	margin-left: -@menu_width;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translate3d(0, 0, 0);
-	-webkit-perspective: 1000;
-	z-index: 0;
 }
-.show-nav .webplate-inner {
+.show-nav .webplate-shifter {
   -webkit-transform: translate3d(@menu_width, 0px, 0px);
   -o-transform: translate3d(@menu_width, 0px, 0px);
   -moz-transform: translate3d(@menu_width, 0px, 0px);
@@ -90,12 +101,8 @@
 }
 
 // Fixed page width setting
-html.fixed-page .webplate .webplate-inner {
+html.fixed-page .webplate .webplate-content {
     max-width: @page_width;
-}
-.web-small-view .navigation ul li {
-  clear: both;
-  width: 100%;
 }
 
 // Containers
@@ -229,25 +236,8 @@ html.fixed-page .webplate .webplate-inner {
   }
 
   // Navigation
-  .navigation {
-    position: relative;
-    left: 0px;
-    overflow: hidden;
-  }
   .navigation ul, ol {
     list-style: none;
-  }
-  .navigation.horizontal {
-    ul {
-      text-align: left;
-
-      li {
-        display: inline;
-      }
-    }
-  }
-  .navigation-small {
-    display: none;
   }
 }
 
@@ -256,7 +246,7 @@ html.fixed-page .webplate .webplate-inner {
 --------------------------------------------------------------------------------------- */
 @media screen and (max-width: @page_width) {
   .webplate {
-    .webplate-inner {
+    .webplate-content {
       // Set inner width
       .inner {
         width: 100%;
@@ -393,18 +383,11 @@ html.fixed-page .webplate .webplate-inner {
 		}
 	}
 
-  // Webplate
-  .webplate-inner {
-    position: relative;
-    width: 100%;
-    left: 0;
-  }
-
   // Navigation
   .navigation {
     display: none;
   }
-  .navigation-small {
+  .webplate-navigation {
     display: block;
     width: @menu_width;
     height: 100%;
@@ -414,20 +397,30 @@ html.fixed-page .webplate .webplate-inner {
     z-index: 0;
 
     .navigation-inner {
-      height: 100%;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-
-      a {
-        display: block;
-        padding: 10px 20px;
-        font-size: 1.1em;
-        color: #b0b0b0;
-        .animate(color);
-      }
-      a:hover {
-        color: #fff;
-      }
+		 position: relative;
+		 height: 100%;
+		 
+		.row{
+			margin-top: 15px;
+			
+	      a {
+	        display: block;
+	        padding: 10px 20px;
+	        font-size: 1.1em;
+	        color: #b0b0b0;
+	        .animate(color);
+		  
+			  div.icon {
+				  float: left;
+				  padding-right: 12px;
+				  font-size: 1.1em;
+				  color: #E99272;
+			  }
+	      }
+	      a:hover {
+	        color: #fff;
+	      }
+		}
     }
   }
 }

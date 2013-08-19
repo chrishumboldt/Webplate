@@ -25,6 +25,9 @@ var $js_path						= $root + 'webplate/js/';
 var $css_path						= $root + 'webplate/css/';
 var $less_path						= $root + 'webplate/less/';
 var $icomoon_path					= $root + 'webplate/icomoon/';
+var $js_extras_path				= $root + 'webplate-extras/js/';
+var $css_extras_path				= $root + 'webplate-extras/css/';
+var $less_extras_path			= $root + 'webplate-extras/less/';
 var $is_less						= false;
 
 // Execute JS
@@ -396,29 +399,19 @@ $LAB
         jQuery.web_navigation = function(){
 
             // Duplicate navigation
-            $('.webplate').prepend($('.navigation').clone().addClass('navigation-small').removeClass('navigation'));
+            $('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
 
             // On click
-            $('.navigation-trigger').on('click', function(){
+            $('.navigation-trigger').on('click', function($e){
+					
+					 $e.preventDefault();
 
                 if($('html').hasClass('show-nav')){
 
                     $('html').removeClass('show-nav').addClass('hide-nav');
-                    $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-                        if($('.webplate-inner').css('position') == 'fixed'){
-                            $('.webplate-inner').css({ 'position' : 'relative' });
-                        }
-                    });
                 }
                 else{
                     $('html').addClass('show-nav').removeClass('hide-nav');
-                    $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-                        if($('.webplate-inner').css('position') == 'relative'){
-                            $('.webplate-inner').css({ 'position' : 'fixed' });
-                        }
-                    });
                 }
             });
 
@@ -429,12 +422,19 @@ $LAB
             }
 
             // Change active state and close menu
-            $('.navigation-small a').on('click', function(){
+            $('.webplate-navigation a').on('click', function(){
 
-                $('.navigation-small a.active').removeClass('active');
+                $('.webplate-navigation a.active').removeClass('active');
                 $(this).addClass('active');
                 $('html').removeClass('show-nav').addClass('hide-nav');
             });
+				
+				$('.webplate-content').on('scroll', function(){
+
+					if($('html').hasClass('show-nav')){
+	               $('html').removeClass('show-nav').addClass('hide-nav');
+					}
+				});
         };
 
         // ----- WINDOW TYPE
@@ -451,10 +451,10 @@ $LAB
         jQuery.web_window_type_execute = function(){
 
             $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
-            $('.webplate-inner').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+            $('.webplate-content').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-                if($('.webplate-inner').css('position') == 'fixed'){
-                    $('.webplate-inner').css({ 'position' : 'relative' });
+                if($('.webplate-content').css('position') == 'fixed'){
+                    $('.webplate-content').css({ 'position' : 'relative' });
                 }
             });
 
@@ -501,11 +501,11 @@ $LAB
                 // Load the CSS / LESS
                 if($extension == 'css'){
 
-                    $('head').append('<link rel="stylesheet" href="'+ $css_path + $file +'" type="text/css" />');
+                    $('head').append('<link rel="stylesheet" href="'+ $css_extras_path + $file +'" type="text/css" />');
                 }
                 else if($extension == 'less'){
 
-                    $('head').append('<link rel="stylesheet" href="'+ $less_path + $file +'" type="text/less" />');
+                    $('head').append('<link rel="stylesheet" href="'+ $less_extras_path + $file +'" type="text/less" />');
                     $is_less                = true;
                 }
             });
@@ -558,12 +558,12 @@ $LAB
  		});
 	 })
 
-    // Load Fastclick if touch device
+    // Load touch if a touch device
     .wait(function(){
 
-        if($('html').hasClass('touch')){
+        if(Modernizr.touch){
 
-            //$LAB.script($js_path + 'min/webplate-fastclick.min.js');
+            $LAB.script($js_path + 'min/webplate-touch.min.js');
         }
     })
 
@@ -575,7 +575,9 @@ $LAB
             // ------------------------------------------------ DOM EDITS
 
             $('body').wrapInner('<div class="webplate" />');
-            $('.webplate').wrapInner('<div class="webplate-inner" />');
+            $('.webplate').wrapInner('<div class="webplate-shifter" />');
+            $('.webplate-shifter').wrapInner('<div class="webplate-content" />');
+            $('.webplate-content').wrapInner('<div class="webplate-inner" />');
             $('.webplate').prepend('<div class="webplate-overlay" />');
             $('.navigation').wrapInner('<div class="navigation-inner" />');
 
@@ -586,9 +588,21 @@ $LAB
 
             $.web_window_type();
 
-            if($('html').hasClass('touch')){
-
-                FastClick.attach(document.body);
+				if(Modernizr.touch){
+					
+					$('body').on('tap', 'a, .navigation-trigger, .button', function(e) {
+			
+						// Some variables
+						$link_attr					= $(this).attr('href');
+			
+						if(typeof $link_attr !== 'undefined' && $link_attr !== false) {
+				
+							if($link_attr != '#'){
+								window.location 		= $(this).attr('href');
+								e.preventDefault();
+							}
+						}
+					});
             }
 
         });
@@ -617,7 +631,7 @@ $LAB
 
                 // Load the JS
                 if($extension == 'js'){
-                    $LAB.script($js_path + $file);
+                    $LAB.script($js_extras_path + $file);
                 }
             });
         }
@@ -625,7 +639,5 @@ $LAB
 
     // Display the body
     .wait(function(){
-
-        // Display the body
-        $('body').show();
+		 $('body').show();
     });
