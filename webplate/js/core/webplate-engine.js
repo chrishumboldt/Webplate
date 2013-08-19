@@ -563,7 +563,7 @@ $LAB
 
         if($('html').hasClass('touch')){
 
-            $LAB.script($js_path + 'min/webplate-fastclick.min.js');
+            //$LAB.script($js_path + 'min/webplate-fastclick.min.js');
         }
     })
 
