@@ -135,9 +135,9 @@
 				<div class="row">
 
 					<h3>Lead by example</h3>
-					<p>Before we get into the nitty gritty its important to note that an example HTML file is found in the root download folder called <b>layout-basic.html</b>.  From here you can start creating any website or webapp using webplate.</p>
+					<p>Before we get into the nitty gritty it's important to note that an example HTML file is found in the root download folder called <b>layout-basic.html</b>.  From here you can start creating any website or web app using webplate.</p>
 
-					<h3>Load the neccessary files</h3>
+					<h3>Load the necessary files</h3>
 					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> and <b>webplate-extras</b> directory you got in the download into the root or any subdirectory you have in your site.  Then go ahead and include two files that will execute the entire webplate stack.  Firstly you will need the <b>webplate.css</b> followed by the <b>webplate.js</b> files.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
 
 <pre class="code-block">
@@ -150,18 +150,18 @@
 					<h3>First the CSS</h3>
 					<p>The CSS is a compressed and minified version of a LESS file found under <b>webplate/less/</b> and is an combination of many files importing into one via <b>webplate-imports.less</b>.  I recommend you learn about LESS via the website <a href="http://lesscss.org/" targer="_blank">lesscss.org</a>.  While webplate uses LESS it's important to note that you do <b>NOT NEED</b> any experience in it and that if you want you can style directly in CSS alone without any concerns.</p>
 					<p>So in this CSS file is a combination of things.  Firstly we include the global <b>webplate.less</b> file that has a series of helper mixins like rounded corners or drop shadows.  Include this file in any custom LESS files you create to access these useful helper mixins and to gain access to the <b>@page_width</b> variable that is crucial to webplates responsive media query checks.  Next webplate imports <a href="https://github.com/necolas/normalize.css" target="_blank">Normalize</a> which is a series of CSS resets and global styles to make cross-browser rendering more accurate.  It kind of levels the styling playing field for you.  Once the resets have taken place, webplate loads up <a href="http://typeplate.com" target="_blank">Typeplate</a> that essentially sets up a series of typographical parameters that makes your text look neat and organized right out of the webplate box.</p>
-					<p>After that the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app, followed by the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devies too.  Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
+					<p>After that the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app, followed by the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devices too.  Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
 					
 					<h3>Now the javascript</h3>
-					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsary features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ngryman/jquery.finger" target="_blank">jquery.finger.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
+					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsory features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ngryman/jquery.finger" target="_blank">jquery.finger.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
 					
 					<h3>What are extras?</h3>
-					<p>Extras are a way to add in your own css or javscript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the begining of a dependancy manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate-extras</b> directory.  To use the extras option, add the relevant data attributes into the pages <b>body</b> tag.  See the example below:</p>
+					<p>Extras are a way to add in your own css or javascript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the beginning of a dependency manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate-extras</b> directory.  To use the extras option, add the relevant data attributes into the page's <b>body</b> tag.  See the example below:</p>
 <pre class="code-block">
 <code>&lt;body data-css-extras="welcome.css" data-js-extras="welcome.js"&gt;</code>
 </pre>
 
-					<p><b>Note: </b>Use a comma seperator to add in multiple files of any one type.</p>
+					<p><b>Note: </b>Use a comma separator to add in multiple files of any one type.</p>
 					
 					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Stack</a>
 
@@ -178,19 +178,19 @@
 
 				<!--Heading-->
 				<h2>Layout</h2>
-				<h4>Using a fluid responsive layout and intergrating a horizontal 12 column system, you can best display your content in three various views, large, adjusting and small.  Vertically everything is displayed in rows that together with columns create blocks that respond to different dimensions.  Why not read about the different options below.  Please note that the padding between spans is only for this example and not a default setting.</h4>
+				<h4>Using a fluid responsive layout and integrating a horizontal 12 column system, you can best display your content in three various views, large, adjusting and small.  Vertically everything is displayed in rows that together with columns create blocks that respond to different dimensions.  Why not read about the different options below.  Please note that the padding between spans is only for this example and not a default setting.</h4>
 
 				<!--Layouts-->
 				<div class="row">
 					
 					<h3>View types</h3>
-					<p>At its base level, webplate has 3 view types (although you can add more yourself).  These are <b>Large View</b>, <b>Adjusting View</b> and <b>Small View</b>.  Large and adjusting views are similar, with the only difference being the <b>@page_width</b> variable found in the <b>webplate/less/webplate.less</b> file.  By default this variable is set to <b>1100px</b> and is there to stop your content from displaying extremely wide on big high resolution screens.  In essence this is the maximum content width that will be allowed.  If the screen scales down to a width less then 1100px, the content will become fluid and snap to 100% width, making all content within begin to adjust accordingly.</p>
+					<p>At its base level, webplate has 3 view types (although you can add more yourself).  These are <b>Large View</b>, <b>Adjusting View</b> and <b>Small View</b>.  Large and adjusting views are similar, with the only difference being the <b>@page_width</b> variable found in the <b>webplate/less/webplate.less</b> file.  By default this variable is set to <b>1100px</b> and is there to stop your content from displaying extremely wide on big high resolution screens.  In essence this is the maximum content width that will be allowed.  If the screen scales down to a width less than 1100px, the content will become fluid and snap to 100% width, making all content within begin to adjust accordingly.</p>
 					<p>Of course this variable is completely editable and can be set to whatever you want it to be.  In the case of web apps you can set it to 100% to fill your entire screen real estate which will essentially remove the minor difference between the two.  You will also see that as the screen scales that the webplate javascript adds a class to the <b>html</b> tag.  In the case of large and adjusting view, the class is <b>web-large-view</b> while in the case of small view the class is <b>web-small-view</b>.  This is extremely useful when styling your site or app.</p>
-					<p>Once the page scales down to less than and including 700px, webplate snaps into small view which is really the mobile device domain.  All content will now be displayed verticaly unless you state otherwise (read below for more on this).</p>
-					<p><b>Please note</b> that webplate does <b>NOT</b> follow a mobile first structure philosophy because this methodology is somewhat redundant in technical terms.  Webplate provides a framework to display information in mobile, fluid and desktop based outputs and the mobile first philosophy should be a critical part of your UX design process rather then a working constraint of the framework itself.</p>
+					<p>Once the page scales down to less than and including 700px, webplate snaps into small view which is really the mobile device domain.  All content will now be displayed vertically unless you state otherwise (read below for more on this).</p>
+					<p><b>Please note</b> that webplate does <b>NOT</b> follow a mobile first structure philosophy because this methodology is somewhat redundant in technical terms.  Webplate provides a framework to display information in mobile, fluid and desktop based outputs and the mobile first philosophy should be a critical part of your UX design process rather than a working constraint of the framework itself.</p>
 					
 					<h3>Navigation</h3>
-					<p>To create a naviagtion that slots into the page slider, class the containing element with the class <b>navigation</b>.  Webplate will then clone it into the page slider that is show only when any element with the class <b>navigation-trigger</b> is clicked.  View this pages navgiation to see this effect.  Below is a basic example:</p>
+					<p>To create a navigation that slots into the page slider, class the containing element with the class <b>navigation</b>.  Webplate will then clone it into the page slider that is show only when any element with the class <b>navigation-trigger</b> is clicked.  View this page's navigation to see this effect.  Below is a basic example:</p>
 					
 <pre class="code-block">
 <code>&lt;div class="navigation-trigger icon-reorder"&gt;&lt;/div&gt;
@@ -207,7 +207,7 @@
 </pre>
 					
 					<h3>How to center content (.inner)</h3>
-					<p>In order to center content you need to use the <b>inner</b> class that will contain any child elements to the <b>@page_width</b> (default 1100px) and automatically center it.  You can do so to all your content by using a wrapper div or only certain parts of your site like this one.  In the case of webplate each row has a background colour and is a 100% witdth with the inner content wrapped in the inner tag.  See examples below:</p>
+					<p>In order to center content you need to use the <b>inner</b> class that will contain any child elements to the <b>@page_width</b> (default 1100px) and automatically center it.  You can do so to all your content by using a wrapper div or only certain parts of your site like this one.  In the case of webplate each row has a background colour and is a 100% width with the inner content wrapped in the inner tag.  See examples below:</p>
 					
 <pre class="code-block">
 <code>&lt;body&gt;
@@ -243,7 +243,7 @@
 					</div>
 					
 					<h3>The span (.span-*)</h3>
-					<p>Span classes refer to blocks that align horizontaly and <b>"span"</b> across the 12 columns of any given row by however much you want.  <b>Note</b> that you can apply this class to any element like a link tag or an image tag, not just div tags.  Below is a basic example:</p>
+					<p>Span classes refer to blocks that align horizontally and <b>"span"</b> across the 12 columns of any given row by however much you want.  <b>Note</b> that you can apply this class to any element like a link tag or an image tag, not just div tags.  Below is a basic example:</p>
 					
 <pre class="code-block">
 <code>&lt;div class="row"&gt;
@@ -308,7 +308,7 @@
 					</div>
 					
 					<h3>Nested rows and spans</h3>
-					<p>You can happily insert a row into another row or span and will undoubtedly need to.  Remeber that rows have a 100% width relative to its container.  So a row within a span of say 9 will now have 12 new columns with that span.  See below for an example:</p>
+					<p>You can happily insert a row into another row or span and will undoubtedly need to.  Remember that rows have a 100% width relative to its container.  So a row within a span of say 9 will now have 12 new columns with that span.  See below for an example:</p>
 					
 <pre class="code-block">
 <code>&lt;div class="row"&gt;
@@ -337,7 +337,7 @@
 					</div>
 					
 					<h3>Offset (.offset-*)</h3>
-					<p>Sometimes you might not always want to use the full width of the columns avaibale for whatever reason.  In these cases offsetting becomes neccessary and moves the classed element to the <b>right</b> of the element preceeding it based on the amount of columns that you specify.  See an example below:</p>
+					<p>Sometimes you might not always want to use the full width of the columns available for whatever reason.  In these cases offsetting becomes necessary and moves the classed element to the <b>right</b> of the element preceding it based on the amount of columns that you specify.  See an example below:</p>
 					
 <pre class="code-block">
 <code>&lt;div class="row"&gt;
@@ -367,7 +367,7 @@
 					</div>
 					
 					<h3>The possibilities are endless</h3>
-					<p>You can play around with 3 column and 4 column layouts and really the choices is quite varied.  The columns are percentages of the row and when in a fixed width layout are staticaly constrained.  Once you scale down into a fluid adjusting view, the span classed elements will begin to adjust and move according to the space available.  Once you get to small view though everything will stack vertically meaning that all spans will become 100% width and make all content easier to read on mobile devices.</p>
+					<p>You can play around with 3 column and 4 column layouts and really the choices is quite varied.  The columns are percentages of the row and when in a fixed width layout are statically constrained.  Once you scale down into a fluid adjusting view, the span classed elements will begin to adjust and move according to the space available.  Once you get to small view though everything will stack vertically meaning that all spans will become 100% width and make all content easier to read on mobile devices.</p>
 					
 					<h3>But I want to span in small view?</h3>
 					<p>No problem!  By adding in the prefix <b>small-</b> to either the span or offset classes you keep the same functionality in small view.  See the example below (You will need to resize the view to see it take effect):</p>
@@ -388,7 +388,7 @@
 					<p>There are a few classes which are helpful at this stage to know, namely <b>small-hide</b>.  This will hide the classed element in small view while displaying it in large view.</p>
 					
 					<h3>Small show (.small-show)</h3>
-					<p>Inversely <b>small-show</b> will display the classed element in small view whislt hiding it in large view.</p>
+					<p>Inversely <b>small-show</b> will display the classed element in small view whilst hiding it in large view.</p>
 					
 					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Layout</a>
 
@@ -405,10 +405,10 @@
 
 				<!--Heading-->
 				<h2>Forms</h2>
-				<h4>The challenge of globaly styled form elements is a big one especially when you start to consider mobile devices and tablets including the normal desktop browser.  For this reason webplate has some forms overrides and styling to make them all look the same and work universally.</h4>
+				<h4>The challenge of globally styled form elements is a big one especially when you start to consider mobile devices and tablets including the normal desktop browser.  For this reason webplate has some forms overrides and styling to make them all look the same and work universally.</h4>
 				
 				<h3>Choosing the colour for you</h3>
-				<p>There are currently 9 colour options to choose from when applying styles to your site or app.  These are <b>red</b>, <b>green</b>, <b>blue</b>, <b>aero</b>, <b>grey</b>, <b>orange</b>, <b>yellow</b>, <b>pink</b> and <b>purple</b> and are derived from the <a href="http://damirfoy.com/iCheck/" target="_blank">iCheck</a> library used by webplate.  Webplate has intergrated the colour schemes into the other forms elements like input, textareas and dropdowns.  By default the colour is set to blue, but is easily changed by adding a data attribute to the <b>body</b> tag.  See an example below.</p>
+				<p>There are currently 9 colour options to choose from when applying styles to your site or app.  These are <b>red</b>, <b>green</b>, <b>blue</b>, <b>aero</b>, <b>grey</b>, <b>orange</b>, <b>yellow</b>, <b>pink</b> and <b>purple</b> and are derived from the <a href="http://damirfoy.com/iCheck/" target="_blank">iCheck</a> library used by webplate.  Webplate has integrated the colour schemes into the other forms elements like input, textareas and dropdowns.  By default the colour is set to blue, but is easily changed by adding a data attribute to the <b>body</b> tag.  See an example below.</p>
 				
 <pre class="code-block">
 <code>&lt;body data-forms-colour="orange"&gt;</code>
@@ -489,7 +489,7 @@
 
 				<!--Heading-->
 				<h2>Buttons</h2>
-				<h4>As an element buttons have become so heavily associated with design that it has taken on a life of its own.  Webplate has for a while had its own custom button library but the maintenance invloved is so high that when <a href="http://alexwolfe.github.io/Buttons/" target="_blank">Alex Wolfe's library</a> came along, it was easy to decide to implement.</h4>
+				<h4>As an element buttons have become so heavily associated with design that it has taken on a life of its own.  Webplate has for a while had its own custom button library but the maintenance involved is so high that when <a href="http://alexwolfe.github.io/Buttons/" target="_blank">Alex Wolfe's library</a> came along, it was easy to decide to implement.</h4>
 				
 				<h3>Basic classes</h3>
 				<p>You can make two different elements a button with these cool styles, namely the <b>button</b> tag and the <b>link</b> tag. To start add in the basic minimum class of <b>button</b>.  From here on out you can style it according to your needs like making it rounded, a pill style or perhaps a drop down button.  Below is a list of example of all the style available:</p>
@@ -532,7 +532,7 @@
 				<a href="#" class="button button-flat-royal">Royal Colour flat</a>
 				
 				<h3>A few shapes</h3>
-				<p>Choose from 3 alterntaive shapes to the default square to get the button that you need.  They are the <b>button-rounded</b>, <b>button-pill</b> and <b>button-circle</b>.</p>
+				<p>Choose from 3 alternative shapes to the default square to get the button that you need.  They are the <b>button-rounded</b>, <b>button-pill</b> and <b>button-circle</b>.</p>
 				
 <pre class="code-block">
 <code>&lt;a href="#" class="button button-flat"&gt;No Style&lt;/a&gt;
@@ -635,7 +635,7 @@
 				<h4>Webplate uses <a href="http://icomoon.io/" target="_blank">IcoMoon</a> for its icon fonts because not only is it free, but also rather extensive with over 3,800+ icons to choose from.  Gone are the days of tons of images to display icons and graphics and the best part is, because they are resizable and vector based, they are great for responsive sites.</h4>
 				
 				<h3>Use an icon font</h3>
-				<p>Most of the time icon fonts are used by classing a <b>span</b> tag but ultimatly can be added to any tag you wish. They are subject to any styling that can be applied to text like colour, size and even someting more advanced like text-shadow.  See an example of its usage below:</p>
+				<p>Most of the time icon fonts are used by classing a <b>span</b> tag but ultimately can be added to any tag you wish. They are subject to any styling that can be applied to text like colour, size and even something more advanced like text-shadow.  See an example of its usage below:</p>
 				
 <pre class="code-block">
 <code>&lt;div&gt;&lt;span class="icon-checkmark"&gt;&lt;/span&gt; Some Text&lt;/div&gt;
