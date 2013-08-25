@@ -15,7 +15,7 @@
 	<script src="https://use.edgefonts.net/lato:n3,n4,n7.js"></script>
 
     <!--Include webplate-->
-    <script src="webplate/js/webplate.js" type="text/javascript"></script>
+    <script src="webplate/stack.js" type="text/javascript"></script>
 
 </head>
 <body style="display: none;" data-css-extras="welcome.css" data-js-extras="min/welcome.min.js" data-forms-colour="orange">
@@ -136,13 +136,12 @@
 					<h3>Lead by example</h3>
 					<p>Before we get into the nitty gritty it's important to note that an example HTML file is found in the root download folder called <b>layout-basic.html</b>.  From here you can start creating any website or web app using webplate.</p>
 
-					<h3>Load the necessary files</h3>
-					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> and <b>webplate-extras</b> directory you got in the download into the root or any subdirectory you have in your site.  Then go ahead and include two files that will execute the entire webplate stack.  Firstly you will need the <b>webplate.css</b> followed by the <b>webplate.js</b> files.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
+					<h3>Load the necessary file (Yup, just one)</h3>
+					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> and <b>webplate-extras</b> directory you got in the download into the desired directory of your site.  Then go ahead and include only <b>one</b> file (used to be two) that will execute the entire webplate stack, named <b>stack.js</b>.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
 
 <pre class="code-block">
 <code>&lt;head&gt;
-    &lt;link href="webplate/css/webplate.css" type="text/css" rel="stylesheet" /&gt;
-    &lt;script src="webplate/js/webplate.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script src="webplate/stack.js" type="text/javascript"&gt;&lt;/script&gt;
 &lt;/head&gt;</code>
 </pre>
 

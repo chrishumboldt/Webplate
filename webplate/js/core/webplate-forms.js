@@ -155,7 +155,8 @@
         self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
         !!settings.inheritClass && parent[_add](node.className);
         !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
-        parent.css('position') == 'static' && parent.css('position', 'relative');
+        // parent.css('position') == 'static' && parent.css('position', 'relative');
+        parent.css('position') == 'static';
         operate(self, true, _update);
 
         // Label events
