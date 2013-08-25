@@ -1,12 +1,686 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <!--HTML redirect-->
-	<meta http-equiv="refresh" content="0; url=welcome.html"> 
+    <!--Meta setup - Required for apple device-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!--Favicon-->
+	<link rel="icon" type="image/png" href="webplate/images/welcome/favicon.png" />
+	
+    <!--Title-->
+    <title>Webplate</title>
+	
+	<!--Edge web fonts include-->
+	<script src="https://use.edgefonts.net/lato:n3,n4,n7.js"></script>
+
+    <!--Include webplate-->
+    <script src="webplate/stack.js" type="text/javascript"></script>
 
 </head>
-<body>
+<body style="display: none;" data-css-extras="welcome.css" data-js-extras="min/welcome.min.js" data-forms-colour="orange">
+
+	<!--Header-->
+	<div class="header">
+
+		<div class="row inner">
+
+			<!--Header content-->
+			<div class="header-content">
+				
+				<!--Navigation trigger-->
+				<div class="small-span-2 small-show">
+					<a href="#" class="navigation-trigger icon-reorder"></a>
+				</div>
+
+				<!--Logo-->
+				<div class="span-12 small-span-8 small-offset-right-2">
+
+					<a href="#" class="logo">
+						<div class="primary">web</div>
+						<div class="secondary">plate</div>
+						<div class="clearFloat"></div>
+					</a>
+
+				</div>
+
+				<div class="span-12 heading">
+
+					<h3>An awesome responsive front-end framework that lets you stay focused on building your site or app while remaining really easy to use.</h3>
+
+				</div>
+			
+				<!--Navigation-->
+				<div class="span-12">
+
+					<nav class="navigation">
+
+						<ul class="row">
+							<li class="span-2">
+								<a href="#the-stack">
+									<div class="icon icon-stack"></div><div>The Stack</div>
+								</a>
+							</li>
+							<li class="span-2">
+								<a href="#layout">
+									<div class="icon icon-frame"></div><div>Layout</div>
+								</a>
+							</li>
+							<li class="span-2">
+								<a href="#forms">
+									<div class="icon icon-ok"></div><div>Forms</div>
+								</a>
+							</li>
+							<li class="span-2">
+								<a href="#buttons">
+									<div class="icon icon-arrow-down"></div><div>Buttons</div>
+								</a>
+							</li>
+							<li class="span-2">
+								<a href="#icoMoon">
+									<div class="icon icon-IcoMoon"></div><div>IcoMoon</div>
+								</a>
+							</li>
+							<li class="span-2">
+								<a href="http://getwebplate.com/documentation.html" target="_blank">
+									<div class="icon icon-text"></div><div>Documentation</div>
+								</a>
+							</li>
+						</ul>
+
+					</nav>
+
+				</div>
+
+			</div>
+		
+		</div>
+
+	</div>
+
+	<!--Content-->
+	<div class="content">
+
+		<!--Downloads-->
+		<div id="downloads" class="row dark light-blue">
+
+			<div class="inner">
+
+				<!--Heading-->
+				<h2>Get Webplate Now</h2>
+				
+				<div class="row inner">
+					
+					<div class="span-5 offset-1"><a class="button button-rounded button-flat" href="http://getwebplate.com/webplate.zip"><span class="icon-download"></span> Download Webplate</a></div>
+					
+					<div class="span-5"><a class="button button-rounded button-flat" href="https://github.com/ChrisModem/webplate" target="_blank"><span class="icon-github"></span> Fork On Github</a></div>
+					
+				</div>
+				
+			</div>
+
+		</div>
+
+		<!--The stack-->
+		<div id="the-stack" class="row dark dark-blue">
+
+			<div class="inner">
+
+				<!--Heading-->
+				<h2>The Stack</h2>
+				<h4>Webplate takes the best of the web and puts it into one very cool package.  Below you'll find a quick explanation of everything that makes up the Webplate stack and how it executes.</h4>
+
+				<!--Something 1-->
+				<div class="row">
+
+					<h3>Lead by example</h3>
+					<p>Before we get into the nitty gritty it's important to note that an example HTML file is found in the root download folder called <b>layout-basic.html</b>.  From here you can start creating any website or web app using webplate.</p>
+
+					<h3>Load the necessary file (Yup, just one)</h3>
+					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> and <b>webplate-extras</b> directory you got in the download into the desired directory of your site.  Then go ahead and include only <b>one</b> file (used to be two) that will execute the entire webplate stack, named <b>stack.js</b>.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
+
+<pre class="code-block">
+<code>&lt;head&gt;
+    &lt;script src="webplate/stack.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;</code>
+</pre>
+
+					<h3>First the CSS</h3>
+					<p>The CSS is a compressed and minified version of a LESS file found under <b>webplate/less/</b> and is an combination of many files importing into one via <b>webplate-imports.less</b>.  I recommend you learn about LESS via the website <a href="http://lesscss.org/" targer="_blank">lesscss.org</a>.  While webplate uses LESS it's important to note that you do <b>NOT NEED</b> any experience in it and that if you want you can style directly in CSS alone without any concerns.</p>
+					<p>So in this CSS file is a combination of things.  Firstly we include the global <b>webplate.less</b> file that has a series of helper mixins like rounded corners or drop shadows.  Include this file in any custom LESS files you create to access these useful helper mixins and to gain access to the <b>@page_width</b> variable that is crucial to webplates responsive media query checks.  Next webplate imports <a href="https://github.com/necolas/normalize.css" target="_blank">Normalize</a> which is a series of CSS resets and global styles to make cross-browser rendering more accurate.  It kind of levels the styling playing field for you.  Once the resets have taken place, webplate loads up <a href="http://typeplate.com" target="_blank">Typeplate</a> that essentially sets up a series of typographical parameters that makes your text look neat and organized right out of the webplate box.</p>
+					<p>After that the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app, followed by the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devices too.  Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
+					
+					<h3>Now the javascript</h3>
+					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsory features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ngryman/jquery.finger" target="_blank">jquery.finger.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
+					
+					<h3>What are extras?</h3>
+					<p>Extras are a way to add in your own css or javascript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the beginning of a dependency manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate-extras</b> directory.  To use the extras option, add the relevant data attributes into the page's <b>body</b> tag.  See the example below:</p>
+<pre class="code-block">
+<code>&lt;body data-css-extras="welcome.css" data-js-extras="welcome.js"&gt;</code>
+</pre>
+
+					<p><b>Note: </b>Use a comma separator to add in multiple files of any one type.</p>
+					
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Stack</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--Layout-->
+		<div id="layout" class="row dark light-blue">
+
+			<div class="inner">
+
+				<!--Heading-->
+				<h2>Layout</h2>
+				<h4>Using a fluid responsive layout and integrating a horizontal 12 column system, you can best display your content in three various views, large, adjusting and small.  Vertically everything is displayed in rows that together with columns create blocks that respond to different dimensions.  Why not read about the different options below.  Please note that the padding between spans is only for this example and not a default setting.</h4>
+
+				<!--Layouts-->
+				<div class="row">
+					
+					<h3>View types</h3>
+					<p>At its base level, webplate has 3 view types (although you can add more yourself).  These are <b>Large View</b>, <b>Adjusting View</b> and <b>Small View</b>.  Large and adjusting views are similar, with the only difference being the <b>@page_width</b> variable found in the <b>webplate/less/webplate.less</b> file.  By default this variable is set to <b>1100px</b> and is there to stop your content from displaying extremely wide on big high resolution screens.  In essence this is the maximum content width that will be allowed.  If the screen scales down to a width less than 1100px, the content will become fluid and snap to 100% width, making all content within begin to adjust accordingly.</p>
+					<p>Of course this variable is completely editable and can be set to whatever you want it to be.  In the case of web apps you can set it to 100% to fill your entire screen real estate which will essentially remove the minor difference between the two.  You will also see that as the screen scales that the webplate javascript adds a class to the <b>html</b> tag.  In the case of large and adjusting view, the class is <b>web-large-view</b> while in the case of small view the class is <b>web-small-view</b>.  This is extremely useful when styling your site or app.</p>
+					<p>Once the page scales down to less than and including 700px, webplate snaps into small view which is really the mobile device domain.  All content will now be displayed vertically unless you state otherwise (read below for more on this).</p>
+					<p><b>Please note</b> that webplate does <b>NOT</b> follow a mobile first structure philosophy because this methodology is somewhat redundant in technical terms.  Webplate provides a framework to display information in mobile, fluid and desktop based outputs and the mobile first philosophy should be a critical part of your UX design process rather than a working constraint of the framework itself.</p>
+					
+					<h3>Navigation</h3>
+					<p>To create a navigation that slots into the page slider, class the containing element with the class <b>navigation</b>.  Webplate will then clone it into the page slider that is show only when any element with the class <b>navigation-trigger</b> is clicked.  View this page's navigation to see this effect.  Below is a basic example:</p>
+					
+<pre class="code-block">
+<code>&lt;div class="navigation-trigger icon-reorder"&gt;&lt;/div&gt;
+&lt;nav class="navigation"&gt;
+	&lt;ul class="row"&gt;
+		&lt;li class="span-2"&gt;
+			&lt;a href="#"&gt;Navigation Link 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li class="span-2"&gt;
+			&lt;a href="#"&gt;Navigation Link 2&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</code>
+</pre>
+					
+					<h3>How to center content (.inner)</h3>
+					<p>In order to center content you need to use the <b>inner</b> class that will contain any child elements to the <b>@page_width</b> (default 1100px) and automatically center it.  You can do so to all your content by using a wrapper div or only certain parts of your site like this one.  In the case of webplate each row has a background colour and is a 100% width with the inner content wrapped in the inner tag.  See examples below:</p>
+					
+<pre class="code-block">
+<code>&lt;body&gt;
+	&lt;div class="inner"&gt;Anything inside here will be centered.&lt;/div&gt;
+&lt;/body&gt;</code>
+</pre>
+
+					<p>In the case of this site:</p>
+					
+<pre class="code-block">
+<code>&lt;body&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="inner"&gt;
+			This content will be centered while the outer row will be at a 100% width.
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;</code>
+</pre>
+					
+					<h3>The row (.row)</h3>
+					<p>A row class is the most basic vertical element that will house the 12 columns that span across your layout or a particular part of your layout. They can be nested and respond to their container with a 100% width.</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;This is a row&lt;/div&gt;
+&lt;div class="row"&gt;This is a row&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						This is a row
+					</div>
+					<div class="row example">
+						This is a row
+					</div>
+					
+					<h3>The span (.span-*)</h3>
+					<p>Span classes refer to blocks that align horizontally and <b>"span"</b> across the 12 columns of any given row by however much you want.  <b>Note</b> that you can apply this class to any element like a link tag or an image tag, not just div tags.  Below is a basic example:</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+	&lt;div class="span-1"&gt;Span 1&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+						<div class="span-1">Span 1</div>
+					</div>
+					
+					<h3>Two column layout</h3>
+					<p>If you wanted a two column layout all you would need to do is create two spans that are half of 12, which in this case is 6.</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-6"&gt;Span 6&lt;/div&gt;
+	&lt;div class="span-6"&gt;Span 6&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-6">Span 6</div>
+						<div class="span-6">Span 6</div>
+					</div>
+					
+					<h3>Two column layout but more like a blog</h3>
+					<p>Half and half layouts are kind of rare so a more blog or news feed like layout is better and can be achieved with a 1 quarter (which is 3 columns) to 3 quarter (which is 9 columns) split.</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-3"&gt;Span 3&lt;/div&gt;
+	&lt;div class="span-9"&gt;Span 9&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-3">Span 3</div>
+						<div class="span-9">Span 9</div>
+					</div>
+					
+					<h3>Nested rows and spans</h3>
+					<p>You can happily insert a row into another row or span and will undoubtedly need to.  Remember that rows have a 100% width relative to its container.  So a row within a span of say 9 will now have 12 new columns with that span.  See below for an example:</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-3"&gt;Span 3&lt;/div&gt;
+	&lt;div class="span-9"&gt;
+		Span 9
+		&lt;div class="row"&gt;
+			&lt;div class="span-4"&gt;Span 4&lt;/div&gt;
+			&lt;div class="span-4"&gt;Span 4&lt;/div&gt;
+			&lt;div class="span-4"&gt;Span 4&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-3">Span 3</div>
+						<div class="span-9">
+							Span 9
+							<div class="row example">
+								<div class="span-4">Span 4</div>
+								<div class="span-4">Span 4</div>
+								<div class="span-4">Span 4</div>
+							</div>
+						</div>
+					</div>
+					
+					<h3>Offset (.offset-*)</h3>
+					<p>Sometimes you might not always want to use the full width of the columns available for whatever reason.  In these cases offsetting becomes necessary and moves the classed element to the <b>right</b> of the element preceding it based on the amount of columns that you specify.  See an example below:</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-4"&gt;Span 4&lt;/div&gt;
+	&lt;div class="span-4 offset-2"&gt;Span 4, Offset 2&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-4">Span 4</div>
+						<div class="span-4 offset-2">Span 4, Offset 2</div>
+					</div>
+					
+					<h3>Offset Right (.offset-right-*)</h3>
+					<p>Alternatively you could push elements off to the right from the classed element by using offset right.</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-4 offset-right-1"&gt;Span 4, Offset Right 1&lt;/div&gt;
+	&lt;div class="span-6"&gt;Span 6&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-4 offset-right-1">Span 4, Offset Right 1</div>
+						<div class="span-6">Span 6</div>
+					</div>
+					
+					<h3>The possibilities are endless</h3>
+					<p>You can play around with 3 column and 4 column layouts and really the choices is quite varied.  The columns are percentages of the row and when in a fixed width layout are statically constrained.  Once you scale down into a fluid adjusting view, the span classed elements will begin to adjust and move according to the space available.  Once you get to small view though everything will stack vertically meaning that all spans will become 100% width and make all content easier to read on mobile devices.</p>
+					
+					<h3>But I want to span in small view?</h3>
+					<p>No problem!  By adding in the prefix <b>small-</b> to either the span or offset classes you keep the same functionality in small view.  See the example below (You will need to resize the view to see it take effect):</p>
+					
+<pre class="code-block">
+<code>&lt;div class="row"&gt;
+	&lt;div class="span-4 small-span-4"&gt;Span 4, Small Span 4&lt;/div&gt;
+	&lt;div class="span-7 small-span-7 offset-1 small-offset-1"&gt;Span 7, Small Span 7, Offset 1, Small Offset 1&lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+
+					<div class="row example">
+						<div class="span-4 small-span-4">Span 4, Small Span 4</div>
+						<div class="span-7 small-span-7 offset-1 small-offset-1">Span 7, Small Span 7, Offset 1, Small Offset 1</div>
+					</div>
+					
+					<h3>Small hide (.small-hide)</h3>
+					<p>There are a few classes which are helpful at this stage to know, namely <b>small-hide</b>.  This will hide the classed element in small view while displaying it in large view.</p>
+					
+					<h3>Small show (.small-show)</h3>
+					<p>Inversely <b>small-show</b> will display the classed element in small view whilst hiding it in large view.</p>
+					
+					<a class="button button-rounded button-flat button-large" href="http://getwebplate.com/documentation.html" target="_blank">Read More On The Layout</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--Forms-->
+		<div id="forms" class="row cream">
+
+			<div class="inner">
+
+				<!--Heading-->
+				<h2>Forms</h2>
+				<h4>The challenge of globally styled form elements is a big one especially when you start to consider mobile devices and tablets including the normal desktop browser.  For this reason webplate has some forms overrides and styling to make them all look the same and work universally.</h4>
+				
+				<h3>Choosing the colour for you</h3>
+				<p>There are currently 9 colour options to choose from when applying styles to your site or app.  These are <b>red</b>, <b>green</b>, <b>blue</b>, <b>aero</b>, <b>grey</b>, <b>orange</b>, <b>yellow</b>, <b>pink</b> and <b>purple</b> and are derived from the <a href="http://damirfoy.com/iCheck/" target="_blank">iCheck</a> library used by webplate.  Webplate has integrated the colour schemes into the other forms elements like input, textareas and dropdowns.  By default the colour is set to blue, but is easily changed by adding a data attribute to the <b>body</b> tag.  See an example below.</p>
+				
+<pre class="code-block">
+<code>&lt;body data-forms-colour="orange"&gt;</code>
+</pre>
+
+				<h3>Making it all work</h3>
+				<p>Webplate will do all the work for you automatically, however if you want labels for your checkboxes or radio buttons then a wrapper div needs to be added with the class <b>inline</b>.  See the example below of what you would need to do:</p>
+				
+<pre class="code-block">
+<code>&lt;div class="inline"&gt;
+	&lt;input type="checkbox"&gt;
+	&lt;label&gt;Checkbox 1&lt;/label&gt;
+&lt;/div&gt;</code>
+</pre>
+
+				<h3>The good stuff</h3>
+				<p>Reading about it is one thing but seeing the final outcome is so much better.  Check out the examples of what would happen to the form elements below:</p>
+				
+				<div class="row">
+					
+					<div class="span-4 form-example">
+						
+		                <input type="text" value="Text field" />
+            
+		                <input type="password" value="Password field" />
+            
+		                <input type="date" placeholder="Date field" />
+						
+					</div>
+				
+					<div class="span-5 form-example">
+						
+						<textarea>This is a test area.</textarea>
+						
+					</div>
+				
+					<div class="span-3 form-example">
+					
+						<div class="inline">
+							<input type="checkbox">
+							<label>Checkbox 1</label>
+						</div>
+					
+						<div class="inline">
+							<input type="checkbox" checked>
+							<label>Checkbox 2</label>
+						</div>
+					
+						<div class="inline">
+							<input type="radio" name="iCheck">
+							<label>Radio 1</label>
+						</div>
+					
+						<div class="inline">
+							<input type="radio" name="iCheck" checked>
+							<label>Radio 2</label>
+						</div>
+					
+						<select>
+							<option>Drop Down 1</option>
+							<option>Drop Down 2</option>
+							<option>Drop Down 3</option>
+							<option>Drop Down 4</option>
+						</select>
+					
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		</div>
+
+		<!--Buttons-->
+		<div id="buttons" class="row dark light-blue">
+
+			<div class="inner">
+
+				<!--Heading-->
+				<h2>Buttons</h2>
+				<h4>As an element buttons have become so heavily associated with design that it has taken on a life of its own.  Webplate has for a while had its own custom button library but the maintenance involved is so high that when <a href="http://alexwolfe.github.io/Buttons/" target="_blank">Alex Wolfe's library</a> came along, it was easy to decide to implement.</h4>
+				
+				<h3>Basic classes</h3>
+				<p>You can make two different elements a button with these cool styles, namely the <b>button</b> tag and the <b>link</b> tag. To start add in the basic minimum class of <b>button</b>.  From here on out you can style it according to your needs like making it rounded, a pill style or perhaps a drop down button.  Below is a list of example of all the style available:</p>
+				
+				<h3>Different colours</h3>
+				<p>By adding in a class you can change the colour of the button in accordance to its usage, like say the class <b>button-primary</b> or perhaps <b>button-caution</b>.  If you want the button to be of a flat design, then use the flat class name before the colour choice, for example <b>button-flat-primary</b>.  See an example below:</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button"&gt;No Colour&lt;/a&gt;
+&lt;a href="#" class="button button-primary"&gt;Primary Colour&lt;/a&gt;
+&lt;a href="#" class="button button-action"&gt;Action Colour&lt;/a&gt;
+&lt;a href="#" class="button button-highlight"&gt;Highlight Colour&lt;/a&gt;
+&lt;a href="#" class="button button-caution"&gt;Caution Colour&lt;/a&gt;
+&lt;a href="#" class="button button-royal"&gt;Royal Colour&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button">No Colour</a>
+				<a href="#" class="button button-primary">Primary Colour</a>
+				<a href="#" class="button button-action">Action Colour</a>
+				<a href="#" class="button button-highlight">Highlight Colour</a>
+				<a href="#" class="button button-caution">Caution Colour</a>
+				<a href="#" class="button button-royal">Royal Colour</a>
+				
+				<p>&nbsp;</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat"&gt;No Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary"&gt;Primary Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action"&gt;Action Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight"&gt;Highlight Colour Flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-caution"&gt;Caution Colour flat&lt;/a&gt;
+&lt;a href="#" class="button button-flat-royal"&gt;Royal Colour Flat&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat">No Colour Flat</a>
+				<a href="#" class="button button-flat-primary">Primary Colour Flat</a>
+				<a href="#" class="button button-flat-action">Action Colour Flat</a>
+				<a href="#" class="button button-flat-highlight">Highlight Colour Flat</a>
+				<a href="#" class="button button-flat-caution">Caution Colour Flat</a>
+				<a href="#" class="button button-flat-royal">Royal Colour flat</a>
+				
+				<h3>A few shapes</h3>
+				<p>Choose from 3 alternative shapes to the default square to get the button that you need.  They are the <b>button-rounded</b>, <b>button-pill</b> and <b>button-circle</b>.</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat"&gt;No Style&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary button-rounded"&gt;Rounded Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action button-pill"&gt;Pill Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight button-circle"&gt;Circle Button&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat">No Style</a>
+				<a href="#" class="button button-flat-primary button-rounded">Rounded Button</a>
+				<a href="#" class="button button-flat-action button-pill">Pill Button</a>
+				<a href="#" class="button button-flat-highlight button-circle">Circle Button</a>
+				
+				<h3>Choice of size</h3>
+				<p>Change the size of your button with a class alone.  Choose from <b>button-tiny</b>, <b>button-small</b> and <b>button-large</b>.</p>
+				
+<pre class="code-block">
+<code>&lt;a href="#" class="button button-flat button-rounded button-tiny"&gt;Tiny Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-primary button-rounded button-small"&gt;Small Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-action button-rounded"&gt;Default Button&lt;/a&gt;
+&lt;a href="#" class="button button-flat-highlight button-rounded button-large"&gt;Large Button&lt;/a&gt;</code>
+</pre>
+
+				<a href="#" class="button button-flat button-rounded button-tiny">Tiny Button</a>
+				<a href="#" class="button button-flat-primary button-rounded button-small">Small Button</a>
+				<a href="#" class="button button-flat-action button-rounded">Default Button</a>
+				<a href="#" class="button button-flat-highlight button-rounded button-large">Large Button</a>
+				
+				<h3>Dropdown buttons</h3>
+				<p>Instead of using the default form dropdowns, you can use a button drop down instead.  <b>Note</b> that we are using a cool IcoMoon font for the down arrow (more on this later).  See below for some examples:</p>
+				
+<pre class="code-block">
+<code>&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat"&gt;Button Dropdown 1&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;
+
+&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat-primary"&gt;Button Dropdown 2&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul class="button-dropdown-menu-below"&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;
+
+&lt;span class="button-dropdown" data-buttons="dropdown"&gt;
+    &lt;a href="#" class="button button-rounded button-flat-action"&gt;Button Dropdown 3&lt;span class="icon-arrow-down"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul class="button-dropdown-menu-above"&gt;
+         &lt;li&gt;&lt;a href="#">Link 1&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;a href="#">Link 2&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="button-dropdown-divider"&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/span&gt;</code>
+</pre>
+				
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat">Button Dropdown 1<span class="icon-arrow-down"></span></a>
+				    <ul>
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+ 
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat-primary">Button Dropdown 2<span class="icon-arrow-down"></span></a>
+ 
+				    <ul class="button-dropdown-menu-below">
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+ 
+				<span class="button-dropdown" data-buttons="dropdown">
+				    <a href="#" class="button button-rounded button-flat-action">Button Dropdown 3<span class="icon-arrow-down"></span></a>
+ 
+				    <ul class="button-dropdown-menu-above">
+				         <li><a href="#">Link 1</a></li>
+				         <li><a href="#">Link 2</a></li>
+				         <li class="button-dropdown-divider"><a href="#">Link 3</a></li>
+				    </ul>
+				</span>
+				
+			</div>
+			
+		</div>
+		
+		<!--IcoMoon-->
+		<div id="icoMoon" class="row cream">
+			
+			<div class="inner">
+				
+				<h2>IcoMoon Icon Fonts</h2>
+				<h4>Webplate uses <a href="http://icomoon.io/" target="_blank">IcoMoon</a> for its icon fonts because not only is it free, but also rather extensive with over 3,800+ icons to choose from.  Gone are the days of tons of images to display icons and graphics and the best part is, because they are resizable and vector based, they are great for responsive sites.</h4>
+				
+				<h3>Use an icon font</h3>
+				<p>Most of the time icon fonts are used by classing a <b>span</b> tag but ultimately can be added to any tag you wish. They are subject to any styling that can be applied to text like colour, size and even something more advanced like text-shadow.  See an example of its usage below:</p>
+				
+<pre class="code-block">
+<code>&lt;div&gt;&lt;span class="icon-checkmark"&gt;&lt;/span&gt; Some Text&lt;/div&gt;
+&lt;div&gt;&lt;span class="icon-stack"&gt;&lt;/span&gt; Some More Text&lt;div&gt;</code>
+</pre>
+
+				<p>
+					<div class="example-icon"><span class="icon-checkmark"></span> Some Text</div>
+					<div class="example-icon"><span class="icon-stack"></span> Some More Text</div>
+				</p>
+				
+				<h3>Updating the IcoMoon library</h3>
+				<p>There is a small base set of icons included but ultimately more will need to be added to any web project.  To do so sign up to IcoMoon and start by loading the current session file into your profile.  This file is found under the <b>webplate/icomoon</b> directory with the filename <b>icomoon-session.json</b>.  From this point start adding your own icons in and select the <b>fonts</b> link below before downloading.  From there you will need to copy the contents of that download package into the <b>webplate/icomoon</b> directory.  Click the <b>View Webplate Icons</b> button below to see your added fonts.</p>
+				
+				<a class="button button-rounded button-flat-primary" href="http://icomoon.io/" target="_blank">Go To IcoMoon</a>
+				<a class="button button-rounded button-flat-highlight" href="webplate/icomoon/index.html" target="_blank">View Webplate Icons</a>
+				
+			</div>
+			
+		</div>
+
+	</div>
+	
+	<!--Footer-->
+	<div class="footer">
+		
+		<div class="row inner">
+			
+			<div class="span-4">This is a <a href="http://www.chrismodem.com" target="_blank">Chris Modem</a> project</div>
+			
+			<div class="span-8 text-right">If you wish to collaborate on webplate please contact me at <b>chris[dot]webplate[at]gmail[dot]com</b></div>
+			
+		</div>
+		
+	</div>
+
+	<!--Google analytics
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-42874311-2', 'getwebplate.com');
+	  ga('send', 'pageview');
+
+	</script>-->
 
 </body>
 </html>
