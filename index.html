@@ -146,7 +146,7 @@
 </pre>
 
 					<h3>First the CSS</h3>
-					<p>The CSS is a compressed and minified version of a LESS file found under <b>webplate/less/</b> and is an combination of many files importing into one via <b>webplate-imports.less</b>.  I recommend you learn about LESS via the website <a href="http://lesscss.org/" targer="_blank">lesscss.org</a>.  While webplate uses LESS it's important to note that you do <b>NOT NEED</b> any experience in it and that if you want you can style directly in CSS alone without any concerns.</p>
+					<p>The CSS is a compressed and minified version of a LESS file found under <b>webplate/core/less/</b> and is an combination of many files importing into one via <b>webplate-imports.less</b>.  I recommend you learn about LESS via the website <a href="http://lesscss.org/" targer="_blank">lesscss.org</a>.  While webplate uses LESS it's important to note that you do <b>NOT NEED</b> any experience in it and that if you want you can style directly in CSS alone without any concerns.</p>
 					<p>So in this CSS file is a combination of things.  Firstly we include the global <b>webplate.less</b> file that has a series of helper mixins like rounded corners or drop shadows.  Include this file in any custom LESS files you create to access these useful helper mixins and to gain access to the <b>@page_width</b> variable that is crucial to webplates responsive media query checks.  Next webplate imports <a href="https://github.com/necolas/normalize.css" target="_blank">Normalize</a> which is a series of CSS resets and global styles to make cross-browser rendering more accurate.  It kind of levels the styling playing field for you.  Once the resets have taken place, webplate loads up <a href="http://typeplate.com" target="_blank">Typeplate</a> that essentially sets up a series of typographical parameters that makes your text look neat and organized right out of the webplate box.</p>
 					<p>After that the <b>webplate layout</b> LESS file is loaded and is the heart and soul of all the responsive goodness that happens on a webplate site or app, followed by the <b>webplate forms</b> LESS file.  The cool thing about this inclusion is the global nature of all your form elements, which includes all browsers and all mobile devices too.  Last but not least, we import the <a href="https://github.com/alexwolfe/Buttons" target="_blank">buttons</a> LESS file that allows you to create awesome looking buttons quickly and easily.  More information on its usage can be found in the buttons section.</p>
 					
@@ -182,7 +182,7 @@
 				<div class="row">
 					
 					<h3>View types</h3>
-					<p>At its base level, webplate has 3 view types (although you can add more yourself).  These are <b>Large View</b>, <b>Adjusting View</b> and <b>Small View</b>.  Large and adjusting views are similar, with the only difference being the <b>@page_width</b> variable found in the <b>webplate/less/webplate.less</b> file.  By default this variable is set to <b>1100px</b> and is there to stop your content from displaying extremely wide on big high resolution screens.  In essence this is the maximum content width that will be allowed.  If the screen scales down to a width less than 1100px, the content will become fluid and snap to 100% width, making all content within begin to adjust accordingly.</p>
+					<p>At its base level, webplate has 3 view types (although you can add more yourself).  These are <b>Large View</b>, <b>Adjusting View</b> and <b>Small View</b>.  Large and adjusting views are similar, with the only difference being the <b>@page_width</b> variable found in the <b>webplate/core/less/webplate.less</b> file.  By default this variable is set to <b>1100px</b> and is there to stop your content from displaying extremely wide on big high resolution screens.  In essence this is the maximum content width that will be allowed.  If the screen scales down to a width less than 1100px, the content will become fluid and snap to 100% width, making all content within begin to adjust accordingly.</p>
 					<p>Of course this variable is completely editable and can be set to whatever you want it to be.  In the case of web apps you can set it to 100% to fill your entire screen real estate which will essentially remove the minor difference between the two.  You will also see that as the screen scales that the webplate javascript adds a class to the <b>html</b> tag.  In the case of large and adjusting view, the class is <b>web-large-view</b> while in the case of small view the class is <b>web-small-view</b>.  This is extremely useful when styling your site or app.</p>
 					<p>Once the page scales down to less than and including 700px, webplate snaps into small view which is really the mobile device domain.  All content will now be displayed vertically unless you state otherwise (read below for more on this).</p>
 					<p><b>Please note</b> that webplate does <b>NOT</b> follow a mobile first structure philosophy because this methodology is somewhat redundant in technical terms.  Webplate provides a framework to display information in mobile, fluid and desktop based outputs and the mobile first philosophy should be a critical part of your UX design process rather than a working constraint of the framework itself.</p>
@@ -646,7 +646,7 @@
 				</p>
 				
 				<h3>Updating the IcoMoon library</h3>
-				<p>There is a small base set of icons included but ultimately more will need to be added to any web project.  To do so sign up to IcoMoon and start by loading the current session file into your profile.  This file is found under the <b>webplate/icomoon</b> directory with the filename <b>icomoon-session.json</b>.  From this point start adding your own icons in and select the <b>fonts</b> link below before downloading.  From there you will need to copy the contents of that download package into the <b>webplate/icomoon</b> directory.  Click the <b>View Webplate Icons</b> button below to see your added fonts.</p>
+				<p>There is a small base set of icons included but ultimately more will need to be added to any web project.  To do so sign up to IcoMoon and start by loading the current session file into your profile.  This file is found under the <b>webplate/core/icomoon</b> directory with the filename <b>icomoon-session.json</b>.  From this point start adding your own icons in and select the <b>fonts</b> link below before downloading.  From there you will need to copy the contents of that download package into the <b>webplate/core/icomoon</b> directory.  Click the <b>View Webplate Icons</b> button below to see your added fonts.</p>
 				
 				<a class="button button-rounded button-flat-primary" href="http://icomoon.io/" target="_blank">Go To IcoMoon</a>
 				<a class="button button-rounded button-flat-highlight" href="webplate/icomoon/index.html" target="_blank">View Webplate Icons</a>
@@ -669,18 +669,6 @@
 		</div>
 		
 	</div>
-
-	<!--Google analytics
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-42874311-2', 'getwebplate.com');
-	  ga('send', 'pageview');
-
-	</script>-->
 
 </body>
 </html>
