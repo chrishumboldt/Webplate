@@ -137,7 +137,7 @@
 					<p>Before we get into the nitty gritty it's important to note that an example HTML file is found in the root download folder called <b>layout-basic.html</b>.  From here you can start creating any website or web app using webplate.</p>
 
 					<h3>Load the necessary file (Yup, just one)</h3>
-					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> and <b>webplate-extras</b> directory you got in the download into the desired directory of your site.  Then go ahead and include only <b>one</b> file (used to be two) that will execute the entire webplate stack, named <b>stack.js</b>.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
+					<p>To make any page use webplate all you need to do is drop a copy of the <b>webplate</b> directory you got in the download into the desired directory of your site.  Then go ahead and include only <b>one</b> file (used to be two) that will execute the entire webplate stack, named <b>stack.js</b>.  See an example of a typical include below (This example assumes that webplate is in the site root):</p>
 
 <pre class="code-block">
 <code>&lt;head&gt;
@@ -154,7 +154,7 @@
 					<p>Once the CSS is loaded, the webplate javascript loads and executes off quite a bit.  This file is required and includes a couple of compulsory features.  Firstly, webplate runs off the <a href="http://jquery.com/" target="_blank">jQuery</a> javascript framework and cannot function without it.  It also loads <a href="http://modernizr.com/" target="_blank">Modernizr</a> and some <b>webplate tools</b> and does so in a serial fashion using <a href="http://labjs.com/" target="_blank">LAB.js</a>.  It is in this file that the navigation and page wrappers are set, the touch device check is determined (<a href="https://github.com/ngryman/jquery.finger" target="_blank">jquery.finger.js</a> is loaded if the device has touch capabilities) and the extras are loaded.</p>
 					
 					<h3>What are extras?</h3>
-					<p>Extras are a way to add in your own css or javascript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the beginning of a dependency manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate-extras</b> directory.  To use the extras option, add the relevant data attributes into the page's <b>body</b> tag.  See the example below:</p>
+					<p>Extras are a way to add in your own css or javascript and never have to load them manually in the header.  Why is this useful?  Well one it makes it easy to manage these files and keeps your code very neat and two it is just the beginning of a dependency manager that is being developed for webplate.  In the current webplate for example, you can add in a CSS or a LESS file and if webplate detects the LESS, then it will load the required javascript to compile your code client side.  The files are stored in the root <b>webplate/extras</b> directory.  To use the extras option, add the relevant data attributes into the page's <b>body</b> tag.  See the example below:</p>
 <pre class="code-block">
 <code>&lt;body data-css-extras="welcome.css" data-js-extras="welcome.js"&gt;</code>
 </pre>
