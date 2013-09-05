@@ -458,7 +458,7 @@ jQuery.web_forms = function(){
 		}
 
 		// Set the html variable
-		$('html').addClass('web-form-colour' + $form_colour);
+		$('html').addClass('web-forms-colour' + $form_colour);
 
 		// Execute iCheck
 		$('input').iCheck({

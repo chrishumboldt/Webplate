@@ -44,10 +44,17 @@ window.onload = function() {
 			'icon-github' : '&#xe01a;',
 			'icon-skype' : '&#xe01b;',
 			'icon-plus' : '&#xe01c;',
-			'icon-IcoMoon' : '&#xe01d;'
+			'icon-calendar' : '&#xf073;',
+			'icon-IcoMoon' : '&#xe01d;',
+			'icon-chevron-sign-left' : '&#xf137;',
+			'icon-chevron-sign-right' : '&#xf138;',
+			'icon-chevron-sign-up' : '&#xf139;',
+			'icon-chevron-sign-down' : '&#xf13a;',
+			'icon-bullhorn' : '&#xe01e;',
+			'icon-sad' : '&#xe01f;'
 		},
 		els = document.getElementsByTagName('*'),
-		i, attr, html, c, el;
+		i, attr, c, el;
 	for (i = 0; ; i += 1) {
 		el = els[i];
 		if(!el) {

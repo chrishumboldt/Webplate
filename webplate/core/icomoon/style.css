@@ -19,6 +19,7 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* Use the following CSS code if you want to have a class per icon */
@@ -27,7 +28,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-heart, .icon-camera, .icon-map-pin-fill, .icon-ok, .icon-food, .icon-gift, .icon-male, .icon-female, .icon-checkmark, .icon-cross, .icon-question-sign, .icon-stack, .icon-layout, .icon-frame, .icon-code, .icon-list, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-angle-up, .icon-angle-down, .icon-database, .icon-text, .icon-arrow-left, .icon-arrow-right, .icon-arrow-down, .icon-arrow-up, .icon-download, .icon-twitter, .icon-facebook, .icon-googleplus, .icon-linkedin, .icon-flickr, .icon-vimeo, .icon-pinterest, .icon-github, .icon-skype, .icon-plus, .icon-IcoMoon {
+.icon-heart, .icon-camera, .icon-map-pin-fill, .icon-ok, .icon-food, .icon-gift, .icon-male, .icon-female, .icon-checkmark, .icon-cross, .icon-question-sign, .icon-stack, .icon-layout, .icon-frame, .icon-code, .icon-list, .icon-reorder, .icon-angle-left, .icon-angle-right, .icon-angle-up, .icon-angle-down, .icon-database, .icon-text, .icon-arrow-left, .icon-arrow-right, .icon-arrow-down, .icon-arrow-up, .icon-download, .icon-twitter, .icon-facebook, .icon-googleplus, .icon-linkedin, .icon-flickr, .icon-vimeo, .icon-pinterest, .icon-github, .icon-skype, .icon-plus, .icon-calendar, .icon-IcoMoon, .icon-chevron-sign-left, .icon-chevron-sign-right, .icon-chevron-sign-up, .icon-chevron-sign-down, .icon-bullhorn, .icon-sad {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -151,6 +152,27 @@ you can use the generic selector below, but it's slower:
 .icon-plus:before {
 	content: "\e01c";
 }
+.icon-calendar:before {
+	content: "\f073";
+}
 .icon-IcoMoon:before {
 	content: "\e01d";
+}
+.icon-chevron-sign-left:before {
+	content: "\f137";
+}
+.icon-chevron-sign-right:before {
+	content: "\f138";
+}
+.icon-chevron-sign-up:before {
+	content: "\f139";
+}
+.icon-chevron-sign-down:before {
+	content: "\f13a";
+}
+.icon-bullhorn:before {
+	content: "\e01e";
+}
+.icon-sad:before {
+	content: "\e01f";
 }
