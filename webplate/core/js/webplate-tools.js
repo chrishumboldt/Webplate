@@ -378,6 +378,14 @@ jQuery.web_navigation = function(){
 	       $('html').addClass('show-nav').removeClass('hide-nav');
 	   }
 	});
+	
+	// Close nav again
+	$('.webplate-content').on('click', function($e) {
+
+		if($('html').hasClass('nav-open')){
+			$('html').removeClass('show-nav').removeClass('nav-open').addClass('hide-nav');
+		}
+	});
 
 	// Show on mobile
 	if($('.navigation-trigger').hasClass('small-show') == false){
@@ -393,11 +401,58 @@ jQuery.web_navigation = function(){
 	   $('html').removeClass('show-nav').addClass('hide-nav');
 	});
 
-	$('.webplate-content').on('scroll', function(){
+	if(Modernizr.touch){
+		$('.webplate-content').on('drag', function(){
+
+			if($('html').hasClass('show-nav')){
+		       $('html').removeClass('show-nav').addClass('hide-nav');
+			}
+		});
+	}
+	else{
+		$('.webplate-content').on('scroll', function(){
+
+			if($('html').hasClass('show-nav')){
+		       $('html').removeClass('show-nav').addClass('hide-nav');
+			}
+		});
+	}
+
+	// Change position type / add nav open class
+	$('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
+	$('.webplate-shifter').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+
+      if($('html').hasClass('show-nav') == true){
+			
+			$('html').addClass('nav-open');
+      }
+		else{
+		
+         $('html').removeClass('nav-open');
+		}
+	});
+	
+	// Prevent scroll on page open
+	$(document).on('touchmove',function($e){
 
 		if($('html').hasClass('show-nav')){
-	       $('html').removeClass('show-nav').addClass('hide-nav');
+			$e.preventDefault();
 		}
+	});
+	$('body').on('touchstart','.webplate-navigation',function($e){
+
+		if($e.currentTarget.scrollTop === 0){
+
+			$e.currentTarget.scrollTop = 1;
+		}
+		else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight){
+		
+			$e.currentTarget.scrollTop -= 1;
+		}
+	});
+	$('body').on('touchmove','.webplate-navigation',function($e){
+	
+		$e.stopPropagation();
 	});
 };
 
@@ -413,14 +468,6 @@ jQuery.web_window_type = function(){
 
 // ----- WINDOW TYPE EXECUTE
 jQuery.web_window_type_execute = function(){
-
-  $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
-  $('.webplate-content').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-
-      if($('.webplate-content').css('position') == 'fixed'){
-          $('.webplate-content').css({ 'position' : 'relative' });
-      }
-  });
 
   // Some variables
   if($(window).width() <= 700){

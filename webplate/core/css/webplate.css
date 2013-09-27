@@ -80,8 +80,7 @@ abbr[title]:hover{cursor:help;}
 .pull-quote:before{content:'“';top:0;left:0}
 .pull-quote:after{content:'”';bottom:0;right:0}
 *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
-html,body{height:100%}
-html{position:relative;font-size:.875em;font-family:'Open Sans',Helvetica,Arial,sans-serif;color:#ccc;background-color:#fff;-ms-text-size-adjust:100%;-webkit-texts-size-adjust:100%;-webkit-backface-visibility:hidden}
+html{font-family:'Open Sans',Helvetica,Arial,sans-serif;color:#ccc;background-color:#fff;-ms-text-size-adjust:100%;-webkit-texts-size-adjust:100%;-webkit-backface-visibility:hidden}
 div{display:block;direction:ltr}
 body,ul,ol,dl,td,th,caption,pre,p,blockquote,input,textarea,label,select{color:#333}
 ul,ol{margin:0;padding:0}
