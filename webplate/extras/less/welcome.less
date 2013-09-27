@@ -35,6 +35,9 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
+html {
+	font-size: 0.889em;
+}
 h1, h2, h3, h4, .logo, .navigation a {
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
@@ -258,7 +261,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 				
 				span {
 					position: absolute;
-					margin-left: -44px;
+					margin-left: -54px;
 					margin-top: 12px;
 					font-size: 2em;
 				}
@@ -374,6 +377,20 @@ h1, h2, h3, h4, .logo, .navigation a {
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+	
+	// Webplate navigation
+	.webplate-navigation {	
+		.navigation-inner .row {
+			a {
+				font-size: 1em;
+				
+				div.icon {
+					font-size: 1.333em;
+				}
+			}
+		}
+	}
+	// Webplate
 	.webplate {
 		// Navigation small
 		.navigation-small {
@@ -419,11 +436,11 @@ h1, h2, h3, h4, .logo, .navigation a {
 
 				.primary, .secondary {
 					height: 45px;
-					font-size: 1.8em;
+					font-size: 1.667em;
 				}
 				.primary {
 					padding-left: 8px;
-					border-right: 3px solid @logo_colour;
+					border-right: 2px solid @logo_colour;
 				}
 			}
 			.logo.make-wider {
@@ -433,7 +450,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 				h3 {
 					padding-bottom: 80px;
 					font-size: 1.35em;
-					line-height: 1.6em;
+					line-height: 1.556em;
 				}
 			}
 		}

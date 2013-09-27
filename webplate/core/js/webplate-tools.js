@@ -1,9 +1,9 @@
 /**
  * webplate-tools.js
  *
- * Author:        Chris Modem
- * Last Edited:   25 August 2013
- * Edited By:   	Chris Modem
+ * Author:        Chris Humboldt
+ * Last Edited:   26 September 2013
+ * Edited By:   	Chris Humboldt
  */
 
 // ----- LOCK A FORM FROM SUBMITTING ON ENTER
@@ -363,20 +363,27 @@ jQuery.web_log = function($text){
 jQuery.web_navigation = function(){
 
 	// Duplicate navigation
-	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
+	$('body').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
 
 	// On click
 	$('.navigation-trigger').on('click', function($e){
 
-	 $e.preventDefault();
+	 	$e.preventDefault();
 
 	   if($('html').hasClass('show-nav')){
 
-	       $('html').removeClass('show-nav').addClass('hide-nav');
+			$('html').removeClass('show-nav').addClass('hide-nav');
 	   }
 	   else{
-	       $('html').addClass('show-nav').removeClass('hide-nav');
+			$('html').addClass('show-nav').removeClass('hide-nav');
 	   }
+	});
+	
+	$('.webplate').on('click', function($e) {
+
+		if($('html').hasClass('nav-open')){
+			$('html').removeClass('show-nav').addClass('hide-nav');
+		}
 	});
 
 	// Show on mobile
@@ -392,11 +399,12 @@ jQuery.web_navigation = function(){
 	   $(this).addClass('active');
 	   $('html').removeClass('show-nav').addClass('hide-nav');
 	});
+						
+	// Prevent drag scroll
+	$('.webplate').on('drag', function($e) {
 
-	$('.webplate-content').on('scroll', function(){
-
-		if($('html').hasClass('show-nav')){
-	       $('html').removeClass('show-nav').addClass('hide-nav');
+		if($('html').hasClass('nav-open')){
+			$e.preventDefault();
 		}
 	});
 };
@@ -415,11 +423,16 @@ jQuery.web_window_type = function(){
 jQuery.web_window_type_execute = function(){
 
   $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
-  $('.webplate-content').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+  $('.webplate-shifter').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-      if($('.webplate-content').css('position') == 'fixed'){
-          $('.webplate-content').css({ 'position' : 'relative' });
+      if($('html').hasClass('show-nav') == true){
+			
+			$('html').addClass('nav-open');
       }
+		else{
+		
+         $('html').removeClass('nav-open');
+		}
   });
 
   // Some variables

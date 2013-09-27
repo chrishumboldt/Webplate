@@ -31,8 +31,9 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
-html, body, .webplate, .webplate-content, .webplate-navigation {
-    height: 100%;
+html, body {
+	// -webkit-overflow-scrolling: touch;
+	// -webkit-backface-visibility: hidden;
 }
 // Fixed elements
 .is-fixed {
@@ -54,16 +55,8 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 }
 // Webplate
 .webplate {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-
 	.webplate-shifter {
-		position: relative;
 		left: 0;
-		height: 100%;
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
 		transform: translate3d(0px, 0px, 0px);
 		-webkit-transform: translate3d(0px, 0px, 0px);
 		-webkit-transition: -webkit-transform 0.2s ease;
@@ -72,14 +65,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		transition: transform 0.2s ease;
 	}
 	.webplate-content {
-		position: relative;
-		width: 100%;
-		max-width: 100%;
 		margin: 0px auto;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
 
 		.inner {
 			width: @page_width;
@@ -89,39 +75,43 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 }
 // Navigation
 .webplate-navigation {
+	position: fixed;
    display: block;
    height: 100%;
    top: 0px;
    left: 0px;
    width: @menu_width;
-	position: absolute;
 	margin-left: -@menu_width;
 	overflow-y: auto;
    background-color: lighten(#000, 12%);
 	-webkit-overflow-scrolling: touch;
-	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
-	-webkit-transform: translate3d(0, 0, 0);
-   z-index: 0;
+	transform: translate3d(0px, 0px, 0px);
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	-webkit-transition: -webkit-transform 0.2s ease;
+	-o-transition: -o-transform 0.2s ease;
+	-moz-transition: -moz-transform 0.2s ease;
+	transition: transform 0.2s ease;
+   z-index: 100;
 
    .navigation-inner {
 	 	 position: relative;
 	 	 height: 100%;
 	 
 	 	.row{
-	 		padding-top: 15px;
+	 		padding: 15px 0px;
 		
 	       a {
 	         display: block;
 	         padding: 10px 20px;
-	         font-size: 1.1em;
+	         font-size: 0.889em;
 	         color: #b0b0b0;
 	         .animate(color);
 	  
 	 		  div.icon {
 	 			  float: left;
 	 			  padding-right: 12px;
-	 			  font-size: 1.1em;
+	         font-size: 0.889em;
 	 			  color: #E99272;
 	 		  }
 	       }
@@ -131,11 +121,15 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	 	}
    }
 }
-.show-nav .webplate-shifter {
+.show-nav .webplate-shifter, .show-nav .webplate-navigation {
   -webkit-transform: translate3d(@menu_width, 0px, 0px);
   -o-transform: translate3d(@menu_width, 0px, 0px);
   -moz-transform: translate3d(@menu_width, 0px, 0px);
   transform: translate3d(@menu_width, 0px, 0px);
+}
+.show-nav .webplate {
+	overflow: hidden;
+	width: 100%;
 }
 
 // Fixed page width setting

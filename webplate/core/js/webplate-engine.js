@@ -28,8 +28,7 @@ var $less_extras_path			= $root + 'webplate/extras/less/';
 var $is_less						= false;
 var $ar_js_core					= [
 	$js_path + 'min/webplate-jquery.min.js',
-	$js_path + 'min/webplate-modernizr.min.js',
-	$js_path + 'min/webplate-tools.min.js'
+	$js_path + 'min/webplate-modernizr.min.js'
 ];
 var $ar_js_extras					= [];
 var $ar_css_core					= [
@@ -43,6 +42,15 @@ var $ar_css_extras				= [];
 yepnope([{
 	load								: $ar_js_core,
 	complete							: function(){
+		
+		/**
+		 * webplate-tools.js
+		 *
+		 * Author:        Chris Humboldt
+		 * Last Edited:   26 September 2013
+		 * Edited By:   	Chris Humboldt
+		 */// ----- LOCK A FORM FROM SUBMITTING ON ENTER
+		jQuery.web_lock_submit=function(e){$(e).live("keypress",function(e){if(e.keyCode==13)return!1})};jQuery.web_exists=function(e){return $(e).length>0?!0:!1};jQuery.web_get_extension=function(e){return e.split(".").pop().toLowerCase()};jQuery.web_crt_db_date=function(){$current_time=new Date;$year=$current_time.getFullYear();$month=$current_time.getMonth()+1;$month<10&&($month="0"+$month);$day=$current_time.getDate();$day<10&&($day="0"+$day);return $year+"-"+$month+"-"+$day};jQuery.web_check_date=function(e){return e.substr(4,1)=="-"&&e.substr(7,1)=="-"&&$.scrap_is_integer(e.substr(0,4))==1&&$.scrap_is_integer(e.substr(5,2))==1&&$.scrap_is_integer(e.substr(8,2))==1&&e.length==10?!0:!1};jQuery.web_is_time=function(e){if(e!=""){var t="0123456789.:",n=!0,r;for($i=0;$i<e.length&&n==1;$i++){r=e.charAt($i);t.indexOf(r)==-1&&(n=!1)}return n}return!1};jQuery.web_is_integer=function(e){if(e!=""){var t="0123456789.",n=!0,r;for($i=0;$i<e.length&&n==1;$i++){r=e.charAt($i);t.indexOf(r)==-1&&(n=!1)}return n}return!1};jQuery.web_is_full_integer=function(e){if(e!=""){var t="0123456789",n=!0,r;for($i=0;$i<e.length&&n==1;$i++){r=e.charAt($i);t.indexOf(r)==-1&&(n=!1)}return n}return!1};jQuery.web_has_white_space=function(e){return e.indexOf(" ")!=-1?!0:!1};jQuery.web_allowed_doc=function(e,t){t==null&&(t=["png","jpg","jpeg","gif","tif","tiff","bmp","doc","docx","xls","xlsx","pdf","txt","csv"]);$file_ext=e.split(".").pop().toLowerCase();return jQuery.inArray($file_ext,t)==-1?!1:!0};jQuery.web_input_mirror=function(e,t){$($selector).keyup(function(){$ref_input=$(this).val();$ref_value=$ref_input.replace(/ /g,"_").toLowerCase();$(t).text($ref_value)})};jQuery.web_is_email=function(e){return e.indexOf("@")!=-1&&e.indexOf(".")!=-1?!0:!1};jQuery.web_is_password=function(e){if(e.length>5){$num_check=/^[0-9]+$/;$letter_check=/^[a-zA-Z-]+$/;$error=!1;e.match($num_check)&&($error=!0);e.match($letter_check)&&($error=!0);return $error==1?!1:!0}return!1};jQuery.web_is_image=function(e,t){t==null&&(t=["jpg","jpeg","gif","tif","tiff","bmp","png"]);$file_ext=e.split(".").pop().toLowerCase();return jQuery.inArray($file_ext,t)==-1?!1:!0};jQuery.web_is_color=function(e){if(e.length!=7)return!1;if(e.substr(0,1)!="#")return!1};jQuery.web_random_string=function(e){$chars="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";e==null&&(e=5);$random_string="";for(var t=0;t<e;t++){$r_num=Math.floor(Math.random()*$chars.length);$random_string+=$chars.substring($r_num,$r_num+1)}return $random_string};jQuery.web_show_overlay=function(){$(".webplate-overlay").fadeIn()};jQuery.web_remove_overlay=function(){$(".webplate-overlay").fadeOut()};jQuery.web_show_modal=function(e){if($(e).is(":hidden")==1){e==""&&(e=".modal-basic");$modal_height=$(e).height();$(".webplate-overlay").fadeIn();$(e).css({top:-($modal_height+50)}).show();$(e).animate({top:0},"fast")}};jQuery.web_hide_modal=function(){$(".modal:visible .close").live("click",function(){$modal_height=$(".modal:visible").height();$(".webplate-overlay").fadeOut();$(".modal:visible").animate({top:-($modal_height+50)},"fast",function(){$(".modal:visible").hide()})})};jQuery.web_log=function(e){window.console&&console.log(e)};jQuery.web_navigation=function(){$("body").prepend($(".navigation").clone().addClass("webplate-navigation").removeClass("navigation"));$(".navigation-trigger").on("click",function(e){e.preventDefault();$("html").hasClass("show-nav")?$("html").removeClass("show-nav").addClass("hide-nav"):$("html").addClass("show-nav").removeClass("hide-nav")});$(".webplate").on("click",function(e){$("html").hasClass("nav-open")&&$("html").removeClass("show-nav").addClass("hide-nav")});$(".navigation-trigger").hasClass("small-show")==0&&$(".navigation-trigger").addClass("small-show");$(".webplate-navigation a").on("click",function(){$(".webplate-navigation a.active").removeClass("active");$(this).addClass("active");$("html").removeClass("show-nav").addClass("hide-nav")});$(".webplate").on("drag",function(e){$("html").hasClass("nav-open")&&e.preventDefault()})};jQuery.web_window_type=function(){$.web_window_type_execute();$(window).resize(function(){$.web_window_type_execute()})};jQuery.web_window_type_execute=function(){$("html.no-touch.show-nav").removeClass("show-nav").addClass("hide-nav");$(".webplate-shifter").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",function(){$("html").hasClass("show-nav")==1?$("html").addClass("nav-open"):$("html").removeClass("nav-open")});if($(window).width()<=700){$("html").addClass("web-small-view");$("html").removeClass("web-large-view")}else{$("html").removeClass("web-small-view");$("html").addClass("web-large-view")}};jQuery.web_forms=function(){$(document).ready(function(){$form_colour="-blue";$data_form_colour=$("body").data("forms-colour");$ar_form_colours=["red","green","blue","aero","grey","orange","yellow","pink","purple"];$data_form_colour&&$data_form_colour.length>0&&jQuery.inArray($data_form_colour,$ar_form_colours)>-1&&($form_colour="-"+$data_form_colour);$("html").addClass("web-forms-colour"+$form_colour);$("input").iCheck({checkboxClass:"icheckbox_square"+$form_colour,radioClass:"iradio_square"+$form_colour,increaseArea:"20%",labelHover:!0});$("select").wrap('<span class="drop-down"></span>')})};
 		
 		/*
 		 *  Project: Buttons
@@ -69,7 +77,6 @@ yepnope([{
       $('body').wrapInner('<div class="webplate" />');
       $('.webplate').wrapInner('<div class="webplate-shifter" />');
       $('.webplate-shifter').wrapInner('<div class="webplate-content" />');
-      $('.webplate-content').wrapInner('<div class="webplate-inner" />');
       $('.webplate').prepend('<div class="webplate-overlay" />');
       $('.navigation').wrapInner('<div class="navigation-inner" />');
 		$('.is-fixed').appendTo('body'); // Fixed elements fix
@@ -85,20 +92,14 @@ yepnope([{
 
 		if(Modernizr.touch){
 			
-			$('body').on('tap', 'a, .navigation-trigger, .button', function(e) {
-	
-				// Some variables
-				$link_attr					= $(this).attr('href');
-	
-				if(typeof $link_attr !== 'undefined' && $link_attr !== false) {
-		
-					if($link_attr != '#'){
-						window.location 		= $(this).attr('href');
-						e.preventDefault();
-					}
-				}
-			});
-      }
+			// Load CSS and LESS and show the body
+			yepnope({load: $js_path + 'min/webplate-touch.min.js', complete: function(){
+				
+				// Activate fastclick
+				FastClick.attach(document.body);
+				
+			}});
+		}
 	}
 }, {
 	load								: $ar_css_core,
