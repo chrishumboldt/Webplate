@@ -2,7 +2,7 @@
  * webplate-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   25 August 2013
+ * Last Edited:   27 September 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -481,6 +481,9 @@ jQuery.web_window_type_execute = function(){
       // Set the type variable
       $('html').removeClass('web-small-view');
       $('html').addClass('web-large-view');
+		if($('html').hasClass('show-nav')){
+	       $('html').removeClass('show-nav').addClass('hide-nav');
+		}
   }
 };
 
