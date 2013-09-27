@@ -400,12 +400,27 @@ jQuery.web_navigation = function(){
 	   $('html').removeClass('show-nav').addClass('hide-nav');
 	});
 						
-	// Prevent drag scroll
-	$('.webplate').on('drag', function($e) {
+	// Prevent scroll on page open
+	$(document).on('touchmove',function($e){
 
-		if($('html').hasClass('nav-open')){
+		if($('html').hasClass('show-nav')){
 			$e.preventDefault();
 		}
+	});
+	$('body').on('touchstart','.navigation-inner',function($e){
+
+		if($e.currentTarget.scrollTop === 0){
+
+			$e.currentTarget.scrollTop = 1;
+		}
+		else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight){
+			
+			$e.currentTarget.scrollTop -= 1;
+		}
+	});
+	$('body').on('touchmove','.navigation-inner',function($e){
+		
+		$e.stopPropagation();
 	});
 };
 

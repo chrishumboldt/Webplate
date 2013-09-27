@@ -32,8 +32,12 @@
 /* Global
 --------------------------------------------------------------------------------------- */
 html, body {
-	// -webkit-overflow-scrolling: touch;
-	// -webkit-backface-visibility: hidden;
+	-webkit-overflow-scrolling: touch;
+	-webkit-backface-visibility: hidden;
+}
+.show-nav body, html.show-nav {
+	// overflow: hidden;
+// 	height: 100%;
 }
 // Fixed elements
 .is-fixed {
@@ -126,10 +130,6 @@ html, body {
   -o-transform: translate3d(@menu_width, 0px, 0px);
   -moz-transform: translate3d(@menu_width, 0px, 0px);
   transform: translate3d(@menu_width, 0px, 0px);
-}
-.show-nav .webplate {
-	overflow: hidden;
-	width: 100%;
 }
 
 // Fixed page width setting
