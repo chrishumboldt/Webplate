@@ -2,7 +2,7 @@
  * webplate-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   27 September 2013
+ * Last Edited:   25 August 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -363,27 +363,20 @@ jQuery.web_log = function($text){
 jQuery.web_navigation = function(){
 
 	// Duplicate navigation
-	$('body').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
+	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
 
 	// On click
 	$('.navigation-trigger').on('click', function($e){
 
-	 	$e.preventDefault();
+	 $e.preventDefault();
 
 	   if($('html').hasClass('show-nav')){
 
-			$('html').removeClass('show-nav').addClass('hide-nav');
+	       $('html').removeClass('show-nav').addClass('hide-nav');
 	   }
 	   else{
-			$('html').addClass('show-nav').removeClass('hide-nav');
+	       $('html').addClass('show-nav').removeClass('hide-nav');
 	   }
-	});
-	
-	$('.webplate').on('click', function($e) {
-
-		if($('html').hasClass('nav-open')){
-			$('html').removeClass('show-nav').addClass('hide-nav');
-		}
 	});
 
 	// Show on mobile
@@ -399,43 +392,13 @@ jQuery.web_navigation = function(){
 	   $(this).addClass('active');
 	   $('html').removeClass('show-nav').addClass('hide-nav');
 	});
-};
 
-// ----- NAVIGATION TOUCH
-jQuery.web_navigation_touch = function(){
-	
-	// Some variables
-	var $window_h				= $(window).height();
-	var $navigation_h			= $('.webplate-navigation .navigation-inner').height();
-	
-	// alert($navigation_h + ' -- ' + $window_h);
-
-	// Prevent scroll on page open
-	$(document).on('touchmove',function($e){
+	$('.webplate-content').on('scroll', function(){
 
 		if($('html').hasClass('show-nav')){
-			$e.preventDefault();
+	       $('html').removeClass('show-nav').addClass('hide-nav');
 		}
 	});
-	
-	if($navigation_h >= $window_h){
-		
-		$('body').on('touchstart','.navigation-inner',function($e){
-
-			if($e.currentTarget.scrollTop === 0){
-
-				$e.currentTarget.scrollTop = 1;
-			}
-			else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight){
-			
-				$e.currentTarget.scrollTop -= 1;
-			}
-		});
-		$('body').on('touchmove','.navigation-inner',function($e){
-		
-			$e.stopPropagation();
-		});
-	}
 };
 
 // ----- WINDOW TYPE
@@ -452,16 +415,11 @@ jQuery.web_window_type = function(){
 jQuery.web_window_type_execute = function(){
 
   $('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
-  $('.webplate-shifter').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+  $('.webplate-content').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 
-      if($('html').hasClass('show-nav') == true){
-			
-			$('html').addClass('nav-open');
+      if($('.webplate-content').css('position') == 'fixed'){
+          $('.webplate-content').css({ 'position' : 'relative' });
       }
-		else{
-		
-         $('html').removeClass('nav-open');
-		}
   });
 
   // Some variables

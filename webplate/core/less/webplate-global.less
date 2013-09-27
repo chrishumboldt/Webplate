@@ -27,8 +27,11 @@
   -webkit-box-sizing: border-box;
 }
 html, body {
+  height: 100%;
 }
 html {
+	position: relative;
+	font-size: 0.875em;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	color: lighten(#000, 80%);
 	background-color: #fff;
@@ -46,6 +49,7 @@ body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, s
 ul, ol {margin:0; padding:0px;}
 a, .make-link, a:visited {text-decoration:none; color: #65a8a6;}
 a:hover, .make-link:hover {text-decoration:none; color: lighten(#65a8a6, 10%); cursor: pointer;}
+// a.button, a.button:hover, a.button:visited {color:#666;}
 
 // Global classes
 .display-none, .hidden-div {display:none;}

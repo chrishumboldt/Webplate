@@ -31,13 +31,8 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
-html, body {
-	-webkit-overflow-scrolling: touch;
-	-webkit-backface-visibility: hidden;
-}
-.no-touch.show-nav body, html.no-touch.show-nav {
-	overflow: hidden;
-	height: 100%;
+html, body, .webplate, .webplate-content, .webplate-navigation {
+    height: 100%;
 }
 // Fixed elements
 .is-fixed {
@@ -59,8 +54,16 @@ html, body {
 }
 // Webplate
 .webplate {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+
 	.webplate-shifter {
+		position: relative;
 		left: 0;
+		height: 100%;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
 		transform: translate3d(0px, 0px, 0px);
 		-webkit-transform: translate3d(0px, 0px, 0px);
 		-webkit-transition: -webkit-transform 0.2s ease;
@@ -69,7 +72,14 @@ html, body {
 		transition: transform 0.2s ease;
 	}
 	.webplate-content {
+		position: relative;
+		width: 100%;
+		max-width: 100%;
 		margin: 0px auto;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
 
 		.inner {
 			width: @page_width;
@@ -79,42 +89,39 @@ html, body {
 }
 // Navigation
 .webplate-navigation {
-	position: fixed;
    display: block;
    height: 100%;
    top: 0px;
    left: 0px;
    width: @menu_width;
+	position: absolute;
 	margin-left: -@menu_width;
 	overflow-y: auto;
    background-color: lighten(#000, 12%);
 	-webkit-overflow-scrolling: touch;
+	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
-	transform: translate3d(0px, 0px, 0px);
-	-webkit-transform: translate3d(0px, 0px, 0px);
-	-webkit-transition: -webkit-transform 0.2s ease;
-	-o-transition: -o-transform 0.2s ease;
-	-moz-transition: -moz-transform 0.2s ease;
-	transition: transform 0.2s ease;
-   z-index: 100;
+	-webkit-transform: translate3d(0, 0, 0);
+   z-index: 0;
 
    .navigation-inner {
 	 	 position: relative;
+	 	 height: 100%;
 	 
 	 	.row{
-	 		padding: 15px 0px;
+	 		padding-top: 15px;
 		
 	       a {
 	         display: block;
 	         padding: 10px 20px;
-	         font-size: 0.889em;
+	         font-size: 1.1em;
 	         color: #b0b0b0;
 	         .animate(color);
 	  
 	 		  div.icon {
 	 			  float: left;
 	 			  padding-right: 12px;
-	         font-size: 0.889em;
+	 			  font-size: 1.1em;
 	 			  color: #E99272;
 	 		  }
 	       }
@@ -124,7 +131,7 @@ html, body {
 	 	}
    }
 }
-.show-nav .webplate-shifter, .show-nav .webplate-navigation {
+.show-nav .webplate-shifter {
   -webkit-transform: translate3d(@menu_width, 0px, 0px);
   -o-transform: translate3d(@menu_width, 0px, 0px);
   -moz-transform: translate3d(@menu_width, 0px, 0px);
