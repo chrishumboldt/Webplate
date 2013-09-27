@@ -2,7 +2,7 @@
  * webplate-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   26 September 2013
+ * Last Edited:   27 September 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -399,7 +399,17 @@ jQuery.web_navigation = function(){
 	   $(this).addClass('active');
 	   $('html').removeClass('show-nav').addClass('hide-nav');
 	});
-						
+};
+
+// ----- NAVIGATION TOUCH
+jQuery.web_navigation_touch = function(){
+	
+	// Some variables
+	var $window_h				= $(window).height();
+	var $navigation_h			= $('.webplate-navigation .navigation-inner').height();
+	
+	// alert($navigation_h + ' -- ' + $window_h);
+
 	// Prevent scroll on page open
 	$(document).on('touchmove',function($e){
 
@@ -407,21 +417,25 @@ jQuery.web_navigation = function(){
 			$e.preventDefault();
 		}
 	});
-	$('body').on('touchstart','.navigation-inner',function($e){
-
-		if($e.currentTarget.scrollTop === 0){
-
-			$e.currentTarget.scrollTop = 1;
-		}
-		else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight){
-			
-			$e.currentTarget.scrollTop -= 1;
-		}
-	});
-	$('body').on('touchmove','.navigation-inner',function($e){
+	
+	if($navigation_h >= $window_h){
 		
-		$e.stopPropagation();
-	});
+		$('body').on('touchstart','.navigation-inner',function($e){
+
+			if($e.currentTarget.scrollTop === 0){
+
+				$e.currentTarget.scrollTop = 1;
+			}
+			else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight){
+			
+				$e.currentTarget.scrollTop -= 1;
+			}
+		});
+		$('body').on('touchmove','.navigation-inner',function($e){
+		
+			$e.stopPropagation();
+		});
+	}
 };
 
 // ----- WINDOW TYPE
