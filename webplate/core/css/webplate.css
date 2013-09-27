@@ -44,7 +44,7 @@ table{border-collapse:collapse;border-spacing:0}
 .drop-cap:first-letter{float:left;margin:auto .25em auto auto;padding:inherit;font-size:4em;font-family:inherit;line-height:1;text-indent:0;background:transparent;color:inherit}
 p+.drop-cap{text-indent:0;margin-top:0}
 html{font:normal 112.5%/1.65 serif;}
-body{-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;-o-hyphens:auto;hyphens:auto;word-wrap:break-word;color:#444}
+body{color:#444}
 small{font-size:65%}
 h1,h2,h3,h4,h5,h6{line-height:1;margin-top:0;text-rendering:optimizeLegibility;color:#222}
 .tera{font-size:117px;font-size:6.5rem;margin-bottom:.25385em}
@@ -57,7 +57,6 @@ h4,.delta{font-size:24px;font-size:1.3333333333333333rem;margin-bottom:1.2375em}
 h5,.epsilon{font-size:21px;font-size:1.16667rem;margin-bottom:1.4142857142857141em;}
 h6,.zeta{font-size:18px;font-size:1rem;margin-bottom:1.65em;}
 p{margin:auto auto 1.5em;}
-p+p{text-indent:1.5em;margin-top:-1.5em;}
 abbr,acronym,blockquote,code,dir,kbd,listing,plaintext,q,samp,tt,var,xmp{-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-o-hyphens:none;hyphens:none;}
 pre code{word-wrap:normal;white-space:-moz-pre-wrap;white-space:pre-wrap;}
 pre{white-space:pre}
