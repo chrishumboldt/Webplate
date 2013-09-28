@@ -112,17 +112,6 @@
       "outputAbbreviatedPath" : "\/core\/js\/min\/webplate-forms.min.js",
       "fileType" : 64
     },
-    "\/core\/images\/forms\/drop-down-arrow.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/images\/forms\/drop-down-arrow.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/core\/images\/forms\/drop-down-arrow.png",
-      "initialSize" : 1030,
-      "fileType" : 8192
-    },
     "\/core\/images\/forms\/blue.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -132,6 +121,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/core\/images\/forms\/blue.png",
       "initialSize" : 2185,
+      "fileType" : 8192
+    },
+    "\/core\/images\/forms\/drop-down-arrow.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/core\/images\/forms\/drop-down-arrow.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/core\/images\/forms\/drop-down-arrow.png",
+      "initialSize" : 1030,
       "fileType" : 8192
     },
     "\/core\/js\/webplate-tools.js" : {
@@ -265,16 +265,16 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/core\/js\/min\/webplate-buttons.min.js" : {
+    "\/core\/images\/forms\/red@2x.png" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/js\/min\/webplate-buttons.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/core\/js\/min\/min\/webplate-buttons.min.min.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/core\/images\/forms\/red@2x.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/core\/images\/forms\/red@2x.png",
+      "initialSize" : 4490,
+      "fileType" : 8192
     },
     "\/core\/images\/forms\/drop-down-arrow-hover.png" : {
       "ignoreWasSetByUser" : 0,
@@ -287,16 +287,16 @@
       "initialSize" : 1030,
       "fileType" : 8192
     },
-    "\/core\/images\/forms\/red@2x.png" : {
+    "\/core\/js\/min\/webplate-buttons.min.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/images\/forms\/red@2x.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/core\/images\/forms\/red@2x.png",
-      "initialSize" : 4490,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/core\/js\/min\/webplate-buttons.min.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/core\/js\/min\/min\/webplate-buttons.min.min.js",
+      "fileType" : 64
     },
     "\/core\/images\/forms\/aero.png" : {
       "ignoreWasSetByUser" : 0,
@@ -416,15 +416,6 @@
       "outputAbbreviatedPath" : "\/extras\/js\/min\/welcome.min.js",
       "fileType" : 64
     },
-    "\/core\/css\/webplate.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/css\/webplate.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/core\/js\/webplate-jquery.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -435,6 +426,15 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/core\/js\/min\/webplate-jquery.min.js",
       "fileType" : 64
+    },
+    "\/core\/css\/webplate.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/core\/css\/webplate.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/core\/images\/forms\/green.png" : {
       "ignoreWasSetByUser" : 0,
@@ -502,17 +502,6 @@
       "outputAbbreviatedPath" : "\/min\/stack.min.js",
       "fileType" : 64
     },
-    "\/core\/images\/forms\/purple@2x.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/images\/forms\/purple@2x.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/core\/images\/forms\/purple@2x.png",
-      "initialSize" : 4501,
-      "fileType" : 8192
-    },
     "\/core\/js\/min\/webplate-yepnope.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -523,6 +512,17 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/core\/js\/min\/min\/webplate-yepnope.min.min.js",
       "fileType" : 64
+    },
+    "\/core\/images\/forms\/purple@2x.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/core\/images\/forms\/purple@2x.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/core\/images\/forms\/purple@2x.png",
+      "initialSize" : 4501,
+      "fileType" : 8192
     },
     "\/core\/less\/webplate-layout.less" : {
       "ieCompatibility" : 1,
@@ -541,17 +541,6 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
-    "\/core\/images\/forms\/purple.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/images\/forms\/purple.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/core\/images\/forms\/purple.png",
-      "initialSize" : 2188,
-      "fileType" : 8192
-    },
     "\/core\/images\/welcome\/favicon.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -561,6 +550,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/core\/images\/welcome\/favicon.png",
       "initialSize" : 965,
+      "fileType" : 8192
+    },
+    "\/core\/images\/forms\/purple.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/core\/images\/forms\/purple.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/core\/images\/forms\/purple.png",
+      "initialSize" : 2188,
       "fileType" : 8192
     },
     "\/core\/index.html" : {
@@ -600,16 +600,16 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
-    "\/extras\/icomoon\/lte-ie7.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
+    "\/core\/images\/forms\/orange@2x.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/extras\/icomoon\/lte-ie7.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/extras\/icomoon\/min\/lte-ie7.min.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/core\/images\/forms\/orange@2x.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/core\/images\/forms\/orange@2x.png",
+      "initialSize" : 4474,
+      "fileType" : 8192
     },
     "\/core\/images\/forms\/red.png" : {
       "ignoreWasSetByUser" : 0,
@@ -639,6 +639,17 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
+    "\/extras\/icomoon\/lte-ie7.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/extras\/icomoon\/lte-ie7.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/extras\/icomoon\/min\/lte-ie7.min.js",
+      "fileType" : 64
+    },
     "\/core\/images\/forms\/yellow@2x.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -648,17 +659,6 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/core\/images\/forms\/yellow@2x.png",
       "initialSize" : 4385,
-      "fileType" : 8192
-    },
-    "\/core\/images\/forms\/orange@2x.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/core\/images\/forms\/orange@2x.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/core\/images\/forms\/orange@2x.png",
-      "initialSize" : 4474,
       "fileType" : 8192
     },
     "\/core\/less\/webplate.less" : {
