@@ -2,7 +2,7 @@
  * webplate-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   27 September 2013
+ * Last Edited:   28 September 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -364,6 +364,7 @@ jQuery.web_navigation = function(){
 
 	// Duplicate navigation
 	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
+	$('.webplate-navigation').wrapInner('<div class="navigation-inner" />');
 
 	// On click
 	$('.navigation-trigger').on('click', function($e){
