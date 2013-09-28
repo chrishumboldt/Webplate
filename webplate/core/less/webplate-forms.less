@@ -4,7 +4,7 @@
  * Author:        Damir Foy
  * Link:				http://damirfoy.com/iCheck/
  * Edited By:		Chris Modem
- * Last Edited:   17 August 2013
+ * Last Edited:   28 September 2013
  */
 
 /*-------------------------------------------------------
@@ -21,10 +21,10 @@
 
 /* VARIABLES
 --------------------------------------------------------------------------------------- */ 
-@images_root:						'../images/forms';
-@fe_border_color:					lighten(#000, 82%);
-@fe_border_width:             1px; 
-@fe_rounded_corners_radius:   2px;  
+@fe_images_root					: '../images/forms';
+@fe_border_color 					: lighten(#000, 82%);
+@fe_border_width					: 1px; 
+@fe_rounded_corners_radius		: 2px;  
 
 
 /* Global
@@ -71,7 +71,7 @@ select {
 	padding: 6px;
 	border: @fe_border_width solid @fe_border_color;
 	background-color: #fff;
-	background-image: url("@{images_root}/drop-down-arrow.png");
+	background-image: url("@{fe_images_root}/drop-down-arrow.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 	overflow: hidden;
@@ -91,7 +91,7 @@ select {
 .drop-down:hover {
 	padding: 5px;
 	border-width: (@fe_border_width + 1);
-	background-image: url("@{images_root}/drop-down-arrow-hover.png");
+	background-image: url("@{fe_images_root}/drop-down-arrow-hover.png");
 }
 .web-forms-colour-aero {
 	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
@@ -145,7 +145,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/square.png") no-repeat;
+    background: url("@{fe_images_root}/square.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -191,7 +191,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square,
     .iradio_square {
-        background-image: url("@{images_root}/square@2x.png");
+        background-image: url("@{fe_images_root}/square@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -205,7 +205,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/red.png") no-repeat;
+    background: url("@{fe_images_root}/red.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -252,7 +252,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-red,
     .iradio_square-red {
-        background-image: url("@{images_root}/red@2x.png");
+        background-image: url("@{fe_images_root}/red@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -266,7 +266,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/green.png") no-repeat;
+    background: url("@{fe_images_root}/green.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -313,7 +313,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-green,
     .iradio_square-green {
-        background-image: url("@{images_root}/green@2x.png");
+        background-image: url("@{fe_images_root}/green@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -327,7 +327,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/blue.png") no-repeat;
+    background: url("@{fe_images_root}/blue.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -374,7 +374,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-blue,
     .iradio_square-blue {
-        background-image: url("@{images_root}/blue@2x.png");
+        background-image: url("@{fe_images_root}/blue@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -435,7 +435,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-aero,
     .iradio_square-aero {
-        background-image: url("@{images_root}/aero@2x.png");
+        background-image: url("@{fe_images_root}/aero@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -449,7 +449,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/grey.png") no-repeat;
+    background: url("@{fe_images_root}/grey.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -496,7 +496,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-grey,
     .iradio_square-grey {
-        background-image: url("@{images_root}/grey@2x.png");
+        background-image: url("@{fe_images_root}/grey@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -510,7 +510,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/orange.png") no-repeat;
+    background: url("@{fe_images_root}/orange.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -557,7 +557,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-orange,
     .iradio_square-orange {
-        background-image: url("@{images_root}/orange@2x.png");
+        background-image: url("@{fe_images_root}/orange@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -571,7 +571,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/yellow.png") no-repeat;
+    background: url("@{fe_images_root}/yellow.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -618,7 +618,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-yellow,
     .iradio_square-yellow {
-        background-image: url("@{images_root}/yellow@2x.png");
+        background-image: url("@{fe_images_root}/yellow@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -632,7 +632,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/pink.png") no-repeat;
+    background: url("@{fe_images_root}/pink.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -679,7 +679,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-pink,
     .iradio_square-pink {
-        background-image: url("@{images_root}/pink@2x.png");
+        background-image: url("@{fe_images_root}/pink@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -693,7 +693,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url("@{images_root}/purple.png") no-repeat;
+    background: url("@{fe_images_root}/purple.png") no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -740,7 +740,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-purple,
     .iradio_square-purple {
-        background-image: url("@{images_root}/purple@2x.png");
+        background-image: url("@{fe_images_root}/purple@2x.png");
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }

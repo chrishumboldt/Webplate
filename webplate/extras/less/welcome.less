@@ -22,7 +22,17 @@
 
 /* IMPORTS
 --------------------------------------------------------------------------------------- */
-// Import this file to get the webplate helper functions and to get the @page_width variable
+// Import this file to get the webplate helper functions and the @page_width variable.
+// You will also have access to the @images_root variable that will link automatically
+// to the "img" folder in "webplate/extras". This makes it easier to reference in your 
+// LESS. To use this variable do the following:
+//
+// background-image: url("@{images_root}/your-image-file.jpg");
+//
+// This is editable by changing "config.less". As per normal you will need to compile
+// "core/less/webplate-imports.less" to "webplate/core/css/webplate.css" for the changes 
+// to take effect.
+
 @import "../../core/less/webplate.less";
 
 
