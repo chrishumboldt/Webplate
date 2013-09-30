@@ -1,4 +1,4 @@
-.no-box-shadow{box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none}
+.no-drop-shadow{box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none}
 .hide-text{text-indent:-1000px;overflow:hidden}
 html{font-size:.889em}
 h1,h2,h3,h4,.logo,.navigation a{font-family:'Lato',sans-serif;font-weight:300}

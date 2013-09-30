@@ -65,17 +65,17 @@
 	-moz-border-radius: @radius 0px 0px 0px;
 	-webkit-border-radius: @radius 0px 0px 0px;
 }
-.box-shadow (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
+.drop-shadow (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
 	box-shadow: @horizontal_offset @vertical_offset @size @color;
 	-webkit-box-shadow: @horizontal_offset @vertical_offset @size @color;
 	-moz-box-shadow: @horizontal_offset @vertical_offset @size @color;
 }
-.box-shadow-inset (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
+.drop-shadow-inset (@color: fadeout(#000, 60%), @size: 3px, @vertical_offset: 0px, @horizontal_offset: 0px) {
 	box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 	-webkit-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 	-moz-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 }
-.no-box-shadow {
+.no-drop-shadow {
 	box-shadow: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -137,6 +137,12 @@
 .hide-text() {
 	text-indent: -10000px;
 	overflow: hidden;
+}
+.background-cover(@image) {
+	background-image: url(@image);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 
