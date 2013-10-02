@@ -1,0 +1,488 @@
+/**
+ * welcome.less
+ *
+ * Author:        Chris Modem
+ * Last Edited:   9 May 2013
+ */
+
+/*-------------------------------------------------------
+
+  Table of Contents:
+
+    Imports
+    Variables
+    Global
+    Large View
+    Adjusting View
+    Small View
+    Links
+
+---------------------------------------------------------*/
+
+
+/* IMPORTS
+--------------------------------------------------------------------------------------- */
+// Import this file to get the webplate helper functions and the @page_width variable.
+// You will also have access to the @images_root variable that will link automatically
+// to the "img" folder in "webplate/extras". This makes it easier to reference in your 
+// LESS. To use this variable do the following:
+//
+// background-image: url("@{images_root}/your-image-file.jpg");
+//
+// This is editable by changing "config.less". As per normal you will need to compile
+// "core/less/webplate-imports.less" to "webplate/core/css/webplate.css" for the changes 
+// to take effect.
+
+@import "../../core/less/webplate.less";
+
+
+/* VARIABLES
+--------------------------------------------------------------------------------------- */
+@dark_colour:             lighten(#000, 18%);
+@light_colour:            darken(#fff, 5%);
+@logo_colour:             #9de0ad;
+
+
+/* Global
+--------------------------------------------------------------------------------------- */
+html {
+	font-size: 0.889em;
+}
+h1, h2, h3, h4, .logo, .navigation a {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+}
+.webplate {
+	// Inner changes
+	.inner {
+		padding: 0px 15px;
+	}
+	// Header
+	.header {
+		width: 100%;
+		background-color: #fffcf5;
+
+		// Header content
+		.row.inner {
+			display: table;
+		}
+		.header-content {
+			display: table-cell;
+			padding: 50px 0px;
+			vertical-align: middle;
+		}
+		// Logo
+		.logo {
+			display: block;
+			width: 250px;
+			margin: 0px auto;
+
+			.primary, .secondary {
+				float: left;
+				padding-top: 1px;
+				height: 70px;
+				line-height: 20px;
+				color: lighten(#000, 40%);
+				font-size: 3.4em;
+			}
+			.primary {
+				padding-left: 40px;
+				border-right: 4px solid @logo_colour;
+				.animate(border-right);
+			}
+		}
+		.logo:hover {
+			.primary {
+				border-color: #f0b49e;
+				.animate(border-right);
+			}
+		}
+		.logo.make-wider {
+			width: 300px;
+			
+			.primary {
+				padding: 0px 10px 0px 0px;
+			}
+			.secondary {
+				padding: 0px 0px 0px 10px;
+			}
+		}
+		// Heading
+		.heading {
+			h3 {
+				width: 80%;
+				margin: 0px auto;
+				margin-top: 40px;
+				color: lighten(#000, 40%);
+				text-align: center;
+				line-height: 1.3em;
+				font-size: 1.65em;
+			}
+		}
+		// Navigation
+		.navigation {
+			margin-top: 50px;
+		}
+	}
+	// Content
+	.content {
+		.row .inner {
+			padding: 70px 15px;
+		}
+		.row {
+			h2 {
+				font-weight: 100;
+				text-align: center;
+			}
+			h4 {
+				width: 90%;
+				margin: 0px auto;
+				margin-bottom: 20px;
+				text-align: center;
+				line-height: 1.6em;
+			}
+			.infoBlock {
+				padding: 20px;
+				.rounded-corners();
+			}
+			.seperator {
+				margin: 20px 0px;
+				font-size: 4em;
+				text-align: center;
+			}
+			p {
+				font-weight: 100;
+				
+				b {
+					color: @logo_colour;
+				}
+			}
+			a {
+				font-size: 1em;
+			}
+			a.button {
+				margin: 5px 5px 5px 0px;
+			}
+			pre.code-block {
+				display: block;
+				padding: 15px 20px;
+				margin: 15px 0px 35px 0px;
+				font-size: 1.1em;
+				word-wrap: break-word;
+				color: #fff;
+				background-color: #556270;
+				.rounded-corners();
+			}
+			.row.example {
+				margin: 4px 0px;
+				padding: 2px;
+				color: darken(#556270, 10%);
+				text-align: center;
+				background-color: @logo_colour;
+				.rounded-corners();
+				
+				[class *= "span-"] {
+					padding: 6px;
+					border: 2px solid @logo_colour;
+					color: #fff;
+					font-weight: 100;
+					background-color: #68aa7c;
+				}
+			}
+		}
+		.row.cream {
+			background-color: #fffcf5;
+
+			h2 {
+				color: darken(#f0b49e, 10%);
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 30%);
+			}
+			h4 {
+				color: lighten(#000, 65%);
+			}
+			p {
+				b {
+					color: darken(#f0b49e, 10%);
+				}
+			}
+			pre.code-block {
+				background-color: lighten(#000, 40%);
+			}
+			.example-icon {
+				font-size: 1.4em;
+				
+				span {
+					font-size: 0.9em;
+				}
+			}
+		}
+		.row.dark-blue {
+			background-color: darken(#556270, 10%);
+
+			h2 {
+				color: @logo_colour;
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 50%);
+			}
+		}
+		.row.light-blue {
+			background-color: #556270;
+
+			h2 {
+				color: @logo_colour;
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 30%);
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 60%);
+			}
+			pre.code-block {
+				background-color: darken(#556270, 10%);
+			}
+		}
+		// Downloads
+		#downloads {
+			.row.inner {
+				padding: 25px 15px;
+			}
+			a {
+				display: block;
+				margin: 10px;
+				height: 60px;
+				padding-left: 50px;
+				line-height: 60px;
+				font-size: 1.2em;
+				
+				span {
+					position: absolute;
+					margin-left: -44px;
+					margin-top: 12px;
+					font-size: 2em;
+				}
+			}
+		}
+		// Form examples
+		.form-example {
+			padding: 25px;
+			
+			input {
+				margin-bottom: 24px;
+			}
+			textarea {
+				height: 155px;
+			}
+		}
+	}
+	// Footer
+	.footer {
+		background-color: darken(#556270, 10%);
+
+		.row.inner {
+			padding: 50px 15px;
+			color: lighten(#556270, 50%);
+			font-weight: 100;
+			
+			h2 {
+				color: @logo_colour;
+			}
+			h3 {
+				margin-top: 40px;
+				color: lighten(#556270, 20%);
+			}
+			h4 {
+				color: lighten(#556270, 40%);
+			}
+			p {
+				color: lighten(#556270, 50%);
+			}
+			b {
+				color: @logo_colour;
+				font-weight: 100;
+			}
+		}
+	}
+}
+
+
+/* Large View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (min-width: 701px) {
+	.webplate {
+		// Navigation
+		.navigation {
+			margin-top: 18px;
+
+			a {
+				display: block;
+				text-align: center;
+				color: lighten(#000, 40%);
+				font-size: 1.4em;
+
+				div.icon {
+					width: 75px;
+					height: 75px;
+					margin: 0px auto;
+					margin-bottom: 15px;
+					line-height: 74px;
+					font-size: 1.6em;
+					background-color: #fff;
+					.rounded-corners(50%);
+				}
+			}
+			a:hover {
+				color: darken(#f0b49e, 10%);
+			}
+		}
+	}
+}
+
+
+/* Fluid View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: @page_width) {
+	.webplate {
+		// Content
+		.content {
+			// Form examples
+			.form-example {
+				padding: 15px;
+			}
+		}
+	}
+}
+
+
+/* Fluid View (Close to small view)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: 825px) {
+	.webplate {
+		// Navigation
+		.navigation {
+			a {
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+
+/* Small View (iPhone)
+--------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+	
+	// Navigation changes
+	.webplate-navigation {
+		.navigation-inner .row a {
+			font-size: 1em;
+			
+			div.icon {
+				font-size: 1.222em;
+			}
+		}
+	}
+	.webplate {
+		// Navigation small
+		.navigation-small {
+			.navigation-inner .row {
+				margin-top: 15px;
+			}
+			a {
+				div.icon {
+					float: left;
+					padding-right: 12px;
+					font-size: 1.1em;
+					color: darken(#f0b49e, 10%);;
+				}
+			}
+		}
+		// Header
+		.header {
+			padding: 5px 0px;
+
+			.header-content {
+				padding: 10px 0px;
+			}
+			.navigation-trigger {
+				display: block;
+				width: 42px;
+				padding: 6px;
+				margin-top: 9px;
+				font-size: 1.8em;
+				color: lighten(#000, 40%);
+			}
+			.navigation-trigger:active {
+				margin-top: 11px;
+			}
+			.header-content {
+				vertical-align: top;
+			}
+			.logo {
+				float: none;
+				margin: 0px auto;
+				margin-top: 16px;
+				margin-bottom: 60px;
+				width: 112px;
+
+				.primary, .secondary {
+					height: 45px;
+					font-size: 1.667em;
+				}
+				.primary {
+					padding-left: 8px;
+					border-right: 2px solid @logo_colour;
+				}
+			}
+			.logo.make-wider {
+				width: 155px;
+			}
+			.heading {
+				h3 {
+					padding-bottom: 80px;
+					font-size: 1.35em;
+					line-height: 1.6em;
+				}
+			}
+		}
+		// Content
+		.content {
+			// Form examples
+			.form-example {
+				padding: 20px 0px;
+			}
+		}
+		// Footer
+		.footer {
+			.text-right {
+				text-align: left;
+			}
+		}
+	}
+}
+
+
+/* Links
+--------------------------------------------------------------------------------------- */
+a {
+}
+a:hover {
+}
+a:visited {
+}
