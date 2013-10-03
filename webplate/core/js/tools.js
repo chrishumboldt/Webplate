@@ -2,7 +2,7 @@
  * webplate-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   28 September 2013
+ * Last Edited:   1 October 2013
  * Edited By:   	Chris Humboldt
  */
 

@@ -1,0 +1,170 @@
+/**
+ * webplate-slider.less
+ *
+ * Author:        Chris Humboldt
+ * Last Edited:   2 October 2013
+ */
+
+/*-------------------------------------------------------
+
+  Table of Contents:
+
+    Variables
+    Large View
+    Adjusting View
+    Small View
+
+---------------------------------------------------------*/
+
+
+/* VARIABLES
+--------------------------------------------------------------------------------------- */
+@dot_size				: 14px;
+
+
+/* Global
+--------------------------------------------------------------------------------------- */
+/* DELETE ME */
+.webplate-flicker {
+	margin-bottom: 100px;
+}
+.webplate-flicker.two {
+	width: 600px;
+}
+/* END OF DELETE ME */
+
+// Default flicker - light theme
+.webplate-flicker {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-color: lighten(#000,90%);
+	overflow: hidden;
+	
+	// Flicks
+	ul.flicks {
+		width: 1000%;
+		height: 100%;
+		list-style: none;
+		
+		li {
+			float: left;
+			width: 10%;
+			height: 100%;
+			background-position: center;
+			background-size: cover;
+			display: table;
+			
+			.flick-inner {
+				height: 100%;
+				padding: 10px;
+				color: #fff;
+				display: table-cell;
+				vertical-align: middle;
+				
+				.flick-content {
+					max-width: @page_width;
+					margin-left: auto;
+					margin-right: auto;
+				
+					.flick-title {
+						padding: 10px 0px;
+						font-size: 2.778em;
+						text-align: center;
+					}
+					.flick-sub-text {
+						padding: 5px;
+						font-weight: 300;
+						color: fadeOut(#fff, 20%);
+						text-align: center;
+					}
+					.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+						padding: 12px 18px;
+						background-color: fadeOut(#000, 40%);
+					}
+				}
+			}
+		}
+	}
+	
+	// Dot navigation
+	.dot-navigation {
+		position: absolute;
+		bottom: 15px;
+		width: 100%;
+		text-align: center;
+		
+		ul {
+			text-align: center;
+			list-style: none;
+		}
+		ul li {
+			display: inline-block;
+			float: none;
+		}
+		.dot {
+			width: @dot_size;
+			height: @dot_size;
+			margin: 0px 6px;
+			background-color: fadeOut(#fff, 70%);
+			.rounded-corners(50%);
+			.animate(background-color);
+		}
+		.dot:hover {
+			cursor: pointer;
+			background-color: fadeOut(#fff, 40%);
+		}
+		.dot.active {
+			background-color: #fff;
+		}
+	}
+}
+
+// Dark theme
+.webplate-flicker.flicker-theme-dark {
+	
+	// Flicks
+	ul.flicks li .flick-inner {
+		color: fadeOut(#000, 20%);
+		
+		.flick-content {
+			.flick-sub-text {
+				color: fadeOut(#000, 20%);
+			}
+			.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+				background-color: fadeOut(#fff, 50%);
+			}
+		}
+	}
+	
+	// Dot navigation
+	.dot-navigation {
+		.dot {
+			background-color: fadeOut(#000, 70%);
+		}
+		.dot:hover {
+			background-color: fadeOut(#000, 40%);
+		}
+		.dot.active {
+			background-color: #000;
+		}
+	}
+}
+
+
+/* Large View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (min-width: 701px) {
+}
+
+
+/* Adjusting View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: @page_width) {
+}
+
+
+/* Small View (iPhone)
+--------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+}
