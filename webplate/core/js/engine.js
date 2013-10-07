@@ -1,9 +1,9 @@
 /**
- * webplate-engine.js
+ * engine.js
  *
- * Author:        Chris Modem
- * Last Edited:   25 August 2013
- * Edited By:   	Chris Modem
+ * Author:        Chris Humboldt
+ * Last Edited:   3 October 2013
+ * Edited By:   	Chris Humboldt
  */
 
 // ---------- Yepnope
@@ -29,7 +29,7 @@ var $is_less						= false;
 var $ar_js_core					= [
 	$js_path + 'min/jquery.min.js',
 	$js_path + 'min/modernizr.min.js',
-	$js_path + 'tools.js'
+	$js_path + 'min/tools.min.js'
 ];
 var $ar_js_extras					= [];
 var $ar_css_core					= [
@@ -81,30 +81,8 @@ yepnope([{
       $.web_window_type();
 		
 		$.web_forms();
-
-		// Flickerplate check
-		$flickerplate_check				= $('.webplate-flicker:first');
-		if(($flickerplate_check) && ($flickerplate_check.length > 0)){
-			
-			// Load touch library
-			yepnope({load: $js_path + 'min/flicker.min.js', complete: function(){
-
-				// Execute the flicker
-				$('.webplate-flicker').flicker();
-				
-			}});
-		}
-
-		if(Modernizr.touch){
-			
-			// Load touch library
-			yepnope({load: $js_path + 'min/touch.min.js', complete: function(){
-				
-				// Activate fastclick
-				FastClick.attach(document.body);
-				
-			}});
-      }
+		
+		$.web_load_plugins($js_path);
 	}
 }, {
 	load								: $ar_css_core,
@@ -145,7 +123,7 @@ yepnope([{
 					
 				// Show the body
 				$('body').show();
-			} });
+			}});
 		}
 		else {
 				

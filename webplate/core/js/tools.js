@@ -1,13 +1,13 @@
 /**
- * webplate-tools.js
+ * tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   1 October 2013
+ * Last Edited:   3 October 2013
  * Edited By:   	Chris Humboldt
  */
 
 // ----- LOCK A FORM FROM SUBMITTING ON ENTER
-jQuery.web_lock_submit = function($element){
+jQuery.web_lock_submit 				= function($element){
 
   $($element).live('keypress', function($e){
 
@@ -19,26 +19,26 @@ jQuery.web_lock_submit = function($element){
 };
 
 // ----- CHECK THAT SOMETHING EXISTS
-jQuery.web_exists = function($element){
+jQuery.web_exists 					= function($element){
 
-  if($($element).length > 0){
+	if(($element) && ($element.length > 0)){
 
-      return true;
-  }
-  else{
+		return true;
+	}
+	else{
 
-      return false;
-  }
+		return false;
+	}
 };
 
 // ----- GET FILE EXTENSION
-jQuery.web_get_extension = function($file){
+jQuery.web_get_extension 			= function($file){
 
   return $file.split('.').pop().toLowerCase();
 };
 
 // ----- CURRENT DB DATE
-jQuery.web_crt_db_date = function(){
+jQuery.web_crt_db_date 				= function(){
 
   $current_time 			    = new Date();
   $year						= $current_time.getFullYear();
@@ -56,7 +56,7 @@ jQuery.web_crt_db_date = function(){
 };
 
 // ----- CHECK THAT SOMETHING IS IN A DATABAE DATE FORMAT (yyyy-mm-dd)
-jQuery.web_check_date = function($date){
+jQuery.web_check_date 				= function($date){
 
   if(($date.substr(4, 1) == '-') && ($date.substr(7, 1) == '-') && ($.scrap_is_integer($date.substr(0, 4)) == true) && ($.scrap_is_integer($date.substr(5, 2)) == true) && ($.scrap_is_integer($date.substr(8, 2)) == true) && ($date.length == 10)){
 
@@ -69,7 +69,7 @@ jQuery.web_check_date = function($date){
 };
 
 // ----- CHECK THAT A STRING IS A TIME FORMAT
-jQuery.web_is_time = function($int){
+jQuery.web_is_time 					= function($int){
 
   if($int != ''){
 
@@ -95,7 +95,7 @@ jQuery.web_is_time = function($int){
 };
 
 // ----- CHECK THAT A STRING IS ONLY INTEGERS - INLCUDING FRACTION
-jQuery.web_is_integer = function($int){
+jQuery.web_is_integer 				= function($int){
 
   if($int != ''){
 
@@ -121,7 +121,7 @@ jQuery.web_is_integer = function($int){
 };
 
 // ----- CHECK THAT A STRING IS ONLY INTEGERS - NOT INLCUDING FRACTION
-jQuery.web_is_full_integer = function($int){
+jQuery.web_is_full_integer 		= function($int){
 
   if($int != ''){
 
@@ -147,7 +147,7 @@ jQuery.web_is_full_integer = function($int){
 };
 
 // ----- CHECK FOR WHITE SPACE
-jQuery.web_has_white_space = function($check){
+jQuery.web_has_white_space 		= function($check){
 
   if($check.indexOf(' ') != -1){
 
@@ -160,7 +160,7 @@ jQuery.web_has_white_space = function($check){
 };
 
 // ----- CHECK THAT THE FILE IS AN ALLOWED TYPE
-jQuery.web_allowed_doc = function($file, $ar_allowed_types){
+jQuery.web_allowed_doc 				= function($file, $ar_allowed_types){
 
   if($ar_allowed_types == null){
 
@@ -180,7 +180,7 @@ jQuery.web_allowed_doc = function($file, $ar_allowed_types){
 };
 
 // ----- INPUT MIRRORS
-jQuery.web_input_mirror = function($input, $output){
+jQuery.web_input_mirror 			= function($input, $output){
 
   $($selector).keyup(function(){
 
@@ -193,7 +193,7 @@ jQuery.web_input_mirror = function($input, $output){
 };
 
 // ----- CHECK THAT A STRING IS AN EMAIL
-jQuery.web_is_email = function($email){
+jQuery.web_is_email 					= function($email){
 
   if(($email.indexOf('@') != -1) && ($email.indexOf('.') != -1)){
 
@@ -206,7 +206,7 @@ jQuery.web_is_email = function($email){
 };
 
 // ----- CHECK THAT A STRING IS A VALID PASSWORD
-jQuery.web_is_password = function($password){
+jQuery.web_is_password 				= function($password){
 
   if($password.length > 5){
 
@@ -241,7 +241,7 @@ jQuery.web_is_password = function($password){
 };
 
 // ----- CHECK THAT THE FILE IS AN IMAGE
-jQuery.web_is_image = function($file, $ar_allowed_types){
+jQuery.web_is_image 					= function($file, $ar_allowed_types){
 
   if($ar_allowed_types == null){
 
@@ -261,7 +261,7 @@ jQuery.web_is_image = function($file, $ar_allowed_types){
 };
 
 // ----- CHECK THAT INPUT IS A HEX CODE
-jQuery.web_is_color = function($color){
+jQuery.web_is_color 					= function($color){
 
   if($color.length == 7){
 
@@ -277,7 +277,7 @@ jQuery.web_is_color = function($color){
 };
 
 // ----- RANDOM STRING
-jQuery.web_random_string = function($string_length){
+jQuery.web_random_string 			= function($string_length){
 
   $chars 				= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
   if($string_length == null){
@@ -296,19 +296,19 @@ jQuery.web_random_string = function($string_length){
 };
 
 // ----- SHOW OVERLAY
-jQuery.web_show_overlay = function(){
+jQuery.web_show_overlay 			= function(){
 
   $('.webplate-overlay').fadeIn();
 };
 
 // ----- REMOVE OVERLAY
-jQuery.web_remove_overlay = function(){
+jQuery.web_remove_overlay 			= function(){
 
   $('.webplate-overlay').fadeOut();
 };
 
 // ----- SHOW MODAL
-jQuery.web_show_modal = function($modal_class){
+jQuery.web_show_modal 				= function($modal_class){
 
   if($($modal_class).is(":hidden") == true){
 
@@ -330,7 +330,7 @@ jQuery.web_show_modal = function($modal_class){
 };
 
 // ----- HIDE MODAL
-jQuery.web_hide_modal = function(){
+jQuery.web_hide_modal 				= function(){
 
   $('.modal:visible .close').live('click', function(){
 
@@ -351,7 +351,7 @@ jQuery.web_hide_modal = function(){
 };
 
 // ----- CONSOLE LOG
-jQuery.web_log = function($text){
+jQuery.web_log 						= function($text){
 
   if(window.console) {
 
@@ -360,7 +360,7 @@ jQuery.web_log = function($text){
 };
 
 // ----- NAVIGATION
-jQuery.web_navigation = function(){
+jQuery.web_navigation 				= function(){
 
 	// Duplicate navigation
 	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
@@ -458,7 +458,7 @@ jQuery.web_navigation = function(){
 };
 
 // ----- WINDOW TYPE
-jQuery.web_window_type = function(){
+jQuery.web_window_type 				= function(){
 
   $.web_window_type_execute();
   $(window).resize(function(){
@@ -468,7 +468,7 @@ jQuery.web_window_type = function(){
 };
 
 // ----- WINDOW TYPE EXECUTE
-jQuery.web_window_type_execute = function(){
+jQuery.web_window_type_execute 	= function(){
 
   // Some variables
   if($(window).width() <= 700){
@@ -489,7 +489,7 @@ jQuery.web_window_type_execute = function(){
 };
 
 // ----- FORMS EXECUTE
-jQuery.web_forms = function(){
+jQuery.web_forms 						= function(){
 
 	// Execute forms
 	$(document).ready(function(){
@@ -524,3 +524,44 @@ jQuery.web_forms = function(){
 		$('select').wrap('<span class="drop-down"></span>');
 	});
 };
+
+// ----- LOAD PLUGINS
+jQuery.web_load_plugins 			= function(js_path){
+	
+	// Load plugins array
+	var $ar_js_plugins				= [];
+	var $check_flicker				= false;
+	var $check_fastclick				= false; 
+	
+	// Flickerplate check
+	$flickerplate_check				= $('.webplate-flicker:first');
+	if($.web_exists($flickerplate_check)){
+		
+		$ar_js_plugins.push($js_path + 'flickerplate.js');
+		$check_flicker					= true;
+	}
+
+	// FastClick
+	if(Modernizr.touch){
+		
+		$ar_js_plugins.push($js_path + 'min/touch.min.js');
+		$check_fastclick				= true;
+   }
+	
+	// Load plugins js
+	yepnope({load: $ar_js_plugins, complete: function(){
+
+		// Execute the flicker
+		if($check_flicker == true){
+			
+			$('.webplate-flicker').flicker();
+		}
+			
+		// Activate fastclick
+		if($check_fastclick == true){
+			
+			FastClick.attach(document.body);
+		}
+	
+	}});
+}

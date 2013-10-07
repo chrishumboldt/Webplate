@@ -1,8 +1,9 @@
 /**
- * webplate-slider.less
+ * flicker.less
  *
  * Author:        Chris Humboldt
- * Last Edited:   2 October 2013
+ * Last Edited:   3 October 2013
+ * Edited By:		Chris Humboldt
  */
 
 /*-------------------------------------------------------
@@ -10,6 +11,7 @@
   Table of Contents:
 
     Variables
+    Mixins
     Large View
     Adjusting View
     Small View
@@ -20,6 +22,16 @@
 /* VARIABLES
 --------------------------------------------------------------------------------------- */
 @dot_size				: 14px;
+
+
+/* Mixins
+--------------------------------------------------------------------------------------- */
+.translate-left(@left) {
+   -webkit-transform: translate3d(@left, 0px, 0px);
+   -o-transform: translate3d(@left, 0px, 0px);
+   -moz-transform: translate3d(@left, 0px, 0px);
+   transform: translate3d(@left, 0px, 0px);
+}
 
 
 /* Global
@@ -43,13 +55,21 @@
 	
 	// Flicks
 	ul.flicks {
-		width: 1000%;
+		width: 10000%;
 		height: 100%;
 		list-style: none;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		transform: translate3d(0%, 0px, 0px);
+		-webkit-transform: translate3d(0%, 0px, 0px);
+		-webkit-transition: -webkit-transform 1s ease;
+		-o-transition: -o-transform 1s ease;
+		-moz-transition: -moz-transform 1s ease;
+		transition: transform 1s ease;
 		
 		li {
 			float: left;
-			width: 10%;
+			width: 1%;
 			height: 100%;
 			background-position: center;
 			background-size: cover;
@@ -93,6 +113,7 @@
 		bottom: 15px;
 		width: 100%;
 		text-align: center;
+		z-index: 100;
 		
 		ul {
 			text-align: center;
@@ -124,12 +145,12 @@
 .webplate-flicker.flicker-theme-dark {
 	
 	// Flicks
-	ul.flicks li .flick-inner {
-		color: fadeOut(#000, 20%);
+	.flick-inner {
+		color: fadeOut(#000, 10%);
 		
 		.flick-content {
 			.flick-sub-text {
-				color: fadeOut(#000, 20%);
+				color: fadeOut(#000, 10%);
 			}
 			.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
 				background-color: fadeOut(#fff, 50%);

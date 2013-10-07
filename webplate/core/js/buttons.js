@@ -1,8 +1,10 @@
-/*
- *  Project: Buttons
- *  Description: A highly customizable CSS button library built with Sass and Compass
- *  Author: Alex Wolfe
- *  License: Apache License v2.0
+/**
+ * buttons.js
+ *
+ * Author:        Alex Wolfe
+ * Description: 	A highly customizable CSS button library built with Sass and Compass
+ * Last Edited:   25 August 2013
+ * License: 		Apache License v2.0
  */
 
 // the semi-colon before function invocation is a safety net against concatenated
