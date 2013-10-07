@@ -27,9 +27,9 @@ var $css_extras_path				= $root + 'webplate/extras/css/';
 var $less_extras_path			= $root + 'webplate/extras/less/';
 var $is_less						= false;
 var $ar_js_core					= [
-	$js_path + 'min/jquery.min.js',
-	$js_path + 'min/modernizr.min.js',
-	$js_path + 'min/tools.min.js'
+	$js_path + 'min/web-jquery.min.js',
+	$js_path + 'min/web-modernizr.min.js',
+	$js_path + 'min/web-tools.min.js'
 ];
 var $ar_js_extras					= [];
 var $ar_css_core					= [
@@ -114,7 +114,7 @@ yepnope([{
 				else if($extension == 'less'){
 
 					$ar_css_extras.push('less!' + $less_extras_path + $file);
-					$ar_css_extras.push($js_path + 'min/less.min.js');
+					$ar_css_extras.push($js_path + 'min/web-less.min.js');
 				}
 			});
 			

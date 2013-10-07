@@ -537,14 +537,14 @@ jQuery.web_load_plugins 			= function(js_path){
 	$flickerplate_check				= $('.webplate-flicker:first');
 	if($.web_exists($flickerplate_check)){
 		
-		$ar_js_plugins.push($js_path + 'flickerplate.js');
+		$ar_js_plugins.push($js_path + 'web-flickerplate.js');
 		$check_flicker					= true;
 	}
 
 	// FastClick
 	if(Modernizr.touch){
 		
-		$ar_js_plugins.push($js_path + 'min/touch.min.js');
+		$ar_js_plugins.push($js_path + 'min/web-touch.min.js');
 		$check_fastclick				= true;
    }
 	
