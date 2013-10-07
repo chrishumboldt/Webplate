@@ -1,8 +1,8 @@
 /**
- * flicker.less
+ * flickerplate.less
  *
  * Author:        Chris Humboldt
- * Last Edited:   3 October 2013
+ * Last Edited:   8 October 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -36,20 +36,11 @@
 
 /* Global
 --------------------------------------------------------------------------------------- */
-/* DELETE ME */
-.webplate-flicker {
-	margin-bottom: 100px;
-}
-.webplate-flicker.two {
-	width: 600px;
-}
-/* END OF DELETE ME */
-
 // Default flicker - light theme
 .webplate-flicker {
 	position: relative;
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	background-color: lighten(#000,90%);
 	overflow: hidden;
 	
@@ -118,6 +109,7 @@
 		ul {
 			text-align: center;
 			list-style: none;
+			padding: 0px 15px;
 		}
 		ul li {
 			display: inline-block;
@@ -138,6 +130,12 @@
 		.dot.active {
 			background-color: #fff;
 		}
+	}
+	.dot-navigation.left, .dot-navigation.left ul {
+		text-align: left;
+	}
+	.dot-navigation.right, .dot-navigation.right ul {
+		text-align: right;
 	}
 }
 

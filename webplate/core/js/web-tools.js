@@ -537,7 +537,7 @@ jQuery.web_load_plugins 			= function(js_path){
 	$flickerplate_check				= $('.webplate-flicker:first');
 	if($.web_exists($flickerplate_check)){
 		
-		$ar_js_plugins.push($js_path + 'web-flickerplate.js');
+		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
 		$check_flicker					= true;
 	}
 
