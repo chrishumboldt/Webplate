@@ -63,7 +63,8 @@
 			var $first_flick_theme			= $flicker.find('.first-flick').data('theme');
 			if(($theme) && ($theme.length > 0)){
 				
-				if(($theme) && ($theme.length > 0)){
+				$object.settings.theme		= $theme;
+				if(($first_flick_theme) && ($first_flick_theme.length > 0)){
 					
 					$flicker.addClass('flicker-theme-' + $first_flick_theme);
 				}
@@ -118,6 +119,13 @@
 				
 					$(this).css('background-image', 'url(webplate/extras/images/' + $background + ')');
 				} 
+				
+				// Class an theme overwrites
+				$flick_theme					= $(this).data('theme');
+				if(($flick_theme) && ($flick_theme.length > 0)){
+					
+					$(this).addClass('flick-theme-' + $flick_theme);
+				}
 			});
 			
 			// Create navigation dots
@@ -149,6 +157,9 @@
 				$object.create_dot_navigation($dot_alignment);
 			}
 			
+			// Create arrows
+			$object.create_arrow_navigation();
+			
 			// Perform the auto flicking
 			$flick_delay						= $object.settings.delay * 1000;
 			$data_auto_flick					= $flicker.data('auto-flick');
@@ -175,6 +186,16 @@
 			}
 			
 			$object.auto_flick_start();
+		}
+		
+		// ----- Create arrow navigation
+		$object.create_arrow_navigation	= function(){
+			
+			$arrow_nav_html	= '<div class="arrow-navigation left"></div>';
+			$arrow_nav_html	+= '<div class="arrow-navigation right"></div>';
+
+			// Attach the HTML
+			$flicker.prepend($arrow_nav_html);
 		}
 		
 		// ----- Create dot navigation
@@ -263,13 +284,18 @@
 				$flicker.find('ul.flicks').attr({ style: '-webkit-transform:translate3d(-'+ $flick_position +'%, 0, 0);-o-transform:translate3d(-'+ $flick_position +'%, 0, 0);-moz-transform:translate3d(-'+ $flick_position +'%, 0, 0);transform:translate3d(-'+ $flick_position +'%, 0, 0)' });
 			}
 			
-			// Update the theme
+			// Flicker colour
 			$crt_flick							= $flicker.find('ul.flicks li:eq('+ $flick_position +')');
-			$flick_theme						= $crt_flick.data('theme');
 			$flicker.removeClass('flicker-theme-light').removeClass('flicker-theme-dark');
-			if(($flick_theme) && ($flick_theme.length > 0)){
+			
+			// Set the colour
+			if($crt_flick.hasClass('flick-theme-dark')){
 				
-				$flicker.addClass('flicker-theme-' + $flick_theme);
+				$flicker.addClass('flicker-theme-dark');
+			}
+			else if($crt_flick.hasClass('flick-theme-ligh')){
+				
+				$flicker.addClass('flicker-theme-light');
 			}
 			else {
 				

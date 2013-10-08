@@ -98,6 +98,21 @@
 		}
 	}
 	
+	// Arrow navigation
+	.arrow-navigation {
+		position: absolute;
+		height: 70%;
+		width: 10%;
+		top: 15%;
+		z-index: 100;
+	}
+	.arrow-navigation.left {
+		left: 2%;
+	}
+	.arrow-navigation.right {
+		right: 2%;
+	}
+	
 	// Dot navigation
 	.dot-navigation {
 		position: absolute;
@@ -142,20 +157,6 @@
 // Dark theme
 .webplate-flicker.flicker-theme-dark {
 	
-	// Flicks
-	.flick-inner {
-		color: fadeOut(#000, 10%);
-		
-		.flick-content {
-			.flick-sub-text {
-				color: fadeOut(#000, 10%);
-			}
-			.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
-				background-color: fadeOut(#fff, 50%);
-			}
-		}
-	}
-	
 	// Dot navigation
 	.dot-navigation {
 		.dot {
@@ -166,6 +167,18 @@
 		}
 		.dot.active {
 			background-color: #000;
+		}
+	}
+}
+.webplate-flicker ul.flicks li.flick-theme-dark .flick-inner {
+	color: fadeOut(#000, 10%);
+		
+	.flick-content {
+		.flick-sub-text {
+			color: fadeOut(#000, 10%);
+		}
+		.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+			background-color: fadeOut(#fff, 50%);
 		}
 	}
 }
