@@ -2,7 +2,7 @@
  * flickerplate.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   7 October 2013
+ * Last Edited:   10 October 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -19,6 +19,7 @@
 		var $flick_speed					= false;
 		var $flick_count					= 0;
 		var $dot_count						= 0;
+		var $flicker_moving				= false;
 
 		// Settings
 		$object.settings 					= {
@@ -29,7 +30,8 @@
 			auto_flick						: true,
 			delay								: 10,
 			dot_navigation					: true,
-			dot_alignment					: 'center'
+			dot_alignment					: 'center',
+			arrows							: true
 		};
 
 		// ----- Initilize
@@ -128,9 +130,23 @@
 				}
 			});
 			
+			// Create arrows
+			$data_arrow_navigation			= $flicker.data('arrows');
+			if(($data_arrow_navigation) && ($data_arrow_navigation.length > 0)){
+				
+				if($data_arrow_navigation != 'no'){
+				
+					$object.create_arrow_navigation();
+				}
+			}
+			else if($object.settings.arrows == true){
+				
+				$object.create_arrow_navigation();
+			}
+			
 			// Create navigation dots
-			$data_dot_navigation				= $flicker.data('dot-navigation');
-			$data_dot_alignment				= $flicker.data('dot-alignment');
+			$data_dot_navigation				= $flicker.data('dots');
+			$data_dot_alignment				= $flicker.data('dots-alignment');
 			var $dot_alignment				= $object.settings.dot_alignment;
 			
 			if(($data_dot_alignment) && ($data_dot_alignment.length > 0)){
@@ -156,9 +172,6 @@
 				
 				$object.create_dot_navigation($dot_alignment);
 			}
-			
-			// Create arrows
-			$object.create_arrow_navigation();
 			
 			// Perform the auto flicking
 			$flick_delay						= $object.settings.delay * 1000;
@@ -186,16 +199,110 @@
 			}
 			
 			$object.auto_flick_start();
+			
+			// Flick the flicker
+			$object.flick_flicker();
+			
+			// Kill the animation	
+			$flicker.find('ul.flicks').bind("transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd", function(){
+
+				$flicker_moving 				= false;
+			});
+		}
+		
+		// ----- Flick flicker
+		$object.flick_flicker				= function(){
+			
+			if(Modernizr.touch){
+
+				$flicker.on('drag', function($e){
+
+					if($flicker_moving == false) {
+						
+						if($e.orientation == 'horizontal'){
+
+							if($e.direction == 1){
+							
+								$flick_position--;
+								if($flick_position < 0){
+				
+									$flick_position	= 0;
+								}
+								else{
+									$flicker_moving 	= true;
+								}
+							}
+							else {
+							
+								$flick_position++;
+								if($flick_position == $flick_count){
+				
+									$flick_position	= $flick_count - 1;
+								}
+								else{
+									
+									$flicker_moving 	= true;
+								}
+							}
+			
+							// Move flicker
+							$object.move_flicker($flick_position);
+						}
+					}
+				});
+			}
 		}
 		
 		// ----- Create arrow navigation
 		$object.create_arrow_navigation	= function(){
 			
-			$arrow_nav_html	= '<div class="arrow-navigation left"></div>';
-			$arrow_nav_html	+= '<div class="arrow-navigation right"></div>';
+			// The HTML
+			$arrow_nav_html	= '<div class="arrow-navigation left"><div class="arrow"></div></div>';
+			$arrow_nav_html	+= '<div class="arrow-navigation right"><div class="arrow"></div></div>';
 
 			// Attach the HTML
 			$flicker.prepend($arrow_nav_html);
+			
+			// Show the arrows
+			$('.arrow-navigation').mouseover(function(){
+				
+				if($(this).hasClass('hover') == false){
+					
+					$(this).addClass('hover')
+				}
+			});
+			$('.arrow-navigation').mouseout(function(){
+				
+				if($(this).hasClass('hover') == true){
+					
+					$(this).removeClass('hover')
+				}
+			});
+			
+			// Navigate using the arrows
+			$('.arrow-navigation').on('click', function(){
+				
+				// Check which arrow was clicked
+				if($(this).hasClass('right')){
+					
+					$flick_position++;
+					if($flick_position == $flick_count){
+				
+						$flick_position				= 0;
+					}
+				}
+				else {
+					
+					$flick_position--;
+					if($flick_position < 0){
+				
+						$flick_position				= $flick_count - 1;
+					}
+				}
+			
+				// Move flicker
+				$object.move_flicker($flick_position);
+			});
 		}
 		
 		// ----- Create dot navigation
@@ -227,9 +334,6 @@
 			
 				// Invoke the movement
 				$object.move_flicker($(this).index());
-			
-				// Reset auto flicker
-				$object.auto_flick_reset();
 			});
 		}
 		
@@ -306,6 +410,9 @@
 			$flicker.find('.dot-navigation .dot.active').removeClass('active');
 			$flicker.find('.dot:eq('+ $flick_position +')').addClass('active');
 			$flicker.attr('data-flick-position', $flick_position);
+			
+			// Reset auto flicker
+			$object.auto_flick_reset();
 		}
 	};
 	

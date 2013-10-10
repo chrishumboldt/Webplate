@@ -79,13 +79,15 @@
 					margin-right: auto;
 				
 					.flick-title {
-						padding: 10px 0px;
+						padding: 0px 0px;
 						font-size: 2.778em;
+						line-height: 1.995em;
 						text-align: center;
 					}
 					.flick-sub-text {
 						padding: 5px;
 						font-weight: 300;
+						line-height: 2.5em;
 						color: fadeOut(#fff, 20%);
 						text-align: center;
 					}
@@ -101,16 +103,47 @@
 	// Arrow navigation
 	.arrow-navigation {
 		position: absolute;
-		height: 70%;
+		height: 80%;
 		width: 10%;
-		top: 15%;
+		top: 10%;
 		z-index: 100;
+		overflow: hidden;
+		
+		.arrow {
+			display: block;
+			height: 100%;
+			width: 90%;
+			.animate(all);
+		}
+	}
+	.arrow-navigation:hover, .arrow-navigation .arrow:hover {
+		cursor: pointer;
 	}
 	.arrow-navigation.left {
-		left: 2%;
+		left: 0%;
+		
+		.arrow {
+			opacity: 0;
+			margin: 0px 0px 0px 50%;
+			.single-background-image('../images/flickerplate/arrow-left-light.png', left);
+		}
 	}
 	.arrow-navigation.right {
-		right: 2%;
+		right: 0%;
+		
+		.arrow {
+			opacity: 0;
+			margin: 0px 0px 0px -50%;
+			.single-background-image('../images/flickerplate/arrow-right-light.png', right);
+		}
+	}
+	.arrow-navigation.left.hover .arrow {
+		opacity: 1;
+		margin: 0px 0px 0px 20%;
+	}
+	.arrow-navigation.right.hover .arrow {
+		opacity: 1;
+		margin: 0px 0px 0px -20%;
 	}
 	
 	// Dot navigation
@@ -157,6 +190,14 @@
 // Dark theme
 .webplate-flicker.flicker-theme-dark {
 	
+	// Arrow navigation
+	.arrow-navigation.left .arrow {
+		background-image: url('../images/flickerplate/arrow-left-dark.png');
+	}
+	.arrow-navigation.right .arrow {
+		background-image: url('../images/flickerplate/arrow-right-dark.png');
+	}
+	
 	// Dot navigation
 	.dot-navigation {
 		.dot {
@@ -199,4 +240,12 @@
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+	
+	.webplate-flicker ul.flicks li .flick-inner .flick-content {
+		.flick-title {
+			font-size: 1.667em;
+		}
+		.flick-sub-text {
+		}
+	}
 }

@@ -1,8 +1,8 @@
 /**
- * tools.js
+ * web-tools.js
  *
  * Author:        Chris Humboldt
- * Last Edited:   3 October 2013
+ * Last Edited:   10 October 2013
  * Edited By:   	Chris Humboldt
  */
 

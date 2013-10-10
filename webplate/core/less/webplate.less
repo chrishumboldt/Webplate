@@ -139,11 +139,16 @@
 	text-indent: -10000px;
 	overflow: hidden;
 }
-.background-cover(@image) {
+.background-cover(@image, @position: center) {
 	background-image: url(@image);
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center;
+	background-position: @position;
+}
+.single-background-image(@image, @position: center) {
+	background-image: url(@image);
+	background-repeat: no-repeat;
+	background-position: @position;
 }
 
 
