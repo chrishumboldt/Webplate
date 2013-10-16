@@ -11,16 +11,20 @@
   Table of Contents:
 
     Variables
-    Global
+	 Global
+    Large View
+    Fluid View
+    Small View
+    Links
 
 ---------------------------------------------------------*/
 
 
-/* VARIABLES
+/* Variables
 --------------------------------------------------------------------------------------- */
 
 
-/* GLOBAL
+/* Global
 --------------------------------------------------------------------------------------- */
 * {
   box-sizing: border-box;
@@ -68,4 +72,153 @@ a:hover, .make-link:hover {text-decoration:none; color: lighten(#65a8a6, 10%); c
 }
 .text-right {
 	text-align: right;	
+}
+// Set the heights
+html, body, .webplate, .webplate-content, .webplate-navigation {
+    height: 100%;
+}
+// Fixed elements
+.is-fixed {
+	position: fixed;
+	z-index: 100;
+}
+// Overlay
+.webplate-overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, fadeout(#000, 30%), fadeout(#000, 15%) 100%);
+  background-image: -o-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+  background-image: radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
+}
+// Webplate
+.webplate {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+
+	.webplate-shifter {
+		position: relative;
+		left: 0;
+		height: 100%;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		transform: translate3d(0px, 0px, 0px);
+		-webkit-transform: translate3d(0px, 0px, 0px);
+		-webkit-transition: -webkit-transform 0.2s ease;
+		-o-transition: -o-transform 0.2s ease;
+		-moz-transition: -moz-transform 0.2s ease;
+		transition: transform 0.2s ease;
+	}
+	.webplate-content {
+		position: relative;
+		width: 100%;
+		max-width: 100%;
+		margin: 0px auto;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+
+		.inner {
+			width: @page_width;
+			margin: 0px auto;
+		}
+	}
+}
+// Navigation
+.webplate-navigation {
+   display: block;
+   height: 100%;
+   top: 0px;
+   left: 0px;
+   width: @menu_width;
+	position: absolute;
+	margin-left: -@menu_width;
+	overflow-y: auto;
+   background-color: lighten(#000, 12%);
+	-webkit-overflow-scrolling: touch;
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+   z-index: 0;
+
+   .navigation-inner {
+	 	 position: relative;
+	 	 height: 100%;
+	 
+	 	.row{
+	 		padding-top: 15px;
+		
+	       a {
+	         display: block;
+	         padding: 10px 20px;
+	         font-size: 0.833em;
+	         color: #b0b0b0;
+	         .animate(color);
+	  
+	 		  div.icon {
+	 			  float: left;
+	 			  padding-right: 12px;
+	 			  font-size: 1em;
+	 			  color: #E99272;
+	 		  }
+	       }
+	       a:hover {
+	         color: #fff;
+	       }
+	 	}
+   }
+}
+.show-nav .webplate-shifter {
+  -webkit-transform: translate3d(@menu_width, 0px, 0px);
+  -o-transform: translate3d(@menu_width, 0px, 0px);
+  -moz-transform: translate3d(@menu_width, 0px, 0px);
+  transform: translate3d(@menu_width, 0px, 0px);
+}
+
+// Fixed page width setting
+html.fixed-page .webplate .webplate-content {
+    max-width: @page_width;
+}
+
+
+/* Large View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (min-width: 701px) {
+	
+  // Navigation
+  .navigation ul, ol {
+    list-style: none;
+  }
+}
+
+
+/* Fluid View (Desktop and iPad)
+--------------------------------------------------------------------------------------- */
+@media screen and (max-width: @page_width) {
+	
+  .webplate {
+    .webplate-content {
+      // Set inner width
+      .inner {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+/* Small View (iPhone)
+--------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+	
+  // Navigation
+  .navigation {
+    display: none;
+  }
 }

@@ -119,7 +119,7 @@
 				var $background				= $(this).data('background');
 				if(($background) && ($background.length > 0)){
 				
-					$(this).css('background-image', 'url(webplate/extras/images/' + $background + ')');
+					$(this).css('background-image', 'url(' + $background + ')');
 				} 
 				
 				// Class an theme overwrites
@@ -220,6 +220,8 @@
 					if($flicker_moving == false) {
 						
 						if($e.orientation == 'horizontal'){
+							
+							$e.preventDefault();
 
 							if($e.direction == 1){
 							
