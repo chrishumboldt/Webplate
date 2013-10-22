@@ -76,7 +76,7 @@
 	-webkit-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 	-moz-box-shadow: inset @horizontal_offset @vertical_offset @size @color;
 }
-.no-drop-shadow {
+.no-drop-shadow () {
 	box-shadow: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -117,10 +117,6 @@
 .dark-left-border (@bottom_lowlight: 80%, @bottom_colour: #000000) {
 	border-left: 1px solid fadeout(@bottom_colour, @bottom_lowlight);
 }
-.hide-text {
-	text-indent: -1000px;
-	overflow: hidden;
-}
 .change-opacity (@opacity: 0.60) {
 	-moz-opacity: @opacity;
 	opacity: @opacity;
@@ -135,17 +131,17 @@
 	-webkit-backface-visibility: hidden;
 	transform: translate3d(0,0,0);
 }
-.hide-text() {
+.hide-text () {
 	text-indent: -10000px;
 	overflow: hidden;
 }
-.background-cover(@image, @position: center) {
+.background-cover (@image, @position: center) {
 	background-image: url(@image);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: @position;
 }
-.single-background-image(@image, @position: center) {
+.single-background-image (@image, @position: center) {
 	background-image: url(@image);
 	background-repeat: no-repeat;
 	background-position: @position;

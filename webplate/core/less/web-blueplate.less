@@ -2,7 +2,7 @@
  * blueplate.less
  *
  * Author:        Chris Humboldt
- * Last Edited:   16 October 2013
+ * Last Edited:   21 October 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -20,12 +20,80 @@
 ---------------------------------------------------------*/
 
 
-/* Variables
---------------------------------------------------------------------------------------- */
-
-
 /* Global
 --------------------------------------------------------------------------------------- */
+/* Display classes */
+.display-it {
+	display: block;
+}
+.display-none {
+	display: none;
+}
+.fade-out-25, .fade-in-75 {
+	opacity: 0.75;
+}
+.fade-out-50, .fade-in-50 {
+	opacity: 0.5;
+}
+.fade-out-75, .fade-in-25 {
+	opacity: 0.25;
+}
+.fade-out-100, .fade-in-0 {
+	opacity: 0;
+}
+.hide-text {
+	text-indent: -10000px;
+	overflow: hidden;
+}
+
+/* Alignment classes */
+.float-l {
+	float: left;
+}
+.float-r {
+	float: right;
+}
+.float-clear {
+	clear: both;
+}
+.txt-l {
+	text-align: left;	
+}
+.txt-r {
+	text-align: right;	
+}
+.txt-c {
+	text-align: center;
+}
+.txt-size-xl {
+	font-size: 1.444em
+}
+.txt-size-l {
+	font-size: 1.222em
+}
+.txt-size-n {
+	font-size: 1em;
+}
+.txt-size-m {
+	font-size: 0.889em;
+}
+.txt-size-s {
+	font-size: 0.778em;
+}
+.txt-size-xs {
+	font-size: 0.667em
+}
+.valign-t {
+	vertical-align: top;
+}
+.valign-b {
+	vertical-align: bottom;
+}
+.center-it {
+	margin: 0px auto;
+}
+
+/* Responsive layout */
 .row:before, .row:after {
 	content: " ";
 	display: table;
@@ -43,108 +111,228 @@
 		float: left;
 		position: relative;
 	}
-	.span-12 {
-		width: 100%;
+	
+	// Span loop (12 grid system)
+	.span-loop(@index) when (@index > 0) {
+
+		.span-@{index} {
+			width: percentage(@index * 0.083333333333333334 );
+		}
+		// Update loop
+		.span-loop(@index - 1);
 	}
-	.span-11 {
-		width: 91.66666666666666%;
+	.span-loop(0){}
+	.span-loop(12);
+	
+	// Offset loop (12 grid system)
+	.offset-loop(@index) when (@index > 0) {
+
+		.offset-@{index} {
+			margin-left: percentage(@index * 0.083333333333333334 );
+		}
+		.offset-r-@{index} {
+			margin-right: percentage(@index * 0.083333333333333334 );
+		}
+		
+		// Update loop
+		.offset-loop(@index - 1);
 	}
-	.span-10 {
-		width: 83.33333333333334%;
+	.offset-loop(0){}
+	.offset-loop(11);
+}
+
+/* Spacing classes */
+.no-pad {
+	padding: 0px;
+}
+
+// Multiples of 100 from 500 to 1000
+.spacing-loop-100(@index) when (@index > 4) {
+
+	@multiplication	: 100px;
+	@class_name			: @index * 100;
+	
+	// Padding
+	.pad-@{class_name} {
+		padding: (@multiplication * @index);
 	}
-	.span-9 {
-		width: 75%;
+	.pad-r-@{class_name} {
+		padding-right: (@multiplication * @index);
 	}
-	.span-8 {
-		width: 66.66666666666666%;
+	.pad-l-@{class_name} {
+		padding-left: (@multiplication * @index);
 	}
-	.span-7 {
-		width: 58.333333333333336%;
+	.pad-t-@{class_name} {
+		padding-top: (@multiplication * @index);
 	}
-	.span-6 {
-		width: 50%;
+	.pad-b-@{class_name} {
+		padding-bottom: (@multiplication * @index);
 	}
-	.span-5 {
-		width: 41.66666666666667%;
+	
+	// Margin
+	.mgn-@{class_name} {
+		margin: (@multiplication * @index);
 	}
-	.span-4 {
-		width: 33.33333333333333%;
+	.mgn-r-@{class_name} {
+		margin-right: (@multiplication * @index);
 	}
-	.span-3 {
-		width: 25%;
+	.mgn-l-@{class_name} {
+		margin-left: (@multiplication * @index);
 	}
-	.span-2 {
-		width: 16.666666666666664%;
+	.mgn-t-@{class_name} {
+		margin-top: (@multiplication * @index);
 	}
-	.span-1 {
-		width: 8.333333333333332%;
+	.mgn-b-@{class_name} {
+		margin-bottom: (@multiplication * @index);
 	}
-	.offset-11 {
-		margin-left: 91.66666666666666%;
+	
+	// Update loop
+	.spacing-loop-100(@index - 1);
+}
+.spacing-loop-100(0){}
+.spacing-loop-100(10);
+
+// Multiples of 50 from 150 to 450
+.spacing-loop-50(@index) when (@index > 2) {
+
+	@multiplication	: 50px;
+	@class_name			: @index * 50;
+	
+	// Padding
+	.pad-@{class_name} {
+		padding: (@multiplication * @index);
 	}
-	.offset-10 {
-		margin-left: 83.33333333333334%;
+	.pad-r-@{class_name} {
+		padding-right: (@multiplication * @index);
 	}
-	.offset-9 {
-		margin-left: 75%;
+	.pad-l-@{class_name} {
+		padding-left: (@multiplication * @index);
 	}
-	.offset-8 {
-		margin-left: 66.66666666666666%;
+	.pad-t-@{class_name} {
+		padding-top: (@multiplication * @index);
 	}
-	.offset-7 {
-		margin-left: 58.333333333333336%;
+	.pad-b-@{class_name} {
+		padding-bottom: (@multiplication * @index);
 	}
-	.offset-6 {
-		margin-left: 50%;
+	
+	// Margin
+	.mgn-@{class_name} {
+		margin: (@multiplication * @index);
 	}
-	.offset-5 {
-		margin-left: 41.66666666666667%;
+	.mgn-r-@{class_name} {
+		margin-right: (@multiplication * @index);
 	}
-	.offset-4 {
-		margin-left: 33.33333333333333%;
+	.mgn-l-@{class_name} {
+		margin-left: (@multiplication * @index);
 	}
-	.offset-3 {
-		margin-left: 25%;
+	.mgn-t-@{class_name} {
+		margin-top: (@multiplication * @index);
 	}
-	.offset-2 {
-		margin-left: 16.666666666666664%;
+	.mgn-b-@{class_name} {
+		margin-bottom: (@multiplication * @index);
 	}
-	.offset-1 {
-		margin-left: 8.333333333333332%;
+	
+	// Update loop
+	.spacing-loop-50(@index - 1);
+}
+.spacing-loop-50(0){}
+.spacing-loop-50(9);
+
+// Multiples of 5 from 20 to 100
+.spacing-loop-5(@index) when (@index > 3) {
+
+	@multiplication	: 5px;
+	@class_name			: @index * 5;
+	
+	// Padding
+	.pad-@{class_name} {
+		padding: (@multiplication * @index);
 	}
-	.offset-right-11 {
-		margin-right: 91.66666666666666%;
+	.pad-r-@{class_name} {
+		padding-right: (@multiplication * @index);
 	}
-	.offset-right-10 {
-		margin-right: 83.33333333333334%;
+	.pad-l-@{class_name} {
+		padding-left: (@multiplication * @index);
 	}
-	.offset-right-9 {
-		margin-right: 75%;
+	.pad-t-@{class_name} {
+		padding-top: (@multiplication * @index);
 	}
-	.offset-right-8 {
-		margin-right: 66.66666666666666%;
+	.pad-b-@{class_name} {
+		padding-bottom: (@multiplication * @index);
 	}
-	.offset-right-7 {
-		margin-right: 58.333333333333336%;
+	
+	// Margin
+	.mgn-@{class_name} {
+		margin: (@multiplication * @index);
 	}
-	.offset-right-6 {
-		margin-right: 50%;
+	.mgn-r-@{class_name} {
+		margin-right: (@multiplication * @index);
 	}
-	.offset-right-5 {
-		margin-right: 41.66666666666667%;
+	.mgn-l-@{class_name} {
+		margin-left: (@multiplication * @index);
 	}
-	.offset-right-4 {
-		margin-right: 33.33333333333333%;
+	.mgn-t-@{class_name} {
+		margin-top: (@multiplication * @index);
 	}
-	.offset-right-3 {
-		margin-right: 25%;
+	.mgn-b-@{class_name} {
+		margin-bottom: (@multiplication * @index);
 	}
-	.offset-right-2 {
-		margin-right: 16.666666666666664%;
+	
+	// Update loop
+	.spacing-loop-5(@index - 1);
+}
+.spacing-loop-5(0){}
+.spacing-loop-5(20);
+
+// Single intergers up to 15
+.spacing-loop-1(@index) when (@index > 0) {
+
+	@multiplication	: 1px;
+	@class_name			: @index;
+	
+	// Padding
+	.pad-@{class_name} {
+		padding: (@multiplication * @index);
 	}
-	.offset-right-1 {
-		margin-right: 8.333333333333332%;
+	.pad-r-@{class_name} {
+		padding-right: (@multiplication * @index);
 	}
+	.pad-l-@{class_name} {
+		padding-left: (@multiplication * @index);
+	}
+	.pad-t-@{class_name} {
+		padding-top: (@multiplication * @index);
+	}
+	.pad-b-@{class_name} {
+		padding-bottom: (@multiplication * @index);
+	}
+	
+	// Margin
+	.mgn-@{class_name} {
+		margin: (@multiplication * @index);
+	}
+	.mgn-r-@{class_name} {
+		margin-right: (@multiplication * @index);
+	}
+	.mgn-l-@{class_name} {
+		margin-left: (@multiplication * @index);
+	}
+	.mgn-t-@{class_name} {
+		margin-top: (@multiplication * @index);
+	}
+	.mgn-b-@{class_name} {
+		margin-bottom: (@multiplication * @index);
+	}
+	
+	// Update loop
+	.spacing-loop-1(@index - 1);
+}
+.spacing-loop-1(0){}
+.spacing-loop-1(15);
+
+/* Colour classes */
+.txt-grey {
+  color: fadeout(#000, 50%);
 }
 
 
@@ -193,108 +381,34 @@
 		[class *= "offset-right-"] {
 			margin-right: 0%;
 		}
-		.small-span-12 {
-			width: 100%;
+		
+		// Small span loop (12 grid system)
+		.small-span-loop(@index) when (@index > 0) {
+
+			.small-span-@{index} {
+				width: percentage(@index * 0.083333333333333334 );
+			}
+			// Update loop
+			.small-span-loop(@index - 1);
 		}
-		.small-span-11 {
-			width: 91.66666666666666%;
+		.small-span-loop(0){}
+		.small-span-loop(12);
+	
+		// Small offset loop (12 grid system)
+		.small-offset-loop(@index) when (@index > 0) {
+
+			.small-offset-@{index} {
+				margin-left: percentage(@index * 0.083333333333333334 );
+			}
+			.small-offset-r-@{index} {
+				margin-right: percentage(@index * 0.083333333333333334 );
+			}
+		
+			// Update loop
+			.small-offset-loop(@index - 1);
 		}
-		.small-span-10 {
-			width: 83.33333333333334%;
-		}
-		.small-span-9 {
-			width: 75%;
-		}
-		.small-span-8 {
-			width: 66.66666666666666%;
-		}
-		.small-span-7 {
-			width: 58.333333333333336%;
-		}
-		.small-span-6 {
-			width: 50%;
-		}
-		.small-span-5 {
-			width: 41.66666666666667%;
-		}
-		.small-span-4 {
-			width: 33.33333333333333%;
-		}
-		.small-span-3 {
-			width: 24%;
-		}
-		.small-span-2 {
-			width: 16.666666666666664%;
-		}
-		.small-span-1 {
-			width: 8.333333333333332%;
-		}
-		.small-offset-11 {
-			margin-left: 91.66666666666666%;
-		}
-		.small-offset-10 {
-			margin-left: 83.33333333333334%;
-		}
-		.small-offset-9 {
-			margin-left: 75%;
-		}
-		.small-offset-8 {
-			margin-left: 66.66666666666666%;
-		}
-		.small-offset-7 {
-			margin-left: 58.333333333333336%;
-		}
-		.small-offset-6 {
-			margin-left: 50%;
-		}
-		.small-offset-5 {
-			margin-left: 41.66666666666667%;
-		}
-		.small-offset-4 {
-			margin-left: 33.33333333333333%;
-		}
-		.small-offset-3 {
-			margin-left: 25%;
-		}
-		.small-offset-2 {
-			margin-left: 16.666666666666664%;
-		}
-		.small-offset-1 {
-			margin-left: 8.333333333333332%;
-		}
-		.small-offset-right-11 {
-			margin-right: 91.66666666666666%;
-		}
-		.small-offset-right-10 {
-			margin-right: 83.33333333333334%;
-		}
-		.small-offset-right-9 {
-			margin-right: 75%;
-		}
-		.small-offset-right-8 {
-			margin-right: 66.66666666666666%;
-		}
-		.small-offset-right-7 {
-			margin-right: 58.333333333333336%;
-		}
-		.small-offset-right-6 {
-			margin-right: 50%;
-		}
-		.small-offset-right-5 {
-			margin-right: 41.66666666666667%;
-		}
-		.small-offset-right-4 {
-			margin-right: 33.33333333333333%;
-		}
-		.small-offset-right-3 {
-			margin-right: 25%;
-		}
-		.small-offset-right-2 {
-			margin-right: 16.666666666666664%;
-		}
-		.small-offset-right-1 {
-			margin-right: 8.333333333333332%;
-		}
+		.small-offset-loop(0){}
+		.small-offset-loop(11);
 	}
 }
 
