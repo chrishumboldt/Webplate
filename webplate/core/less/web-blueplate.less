@@ -2,7 +2,7 @@
  * blueplate.less
  *
  * Author:        Chris Humboldt
- * Last Edited:   21 October 2013
+ * Last Edited:   22 October 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -46,7 +46,24 @@
 	overflow: hidden;
 }
 
+/* Position classes */
+.pos-absolute {
+	position: absolute;
+}
+.pos-relative {
+	position: relative;
+}
+.pos-static {
+	position: static;
+}
+.pos-fixed {
+	position: fixed;
+}
+
 /* Alignment classes */
+.float-no {
+	float: none;
+}
 .float-l {
 	float: left;
 }
@@ -65,11 +82,19 @@
 .txt-c {
 	text-align: center;
 }
-.txt-size-xl {
+.center-it {
+	margin: 0px auto;
+}
+
+/* Text classes */
+.txt-size-xxl {
 	font-size: 1.444em
 }
-.txt-size-l {
+.txt-size-xl {
 	font-size: 1.222em
+}
+.txt-size-l {
+	font-size: 1.111em
 }
 .txt-size-n {
 	font-size: 1em;
@@ -83,14 +108,240 @@
 .txt-size-xs {
 	font-size: 0.667em
 }
+.txt-weight-xb {
+	font-weight: 900;
+}
+.txt-weight-b, .txt-bold {
+	font-weight: 700;
+}
+.txt-weight-n {
+	font-weight: 400;
+}
+.txt-weight-l, .txt-light {
+	font-weight: 300;
+}
+.txt-weight-xl {
+	font-weight: 100;
+}
+.txt-normal {
+	font-weight: 400;
+	font-style: normal;
+}
+.txt-italics {
+	font-style: italic;
+}
+.txt-oblique {
+	font-style: oblique;
+}
+.txt-white {
+	color: #fff;
+}
+
+/* Vertical classes */
 .valign-t {
 	vertical-align: top;
 }
 .valign-b {
 	vertical-align: bottom;
 }
-.center-it {
-	margin: 0px auto;
+
+/* Background classes */
+.back-pos-l {
+	background-position: left;
+}
+.back-pos-r {
+	background-position: right;
+}
+.back-pos-t {
+	background-position: top;
+}
+.back-pos-b {
+	background-position: bottom;
+}
+.back-pos-c {
+	background-position: center;
+}
+.back-repeat-no {
+	background-repeat: no-repeat;
+}
+.back-repeat-y {
+	background-repeat: repeat-y;
+}
+.back-repeat-x {
+	background-repeat: repeat-x;
+}
+.back-single {
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.back-cover {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.back-black {
+	background-color: #000;
+}
+.back-grey {
+	background-color: lighten(#000, 50%);
+}
+.back-white {
+	background-color: #fff;
+}
+
+/* General layout */
+// Multiples of 2 from 52 to 100
+.percentage-loop-1(@index) when (@index > 25) {
+
+	@multiplication	: 2%;
+	@class_name			: (@index * 2);
+	
+	// Width
+	.pct-w-@{class_name} {
+		width: (@multiplication * @index);
+	}
+	// Height
+	.pct-h-@{class_name} {
+		height: (@multiplication * @index);
+	}
+	
+	// Update loop
+	.percentage-loop-1(@index - 1);
+}
+.percentage-loop-1(0){}
+.percentage-loop-1(50);
+
+// Multiples of 2 from 2 to 50
+.percentage-loop-2(@index) when (@index > 0) {
+	
+	@multiplication	: 2%;
+	@class_name			: (@index * 2);
+	
+	// Width
+	.pct-w-@{class_name} {
+		width: (@multiplication * @index);
+	}
+	// Height
+	.pct-h-@{class_name} {
+		height: (@multiplication * @index);
+	}
+	// Right
+	.pct-r-@{class_name} {
+		right: (@multiplication * @index);
+	}
+	// Left
+	.pct-l-@{class_name} {
+		left: (@multiplication * @index);
+	}
+	// Top
+	.pct-t-@{class_name} {
+		top: (@multiplication * @index);
+	}
+	// Bottom
+	.pct-b-@{class_name} {
+		bottom: (@multiplication * @index);
+	}
+	
+	// Update loop
+	.percentage-loop-2(@index - 1);
+}
+.percentage-loop-2(0){}
+.percentage-loop-2(25);
+
+// Extras
+.pct-w-1 {
+	width: 1%;
+}
+.pct-h-1 {
+	height: 1%;
+}
+.pct-r-1 {
+	right: 1%;
+}
+.pct-l-1 {
+	left: 1%;
+}
+.pct-t-1 {
+	top: 1%;
+}
+.pct-b-1 {
+	bottom: 1%;
+}
+
+.pct-w-25 {
+	width: 25%;
+}
+.pct-h-25 {
+	height: 25%;
+}
+.pct-r-25 {
+	right: 25%;
+}
+.pct-l-25 {
+	left: 25%;
+}
+.pct-t-25 {
+	top: 25%;
+}
+.pct-b-25 {
+	bottom: 25%;
+}
+
+.pct-w-33 {
+	width: 33%;
+}
+.pct-h-33 {
+	height: 33%;
+}
+.pct-r-33 {
+	right: 33%;
+}
+.pct-l-33 {
+	left: 33%;
+}
+.pct-t-33 {
+	top: 33%;
+}
+.pct-b-33 {
+	bottom: 33%;
+}
+
+.pct-w-66 {
+	width: 66%;
+}
+.pct-h-66 {
+	height: 66%;
+}
+.pct-r-66 {
+	right: 66%;
+}
+.pct-l-66 {
+	left: 66%;
+}
+.pct-t-66 {
+	top: 66%;
+}
+.pct-b-66 {
+	bottom: 66%;
+}
+
+.pct-w-75 {
+	width: 75%;
+}
+.pct-h-75 {
+	height: 75%;
+}
+.pct-r-75 {
+	right: 75%;
+}
+.pct-l-75 {
+	left: 75%;
+}
+.pct-t-75 {
+	top: 75%;
+}
+.pct-b-75 {
+	bottom: 75%;
 }
 
 /* Responsive layout */
@@ -127,10 +378,10 @@
 	// Offset loop (12 grid system)
 	.offset-loop(@index) when (@index > 0) {
 
-		.offset-@{index} {
+		.off-@{index} {
 			margin-left: percentage(@index * 0.083333333333333334 );
 		}
-		.offset-r-@{index} {
+		.off-r-@{index} {
 			margin-right: percentage(@index * 0.083333333333333334 );
 		}
 		
@@ -142,55 +393,16 @@
 }
 
 /* Spacing classes */
-.no-pad {
+.spacing-no {
+	padding: 0px;
+	margin: 0px;
+}
+.pad-no {
 	padding: 0px;
 }
-
-// Multiples of 100 from 500 to 1000
-.spacing-loop-100(@index) when (@index > 4) {
-
-	@multiplication	: 100px;
-	@class_name			: @index * 100;
-	
-	// Padding
-	.pad-@{class_name} {
-		padding: (@multiplication * @index);
-	}
-	.pad-r-@{class_name} {
-		padding-right: (@multiplication * @index);
-	}
-	.pad-l-@{class_name} {
-		padding-left: (@multiplication * @index);
-	}
-	.pad-t-@{class_name} {
-		padding-top: (@multiplication * @index);
-	}
-	.pad-b-@{class_name} {
-		padding-bottom: (@multiplication * @index);
-	}
-	
-	// Margin
-	.mgn-@{class_name} {
-		margin: (@multiplication * @index);
-	}
-	.mgn-r-@{class_name} {
-		margin-right: (@multiplication * @index);
-	}
-	.mgn-l-@{class_name} {
-		margin-left: (@multiplication * @index);
-	}
-	.mgn-t-@{class_name} {
-		margin-top: (@multiplication * @index);
-	}
-	.mgn-b-@{class_name} {
-		margin-bottom: (@multiplication * @index);
-	}
-	
-	// Update loop
-	.spacing-loop-100(@index - 1);
+.mgn-no {
+	margin: 0px;
 }
-.spacing-loop-100(0){}
-.spacing-loop-100(10);
 
 // Multiples of 50 from 150 to 450
 .spacing-loop-50(@index) when (@index > 2) {
@@ -232,14 +444,28 @@
 		margin-bottom: (@multiplication * @index);
 	}
 	
+	// Right / left / top / bottom
+	.right-@{class_name} {
+		right: (@multiplication * @index);
+	}
+	.left-@{class_name} {
+		left: (@multiplication * @index);
+	}
+	.top-@{class_name} {
+		top: (@multiplication * @index);
+	}
+	.bottom-@{class_name} {
+		bottom: (@multiplication * @index);
+	}
+	
 	// Update loop
 	.spacing-loop-50(@index - 1);
 }
 .spacing-loop-50(0){}
-.spacing-loop-50(9);
+.spacing-loop-50(10);
 
-// Multiples of 5 from 20 to 100
-.spacing-loop-5(@index) when (@index > 3) {
+// Multiples of 5 from 25 to 100
+.spacing-loop-5(@index) when (@index > 4) {
 
 	@multiplication	: 5px;
 	@class_name			: @index * 5;
@@ -278,17 +504,31 @@
 		margin-bottom: (@multiplication * @index);
 	}
 	
+	// Right / left / top / bottom
+	.right-@{class_name} {
+		right: (@multiplication * @index);
+	}
+	.left-@{class_name} {
+		left: (@multiplication * @index);
+	}
+	.top-@{class_name} {
+		top: (@multiplication * @index);
+	}
+	.bottom-@{class_name} {
+		bottom: (@multiplication * @index);
+	}
+	
 	// Update loop
 	.spacing-loop-5(@index - 1);
 }
 .spacing-loop-5(0){}
 .spacing-loop-5(20);
 
-// Single intergers up to 15
+// Multiples of 2 from 1 to 20
 .spacing-loop-1(@index) when (@index > 0) {
 
-	@multiplication	: 1px;
-	@class_name			: @index;
+	@multiplication	: 2px;
+	@class_name			: (@index * 2);
 	
 	// Padding
 	.pad-@{class_name} {
@@ -324,11 +564,69 @@
 		margin-bottom: (@multiplication * @index);
 	}
 	
+	// Right / left / top / bottom
+	.right-@{class_name} {
+		right: (@multiplication * @index);
+	}
+	.left-@{class_name} {
+		left: (@multiplication * @index);
+	}
+	.top-@{class_name} {
+		top: (@multiplication * @index);
+	}
+	.bottom-@{class_name} {
+		bottom: (@multiplication * @index);
+	}
+	
 	// Update loop
 	.spacing-loop-1(@index - 1);
 }
 .spacing-loop-1(0){}
-.spacing-loop-1(15);
+.spacing-loop-1(10);
+
+// Extras
+.pad-1 {
+	padding: 1px;
+}
+.pad-r-1 {
+	padding-right: 1px;
+}
+.pad-l-1 {
+	padding-left: 1px;
+}
+.pad-t-1 {
+	padding-top: 1px;
+}
+.pad-b-1 {
+	padding-bottom: 1px;
+}
+.mgn-1 {
+	margin: 1px;
+}
+.mgn-r-1 {
+	margin-right: 1px;
+}
+.mgn-l-1 {
+	margin-left: 1px;
+}
+.mgn-t-1 {
+	margin-top: 1px;
+}
+.mgn-b-1 {
+	margin-bottom: 1px;
+}
+.right-1 {
+	right: 1px;
+}
+.left-1 {
+	left: 1px;
+}
+.top-1 {
+	top: 1px;
+}
+.bottom-1 {
+	bottom: 1px;
+}
 
 /* Colour classes */
 .txt-grey {
@@ -360,10 +658,55 @@
 /* Small View (iPhone)
 --------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
-	
+
+	/* Text classes */
+	.small-txt-size-xxl {
+		font-size: 1.444em
+	}
+	.small-txt-size-xl {
+		font-size: 1.222em
+	}
+	.small-txt-size-l {
+		font-size: 1.111em
+	}
+	.small-txt-size-n {
+		font-size: 1em;
+	}
+	.small-txt-size-m {
+		font-size: 0.889em;
+	}
+	.small-txt-size-s {
+		font-size: 0.778em;
+	}
+	.small-txt-size-xs {
+		font-size: 0.667em
+	}
+	.small-txt-weight-xb {
+		font-weight: 900;
+	}
+	.small-txt-weight-b, .txt-bold {
+		font-weight: 700;
+	}
+	.small-txt-weight-n {
+		font-weight: 400;
+	}
+	.small-txt-weight-l, .txt-light {
+		font-weight: 300;
+	}
+	.small-txt-weight-xl {
+		font-weight: 100;
+	}
+	.small-txt-normal {
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	/* General layout */
 	.small-hide {
 		display: none;
 	}
+	
+	// Responive layout
 	.row {
 		[class *= "span-"] {
 			display: block;
@@ -397,10 +740,10 @@
 		// Small offset loop (12 grid system)
 		.small-offset-loop(@index) when (@index > 0) {
 
-			.small-offset-@{index} {
+			.small-off-@{index} {
 				margin-left: percentage(@index * 0.083333333333333334 );
 			}
-			.small-offset-r-@{index} {
+			.small-off-r-@{index} {
 				margin-right: percentage(@index * 0.083333333333333334 );
 			}
 		
