@@ -1,7 +1,7 @@
-Webplate
+Webplate Framework
 ========
 
-A cool frontend framework.
+An awesome responsive front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 Copyright and license
 ========
