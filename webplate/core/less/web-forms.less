@@ -1,34 +1,29 @@
 /**
- * forms.less
- *
+ * LESS File: 		forms.less
  * Author:        Damir Foy
  * Link:				http://damirfoy.com/iCheck/
  * Last Edited:   28 September 2013
- * Edited By:		Chris Modem
+ * Edited By:		Chris Humboldt
  */
 
-/*-------------------------------------------------------
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
 
-  Table of Contents:
-
-  Variables
-  Global
-  Large View
-  Small View
-
----------------------------------------------------------*/
+// Variables
+// Global
+// Small View
 
 
-/* VARIABLES
---------------------------------------------------------------------------------------- */ 
+// Variables
+// ---------------------------------------------------------------------------------------
 @fe_images_root					: '../images/forms';
 @fe_border_color 					: lighten(#000, 82%);
 @fe_border_width					: 1px; 
 @fe_rounded_corners_radius		: 2px;  
 
 
-/* Global
---------------------------------------------------------------------------------------- */
+// Global
+// ---------------------------------------------------------------------------------------
 // Display inline
 .inline {
 	margin-bottom: 8px;
@@ -751,20 +746,8 @@ select {
 }
 
 
-/* Large View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
-@media screen and (min-width: 700px) {
-}
-
-
-/* Adjusting View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
-@media screen and (max-width: @page_width) {
-}
-
-
-/* Small View (iPhone)
---------------------------------------------------------------------------------------- */
+// Small View (iPhone)
+// ---------------------------------------------------------------------------------------
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.drop-down {
 		display: block;

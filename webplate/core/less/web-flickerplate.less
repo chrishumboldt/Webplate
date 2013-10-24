@@ -1,31 +1,29 @@
 /**
- * flickerplate.less
- *
+ * LESS File: 		flickerplate.less
  * Author:        Chris Humboldt
+ * Link:				http://getwebplate.com/plugins/flickerplate
  * Last Edited:   8 October 2013
  * Edited By:		Chris Humboldt
  */
 
-/*-------------------------------------------------------
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
 
-  Table of Contents:
-
-    Variables
-    Mixins
-    Large View
-    Adjusting View
-    Small View
-
----------------------------------------------------------*/
+// Variables
+// Mixins
+// Global
+// Large View
+// Fluid View
+// Small View
 
 
-/* VARIABLES
---------------------------------------------------------------------------------------- */
+// Variables
+// ---------------------------------------------------------------------------------------
 @dot_size				: 14px;
 
 
-/* Mixins
---------------------------------------------------------------------------------------- */
+// Mixins
+// ---------------------------------------------------------------------------------------
 .translate-left(@left) {
    -webkit-transform: translate3d(@left, 0px, 0px);
    -o-transform: translate3d(@left, 0px, 0px);
@@ -34,8 +32,8 @@
 }
 
 
-/* Global
---------------------------------------------------------------------------------------- */
+// Global
+// ---------------------------------------------------------------------------------------
 // Default flicker - light theme
 .webplate-flicker {
 	position: relative;
@@ -225,20 +223,20 @@
 }
 
 
-/* Large View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
+// Large View (Desktop and iPad)
+// ---------------------------------------------------------------------------------------
 @media screen and (min-width: 701px) {
 }
 
 
-/* Adjusting View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
+// Fluid View (Desktop and iPad)
+// ---------------------------------------------------------------------------------------
 @media screen and (max-width: @page_width) {
 }
 
 
-/* Small View (iPhone)
---------------------------------------------------------------------------------------- */
+// Small View (iPhone)
+// ---------------------------------------------------------------------------------------
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
 	
 	.webplate-flicker ul.flicks li .flick-inner .flick-content {

@@ -1,28 +1,23 @@
 /**
- * blueplate.less
- *
+ * LESS File: 		blueplate.less
  * Author:        Chris Humboldt
- * Last Edited:   22 October 2013
+ * Link:				http://getwebplate.com/plugins/blueplate
+ * Last Edited:   24 October 2013
  * Edited By:		Chris Humboldt
  */
 
-/*-------------------------------------------------------
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
 
-  Table of Contents:
-
-    Variables
-	 Global
-    Large View
-    Fluid View
-    Small View
-    Links
-
----------------------------------------------------------*/
+// Global
+// Large View
+// Fluid View
+// Small View
 
 
-/* Global
---------------------------------------------------------------------------------------- */
-/* Display classes */
+// Global
+// ---------------------------------------------------------------------------------------
+// Display classes
 .display-it {
 	display: block;
 }
@@ -46,7 +41,7 @@
 	overflow: hidden;
 }
 
-/* Position classes */
+// Position classes
 .pos-absolute {
 	position: absolute;
 }
@@ -60,7 +55,7 @@
 	position: fixed;
 }
 
-/* Alignment classes */
+// Alignment classes
 .float-no {
 	float: none;
 }
@@ -86,7 +81,7 @@
 	margin: 0px auto;
 }
 
-/* Text classes */
+// Text classes
 .txt-size-xxl {
 	font-size: 1.444em
 }
@@ -137,7 +132,7 @@
 	color: #fff;
 }
 
-/* Vertical classes */
+// Vertical classes
 .valign-t {
 	vertical-align: top;
 }
@@ -145,7 +140,7 @@
 	vertical-align: bottom;
 }
 
-/* Background classes */
+// Background classes
 .back-pos-l {
 	background-position: left;
 }
@@ -185,166 +180,65 @@
 .back-grey {
 	background-color: lighten(#000, 50%);
 }
+.back-light-grey {
+	background-color: lighten(#000, 90%);
+}
 .back-white {
 	background-color: #fff;
 }
 
-/* General layout */
-// Multiples of 2 from 52 to 100
-.percentage-loop-1(@index) when (@index > 25) {
-
-	@multiplication	: 2%;
-	@class_name			: (@index * 2);
-	
-	// Width
-	.pct-w-@{class_name} {
-		width: (@multiplication * @index);
-	}
-	// Height
-	.pct-h-@{class_name} {
-		height: (@multiplication * @index);
-	}
-	
-	// Update loop
-	.percentage-loop-1(@index - 1);
+// General layout
+// For basic shapes
+.block-h-10 {
+	height: 10px;
 }
-.percentage-loop-1(0){}
-.percentage-loop-1(50);
-
-// Multiples of 2 from 2 to 50
-.percentage-loop-2(@index) when (@index > 0) {
-	
-	@multiplication	: 2%;
-	@class_name			: (@index * 2);
-	
-	// Width
-	.pct-w-@{class_name} {
-		width: (@multiplication * @index);
-	}
-	// Height
-	.pct-h-@{class_name} {
-		height: (@multiplication * @index);
-	}
-	// Right
-	.pct-r-@{class_name} {
-		right: (@multiplication * @index);
-	}
-	// Left
-	.pct-l-@{class_name} {
-		left: (@multiplication * @index);
-	}
-	// Top
-	.pct-t-@{class_name} {
-		top: (@multiplication * @index);
-	}
-	// Bottom
-	.pct-b-@{class_name} {
-		bottom: (@multiplication * @index);
-	}
-	
-	// Update loop
-	.percentage-loop-2(@index - 1);
+.block-h-20 {
+	height: 20px;
 }
-.percentage-loop-2(0){}
-.percentage-loop-2(25);
-
-// Extras
-.pct-w-1 {
-	width: 1%;
+.block-h-50 {
+	height: 50px;
 }
-.pct-h-1 {
-	height: 1%;
+.block-h-100 {
+	height: 100px;
 }
-.pct-r-1 {
-	right: 1%;
+.block-h-200 {
+	height: 200px;
 }
-.pct-l-1 {
-	left: 1%;
+.block-h-350 {
+	height: 350px;
 }
-.pct-t-1 {
-	top: 1%;
+.block-h-500 {
+	height: 500px;
 }
-.pct-b-1 {
-	bottom: 1%;
+.block-h-1000 {
+	height: 1000px;
+}
+.block-h-10 {
+	width: 10px;
+}
+.block-w-20 {
+	width: 20px;
+}
+.block-w-50 {
+	width: 50px;
+}
+.block-w-100 {
+	width: 100px;
+}
+.block-w-200 {
+	width: 200px;
+}
+.block-w-350 {
+	width: 350px;
+}
+.block-w-500 {
+	width: 500px;
+}
+.block-w-1000 {
+	width: 1000px;
 }
 
-.pct-w-25 {
-	width: 25%;
-}
-.pct-h-25 {
-	height: 25%;
-}
-.pct-r-25 {
-	right: 25%;
-}
-.pct-l-25 {
-	left: 25%;
-}
-.pct-t-25 {
-	top: 25%;
-}
-.pct-b-25 {
-	bottom: 25%;
-}
-
-.pct-w-33 {
-	width: 33%;
-}
-.pct-h-33 {
-	height: 33%;
-}
-.pct-r-33 {
-	right: 33%;
-}
-.pct-l-33 {
-	left: 33%;
-}
-.pct-t-33 {
-	top: 33%;
-}
-.pct-b-33 {
-	bottom: 33%;
-}
-
-.pct-w-66 {
-	width: 66%;
-}
-.pct-h-66 {
-	height: 66%;
-}
-.pct-r-66 {
-	right: 66%;
-}
-.pct-l-66 {
-	left: 66%;
-}
-.pct-t-66 {
-	top: 66%;
-}
-.pct-b-66 {
-	bottom: 66%;
-}
-
-.pct-w-75 {
-	width: 75%;
-}
-.pct-h-75 {
-	height: 75%;
-}
-.pct-r-75 {
-	right: 75%;
-}
-.pct-l-75 {
-	left: 75%;
-}
-.pct-t-75 {
-	top: 75%;
-}
-.pct-b-75 {
-	bottom: 75%;
-}
-
-/* Responsive layout */
+// Responsive layout
 .row:before, .row:after {
 	content: " ";
 	display: table;
@@ -392,7 +286,7 @@
 	.offset-loop(11);
 }
 
-/* Spacing classes */
+// Spacing classes
 .spacing-no {
 	padding: 0px;
 	margin: 0px;
@@ -404,131 +298,11 @@
 	margin: 0px;
 }
 
-// Multiples of 50 from 150 to 450
-.spacing-loop-50(@index) when (@index > 2) {
-
-	@multiplication	: 50px;
-	@class_name			: @index * 50;
-	
-	// Padding
-	.pad-@{class_name} {
-		padding: (@multiplication * @index);
-	}
-	.pad-r-@{class_name} {
-		padding-right: (@multiplication * @index);
-	}
-	.pad-l-@{class_name} {
-		padding-left: (@multiplication * @index);
-	}
-	.pad-t-@{class_name} {
-		padding-top: (@multiplication * @index);
-	}
-	.pad-b-@{class_name} {
-		padding-bottom: (@multiplication * @index);
-	}
-	
-	// Margin
-	.mgn-@{class_name} {
-		margin: (@multiplication * @index);
-	}
-	.mgn-r-@{class_name} {
-		margin-right: (@multiplication * @index);
-	}
-	.mgn-l-@{class_name} {
-		margin-left: (@multiplication * @index);
-	}
-	.mgn-t-@{class_name} {
-		margin-top: (@multiplication * @index);
-	}
-	.mgn-b-@{class_name} {
-		margin-bottom: (@multiplication * @index);
-	}
-	
-	// Right / left / top / bottom
-	.right-@{class_name} {
-		right: (@multiplication * @index);
-	}
-	.left-@{class_name} {
-		left: (@multiplication * @index);
-	}
-	.top-@{class_name} {
-		top: (@multiplication * @index);
-	}
-	.bottom-@{class_name} {
-		bottom: (@multiplication * @index);
-	}
-	
-	// Update loop
-	.spacing-loop-50(@index - 1);
-}
-.spacing-loop-50(0){}
-.spacing-loop-50(10);
-
-// Multiples of 5 from 25 to 100
-.spacing-loop-5(@index) when (@index > 4) {
-
-	@multiplication	: 5px;
-	@class_name			: @index * 5;
-	
-	// Padding
-	.pad-@{class_name} {
-		padding: (@multiplication * @index);
-	}
-	.pad-r-@{class_name} {
-		padding-right: (@multiplication * @index);
-	}
-	.pad-l-@{class_name} {
-		padding-left: (@multiplication * @index);
-	}
-	.pad-t-@{class_name} {
-		padding-top: (@multiplication * @index);
-	}
-	.pad-b-@{class_name} {
-		padding-bottom: (@multiplication * @index);
-	}
-	
-	// Margin
-	.mgn-@{class_name} {
-		margin: (@multiplication * @index);
-	}
-	.mgn-r-@{class_name} {
-		margin-right: (@multiplication * @index);
-	}
-	.mgn-l-@{class_name} {
-		margin-left: (@multiplication * @index);
-	}
-	.mgn-t-@{class_name} {
-		margin-top: (@multiplication * @index);
-	}
-	.mgn-b-@{class_name} {
-		margin-bottom: (@multiplication * @index);
-	}
-	
-	// Right / left / top / bottom
-	.right-@{class_name} {
-		right: (@multiplication * @index);
-	}
-	.left-@{class_name} {
-		left: (@multiplication * @index);
-	}
-	.top-@{class_name} {
-		top: (@multiplication * @index);
-	}
-	.bottom-@{class_name} {
-		bottom: (@multiplication * @index);
-	}
-	
-	// Update loop
-	.spacing-loop-5(@index - 1);
-}
-.spacing-loop-5(0){}
-.spacing-loop-5(20);
-
-// Multiples of 2 from 1 to 20
+// Multiples of 1 from 1 to 20
 .spacing-loop-1(@index) when (@index > 0) {
 
-	@multiplication	: 2px;
-	@class_name			: (@index * 2);
+	@multiplication	: 1px;
+	@class_name			: (@index * 1);
 	
 	// Padding
 	.pad-@{class_name} {
@@ -562,80 +336,22 @@
 	}
 	.mgn-b-@{class_name} {
 		margin-bottom: (@multiplication * @index);
-	}
-	
-	// Right / left / top / bottom
-	.right-@{class_name} {
-		right: (@multiplication * @index);
-	}
-	.left-@{class_name} {
-		left: (@multiplication * @index);
-	}
-	.top-@{class_name} {
-		top: (@multiplication * @index);
-	}
-	.bottom-@{class_name} {
-		bottom: (@multiplication * @index);
 	}
 	
 	// Update loop
 	.spacing-loop-1(@index - 1);
 }
 .spacing-loop-1(0){}
-.spacing-loop-1(10);
+.spacing-loop-1(20);
 
-// Extras
-.pad-1 {
-	padding: 1px;
-}
-.pad-r-1 {
-	padding-right: 1px;
-}
-.pad-l-1 {
-	padding-left: 1px;
-}
-.pad-t-1 {
-	padding-top: 1px;
-}
-.pad-b-1 {
-	padding-bottom: 1px;
-}
-.mgn-1 {
-	margin: 1px;
-}
-.mgn-r-1 {
-	margin-right: 1px;
-}
-.mgn-l-1 {
-	margin-left: 1px;
-}
-.mgn-t-1 {
-	margin-top: 1px;
-}
-.mgn-b-1 {
-	margin-bottom: 1px;
-}
-.right-1 {
-	right: 1px;
-}
-.left-1 {
-	left: 1px;
-}
-.top-1 {
-	top: 1px;
-}
-.bottom-1 {
-	bottom: 1px;
-}
-
-/* Colour classes */
+// Colour classes
 .txt-grey {
   color: fadeout(#000, 50%);
 }
 
 
-/* Large View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
+// Large View (Desktop and iPad)
+// ---------------------------------------------------------------------------------------
 @media screen and (min-width: 701px) {
 
 	.small-show {
@@ -649,17 +365,17 @@
 }
 
 
-/* Fluid View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
+// Fluid View (Desktop and iPad)
+// ---------------------------------------------------------------------------------------
 @media screen and (max-width: @page_width) {
 }
 
 
-/* Small View (iPhone)
---------------------------------------------------------------------------------------- */
+// Small View (iPhone)
+// ---------------------------------------------------------------------------------------
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px), only screen and (-webkit-min-device-pixel-ratio: 2) {
 
-	/* Text classes */
+	// Text classes
 	.small-txt-size-xxl {
 		font-size: 1.444em
 	}
@@ -684,13 +400,13 @@
 	.small-txt-weight-xb {
 		font-weight: 900;
 	}
-	.small-txt-weight-b, .txt-bold {
+	.small-txt-weight-b, .small-txt-bold {
 		font-weight: 700;
 	}
 	.small-txt-weight-n {
 		font-weight: 400;
 	}
-	.small-txt-weight-l, .txt-light {
+	.small-txt-weight-l, .small-txt-light {
 		font-weight: 300;
 	}
 	.small-txt-weight-xl {
@@ -701,7 +417,7 @@
 		font-style: normal;
 	}
 
-	/* General layout */
+	// General layout
 	.small-hide {
 		display: none;
 	}
@@ -718,10 +434,10 @@
 				display: none;
 			}
 		}
-		[class *= "offset-"] {
+		[class *= "off-"] {
 			margin-left: 0%;
 		}
-		[class *= "offset-right-"] {
+		[class *= "off-r-"] {
 			margin-right: 0%;
 		}
 		
@@ -753,14 +469,4 @@
 		.small-offset-loop(0){}
 		.small-offset-loop(11);
 	}
-}
-
-
-/* Links
---------------------------------------------------------------------------------------- */
-a {
-}
-a:hover {
-}
-a:visited {
 }

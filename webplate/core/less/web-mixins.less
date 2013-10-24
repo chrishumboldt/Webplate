@@ -1,22 +1,21 @@
 /**
- * mixins.less
- *
+ * LESS File: 		mixins.less
  * Author:        Chris Humboldt
  * Last Edited:   21 October 2013
  * Edited By:		Chris Humboldt
- *
- * NOTE: Include this file in any custom LESS file you create to gain access to the 
- * @page_width variable and all these cool helper mixins.
  */
 
+// NOTE: Include this file in any custom LESS file you create to gain access to the 
+// @page_width variable and all these cool helper mixins.
 
-/* Import the settings file
---------------------------------------------------------------------------------------- */
+
+// Import the settings file
+// ---------------------------------------------------------------------------------------
 @import "../../settings.less";
 
 
-/* Mixins
---------------------------------------------------------------------------------------- */
+// Mixins
+// ---------------------------------------------------------------------------------------
 .rounded-corners (@radius: 2px) {
 	border-radius: @radius;
 	-o-border-radius: @radius;
@@ -145,4 +144,16 @@
 	background-image: url(@image);
 	background-repeat: no-repeat;
 	background-position: @position;
+}
+.squared-text(@size) {
+	width: @size;
+	height: @size;
+	line-height: @size;
+	text-align: center;
+}
+.parallax-background(@url) {
+	background-image: url(@url);
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
 }
