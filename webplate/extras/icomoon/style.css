@@ -1,15 +1,15 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?3l4af7');
-	src:url('fonts/icomoon.eot?#iefix3l4af7') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?3l4af7') format('truetype'),
-		url('fonts/icomoon.woff?3l4af7') format('woff'),
-		url('fonts/icomoon.svg?3l4af7#icomoon') format('svg');
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-[class*="icon-"] {
+[class^="icon-"], [class*=" icon-"] {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -236,6 +236,9 @@
 .icon-progress-0:before {
 	content: "\e663";
 }
+.icon-text:before {
+	content: "\e62e";
+}
 .icon-layout:before {
 	content: "\e62a";
 }
@@ -244,6 +247,9 @@
 }
 .icon-envelope:before {
 	content: "\e664";
+}
+.icon-stack:before {
+	content: "\e66a";
 }
 .icon-youtube:before {
 	content: "\e62c";
@@ -337,4 +343,13 @@
 }
 .icon-star3:before {
 	content: "\e669";
+}
+.icon-IcoMoon:before {
+	content: "\e66c";
+}
+.icon-checkbox-checked:before {
+	content: "\e66b";
+}
+.icon-pointer:before {
+	content: "\e66d";
 }
