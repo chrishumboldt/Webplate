@@ -748,7 +748,8 @@ select {
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+// @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 	.drop-down {
 		display: block;
 		width: 100%;

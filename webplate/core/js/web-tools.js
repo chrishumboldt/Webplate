@@ -1,8 +1,8 @@
 /**
  * web-tools.js
  *
- * Author:        Chris Humboldt
- * Last Edited:   10 October 2013
+ * Author:        	Chris Humboldt
+ * Last Edited: 	23 November 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -121,7 +121,7 @@ jQuery.web_is_integer 				= function($int){
 };
 
 // ----- CHECK THAT A STRING IS ONLY INTEGERS - NOT INLCUDING FRACTION
-jQuery.web_is_full_integer 		= function($int){
+jQuery.web_is_full_integer 			= function($int){
 
   if($int != ''){
 
@@ -147,7 +147,7 @@ jQuery.web_is_full_integer 		= function($int){
 };
 
 // ----- CHECK FOR WHITE SPACE
-jQuery.web_has_white_space 		= function($check){
+jQuery.web_has_white_space 			= function($check){
 
   if($check.indexOf(' ') != -1){
 
@@ -193,7 +193,7 @@ jQuery.web_input_mirror 			= function($input, $output){
 };
 
 // ----- CHECK THAT A STRING IS AN EMAIL
-jQuery.web_is_email 					= function($email){
+jQuery.web_is_email 				= function($email){
 
   if(($email.indexOf('@') != -1) && ($email.indexOf('.') != -1)){
 
@@ -241,7 +241,7 @@ jQuery.web_is_password 				= function($password){
 };
 
 // ----- CHECK THAT THE FILE IS AN IMAGE
-jQuery.web_is_image 					= function($file, $ar_allowed_types){
+jQuery.web_is_image 				= function($file, $ar_allowed_types){
 
   if($ar_allowed_types == null){
 
@@ -261,7 +261,7 @@ jQuery.web_is_image 					= function($file, $ar_allowed_types){
 };
 
 // ----- CHECK THAT INPUT IS A HEX CODE
-jQuery.web_is_color 					= function($color){
+jQuery.web_is_color 				= function($color){
 
   if($color.length == 7){
 
@@ -369,15 +369,17 @@ jQuery.web_navigation 				= function(){
 	// On click
 	$('.navigation-trigger').on('click', function($e){
 
-	 $e.preventDefault();
+		// $e.preventDefault();
 
-	   if($('html').hasClass('show-nav')){
+		if($('html').hasClass('show-nav')){
 
-	       $('html').removeClass('show-nav').addClass('hide-nav');
-	   }
-	   else{
-	       $('html').addClass('show-nav').removeClass('hide-nav');
-	   }
+			$('html').removeClass('show-nav').addClass('hide-nav');
+			StatusBar.styleDefault();
+		}
+		else{
+			$('html').addClass('show-nav').removeClass('hide-nav');
+			StatusBar.styleLightContent();
+		}
 	});
 	
 	// Close nav again
@@ -385,6 +387,7 @@ jQuery.web_navigation 				= function(){
 
 		if($('html').hasClass('nav-open')){
 			$('html').removeClass('show-nav').removeClass('nav-open').addClass('hide-nav');
+			StatusBar.styleDefault();
 		}
 	});
 
@@ -397,16 +400,18 @@ jQuery.web_navigation 				= function(){
 	// Change active state and close menu
 	$('.webplate-navigation a').on('click', function(){
 
-	   $('.webplate-navigation a.active').removeClass('active');
-	   $(this).addClass('active');
-	   $('html').removeClass('show-nav').addClass('hide-nav');
+		$('.webplate-navigation a.active').removeClass('active');
+		$(this).addClass('active');
+		$('html').removeClass('show-nav').addClass('hide-nav');
+		StatusBar.styleDefault();
 	});
 
 	if(Modernizr.touch){
 		$('.webplate-content').on('drag', function(){
 
 			if($('html').hasClass('show-nav')){
-		       $('html').removeClass('show-nav').addClass('hide-nav');
+				$('html').removeClass('show-nav').addClass('hide-nav');
+				StatusBar.styleDefault();
 			}
 		});
 	}
@@ -414,7 +419,8 @@ jQuery.web_navigation 				= function(){
 		$('.webplate-content').on('scroll', function(){
 
 			if($('html').hasClass('show-nav')){
-		       $('html').removeClass('show-nav').addClass('hide-nav');
+				$('html').removeClass('show-nav').addClass('hide-nav');
+				StatusBar.styleDefault();
 			}
 		});
 	}
@@ -468,7 +474,7 @@ jQuery.web_window_type 				= function(){
 };
 
 // ----- WINDOW TYPE EXECUTE
-jQuery.web_window_type_execute 	= function(){
+jQuery.web_window_type_execute 		= function(){
 
   // Some variables
   if($(window).width() <= 700){
@@ -489,7 +495,7 @@ jQuery.web_window_type_execute 	= function(){
 };
 
 // ----- FORMS EXECUTE
-jQuery.web_forms 						= function(){
+jQuery.web_forms 					= function(){
 
 	// Execute forms
 	$(document).ready(function(){
@@ -531,7 +537,7 @@ jQuery.web_load_plugins 			= function(js_path){
 	// Load plugins array
 	var $ar_js_plugins				= [];
 	var $check_flicker				= false;
-	var $check_fastclick				= false; 
+	var $check_fastclick			= false; 
 	
 	// Flickerplate check
 	$flickerplate_check				= $('.webplate-flicker:first');
@@ -564,4 +570,92 @@ jQuery.web_load_plugins 			= function(js_path){
 		}
 	
 	}});
+}
+
+// ----- WEB SCROLL
+jQuery.web_scroll 					= function(){
+	
+	// Some variables
+	var $last_scroll 				= 0;
+
+	// On scroll or drag event
+	if(Modernizr.touch){
+
+		$('.webplate-content').on('drag', function($e) {
+	
+			if($e.orientation == 'vertical'){
+		
+				if($e.direction == -1){
+			
+					if($('html').hasClass('scroll-down') == false){
+						$('html').addClass('scroll-down');
+					}
+				}
+				else{
+			
+					if($('html').hasClass('scroll-down') == true){
+						$('html').removeClass('scroll-down');
+					}
+				}
+			}
+		});
+	}
+	else{
+
+		$($('.webplate-content')).scroll(function($e){
+
+			// Sets the current scroll position
+			$scroll_top 			= $(this).scrollTop();
+
+			// Determine direction of scroll
+			if($scroll_top > $last_scroll){
+	
+				if($('html').hasClass('scroll-down') == false){
+					$('html').addClass('scroll-down');
+				}
+			} 
+			else {
+	
+				if($('html').hasClass('scroll-down') == true){
+		
+					$('html').removeClass('scroll-down');
+				}
+			}
+
+			//Updates scroll position
+			$last_scroll 			= $scroll_top;
+		});
+	}
+}
+
+// ----- GET URL
+jQuery.web_get_url					= function(){
+	
+	var $window_location			= window.location;
+	var $full_path					= $window_location.href;
+	var $ar_path 					= $window_location.href.split('/');
+	var $hash_split					= $window_location.href.split('#');
+	var $protocol 					= $ar_path[0];
+	var $host 						= $ar_path[2];
+	var $base_url 					= $protocol + '//' + $host;
+	var $hash_url					= $window_location.hash.substring(1);
+	var $site_path					= $hash_split[0];
+	var $ar_return					= [];
+	
+	// Set the return array
+	$ar_return['hash']				= $hash_url;
+	$ar_return['host']				= $host;
+	$ar_return['base_url']			= $base_url;
+	$ar_return['site_path']			= $site_path;
+	$ar_return['full_path']			= $full_path;
+	
+	// Return
+	return $ar_return;
+}
+
+// ----- CHANGE URL
+jQuery.web_change_url				= function($url){
+		
+	// window.location					= $url;
+	window.history.pushState({path:$url},'',$url);
 }

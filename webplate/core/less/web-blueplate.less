@@ -2,17 +2,31 @@
  * LESS File: 		blueplate.less
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:  	14 November 2013
+ * Last Edited:   	9 December 2013
  * Edited By:		Chris Humboldt
  */
 
 // Table of Contents:
 // ---------------------------------------------------------------------------------------
 
+// Mixins
 // Global
 // Large View
 // Fluid View
 // Small View
+
+
+// Mixins
+// ---------------------------------------------------------------------------------------
+.span(@span, @span_column_limit: @column_limit) {
+	width: percentage(@span / @column_limit);
+}
+.offset(@off_by, @span_column_limit: @column_limit) {
+	margin-left: percentage(@off_by / @column_limit);
+}
+.offset-r(@off_by, @span_column_limit: @column_limit) {
+	margin-right: percentage(@off_by / @column_limit);
+}
 
 
 // Global
@@ -257,33 +271,33 @@
 		position: relative;
 	}
 	
-	// Span loop (12 grid system)
+	// Span loop
 	.span-loop(@index) when (@index > 0) {
 
 		.span-@{index} {
-			width: percentage(@index * 0.083333333333333334 );
+			.span(@index);
 		}
 		// Update loop
 		.span-loop(@index - 1);
 	}
 	.span-loop(0){}
-	.span-loop(12);
+	.span-loop(@column_limit);
 	
-	// Offset loop (12 grid system)
+	// Offset loop
 	.offset-loop(@index) when (@index > 0) {
 
 		.off-@{index} {
-			margin-left: percentage(@index * 0.083333333333333334 );
+			.offset(@index);
 		}
 		.off-r-@{index} {
-			margin-right: percentage(@index * 0.083333333333333334 );
+			.offset-r(@index);
 		}
 		
 		// Update loop
 		.offset-loop(@index - 1);
 	}
 	.offset-loop(0){}
-	.offset-loop(11);
+	.offset-loop(@column_limit - 1);
 }
 
 // Spacing classes
@@ -301,7 +315,7 @@
 // Multiples of 1 from 1 to 20
 .spacing-loop-1(@index) when (@index > 0) {
 
-	@multiplication	: 1px;
+	@multiplication		: 1px;
 	@class_name			: (@index * 1);
 	
 	// Padding
@@ -373,7 +387,7 @@
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 
 	// Text classes
 	.small-txt-size-xxl {
@@ -441,32 +455,32 @@
 			margin-right: 0%;
 		}
 		
-		// Small span loop (12 grid system)
+		// Small span loop
 		.small-span-loop(@index) when (@index > 0) {
 
 			.small-span-@{index} {
-				width: percentage(@index * 0.083333333333333334 );
+				.span(@index);
 			}
 			// Update loop
 			.small-span-loop(@index - 1);
 		}
 		.small-span-loop(0){}
-		.small-span-loop(12);
+		.small-span-loop(@column_limit);
 	
-		// Small offset loop (12 grid system)
+		// Small offset loop
 		.small-offset-loop(@index) when (@index > 0) {
 
 			.small-off-@{index} {
-				margin-left: percentage(@index * 0.083333333333333334 );
+				.offset(@index);
 			}
 			.small-off-r-@{index} {
-				margin-right: percentage(@index * 0.083333333333333334 );
+				.offset-r(@index);
 			}
 		
 			// Update loop
 			.small-offset-loop(@index - 1);
 		}
 		.small-offset-loop(0){}
-		.small-offset-loop(11);
+		.small-offset-loop(@column_limit - 1);
 	}
 }

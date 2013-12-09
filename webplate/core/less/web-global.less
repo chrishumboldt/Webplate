@@ -1,7 +1,7 @@
 /**
  * LESS File: 		global.less
  * Author:        	Chris Humboldt
- * Last Edited:   	14 November 2013
+ * Last Edited:   	9 December 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -53,19 +53,6 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	position: fixed;
 	z-index: 100;
 }
-// Overlay
-.webplate-overlay {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
-  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
-  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, fadeout(#000, 30%), fadeout(#000, 15%) 100%);
-  background-image: -o-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
-  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
-  background-image: radial-gradient(50% 50%, circle closest-side, #ffffff, #000000 100%);
-}
 // Webplate
 .webplate {
 	position: relative;
@@ -76,14 +63,8 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		position: relative;
 		left: 0;
 		height: 100%;
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
-		transform: translate3d(0px, 0px, 0px);
-		-webkit-transform: translate3d(0px, 0px, 0px);
-		-webkit-transition: -webkit-transform 0.2s ease;
-		-o-transition: -o-transform 0.2s ease;
-		-moz-transition: -moz-transform 0.2s ease;
-		transition: transform 0.2s ease;
+		.ios-render();
+		.transform-easing();
 	}
 	.webplate-content {
 		position: relative;
@@ -92,8 +73,8 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		margin: 0px auto;
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
-		-webkit-perspective: 1000;
 		-webkit-backface-visibility: hidden;
+		z-index: 1;
 
 		.inner {
 			width: @page_width;
@@ -103,20 +84,19 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 }
 // Navigation
 .webplate-navigation {
-   display: block;
-   height: 100%;
-   top: 0px;
-   left: 0px;
-   width: @menu_width;
+	display: block;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	width: @menu_width;
 	position: absolute;
 	margin-left: -@menu_width;
 	overflow-y: auto;
-   background-color: lighten(#000, 12%);
+	background-color: lighten(#000, 18%);
 	-webkit-overflow-scrolling: touch;
-	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translate3d(0, 0, 0);
-   z-index: 0;
+	z-index: 0;
 
    .navigation-inner {
 	 	 position: relative;
@@ -146,10 +126,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
    }
 }
 .show-nav .webplate-shifter {
-  -webkit-transform: translate3d(@menu_width, 0px, 0px);
-  -o-transform: translate3d(@menu_width, 0px, 0px);
-  -moz-transform: translate3d(@menu_width, 0px, 0px);
-  transform: translate3d(@menu_width, 0px, 0px);
+	.transform-easing(@menu_width);
 }
 
 // Fixed page width setting
@@ -186,7 +163,8 @@ html.fixed-page .webplate .webplate-content {
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+// @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 	
   // Navigation
   .navigation {

@@ -2,7 +2,7 @@
  * LESS File: 		flickerplate.less
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/flickerplate
- * Last Edited:   	14 November 2013
+ * Last Edited:   	9 December 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -22,16 +22,6 @@
 @dot_size				: 14px;
 
 
-// Mixins
-// ---------------------------------------------------------------------------------------
-.translate-left(@left) {
-   -webkit-transform: translate3d(@left, 0px, 0px);
-   -o-transform: translate3d(@left, 0px, 0px);
-   -moz-transform: translate3d(@left, 0px, 0px);
-   transform: translate3d(@left, 0px, 0px);
-}
-
-
 // Global
 // ---------------------------------------------------------------------------------------
 // Default flicker - light theme
@@ -47,14 +37,6 @@
 		width: 10000%;
 		height: 100%;
 		list-style: none;
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
-		transform: translate3d(0%, 0px, 0px);
-		-webkit-transform: translate3d(0%, 0px, 0px);
-		-webkit-transition: -webkit-transform 1s ease;
-		-o-transition: -o-transform 1s ease;
-		-moz-transition: -moz-transform 1s ease;
-		transition: transform 1s ease;
 		
 		li {
 			float: left;
@@ -199,7 +181,7 @@
 	// Dot navigation
 	.dot-navigation {
 		.dot {
-			background-color: fadeOut(#000, 70%);
+			background-color: fadeOut(#000, 88%);
 		}
 		.dot:hover {
 			background-color: fadeOut(#000, 40%);
@@ -222,6 +204,44 @@
 	}
 }
 
+// Animation type
+.webplate-flicker.animate-transform-slide {
+	// Flicks
+	ul.flicks {
+		-webkit-perspective: 1000;
+		-webkit-backface-visibility: hidden;
+		transform: translate3d(0%, 0px, 0px);
+		-webkit-transform: translate3d(0%, 0px, 0px);
+		-webkit-transition: -webkit-transform 0.6s;
+		-o-transition: -o-transform 0.6s;
+		-moz-transition: -moz-transform 0.6s;
+		transition: transform 0.6s;
+	}
+}
+.webplate-flicker.animate-transition-slide {
+	// Flicks
+	ul.flicks {
+		position: relative;
+		left: 0%;
+		.animate(left, 0.4s);
+	}
+}
+.webplate-flicker.animate-jquery-slide {
+	// Flicks
+	ul.flicks {
+		position: relative;
+		left: 0%;
+	}
+}
+.webplate-flicker.animate-scroller-slide {
+	padding-bottom: 0px;
+	overflow: auto;
+	
+	ul.flicks {
+		position: auto;
+	}
+}
+
 
 // Large View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
@@ -237,7 +257,8 @@
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+// @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 	
 	.webplate-flicker ul.flicks li .flick-inner .flick-content {
 		.flick-title {
