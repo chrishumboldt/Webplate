@@ -22,11 +22,6 @@ var $js_extras_path							= $root + 'webplate/extras/js/';
 var $css_extras_path						= $root + 'webplate/extras/css/';
 var $less_extras_path						= $root + 'webplate/extras/less/';
 var $is_less								= false;
-var $ar_js_core								= [
-	$js_path + 'min/web-jquery.min.js',
-	$js_path + 'min/web-modernizr.min.js',
-	$js_path + 'min/web-tools.min.js'
-];
 var $ar_js_extras							= [];
 var $ar_css_core							= [
 	$css_path + 'webplate.css',
@@ -37,28 +32,9 @@ var $ar_css_extras							= [];
 
 // ---------- Load the necessary files and execute
 yepnope([{
-	load									: $ar_js_core,
+	load									: $js_path + 'min/web-imports.min.js',
 	complete								: function(){
 
-		/*
-		 *  Project: Buttons
-		 *  Description: A highly customizable CSS button library built with Sass and Compass
-		 *  Author: Alex Wolfe
-		 *  License: Apache License v2.0
-		 */// the semi-colon before function invocation is a safety net against concatenated
-		// scripts and/or other plugins which may not be closed properly.
-		(function(e,t,n,r){"use strict";function u(t,n){this.options=e.extend({},o,n);this._defaults=o;this._name=i;this.$element=e(t);this.init()}var i="menuButton",s=".button-dropdown",o={propertyName:"value"};u.prototype={constructor:u,init:function(){this.toggle()},toggle:function(e,t){this.$element.data("dropdown")==="show"?this.hideMenu():this.showMenu()},showMenu:function(){this.$element.data("dropdown","show");this.$element.find("ul").show();if(this.$overlay)this.$overlay.show();else{this.$overlay=e('<div class="button-overlay"></div>');this.$element.append(this.$overlay)}},hideMenu:function(){this.$element.data("dropdown","hide");this.$element.find("ul").hide();this.$overlay.hide()}};e.fn[i]=function(t){return this.each(function(){e.data(this,"plugin_"+i)?e.data(this,"plugin_"+i).toggle():e.data(this,"plugin_"+i,new u(this,t))})};e(n).on("click","[data-buttons=dropdown]",function(t){var n=e(t.currentTarget);n.menuButton()});e(n).on("click","[data-buttons=dropdown] > a",function(e){e.preventDefault()})})(jQuery,window,document);
-
-		/*!
-		 * iCheck v0.9.1, http://git.io/uhUPMA
-		 * =================================
-		 * Powerful jQuery plugin for checkboxes and radio buttons customization
-		 *
-		 * (c) 2013 Damir Foy, http://damirfoy.com
-		 * MIT Licensed
-		 */
-		(function(e){function w(e,t,n){var r=e[0];o=/er/.test(n)?f:/bl/.test(n)?u:s,active=n==l?{checked:r[s],disabled:r[u],indeterminate:e.attr(f)=="true"||e.attr(a)=="false"}:r[o];if(/^(ch|di|in)/.test(n)&&!active)E(e,o);else if(/^(un|en|de)/.test(n)&&active)S(e,o);else if(n==l)for(var o in active)active[o]?E(e,o,!0):S(e,o,!0);else if(!t||n=="toggle"){t||e[m]("ifClicked");active?r[c]!==i&&S(e,o):E(e,o)}}function E(r,l,h){var p=r[0],m=r.parent(),g=l==s,b=l==f,w=b?a:g?o:"enabled",E=T(p,w+N(p[c])),x=T(p,l+N(p[c]));if(p[l]!==!0){if(!h&&l==s&&p[c]==i&&p.name){var k=r.closest("form"),L='input[name="'+p.name+'"]';L=k.length?k.find(L):e(L);L.each(function(){this!==p&&e.data(this,t)&&S(e(this),l)})}if(b){p[l]=!0;p[s]&&S(r,s,"force")}else{h||(p[l]=!0);g&&p[f]&&S(r,f,!1)}C(r,g,l,h)}p[u]&&!!T(p,y,!0)&&m.find("."+n).css(y,"default");m[d](x||T(p,l));m[v](E||T(p,w)||"")}function S(e,t,r){var i=e[0],l=e.parent(),h=t==s,p=t==f,m=p?a:h?o:"enabled",g=T(i,m+N(i[c])),b=T(i,t+N(i[c]));if(i[t]!==!1){if(p||!r||r=="force")i[t]=!1;C(e,h,m,r)}!i[u]&&!!T(i,y,!0)&&l.find("."+n).css(y,"pointer");l[v](b||T(i,t)||"");l[d](g||T(i,m))}function x(n,r){if(e.data(n,t)){var i=e(n);i.parent().html(i.attr("style",e.data(n,t).s||"")[m](r||""));i.off(".i").unwrap();e(g+'[for="'+n.id+'"]').add(i.closest(g)).off(".i")}}function T(n,r,i){if(e.data(n,t))return e.data(n,t).o[r+(i?"":"Class")]}function N(e){return e.charAt(0).toUpperCase()+e.slice(1)}function C(e,t,n,r){if(!r){t&&e[m]("ifToggled");e[m]("ifChanged")[m]("if"+N(n))}}var t="iCheck",n=t+"-helper",r="checkbox",i="radio",s="checked",o="un"+s,u="disabled",a="determinate",f="in"+a,l="update",c="type",h="click",p="touchbegin.i touchend.i",d="addClass",v="removeClass",m="trigger",g="label",y="cursor",b=/ipad|iphone|ipod|android|blackberry|windows phone|opera mini/i.test(navigator.userAgent);e.fn[t]=function(o,a){var y=":"+r+", :"+i,T=e(),N=function(t){t.each(function(){var t=e(this);t.is(y)?T=T.add(t):T=T.add(t.find(y))})};if(/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(o)){o=o.toLowerCase();N(this);return T.each(function(){o=="destroy"?x(this,"ifDestroyed"):w(e(this),!0,o);e.isFunction(a)&&a()})}if(typeof o=="object"||!o){var C=e.extend({checkedClass:s,disabledClass:u,indeterminateClass:f,labelHover:!0},o),k=C.handle,L=C.hoverClass||"hover",A=C.focusClass||"focus",O=C.activeClass||"active",M=!!C.labelHover,_=C.labelHoverClass||"hover",D=(""+C.increaseArea).replace("%","")|0;if(k==r||k==i)y=":"+k;D<-50&&(D=-50);N(this);return T.each(function(){x(this);var o=e(this),a=this,f=a.id,y=-D+"%",T=100+D*2+"%",N={position:"absolute",top:y,left:y,display:"block",width:T,height:T,margin:0,padding:0,background:"#fff",border:0,opacity:0},k=b?{position:"absolute",visibility:"hidden"}:D?N:{position:"absolute",opacity:0},P=a[c]==r?C.checkboxClass||"i"+r:C.radioClass||"i"+i,H=e(g+'[for="'+f+'"]').add(o.closest(g)),B=o.wrap('<div class="'+P+'"/>')[m]("ifCreated").parent().append(C.insert),j=e('<ins class="'+n+'"/>').css(N).appendTo(B);o.data(t,{o:C,s:o.attr("style")}).css(k);!!C.inheritClass&&B[d](a.className);!!C.inheritID&&f&&B.attr("id",t+"-"+f);B.css("position")=="static";w(o,!0,l);H.length&&H.on(h+".i mouseenter.i mouseleave.i "+p,function(t){var n=t[c],r=e(this);if(!a[u]){if(n==h)w(o,!1,!0);else if(M)if(/ve|nd/.test(n)){B[v](L);r[v](_)}else{B[d](L);r[d](_)}if(!b)return!1;t.stopPropagation()}});o.on(h+".i focus.i blur.i keyup.i keydown.i keypress.i",function(e){var t=e[c],n=e.keyCode;if(t==h)return!1;if(t=="keydown"&&n==32){if(a[c]!=i||!a[s])a[s]?S(o,s):E(o,s);return!1}t=="keyup"&&a[c]==i?!a[s]&&E(o,s):/us|ur/.test(t)&&B[t=="blur"?v:d](A)});j.on(h+" mousedown mouseup mouseover mouseout "+p,function(e){var t=e[c],n=/wn|up/.test(t)?O:L;if(!a[u]){if(t==h)w(o,!1,!0);else{/wn|er|in/.test(t)?B[d](n):B[v](n+" "+O);H.length&&M&&n==L&&H[/ut|nd/.test(t)?v:d](_)}if(!b)return!1;e.stopPropagation()}})})}return this}})(jQuery);
-		
 		// Webplate execute
 		// ------------------------------------------------ DOM EDITS
 
