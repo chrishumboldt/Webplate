@@ -1,9 +1,9 @@
 /**
  * buttons.js
  *
- * Author:        Alex Wolfe
+ * Author:        	Alex Wolfe
  * Description: 	A highly customizable CSS button library built with Sass and Compass
- * Last Edited:   25 August 2013
+ * Last Edited:   	25 August 2013
  * License: 		Apache License v2.0
  */
 
