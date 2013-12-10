@@ -1,7 +1,7 @@
 Webplate Framework
 ========
 
-An awesome responsive front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
+An awesome front-end javascript bootstrap that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 Copyright and license
 ========
