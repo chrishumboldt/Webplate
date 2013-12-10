@@ -2,7 +2,7 @@
  * LESS File: 		flickerplate.less
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/flickerplate
- * Last Edited:   	9 December 2013
+ * Last Edited:   	2 December 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -19,68 +19,71 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-@dot_size				: 14px;
+@dot_size						: 14px;
+@flicker_class					: webplate-flicker;
 
 
-// Global
+// Mixins
 // ---------------------------------------------------------------------------------------
-// Default flicker - light theme
-.webplate-flicker {
+// Container
+.fp-webplate-flicker(@height: 600px, @back_colour: lighten(#000,90%)) {
 	position: relative;
 	width: 100%;
-	height: 600px;
-	background-color: lighten(#000,90%);
+	height: @height;
+	background-color: @back_colour;
 	overflow: hidden;
-	
-	// Flicks
-	ul.flicks {
-		width: 10000%;
-		height: 100%;
-		list-style: none;
-		
-		li {
-			float: left;
-			width: 1%;
-			height: 100%;
-			background-position: center;
-			background-size: cover;
-			display: table;
+}
+
+// Flicks
+.fp-flicks(@width: 10000%) {
+	width: 10000%;
+	height: 100%;
+	list-style: none;
+}
+.fp-flick(@width: 1%) {
+	float: left;
+	width: 1%;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+	display: table;
 			
-			.flick-inner {
-				height: 100%;
-				padding: 10px;
-				color: #fff;
-				display: table-cell;
-				vertical-align: middle;
-				
-				.flick-content {
-					max-width: @page_width;
-					margin-left: auto;
-					margin-right: auto;
-				
-					.flick-title {
-						padding: 0px 0px;
-						font-size: 2.778em;
-						line-height: 1.995em;
-						text-align: center;
-					}
-					.flick-sub-text {
-						padding: 5px;
-						font-weight: 300;
-						line-height: 2.5em;
-						color: fadeOut(#fff, 20%);
-						text-align: center;
-					}
-					.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
-						padding: 12px 18px;
-						background-color: fadeOut(#000, 40%);
-					}
-				}
-			}
+	.flick-inner {
+		height: 100%;
+		padding: 10px;
+		color: #fff;
+		display: table-cell;
+		vertical-align: middle;
+		
+		.flick-content {
+			max-width: @page_width;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
-	
-	// Arrow navigation
+}
+.fp-flick-content() {	
+	.flick-title {
+		padding: 0px 0px;
+		font-size: 2.778em;
+		line-height: 1.995em;
+		text-align: center;
+	}
+	.flick-sub-text {
+		padding: 5px;
+		font-weight: 300;
+		line-height: 2.5em;
+		color: fadeOut(#fff, 20%);
+		text-align: center;
+	}
+	.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+		padding: 12px 18px;
+		background-color: fadeOut(#000, 40%);
+	}
+}
+
+// Arrow navigation
+.fp-arrow-navigation() {
 	.arrow-navigation {
 		position: absolute;
 		height: 80%;
@@ -125,8 +128,10 @@
 		opacity: 1;
 		margin: 0px 0px 0px -20%;
 	}
-	
-	// Dot navigation
+}
+
+// Dot navigation
+.fp-dot-navigation() {
 	.dot-navigation {
 		position: absolute;
 		bottom: 15px;
@@ -168,80 +173,115 @@
 }
 
 // Dark theme
-.webplate-flicker.flicker-theme-dark {
+.fp-dark-theme(@identifier: webplate-flicker) {
+	
+	.@{identifier}.flicker-theme-dark {
+	
+		// Arrow navigation
+		.arrow-navigation.left .arrow {
+			background-image: url('../images/flickerplate/arrow-left-dark.png');
+		}
+		.arrow-navigation.right .arrow {
+			background-image: url('../images/flickerplate/arrow-right-dark.png');
+		}
+	
+		// Dot navigation
+		.dot-navigation {
+			.dot {
+				background-color: fadeOut(#000, 88%);
+			}
+			.dot:hover {
+				background-color: fadeOut(#000, 40%);
+			}
+			.dot.active {
+				background-color: #000;
+			}
+		}
+	}
+	.@{identifier} ul.flicks li.flick-theme-dark .flick-inner {
+		color: fadeOut(#000, 10%);
+		
+		.flick-content {
+			.flick-sub-text {
+				color: fadeOut(#000, 10%);
+			}
+			.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+				background-color: fadeOut(#fff, 50%);
+			}
+		}
+	}
+}
+
+// Animations
+.fp-animations(@identifier: webplate-flicker) {
+	
+	.@{identifier}.animate-transform-slide {
+		// Flicks
+		ul.flicks {
+			-webkit-perspective: 1000;
+			-webkit-backface-visibility: hidden;
+			transform: translate3d(0%, 0px, 0px);
+			-webkit-transform: translate3d(0%, 0px, 0px);
+			-webkit-transition: -webkit-transform 0.6s;
+			-o-transition: -o-transform 0.6s;
+			-moz-transition: -moz-transform 0.6s;
+			transition: transform 0.6s;
+		}
+	}
+	.@{identifier}.animate-transition-slide {
+		// Flicks
+		ul.flicks {
+			position: relative;
+			left: 0%;
+			.animate(left, 0.4s);
+		}
+	}
+	.@{identifier}.animate-jquery-slide {
+		// Flicks
+		ul.flicks {
+			position: relative;
+			left: 0%;
+		}
+	}
+	.@{identifier}.animate-scroller-slide {
+		padding-bottom: 0px;
+		overflow: auto;
+	
+		ul.flicks {
+			position: auto;
+		}
+	}
+}
+
+
+// Class references
+// ---------------------------------------------------------------------------------------
+// Default flicker - light theme
+.@{flicker_class} {
+	.fp-webplate-flicker();
+	
+	// Flicks
+	ul.flicks {
+		.fp-flicks();
+		
+		li {
+			.fp-flick();
+			.fp-flick-content();
+		}
+	}
 	
 	// Arrow navigation
-	.arrow-navigation.left .arrow {
-		background-image: url('../images/flickerplate/arrow-left-dark.png');
-	}
-	.arrow-navigation.right .arrow {
-		background-image: url('../images/flickerplate/arrow-right-dark.png');
-	}
+	.fp-arrow-navigation();
 	
 	// Dot navigation
-	.dot-navigation {
-		.dot {
-			background-color: fadeOut(#000, 88%);
-		}
-		.dot:hover {
-			background-color: fadeOut(#000, 40%);
-		}
-		.dot.active {
-			background-color: #000;
-		}
-	}
+	.fp-dot-navigation();
 }
-.webplate-flicker ul.flicks li.flick-theme-dark .flick-inner {
-	color: fadeOut(#000, 10%);
-		
-	.flick-content {
-		.flick-sub-text {
-			color: fadeOut(#000, 10%);
-		}
-		.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
-			background-color: fadeOut(#fff, 50%);
-		}
-	}
-}
+
+// Dark theme
+.fp-dark-theme(@flicker_class);
 
 // Animation type
-.webplate-flicker.animate-transform-slide {
-	// Flicks
-	ul.flicks {
-		-webkit-perspective: 1000;
-		-webkit-backface-visibility: hidden;
-		transform: translate3d(0%, 0px, 0px);
-		-webkit-transform: translate3d(0%, 0px, 0px);
-		-webkit-transition: -webkit-transform 0.6s;
-		-o-transition: -o-transform 0.6s;
-		-moz-transition: -moz-transform 0.6s;
-		transition: transform 0.6s;
-	}
-}
-.webplate-flicker.animate-transition-slide {
-	// Flicks
-	ul.flicks {
-		position: relative;
-		left: 0%;
-		.animate(left, 0.4s);
-	}
-}
-.webplate-flicker.animate-jquery-slide {
-	// Flicks
-	ul.flicks {
-		position: relative;
-		left: 0%;
-	}
-}
-.webplate-flicker.animate-scroller-slide {
-	padding-bottom: 0px;
-	overflow: auto;
-	
-	ul.flicks {
-		position: auto;
-	}
-}
-
+.fp-animations(@flicker_class);
 
 // Large View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
@@ -257,14 +297,11 @@
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-// @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
 @media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 	
-	.webplate-flicker ul.flicks li .flick-inner .flick-content {
+	.@{flicker_class} ul.flicks li .flick-inner .flick-content {
 		.flick-title {
 			font-size: 1.667em;
-		}
-		.flick-sub-text {
 		}
 	}
 }
