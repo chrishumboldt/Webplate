@@ -2,7 +2,7 @@
  * web-tools.js
  *
  * Author:        	Chris Humboldt
- * Last Edited: 	23 November 2013
+ * Last Edited: 	9 December 2013
  * Edited By:   	Chris Humboldt
  */
 
@@ -11,8 +11,8 @@ jQuery.web_lock_submit 				= function($element){
 
   $($element).live('keypress', function($e){
 
-      if($e.keyCode == 13)
-      {
+      if($e.keyCode == 13){
+		  
           return false;
       }
   });
@@ -40,17 +40,18 @@ jQuery.web_get_extension 			= function($file){
 // ----- CURRENT DB DATE
 jQuery.web_crt_db_date 				= function(){
 
-  $current_time 			    = new Date();
-  $year						= $current_time.getFullYear();
-  $month					    = $current_time.getMonth() + 1;
+  $current_time 			    	= new Date();
+  $year								= $current_time.getFullYear();
+  $month					    	= $current_time.getMonth() + 1;
   if($month < 10){
 
-      $month				    = '0' + $month;
+      $month				    	= '0' + $month;
   }
-  $day						= $current_time.getDate();
+  
+  $day								= $current_time.getDate();
   if($day < 10){
 
-      $day					= '0' + $day;
+      $day							= '0' + $day;
   }
   return $year + '-' + $month + '-' + $day;
 };
@@ -179,7 +180,7 @@ jQuery.web_allowed_doc 				= function($file, $ar_allowed_types){
   }
 };
 
-// ----- INPUT MIRRORS
+// ----- INPUT MIRROR
 jQuery.web_input_mirror 			= function($input, $output){
 
   $($selector).keyup(function(){
@@ -293,61 +294,6 @@ jQuery.web_random_string 			= function($string_length){
   }
 
   return $random_string;
-};
-
-// ----- SHOW OVERLAY
-jQuery.web_show_overlay 			= function(){
-
-  $('.webplate-overlay').fadeIn();
-};
-
-// ----- REMOVE OVERLAY
-jQuery.web_remove_overlay 			= function(){
-
-  $('.webplate-overlay').fadeOut();
-};
-
-// ----- SHOW MODAL
-jQuery.web_show_modal 				= function($modal_class){
-
-  if($($modal_class).is(":hidden") == true){
-
-      // Set the class
-      if($modal_class == ''){
-
-          $modal_class        = '.modal-basic';
-      }
-
-      // Some variables
-      $modal_height           = $($modal_class).height();
-      //$scroll_top             = $(window).scrollTop();
-
-      // Adjust the DOM
-      $('.webplate-overlay').fadeIn();
-      $($modal_class).css({ top: -($modal_height + 50) }).show();
-      $($modal_class).animate({ top: 0 }, 'fast');
-  }
-};
-
-// ----- HIDE MODAL
-jQuery.web_hide_modal 				= function(){
-
-  $('.modal:visible .close').live('click', function(){
-
-      // Reset
-      //$(window).scrollTop(0);
-
-      // Some variables
-      $modal_height           = $('.modal:visible').height();
-      //$scroll_top             = $('.content').offset();
-
-      // Adjust the DOM
-      $('.webplate-overlay').fadeOut();
-      $('.modal:visible').animate({ top: -($modal_height + 50) }, 'fast', function(){
-
-          $('.modal:visible').hide();
-      });
-  });
 };
 
 // ----- CONSOLE LOG
@@ -653,9 +599,8 @@ jQuery.web_get_url					= function(){
 	return $ar_return;
 }
 
-// ----- CHANGE URL
-jQuery.web_change_url				= function($url){
+// ----- UPDATE HISTORY
+jQuery.web_update_history			= function($url){
 		
-	// window.location					= $url;
-	window.history.pushState({path:$url},'',$url);
+	window.history.pushState({ path : $url }, '', $url);
 }
