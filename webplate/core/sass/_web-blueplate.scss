@@ -1,8 +1,8 @@
 /**
- * LESS File: 		blueplate.less
+ * SASS File: 		blueplate.sass
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:   	9 December 2013
+ * Last Edited:   	30 December 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -258,32 +258,23 @@
 	}
 	
 	// Span loop
-	.span-loop(@index) when (@index > 0) {
-
-		.span-@{index} {
-			.span(@index);
+	@for $index from 1 through $column_limit {
+		
+		.span-#{$index} {
+			@include span($index);
 		}
-		// Update loop
-		.span-loop(@index - 1);
 	}
-	.span-loop(0){}
-	.span-loop(@column_limit);
 	
 	// Offset loop
-	.offset-loop(@index) when (@index > 0) {
-
-		.off-@{index} {
-			.offset(@index);
-		}
-		.off-r-@{index} {
-			.offset-r(@index);
-		}
+	@for $index from 1 through ($column_limit - 1) {
 		
-		// Update loop
-		.offset-loop(@index - 1);
+		.off-#{$index} {
+			@include offset($index);
+		}
+		.off-r-#{$index} {
+			@include offset-r($index);
+		}
 	}
-	.offset-loop(0){}
-	.offset-loop(@column_limit - 1);
 }
 
 // Spacing classes
@@ -299,50 +290,45 @@
 }
 
 // Multiples of 1 from 1 to 20
-.spacing-loop-1(@index) when (@index > 0) {
-
-	@multiplication		: 1px;
-	@class_name			: (@index * 1);
+@for $index from 1 through $spacing_limit {
+	
+	$multiplication		: 1px;
+	$class_name			: ($index * 1);
 	
 	// Padding
-	.pad-@{class_name} {
-		padding: (@multiplication * @index);
+	.pad-#{$class_name} {
+		padding: ($multiplication * $index);
 	}
-	.pad-r-@{class_name} {
-		padding-right: (@multiplication * @index);
+	.pad-r-#{$class_name} {
+		padding-right: ($multiplication * $index);
 	}
-	.pad-l-@{class_name} {
-		padding-left: (@multiplication * @index);
+	.pad-l-#{$class_name} {
+		padding-left: ($multiplication * $index);
 	}
-	.pad-t-@{class_name} {
-		padding-top: (@multiplication * @index);
+	.pad-t-#{$class_name} {
+		padding-top: ($multiplication * $index);
 	}
-	.pad-b-@{class_name} {
-		padding-bottom: (@multiplication * @index);
+	.pad-b-#{$class_name} {
+		padding-bottom: ($multiplication * $index);
 	}
 	
 	// Margin
-	.mgn-@{class_name} {
-		margin: (@multiplication * @index);
+	.mgn-#{$class_name} {
+		margin: ($multiplication * $index);
 	}
-	.mgn-r-@{class_name} {
-		margin-right: (@multiplication * @index);
+	.mgn-r-#{$class_name} {
+		margin-right: ($multiplication * $index);
 	}
-	.mgn-l-@{class_name} {
-		margin-left: (@multiplication * @index);
+	.mgn-l-#{$class_name} {
+		margin-left: ($multiplication * $index);
 	}
-	.mgn-t-@{class_name} {
-		margin-top: (@multiplication * @index);
+	.mgn-t-#{$class_name} {
+		margin-top: ($multiplication * $index);
 	}
-	.mgn-b-@{class_name} {
-		margin-bottom: (@multiplication * @index);
+	.mgn-b-#{$class_name} {
+		margin-bottom: ($multiplication * $index);
 	}
-	
-	// Update loop
-	.spacing-loop-1(@index - 1);
 }
-.spacing-loop-1(0){}
-.spacing-loop-1(@spacing_limit);
 
 // Colour classes
 .txt-grey {
@@ -367,7 +353,7 @@
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: @page_width) {
+@media screen and (max-width: $page_width) {
 }
 
 
@@ -440,33 +426,24 @@
 		[class *= "off-r-"] {
 			margin-right: 0%;
 		}
-		
-		// Small span loop
-		.small-span-loop(@index) when (@index > 0) {
-
-			.small-span-@{index} {
-				.span(@index);
-			}
-			// Update loop
-			.small-span-loop(@index - 1);
-		}
-		.small-span-loop(0){}
-		.small-span-loop(@column_limit);
 	
-		// Small offset loop
-		.small-offset-loop(@index) when (@index > 0) {
-
-			.small-off-@{index} {
-				.offset(@index);
-			}
-			.small-off-r-@{index} {
-				.offset-r(@index);
-			}
+		// Small span loop
+		@for $index from 1 through $column_limit {
 		
-			// Update loop
-			.small-offset-loop(@index - 1);
+			.small-span-#{$index} {
+				@include span($index);
+			}
 		}
-		.small-offset-loop(0){}
-		.small-offset-loop(@column_limit - 1);
+	
+		// Offset loop
+		@for $index from 1 through ($column_limit - 1) {
+		
+			.small-off-#{$index} {
+				@include offset($index);
+			}
+			.small-off-r-#{$index} {
+				@include offset-r($index);
+			}
+		}
 	}
 }

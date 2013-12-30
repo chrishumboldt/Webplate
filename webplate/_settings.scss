@@ -1,7 +1,7 @@
 /**
- * LESS File: 		settings.less
+ * SASS File: 		settings.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	9 December 2013
+ * Last Edited:   	30 December 2013
  */
 
 // These variables effect the global setup of your site.  It is written using LESS and
@@ -17,9 +17,9 @@
 
 // Global Setup
 // ---------------------------------------------------------------------------------------
-@page_width							: 1100px;
-@menu_width							: 260px;
-@small_nav_back_colour				: lighten(#000, 12%);
-@images_root						: '../images';
-@column_limit						: 12;
-@spacing_limit						: 10;
+$page_width							: 1100px;
+$menu_width							: 260px;
+$small_nav_back_colour				: lighten(#000, 12%);
+$images_root						: '../images';
+$column_limit						: 12;
+$spacing_limit						: 10;

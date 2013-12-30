@@ -1,0 +1,211 @@
+/**
+ * LESS File: 		mixins.scss
+ * Author:        	Chris Humboldt
+ * Last Edited:   	30 December 2013
+ * Edited By:		Chris Humboldt
+ */
+
+// NOTE: Include this file in any custom SASS file you create to gain access to the 
+// $page_width variable and all these cool helper mixins.
+
+
+// Import the settings file
+// ---------------------------------------------------------------------------------------
+@import "../../settings";
+
+
+// Mixins
+// ---------------------------------------------------------------------------------------
+
+// Rounded corners
+@mixin rounded-corners($radius: 2px) {
+	border-radius: $radius;
+	-o-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+@mixin rounded-corners-left($radius: 2px) {
+	border-radius: $radius 0px 0px $radius;
+	-o-border-radius: $radius 0px 0px $radius;
+	-ms-border-radius: $radius 0px 0px $radius;
+	-moz-border-radius: $radius 0px 0px $radius;
+	-webkit-border-radius: $radius 0px 0px $radius;
+}
+@mixin rounded-corners-right($radius: 2px) {
+	border-radius: 0px $radius $radius 0px;
+	-o-border-radius: 0px $radius $radius 0px;
+	-ms-border-radius: 0px $radius $radius 0px;
+	-moz-border-radius: 0px $radius $radius 0px;
+	-webkit-border-radius: 0px $radius $radius 0px;
+}
+@mixin rounded-corners-top($radius: 2px) {
+	border-radius: $radius $radius 0px 0px;
+	-o-border-radius: $radius $radius 0px 0px;
+	-ms-border-radius: $radius $radius 0px 0px;
+	-moz-border-radius: $radius $radius 0px 0px;
+	-webkit-border-radius: $radius $radius 0px 0px;
+}
+@mixin rounded-corners-bottom($radius: 2px) {
+	border-radius: 0px 0px $radius $radius;
+	-o-border-radius: 0px 0px $radius $radius;
+	-ms-border-radius: 0px 0px $radius $radius;
+	-moz-border-radius: 0px 0px $radius $radius;
+	-webkit-border-radius: 0px 0px $radius $radius;
+}
+@mixin rounded-corners-top-right($radius: 2px) {
+	border-radius: 0px $radius 0px 0px;
+	-o-border-radius: 0px $radius 0px 0px;
+	-ms-border-radius: 0px $radius 0px 0px;
+	-moz-border-radius: 0px $radius 0px 0px;
+	-webkit-border-radius: 0px $radius 0px 0px;
+}
+@mixin rounded-corners-top-left($radius: 2px) {
+	border-radius: $radius 0px 0px 0px;
+	-o-border-radius: $radius 0px 0px 0px;
+	-ms-border-radius: $radius 0px 0px 0px;
+	-moz-border-radius: $radius 0px 0px 0px;
+	-webkit-border-radius: $radius 0px 0px 0px;
+}
+
+// Drop shadows
+@mixin drop-shadow($color: fadeout(#000, 60%), $size: 3px, $vertical_offset: 0px, $horizontal_offset: 0px) {
+	box-shadow: $horizontal_offset $vertical_offset $size $color;
+	-webkit-box-shadow: $horizontal_offset $vertical_offset $size $color;
+	-moz-box-shadow: $horizontal_offset $vertical_offset $size $color;
+}
+@mixin drop-shadow-inset($color: fadeout(#000, 60%), $size: 3px, $vertical_offset: 0px, $horizontal_offset: 0px) {
+	box-shadow: inset $horizontal_offset $vertical_offset $size $color;
+	-webkit-box-shadow: inset $horizontal_offset $vertical_offset $size $color;
+	-moz-box-shadow: inset $horizontal_offset $vertical_offset $size $color;
+}
+@mixin no-drop-shadow() {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+// Buttons custom
+@mixin button-gradient($top_colour, $bottom_colour,  $top_highlight: 80%, $highlight_colour: #ffffff) {
+	background: -webkit-linear-gradient($top_colour, $bottom_colour);
+	background: -moz-linear-gradient($top_colour, $bottom_colour);
+	border-top: 1px solid fadeout($highlight_colour, $top_highlight);
+}
+
+// Borders
+@mixin light-border($top_highlight: 80%, $colour: #ffffff) {
+	border: 1px solid fadeout($colour, $top_highlight);
+}
+@mixin light-top-border($top_highlight: 80%, $top_colour: #ffffff) {
+	border-top: 1px solid fadeout($top_colour, $top_highlight);
+}
+@mixin light-bottom-border($bottom_highlight: 80%, $bottom_colour: #ffffff) {
+	border-bottom: 1px solid fadeout($bottom_colour, $bottom_highlight);
+}
+@mixin dark-bottom-border($bottom_lowlight: 80%, $bottom_colour: #000000) {
+	border-bottom: 1px solid fadeout($bottom_colour, $bottom_lowlight);
+}
+@mixin dark-top-border($bottom_lowlight: 80%, $top_colour: #000000) {
+	border-top: 1px solid fadeout($top_colour, $bottom_lowlight);
+}
+@mixin light-right-border($top_highlight: 80%, $top_colour: #ffffff) {
+	border-right: 1px solid fadeout($top_colour, $top_highlight);
+}
+@mixin dark-right-border($bottom_lowlight: 80%, $bottom_colour: #000000) {
+	border-right: 1px solid fadeout($bottom_colour, $bottom_lowlight);
+}
+@mixin light-left-border($top_highlight: 80%, $top_colour: #ffffff) {
+	border-left: 1px solid fadeout($top_colour, $top_highlight);
+}
+@mixin dark-left-border($bottom_lowlight: 80%, $bottom_colour: #000000) {
+	border-left: 1px solid fadeout($bottom_colour, $bottom_lowlight);
+}
+
+// Look and feel
+@mixin change-opacity($opacity: 0.60) {
+	-moz-opacity: $opacity;
+	opacity: $opacity;
+}
+@mixin colour-gradient($top_colour, $bottom_colour) {
+	background: -webkit-linear-gradient($top_colour, $bottom_colour);
+	background: -moz-linear-gradient($top_colour, $bottom_colour);
+}
+
+// IOS
+@mixin ios-render() {
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}
+
+// Animation
+@mixin animate($attribute, $transition_speed: 0.2s) {
+	-webkit-transition: $attribute $transition_speed ease-out;
+	-moz-transition: $attribute $transition_speed ease-out;
+	-o-transition: $attribute $transition_speed ease-out;
+	-ms-transition: $attribute $transition_speed ease-out;
+	transition: $attribute $transition_speed ease-out;
+}
+@mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition_speed: 0.2s) {
+	-webkit-transform: translate3d($x, $y, $z);
+	-o-transform: translate3d($x, $y, $z);
+	-moz-transform: translate3d($x, $y, $z);
+	transform: translate3d($x, $y, $z);
+	-webkit-transition: -webkit-transform $transition_speed ease-out;
+	-o-transition: -o-transform $transition_speed ease-out;
+	-moz-transition: -moz-transform $transition_speed ease-out;
+	transition: transform $transition_speed ease-out;
+}
+@mixin transform($x: 0px, $y: 0px, $z: 0px) {
+	-webkit-transform: translate3d($x, $y, $z);
+	-o-transform: translate3d($x, $y, $z);
+	-moz-transform: translate3d($x, $y, $z);
+	transform: translate3d($x, $y, $z);
+}
+
+// Background
+@mixin background-cover($image, $position: center) {
+	background-image: url($image);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: $position;
+}
+@mixin single-background-image($image, $position: center) {
+	background-image: url($image);
+	background-repeat: no-repeat;
+	background-position: $position;
+}
+@mixin parallax-background($url) {
+	background-image: url($url);
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+// Text
+@mixin squared-text($size) {
+	width: $size;
+	height: $size;
+	line-height: $size;
+	text-align: center;
+}
+@mixin hide-text() {
+	text-indent: -10000px;
+	overflow: hidden;
+}
+
+// Layout
+@mixin span($span, $span_column_limit: $column_limit) {
+	width: percentage($span / $column_limit);
+}
+@mixin offset($off_by, $span_column_limit: $column_limit) {
+	margin-left: percentage($off_by / $column_limit);
+}
+@mixin offset-r($off_by, $span_column_limit: $column_limit) {
+	margin-right: percentage($off_by / $column_limit);
+}
+@mixin hide-it() {
+	display: none;
+}
+@mixin show-it() {
+	display: block;
+}

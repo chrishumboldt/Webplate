@@ -1,10 +1,8 @@
-/**
- * buttons.js
- *
- * Author:        	Alex Wolfe
- * Description: 	A highly customizable CSS button library built with Sass and Compass
- * Last Edited:   	25 August 2013
- * License: 		Apache License v2.0
+/*
+ *  Project: Buttons
+ *  Description: A highly customizable CSS button library built with Sass and Compass
+ *  Author: Alex Wolfe
+ *  License: Apache License v2.0
  */
 
 // the semi-colon before function invocation is a safety net against concatenated
@@ -69,7 +67,7 @@
                 this.$overlay.show();
             }
             else {
-                this.$overlay = $('<div class="button-overlay"></div>');
+                this.$overlay = $('<div style="position: fixed; top: 0px;left: 0px; right: 0px; bottom: 0px; z-index: 999;"></div>');
                 this.$element.append(this.$overlay);
             }
         },

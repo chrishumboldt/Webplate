@@ -42,7 +42,7 @@ a:hover, .make-link:hover {text-decoration:none; color: lighten(#65a8a6, 10%); c
 
 // Global classes
 .nothing {
-  .hide-text();
+  @include hide-text();
 }
 // Set the heights
 html, body, .webplate, .webplate-content, .webplate-navigation {
@@ -63,8 +63,8 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		position: relative;
 		left: 0;
 		height: 100%;
-		.ios-render();
-		.transform-easing();
+		@include ios-render();
+		@include transform-easing();
 	}
 	.webplate-content {
 		position: relative;
@@ -77,7 +77,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		z-index: 1;
 
 		.inner {
-			width: @page_width;
+			width: $page_width;
 			margin: 0px auto;
 		}
 	}
@@ -88,9 +88,9 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	height: 100%;
 	top: 0px;
 	left: 0px;
-	width: @menu_width;
+	width: $menu_width;
 	position: absolute;
-	margin-left: -@menu_width;
+	margin-left: -$menu_width;
 	overflow-y: auto;
 	background-color: lighten(#000, 18%);
 	-webkit-overflow-scrolling: touch;
@@ -110,7 +110,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	         padding: 10px 20px;
 	         font-size: 0.833em;
 	         color: #b0b0b0;
-	         .animate(color);
+	         @include animate(color);
 	  
 	 		  div.icon {
 	 			  float: left;
@@ -126,12 +126,12 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
    }
 }
 .show-nav .webplate-shifter {
-	.transform-easing(@menu_width);
+	@include transform-easing($menu_width);
 }
 
 // Fixed page width setting
 html.fixed-page .webplate .webplate-content {
-    max-width: @page_width;
+    max-width: $page_width;
 }
 
 
@@ -148,7 +148,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: @page_width) {
+@media screen and (max-width: $page_width) {
 	
   .webplate {
     .webplate-content {
@@ -163,7 +163,6 @@ html.fixed-page .webplate .webplate-content {
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-// @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
 @media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
 	
   // Navigation
