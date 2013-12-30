@@ -1,5 +1,5 @@
 /**
- * welcome.less
+ * welcome.scss
  *
  * Author:        Chris Modem
  * Last Edited:   14 November 2013
@@ -22,25 +22,25 @@
 
 /* IMPORTS
 --------------------------------------------------------------------------------------- */
-// Import this file to get the webplate helper functions and the @page_width variable.
-// You will also have access to the @images_root variable that will link automatically
+// Import this file to get the webplate helper functions and the $page_width variable.
+// You will also have access to the $images_root variable that will link automatically
 // to the "img" folder in "webplate/extras". This makes it easier to reference in your 
-// LESS. To use this variable do the following:
+// SASS. To use this variable do the following:
 //
-// background-image: url("@{images_root}/your-image-file.jpg");
+// background-image: url(#{$images_root}/your-image-file.jpg);
 //
-// This is editable by changing "config.less". As per normal you will need to compile
-// "core/less/webplate-imports.less" to "webplate/core/css/webplate.css" for the changes 
+// This is editable by changing "_settings.scss". As per normal you will need to compile
+// "core/sass/webplate-imports.scss" to "webplate/core/css/webplate.css" for the changes 
 // to take effect.
 
-@import "../../core/less/web-mixins.less";
+@import "../../core/sass/web-mixins";
 
 
 /* VARIABLES
 --------------------------------------------------------------------------------------- */
-@dark_colour:             lighten(#000, 18%);
-@light_colour:            darken(#fff, 5%);
-@logo_colour:             #9de0ad;
+$dark_colour				: lighten(#000, 18%);
+$light_colour				: darken(#fff, 5%);
+$logo_colour				: #9de0ad;
 
 
 /* Global
@@ -87,14 +87,14 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			.primary {
 				padding-left: 40px;
-				border-right: 4px solid @logo_colour;
-				.animate(border-right);
+				border-right: 4px solid $logo_colour;
+				@include animate(border-right);
 			}
 		}
 		.logo:hover {
 			.primary {
 				border-color: #f0b49e;
-				.animate(border-right);
+				@include animate(border-right);
 			}
 		}
 		.logo.make-wider {
@@ -143,7 +143,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 			}
 			.infoBlock {
 				padding: 20px;
-				.rounded-corners();
+				@include rounded-corners();
 			}
 			.seperator {
 				margin: 20px 0px;
@@ -154,7 +154,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 				font-weight: 100;
 				
 				b {
-					color: @logo_colour;
+					color: $logo_colour;
 				}
 			}
 			a {
@@ -171,19 +171,19 @@ h1, h2, h3, h4, .logo, .navigation a {
 				word-wrap: break-word;
 				color: #fff;
 				background-color: #556270;
-				.rounded-corners();
+				@include rounded-corners();
 			}
 			.row.example {
 				margin: 4px 0px;
 				padding: 2px;
 				color: darken(#556270, 10%);
 				text-align: center;
-				background-color: @logo_colour;
-				.rounded-corners();
+				background-color: $logo_colour;
+				@include rounded-corners();
 				
 				[class *= "span-"] {
 					padding: 6px;
-					border: 2px solid @logo_colour;
+					border: 2px solid $logo_colour;
 					color: #fff;
 					font-weight: 100;
 					background-color: #68aa7c;
@@ -223,7 +223,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 			background-color: darken(#556270, 10%);
 
 			h2 {
-				color: @logo_colour;
+				color: $logo_colour;
 			}
 			h3 {
 				margin-top: 40px;
@@ -240,7 +240,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 			background-color: #556270;
 
 			h2 {
-				color: @logo_colour;
+				color: $logo_colour;
 			}
 			h3 {
 				margin-top: 40px;
@@ -299,7 +299,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 			font-weight: 100;
 			
 			h2 {
-				color: @logo_colour;
+				color: $logo_colour;
 			}
 			h3 {
 				margin-top: 40px;
@@ -312,7 +312,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 				color: lighten(#556270, 50%);
 			}
 			b {
-				color: @logo_colour;
+				color: $logo_colour;
 				font-weight: 100;
 			}
 		}
@@ -342,7 +342,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 					line-height: 74px;
 					font-size: 1.6em;
 					background-color: #fff;
-					.rounded-corners(50%);
+					@include rounded-corners(50%);
 				}
 			}
 			a:hover {
@@ -355,7 +355,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 
 /* Fluid View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
-@media screen and (max-width: @page_width) {
+@media screen and (max-width: $page_width) {
 	.webplate {
 		// Content
 		.content {
@@ -447,7 +447,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 				}
 				.primary {
 					padding-left: 8px;
-					border-right: 2px solid @logo_colour;
+					border-right: 2px solid $logo_colour;
 				}
 			}
 			.logo.make-wider {
