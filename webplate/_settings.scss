@@ -4,12 +4,12 @@
  * Last Edited:   	30 December 2013
  */
 
-// These variables effect the global setup of your site.  It is written using LESS and
-// requires compiling the webplate/core/less/webplate-imports.less file in order to take
+// These variables effect the global setup of your site.  It is written using SASS and
+// requires compiling the webplate/core/sass/web-imports.scss file in order to take
 // effect.  Use something like Codekit (for Mac) or Prepros (for Windows) to do this.
 //
-// Compile the webplate-imports.less into the webplate/core/css/webplate.css as that is
-// the base CSS that the stack.js file loads.
+// Compile the web-imports.scss into the webplate/core/css/webplate.css as that is the
+// base CSS that the stack.js file loads.
 //
 // Codekit URL: http://incident57.com/codekit/
 // Prepros URL: http://alphapixels.com/prepros/

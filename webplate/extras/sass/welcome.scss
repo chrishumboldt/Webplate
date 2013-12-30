@@ -27,7 +27,7 @@
 // to the "img" folder in "webplate/extras". This makes it easier to reference in your 
 // SASS. To use this variable do the following:
 //
-// background-image: url(#{$images_root}/your-image-file.jpg);
+// background-image: url("#{$images_root}/your-image-file.jpg");
 //
 // This is editable by changing "_settings.scss". As per normal you will need to compile
 // "core/sass/webplate-imports.scss" to "webplate/core/css/webplate.css" for the changes 
