@@ -73,12 +73,12 @@ $flicker_class					: 'webplate-flicker';
 		padding: 5px;
 		font-weight: 300;
 		line-height: 2.5em;
-		color: fadeOut(#fff, 20%);
+		color: fade-out(#fff, 0.2);
 		text-align: center;
 	}
 	.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
 		padding: 12px 18px;
-		background-color: fadeOut(#000, 40%);
+		background-color: fade-out(#000, 0.4);
 	}
 }
 
@@ -152,13 +152,13 @@ $flicker_class					: 'webplate-flicker';
 			width: $dot_size;
 			height: $dot_size;
 			margin: 0px 6px;
-			background-color: fadeOut(#fff, 70%);
+			background-color: fade-out(#fff, 0.7);
 			@include rounded-corners(50%);
 			@include animate(background-color);
 		}
 		.dot:hover {
 			cursor: pointer;
-			background-color: fadeOut(#fff, 40%);
+			background-color: fade-out(#fff, 0.4);
 		}
 		.dot.active {
 			background-color: #fff;
@@ -188,10 +188,10 @@ $flicker_class					: 'webplate-flicker';
 		// Dot navigation
 		.dot-navigation {
 			.dot {
-				background-color: fadeOut(#000, 88%);
+				background-color: fade-out(#000, 0.88);
 			}
 			.dot:hover {
-				background-color: fadeOut(#000, 40%);
+				background-color: fade-out(#000, 0.4);
 			}
 			.dot.active {
 				background-color: #000;
@@ -199,14 +199,14 @@ $flicker_class					: 'webplate-flicker';
 		}
 	}
 	.#{$identifier} ul.flicks li.flick-theme-dark .flick-inner {
-		color: fadeOut(#000, 10%);
+		color: fade-out(#000, 0.1);
 		
 		.flick-content {
 			.flick-sub-text {
-				color: fadeOut(#000, 10%);
+				color: fade-out(#000, 0.1);
 			}
 			.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
-				background-color: fadeOut(#fff, 50%);
+				background-color: fade-out(#fff, 0.5);
 			}
 		}
 	}
