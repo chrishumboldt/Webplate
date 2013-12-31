@@ -2,7 +2,7 @@
  * SASS File: 		blueplate.sass
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:   	30 December 2013
+ * Last Edited:   	31 December 2013
  * Edited By:		Chris Humboldt
  */
 
@@ -261,7 +261,7 @@
 	@for $index from 1 through $column_limit {
 		
 		.span-#{$index} {
-			@include span($index);
+			@include make-span($index);
 		}
 	}
 	
@@ -431,7 +431,7 @@
 		@for $index from 1 through $column_limit {
 		
 			.small-span-#{$index} {
-				@include span($index);
+				@include make-span($index);
 			}
 		}
 	
