@@ -225,3 +225,11 @@
 @mixin show-it() {
 	display: block;
 }
+@mixin limit-it() {
+	width: $page_width;
+	margin: 0px auto;
+	
+	@media screen and (max-width: $page_width) {
+		width: 100%;
+	}
+}

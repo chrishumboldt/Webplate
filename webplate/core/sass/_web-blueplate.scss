@@ -276,6 +276,9 @@
 		}
 	}
 }
+.limit {
+	@include limit-it();
+}
 
 // Spacing classes
 .spacing-no {
