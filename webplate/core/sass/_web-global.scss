@@ -76,7 +76,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		-webkit-backface-visibility: hidden;
 		z-index: 1;
 
-		.inner {
+		.limit {
 			width: $limit_width;
 			margin: 0px auto;
 		}
@@ -139,10 +139,10 @@ html.fixed-page .webplate .webplate-content {
 // ---------------------------------------------------------------------------------------
 @media screen and (min-width: 701px) {
 	
-  // Navigation
-  .navigation ul, ol {
-    list-style: none;
-  }
+	// Navigation
+	.navigation ul, ol {
+		list-style: none;
+	}
 }
 
 
@@ -150,14 +150,14 @@ html.fixed-page .webplate .webplate-content {
 // ---------------------------------------------------------------------------------------
 @media screen and (max-width: $limit_width) {
 	
-  .webplate {
-    .webplate-content {
-      // Set inner width
-      .inner {
-        width: 100%;
-      }
-    }
-  }
+	.webplate {
+		.webplate-content {
+			// Set inner width
+			.limit {
+				width: 100%;
+			}
+		}
+	}
 }
 
 
