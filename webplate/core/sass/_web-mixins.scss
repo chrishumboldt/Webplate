@@ -226,10 +226,10 @@
 	display: block;
 }
 @mixin limit-it() {
-	width: $max_width;
+	width: $limit_width;
 	margin: 0px auto;
 	
-	@media screen and (max-width: $max_width) {
+	@media screen and (max-width: $limit_width) {
 		width: 100%;
 	}
 }

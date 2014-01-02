@@ -77,7 +77,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		z-index: 1;
 
 		.inner {
-			width: $max_width;
+			width: $limit_width;
 			margin: 0px auto;
 		}
 	}
@@ -131,7 +131,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 
 // Fixed page width setting
 html.fixed-page .webplate .webplate-content {
-    max-width: $max_width;
+    max-width: $limit_width;
 }
 
 
@@ -148,7 +148,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $max_width) {
+@media screen and (max-width: $limit_width) {
 	
   .webplate {
     .webplate-content {

@@ -56,7 +56,7 @@ $flicker_class					: 'webplate-flicker';
 		vertical-align: middle;
 		
 		.flick-content {
-			max-width: $page_width;
+			max-width: $limit_width;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -291,7 +291,7 @@ $flicker_class					: 'webplate-flicker';
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $max_width) {
+@media screen and (max-width: $limit_width) {
 }
 
 
