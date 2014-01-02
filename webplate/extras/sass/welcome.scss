@@ -54,7 +54,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 }
 .webplate {
 	// Inner changes
-	.limit {
+	.limit-it {
 		padding: 0px 15px;
 	}
 	// Header
@@ -63,7 +63,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 		background-color: #fffcf5;
 
 		// Header content
-		.row.limit {
+		.row.limit-it {
 			display: table;
 		}
 		.header-content {
@@ -126,7 +126,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 	}
 	// Content
 	.content {
-		.row .limit {
+		.row .limit-it {
 			padding: 70px 15px;
 		}
 		.row {
@@ -258,7 +258,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 		}
 		// Downloads
 		#downloads {
-			.row.limit {
+			.row.limit-it {
 				padding: 25px 15px;
 			}
 			a {
@@ -293,7 +293,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 	.footer {
 		background-color: darken(#556270, 10%);
 
-		.row.limit {
+		.row.limit-it {
 			padding: 50px 15px;
 			color: lighten(#556270, 50%);
 			font-weight: 100;

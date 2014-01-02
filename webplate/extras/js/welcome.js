@@ -33,11 +33,11 @@ $(document).ready(function(){
 		// Adjust header
 		if($('html').hasClass('web-large-view') && $window_height > 430){
 			
-			$('.header, .header .row.limit').height($window_height);
+			$('.header, .header .row.limit-it').height($window_height);
 		}
 		else {
 			
-			$('.header, .header .row.limit').height('auto');
+			$('.header, .header .row.limit-it').height('auto');
 		}
 	}
 

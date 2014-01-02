@@ -18,10 +18,10 @@
 // Global
 // ---------------------------------------------------------------------------------------
 // Display classes
-.display-it {
+.show-it {
 	display: block;
 }
-.display-none {
+.hide-it {
 	display: none;
 }
 .fade-out-25, .fade-in-75 {
@@ -276,7 +276,7 @@
 		}
 	}
 }
-.limit {
+.limit-it {
 	@include limit-it();
 }
 
