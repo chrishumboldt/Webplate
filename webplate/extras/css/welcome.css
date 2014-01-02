@@ -41,12 +41,12 @@ h1, h2, h3, h4, .logo, .navigation a {
   font-family: 'Lato', sans-serif;
   font-weight: 300; }
 
-.webplate .limit-it {
+.webplate .limit {
   padding: 0px 15px; }
 .webplate .header {
   width: 100%;
   background-color: #fffcf5; }
-  .webplate .header .row.limit-it {
+  .webplate .header .row.limit {
     display: table; }
   .webplate .header .header-content {
     display: table-cell;
@@ -94,7 +94,7 @@ h1, h2, h3, h4, .logo, .navigation a {
     font-size: 1.65em; }
   .webplate .header .navigation {
     margin-top: 50px; }
-.webplate .content .row .limit-it {
+.webplate .content .row .limit {
   padding: 70px 15px; }
 .webplate .content .row h2 {
   font-weight: 100;
@@ -195,7 +195,7 @@ h1, h2, h3, h4, .logo, .navigation a {
     color: #fbfbfc; }
   .webplate .content .row.light-blue pre.code-block {
     background-color: #3f4953; }
-.webplate .content #downloads .row.limit-it {
+.webplate .content #downloads .row.limit {
   padding: 25px 15px; }
 .webplate .content #downloads a {
   display: block;
@@ -217,20 +217,20 @@ h1, h2, h3, h4, .logo, .navigation a {
     height: 155px; }
 .webplate .footer {
   background-color: #3f4953; }
-  .webplate .footer .row.limit-it {
+  .webplate .footer .row.limit {
     padding: 50px 15px;
     color: #dee2e6;
     font-weight: 100; }
-    .webplate .footer .row.limit-it h2 {
+    .webplate .footer .row.limit h2 {
       color: #9de0ad; }
-    .webplate .footer .row.limit-it h3 {
+    .webplate .footer .row.limit h3 {
       margin-top: 40px;
       color: #8795a4; }
-    .webplate .footer .row.limit-it h4 {
+    .webplate .footer .row.limit h4 {
       color: #c1c8d0; }
-    .webplate .footer .row.limit-it p {
+    .webplate .footer .row.limit p {
       color: #dee2e6; }
-    .webplate .footer .row.limit-it b {
+    .webplate .footer .row.limit b {
       color: #9de0ad;
       font-weight: 100; }
 

@@ -18,10 +18,10 @@
 // Global
 // ---------------------------------------------------------------------------------------
 // Display classes
-.show-it {
+.show {
 	display: block;
 }
-.hide-it {
+.hide {
 	display: none;
 }
 .fade-out-25, .fade-in-75 {
@@ -213,7 +213,7 @@
 .block-h-1000 {
 	height: 1000px;
 }
-.block-h-10 {
+.block-w-10 {
 	width: 10px;
 }
 .block-w-20 {
@@ -268,16 +268,16 @@
 	// Offset loop
 	@for $index from 1 through ($column_limit - 1) {
 		
-		.off-#{$index} {
+		.offset-#{$index} {
 			@include offset($index);
 		}
-		.off-r-#{$index} {
+		.offset-r-#{$index} {
 			@include offset-r($index);
 		}
 	}
 }
-.limit-it {
-	@include limit-it();
+.limit {
+	@include limit();
 }
 
 // Spacing classes
@@ -423,10 +423,10 @@
 				display: none;
 			}
 		}
-		[class *= "off-"] {
+		[class *= "offset-"] {
 			margin-left: 0%;
 		}
-		[class *= "off-r-"] {
+		[class *= "offset-r-"] {
 			margin-right: 0%;
 		}
 	
@@ -441,10 +441,10 @@
 		// Offset loop
 		@for $index from 1 through ($column_limit - 1) {
 		
-			.small-off-#{$index} {
+			.small-offset-#{$index} {
 				@include offset($index);
 			}
-			.small-off-r-#{$index} {
+			.small-offset-r-#{$index} {
 				@include offset-r($index);
 			}
 		}

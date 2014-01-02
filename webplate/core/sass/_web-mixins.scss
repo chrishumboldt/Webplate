@@ -219,13 +219,13 @@
 @mixin offset-r($off_by, $span_column_limit: $column_limit) {
 	margin-right: percentage($off_by / $column_limit);
 }
-@mixin hide-it() {
+@mixin hide() {
 	display: none;
 }
-@mixin show-it() {
+@mixin show() {
 	display: block;
 }
-@mixin limit-it() {
+@mixin limit() {
 	width: $limit_width;
 	margin: 0px auto;
 	
