@@ -1,7 +1,7 @@
 /**
  * SASS File: 		settings.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	30 December 2013
+ * Last Edited:   	2 January 2014
  */
 
 // These variables effect the global setup of your site.  It is written using SASS and
@@ -17,7 +17,7 @@
 
 // Global Setup
 // ---------------------------------------------------------------------------------------
-$page_width							: 1100px;
+$max_width							: 1100px;
 $menu_width							: 260px;
 $small_nav_back_colour				: lighten(#000, 12%);
 $images_root						: '../images';

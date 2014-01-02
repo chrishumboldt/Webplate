@@ -355,7 +355,7 @@ h1, h2, h3, h4, .logo, .navigation a {
 
 /* Fluid View (Desktop and iPad)
 --------------------------------------------------------------------------------------- */
-@media screen and (max-width: $page_width) {
+@media screen and (max-width: $max_width) {
 	.webplate {
 		// Content
 		.content {

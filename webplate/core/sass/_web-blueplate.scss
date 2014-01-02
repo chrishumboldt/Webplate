@@ -2,7 +2,7 @@
  * SASS File: 		blueplate.sass
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:   	31 December 2013
+ * Last Edited:   	2 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -356,7 +356,7 @@
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $page_width) {
+@media screen and (max-width: $max_width) {
 }
 
 

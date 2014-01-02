@@ -1,7 +1,7 @@
 /**
  * LESS File: 		mixins.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	30 December 2013
+ * Last Edited:   	2 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -226,10 +226,10 @@
 	display: block;
 }
 @mixin limit-it() {
-	width: $page_width;
+	width: $max_width;
 	margin: 0px auto;
 	
-	@media screen and (max-width: $page_width) {
+	@media screen and (max-width: $max_width) {
 		width: 100%;
 	}
 }

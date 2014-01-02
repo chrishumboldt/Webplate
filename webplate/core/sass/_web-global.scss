@@ -1,7 +1,7 @@
 /**
  * LESS File: 		global.less
  * Author:        	Chris Humboldt
- * Last Edited:   	9 December 2013
+ * Last Edited:   	2 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -77,7 +77,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		z-index: 1;
 
 		.inner {
-			width: $page_width;
+			width: $max_width;
 			margin: 0px auto;
 		}
 	}
@@ -131,7 +131,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 
 // Fixed page width setting
 html.fixed-page .webplate .webplate-content {
-    max-width: $page_width;
+    max-width: $max_width;
 }
 
 
@@ -148,7 +148,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $page_width) {
+@media screen and (max-width: $max_width) {
 	
   .webplate {
     .webplate-content {
