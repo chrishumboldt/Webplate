@@ -219,6 +219,11 @@
 @mixin offset-r($off_by, $span_column_limit: $column_limit) {
 	margin-right: percentage($off_by / $column_limit);
 }
+@mixin reset-span() {
+	@include span(12);
+	@include offset(0);
+	@include offset-r(0);
+}
 @mixin hide() {
 	display: none;
 }
