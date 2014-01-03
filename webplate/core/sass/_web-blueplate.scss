@@ -2,7 +2,7 @@
  * SASS File: 		blueplate.sass
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:   	2 January 2014
+ * Last Edited:   	3 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -23,6 +23,9 @@
 }
 .hide {
 	display: none;
+}
+.opacity-100 {
+	opacity: 1;
 }
 .opacity-75 {
 	opacity: 0.75;
@@ -64,8 +67,17 @@
 .float-clear {
 	clear: both;
 }
-.center-it {
+.center {
 	margin: 0px auto;
+}
+.valign-t {
+	vertical-align: top;
+}
+.valign-m {
+	vertical-align: middle;
+}
+.valign-b {
+	vertical-align: bottom;
 }
 
 // Text classes
@@ -76,32 +88,32 @@
 .txt-l {
 	text-align: left;	
 }
-.txt-r {
-	text-align: right;	
-}
 .txt-c {
 	text-align: center;
 }
+.txt-r {
+	text-align: right;	
+}
 .txt-size-xxl {
-	font-size: 1.444em
+	font-size: 1.5em
 }
 .txt-size-xl {
-	font-size: 1.222em
+	font-size: 1.250em
 }
 .txt-size-l {
-	font-size: 1.111em
+	font-size: 1.125em
 }
 .txt-size-n {
 	font-size: 1em;
 }
 .txt-size-m {
-	font-size: 0.889em;
+	font-size: 0.875em;
 }
 .txt-size-s {
-	font-size: 0.778em;
+	font-size: 0.750em;
 }
 .txt-size-xs {
-	font-size: 0.667em
+	font-size: 0.625em
 }
 .txt-weight-xb {
 	font-weight: 900;
@@ -133,14 +145,6 @@
 }
 .txt-grey {
   color: fadeout(#000, 50%);
-}
-
-// Vertical classes
-.valign-t {
-	vertical-align: top;
-}
-.valign-b {
-	vertical-align: bottom;
 }
 
 // Background classes
@@ -190,7 +194,7 @@
 	background-color: #fff;
 }
 
-// General layout
+// Sizing
 .block-h-10 {
 	height: 10px;
 }
@@ -205,9 +209,6 @@
 }
 .block-h-200 {
 	height: 200px;
-}
-.block-h-350 {
-	height: 350px;
 }
 .block-h-500 {
 	height: 500px;
@@ -229,9 +230,6 @@
 }
 .block-w-200 {
 	width: 200px;
-}
-.block-w-350 {
-	width: 350px;
 }
 .block-w-500 {
 	width: 500px;
