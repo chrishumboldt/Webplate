@@ -7,7 +7,7 @@ An awesome front-end javascript bootstrap that lets you stay focused on building
 Getting Started
 ========
 
-In order to use Webplate all you have to do is include the following javascript file "webplate/stack.js" in your head tag with the id "webplate-stack".
+To use Webplate include the following javascript file "webplate/stack.js" in your head tag with the id "webplate-stack".
 
 For example:
 ```
