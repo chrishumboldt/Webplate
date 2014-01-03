@@ -20,7 +20,8 @@
 // Variables
 // ---------------------------------------------------------------------------------------
 $dot_size						: 14px;
-$flicker_class					: 'webplate-flicker';
+$flicker_class					: 'flickerplate';
+$images_path					: '../images/flickerplate';
 
 
 // Mixins
@@ -38,6 +39,8 @@ $flicker_class					: 'webplate-flicker';
 @mixin fp-flicks($width: 10000%) {
 	width: $width;
 	height: 100%;
+	padding: 0px;
+	margin: 0px;
 	list-style: none;
 }
 @mixin fp-flick($width: 1%) {
@@ -108,7 +111,7 @@ $flicker_class					: 'webplate-flicker';
 		.arrow {
 			opacity: 0;
 			margin: 0px 0px 0px 50%;
-			@include single-background-image('../images/flickerplate/arrow-left-light.png', left);
+			@include single-background-image('#{$images_path}/arrow-left-light.png', left);
 		}
 	}
 	.arrow-navigation.right {
@@ -117,7 +120,7 @@ $flicker_class					: 'webplate-flicker';
 		.arrow {
 			opacity: 0;
 			margin: 0px 0px 0px -50%;
-			@include single-background-image('../images/flickerplate/arrow-right-light.png', right);
+			@include single-background-image('#{$images_path}/arrow-right-light.png', right);
 		}
 	}
 	.arrow-navigation.left.hover .arrow {
@@ -179,10 +182,10 @@ $flicker_class					: 'webplate-flicker';
 	
 		// Arrow navigation
 		.arrow-navigation.left .arrow {
-			background-image: url('../images/flickerplate/arrow-left-dark.png');
+			background-image: url('#{$images_path}/arrow-left-dark.png');
 		}
 		.arrow-navigation.right .arrow {
-			background-image: url('../images/flickerplate/arrow-right-dark.png');
+			background-image: url('#{$images_path}/arrow-right-dark.png');
 		}
 	
 		// Dot navigation

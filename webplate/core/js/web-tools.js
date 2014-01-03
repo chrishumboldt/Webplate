@@ -486,7 +486,7 @@ jQuery.web_load_plugins 			= function(js_path){
 	var $check_fastclick			= false; 
 	
 	// Flickerplate check
-	$flickerplate_check				= $('.webplate-flicker:first');
+	$flickerplate_check				= $('.flickerplate:first');
 	if($.web_exists($flickerplate_check)){
 		
 		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
@@ -506,7 +506,7 @@ jQuery.web_load_plugins 			= function(js_path){
 		// Execute the flicker
 		if($check_flicker == true){
 			
-			$('.webplate-flicker').flicker();
+			$('.flickerplate').flicker();
 		}
 			
 		// Activate fastclick
