@@ -23,7 +23,7 @@ For example:
 <body data-css-extras="welcome.css" data-js-extras="welcome.js">
 ```
 
-All files are load asynchronously. From here on out you have access to all Webplate plugins, including the Blueplate responsive CSS engine, the Flickerplate jQuery plugin and all other libraries like, Jquery itself, Modernizr, Typeplate and jQuery Touch.
+All files are load asynchronously. From here on out you have access to all Webplate plugins, including the Blueplate responsive CSS engine, the Flickerplate jQuery plugin and all other libraries like, jQuery itself, Modernizr, Typeplate and jQuery.Finger.
 
 
 Documentation
