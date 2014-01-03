@@ -68,6 +68,11 @@
 .float-clear {
 	clear: both;
 }
+.center-it {
+	margin: 0px auto;
+}
+
+// Text classes
 .txt-l {
 	text-align: left;	
 }
@@ -77,11 +82,6 @@
 .txt-c {
 	text-align: center;
 }
-.center-it {
-	margin: 0px auto;
-}
-
-// Text classes
 .txt-size-xxl {
 	font-size: 1.444em
 }
@@ -130,6 +130,9 @@
 }
 .txt-white {
 	color: #fff;
+}
+.txt-grey {
+  color: fadeout(#000, 50%);
 }
 
 // Vertical classes
@@ -188,7 +191,6 @@
 }
 
 // General layout
-// For basic shapes
 .block-h-10 {
 	height: 10px;
 }
@@ -291,8 +293,6 @@
 .mgn-no {
 	margin: 0px;
 }
-
-// Multiples of 1 from 1 to 20
 @for $index from 1 through $spacing_limit {
 	
 	$multiplication		: 1px;
@@ -333,11 +333,6 @@
 	}
 }
 
-// Colour classes
-.txt-grey {
-  color: fadeout(#000, 50%);
-}
-
 
 // Large View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
@@ -348,7 +343,7 @@
 	}
 
 	// Navigation
-	.navigation ul, ol {
+	.navigation ul, .navigation ol {
 		list-style: none;
 	}
 }
