@@ -193,7 +193,25 @@
 	overflow: hidden;
 }
 
+// Buttons
+@mixin big_button() {
+	width: 100%;
+	height: $download_button_h;
+	line-height: $download_button_h;
+	font-size: 1em;
+	font-family: $logo_font;
+	font-weight: 300;
+
+	span {
+		margin-right: 10px;
+		font-size: 1.333em;
+	}
+}
+
 // Layout
+@mixin center() {
+	margin: 0px auto;
+}
 @mixin row() {
 	width: 100%;
 	

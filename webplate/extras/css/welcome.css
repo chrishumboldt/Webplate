@@ -1,22 +1,145 @@
 /**
- * welcome.scss
- *
- * Author:        Chris Modem
- * Last Edited:   14 November 2013
+ * SASS File: 		welcome.sass
+ * Author:        	Chris Humboldt
+ * Last Edited:   	3 January 2014
  */
-/*-------------------------------------------------------
+/* Prettify
+--------------------------------------------------------------------------------------- */
+/**
+ * SASS File: 		prettify.sass
+ */
+/* Tomorrow Night Eighties Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* Pretty printing styles. Used with prettify.js. */
+/* SPAN elements with the classes below are added by prettyprint. */
+/* plain text */
+.pln {
+  color: #cccccc; }
 
-  Table of Contents:
+@media screen {
+  /* string content */
+  .str {
+    color: #99cc99; }
 
-    Imports
-    Variables
-    Global
-    Large View
-    Adjusting View
-    Small View
-    Links
+  /* a keyword */
+  .kwd {
+    color: #cc99cc; }
 
----------------------------------------------------------*/
+  /* a comment */
+  .com {
+    color: #999999; }
+
+  /* a type name */
+  .typ {
+    color: #6699cc; }
+
+  /* a literal value */
+  .lit {
+    color: #f99157; }
+
+  /* punctuation */
+  .pun {
+    color: #cccccc; }
+
+  /* lisp open bracket */
+  .opn {
+    color: #cccccc; }
+
+  /* lisp close bracket */
+  .clo {
+    color: #cccccc; }
+
+  /* a markup tag name */
+  .tag {
+    color: #f2777a; }
+
+  /* a markup attribute name */
+  .atn {
+    color: #f99157; }
+
+  /* a markup attribute value */
+  .atv {
+    color: #66cccc; }
+
+  /* a declaration */
+  .dec {
+    color: #f99157; }
+
+  /* a variable name */
+  .var {
+    color: #f2777a; }
+
+  /* a function name */
+  .fun {
+    color: #6699cc; } }
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str {
+    color: #006600; }
+
+  .kwd {
+    color: #006;
+    font-weight: bold; }
+
+  .com {
+    color: #600;
+    font-style: italic; }
+
+  .typ {
+    color: #404;
+    font-weight: bold; }
+
+  .lit {
+    color: #004444; }
+
+  .pun, .opn, .clo {
+    color: #444400; }
+
+  .tag {
+    color: #006;
+    font-weight: bold; }
+
+  .atn {
+    color: #440044; }
+
+  .atv {
+    color: #006600; } }
+/* Style */
+pre.prettyprint {
+  background: #495563;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #cccccc;
+  padding: 10px; }
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #FFF; }
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */ }
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */ }
+
 /* Imports
 --------------------------------------------------------------------------------------- */
 /**
@@ -30,296 +153,398 @@
  * Author:        	Chris Humboldt
  * Last Edited:   	2 January 2014
  */
-/* VARIABLES
---------------------------------------------------------------------------------------- */
-/* Global
---------------------------------------------------------------------------------------- */
 html {
-  font-size: 0.889em; }
-
-h1, h2, h3, h4, .logo, .navigation a {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300; }
 
-.webplate .limit {
-  padding: 0px 15px; }
-.webplate .header {
-  width: 100%;
-  background-color: #fffcf5; }
-  .webplate .header .row.limit {
-    display: table; }
-  .webplate .header .header-content {
-    display: table-cell;
-    padding: 50px 0px;
-    vertical-align: middle; }
-  .webplate .header .logo {
-    display: block;
-    width: 250px;
+.webplate {
+  background-image: url("../images/welcome/forest.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover; }
+  .webplate p a:not(.button), .webplate p a:not(.button):visited, .webplate a.link-style, .webplate a.link-style:visited {
+    color: #E54028; }
+  .webplate p a:not(.button):hover, .webplate a.link-style:hover {
+    color: #c22d18;
+    text-decoration: underline; }
+  .webplate a.button-large {
+    font-size: 0.875em; }
+  .webplate h3 {
+    font-size: 2.375em;
+    font-family: "Lato", sans-serif;
+    font-weight: 300; }
+  .webplate h4 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-size: 1.750em;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border-bottom: 1px solid #dbdbdb; }
+  .webplate h5 {
+    padding: 0px 60px;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    line-height: 1.375em;
+    color: #666666; }
+  .webplate .limit {
+    padding: 100px 20px;
+    width: 100%;
+    width: 1100px;
     margin: 0px auto; }
-    .webplate .header .logo .primary, .webplate .header .logo .secondary {
-      float: left;
-      padding-top: 1px;
-      height: 70px;
-      line-height: 20px;
-      color: #666666;
-      font-size: 3.4em; }
-    .webplate .header .logo .primary {
-      padding-left: 40px;
-      border-right: 4px solid #9de0ad;
-      -webkit-transition: border-right 0.2s ease-out;
-      -moz-transition: border-right 0.2s ease-out;
-      -o-transition: border-right 0.2s ease-out;
-      -ms-transition: border-right 0.2s ease-out;
-      transition: border-right 0.2s ease-out; }
-  .webplate .header .logo:hover .primary {
-    border-color: #f0b49e;
-    -webkit-transition: border-right 0.2s ease-out;
-    -moz-transition: border-right 0.2s ease-out;
-    -o-transition: border-right 0.2s ease-out;
-    -ms-transition: border-right 0.2s ease-out;
-    transition: border-right 0.2s ease-out; }
-  .webplate .header .logo.make-wider {
-    width: 300px; }
-    .webplate .header .logo.make-wider .primary {
-      padding: 0px 10px 0px 0px; }
-    .webplate .header .logo.make-wider .secondary {
-      padding: 0px 0px 0px 10px; }
-  .webplate .header .heading h3 {
-    width: 80%;
-    margin: 0px auto;
-    margin-top: 40px;
-    color: #666666;
-    text-align: center;
-    line-height: 1.3em;
-    font-size: 1.65em; }
-  .webplate .header .navigation {
-    margin-top: 50px; }
-.webplate .content .row .limit {
-  padding: 70px 15px; }
-.webplate .content .row h2 {
-  font-weight: 100;
-  text-align: center; }
-.webplate .content .row h4 {
-  width: 90%;
-  margin: 0px auto;
-  margin-bottom: 20px;
-  text-align: center;
-  line-height: 1.6em; }
-.webplate .content .row .infoBlock {
-  padding: 20px;
-  border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px; }
-.webplate .content .row .seperator {
-  margin: 20px 0px;
-  font-size: 4em;
-  text-align: center; }
-.webplate .content .row p {
-  font-weight: 100; }
-  .webplate .content .row p b {
-    color: #9de0ad; }
-.webplate .content .row a {
-  font-size: 1em; }
-.webplate .content .row a.button {
-  margin: 5px 5px 5px 0px; }
-.webplate .content .row pre.code-block {
-  display: block;
-  padding: 15px 20px;
-  margin: 15px 0px 35px 0px;
-  font-size: 1.1em;
-  word-wrap: break-word;
-  color: #fff;
-  background-color: #556270;
-  border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px; }
-.webplate .content .row .row.example {
-  margin: 4px 0px;
-  padding: 2px;
-  color: #3f4953;
-  text-align: center;
-  background-color: #9de0ad;
-  border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px; }
-  .webplate .content .row .row.example [class*="span-"] {
-    padding: 6px;
-    border: 2px solid #9de0ad;
-    color: #fff;
-    font-weight: 100;
-    background-color: #68aa7c; }
-.webplate .content .row.cream {
-  background-color: #fffcf5; }
-  .webplate .content .row.cream h2 {
-    color: #e99272; }
-  .webplate .content .row.cream h3 {
-    margin-top: 40px;
-    color: #a4afba; }
-  .webplate .content .row.cream h4 {
-    color: #a6a6a6; }
-  .webplate .content .row.cream p b {
-    color: #e99272; }
-  .webplate .content .row.cream pre.code-block {
-    background-color: #666666; }
-  .webplate .content .row.cream .example-icon {
-    font-size: 1.4em; }
-    .webplate .content .row.cream .example-icon span {
-      font-size: 0.9em; }
-.webplate .content .row.dark-blue {
-  background-color: #3f4953; }
-  .webplate .content .row.dark-blue h2 {
-    color: #9de0ad; }
-  .webplate .content .row.dark-blue h3 {
-    margin-top: 40px;
-    color: #8795a4; }
-  .webplate .content .row.dark-blue h4 {
-    color: #c1c8d0; }
-  .webplate .content .row.dark-blue p {
-    color: #dee2e6; }
-.webplate .content .row.light-blue {
-  background-color: #556270; }
-  .webplate .content .row.light-blue h2 {
-    color: #9de0ad; }
-  .webplate .content .row.light-blue h3 {
-    margin-top: 40px;
-    color: #a4afba; }
-  .webplate .content .row.light-blue h4 {
-    color: #c1c8d0; }
-  .webplate .content .row.light-blue p {
-    color: #fbfbfc; }
-  .webplate .content .row.light-blue pre.code-block {
-    background-color: #3f4953; }
-.webplate .content #downloads .row.limit {
-  padding: 25px 15px; }
-.webplate .content #downloads a {
-  display: block;
-  margin: 10px;
-  height: 60px;
-  padding-left: 50px;
-  line-height: 60px;
-  font-size: 1.2em; }
-  .webplate .content #downloads a span {
+    .webplate .limit:before, .webplate .limit:after {
+      content: " ";
+      display: table; }
+    .webplate .limit:after {
+      clear: both; }
+    @media screen and (max-width: 1100px) {
+      .webplate .limit {
+        width: 100%; } }
+  .webplate .header .back-to-webplate {
     position: absolute;
-    margin-left: -44px;
-    margin-top: 12px;
-    font-size: 2em; }
-.webplate .content .form-example {
-  padding: 25px; }
-  .webplate .content .form-example input {
-    margin-bottom: 24px; }
-  .webplate .content .form-example textarea {
-    height: 155px; }
-.webplate .footer {
-  background-color: #3f4953; }
-  .webplate .footer .row.limit {
-    padding: 50px 15px;
-    color: #dee2e6;
-    font-weight: 100; }
-    .webplate .footer .row.limit h2 {
-      color: #9de0ad; }
-    .webplate .footer .row.limit h3 {
-      margin-top: 40px;
-      color: #8795a4; }
-    .webplate .footer .row.limit h4 {
-      color: #c1c8d0; }
-    .webplate .footer .row.limit p {
-      color: #dee2e6; }
-    .webplate .footer .row.limit b {
-      color: #9de0ad;
-      font-weight: 100; }
-
-/* Large View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
-@media screen and (min-width: 701px) {
-  .webplate .navigation {
-    margin-top: 18px; }
-    .webplate .navigation a {
-      display: block;
-      text-align: center;
-      color: #666666;
-      font-size: 1.4em; }
-      .webplate .navigation a div.icon {
-        width: 75px;
-        height: 75px;
-        margin: 0px auto;
-        margin-bottom: 15px;
-        line-height: 74px;
-        font-size: 1.6em;
-        background-color: #fff;
-        border-radius: 50%;
-        -o-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%; }
-    .webplate .navigation a:hover {
-      color: #e99272; } }
-/* Fluid View (Desktop and iPad)
---------------------------------------------------------------------------------------- */
-@media screen and (max-width: 1100px) {
-  .webplate .content .form-example {
-    padding: 15px; } }
-/* Fluid View (Close to small view)
---------------------------------------------------------------------------------------- */
-@media screen and (max-width: 825px) {
-  .webplate .navigation a span {
-    display: none; } }
-/* Small View (iPhone)
---------------------------------------------------------------------------------------- */
-@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
-  .webplate-navigation .navigation-inner .row a {
-    font-size: 1em; }
-    .webplate-navigation .navigation-inner .row a div.icon {
-      font-size: 1.222em; }
-
-  .webplate .navigation-small .navigation-inner .row {
-    margin-top: 15px; }
-  .webplate .navigation-small a div.icon {
-    float: left;
-    padding-right: 12px;
-    font-size: 1.1em;
-    color: #e99272; }
-  .webplate .header {
-    padding: 5px 0px; }
-    .webplate .header .header-content {
-      padding: 10px 0px; }
-    .webplate .header .navigation-trigger {
-      display: block;
-      width: 42px;
-      padding: 6px;
-      margin-top: 9px;
-      font-size: 1.8em;
-      color: #666666; }
-    .webplate .header .navigation-trigger:active {
-      margin-top: 11px; }
-    .webplate .header .header-content {
-      vertical-align: top; }
-    .webplate .header .logo {
-      float: none;
+    padding: 7px 14px;
+    margin: 25px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.889em;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px; }
+  .webplate .header .back-to-webplate:hover {
+    color: #fff;
+    border-color: #fff; }
+  .webplate .header .logo {
+    position: absolute;
+    margin: 0px auto;
+    top: 22%;
+    left: 50%;
+    margin-left: -95px;
+    width: 190px;
+    z-index: 1;
+    border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06); }
+    .webplate .header .logo .logo-inner {
       margin: 0px auto;
-      margin-top: 16px;
-      margin-bottom: 60px;
-      width: 112px; }
-      .webplate .header .logo .primary, .webplate .header .logo .secondary {
-        height: 45px;
-        font-size: 1.667em; }
-      .webplate .header .logo .primary {
-        padding-left: 8px;
-        border-right: 2px solid #9de0ad; }
-    .webplate .header .logo.make-wider {
-      width: 155px; }
-    .webplate .header .heading h3 {
-      padding-bottom: 80px;
-      font-size: 1.35em;
-      line-height: 1.6em; }
-  .webplate .content .form-example {
-    padding: 20px 0px; }
-  .webplate .footer .text-right {
-    text-align: left; } }
-/* Links
---------------------------------------------------------------------------------------- */
+      font-family: "Lato", sans-serif;
+      font-size: 1.111em;
+      font-weight: 500;
+      background-color: #fff;
+      width: 190px;
+      height: 190px;
+      line-height: 190px;
+      text-align: center;
+      border-radius: 50%;
+      -o-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%; }
+  .webplate .header .heading-title {
+    position: absolute;
+    width: 1100px;
+    top: 56%;
+    left: 50%;
+    margin-left: -550px;
+    font-size: 1.778em;
+    color: #fff;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-weight: 300; }
+  .webplate .header .scroller {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    padding: 12px 0px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+    z-index: 1; }
+    .webplate .header .scroller .scroller-icon {
+      position: absolute;
+      left: 50%;
+      margin-left: -24px;
+      margin-top: -12px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      font-size: 2em;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+      -o-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -webkit-transition: border-color 0.2s ease-out;
+      -moz-transition: border-color 0.2s ease-out;
+      -o-transition: border-color 0.2s ease-out;
+      -ms-transition: border-color 0.2s ease-out;
+      transition: border-color 0.2s ease-out; }
+  .webplate .header .scroller:hover {
+    cursor: pointer;
+    color: white; }
+    .webplate .header .scroller:hover .scroller-icon {
+      border-color: white; }
+  .webplate .content {
+    background-color: #fff; }
+    .webplate .content .strip .column-l, .webplate .content .strip .column-r {
+      float: left;
+      position: relative;
+      width: 50%; }
+    .webplate .content .strip .column-l {
+      padding-right: 30px; }
+    .webplate .content .strip .column-r {
+      padding-left: 30px; }
+    .webplate .content .strip.downloads, .webplate .content .strip.image-links {
+      text-align: center; }
+    .webplate .content .strip.downloads .button-container {
+      padding: 10px;
+      float: left;
+      position: relative;
+      width: 33.33333%;
+      margin-left: 16.66667%; }
+      .webplate .content .strip.downloads .button-container .button {
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1em;
+        font-family: "Lato", sans-serif;
+        font-weight: 300; }
+        .webplate .content .strip.downloads .button-container .button span {
+          margin-right: 10px;
+          font-size: 1.333em; }
+    .webplate .content .strip.downloads .button-container:last-child {
+      margin-left: 0%; }
+    .webplate .content .strip.image-links {
+      padding-bottom: 0px;
+      background-color: #383838;
+      width: 100%; }
+      .webplate .content .strip.image-links:before, .webplate .content .strip.image-links:after {
+        content: " ";
+        display: table; }
+      .webplate .content .strip.image-links:after {
+        clear: both; }
+      .webplate .content .strip.image-links h3 {
+        color: #d9d9d9; }
+      .webplate .content .strip.image-links h5 {
+        margin-bottom: 100px; }
+      .webplate .content .strip.image-links .limit {
+        padding-bottom: 0px; }
+      .webplate .content .strip.image-links .link {
+        height: 320px;
+        background-size: cover;
+        float: left;
+        position: relative;
+        width: 33.33333%; }
+        .webplate .content .strip.image-links .link a {
+          display: block;
+          width: 100%;
+          height: 320px;
+          color: white;
+          font-size: 0.875em;
+          background-color: rgba(229, 64, 40, 0.8);
+          opacity: 0;
+          -webkit-transition: opacity 0.4s ease-out;
+          -moz-transition: opacity 0.4s ease-out;
+          -o-transition: opacity 0.4s ease-out;
+          -ms-transition: opacity 0.4s ease-out;
+          transition: opacity 0.4s ease-out; }
+          .webplate .content .strip.image-links .link a .title {
+            padding-top: 80px;
+            font-size: 1.5em;
+            -webkit-transition: padding-top 0.2s ease-out;
+            -moz-transition: padding-top 0.2s ease-out;
+            -o-transition: padding-top 0.2s ease-out;
+            -ms-transition: padding-top 0.2s ease-out;
+            transition: padding-top 0.2s ease-out; }
+        .webplate .content .strip.image-links .link a:hover {
+          opacity: 1; }
+          .webplate .content .strip.image-links .link a:hover .title {
+            padding-top: 130px; }
+    .webplate .content pre {
+      padding: 20px;
+      margin-bottom: 2.5em;
+      border: 0px;
+      border-radius: 2px;
+      -o-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      box-shadow: inset 0px 0px 3px fadeout(black, 60%);
+      -webkit-box-shadow: inset 0px 0px 3px fadeout(black, 60%);
+      -moz-box-shadow: inset 0px 0px 3px fadeout(black, 60%); }
+      .webplate .content pre ol {
+        padding-left: 30px;
+        list-style-type: decimal; }
+    .webplate .content table {
+      width: 100%;
+      margin-bottom: 1.5em; }
+      .webplate .content table th, .webplate .content table td {
+        padding: 12px 8px;
+        min-width: 170px; }
+      .webplate .content table thead {
+        text-align: left; }
+        .webplate .content table thead tr {
+          background-color: #fff; }
+      .webplate .content table tbody tr {
+        background-color: #fff; }
+        .webplate .content table tbody tr td:first-child {
+          width: 185px;
+          color: #008d9c;
+          font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+          font-size: 0.813em; }
+          .webplate .content table tbody tr td:first-child span {
+            color: #bfbfbf; }
+      .webplate .content table tbody tr:nth-child(odd) {
+        background-color: #fafafa; }
+  .webplate .footer {
+    text-align: center;
+    background-color: #383838; }
+    .webplate .footer h3 {
+      color: #d9d9d9; }
+    .webplate .footer h5 {
+      margin-bottom: 50px; }
+    .webplate .footer .social {
+      margin-top: 30px; }
+      .webplate .footer .social .circle {
+        text-align: center;
+        float: left;
+        position: relative;
+        width: 16.66667%; }
+        .webplate .footer .social .circle a {
+          display: block;
+          font-size: 2em;
+          color: #2e2e2e;
+          background-color: white;
+          margin: 0px auto;
+          width: 100px;
+          height: 100px;
+          line-height: 100px;
+          text-align: center;
+          border-radius: 50%;
+          -o-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -webkit-transition: background-color 0.2s ease-out;
+          -moz-transition: background-color 0.2s ease-out;
+          -o-transition: background-color 0.2s ease-out;
+          -ms-transition: background-color 0.2s ease-out;
+          transition: background-color 0.2s ease-out; }
+        .webplate .footer .social .circle a:hover {
+          background-color: gray; }
+      .webplate .footer .social .circle:first-child {
+        margin-left: 25%; }
+
+@media screen and (max-width: 1100px) {
+  .webplate .header .heading-title {
+    width: 100%;
+    left: 0%;
+    margin-left: 0px;
+    padding: 0px 10px; } }
+@media screen and (-webkit-min-device-pixel-ratio: 3) and (max-width: 1080px), screen and (max-width: 700px) {
+  .webplate h3 {
+    font-size: 1.5em; }
+  .webplate h5 {
+    padding: 0px;
+    font-size: 1em; }
+  .webplate p {
+    font-size: 0.875em; }
+  .webplate .limit {
+    padding: 50px 15px; }
+  .webplate .header .back-to-webplate {
+    padding: 5px 10px; }
+    .webplate .header .back-to-webplate span {
+      display: none; }
+  .webplate .header .logo {
+    margin-left: -70px;
+    width: 140px;
+    top: 15%; }
+    .webplate .header .logo .logo-inner {
+      font-size: 0.889em;
+      width: 140px;
+      height: 140px;
+      line-height: 140px;
+      text-align: center; }
+  .webplate .header .heading-title {
+    top: 52%;
+    font-size: 1em;
+    font-weight: 300; }
+  .webplate .header .scroller {
+    color: #fff;
+    font-size: 0.889em; }
+    .webplate .header .scroller .scroller-icon {
+      color: #fff;
+      font-size: 2em; }
+  .webplate .header .webplate-flicker ul.flicks li .flick-inner .flick-content .flick-title {
+    padding-top: 32%;
+    font-size: 1.222em; }
+  .webplate .content .strip.downloads .button-container {
+    padding: 10px 0px;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%; }
+  .webplate .content .strip.image-links h5 {
+    margin-bottom: 50px; }
+  .webplate .content .strip.image-links .link {
+    height: 320px;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%; }
+    .webplate .content .strip.image-links .link a {
+      height: 320px;
+      opacity: 0.7; }
+      .webplate .content .strip.image-links .link a .title {
+        padding-top: 116px; }
+    .webplate .content .strip.image-links .link a:hover .title {
+      padding-top: 116px; }
+  .webplate .content table {
+    width: 100%; }
+    .webplate .content table th, .webplate .content table td {
+      min-width: 0px; }
+    .webplate .content table thead {
+      display: none; }
+    .webplate .content table tbody td {
+      display: block;
+      width: 100%;
+      padding-bottom: 0px;
+      font-size: 0.875em; }
+    .webplate .content table tbody td:last-child {
+      padding-bottom: 12px; }
+  .webplate .footer .social .circle {
+    float: left;
+    position: relative;
+    width: 33.33333%; }
+    .webplate .footer .social .circle a {
+      font-size: 1.4em;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      text-align: center; }
+  .webplate .footer .social .circle:first-child {
+    margin-left: 0%; } }

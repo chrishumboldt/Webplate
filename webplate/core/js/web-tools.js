@@ -2,7 +2,7 @@
  * web-tools.js
  *
  * Author:        	Chris Humboldt
- * Last Edited: 	2 January 2014
+ * Last Edited: 	3 January 2014
  * Edited By:   	Chris Humboldt
  */
 
@@ -506,7 +506,14 @@ jQuery.web_load_plugins 			= function(js_path){
 		// Execute the flicker
 		if($check_flicker == true){
 			
-			$('.flickerplate').flicker();
+			if(Modernizr.touch){
+				
+				$('.flickerplate').flicker({ flick_animation: 'transform-slide' });
+			}
+			else {
+				
+				$('.flickerplate').flicker();
+			}
 		}
 			
 		// Activate fastclick
