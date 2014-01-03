@@ -24,21 +24,17 @@
 .hide {
 	display: none;
 }
-.fade-out-25, .fade-in-75 {
+.opacity-75 {
 	opacity: 0.75;
 }
-.fade-out-50, .fade-in-50 {
+.opacity-50 {
 	opacity: 0.5;
 }
-.fade-out-75, .fade-in-25 {
+.opacity-25 {
 	opacity: 0.25;
 }
-.fade-out-100, .fade-in-0 {
+.opacity-0 {
 	opacity: 0;
-}
-.hide-text {
-	text-indent: -10000px;
-	overflow: hidden;
 }
 
 // Position classes
@@ -73,6 +69,10 @@
 }
 
 // Text classes
+.hide-text {
+	text-indent: -10000px;
+	overflow: hidden;
+}
 .txt-l {
 	text-align: left;	
 }
