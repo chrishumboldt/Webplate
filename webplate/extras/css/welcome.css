@@ -199,6 +199,8 @@ html {
     @media screen and (max-width: 1100px) {
       .webplate .limit {
         width: 100%; } }
+  .webplate .button span.icon-arrow-down {
+    font-size: 0.875em; }
   .webplate .header .back-to-webplate {
     position: absolute;
     padding: 7px 14px;
@@ -301,6 +303,8 @@ html {
       -o-transition: border-color 0.2s ease-out;
       -ms-transition: border-color 0.2s ease-out;
       transition: border-color 0.2s ease-out; }
+    .webplate .header .scroller span {
+      padding-left: 80px; }
   .webplate .header .scroller:hover {
     cursor: pointer;
     color: white; }
@@ -316,8 +320,8 @@ html {
       padding-right: 30px; }
     .webplate .content .strip .column-r {
       padding-left: 30px; }
-    .webplate .content .strip.downloads, .webplate .content .strip.image-links {
-      text-align: center; }
+    .webplate .content .strip.going-responsive, .webplate .content .strip.buttons {
+      background-color: #fafafa; }
     .webplate .content .strip.downloads .button-container {
       padding: 10px;
       float: left;
@@ -418,6 +422,97 @@ html {
             color: #bfbfbf; }
       .webplate .content table tbody tr:nth-child(odd) {
         background-color: #fafafa; }
+    .webplate .content .atomic-example, .webplate .content .class-example {
+      margin-bottom: 1.5em;
+      border: 1px solid #e0e0e0;
+      text-align: center;
+      border-radius: 2px;
+      -o-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px; }
+      .webplate .content .atomic-example div, .webplate .content .class-example div {
+        padding: 6px 0px;
+        border: 1px solid #e0e0e0;
+        background-color: #ebebeb; }
+    .webplate .content .class-example.limit {
+      padding: 0px; }
+    .webplate .content .atomic-example {
+      width: 100%;
+      width: 1100px;
+      margin: 0px auto; }
+      .webplate .content .atomic-example:before, .webplate .content .atomic-example:after {
+        content: " ";
+        display: table; }
+      .webplate .content .atomic-example:after {
+        clear: both; }
+      @media screen and (max-width: 1100px) {
+        .webplate .content .atomic-example {
+          width: 100%; } }
+      .webplate .content .atomic-example .left-col, .webplate .content .atomic-example .right-col {
+        float: left;
+        position: relative;
+        width: 16.66667%; }
+      .webplate .content .atomic-example .middle-col {
+        float: left;
+        position: relative;
+        width: 66.66667%; }
+      @media screen and (max-width: 900px) {
+        .webplate .content .atomic-example .left-col {
+          float: left;
+          position: relative;
+          width: 50%; }
+        .webplate .content .atomic-example .middle-col, .webplate .content .atomic-example .right-col {
+          float: left;
+          position: relative;
+          width: 25%; } }
+      @media screen and (max-width: 800px) {
+        .webplate .content .atomic-example .left-col {
+          float: left;
+          position: relative;
+          width: 100%; }
+        .webplate .content .atomic-example .middle-col {
+          float: left;
+          position: relative;
+          width: 75%; }
+        .webplate .content .atomic-example .right-col {
+          float: left;
+          position: relative;
+          width: 25%; } }
+      @media screen and (max-width: 700px) {
+        .webplate .content .atomic-example .left-col, .webplate .content .atomic-example .middle-col, .webplate .content .atomic-example .right-col {
+          float: left;
+          position: relative;
+          width: 100%; } }
+    .webplate .content .strip.forms .form-example {
+      float: left;
+      position: relative;
+      width: 33.33333%; }
+      .webplate .content .strip.forms .form-example .column-l {
+        text-align: center; }
+      .webplate .content .strip.forms .form-example .button, .webplate .content .strip.forms .form-example .button-dropdown {
+        display: block;
+        width: 100%;
+        padding: 0px; }
+      .webplate .content .strip.forms .form-example [class*="icheckbox_"], .webplate .content .strip.forms .form-example [class*="iradio_"] {
+        margin-top: 3px; }
+      .webplate .content .strip.forms .form-example .column-l, .webplate .content .strip.forms .form-example .column-r, .webplate .content .strip.forms .form-example .column-f {
+        margin-bottom: 20px; }
+      .webplate .content .strip.forms .form-example .column-l {
+        padding-right: 10px;
+        text-align: left; }
+      .webplate .content .strip.forms .form-example .column-r {
+        padding-left: 10px; }
+      .webplate .content .strip.forms .form-example input, .webplate .content .strip.forms .form-example textarea, .webplate .content .strip.forms .form-example label {
+        font-size: 0.875em; }
+      .webplate .content .strip.forms .form-example textarea {
+        height: 90px; }
+    .webplate .content .strip.forms .form-example:nth-child(6) {
+      padding-right: 30px; }
+    .webplate .content .strip.forms .form-example:nth-child(7) {
+      padding: 0px 15px; }
+    .webplate .content .strip.forms .form-example:nth-child(8) {
+      padding-left: 30px; }
   .webplate .footer {
     text-align: center;
     background-color: #383838; }
@@ -536,6 +631,14 @@ html {
       font-size: 0.875em; }
     .webplate .content table tbody td:last-child {
       padding-bottom: 12px; }
+  .webplate .content .strip.forms .form-example {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%; }
+  .webplate .content .strip.forms .form-example:nth-child(6), .webplate .content .strip.forms .form-example:nth-child(7), .webplate .content .strip.forms .form-example:nth-child(8) {
+    padding: 0px; }
   .webplate .footer .social .circle {
     float: left;
     position: relative;

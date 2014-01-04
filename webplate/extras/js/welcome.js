@@ -187,6 +187,7 @@ $(document).ready(function(){
 // ------------------------------------------------ SOME VARIABLES
 
 	var $window_height					= $(window).height();
+	var $window_width					= $(window).width();
 
 // ------------------------------------------------ FUNCTIONS
 
@@ -222,11 +223,27 @@ $(document).ready(function(){
 		});
 	}
 
+	// Screen width value
+	function fc_screen_width(){
+		
+		$('.screen-width').text($window_width);
+		
+		$(window).resize(function(){
+			
+			$window_width					= $(window).width();
+			$('.screen-width').text($window_width);
+		});
+	}
+
 
 // ------------------------------------------------ EXECUTE
 
 	fc_header_adjustment();
 	
 	fc_scroll_down();
+	
+	fc_screen_width();
+
+	prettyPrint();
 
 });

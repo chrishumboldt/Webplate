@@ -270,6 +270,9 @@ html {
 		@include row();
 		@include limit();
 	}
+	.button span.icon-arrow-down {
+		font-size: 0.875em;
+	}
 	
 	// Header
 	.header {
@@ -354,6 +357,9 @@ html {
 				@include rounded-corners(50%);
 				@include animate(border-color);
 			}
+			span {
+				padding-left: 80px;
+			}
 		}
 		$scoller_hover_colour		: #fff;
 		.scroller:hover {
@@ -383,9 +389,9 @@ html {
 			}
 		}
 		
-		// Center text
-		.strip.downloads, .strip.image-links {
-			text-align: center;
+		// Grey strips
+		.strip.going-responsive, .strip.buttons {
+			background-color: $light_grey;
 		}
 		
 		// Downloads
@@ -498,6 +504,108 @@ html {
 				tr:nth-child(odd) {
 					background-color: $light_grey;
 				}
+			}
+		}
+	
+		// Examples
+		.atomic-example, .class-example {
+			margin-bottom: 1.5em;
+			border: 1px solid lighten(#000, 88%);
+			text-align: center;
+			@include rounded-corners();
+		
+			div {
+				padding: 6px 0px;
+				border: 1px solid lighten(#000, 88%);
+				background-color: lighten(#000, 92%);
+			}
+		}
+		.class-example.limit {
+			padding: 0px;
+		}
+		.atomic-example {
+			@include row();
+			@include limit();
+		
+			// Columns
+			.left-col, .right-col {
+				@include span(2);
+			}
+			.middle-col {
+				@include span(8);
+			}
+		
+			@media screen and (max-width: 900px) {
+				.left-col {
+					@include span(6);
+				}
+				.middle-col, .right-col {
+					@include span(3);
+				}
+			}
+		
+			@media screen and (max-width: 800px) {
+				.left-col {
+					@include span(12);
+				}
+				.middle-col {
+					@include span(9);
+				}
+				.right-col {
+					@include span(3);
+				}
+			}
+		
+			@media screen and (max-width: 700px) {
+				.left-col, .middle-col, .right-col {
+					@include span(12);
+				}
+			}
+		}
+		
+		// Forms
+		.strip.forms {
+			
+			// Example elements
+			.form-example {
+				@include span(4);
+				
+				.column-l {
+					text-align: center;
+				}
+				.button, .button-dropdown {
+					display: block;
+					width: 100%;
+					padding: 0px;
+				}
+				[class *= "icheckbox_"], [class *= "iradio_"] {
+					margin-top: 3px;
+				}
+				.column-l, .column-r, .column-f {
+					margin-bottom: 20px;
+				}
+				.column-l {
+					padding-right: 10px;
+					text-align: left;
+				}
+				.column-r {
+					padding-left: 10px;
+				}
+				input, textarea, label {
+					font-size: 0.875em;
+				}
+				textarea {
+					height: 90px;
+				}
+			}
+			.form-example:nth-child(6) {
+				padding-right: 30px;
+			}
+			.form-example:nth-child(7) {
+				padding: 0px 15px;
+			}
+			.form-example:nth-child(8) {
+				padding-left: 30px;
 			}
 		}
 	}
@@ -689,6 +797,18 @@ html {
 					td:last-child {
 						padding-bottom: ($table_padding_base * 3);
 					}
+				}
+			}
+			
+			// Forms
+			.strip.forms {
+				
+				// Example elements
+				.form-example {
+					@include reset-span();
+				}
+				.form-example:nth-child(6), .form-example:nth-child(7), .form-example:nth-child(8) {
+					padding: 0px;
 				}
 			}
 		}
