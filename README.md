@@ -7,23 +7,23 @@ An awesome front-end javascript bootstrap that lets you stay focused on building
 Getting Started
 ========
 
-In order to use Webplate all you have to do is include the following javascript file "webplate/stack.js" in your head tag with the id "webplate-stack".
+This is a simple process that requires you dropping a copy of the Webplate directory into your project and including the <b>webplate/stack.js</b> in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.
 
-For example:
 ```
 <head>
     <script id="webplate-stack" src="webplate/stack.js" type="text/javascript"></script>
 </head>
 ```
 
-This will load all the neccessary files required and give you the option to load your own extras. To load extras add a data object to your "body" tag for both javascript and css files.
+This will load all the neccessary files required as well as give you the option to load your own "extras" which in essence are project specific Js or CSS files. To load extras add a data object to your "body" like the example below.
 
-For example:
 ```
-<body data-css-extras="welcome.css" data-js-extras="welcome.js">
+<body style="display: none;" data-css-extras="welcome.css" data-js-extras="welcome.js">
 ```
 
-All files are load asynchronously. From here on out you have access to all Webplate plugins, including the Blueplate responsive CSS engine, the Flickerplate jQuery plugin and all other libraries like, jQuery itself, Modernizr, Typeplate and jQuery.Finger.
+Note that the <b>style="display: none;"</b> attribute is used to prevent style snapping so that the page will only show one the files have been loaded. It is not required but recommended.
+
+All files are load asynchronously. From here on out you have access to all Webplate plugins, including the <a href="http://getwebplate.com/plugins/blueplate">Blueplate</a> responsive CSS engine, the <a href="http://getwebplate.com/plugins/flickerplate">Flickerplate</a> plugin and all other libraries like, <a href="http://jquery.com/">jQuery</a>, <a href="http://modernizr.com/">Modernizr</a>, <a href="http://typeplate.com/">Typeplate</a>, <a href="http://icomoon.io/">IcoMoon</a> and <a href="http://ngryman.sh/jquery.finger/">jQuery.Finger</a>.
 
 
 Documentation
