@@ -28,7 +28,7 @@
 			theme							: 'light',
 			flick_animation					: 'transition-slide',
 			auto_flick						: true,
-			delay							: 10,
+			auto_flick_delay				: 10,
 			dot_navigation					: true,
 			dot_alignment					: 'center',
 			arrows							: true
@@ -153,9 +153,10 @@
 				
 				// Create arrows
 				$data_arrow_navigation				= $flicker.data('arrows');
-				if(($data_arrow_navigation) && ($data_arrow_navigation.length > 0)){
 				
-					if($data_arrow_navigation != 'false'){
+				if($data_arrow_navigation != undefined){
+				
+					if($data_arrow_navigation != false){
 				
 						$object.create_arrow_navigation();
 					}
@@ -166,11 +167,11 @@
 				}
 			
 				// Create navigation dots
-				$data_dot_navigation				= $flicker.data('dots');
-				$data_dot_alignment					= $flicker.data('dots-alignment');
+				$data_dot_navigation				= $flicker.data('dot-navigation');
+				$data_dot_alignment					= $flicker.data('dot-alignment');
 				var $dot_alignment					= $object.settings.dot_alignment;
 			
-				if(($data_dot_alignment) && ($data_dot_alignment.length > 0)){
+				if($data_dot_alignment != undefined){
 				
 					if($data_dot_alignment == 'left'){
 				
@@ -182,9 +183,9 @@
 					}
 				}
 			
-				if(($data_dot_navigation) && ($data_dot_navigation.length > 0)){
+				if($data_dot_navigation != undefined){
 				
-					if($data_dot_navigation != 'false'){
+					if($data_dot_navigation != false){
 				
 						$object.create_dot_navigation($dot_alignment);
 					}
@@ -195,21 +196,18 @@
 				}
 			
 				// Perform the auto flicking
-				$flick_delay						= $object.settings.delay * 1000;
+				$flick_delay						= $object.settings.auto_flick_delay * 1000;
 				$data_auto_flick					= $flicker.data('auto-flick');
 				$data_auto_flick_delay				= $flicker.data('auto-flick-delay');
 			
 				if(($data_auto_flick_delay)){
 			
-					if($.web_is_integer($data_auto_flick_delay) == true){
-					
-						$flick_delay				= $data_auto_flick_delay * 1000;
-					}
+					$flick_delay				= $data_auto_flick_delay * 1000;
 				}
-			
-				if(($data_auto_flick) && ($data_auto_flick.length > 0)){
 				
-					if($data_auto_flick != 'false'){
+				if($data_auto_flick != undefined){
+				
+					if($data_auto_flick != false){
 
 						$object.settings.auto_flick	= true;
 					}
@@ -231,10 +229,6 @@
 						$flicker_moving 				= false;
 					});
 				}
-			}
-			else {
-				
-				// $flicker.find('ul.flicks').width($flick_count * 1000);
 			}
 		}
 		
@@ -442,7 +436,7 @@
 				
 				$flicker.addClass('flicker-theme-dark');
 			}
-			else if($crt_flick.hasClass('flick-theme-ligh')){
+			else if($crt_flick.hasClass('flick-theme-light')){
 				
 				$flicker.addClass('flicker-theme-light');
 			}
