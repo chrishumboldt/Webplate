@@ -100,9 +100,9 @@
 			
 			// Block text
 			var $block_text						= $flicker.data('block-text');
-			if(($block_text) && ($block_text.length > 0)){
+			if($block_text != undefined){
 				
-				if($block_text == 'false'){
+				if($block_text == false){
 					
 					$object.settings.block_text = false;
 				}
