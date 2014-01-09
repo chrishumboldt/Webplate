@@ -7,7 +7,7 @@ An awesome front-end javascript bootstrap that lets you stay focused on building
 Getting Started
 ========
 
-This is a simple process that requires you dropping a copy of the Webplate directory into your project and including the <b>webplate/stack.js</b> in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.
+This is a simple process that requires you dropping a copy of the Webplate directory into your project and including the <b>webplate/stack.js</b> file in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.
 
 ```
 <head>
