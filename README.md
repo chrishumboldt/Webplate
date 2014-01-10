@@ -15,10 +15,10 @@ This is a simple process that requires you dropping a copy of the Webplate direc
 </head>
 ```
 
-This will load all the neccessary files required as well as give you the option to load your own "extras" which in essence are project specific JS or CSS files. To load extras add a data attribute to your "body" like the example below.
+This will load all the neccessary files required as well as give you the option to load your own "project" specific JS or CSS files. To load project files add a data attribute to your "body" like the example below.
 
 ```
-<body style="display: none;" data-css-extras="welcome.css" data-js-extras="welcome.js">
+<body style="display: none;" data-project-css="welcome.css" data-project-js="welcome.js">
 ```
 
 Note that the <b>style="display: none;"</b> attribute is used to prevent style snapping so that the page will only show once the files have been loaded. It is not required but recommended.

@@ -2,7 +2,7 @@
  * engine.js
  *
  * Author:        	Chris Humboldt
- * Last Edited:   	2 January 2014
+ * Last Edited:   	9 January 2014
  * Edited By:   	Chris Humboldt
  */
 
@@ -17,17 +17,17 @@ var $root									= $crt_script_src;
 var $js_path								= $root + 'webplate/core/js/';
 var $css_path								= $root + 'webplate/core/css/';
 var $less_path								= $root + 'webplate/core/less/';
-var $icomoon_path							= $root + 'webplate/extras/icomoon/';
-var $js_extras_path							= $root + 'webplate/extras/js/';
-var $css_extras_path						= $root + 'webplate/extras/css/';
-var $less_extras_path						= $root + 'webplate/extras/less/';
+var $icomoon_path							= $root + 'webplate/project/icomoon/';
+var $js_project_path						= $root + 'webplate/project/js/';
+var $css_project_path						= $root + 'webplate/project/css/';
+var $less_project_path						= $root + 'webplate/project/less/';
 var $is_less								= false;
-var $ar_js_extras							= [];
-var $ar_css_core							= [
+var $ar_project_js							= [];
+var $ar_core_css							= [
 	$css_path + 'webplate.css',
 	$icomoon_path +'style.css'
 ];
-var $ar_css_extras							= [];
+var $ar_project_css							= [];
 
 
 // ---------- Load the necessary files and execute
@@ -56,20 +56,20 @@ yepnope([{
 		$.web_load_plugins($js_path);
 	}
 }, {
-	load									: $ar_css_core,
+	load									: $ar_core_css,
 	complete								: function(){
 		
-		// Load CSS extras
-		$css_extras							= $('body').data('css-extras');
+		// Load project CSS
+		$project_css							= $('body').data('project-css');
 
 		// Check that CSS is needed
-		if(($css_extras) && ($css_extras.length > 0)){
+		if(($project_css) && ($project_css.length > 0)){
 
 			// Split the js
-			$split_css_extras               = $css_extras.split(',');
+			$split_project_css               = $project_css.split(',');
 
 			// Loop through and load each CSS module
-			$.each($split_css_extras, function($index, $file){
+			$.each($split_project_css, function($index, $file){
 
 				// Trim the whitespace
 				$file                       = jQuery.trim($file);
@@ -80,17 +80,17 @@ yepnope([{
 				// Add to the arrays
 				if($extension == 'css'){
 					
-					$ar_css_extras.push($css_extras_path + $file);
+					$ar_project_css.push($css_project_path + $file);
 				}
 				else if($extension == 'less'){
 
-					$ar_css_extras.push('less!' + $less_extras_path + $file);
-					$ar_css_extras.push($js_path + 'min/web-less.min.js');
+					$ar_project_css.push('less!' + $less_project_path + $file);
+					$ar_project_css.push($js_path + 'min/web-less.min.js');
 				}
 			});
 			
 			// Load CSS and LESS and show the body
-			yepnope({ load: $ar_css_extras, complete: function(){
+			yepnope({ load: $ar_project_css, complete: function(){
 					
 				// Show the body
 				$('body').show();
@@ -103,16 +103,16 @@ yepnope([{
 		}
 		
 		// JS extras
-      $js_extras                          	= $('body').data('js-extras');
+		$project_js                          	= $('body').data('project-js');
 
-      // Check that js is needed
-      if(($js_extras) && ($js_extras.length > 0)){
+		// Check that js is needed
+		if(($project_js) && ($project_js.length > 0)){
 
 			// Split the js
-			$split_js_extras                = $js_extras.split(',');
+			$split_project_js                = $project_js.split(',');
 
 			// Loop through and load each js extra
-			$.each($split_js_extras, function($index, $file){
+			$.each($split_project_js, function($index, $file){
 
 				// Some variables
 				$file                       = jQuery.trim($file);
@@ -120,13 +120,13 @@ yepnope([{
 
 				// Load the JS
 				if($extension == 'js'){
-					
-					$ar_js_extras.push($js_extras_path + $file);
+			
+					$ar_project_js.push($js_project_path + $file);
 				}
 			});
-			
+	
 			// Load it
-			yepnope({ load: $ar_js_extras });
-      }
+			yepnope({ load: $ar_project_js });
+		}
 	}
 }]);
