@@ -469,6 +469,9 @@ html {
 			padding: 20px;
 			margin-bottom: 2.5em;
 			border: 0px;
+			white-space: pre;
+			word-wrap: normal;
+			overflow: scroll;
 			@include rounded-corners();
 			@include drop-shadow-inset();
 			
