@@ -477,6 +477,16 @@ jQuery.web_forms 					= function(){
 	});
 };
 
+// ----- BUTTONS EXECUTE
+jQuery.web_buttons 					= function(){
+
+	// Execute buttons
+	$(document).ready(function(){
+		
+		$('.button').buttonplate();
+	});
+};
+
 // ----- LOAD PLUGINS
 jQuery.web_load_plugins 			= function(js_path){
 	
@@ -610,4 +620,4 @@ jQuery.web_get_url					= function(){
 jQuery.web_update_history			= function($url){
 		
 	window.history.pushState({ path : $url }, '', $url);
-}
+};

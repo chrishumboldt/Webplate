@@ -376,6 +376,14 @@ html {
 	.content {
 		background-color: #fff;
 		
+		// General
+		.button-drop-down {
+			span {
+				padding-left: 8px;
+				font-size: 0.813em;
+			}
+		}
+		
 		// Strips
 		.strip {
 			.column-l, .column-r {
@@ -576,7 +584,6 @@ html {
 				.button, .button-dropdown {
 					display: block;
 					width: 100%;
-					padding: 0px;
 				}
 				[class *= "icheckbox_"], [class *= "iradio_"] {
 					margin-top: 3px;

@@ -312,6 +312,9 @@ html {
       border-color: white; }
   .webplate .content {
     background-color: #fff; }
+    .webplate .content .button-drop-down span {
+      padding-left: 8px;
+      font-size: 0.813em; }
     .webplate .content .strip .column-l, .webplate .content .strip .column-r {
       float: left;
       position: relative;
@@ -492,8 +495,7 @@ html {
         text-align: center; }
       .webplate .content .strip.forms .form-example .button, .webplate .content .strip.forms .form-example .button-dropdown {
         display: block;
-        width: 100%;
-        padding: 0px; }
+        width: 100%; }
       .webplate .content .strip.forms .form-example [class*="icheckbox_"], .webplate .content .strip.forms .form-example [class*="iradio_"] {
         margin-top: 3px; }
       .webplate .content .strip.forms .form-example .column-l, .webplate .content .strip.forms .form-example .column-r, .webplate .content .strip.forms .form-example .column-f {

@@ -50,7 +50,7 @@ yepnope([{
 		$.web_navigation();
 
 		$.web_window_type();
-
+		
 		$.web_forms();
 
 		$.web_load_plugins($js_path);
@@ -94,12 +94,14 @@ yepnope([{
 					
 				// Show the body
 				$('body').show();
+				$.web_buttons();
 			}});
 		}
 		else {
 				
 			// Show the body
 			$('body').show();
+			$.web_buttons();
 		}
 		
 		// JS extras
