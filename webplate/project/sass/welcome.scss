@@ -533,7 +533,6 @@ html {
 		}
 		.atomic-example {
 			@include row();
-			@include limit();
 		
 			// Columns
 			.left-col, .right-col {
