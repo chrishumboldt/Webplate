@@ -2,7 +2,7 @@
  * SASS File: 		blueplate.sass
  * Author:        	Chris Humboldt
  * Link:			http://getwebplate.com/plugins/blueplate
- * Last Edited:   	3 January 2014
+ * Last Edited:   	13 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -258,7 +258,7 @@
 	}
 	
 	// Span loop
-	@for $index from 1 through $column_limit {
+	@for $index from 1 through $column-limit {
 		
 		.span-#{$index} {
 			@include make-span($index);
@@ -266,7 +266,7 @@
 	}
 	
 	// Offset loop
-	@for $index from 1 through ($column_limit - 1) {
+	@for $index from 1 through ($column-limit - 1) {
 		
 		.offset-#{$index} {
 			@include offset($index);
@@ -291,42 +291,42 @@
 .mgn-no {
 	margin: 0px;
 }
-@for $index from 1 through $spacing_limit {
+@for $index from 1 through $spacing-limit {
 	
 	$multiplication		: 1px;
-	$class_name			: ($index * 1);
+	$class-name			: ($index * 1);
 	
 	// Padding
-	.pad-#{$class_name} {
+	.pad-#{$class-name} {
 		padding: ($multiplication * $index);
 	}
-	.pad-r-#{$class_name} {
+	.pad-r-#{$class-name} {
 		padding-right: ($multiplication * $index);
 	}
-	.pad-l-#{$class_name} {
+	.pad-l-#{$class-name} {
 		padding-left: ($multiplication * $index);
 	}
-	.pad-t-#{$class_name} {
+	.pad-t-#{$class-name} {
 		padding-top: ($multiplication * $index);
 	}
-	.pad-b-#{$class_name} {
+	.pad-b-#{$class-name} {
 		padding-bottom: ($multiplication * $index);
 	}
 	
 	// Margin
-	.mgn-#{$class_name} {
+	.mgn-#{$class-name} {
 		margin: ($multiplication * $index);
 	}
-	.mgn-r-#{$class_name} {
+	.mgn-r-#{$class-name} {
 		margin-right: ($multiplication * $index);
 	}
-	.mgn-l-#{$class_name} {
+	.mgn-l-#{$class-name} {
 		margin-left: ($multiplication * $index);
 	}
-	.mgn-t-#{$class_name} {
+	.mgn-t-#{$class-name} {
 		margin-top: ($multiplication * $index);
 	}
-	.mgn-b-#{$class_name} {
+	.mgn-b-#{$class-name} {
 		margin-bottom: ($multiplication * $index);
 	}
 }
@@ -349,7 +349,7 @@
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $limit_width) {
+@media screen and (max-width: $limit-width) {
 }
 
 
@@ -424,7 +424,7 @@
 		}
 	
 		// Small span loop
-		@for $index from 1 through $column_limit {
+		@for $index from 1 through $column-limit {
 		
 			.small-span-#{$index} {
 				@include make-span($index);
@@ -432,7 +432,7 @@
 		}
 	
 		// Offset loop
-		@for $index from 1 through ($column_limit - 1) {
+		@for $index from 1 through ($column-limit - 1) {
 		
 			.small-offset-#{$index} {
 				@include offset($index);

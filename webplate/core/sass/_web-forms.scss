@@ -2,7 +2,7 @@
  * SASS File: 		forms.scss
  * Author:        	Damir Foy
  * Link:			http://damirfoy.com/iCheck/
- * Last Edited:   	14 November 2013
+ * Last Edited:   	13 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -16,10 +16,10 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$fe_images_root						: '../images/forms';
-$fe_border_color 					: lighten(#000, 82%);
-$fe_border_width					: 1px; 
-$fe_rounded_corners_radius			: 2px;  
+$fe-images-root						: '../images/forms';
+$fe-border-color 					: lighten(#000, 82%);
+$fe-border-width					: 1px; 
+$fe-rounded-corners-radius			: 2px;  
 
 
 // Global
@@ -38,7 +38,7 @@ $fe_rounded_corners_radius			: 2px;
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="radio"], input[type="checkbox"], textarea {
 	width: 100%;
 	padding: 8px;
-	border: $fe_border_width solid $fe_border_color;
+	border: $fe-border-width solid $fe-border-color;
 	@include rounded-corners();
 }
 input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus, select:focus {
@@ -51,7 +51,7 @@ textarea {
 }
 // Drop down
 select {
-  border: $fe_border_width solid $fe_border_color;
+  border: $fe-border-width solid $fe-border-color;
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
@@ -60,17 +60,17 @@ select {
   -webkit-user-select: text;
   -webkit-font-smoothing: antialiased;
   @include animate(border-color);
-  @include rounded-corners($fe_rounded_corners_radius);
+  @include rounded-corners($fe-rounded-corners-radius);
 }
 .drop-down {
 	padding: 6px;
-	border: $fe_border_width solid $fe_border_color;
+	border: $fe-border-width solid $fe-border-color;
 	background-color: #fff;
-	background-image: url(#{$fe_images_root}/drop-down-arrow.png);
+	background-image: url(#{$fe-images-root}/drop-down-arrow.png);
 	background-repeat: no-repeat;
 	background-position: right center;
 	overflow: hidden;
-	@include rounded-corners($fe_rounded_corners_radius);
+	@include rounded-corners($fe-rounded-corners-radius);
 
 	.text {
 		position: absolute;
@@ -85,8 +85,8 @@ select {
 }
 .drop-down:hover {
 	padding: 5px;
-	border-width: ($fe_border_width + 1);
-	background-image: url(#{$fe_images_root}/drop-down-arrow-hover.png);
+	border-width: ($fe-border-width + 1);
+	background-image: url(#{$fe-images-root}/drop-down-arrow-hover.png);
 }
 .web-forms-colour-aero {
 	.drop-down:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, textarea:focus {
@@ -140,7 +140,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/square.png) no-repeat;
+    background: url(#{$fe-images-root}/square.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -186,7 +186,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square,
     .iradio_square {
-        background-image: url(#{$fe_images_root}/square@2x.png);
+        background-image: url(#{$fe-images-root}/square@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -200,7 +200,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/red.png) no-repeat;
+    background: url(#{$fe-images-root}/red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -247,7 +247,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-red,
     .iradio_square-red {
-        background-image: url(#{$fe_images_root}/red@2x.png);
+        background-image: url(#{$fe-images-root}/red@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -261,7 +261,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/green.png) no-repeat;
+    background: url(#{$fe-images-root}/green.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -308,7 +308,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-green,
     .iradio_square-green {
-        background-image: url(#{$fe_images_root}/green@2x.png);
+        background-image: url(#{$fe-images-root}/green@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -322,7 +322,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/blue.png) no-repeat;
+    background: url(#{$fe-images-root}/blue.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -369,7 +369,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-blue,
     .iradio_square-blue {
-        background-image: url(#{$fe_images_root}/blue@2x.png);
+        background-image: url(#{$fe-images-root}/blue@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -430,7 +430,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-aero,
     .iradio_square-aero {
-        background-image: url(#{$fe_images_root}/aero@2x.png);
+        background-image: url(#{$fe-images-root}/aero@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -444,7 +444,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/grey.png) no-repeat;
+    background: url(#{$fe-images-root}/grey.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -491,7 +491,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-grey,
     .iradio_square-grey {
-        background-image: url(#{$fe_images_root}/grey@2x.png);
+        background-image: url(#{$fe-images-root}/grey@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -505,7 +505,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/orange.png) no-repeat;
+    background: url(#{$fe-images-root}/orange.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -552,7 +552,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-orange,
     .iradio_square-orange {
-        background-image: url(#{$fe_images_root}/orange@2x.png);
+        background-image: url(#{$fe-images-root}/orange@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -566,7 +566,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/yellow.png) no-repeat;
+    background: url(#{$fe-images-root}/yellow.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -613,7 +613,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-yellow,
     .iradio_square-yellow {
-        background-image: url(#{$fe_images_root}/yellow@2x.png);
+        background-image: url(#{$fe-images-root}/yellow@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -627,7 +627,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/pink.png) no-repeat;
+    background: url(#{$fe-images-root}/pink.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -674,7 +674,7 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-pink,
     .iradio_square-pink {
-        background-image: url(#{$fe_images_root}/pink@2x.png);
+        background-image: url(#{$fe-images-root}/pink@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
@@ -688,7 +688,7 @@ select {
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(#{$fe_images_root}/purple.png) no-repeat;
+    background: url(#{$fe-images-root}/purple.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -735,13 +735,13 @@ select {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-purple,
     .iradio_square-purple {
-        background-image: url(#{$fe_images_root}/purple@2x.png);
+        background-image: url(#{$fe-images-root}/purple@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }
 }
 
-[class *= "icheckbox_"], [class *= "iradio_"] {
+[class *= "icheckbox-"], [class *= "iradio-"] {
 	background-color: #fff;
 }
 

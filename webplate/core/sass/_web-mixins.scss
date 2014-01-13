@@ -6,7 +6,7 @@
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
-// $page_width variable and all these cool helper mixins.
+// $page-width variable and all these cool helper mixins.
 
 
 // Import the settings file
@@ -69,15 +69,15 @@
 }
 
 // Drop shadows
-@mixin drop-shadow($color: fade-out(#000, 0.6), $size: 3px, $vertical_offset: 0px, $horizontal_offset: 0px) {
-	box-shadow: $horizontal_offset $vertical_offset $size $color;
-	-webkit-box-shadow: $horizontal_offset $vertical_offset $size $color;
-	-moz-box-shadow: $horizontal_offset $vertical_offset $size $color;
+@mixin drop-shadow($color: fade-out(#000, 0.6), $size: 3px, $vertical-offset: 0px, $horizontal-offset: 0px) {
+	box-shadow: $horizontal-offset $vertical-offset $size $color;
+	-webkit-box-shadow: $horizontal-offset $vertical-offset $size $color;
+	-moz-box-shadow: $horizontal-offset $vertical-offset $size $color;
 }
-@mixin drop-shadow-inset($color: fade-out(#000, 0.6), $size: 3px, $vertical_offset: 0px, $horizontal_offset: 0px) {
-	box-shadow: inset $horizontal_offset $vertical_offset $size $color;
-	-webkit-box-shadow: inset $horizontal_offset $vertical_offset $size $color;
-	-moz-box-shadow: inset $horizontal_offset $vertical_offset $size $color;
+@mixin drop-shadow-inset($color: fade-out(#000, 0.6), $size: 3px, $vertical-offset: 0px, $horizontal-offset: 0px) {
+	box-shadow: inset $horizontal-offset $vertical-offset $size $color;
+	-webkit-box-shadow: inset $horizontal-offset $vertical-offset $size $color;
+	-moz-box-shadow: inset $horizontal-offset $vertical-offset $size $color;
 }
 @mixin no-drop-shadow() {
 	box-shadow: none;
@@ -86,39 +86,44 @@
 }
 
 // Buttons custom
-@mixin button-gradient($top_colour, $bottom_colour,  $top_highlight: 0.8, $highlight_colour: #ffffff) {
-	background: -webkit-linear-gradient($top_colour, $bottom_colour);
-	background: -moz-linear-gradient($top_colour, $bottom_colour);
-	border-top: 1px solid fade-out($highlight_colour, $top_highlight);
+@mixin button-gradient($top-colour, $bottom-colour,  $top-highlight: 0.8, $highlight-colour: #ffffff) {
+	background: $top-colour;
+	background: -webkit-gradient(linear, left top, left bottom, from($top-colour), to($bottom-colour));
+	background: -webkit-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -moz-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -ms-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -o-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: linear-gradient(top, $top-colour, $bottom-colour);
+	border-top: 1px solid fade-out($highlight-colour, $top-highlight);
 }
 
 // Borders
-@mixin light-border($top_highlight: 0.8, $colour: #ffffff) {
-	border: 1px solid fade-out($colour, $top_highlight);
+@mixin light-border($top-highlight: 0.8, $colour: #ffffff) {
+	border: 1px solid fade-out($colour, $top-highlight);
 }
-@mixin light-top-border($top_highlight: 0.8, $top_colour: #ffffff) {
-	border-top: 1px solid fade-out($top_colour, $top_highlight);
+@mixin light-top-border($top-highlight: 0.8, $top-colour: #ffffff) {
+	border-top: 1px solid fade-out($top-colour, $top-highlight);
 }
-@mixin light-bottom-border($bottom_highlight: 0.8, $bottom_colour: #ffffff) {
-	border-bottom: 1px solid fade-out($bottom_colour, $bottom_highlight);
+@mixin light-bottom-border($bottom-highlight: 0.8, $bottom-colour: #ffffff) {
+	border-bottom: 1px solid fade-out($bottom-colour, $bottom-highlight);
 }
-@mixin dark-bottom-border($bottom_lowlight: 0.8, $bottom_colour: #000000) {
-	border-bottom: 1px solid fade-out($bottom_colour, $bottom_lowlight);
+@mixin dark-bottom-border($bottom-lowlight: 0.8, $bottom-colour: #000000) {
+	border-bottom: 1px solid fade-out($bottom-colour, $bottom-lowlight);
 }
-@mixin dark-top-border($bottom_lowlight: 0.8, $top_colour: #000000) {
-	border-top: 1px solid fade-out($top_colour, $bottom_lowlight);
+@mixin dark-top-border($bottom-lowlight: 0.8, $top-colour: #000000) {
+	border-top: 1px solid fade-out($top-colour, $bottom-lowlight);
 }
-@mixin light-right-border($top_highlight: 0.8, $top_colour: #ffffff) {
-	border-right: 1px solid fade-out($top_colour, $top_highlight);
+@mixin light-right-border($top-highlight: 0.8, $top-colour: #ffffff) {
+	border-right: 1px solid fade-out($top-colour, $top-highlight);
 }
-@mixin dark-right-border($bottom_lowlight: 0.8, $bottom_colour: #000000) {
-	border-right: 1px solid fade-out($bottom_colour, $bottom_lowlight);
+@mixin dark-right-border($bottom-lowlight: 0.8, $bottom-colour: #000000) {
+	border-right: 1px solid fade-out($bottom-colour, $bottom-lowlight);
 }
-@mixin light-left-border($top_highlight: 0.8, $top_colour: #ffffff) {
-	border-left: 1px solid fade-out($top_colour, $top_highlight);
+@mixin light-left-border($top-highlight: 0.8, $top-colour: #ffffff) {
+	border-left: 1px solid fade-out($top-colour, $top-highlight);
 }
-@mixin dark-left-border($bottom_lowlight: 0.8, $bottom_colour: #000000) {
-	border-left: 1px solid fade-out($bottom_colour, $bottom_lowlight);
+@mixin dark-left-border($bottom-lowlight: 0.8, $bottom-colour: #000000) {
+	border-left: 1px solid fade-out($bottom-colour, $bottom-lowlight);
 }
 
 // Look and feel
@@ -126,9 +131,14 @@
 	-moz-opacity: $opacity;
 	opacity: $opacity;
 }
-@mixin colour-gradient($top_colour, $bottom_colour) {
-	background: -webkit-linear-gradient($top_colour, $bottom_colour);
-	background: -moz-linear-gradient($top_colour, $bottom_colour);
+@mixin gradient-vertical($top-colour, $bottom-colour) {
+	background: $top-colour;
+	background: -webkit-gradient(linear, left top, left bottom, from($top-colour), to($bottom-colour));
+	background: -webkit-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -moz-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -ms-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -o-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: linear-gradient(top, $top-colour, $bottom-colour);
 }
 
 // IOS
@@ -138,22 +148,22 @@
 }
 
 // Animation
-@mixin animate($attribute, $transition_speed: 0.2s) {
-	-webkit-transition: $attribute $transition_speed ease-out;
-	-moz-transition: $attribute $transition_speed ease-out;
-	-o-transition: $attribute $transition_speed ease-out;
-	-ms-transition: $attribute $transition_speed ease-out;
-	transition: $attribute $transition_speed ease-out;
+@mixin animate($attribute, $transition-speed: 0.2s) {
+	-webkit-transition: $attribute $transition-speed ease-out;
+	-moz-transition: $attribute $transition-speed ease-out;
+	-o-transition: $attribute $transition-speed ease-out;
+	-ms-transition: $attribute $transition-speed ease-out;
+	transition: $attribute $transition-speed ease-out;
 }
-@mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition_speed: 0.2s) {
+@mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition-speed: 0.2s) {
 	-webkit-transform: translate3d($x, $y, $z);
 	-o-transform: translate3d($x, $y, $z);
 	-moz-transform: translate3d($x, $y, $z);
 	transform: translate3d($x, $y, $z);
-	-webkit-transition: -webkit-transform $transition_speed ease-out;
-	-o-transition: -o-transform $transition_speed ease-out;
-	-moz-transition: -moz-transform $transition_speed ease-out;
-	transition: transform $transition_speed ease-out;
+	-webkit-transition: -webkit-transform $transition-speed ease-out;
+	-o-transition: -o-transform $transition-speed ease-out;
+	-moz-transition: -moz-transform $transition-speed ease-out;
+	transition: transform $transition-speed ease-out;
 }
 @mixin transform($x: 0px, $y: 0px, $z: 0px) {
 	-webkit-transform: translate3d($x, $y, $z);
@@ -194,12 +204,12 @@
 }
 
 // Buttons
-@mixin big_button() {
+@mixin big-button() {
 	width: 100%;
-	height: $download_button_h;
-	line-height: $download_button_h;
+	height: $download-button-h;
+	line-height: $download-button-h;
 	font-size: 1em;
-	font-family: $logo_font;
+	font-family: $logo-font;
 	font-weight: 300;
 
 	span {
@@ -223,19 +233,19 @@
 		clear: both;
 	}
 }
-@mixin make-span($span, $span_column_limit: $column_limit) {
-	width: percentage($span / $column_limit);
+@mixin make-span($span, $span-column-limit: $column-limit) {
+	width: percentage($span / $column-limit);
 }
-@mixin span($span, $span_column_limit: $column_limit) {
+@mixin span($span, $span-column-limit: $column-limit) {
 	float: left;
 	position: relative;
-	width: percentage($span / $column_limit);
+	width: percentage($span / $column-limit);
 }
-@mixin offset($off_by, $span_column_limit: $column_limit) {
-	margin-left: percentage($off_by / $column_limit);
+@mixin offset($off-by, $span-column-limit: $column-limit) {
+	margin-left: percentage($off-by / $column-limit);
 }
-@mixin offset-r($off_by, $span_column_limit: $column_limit) {
-	margin-right: percentage($off_by / $column_limit);
+@mixin offset-r($off-by, $span-column-limit: $column-limit) {
+	margin-right: percentage($off-by / $column-limit);
 }
 @mixin reset-span() {
 	@include span(12);
@@ -249,10 +259,10 @@
 	display: block;
 }
 @mixin limit() {
-	width: $limit_width;
+	width: $limit-width;
 	margin: 0px auto;
 	
-	@media screen and (max-width: $limit_width) {
+	@media screen and (max-width: $limit-width) {
 		width: 100%;
 	}
 }

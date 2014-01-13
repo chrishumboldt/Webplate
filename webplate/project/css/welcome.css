@@ -145,13 +145,13 @@ li.L9 {
 /**
  * LESS File: 		mixins.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	2 January 2014
+ * Last Edited:   	13 January 2014
  * Edited By:		Chris Humboldt
  */
 /**
  * SASS File: 		settings.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	2 January 2014
+ * Last Edited:   	13 January 2014
  */
 html {
   font-family: "Lato", sans-serif;
@@ -395,9 +395,9 @@ html {
       -ms-border-radius: 2px;
       -moz-border-radius: 2px;
       -webkit-border-radius: 2px;
-      box-shadow: inset 0px 0px 3px fadeout(black, 60%);
-      -webkit-box-shadow: inset 0px 0px 3px fadeout(black, 60%);
-      -moz-box-shadow: inset 0px 0px 3px fadeout(black, 60%); }
+      box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.4);
+      -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.4); }
       .webplate .content pre ol {
         padding-left: 30px;
         list-style-type: decimal; }
