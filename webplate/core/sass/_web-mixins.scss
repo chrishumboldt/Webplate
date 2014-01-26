@@ -1,7 +1,7 @@
 /**
  * LESS File: 		mixins.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	13 January 2014
+ * Last Edited:   	26 January 2014
  * Edited By:		Chris Humboldt
  */
 
@@ -9,9 +9,10 @@
 // $page-width variable and all these cool helper mixins.
 
 
-// Import the settings file
+// Import the settings and colours file
 // ---------------------------------------------------------------------------------------
 @import "../../settings";
+@import "web-colours";
 
 
 // Mixins
@@ -297,3 +298,8 @@
 		}
 	}
 }
+
+
+// Import buttonplate
+// ---------------------------------------------------------------------------------------
+@import "web-buttonplate";

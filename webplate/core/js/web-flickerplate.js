@@ -2,7 +2,7 @@
  * flickerplate.js
  *
  * Author:        	Chris Humboldt
- * Last Edited:   	25 January 2014
+ * Last Edited:   	26 January 2014
  * Edited By:   	Chris Humboldt
  */
 
@@ -119,9 +119,9 @@
 				
 				// Block text overwrite
 				$flick_block_text					= $(this).data('block-text');
-				if(($flick_block_text) && ($flick_block_text.length > 0)){
+				if($flick_block_text != undefined){
 				
-					if($flick_block_text != 'false'){
+					if($flick_block_text == true){
 			
 						$(this).find('.flick-title').wrapInner('<span class="flick-block-text"></span>');
 						$(this).find('.flick-sub-text').wrapInner('<span class="flick-block-text"></span>');
@@ -233,7 +233,7 @@
 		}
 		
 		// ----- Flick flicker
-		$object.flick_flicker				= function(){
+		$object.flick_flicker					= function(){
 			
 			if(Modernizr.touch){
 
@@ -282,7 +282,7 @@
 		}
 		
 		// ----- Create arrow navigation
-		$object.create_arrow_navigation		= function(){
+		$object.create_arrow_navigation			= function(){
 			
 			// The HTML
 			$arrow_nav_html	= '<div class="arrow-navigation left"><div class="arrow"></div></div>';
@@ -334,7 +334,7 @@
 		}
 		
 		// ----- Create dot navigation
-		$object.create_dot_navigation		= function($position){
+		$object.create_dot_navigation			= function($position){
 			
 			$dot_nav_html	= '<div class="dot-navigation '+ $position +'"><ul>';
 			while($dot_count < $flick_count){
@@ -366,7 +366,7 @@
 		}
 		
 		// ----- Start auto flicker
-		$object.auto_flick_start			= function(){
+		$object.auto_flick_start				= function(){
 			
 			if($object.settings.auto_flick == true){
 				
@@ -375,7 +375,7 @@
 		}
 		
 		// ----- Auto flick
-		$object.auto_flick					= function(){
+		$object.auto_flick						= function(){
 			
 			// Check the position
 			$flick_position++;
@@ -389,7 +389,7 @@
 		}
 		
 		// ----- Stop auto flicker
-		$object.auto_flick_stop				= function(){
+		$object.auto_flick_stop					= function(){
 			
 			$object.flicker_auto				= clearInterval($object.flicker_auto);
 		}

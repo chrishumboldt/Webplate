@@ -123,6 +123,12 @@
     .small-show {
       display: none;
     }
+  }
+  @include respond-to('small') {
+
+    .small-show {
+      display: block;
+    }
     .small-hide {
       display: none;
     }
