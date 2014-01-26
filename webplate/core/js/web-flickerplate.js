@@ -2,7 +2,7 @@
  * flickerplate.js
  *
  * Author:        	Chris Humboldt
- * Last Edited:   	6 January 2014
+ * Last Edited:   	25 January 2014
  * Edited By:   	Chris Humboldt
  */
 

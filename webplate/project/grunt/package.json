@@ -1,0 +1,21 @@
+{
+  "name": "Webplate Project",
+  "version": "0.0.1",
+  "description": "Used to build a Webplate project.",
+  "main": "../../index.html",
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-sass": "~0.6.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "keywords": [
+    "Webplate Project",
+    "Responsive",
+    "SASS",
+    "CSS",
+    "javascript"
+  ],
+  "author": "Chris Humboldt",
+  "license": "Apache License, Version 2.0"
+}

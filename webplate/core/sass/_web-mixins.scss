@@ -236,6 +236,9 @@
 @mixin make-span($span, $span-column-limit: $column-limit) {
 	width: percentage($span / $column-limit);
 }
+@mixin new-span($span, $span-column-limit: $column-limit) {
+	width: percentage($span / $column-limit);
+}
 @mixin span($span, $span-column-limit: $column-limit) {
 	float: left;
 	position: relative;
@@ -264,5 +267,33 @@
 	
 	@media screen and (max-width: $limit-width) {
 		width: 100%;
+	}
+}
+@mixin respond-to($breakpoint) {
+	
+	// Desktop
+	@if $breakpoint == 'large' {
+		
+		@media screen and (min-width: 701px) { 
+			@content; 
+		}
+	}
+	@else if $breakpoint == 'fluid' {
+		
+		@media screen and (max-width: $limit-width) { 
+			@content; 
+		}
+	}
+	@else if $breakpoint == 'small' {
+		
+		@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) { 
+			@content; 
+		}
+	}
+	@else {
+		
+		@media only screen and (max-width: $breakpoint) { 
+			@content; 
+		}
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * SASS File: 		welcome.sass
  * Author:        	Chris Humboldt
- * Last Edited:   	3 January 2014
+ * Last Edited:   	26 January 2014
  */
 
 // Table of Contents:
@@ -544,28 +544,28 @@ html {
 		
 			@media screen and (max-width: 900px) {
 				.left-col {
-					@include span(6);
+					@include new-span(6);
 				}
 				.middle-col, .right-col {
-					@include span(3);
+					@include new-span(3);
 				}
 			}
 		
 			@media screen and (max-width: 800px) {
 				.left-col {
-					@include span(12);
+					@include new-span(12);
 				}
 				.middle-col {
-					@include span(9);
+					@include new-span(9);
 				}
 				.right-col {
-					@include span(3);
+					@include new-span(3);
 				}
 			}
 		
 			@media screen and (max-width: 700px) {
 				.left-col, .middle-col, .right-col {
-					@include span(12);
+					@include new-span(12);
 				}
 			}
 		}

@@ -1,18 +1,12 @@
 /**
  * SASS File: 		settings.scss
  * Author:        	Chris Humboldt
- * Last Edited:   	13 January 2014
+ * Last Edited:   	26 January 2014
  */
 
 // These variables effect the global setup of your site.  It is written using SASS and
-// requires compiling the webplate/core/sass/web-imports.scss file in order to take
-// effect.  Use something like Codekit (for Mac) or Prepros (for Windows) to do this.
-//
-// Compile the web-imports.scss into the webplate/core/css/webplate.css as that is the
-// base CSS that the stack.js file loads.
-//
-// Codekit URL: http://incident57.com/codekit/
-// Prepros URL: http://alphapixels.com/prepros/
+// requires compiling the "webplate/core/sass/web-imports.scss" file in order to take
+// effect. You can run "grunt sass" in the "webplate/core" diretory.
  
 
 // Global Setup
@@ -20,6 +14,6 @@
 $limit-width						: 1100px;
 $menu-width							: 260px;
 $small-nav-back						: lighten(#000, 18%);
-$images-root						: '../images';
+$images-root						: '../img';
 $column-limit						: 12;
-$spacing-limit						: 10;
+$spacing-limit						: 10;	
