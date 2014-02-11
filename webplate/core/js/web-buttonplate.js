@@ -42,7 +42,6 @@
 
 				$this_button.addClass('button-drop-down');
 				
-				$object.size_drop_down();
 				$(window).resize(function(){
 				
 					$object.size_drop_down();
@@ -58,6 +57,7 @@
 			
 			$this_button.on('click', function(){
 				
+				$object.size_drop_down();
 				$this_button.find('ul').fadeIn('fast', function(){
 					
 					$this_button.addClass('button-drop-down-open');

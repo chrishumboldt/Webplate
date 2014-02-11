@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'../css/webplate.css': '../sass/web-imports.scss'
+					'../css/webplate.css': '../sass/web-engine.scss'
 				}
 			}
 		}, 

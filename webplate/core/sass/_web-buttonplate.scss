@@ -149,10 +149,13 @@ $drp-font-size					: 0.813em;
 // Buttons
 @mixin button($colour: $default-btn-colour, $size: $default-btn-size, $type: $default-btn-type, $shape: $default-btn-shape) {
 	display: inline-block;
+	position: relative;
 	vertical-align: middle;
 	text-align: center;
 	border: none;
 	text-decoration: none;
+	outline: none;
+	-webkit-appearance: none;	
 	@include animate(background-color);
 	
 	// Hover state
@@ -602,11 +605,4 @@ $drp-font-size					: 0.813em;
 }
 @mixin btn-shape-squared() {
 	@include rounded-corners(0px);
-}
-
-
-// Classes
-// ---------------------------------------------------------------------------------------
-.#{$default-btn-class} {
-	@include buttonplate();
 }
