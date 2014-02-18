@@ -216,6 +216,7 @@ $dark_grey 						: lighten($black, 22%);
 $mid_grey						: lighten($black, 50%);
 $light_grey 					: lighten($black, 98%);
 $back_link_colour				: fade-out($white, 0.3);
+$control_colour					: darken(#495563, 3%);
 
 // Layout
 $download_button_h				: 60px;
@@ -273,6 +274,8 @@ html {
 	
 	// Header
 	.header {
+		@include row();
+
 		// Back to webplate
 		.back-to-webplate {
 			position: absolute;
@@ -322,11 +325,14 @@ html {
 			top: 56%;
 			left: 50%;
 			margin-left: -($limit_width / 2);
-			font-size: 1.778em;
-			color: #fff;
-			text-align: center;
-			font-family: $logo_font;
-			font-weight: 300;
+
+			p {
+				font-size: 1.778em;
+				color: #fff;
+				text-align: center;
+				font-family: $logo_font;
+				font-weight: 300;
+			}
 		}
 		// Scroller
 		$scoller_colour 				: fade-out(#fff, 0.4);
@@ -535,14 +541,11 @@ html {
 			@include row();
 		
 			// Columns
-			.left-col, .right-col {
-				@include span(2);
-			}
-			.middle-col {
-				@include span(8);
+			.left-col, .right-col, .middle-col {
+				@include span(12);
 			}
 		
-			@media screen and (max-width: 900px) {
+			@include respond-to(large) {
 				.left-col {
 					@include new-span(6);
 				}
@@ -551,7 +554,7 @@ html {
 				}
 			}
 		
-			@media screen and (max-width: 800px) {
+			@include respond-to(50em) {
 				.left-col {
 					@include new-span(12);
 				}
@@ -563,9 +566,12 @@ html {
 				}
 			}
 		
-			@media screen and (max-width: 700px) {
-				.left-col, .middle-col, .right-col {
-					@include new-span(12);
+			@include respond-to(56.250em) {
+				.left-col, .right-col {
+					@include new-span(2);
+				}
+				.middle-col {
+					@include new-span(8);
 				}
 			}
 		}
@@ -619,13 +625,20 @@ html {
 	// Footer 
 	.footer {
 		text-align: center;
-		background-color: $dark_grey;
+		background-color: $control_colour;
 		
 		h3 {
-			color: darken(#fff, 15%);
+			color: lighten($control_colour, 42%);
 		}
 		h5 {
+			color: lighten($control_colour, 22%);
 			margin-bottom: 50px;
+		}
+		a, a:visited {
+			color: lighten(#E54028, 14%);
+		}
+		a:hover {
+			color: lighten(#E54028, 2%);
 		}
 		
 		// Social
@@ -660,7 +673,7 @@ html {
 
 // Large View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (min-width: 701px) {
+@include respond-to(large) {
 	.webplate {
 	}
 }
@@ -668,7 +681,7 @@ html {
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $limit_width) {
+@include respond-to(fluid) {
 	.webplate {
 		// Header
 		.header {
@@ -686,7 +699,7 @@ html {
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
+@include respond-to(small) {
 	.webplate {
 		
 		// General
@@ -730,8 +743,11 @@ html {
 			// Heading title
 			.heading-title {
 				top: 52%;
-				font-size: 1em;
-				font-weight: 300;
+
+				p {
+					font-size: 1em;
+					font-weight: 300;
+				}
 			}
 			// Scroller
 			.scroller {

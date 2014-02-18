@@ -26,7 +26,9 @@
 
 		<div class="logo"><div class="logo-inner">WEBPLATE</div></div>
 		
-		<div class="heading-title">It's great that you have decided to use or at least try Webplate. The next step is to get started quickly and begin building what can only be a cool project.</div>
+		<div class="heading-title">
+			<p>It's great that you have decided to use or at least try Webplate. The next step is to get started quickly and begin building what can only be a cool project.</p>
+		</div>
 		
 		<div class="scroller"><div class="icon-arrow-down2 scroller-icon"></div>SCROLL<span>DOWN</span></div>
 		
@@ -80,13 +82,13 @@
 .atomic-example {
     @include row();
 
-    .left-col, .right-col {
-        @include span(2);
+    // Columns - mobile first
+    .left-col, .right-col, .middle-col {
+        @include span(12);
     }
-    .middle-col {
-        @include span(8);
-    }
-    @media screen and (max-width: 900px) {
+
+    // Over 700px
+    @include respond-to(large) {
         .left-col {
             @include new-span(6);
         }
@@ -94,7 +96,9 @@
             @include new-span(3);
         }
     }
-    @media screen and (max-width: 800px) {
+
+    // Over 800px
+    @include respond-to(50em) {
         .left-col {
             @include new-span(12);
         }
@@ -102,12 +106,17 @@
             @include new-span(9);
         }
         .right-col {
-            @include snew-pan(3);
+            @include new-span(3);
         }
     }
-    @media screen and (max-width: 700px) {
-        .left-col, .middle-col, .right-col {
-            @include new-span(12);
+
+    // Over 900px
+    @include respond-to(56.250em) {
+        .left-col, .right-col {
+            @include new-span(2);
+        }
+        .middle-col {
+            @include new-span(8);
         }
     }
 }
@@ -129,9 +138,9 @@
 			
 <pre class="prettyprint linenums showcase-code">
 &lt;div class="class-example row"&gt;
-    &lt;div class="span-2"&gt;Left&lt;/div&gt;
-    &lt;div class="span-8 small-span-6"&gt;Middle&lt;/div&gt;
-    &lt;div class="span-2 small-span-6"&gt;Right&lt;/div&gt;
+    &lt;div class="span-12 large-span-2"&gt;Left&lt;/div&gt;
+    &lt;div class="span-6 large-span-8"&gt;Middle&lt;/div&gt;
+    &lt;div class="span-6 large-span-2"&gt;Right&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 
@@ -139,9 +148,9 @@
 			
 			<div class="class-example row">
 				
-				<div class="span-2">Left</div>
-				<div class="span-8 small-span-6">Middle</div>
-				<div class="span-2 small-span-6">Right</div>
+				<div class="span-12 large-span-2">Left</div>
+				<div class="span-6 large-span-8">Middle</div>
+				<div class="span-6 large-span-2">Right</div>
 				
 			</div>
 			

@@ -2,7 +2,7 @@
  * SASS File:     blueplate.sass
  * Author:        Chris Humboldt
  * Link:          http://getwebplate.com/plugins/blueplate
- * Last Edited:   30 January 2014
+ * Last Edited:   18 February 2014
  * Edited By:     Chris Humboldt
  */
 
@@ -15,91 +15,17 @@
 
 // Mixins
 // ---------------------------------------------------------------------------------------
-@mixin row() {
-  width: 100%;
-  
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
-@mixin make-span($span, $span-column-limit: $column-limit) {
-  width: percentage($span / $column-limit);
-}
-@mixin new-span($span, $span-column-limit: $column-limit) {
-  width: percentage($span / $column-limit);
-}
-@mixin span($span, $span-column-limit: $column-limit) {
-  float: left;
-  position: relative;
-  width: percentage($span / $column-limit);
-}
-@mixin offset($off-by, $span-column-limit: $column-limit) {
-  margin-left: percentage($off-by / $column-limit);
-}
-@mixin offset-r($off-by, $span-column-limit: $column-limit) {
-  margin-right: percentage($off-by / $column-limit);
-}
-@mixin reset-span() {
-  @include span(12);
-  @include offset(0);
-  @include offset-r(0);
-}
-@mixin hide() {
-  display: none;
-}
-@mixin show() {
-  display: block;
-}
-@mixin limit() {
-  width: $limit-width;
-  margin: 0px auto;
-  
-  @media screen and (max-width: $limit-width) {
-    width: 100%;
-  }
-}
-@mixin respond-to($breakpoint) {
-  
-  // Desktop
-  @if $breakpoint == 'large' {
-    
-    @media screen and (min-width: 701px) { 
-      @content; 
-    }
-  }
-  @else if $breakpoint == 'fluid' {
-    
-    @media screen and (max-width: $limit-width) { 
-      @content; 
-    }
-  }
-  @else if $breakpoint == 'small' {
-    
-    @media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) { 
-      @content; 
-    }
-  }
-  @else {
-    
-    @media only screen and (max-width: $breakpoint) { 
-      @content; 
-    }
-  }
-}
+
 
 // CSS
 @mixin blueplate-display() {
 
   // Display classes
   .show {
-    display: block;
+    @include show();
   }
   .hide {
-    display: none;
+    @include hide();
   }
   .opacity-100 {
     opacity: 1;
@@ -118,19 +44,28 @@
   }
 
   // Respond
-  @include respond-to('large') {
+  @include respond-to(large) {
 
     .small-show {
-      display: none;
+      @include hide();
+    }
+    .large-show {
+      @include show();
+    }
+    .large-hide {
+      @include hide();
     }
   }
-  @include respond-to('small') {
+  @include respond-to(small) {
 
     .small-show {
-      display: block;
+      @include show();
     }
     .small-hide {
-      display: none;
+      @include hide();
+    }
+    .large-show {
+      @include hide();
     }
   }
 }
@@ -195,13 +130,13 @@
     text-align: right;  
   }
   .txt-size-xxl {
-    font-size: 1.5em
+    font-size: 1.5em;
   }
   .txt-size-xl {
-    font-size: 1.250em
+    font-size: 1.250em;
   }
   .txt-size-l {
-    font-size: 1.125em
+    font-size: 1.125em;
   }
   .txt-size-n {
     font-size: 1em;
@@ -213,7 +148,7 @@
     font-size: 0.750em;
   }
   .txt-size-xs {
-    font-size: 0.625em
+    font-size: 0.625em;
   }
   .txt-weight-xb {
     font-weight: 900;
@@ -248,45 +183,45 @@
   }
 
   // Respond
-  @include respond-to('small') {
+  @include respond-to(large) {
 
-    .small-txt-size-xxl {
-      font-size: 1.444em
+    .large-txt-size-xxl {
+      font-size: 1.444em;
     }
-    .small-txt-size-xl {
-      font-size: 1.222em
+    .large-txt-size-xl {
+      font-size: 1.222em;
     }
-    .small-txt-size-l {
-      font-size: 1.111em
+    .large-txt-size-l {
+      font-size: 1.111em;
     }
-    .small-txt-size-n {
+    .large-txt-size-n {
       font-size: 1em;
     }
-    .small-txt-size-m {
+    .large-txt-size-m {
       font-size: 0.889em;
     }
-    .small-txt-size-s {
+    .large-txt-size-s {
       font-size: 0.778em;
     }
-    .small-txt-size-xs {
-      font-size: 0.667em
+    .large-txt-size-xs {
+      font-size: 0.667em;
     }
-    .small-txt-weight-xb {
+    .large-txt-weight-xb {
       font-weight: 900;
     }
-    .small-txt-weight-b, .small-txt-bold {
+    .large-txt-weight-b, .large-txt-bold {
       font-weight: 700;
     }
-    .small-txt-weight-n {
+    .large-txt-weight-n {
       font-weight: 400;
     }
-    .small-txt-weight-l, .small-txt-light {
+    .large-txt-weight-l, .large-txt-light {
       font-weight: 300;
     }
-    .small-txt-weight-xl {
+    .large-txt-weight-xl {
       font-weight: 100;
     }
-    .small-txt-normal {
+    .large-txt-normal {
       font-weight: 400;
       font-style: normal;
     }
@@ -432,26 +367,35 @@
   }
 
   // Respond
-  @include respond-to('small') {
+  @include respond-to(large) {
     
     .row {
-      [class *= "span-"] {
-        display: block;
-        position: relative;
-        float: left;
-        width: 100%;
-        
-        .small-hide {
-          display: none;
+          
+      // Large span loop
+      @for $index from 1 through $column-limit {
+      
+        .large-span-#{$index} {
+          @include make-span($index);
         }
       }
-      [class *= "offset-"] {
-        margin-left: 0%;
-      }
-      [class *= "offset-r-"] {
-        margin-right: 0%;
-      }
     
+      // Offset loop
+      @for $index from 1 through ($column-limit - 1) {
+      
+        .large-offset-#{$index} {
+          @include offset($index);
+        }
+        .large-offset-r-#{$index} {
+          @include offset-r($index);
+        }
+      }
+    }
+  }
+
+  @include respond-to(small) {
+    
+    .row {
+          
       // Small span loop
       @for $index from 1 through $column-limit {
       

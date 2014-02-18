@@ -224,23 +224,23 @@
 	margin: 0px auto;
 }
 @mixin row() {
-	width: 100%;
-	
-	&:before, &:after {
-		content: " ";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
+  width: 100%;
+  
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
-@mixin make-span($span, $span-column-limit: $column-limit) {
+@mixin make-span($span: $column-limit, $span-column-limit: $column-limit) {
 	width: percentage($span / $column-limit);
 }
-@mixin new-span($span, $span-column-limit: $column-limit) {
+@mixin new-span($span: $column-limit, $span-column-limit: $column-limit) {
 	width: percentage($span / $column-limit);
 }
-@mixin span($span, $span-column-limit: $column-limit) {
+@mixin span($span: $column-limit, $span-column-limit: $column-limit) {
 	float: left;
 	position: relative;
 	width: percentage($span / $column-limit);
@@ -265,36 +265,43 @@
 @mixin limit() {
 	width: $limit-width;
 	margin: 0px auto;
-	
+
 	@media screen and (max-width: $limit-width) {
 		width: 100%;
 	}
 }
-@mixin respond-to($breakpoint) {
-	
+@mixin respond-to($breakpoint, $breakpoint-type: min) {
+
 	// Desktop
 	@if $breakpoint == 'large' {
-		
-		@media screen and (min-width: 701px) { 
+
+		@media screen and (min-width: 43.813em) { 
 			@content; 
 		}
 	}
 	@else if $breakpoint == 'fluid' {
-		
+
 		@media screen and (max-width: $limit-width) { 
 			@content; 
 		}
 	}
 	@else if $breakpoint == 'small' {
-		
-		@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) { 
+
+		@media screen and (max-width: 43.750em) { 
 			@content; 
 		}
 	}
 	@else {
-		
-		@media only screen and (max-width: $breakpoint) { 
-			@content; 
+
+		@if $breakpoint-type == 'max' {
+			@media only screen and (max-width: $breakpoint) { 
+				@content; 
+			}
+		}
+		@else if $breakpoint-type == 'min' {
+			@media only screen and (min-width: $breakpoint) { 
+				@content; 
+			} 
 		}
 	}
 }
