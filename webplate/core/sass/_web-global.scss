@@ -38,13 +38,8 @@ body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, s
   color: lighten(#000, 20%);
 }
 ul, ol {margin:0; padding:0px;}
-a, .make-link, a:visited {text-decoration:none; color: #65a8a6;}
-a:hover, .make-link:hover {text-decoration:none; color: lighten(#65a8a6, 10%); cursor: pointer;}
+a, a:visited {text-decoration: none;}
 
-// Global classes
-.nothing {
-  @include hide-text();
-}
 // Set the heights
 html, body, .webplate, .webplate-content, .webplate-navigation {
     height: 100%;
@@ -138,7 +133,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Large View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (min-width: 701px) {
+@include respond-to(large) {
 	
 	// Navigation
 	.navigation ul, ol {
@@ -149,7 +144,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Fluid View (Desktop and iPad)
 // ---------------------------------------------------------------------------------------
-@media screen and (max-width: $limit-width) {
+@include respond-to(fluid) {
 	
 	.webplate {
 		.webplate-content {
@@ -164,7 +159,7 @@ html.fixed-page .webplate .webplate-content {
 
 // Small View (iPhone)
 // ---------------------------------------------------------------------------------------
-@media screen and (-webkit-min-device-pixel-ratio: 3.0) and (max-width: 1080px), screen and (max-width: 700px) {
+@include respond-to(small) {
 	
   // Navigation
   .navigation {
