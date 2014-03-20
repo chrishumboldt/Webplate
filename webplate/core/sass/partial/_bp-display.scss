@@ -1,0 +1,63 @@
+/**
+ * SASS File: 		_bp-display.scss
+ * Requires: 		_bp-responsive-layout.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	19 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Display mixin
+
+
+// Display mixin
+// ---------------------------------------------------------------------------------------
+@mixin blueplate-display() {
+	.show {
+		@include show();
+	}
+	.hide {
+		@include hide();
+	}
+	.opacity-100 {
+		opacity: 1;
+	}
+	.opacity-75 {
+		opacity: 0.75;
+	}
+	.opacity-50 {
+		opacity: 0.5;
+	}
+	.opacity-25 {
+		opacity: 0.25;
+	}
+	.opacity-0 {
+		opacity: 0;
+	}
+
+	// Respond
+	@include respond-to(large) {
+		.small-show {
+			@include hide();
+		}
+		.large-show {
+			@include show();
+		}
+		.large-hide {
+			@include hide();
+		}
+	}
+	@include respond-to(small) {
+		.small-show {
+			@include show();
+		}
+		.small-hide {
+			@include hide();
+		}
+		.large-show {
+			@include hide();
+		}
+	}
+}

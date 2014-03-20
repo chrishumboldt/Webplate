@@ -1,0 +1,49 @@
+/**
+ * SASS File: 		_bp-alignment.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	19 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Global
+// Alignment mixin
+
+
+// Global
+// ---------------------------------------------------------------------------------------
+@mixin center() {
+	margin: 0px auto;
+}
+
+
+// Alignment mixin
+// ---------------------------------------------------------------------------------------
+@mixin blueplate-alignment() {
+	.float-no {
+		float: none;
+	}
+	.float-l {
+		float: left;
+	}
+	.float-r {
+		float: right;
+	}
+	.float-clear {
+		clear: both;
+	}
+	.center {
+		margin: 0px auto;
+	}
+	.valign-t {
+		vertical-align: top;
+	}
+	.valign-m {
+		vertical-align: middle;
+	}
+	.valign-b {
+		vertical-align: bottom;
+	}
+}
