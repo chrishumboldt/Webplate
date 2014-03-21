@@ -1,14 +1,12 @@
-/*
- * jquery.finger
- * https://github.com/ngryman/jquery.finger
- *
- * Copyright (c) 2013 ngryman
- * Licensed under the MIT license.
- */
+/*! jquery.finger - v0.1.0 - 2014-02-19
+* https://github.com/ngryman/jquery.finger
+* Copyright (c) 2014 Nicolas Gryman; Licensed MIT */
 
-(function($) {
+(function($, ua) {
 
-	var hasTouch = 'ontouchstart' in window,
+	var isChrome = /chrome/i.exec(ua),
+		isAndroid = /android/i.exec(ua),
+		hasTouch = 'ontouchstart' in window && !(isChrome && !isAndroid),
 		startEvent = hasTouch ? 'touchstart' : 'mousedown',
 		stopEvent = hasTouch ? 'touchend touchcancel' : 'mouseup mouseleave',
 		moveEvent = hasTouch ? 'touchmove' : 'mousemove',
@@ -60,6 +58,7 @@
 		start.time = timeStamp;
 		start.target = event.target;
 		move.orientation = null;
+		move.end = false;
 		motion = false;
 		cancel = false;
 		timeout = setTimeout(function() {
@@ -145,4 +144,4 @@
 	// initial binding
 	$.event.add(rootEl, startEvent + '.' + namespace, startHandler);
 
-})(jQuery);
+})(jQuery, navigator.userAgent);
