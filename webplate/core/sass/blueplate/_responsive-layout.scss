@@ -1,8 +1,8 @@
 /**
- * SASS File: 		_bp-responsive-layout.scss
+ * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	19 March 2014
+ * Last Edited:   	22 March 2014
  */
 
 
@@ -13,7 +13,6 @@
 // Span
 // Order
 // Offsets
-// Show / hide
 // Layout
 // Respond to
 // Call layout classes
@@ -22,13 +21,12 @@
 // Variables
 // ---------------------------------------------------------------------------------------
 // Responsive
-$column-limit 					: 12;
-$default-flex 					: 1;
-$default-flex-percent-option	: false;
-$limit-width 					: 68.750em;
-$break-main 					: 43.813em;
-$min-max 						: false;
-
+$column-limit 						: 12 !default;
+$default-flex 						: 1 !default;
+$default-flex-percent-option		: false !default;
+$limit-width 						: 68.750em !default;
+$break-main 						: 43.813em !default;
+$min-max 							: false !default;
 
 
 // Containers
@@ -156,16 +154,6 @@ $min-max 						: false;
 }
 @mixin offset-r($off-by, $span-column-limit: $column-limit) {
 	margin-right: percentage($off-by / $column-limit);
-}
-
-
-// Show / hide
-// ---------------------------------------------------------------------------------------
-@mixin hide() {
-	display: none;
-}
-@mixin show($type: block) {
-	display: $type;
 }
 
 

@@ -1,0 +1,67 @@
+/**
+ * SASS File: 		_arrow-navigation.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Arrow navigation
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$images-path					: "../img" !default;
+
+
+// Arrow navigation
+// ---------------------------------------------------------------------------------------
+@mixin fp-arrow-navigation() {
+	.arrow-navigation {
+		position: absolute;
+		height: 80%;
+		width: 10%;
+		top: 10%;
+		z-index: 100;
+		overflow: hidden;
+		
+		.arrow {
+			display: block;
+			height: 100%;
+			width: 90%;
+			@include animate(all);
+		}
+	}
+	.arrow-navigation:hover, .arrow-navigation .arrow:hover {
+		cursor: pointer;
+	}
+	.arrow-navigation.left {
+		left: 0%;
+		
+		.arrow {
+			opacity: 0;
+			margin: 0px 0px 0px 50%;
+			@include background-single-image("#{$images-path}/flickerplate/arrow-left-light.png", left);
+		}
+	}
+	.arrow-navigation.right {
+		right: 0%;
+		
+		.arrow {
+			opacity: 0;
+			margin: 0px 0px 0px -50%;
+			@include background-single-image("#{$images-path}/flickerplate/arrow-right-light.png", right);
+		}
+	}
+	.arrow-navigation.left.hover .arrow {
+		opacity: 1;
+		margin: 0px 0px 0px 20%;
+	}
+	.arrow-navigation.right.hover .arrow {
+		opacity: 1;
+		margin: 0px 0px 0px -20%;
+	}
+}

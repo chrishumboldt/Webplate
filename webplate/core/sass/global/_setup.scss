@@ -1,17 +1,17 @@
 /**
- * LESS File: 		global.less
+ * SASS File: 		_setup.scss
+ * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	13 January 2014
- * Edited By:		Chris Humboldt
+ * Last Edited:   	22 March 2014
  */
 
-// Table of Contents:
-// ---------------------------------------------------------------------------------------
 
+// Table of contents
+// ---------------------------------------------------------------------------------------
 // Global
-// Large View
-// Fluid View
-// Small View
+// Large view
+// Fluid view
+// Small view
 
 
 // Global
@@ -131,7 +131,7 @@ html.fixed-page .webplate .webplate-content {
 }
 
 
-// Large View (Desktop and iPad)
+// Large View
 // ---------------------------------------------------------------------------------------
 @include respond-to(large) {
 	
@@ -142,7 +142,7 @@ html.fixed-page .webplate .webplate-content {
 }
 
 
-// Fluid View (Desktop and iPad)
+// Fluid View
 // ---------------------------------------------------------------------------------------
 @include respond-to(fluid) {
 	
@@ -157,12 +157,12 @@ html.fixed-page .webplate .webplate-content {
 }
 
 
-// Small View (iPhone)
+// Small View
 // ---------------------------------------------------------------------------------------
 @include respond-to(small) {
-	
-  // Navigation
-  .navigation {
-    display: none;
-  }
+
+	// Navigation
+	.navigation {
+		display: none;
+	}
 }

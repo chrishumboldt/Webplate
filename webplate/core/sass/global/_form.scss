@@ -1,14 +1,13 @@
 /**
- * SASS File: 		forms.scss
+ * SASS File: 		form.scss
  * Author:        	Damir Foy
  * Link:			http://damirfoy.com/iCheck/
  * Last Edited:   	13 January 2014
  * Edited By:		Chris Humboldt
  */
 
-// Table of Contents:
+// Table of Contents
 // ---------------------------------------------------------------------------------------
-
 // Variables
 // Global
 // Small View
@@ -16,7 +15,7 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$fe-images-root						: '../img/forms';
+$fe-images-root						: "../img/form";
 $fe-border-color 					: lighten(#000, 82%);
 $fe-border-width					: 1px; 
 $fe-rounded-corners-radius			: 3px;  
@@ -39,7 +38,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 	width: 100%;
 	padding: 8px;
 	border: $fe-border-width solid $fe-border-color;
-	@include rounded-corners();
+	@include border-radius();
 }
 input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, textarea:focus, select:focus {
 	outline: none;
@@ -60,7 +59,7 @@ select {
   -webkit-user-select: text;
   -webkit-font-smoothing: antialiased;
   @include animate(border-color);
-  @include rounded-corners($fe-rounded-corners-radius);
+  @include border-radius($fe-rounded-corners-radius);
 }
 .drop-down {
 	padding: 6px;
@@ -70,7 +69,7 @@ select {
 	background-repeat: no-repeat;
 	background-position: right center;
 	overflow: hidden;
-	@include rounded-corners($fe-rounded-corners-radius);
+	@include border-radius($fe-rounded-corners-radius);
 
 	.text {
 		position: absolute;
@@ -146,7 +145,7 @@ select {
 }
 .icheckbox_square {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square.hover {
         background-position: -24px 0;
@@ -207,7 +206,7 @@ select {
 
 .icheckbox_square-red {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-red.hover {
         background-position: -24px 0;
@@ -268,7 +267,7 @@ select {
 
 .icheckbox_square-green {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-green.hover {
         background-position: -24px 0;
@@ -329,7 +328,7 @@ select {
 
 .icheckbox_square-blue {
     background-position: 0 0;
-	@include rounded-corners();
+	@include border-radius();
 }
     .icheckbox_square-blue.hover {
         background-position: -24px 0;
@@ -390,7 +389,7 @@ select {
 
 .icheckbox_square-aero {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-aero.hover {
         background-position: -24px 0;
@@ -451,7 +450,7 @@ select {
 
 .icheckbox_square-grey {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-grey.hover {
         background-position: -24px 0;
@@ -512,7 +511,7 @@ select {
 
 .icheckbox_square-orange {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-orange.hover {
         background-position: -24px 0;
@@ -573,7 +572,7 @@ select {
 
 .icheckbox_square-yellow {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-yellow.hover {
         background-position: -24px 0;
@@ -634,7 +633,7 @@ select {
 
 .icheckbox_square-pink {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-pink.hover {
         background-position: -24px 0;
@@ -695,7 +694,7 @@ select {
 
 .icheckbox_square-purple {
     background-position: 0 0;
-	 @include rounded-corners();
+	 @include border-radius();
 }
     .icheckbox_square-purple.hover {
         background-position: -24px 0;

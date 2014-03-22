@@ -1,0 +1,61 @@
+/**
+ * SASS File: 		_dot-navigation.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Dot navigation
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$dot-size						: 14px !default;
+
+
+// Dot navigation
+// ---------------------------------------------------------------------------------------
+@mixin fp-dot-navigation() {
+	.dot-navigation {
+		position: absolute;
+		bottom: 15px;
+		width: 100%;
+		text-align: center;
+		z-index: 100;
+		
+		ul {
+			text-align: center;
+			list-style: none;
+			padding: 0px 15px;
+		}
+		ul li {
+			display: inline-block;
+			float: none;
+		}
+		.dot {
+			width: $dot-size;
+			height: $dot-size;
+			margin: 0px 6px;
+			background-color: fade-out(#fff, 0.7);
+			@include border-radius(50%);
+			@include animate(background-color);
+		}
+		.dot:hover {
+			cursor: pointer;
+			background-color: fade-out(#fff, 0.4);
+		}
+		.dot.active {
+			background-color: #fff;
+		}
+	}
+	.dot-navigation.left, .dot-navigation.left ul {
+		text-align: left;
+	}
+	.dot-navigation.right, .dot-navigation.right ul {
+		text-align: right;
+	}
+}

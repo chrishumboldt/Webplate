@@ -1,17 +1,39 @@
 /**
- * SASS File: 		_bp-background.scss
+ * SASS File: 		_background.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	19 March 2014
+ * Last Edited:   	22 March 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Background mixin
+// Background images
+// Background classes
 
 
-// Background mixin
+// Background images
+// ---------------------------------------------------------------------------------------
+@mixin background-cover($image, $position: center) {
+	background-image: url($image);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: $position;
+}
+@mixin background-single-image($image, $position: center) {
+	background-image: url($image);
+	background-repeat: no-repeat;
+	background-position: $position;
+}
+@mixin background-parallax($url) {
+	background-image: url($url);
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+
+// Background classes
 // ---------------------------------------------------------------------------------------
 @mixin blueplate-background() {
 	.back-pos-l {

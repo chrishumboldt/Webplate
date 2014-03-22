@@ -22,6 +22,8 @@ module.exports = function(grunt) {
 					src: ['**/*.scss'],
 					dest: '../css',
 					ext: '.css'
+				},{
+					'../../core/css/webplate.css': '../../core/sass/web-engine.scss'
 				}]
 			}
 		}, 

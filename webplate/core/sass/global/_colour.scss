@@ -1,17 +1,18 @@
 /**
- * SASS File: 		colours.sass
+ * SASS File: 		_colour.scss
+ * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	13 January 2014
- * Edited By:		Chris Humboldt
+ * Last Edited:   	22 March 2014
  */
 
 
-// Table of Contents:
+// Table of contents
 // ---------------------------------------------------------------------------------------
-// Variables
+// Mono
+// Basic
 
 
-// Variables
+// Mono
 // ---------------------------------------------------------------------------------------
 $white							: #fff;
 $black 							: #000;
@@ -22,17 +23,14 @@ $grey-dark						: lighten($black, 40%);
 $grey-link						: lighten($black, 92%);
 $grey-link-hover				: lighten($black, 96%);
 
+
+// Basic
+// ---------------------------------------------------------------------------------------
 $blue							: #3498da;
 $blue-dark						: #34495e;
-
 $green							: #27ae60;
-
 $yellow							: #f1c40f;
-
 $orange							: #e57e22;
-
 $red							: #e74c3c;
-
 $aqua							: #1abcaf;
-
 $purple							: #9b59b6;
