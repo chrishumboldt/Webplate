@@ -1,0 +1,43 @@
+/**
+ * SASS File: 		_animation.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Transition
+// Transform
+
+
+// Transition
+// ---------------------------------------------------------------------------------------
+@mixin animate($attribute, $transition-speed: 0.2s) {
+	-webkit-transition: $attribute $transition-speed ease-out;
+	-moz-transition: $attribute $transition-speed ease-out;
+	-o-transition: $attribute $transition-speed ease-out;
+	-ms-transition: $attribute $transition-speed ease-out;
+	transition: $attribute $transition-speed ease-out;
+}
+
+
+// Transform
+// ---------------------------------------------------------------------------------------
+@mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition-speed: 0.2s) {
+	-webkit-transform: translate3d($x, $y, $z);
+	-o-transform: translate3d($x, $y, $z);
+	-moz-transform: translate3d($x, $y, $z);
+	transform: translate3d($x, $y, $z);
+	-webkit-transition: -webkit-transform $transition-speed ease-out;
+	-o-transition: -o-transform $transition-speed ease-out;
+	-moz-transition: -moz-transform $transition-speed ease-out;
+	transition: transform $transition-speed ease-out;
+}
+@mixin transform($x: 0px, $y: 0px, $z: 0px) {
+	-webkit-transform: translate3d($x, $y, $z);
+	-o-transform: translate3d($x, $y, $z);
+	-moz-transform: translate3d($x, $y, $z);
+	transform: translate3d($x, $y, $z);
+}

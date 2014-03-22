@@ -1,27 +1,29 @@
 /**
- * SASS File: 		engine.scss
+ * SASS File: 		_web-engine.scss
+ * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	11 February 2014
- * Edited By:		Chris Humboldt
+ * Last Edited:   	22 March 2014
  */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Imports
+// Execute
 
 
 // Imports
 // ---------------------------------------------------------------------------------------
-@import "web-mixins";
-@import "web-normalize";
-@import "web-typeplate-vars";
-@import "web-typeplate";
-@import "web-global";
-@import "web-blueplate";
-@import "web-forms";
-@import "web-flickerplate";
+@import "web-import";
+@import "global/normalize";
+@import "global/typeplate-vars";
+@import "global/typeplate";
+@import "global/setup";
+@import "global/form";
 
 
 // Execute
 // ---------------------------------------------------------------------------------------
-// Buttonplate
-// $default-btn-class variable from "_web-buttonplate.scss" file.
-.#{$default-btn-class} {
-	@include buttonplate();
-}
+@include blueplate-css();
+@include buttonplate-css();
+@include flickerplate-css();

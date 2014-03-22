@@ -7,14 +7,30 @@
 // Table of Contents:
 // ---------------------------------------------------------------------------------------
 
-// Prettify
 // Imports
+// Prettify
 // Variables
 // Mixins
 // Global
 // Large View
 // Fluid View
 // Small View
+
+
+/* Imports
+--------------------------------------------------------------------------------------- */
+// Import this file to get the webplate helper functions and the $limit-width variable.
+// You will also have access to the $images-root variable that will link automatically
+// to the "img" folder in "webplate/project". This makes it easier to reference in your 
+// SASS. To use this variable do the following:
+//
+// background-image: url(#{$images-root}/your-image-file.jpg);
+//
+// This is editable by adding $images-root in the "_settings.scss" file. As normal you'll 
+// need to compile "core/sass/webplate-engine.scss" to "webplate/core/css/webplate.css" 
+// for the changes to take effect.
+
+@import "../../core/sass/web-import";
 
 
 /* Prettify
@@ -186,22 +202,6 @@ li.L9 {
 }
 
 
-/* Imports
---------------------------------------------------------------------------------------- */
-// Import this file to get the webplate helper functions and the $page_width variable.
-// You will also have access to the $images_root variable that will link automatically
-// to the "img" folder in "webplate/project". This makes it easier to reference in your 
-// SASS. To use this variable do the following:
-//
-// background-image: url(#{$images_root}/your-image-file.jpg);
-//
-// This is editable by changing "_settings.scss". As per normal you will need to compile
-// "core/sass/webplate-imports.scss" to "webplate/core/css/webplate.css" for the changes 
-// to take effect.
-
-@import "../../core/sass/web-mixins";
-
-
 // Variables
 // ---------------------------------------------------------------------------------------
 // Fonts
@@ -231,7 +231,7 @@ html {
 	font-weight: 300;
 }
 .webplate {
-	@include parallax-background("#{$images_root}/welcome/forest.jpg");
+	@include background-parallax("#{$images-root}/welcome/forest.jpg");
 	
 	// General
 	p a:not(.button), p a:not(.button):visited, a.link-style, a.link-style:visited {
@@ -288,7 +288,7 @@ html {
 			border: 2px solid $back_link_colour;
 			z-index: 1;
 			@include animate(all);
-			@include rounded-corners();
+			@include border-radius();
 		}
 		.back-to-webplate:hover {
 			color: #fff;
@@ -305,7 +305,7 @@ html {
 			margin-left: -($logo_width / 2);
 			width: $logo_width;
 			z-index: 1;
-			@include rounded-corners(50%);
+			@include border-radius(50%);
 			@include drop-shadow(fade-out(#000, 0.94));
 		
 			.logo-inner {
@@ -314,8 +314,8 @@ html {
 				font-size: 1.111em;
 				font-weight: 500;
 				background-color: #fff;
-				@include squared-text($logo_size);
-				@include rounded-corners(50%);
+				@include text-squared($logo_size);
+				@include border-radius(50%);
 			}
 		}
 		// Heading title
@@ -355,9 +355,9 @@ html {
 				margin-top: -12px;
 				border: 2px solid $scoller_colour;
 				font-size: 2em;
-				@include squared-text(50px);
+				@include text-squared(50px);
 				line-height: 50px;
-				@include rounded-corners(50%);
+				@include border-radius(50%);
 				@include animate(border-color);
 			}
 			span {
@@ -411,10 +411,6 @@ html {
 				padding: 10px;
 				@include span(4);
 				@include offset(2);
-				
-				.button {
-					@include big_button();
-				}
 			}
 			.button-container:last-child {
 				@include offset(0);
@@ -475,7 +471,7 @@ html {
 			white-space: pre;
 			word-wrap: normal;
 			overflow: scroll;
-			@include rounded-corners();
+			@include border-radius();
 			@include drop-shadow-inset();
 			
 			ol {
@@ -526,7 +522,7 @@ html {
 			margin-bottom: 1.5em;
 			border: 1px solid lighten(#000, 88%);
 			text-align: center;
-			@include rounded-corners();
+			@include border-radius();
 		
 			div {
 				padding: 6px 0px;
@@ -655,8 +651,8 @@ html {
 					color: lighten(#000, 18%);
 					background-color: $white;
 					@include center();
-					@include squared-text(100px);
-					@include rounded-corners(50%);
+					@include text-squared(100px);
+					@include border-radius(50%);
 					@include animate(background-color);
 				}
 				a:hover {
@@ -737,7 +733,7 @@ html {
 			
 				.logo-inner {
 					font-size: 0.889em;
-					@include squared-text($logo_size);
+					@include text-squared($logo_size);
 				}
 			}
 			// Heading title
@@ -842,7 +838,7 @@ html {
 				
 				a {
 					font-size: 1.4em;
-					@include squared-text(80px);
+					@include text-squared(80px);
 				}
 			}
 			.circle:first-child {

@@ -1,0 +1,24 @@
+/**
+ * SASS File: 		_gradient.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Global
+
+
+// Global
+// ---------------------------------------------------------------------------------------
+@mixin gradient-vertical($top-colour, $bottom-colour) {
+	background: $top-colour;
+	background: -webkit-gradient(linear, left top, left bottom, from($top-colour), to($bottom-colour));
+	background: -webkit-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -moz-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -ms-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: -o-linear-gradient(top, $top-colour, $bottom-colour); 
+	background: linear-gradient(top, $top-colour, $bottom-colour);
+}

@@ -1,8 +1,8 @@
 /**
- * SASS File: 		_bp-spacing.scss
+ * SASS File: 		_spacing.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	19 March 2013
+ * Last Edited:   	22 March 2013
  */
 
 
@@ -15,7 +15,7 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$spacing-limit          : 10;
+$spacing-limit          : 10 !default;
 
 
 // Global

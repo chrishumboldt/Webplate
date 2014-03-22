@@ -1,9 +1,8 @@
 /**
- * buttonplate.js
- *
+ * jQuery File: 	buttonplate.js
+ * Type: 			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	13 January 2014
- * Edited By:   	Chris Humboldt
+ * Last Edited:   	22 March 2014
  */
 
 
