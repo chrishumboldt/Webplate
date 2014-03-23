@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 			// End of scripts
 			// Live reload
 			options: {
-		      livereload: true,
+		    	livereload: true,
 		    } 
 		    // End of live reload
 		} 

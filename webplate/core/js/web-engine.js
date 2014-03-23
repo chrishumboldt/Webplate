@@ -31,13 +31,13 @@ var $ar_project_css							= [];
 
 
 // ---------- Load the necessary files and execute
-yepnope([{
+yepnope([
+{
 	load									: $js_path + 'min/web-imports.min.js',
-	complete								: function(){
-
+	complete								: function()
+	{
 		// Webplate execute
 		// ------------------------------------------------ DOM EDITS
-
 		$('body').wrapInner('<div class="webplate" />');
 		$('.webplate').wrapInner('<div class="webplate-shifter" />');
 		$('.webplate-shifter').wrapInner('<div class="webplate-content" />');
@@ -46,83 +46,80 @@ yepnope([{
 
 
 		// ------------------------------------------------ EXECUTE
-
 		$.web_navigation();
-
 		$.web_window_type();
-		
 		$.web_forms();
-
 		$.web_load_plugins($js_path);
 	}
-}, {
+},
+{
 	load									: $ar_core_css,
-	complete								: function(){
-		
+	complete								: function()
+	{	
 		// Load project CSS
-		$project_css							= $('body').data('project-css');
+		$project_css						= $('body').data('project-css');
 
 		// Check that CSS is needed
-		if(($project_css) && ($project_css.length > 0)){
-
+		if(($project_css) && ($project_css.length > 0))
+		{
 			// Split the js
 			$split_project_css               = $project_css.split(',');
 
 			// Loop through and load each CSS module
-			$.each($split_project_css, function($index, $file){
-
+			$.each($split_project_css, function($index, $file)
+			{
 				// Trim the whitespace
 				$file                       = jQuery.trim($file);
 
 				// Get the extension
-				$extension                  = $.web_get_extension($file);
+				$extension                  = $.web_get_ext($file);
 
 				// Add to the arrays
-				if($extension == 'css'){
-					
+				if($extension == 'css')
+				{	
 					$ar_project_css.push($css_project_path + $file);
 				}
-				else if($extension == 'less'){
-
+				else if($extension == 'less')
+				{
 					$ar_project_css.push('less!' + $less_project_path + $file);
 					$ar_project_css.push($js_path + 'min/web-less.min.js');
 				}
 			});
 			
 			// Load CSS and LESS and show the body
-			yepnope({ load: $ar_project_css, complete: function(){
-					
+			yepnope({ load: $ar_project_css, complete: function()
+			{		
 				// Show the body
 				$('body').show();
 				$.web_buttons();
 			}});
 		}
-		else {
-				
+		else
+		{		
 			// Show the body
 			$('body').show();
 			$.web_buttons();
 		}
 		
 		// JS extras
-		$project_js                          	= $('body').data('project-js');
+		$project_js 						= $('body').data('project-js');
 
 		// Check that js is needed
-		if(($project_js) && ($project_js.length > 0)){
-
+		if(($project_js) && ($project_js.length > 0))
+		{
 			// Split the js
-			$split_project_js                = $project_js.split(',');
+			$split_project_js				= $project_js.split(',');
 
 			// Loop through and load each js extra
-			$.each($split_project_js, function($index, $file){
-
+			$.each($split_project_js, function($index, $file)
+			{
 				// Some variables
-				$file                       = jQuery.trim($file);
-				$extension                  = $.web_get_extension($file);
+				$file 						= jQuery.trim($file);
+				$extension                  = $.web_get_ext($file);
 
 				// Load the JS
-				if($extension == 'js'){
-			
+				if($extension == 'js')
+				{
 					$ar_project_js.push($js_project_path + $file);
 				}
 			});
