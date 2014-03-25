@@ -117,7 +117,7 @@
 			}
 		
 			// Settings for each flick
-			$flicker.find('li').each(function(){
+			$flicker.find('ul.flicks > li').each(function(){
 			
 				// Increase the count
 				$flick_count++;
@@ -326,7 +326,7 @@
 			}
 			
 			// Navigate using the arrows
-			$('.arrow-navigation').on('click', function()
+			$flicker.find('.arrow-navigation').on('click', function()
 			{	
 				// Check which arrow was clicked
 				if($(this).hasClass('right'))
