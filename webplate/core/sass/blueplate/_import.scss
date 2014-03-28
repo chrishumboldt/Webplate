@@ -8,17 +8,30 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Imports
+// Mixin imports
+// CSS imports
+// Execute import
 
 
-// Imports
+// Mixin imports
 // ---------------------------------------------------------------------------------------
 @import "responsive-layout";
 @import "alignment";
-@import "background";
-@import "display";
-@import "position";
-@import "sizing";
 @import "spacing";
-@import "text";
+
+
+// CSS imports
+// ---------------------------------------------------------------------------------------
+@import "css/responsive-layout";
+@import "css/alignment";
+@import "css/background";
+@import "css/display";
+@import "css/position";
+@import "css/sizing";
+@import "css/spacing";
+@import "css/text";
+
+
+// Execute import
+// ---------------------------------------------------------------------------------------
 @import "execute";

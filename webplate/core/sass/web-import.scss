@@ -38,18 +38,9 @@ $break-main 						: 43.813em !default;
 $min-max 							: false !default;
 
 
-// Global
-// ---------------------------------------------------------------------------------------
-@import "global/animation";
-@import "global/border";
-@import "global/colour";
-@import "global/drop-shadow";
-@import "global/gradient";
-@import "global/ios";
-
-
 // Plugins
 // ---------------------------------------------------------------------------------------
+@import "styleplate/import";
 @import "blueplate/import";
 @import "buttonplate/import";
 @import "flickerplate/import";

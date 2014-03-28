@@ -72,13 +72,13 @@ $images-root					: "../img" !default;
 }
 @mixin btn-colour-black() {
 	color: $white;
-	background-color: $base-black;
+	background-color: $black-base;
 		
 	&:hover {
 		background-color: lighten(#000, 35%);
 	}
 	&.button-drop-down-open:hover {
-		background-color: $base-black;
+		background-color: $black-base;
 	}
 	&:visited {
 		color: $white;
@@ -90,7 +90,7 @@ $images-root					: "../img" !default;
 	}
 	&.button-drop-down {
 		li a:hover {
-			background-color: $base-black;
+			background-color: $black-base;
 		}
 		.arrow {
 			background-image: url('#{$images-root}/buttonplate/arrow-white.png');
@@ -154,7 +154,7 @@ $images-root					: "../img" !default;
 	@include btn-set-gradient($grey-link);
 }
 @mixin btn-gradient-black() {
-	@include btn-set-gradient($base-black);
+	@include btn-set-gradient($black-base);
 }
 @mixin btn-gradient-blue() {
 	@include btn-set-gradient($blue);

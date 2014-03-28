@@ -3,28 +3,13 @@
  * Requires: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	28 March 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Global
 // Text classes
-
-
-// Global
-// ---------------------------------------------------------------------------------------
-@mixin text-squared($size) {
-	width: $size;
-	height: $size;
-	line-height: $size;
-	text-align: center;
-}
-@mixin text-hide() {
-	text-indent: -10000px;
-	overflow: hidden;
-}
 
 
 // Text classes

@@ -1,0 +1,41 @@
+/**
+ * SASS File: 		_alignment.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Alignment mixin
+
+
+// Alignment classes
+// ---------------------------------------------------------------------------------------
+@mixin blueplate-alignment() {
+	.float-no {
+		float: none;
+	}
+	.float-l {
+		float: left;
+	}
+	.float-r {
+		float: right;
+	}
+	.float-clear {
+		clear: both;
+	}
+	.center {
+		margin: 0px auto;
+	}
+	.valign-t {
+		vertical-align: top;
+	}
+	.valign-m {
+		vertical-align: middle;
+	}
+	.valign-b {
+		vertical-align: bottom;
+	}
+}

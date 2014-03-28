@@ -1,19 +1,25 @@
 /**
- * SASS File: 		_spacing.scss
+ * SASS File: 		_text.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2013
+ * Last Edited:   	28 March 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Global
+// Text
 
 
-// Global
+// Text
 // ---------------------------------------------------------------------------------------
-@mixin no-spacing() {
-	padding: 0px;
-	margin: 0px;
+@mixin text-squared($size) {
+	width: $size;
+	height: $size;
+	line-height: $size;
+	text-align: center;
+}
+@mixin text-hide() {
+	text-indent: -10000px;
+	overflow: hidden;
 }

@@ -15,11 +15,11 @@
 // Imports
 // ---------------------------------------------------------------------------------------
 @import "web-import";
-@import "global/normalize";
-@import "global/typeplate-vars";
-@import "global/typeplate";
-@import "global/setup";
-@import "global/form";
+@import "setup/normalize";
+@import "setup/typeplate-vars";
+@import "setup/typeplate";
+@import "setup/setup";
+@import "setup/form";
 
 
 // Execute

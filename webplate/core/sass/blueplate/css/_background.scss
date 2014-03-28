@@ -8,29 +8,7 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Background images
 // Background classes
-
-
-// Background images
-// ---------------------------------------------------------------------------------------
-@mixin background-cover($image, $position: center) {
-	background-image: url($image);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: $position;
-}
-@mixin background-single-image($image, $position: center) {
-	background-image: url($image);
-	background-repeat: no-repeat;
-	background-position: $position;
-}
-@mixin background-parallax($url) {
-	background-image: url($url);
-	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
-}
 
 
 // Background classes
