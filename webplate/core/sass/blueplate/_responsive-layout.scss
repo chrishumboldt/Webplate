@@ -2,7 +2,7 @@
  * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	14 April 2014
  */
 
 
@@ -68,13 +68,13 @@ $min-max 							: false !default;
 @mixin span($span: $column-limit, $span-column-limit: $column-limit) {
 	float: left;
  	position: relative;
-	width: percentage($span / $column-limit);
+	width: percentage($span / $span-column-limit);
 }
 @mixin new-span($span: $column-limit, $span-column-limit: $column-limit) {
-	width: percentage($span / $column-limit);
+	width: percentage($span / $span-column-limit);
 }
 @mixin make-span($span: $column-limit, $span-column-limit: $column-limit){
-	width: percentage($span / $column-limit);
+	width: percentage($span / $span-column-limit);
 }
 @mixin reset-span() {
 	@include span(12);
@@ -115,14 +115,14 @@ $min-max 							: false !default;
 	-webkit-flex-shrink: 1;
 	-moz-flex-shrink: 1;
 	flex-shrink: 1;
-	-webkit-flex-basis: percentage($span / $column-limit);
-	-moz-flex-basis: percentage($span / $column-limit);
-	flex-basis: percentage($span / $column-limit);
+	-webkit-flex-basis: percentage($span / $span-column-limit);
+	-moz-flex-basis: percentage($span / $span-column-limit);
+	flex-basis: percentage($span / $span-column-limit);
 }
 @mixin new-flex-span($span: $column-limit, $span-column-limit: $column-limit) {
-	-webkit-flex-basis: percentage($span / $column-limit);
-	-moz-flex-basis: percentage($span / $column-limit);
-	flex-basis: percentage($span / $column-limit);
+	-webkit-flex-basis: percentage($span / $span-column-limit);
+	-moz-flex-basis: percentage($span / $span-column-limit);
+	flex-basis: percentage($span / $span-column-limit);
 }
 @mixin flex-reset() {
 	-webkit-flex-grow: auto;
@@ -149,10 +149,10 @@ $min-max 							: false !default;
 // Offsets
 // ---------------------------------------------------------------------------------------
 @mixin offset($off-by, $span-column-limit: $column-limit) {
-	margin-left: percentage($off-by / $column-limit);
+	margin-left: percentage($off-by / $span-column-limit);
 }
 @mixin offset-r($off-by, $span-column-limit: $column-limit) {
-	margin-right: percentage($off-by / $column-limit);
+	margin-right: percentage($off-by / $span-column-limit);
 }
 
 
