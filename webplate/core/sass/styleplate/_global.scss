@@ -1,0 +1,31 @@
+/**
+ * SASS File: 		_global.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	1 April
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Global
+
+
+// Global
+// ---------------------------------------------------------------------------------------
+@mixin global-setup() {
+	*, *:before, *:after{
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:
+		border-box;
+		box-sizing:border-box
+	}
+	html {
+		font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+		color: lighten(#000, 20%);
+		background-color: #fff;
+		-ms-text-size-adjust: 100%;
+		-webkit-texts-size-adjust: 100%;
+		-webkit-backface-visibility: hidden;
+	}
+}

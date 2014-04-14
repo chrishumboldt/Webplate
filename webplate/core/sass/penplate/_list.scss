@@ -1,0 +1,62 @@
+/**
+ * SASS File: 		_list.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	28 March 2014
+**/
+
+
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
+// Variables
+// Mixins
+// List
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$link-dim 						: 46px;
+
+
+// Mixins
+// ---------------------------------------------------------------------------------------
+@mixin flat-list() {
+	ul {
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+		font-size: 0;
+
+		li {
+			display: inline-block;
+		}
+	}
+}
+@mixin links() {
+	a {
+		display: block;
+		width: $link-dim - 10px;
+		height: $link-dim;
+		line-height: $link-dim + 2px;
+		font-size: 15px;
+		font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+		color: #fff;
+		text-decoration: none;
+		@include animate(background-color);
+
+		&:hover, &.active {
+			cursor: pointer;
+			color: lighten($green, 4%);
+			background-position: bottom;
+		}
+	}
+}
+
+
+// List
+// ---------------------------------------------------------------------------------------
+@mixin penplate-list() {
+	@include flat-list();
+	@include links();
+	text-align: center;
+}

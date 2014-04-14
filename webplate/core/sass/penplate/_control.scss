@@ -1,0 +1,126 @@
+/**
+ * SASS File: 		_control.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 April 2014
+**/
+
+
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
+// Variables
+// Mixins
+// Controls
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$img-root 						: "../img/penplate";
+
+
+// Mixins
+// ---------------------------------------------------------------------------------------
+@mixin arrow-bottom() {
+	&:after {
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(38, 38, 38, 0);
+		border-top-color: #262626;
+		border-width: 8px;
+		margin-left: -8px;
+	}
+}
+
+
+// Controls
+// ---------------------------------------------------------------------------------------
+@mixin penplate-controls() {
+	@include penplate-list();
+	display: block;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background-color: lighten(#000, 15%);
+	@include ios-render();
+	@include transform-easing(0px, -80px);
+
+	// Img links
+	.img-link,
+	.img-quote,
+	.img-image {
+		text-indent: -100000px;
+		background-position: top;
+		background-repeat: no-repeat;
+		background-size: 46px;
+	}
+	.img-link {
+		background-image: url("#{$img-root }/link.png");
+	}
+	.img-quote {
+		background-image: url("#{$img-root }/quote.png");
+	}
+	.img-image {
+		background-image: url("#{$img-root }/image.png");
+	}
+
+	// Link control
+	.penplate-link {
+		@include hide();
+		@include row();
+		min-width:  252px;
+		height: 46px;
+		background-color: lighten(#000, 15%);
+		overflow: hidden;
+
+		.input-container {
+			@include span(8);
+			@include no-spacing();
+
+			input {
+				width: 100%;
+				height: 48px;
+				padding-left: 8px;
+				border: 0px;
+				color: $white;
+				font-size: 12px;
+				font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+				outline: none;
+				-webkit-appearance: none;
+				background: transparent;
+			}
+		}
+		a {
+			@include span(4);
+			display: inline-block;
+			@include no-spacing();
+			padding-right: 8px;
+			font-size: 13px;
+			text-align: right;
+		}
+	}
+}
+@mixin penplate-controls-large() {
+	position: absolute;
+	left: auto;
+	top: -100px;
+	bottom: auto;
+	width: auto;
+	padding: 0px 4px;
+	@include arrow-bottom();
+	@include border-radius();
+	@include opacity(0);
+	@include transform-easing(0px, 0px);
+	@include animate(opacity, 0.2s);
+}
+@mixin penplate-controls-show() {
+	@include transform-easing(0px, 0px);
+}
+@mixin penplate-controls-show-large() {
+	@include opacity(1);
+}

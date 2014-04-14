@@ -231,7 +231,7 @@ html {
 	font-weight: 300;
 }
 .webplate {
-	@include background-parallax("#{$images-root}/welcome/forest.jpg");
+	@include background-parallax("#{$images-root}/welcome/background.jpg");
 	
 	// General
 	p a:not(.button), p a:not(.button):visited, a.link-style, a.link-style:visited {
@@ -401,7 +401,7 @@ html {
 		}
 		
 		// Grey strips
-		.strip.going-responsive, .strip.buttons {
+		.strip.going-responsive, .strip.buttons, .strip.documentation, .strip.grey {
 			background-color: $light_grey;
 		}
 		

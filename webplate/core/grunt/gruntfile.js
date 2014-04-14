@@ -68,6 +68,14 @@ module.exports = function(grunt) {
 						'../js/web-flickerplate.js'
 					],
 				}
+			},
+			// Penplate
+			penplate: {
+				files: {
+					'../js/min/web-penplate.min.js': [
+						'../js/web-penplate.js'
+					],
+				}
 			}
 		},
 		// Watch
@@ -98,6 +106,10 @@ module.exports = function(grunt) {
 			flickerplate: {
 				files: ['../js/web-flickerplate.js'],
 				tasks: ['uglify:flickerplate']
+			},
+			penplate: {
+				files: ['../js/web-penplate.js'],
+				tasks: ['uglify:penplate']
 			},
 			// End of scripts
 			// Live reload
