@@ -265,17 +265,7 @@ jQuery.web_is_image 				= function($file, $ar_allowed_types)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_color 				= function($color)
 {
-	if($color.length == 7)
-	{
-		if($color.substr(0, 1) != '#')
-		{
-			return false;
-		}
-	}
-	else
-	{
-		return false;
-	}
+	return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
 };
 
 
