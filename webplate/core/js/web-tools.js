@@ -2,7 +2,7 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	13 April 2014
+ * Last Edited:   	23 March 2014
  */
 
 
@@ -24,14 +24,7 @@ jQuery.web_lock_submit 				= function($element)
 // ---------------------------------------------------------------------------------------
 jQuery.web_exists 					= function($element)
 {
-	if(($element) && ($element.length > 0))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (($element) && ($element.length > 0));
 };
 
 
@@ -47,21 +40,8 @@ jQuery.web_get_ext 					= function($file)
 // ---------------------------------------------------------------------------------------
 jQuery.web_crt_db_date 				= function()
 {
-	$current_time 			    	= new Date();
-	$year							= $current_time.getFullYear();
-	$month					    	= $current_time.getMonth() + 1;
-	if($month < 10)
-	{
-		$month				    	= '0' + $month;
-	}
-
-	$day							= $current_time.getDate();
-	if($day < 10)
-	{
-		$day						= '0' + $day;
-	}
-
-	return $year + '-' + $month + '-' + $day;
+	var $now		 			    = new Date();
+	return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
 };
 
 
@@ -69,14 +49,7 @@ jQuery.web_crt_db_date 				= function()
 // ---------------------------------------------------------------------------------------
 jQuery.web_check_date 				= function($date)
 {
-	if(($date.substr(4, 1) == '-') && ($date.substr(7, 1) == '-') && ($.scrap_is_integer($date.substr(0, 4)) == true) && ($.scrap_is_integer($date.substr(5, 2)) == true) && ($.scrap_is_integer($date.substr(8, 2)) == true) && ($date.length == 10))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 };
 
 
@@ -84,27 +57,7 @@ jQuery.web_check_date 				= function($date)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_integer 				= function($int)
 {
-	if($int != '')
-	{    
-		var $valid_chars			= '0123456789.';
-		var $is_number				= true;
-		var $char;
-
-		for($i = 0; $i < $int.length && $is_number == true; $i++)
-		{
-			$char 					= $int.charAt($i);
-
-			if($valid_chars.indexOf($char) == -1)
-			{
-				$is_number 			= false;
-			}
-		}
-		return $is_number;
-	}
-	else
-	{
-		return false;
-	}
+	return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
 };
 
 
@@ -112,27 +65,7 @@ jQuery.web_is_integer 				= function($int)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_full_integer 			= function($int)
 {
-	if($int != '')
-	{
-		var $valid_chars			= '0123456789';
-		var $is_number				= true;
-		var $char;
-
-		for($i = 0; $i < $int.length && $is_number == true; $i++)
-		{
-			$char 					= $int.charAt($i);
-
-			if($valid_chars.indexOf($char) == -1)
-			{
-				$is_number 			= false;
-			}
-		}
-		return $is_number;
-	}
-	else
-	{
-		return false;
-	}
+	return /^[0-9]+$/.test($int);
 };
 
 
@@ -140,14 +73,7 @@ jQuery.web_is_full_integer 			= function($int)
 // ---------------------------------------------------------------------------------------
 jQuery.web_has_white_space 			= function($check)
 {
-	if($check.indexOf(' ') != -1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return /\s/.test($check);
 };
 
 
@@ -155,21 +81,11 @@ jQuery.web_has_white_space 			= function($check)
 // ---------------------------------------------------------------------------------------
 jQuery.web_check_ext 				= function($file, $ar_allowed_types)
 {
-	if($ar_allowed_types == null)
-	{
-		$ar_allowed_types			= ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
-	}
+	var $allowed_types			    = $ar_allowed_types || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
 
-	$file_ext						= $file.split('.').pop().toLowerCase();
+	var $file_ext					= $file.split('.').pop().toLowerCase();
 
-	if(jQuery.inArray($file_ext, $ar_allowed_types) == -1)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	return (jQuery.inArray($file_ext, $allowed_types) != -1);
 };
 
 
@@ -179,8 +95,8 @@ jQuery.web_input_mirror 			= function($input, $output)
 {
 	$($selector).keyup(function()
 	{
-		$ref_input					= $(this).val();
-		$ref_value					= $ref_input.replace(/ /g,"_").toLowerCase();
+		var $ref_input					= $(this).val();
+		var $ref_value					= $ref_input.replace(/ /g,"_").toLowerCase();
 
 		// Output the mirror
 		$($output).text($ref_value);
@@ -192,14 +108,7 @@ jQuery.web_input_mirror 			= function($input, $output)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_email 				= function($email)
 {
-	if(($email.indexOf('@') != -1) && ($email.indexOf('.') != -1))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+    return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
 };
 
 
@@ -207,35 +116,7 @@ jQuery.web_is_email 				= function($email)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_password 				= function($password)
 {
-	if($password.length > 5)
-	{
-		$num_check 					= /^[0-9]+$/;
-		$letter_check				= /^[a-zA-Z-]+$/;
-		$error						= false;
-
-		if($password.match($num_check))
-		{
-			$error		= true;
-		}
-
-		if($password.match($letter_check))
-		{
-			$error		= true;
-		}
-
-		if($error == true)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	else
-	{
-		return false;
-	}
+	return /^[A-Za-z0-9]{6,}$/.test($password);
 };
 
 
@@ -243,21 +124,11 @@ jQuery.web_is_password 				= function($password)
 // ---------------------------------------------------------------------------------------
 jQuery.web_is_image 				= function($file, $ar_allowed_types)
 {
-	if($ar_allowed_types == null)
-	{
-		$ar_allowed_types			= ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
-	}
+	var $allowed_types	    		= $ar_allowed_types || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
 
-	$file_ext						= $file.split('.').pop().toLowerCase();
+	var $file_ext					= $file.split('.').pop().toLowerCase();
 
-	if(jQuery.inArray($file_ext, $ar_allowed_types) == -1)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	return (jQuery.inArray($file_ext, $allowed_types) != -1);
 };
 
 
@@ -273,18 +144,15 @@ jQuery.web_is_color 				= function($color)
 // ---------------------------------------------------------------------------------------
 jQuery.web_random_string 			= function($string_length)
 {
-	$chars 							= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var $chars 						= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 
-	if($string_length == null)
-	{
-		$string_length				= 5;
-	}
-	$random_string 					= '';
+	var $len                        = $string_length || 5;
+	var $random_string 				= '';
 
-	for(var i = 0; i < $string_length; i++)
+	for(var i = 0; i < $len; i++)
 	{
 		$r_num 						= Math.floor(Math.random() * $chars.length);
-		$random_string 				+= $chars.substring($r_num, $r_num+1);
+		$random_string 				+= $chars[$r_num];
 	}
 
 	return $random_string;
@@ -504,23 +372,14 @@ jQuery.web_load_plugins 			= function(js_path)
 	// Load plugins array
 	var $ar_js_plugins				= [];
 	var $check_flicker				= false;
-	var $check_penplate 			= false;
 	var $check_fastclick			= false; 
 
 	// Flickerplate check
-	$flickerplate_check				= $('.flickerplate:first');
+	var $flickerplate_check			= $('.flickerplate:first');
 	if($.web_exists($flickerplate_check))
 	{
 		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
 		$check_flicker				= true;
-	}
-
-	// Penplate check
-	$penplate_check					= $('.penplate:first');
-	if($.web_exists($penplate_check))
-	{
-		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
-		$check_penplate				= true;
 	}
 
 	// FastClick
@@ -546,13 +405,7 @@ jQuery.web_load_plugins 			= function(js_path)
 			}
 		}
 
-		// Activate Penpalte
-		if($check_penplate == true)
-		{
-			$('.penplate').penplate();
-		}
-
-		// Activate Fastclick
+		// Activate fastclick
 		if($check_fastclick == true)
 		{
 			FastClick.attach(document.body);
