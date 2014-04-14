@@ -2,7 +2,7 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	23 March 2014
+ * Last Edited:   	13 April 2014
  */
 
 
@@ -382,6 +382,14 @@ jQuery.web_load_plugins 			= function(js_path)
 		$check_flicker				= true;
 	}
 
+	// Penplate check
+	var $penplate_check				= $('.penplate:first');
+	if($.web_exists($penplate_check))
+	{
+		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
+		$check_penplate				= true;
+	}
+
 	// FastClick
 	if(Modernizr.touch)
 	{
@@ -403,6 +411,12 @@ jQuery.web_load_plugins 			= function(js_path)
 			{
 				$('.flickerplate').flicker();
 			}
+		}
+
+		// Activate Penpalte
+		if($check_penplate == true)
+		{
+			$('.penplate').penplate();
 		}
 
 		// Activate fastclick
