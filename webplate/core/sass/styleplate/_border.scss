@@ -21,20 +21,6 @@
 	-moz-border-radius: $radius;
 	-webkit-border-radius: $radius;
 }
-@mixin border-radius-left($radius: 2px) {
-	border-radius: $radius 0px 0px $radius;
-	-o-border-radius: $radius 0px 0px $radius;
-	-ms-border-radius: $radius 0px 0px $radius;
-	-moz-border-radius: $radius 0px 0px $radius;
-	-webkit-border-radius: $radius 0px 0px $radius;
-}
-@mixin border-radius-right($radius: 2px) {
-	border-radius: 0px $radius $radius 0px;
-	-o-border-radius: 0px $radius $radius 0px;
-	-ms-border-radius: 0px $radius $radius 0px;
-	-moz-border-radius: 0px $radius $radius 0px;
-	-webkit-border-radius: 0px $radius $radius 0px;
-}
 @mixin border-radius-top($radius: 2px) {
 	border-radius: $radius $radius 0px 0px;
 	-o-border-radius: $radius $radius 0px 0px;
@@ -48,6 +34,20 @@
 	-ms-border-radius: 0px 0px $radius $radius;
 	-moz-border-radius: 0px 0px $radius $radius;
 	-webkit-border-radius: 0px 0px $radius $radius;
+}
+@mixin border-radius-left($radius: 2px) {
+	border-radius: $radius 0px 0px $radius;
+	-o-border-radius: $radius 0px 0px $radius;
+	-ms-border-radius: $radius 0px 0px $radius;
+	-moz-border-radius: $radius 0px 0px $radius;
+	-webkit-border-radius: $radius 0px 0px $radius;
+}
+@mixin border-radius-right($radius: 2px) {
+	border-radius: 0px $radius $radius 0px;
+	-o-border-radius: 0px $radius $radius 0px;
+	-ms-border-radius: 0px $radius $radius 0px;
+	-moz-border-radius: 0px $radius $radius 0px;
+	-webkit-border-radius: 0px $radius $radius 0px;
 }
 @mixin border-radius-top-right($radius: 2px) {
 	border-radius: 0px $radius 0px 0px;
@@ -81,30 +81,33 @@
 
 // Border shades
 // ---------------------------------------------------------------------------------------
-@mixin border-light($top-highlight: 0.8, $colour: #ffffff) {
-	border: 1px solid fade-out($colour, $top-highlight);
+@mixin border-light($highlight: 0.8, $colour: #ffffff) {
+	border: 1px solid fade-out($colour, $highlight);
 }
-@mixin border-light-top($top-highlight: 0.8, $top-colour: #ffffff) {
-	border-top: 1px solid fade-out($top-colour, $top-highlight);
+@mixin border-light-top($highlight: 0.8, $colour: #ffffff) {
+	border-top: 1px solid fade-out($colour, $highlight);
 }
-@mixin border-light-bottom($bottom-highlight: 0.8, $bottom-colour: #ffffff) {
-	border-bottom: 1px solid fade-out($bottom-colour, $bottom-highlight);
+@mixin border-light-bottom($highlight: 0.8, $colour: #ffffff) {
+	border-bottom: 1px solid fade-out($colour, $highlight);
 }
-@mixin border-dark-top($bottom-lowlight: 0.8, $top-colour: #000000) {
-	border-top: 1px solid fade-out($top-colour, $bottom-lowlight);
+@mixin border-light-left($highlight: 0.8, $colour: #ffffff) {
+	border-left: 1px solid fade-out($colour, $highlight);
 }
-@mixin border-dark-bottom($bottom-lowlight: 0.8, $bottom-colour: #000000) {
-	border-bottom: 1px solid fade-out($bottom-colour, $bottom-lowlight);
+@mixin border-light-right($highlight: 0.8, $colour: #ffffff) {
+	border-right: 1px solid fade-out($colour, $highlight);
 }
-@mixin border-light-right($top-highlight: 0.8, $top-colour: #ffffff) {
-	border-right: 1px solid fade-out($top-colour, $top-highlight);
+@mixin border-dark($lowlight: 0.8, $colour: #000000) {
+	border: 1px solid fade-out($colour, $lowlight);
 }
-@mixin border-dark-right($bottom-lowlight: 0.8, $bottom-colour: #000000) {
-	border-right: 1px solid fade-out($bottom-colour, $bottom-lowlight);
+@mixin border-dark-top($lowlight: 0.8, $colour: #000000) {
+	border-top: 1px solid fade-out($colour, $lowlight);
 }
-@mixin border-light-left($top-highlight: 0.8, $top-colour: #ffffff) {
-	border-left: 1px solid fade-out($top-colour, $top-highlight);
+@mixin border-dark-bottom($lowlight: 0.8, $colour: #000000) {
+	border-bottom: 1px solid fade-out($colour, $owlight);
 }
-@mixin border-dark-left($bottom-lowlight: 0.8, $bottom-colour: #000000) {
-	border-left: 1px solid fade-out($bottom-colour, $bottom-lowlight);
+@mixin border-dark-left($lowlight: 0.8, $colour: #000000) {
+	border-left: 1px solid fade-out($colour, $lowlight);
+}
+@mixin border-dark-right($lowlight: 0.8, $colour: #000000) {
+	border-right: 1px solid fade-out($colour, $lowlight);
 }
