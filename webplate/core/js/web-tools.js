@@ -373,6 +373,7 @@ jQuery.web_load_plugins 			= function(js_path)
 	var $ar_js_plugins				= [];
 	var $check_flicker				= false;
 	var $check_fastclick			= false; 
+	var $check_penplate				= false; 
 
 	// Flickerplate check
 	var $flickerplate_check			= $('.flickerplate:first');
