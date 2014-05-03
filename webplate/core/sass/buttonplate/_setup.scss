@@ -1,0 +1,70 @@
+/**
+ * SASS File: 		_setup.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	3 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Button setup
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$images-root					: "../img" !default;
+
+
+// Button setup
+// ---------------------------------------------------------------------------------------
+@mixin button-setup() {
+	position: relative;
+	display: inline-block;
+	color: lighten(#000, 40%);
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	border: none;
+	background-color: $grey-link;
+	outline: none;
+	-webkit-appearance: none;
+	
+	// Hover state
+	&:hover { 
+		cursor: pointer;
+		background-color: $grey-link-hover;
+	}
+	// Visited state
+	&:visited {
+		color: lighten(#000, 40%);
+	}
+	// Active state
+	&:active {
+		@include drop-shadow-inset(fade-out(#000, 0.7), 5px, 2px, 0px);
+		text-shadow: fade-out($white, 0.75) 0px 1px 0;
+		background-color: $grey-link;
+	}
+
+	// Arrow
+	.arrow {
+		display: inline-block;
+		height: 10px;
+		width: 12px;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	// Animations
+	-webkit-transition: border 0.2s ease-out, background 0.2s ease-out;
+	-moz-transition: border 0.2s ease-out, background 0.2s ease-out;
+	-ms-transition: border 0.2s ease-out, background 0.2s ease-out;
+	-o-transition: border 0.2s ease-out, background 0.2s ease-out;
+	transition: border 0.2s ease-out, background 0.2s ease-out;
+}

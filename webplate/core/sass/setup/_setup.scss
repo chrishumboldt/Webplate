@@ -55,6 +55,11 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	overflow: hidden;
 	width: 100%;
 
+	.button .arrow:before {
+		font-family: 'icomoon';
+	 	content: "\e600";
+	}
+
 	.webplate-shifter {
 		position: relative;
 		left: 0;
