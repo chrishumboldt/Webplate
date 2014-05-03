@@ -1211,7 +1211,24 @@ textarea {
   height: 80px;
 }
 
-select {
+span.drop-down {
+  padding: 6px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  background-image: url(../img/form/drop-down-arrow.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  overflow: hidden;
+  border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+span.drop-down .text {
+  position: absolute;
+}
+span.drop-down select {
   border: 1px solid #d1d1d1;
   letter-spacing: normal;
   word-spacing: normal;
@@ -1230,26 +1247,6 @@ select {
   -ms-border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-}
-
-select.drop-down {
-  padding: 6px;
-  border: 1px solid #d1d1d1;
-  background-color: #fff;
-  background-image: url(../img/form/drop-down-arrow.png);
-  background-repeat: no-repeat;
-  background-position: right center;
-  overflow: hidden;
-  border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-}
-select.drop-down .text {
-  position: absolute;
-}
-select.drop-down select {
   padding: 9px 30px 9px 2px;
   font-size: 0.95em;
   border: none;
@@ -1257,7 +1254,7 @@ select.drop-down select {
   -moz-appearance: window;
 }
 
-select.drop-down:hover {
+span.drop-down:hover {
   padding: 5px;
   border-width: 2px;
   background-image: url(../img/form/drop-down-arrow-hover.png);

@@ -49,19 +49,7 @@ textarea {
 	height: 80px;
 }
 // Drop down
-select {
-  border: $fe-border-width solid $fe-border-color;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  background-color: #fff;
-  -webkit-appearance: none;
-  -webkit-user-select: text;
-  -webkit-font-smoothing: antialiased;
-  @include animate(border-color);
-  @include border-radius($fe-rounded-corners-radius);
-}
-select.drop-down {
+span.drop-down {
 	padding: 6px;
 	border: $fe-border-width solid $fe-border-color;
 	background-color: #fff;
@@ -75,6 +63,16 @@ select.drop-down {
 		position: absolute;
 	}
 	select {
+        border: $fe-border-width solid $fe-border-color;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        background-color: #fff;
+        -webkit-appearance: none;
+        -webkit-user-select: text;
+        -webkit-font-smoothing: antialiased;
+        @include animate(border-color);
+        @include border-radius($fe-rounded-corners-radius);
 		padding: 9px 30px 9px 2px;
 		font-size: 0.95em;
 		border: none;
@@ -82,7 +80,7 @@ select.drop-down {
 		-moz-appearance: window;
 	} 
 }
-select.drop-down:hover {
+span.drop-down:hover {
 	padding: 5px;
 	border-width: ($fe-border-width + 1);
 	background-image: url(#{$fe-images-root}/drop-down-arrow-hover.png);
