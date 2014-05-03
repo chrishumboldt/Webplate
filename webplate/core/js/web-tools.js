@@ -2,83 +2,52 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	13 April 2014
+ * Last Edited:   	3 May 2014
  */
 
 
-// Lock an element from enter key.
-// ---------------------------------------------------------------------------------------
-jQuery.web_lock_submit 				= function($element)
-{
-	$($element).live('keypress', function($e)
-	{
-		if($e.keyCode == 13)
-		{	  
-			return false;
-		}
-	});
-};
-
-
-// Check that something exists.
+// Basic checks
 // ---------------------------------------------------------------------------------------
 jQuery.web_exists 					= function($element)
 {
 	return (($element) && ($element.length > 0));
 };
 
-
-// Get the file extension.
-// ---------------------------------------------------------------------------------------
-jQuery.web_get_ext 					= function($file)
-{
-	return $file.split('.').pop().toLowerCase();
-};
-
-
-// Get the current time in database format.
-// ---------------------------------------------------------------------------------------
-jQuery.web_crt_db_date 				= function()
-{
-	var $now		 			    = new Date();
-	return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
-};
-
-
-// Check that something is in a database date format.
-// ---------------------------------------------------------------------------------------
-jQuery.web_check_date 				= function($date)
-{
-	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
-};
-
-
-// Check that a string is an integer, including decimals.
-// ---------------------------------------------------------------------------------------
-jQuery.web_is_integer 				= function($int)
-{
-	return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
-};
-
-
-// Check that a string is a full integer, not including decimals.
-// ---------------------------------------------------------------------------------------
-jQuery.web_is_full_integer 			= function($int)
-{
-	return /^[0-9]+$/.test($int);
-};
-
-
-// Check for white space.
-// ---------------------------------------------------------------------------------------
 jQuery.web_has_white_space 			= function($check)
 {
 	return /\s/.test($check);
 };
 
+jQuery.web_is_color 				= function($color)
+{
+	return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
+};
 
-// Check that the extension is allowed.
-// ---------------------------------------------------------------------------------------
+jQuery.web_is_date 					= function($date)
+{
+	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
+};
+// -- Depreciated -- Will soon be removed
+jQuery.web_check_date 				= function($date)
+{
+	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
+};
+// -- Depreciated --
+
+jQuery.web_is_email 				= function($email)
+{
+    return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
+};
+
+jQuery.web_is_ext 					= function($file, $ar_allowed_types)
+{
+	var $allowed_types			    = $ar_allowed_types || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
+
+	var $file_ext					= $file.split('.').pop().toLowerCase();
+
+	return (jQuery.inArray($file_ext, $allowed_types) != -1);
+};
+// -- Depreciated -- Will soon be removed
 jQuery.web_check_ext 				= function($file, $ar_allowed_types)
 {
 	var $allowed_types			    = $ar_allowed_types || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
@@ -87,9 +56,54 @@ jQuery.web_check_ext 				= function($file, $ar_allowed_types)
 
 	return (jQuery.inArray($file_ext, $allowed_types) != -1);
 };
+// -- Depreciated --
+
+jQuery.web_is_full_integer 			= function($int)
+{
+	return /^[0-9]+$/.test($int);
+};
+
+jQuery.web_is_image 				= function($file, $ar_allowed_types)
+{
+	var $allowed_types	    		= $ar_allowed_types || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
+
+	var $file_ext					= $file.split('.').pop().toLowerCase();
+
+	return (jQuery.inArray($file_ext, $allowed_types) != -1);
+};
+
+jQuery.web_is_integer 				= function($int)
+{
+	return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
+};
+
+jQuery.web_is_password 				= function($password)
+{
+	return /^[A-Za-z0-9]{6,}$/.test($password);
+};
 
 
-// Input mirror.
+// Dates
+// ---------------------------------------------------------------------------------------
+jQuery.web_crt_db_date 				= function()
+{
+	var $now		 			    = new Date();
+	return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
+};
+
+
+// Development
+// ---------------------------------------------------------------------------------------
+jQuery.web_log 						= function($text)
+{
+	if(window.console)
+	{
+		console.log($text);
+	}
+};
+
+
+// Forms
 // ---------------------------------------------------------------------------------------
 jQuery.web_input_mirror 			= function($input, $output)
 {
@@ -103,45 +117,25 @@ jQuery.web_input_mirror 			= function($input, $output)
 	});
 };
 
-
-// Check that the string is an email address.
-// ---------------------------------------------------------------------------------------
-jQuery.web_is_email 				= function($email)
+jQuery.web_lock_submit 				= function($element)
 {
-    return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
+	$($element).live('keypress', function($e)
+	{
+		if($e.keyCode == 13)
+		{	  
+			return false;
+		}
+	});
 };
 
 
-// Check that the string is a password.
+// Strings
 // ---------------------------------------------------------------------------------------
-jQuery.web_is_password 				= function($password)
+jQuery.web_get_ext 					= function($file)
 {
-	return /^[A-Za-z0-9]{6,}$/.test($password);
+	return $file.split('.').pop().toLowerCase();
 };
 
-
-// Check that a string has an image extension.
-// ---------------------------------------------------------------------------------------
-jQuery.web_is_image 				= function($file, $ar_allowed_types)
-{
-	var $allowed_types	    		= $ar_allowed_types || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
-
-	var $file_ext					= $file.split('.').pop().toLowerCase();
-
-	return (jQuery.inArray($file_ext, $allowed_types) != -1);
-};
-
-
-// Check that a string is a hex colour code.
-// ---------------------------------------------------------------------------------------
-jQuery.web_is_color 				= function($color)
-{
-	return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
-};
-
-
-// Create a random string.
-// ---------------------------------------------------------------------------------------
 jQuery.web_random_string 			= function($string_length)
 {
 	var $chars 						= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
@@ -159,18 +153,34 @@ jQuery.web_random_string 			= function($string_length)
 };
 
 
-// Log something in the console.
+// URL
 // ---------------------------------------------------------------------------------------
-jQuery.web_log 						= function($text)
-{
-	if(window.console)
-	{
-		console.log($text);
-	}
-};
+jQuery.web_get_url					= function()
+{	
+	var $window_location			= window.location;
+	var $full_path					= $window_location.href;
+	var $ar_path 					= $window_location.href.split('/');
+	var $hash_split					= $window_location.href.split('#');
+	var $protocol 					= $ar_path[0];
+	var $host 						= $ar_path[2];
+	var $base_url 					= $protocol + '//' + $host;
+	var $hash_url					= $window_location.hash.substring(1);
+	var $site_path					= $hash_split[0];
+	var $ar_return					= [];
+	
+	// Set the return array
+	$ar_return['hash']				= $hash_url;
+	$ar_return['host']				= $host;
+	$ar_return['base_url']			= $base_url;
+	$ar_return['site_path']			= $site_path;
+	$ar_return['full_path']			= $full_path;
+	
+	// Return
+	return $ar_return;
+}
 
 
-// Set the Webplate navigation.
+// Webplate
 // ---------------------------------------------------------------------------------------
 jQuery.web_navigation 				= function(){
 
@@ -186,12 +196,10 @@ jQuery.web_navigation 				= function(){
 		if($('html').hasClass('show-nav'))
 		{
 			$('html').removeClass('show-nav').addClass('hide-nav');
-			StatusBar.styleDefault();
 		}
 		else
 		{
 			$('html').addClass('show-nav').removeClass('hide-nav');
-			StatusBar.styleLightContent();
 		}
 	});
 	
@@ -277,9 +285,6 @@ jQuery.web_navigation 				= function(){
 	});
 };
 
-
-// Set the window type.
-// ---------------------------------------------------------------------------------------
 jQuery.web_window_type 				= function()
 {
 	$.web_window_type_execute();
@@ -289,9 +294,6 @@ jQuery.web_window_type 				= function()
 	});
 };
 
-
-// Window type execution.
-// ---------------------------------------------------------------------------------------
 jQuery.web_window_type_execute 		= function()
 {
 	// Some variables
@@ -313,9 +315,6 @@ jQuery.web_window_type_execute 		= function()
 	}
 };
 
-
-// Execute Webplate forms.
-// ---------------------------------------------------------------------------------------
 jQuery.web_forms 					= function()
 {
 	// Execute forms
@@ -352,9 +351,6 @@ jQuery.web_forms 					= function()
 	});
 };
 
-
-// Execute Webplate buttons.
-// ---------------------------------------------------------------------------------------
 jQuery.web_buttons 					= function()
 {
 	// Execute buttons
@@ -364,9 +360,6 @@ jQuery.web_buttons 					= function()
 	});
 };
 
-
-// Load Webplate plugins.
-// ---------------------------------------------------------------------------------------
 jQuery.web_load_plugins 			= function(js_path)
 {	
 	// Load plugins array
@@ -429,9 +422,6 @@ jQuery.web_load_plugins 			= function(js_path)
 	}});
 }
 
-
-// Set the scroll direction class.
-// ---------------------------------------------------------------------------------------
 jQuery.web_scroll 					= function()
 {	
 	// Some variables
@@ -484,35 +474,9 @@ jQuery.web_scroll 					= function()
 				}
 			}
 
-			//Updates scroll position
+			// Updates scroll position
 			$last_scroll 			= $scroll_top;
 		});
 	}
 }
 
-
-// Get the URL elements.
-// ---------------------------------------------------------------------------------------
-jQuery.web_get_url					= function()
-{	
-	var $window_location			= window.location;
-	var $full_path					= $window_location.href;
-	var $ar_path 					= $window_location.href.split('/');
-	var $hash_split					= $window_location.href.split('#');
-	var $protocol 					= $ar_path[0];
-	var $host 						= $ar_path[2];
-	var $base_url 					= $protocol + '//' + $host;
-	var $hash_url					= $window_location.hash.substring(1);
-	var $site_path					= $hash_split[0];
-	var $ar_return					= [];
-	
-	// Set the return array
-	$ar_return['hash']				= $hash_url;
-	$ar_return['host']				= $host;
-	$ar_return['base_url']			= $base_url;
-	$ar_return['site_path']			= $site_path;
-	$ar_return['full_path']			= $full_path;
-	
-	// Return
-	return $ar_return;
-}
