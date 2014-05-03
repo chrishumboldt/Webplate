@@ -2,19 +2,22 @@
  * SASS File: 		_import.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	23 April 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Imports
+// Import
 
 
-// Imports
+// Import
 // ---------------------------------------------------------------------------------------
-@import "button";
-@import "colour";
-@import "size";
+@import "drop-down";
+@import "setup";
 @import "shape";
+@import "size";
+@import "style";
+
 @import "execute";
+

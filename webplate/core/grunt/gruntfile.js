@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				options: {
-					style: 'compressed'
+					style: 'expanded'
 				},
 				files: {
 					'../css/webplate.css': '../sass/web-engine.scss'

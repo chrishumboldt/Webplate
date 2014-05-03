@@ -25,7 +25,7 @@ $fe-rounded-corners-radius			: 3px;
 // ---------------------------------------------------------------------------------------
 // Display inline
 .inline {
-	margin-bottom: 8px;
+	margin-bottom: 6px;
 	
 	[class *= "icheckbox_"], [class *= "iradio_"] {
 		position: absolute;
@@ -61,7 +61,7 @@ select {
   @include animate(border-color);
   @include border-radius($fe-rounded-corners-radius);
 }
-.drop-down {
+select.drop-down {
 	padding: 6px;
 	border: $fe-border-width solid $fe-border-color;
 	background-color: #fff;
@@ -82,7 +82,7 @@ select {
 		-moz-appearance: window;
 	} 
 }
-.drop-down:hover {
+select.drop-down:hover {
 	padding: 5px;
 	border-width: ($fe-border-width + 1);
 	background-image: url(#{$fe-images-root}/drop-down-arrow-hover.png);

@@ -1,0 +1,138 @@
+/**
+ * SASS File: 		_drop-down.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	3 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Drop-downs
+// Set line
+// Drop-down position
+// Drop-down link hover
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$default-colour 			: $blue;
+$away-from-button			: 4px;
+$images-root				: "../img" !default;
+
+
+// Drop-downs
+// ---------------------------------------------------------------------------------------
+@mixin drop-down($colour: $default-colour) {
+
+	// List
+	ul {
+		display: none;
+		position: absolute;
+		padding: 0px;
+		margin-top: $away-from-button;
+		list-style: none;
+		z-index: 1;
+		background-color: $white;
+		@include border-radius();
+		@include drop-shadow();
+
+		li {
+			padding: 0px;
+			margin: 0px;
+			&:first-child a {
+				@include border-radius-top();
+			}
+			&:last-child a {
+				@include border-radius-bottom();
+			}
+			&.line-top {
+				@include set-line(top);
+			}
+			&.line-bottom {
+				@include set-line(bottom);
+			}
+			
+			// Links
+			a {
+				display: block;
+				text-align: left;
+				color: $black-base;
+				text-decoration: none;
+				vertical-align: middle;
+				
+				&:hover {
+					background-color: $grey-link-hover;
+				}
+			}
+		}
+	}
+}
+
+
+// Set line
+// ---------------------------------------------------------------------------------------
+@mixin set-line($position: top) {
+	
+	// Determine where the line goes
+	@if $position == top {
+		
+		border-top: 1px solid $grey-light;
+	}
+	@else if $position == bottom {
+		
+		border-bottom: 1px solid $grey-light;
+	}
+}
+
+
+// Drop-down position
+// ---------------------------------------------------------------------------------------
+@mixin drop-down-position($spacing, $link-height, $font-size) {
+
+	// Arrow
+	.arrow {
+		margin-left: $spacing / 2;
+	}
+
+	// Drop down
+	&.button-drop-down {
+		ul {
+			margin-left: -$spacing;
+		}
+		li a {
+			padding: 0px $spacing;
+			height: $link-height;
+			line-height: $link-height;
+			font-size: $font-size;
+		}
+	}
+}
+
+
+// Drop-down link hover
+// ---------------------------------------------------------------------------------------
+@mixin drop-down-link-hover($colour, $lighten: 0%) {
+
+	// Colour
+	@if lightness($colour) < 60% {
+		color: $white
+	}
+	
+	// Check saturations
+	@if saturation($colour) > 0% {
+		@if saturation($colour) > 38% {
+			background-color: lighten(saturate($colour, 8%), $lighten);
+		}
+		@else{
+			background-color: lighten(saturate($colour, 30%), $lighten);
+		}
+	}
+	@else {
+		background-color: lighten($colour, $lighten);
+	}
+
+}
+
+
