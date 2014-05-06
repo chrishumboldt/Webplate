@@ -2,7 +2,7 @@
  * jQuery File: 	penplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	14 April 2014
+ * Last Edited:   	6 May 2014
  */
 
 
@@ -653,7 +653,6 @@
 		// Show / hide link input
 		$object.link_input_show				= function($parent_type)
 		{
-			console.log($parent_type);
 			$('.penplate-controls.'+ $parent_type +' ul').hide();
 			$('.penplate-controls.'+ $parent_type +' .penplate-link').fadeIn('fast', function()
 			{
