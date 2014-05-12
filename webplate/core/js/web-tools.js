@@ -2,7 +2,7 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	12 May 2014
  */
 
 
@@ -189,26 +189,26 @@ jQuery.web_navigation 				= function(){
 	$('.webplate-navigation').wrapInner('<div class="navigation-inner" />');
 
 	// On click
-	$('.navigation-trigger').on('click', function($e)
+	$('.navigation-trigger').on('click', function($ev)
 	{
-		// $e.preventDefault();
+		$ev.preventDefault();
 
 		if($('html').hasClass('show-nav'))
 		{
-			$('html').removeClass('show-nav').addClass('hide-nav');
+			$.web_hide_nav();
 		}
 		else
 		{
-			$('html').addClass('show-nav').removeClass('hide-nav');
+			$.web_show_nav();
 		}
 	});
 	
 	// Close nav again
 	$('.webplate-content').on('click', function($e)
 	{
-		if($('html').hasClass('nav-open'))
+		if($('html').hasClass('show-nav'))
 		{
-			$('html').removeClass('show-nav').removeClass('nav-open').addClass('hide-nav');
+			$.web_hide_nav();
 		}
 	});
 
@@ -223,7 +223,7 @@ jQuery.web_navigation 				= function(){
 	{
 		$('.webplate-navigation a.active').removeClass('active');
 		$(this).addClass('active');
-		$('html').removeClass('show-nav').addClass('hide-nav');
+		$.web_hide_nav();
 	});
 
 	if(Modernizr.touch)
@@ -232,7 +232,7 @@ jQuery.web_navigation 				= function(){
 		{
 			if($('html').hasClass('show-nav'))
 			{
-				$('html').removeClass('show-nav').addClass('hide-nav');
+				$.web_hide_nav();
 			}
 		});
 	}
@@ -241,24 +241,10 @@ jQuery.web_navigation 				= function(){
 		{
 			if($('html').hasClass('show-nav'))
 			{
-				$('html').removeClass('show-nav').addClass('hide-nav');
+				$.web_hide_nav();
 			}
 		});
 	}
-
-	// Change position type / add nav open class
-	$('html.no-touch.show-nav').removeClass('show-nav').addClass('hide-nav');
-	$('.webplate-shifter').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
-	{
-		if($('html').hasClass('show-nav') == true)
-		{		
-			$('html').addClass('nav-open');
-		}
-		else
-		{	
-			$('html').removeClass('nav-open');
-		}
-	});
 	
 	// Prevent scroll on page open
 	$(document).on('touchmove',function($e)
@@ -282,6 +268,41 @@ jQuery.web_navigation 				= function(){
 	$('body').on('touchmove','.webplate-navigation',function($e)
 	{
 		$e.stopPropagation();
+	});
+};
+
+jQuery.web_show_nav 				= function()
+{
+	// Variables
+	var $navigation_width 			= $('.webplate-navigation').width();
+
+	$('.webplate-shifter, .is-fixed').velocity(
+	{ 
+		left 					: $navigation_width
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').addClass('show-nav').removeClass('hide-nav');
+		}
+	});
+};
+
+jQuery.web_hide_nav 				= function()
+{
+	$('.webplate-shifter, .is-fixed').velocity(
+	{ 
+		left 					: 0
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').removeClass('show-nav').addClass('hide-nav');
+		}
 	});
 };
 
@@ -310,7 +331,7 @@ jQuery.web_window_type_execute 		= function()
 		$('html').addClass('web-large-view');
 		if($('html').hasClass('show-nav'))
 		{
-			$('html').removeClass('show-nav').addClass('hide-nav');
+			$.web_hide_nav();
 		}
 	}
 };
