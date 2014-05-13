@@ -65,6 +65,7 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 		left: 0;
 		height: 100%;
 		@include ios-render();
+		@include transform-easing();
 	}
 	.webplate-content {
 		position: relative;
@@ -124,6 +125,9 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	       }
 	 	}
    }
+}
+.show-nav .webplate-shifter {
+	@include transform-easing($menu-width);
 }
 
 // Fixed page width setting
