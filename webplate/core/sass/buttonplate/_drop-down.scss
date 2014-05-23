@@ -116,7 +116,7 @@ $images-root				: "../img" !default;
 @mixin drop-down-link-hover($colour, $lighten: 0%) {
 
 	// Colour
-	@if lightness($colour) < 60% {
+	@if lightness($colour) < 68% {
 		color: $white
 	}
 	

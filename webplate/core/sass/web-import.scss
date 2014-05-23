@@ -2,7 +2,7 @@
  * SASS File: 		web-import.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	22 May 2014
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
@@ -33,11 +33,13 @@ $default-flex 						: 1 !default;
 $default-flex-percent-option		: false !default;
 $break-main 						: 43.813em !default;
 $min-max 							: false !default;
+$font-family 						: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 
 // Plugins
 // ---------------------------------------------------------------------------------------
 @import "blueplate/import";
 @import "buttonplate/import";
-@import "flickerplate/import";
-@import "penplate/import";
+@import "formplate/import";
+// @import "flickerplate/import";
+// @import "penplate/import";

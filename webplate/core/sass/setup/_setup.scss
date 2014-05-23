@@ -23,7 +23,7 @@
 	box-sizing:border-box
 }
 html {
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-family: $font-family;
 	color: lighten(#000, 80%);
 	background-color: #fff;
 	-ms-text-size-adjust: 100%;
@@ -54,11 +54,6 @@ html, body, .webplate, .webplate-content, .webplate-navigation {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-
-	.button .arrow:before {
-		font-family: 'icomoon';
-	 	content: "\e600";
-	}
 
 	.webplate-shifter {
 		position: relative;

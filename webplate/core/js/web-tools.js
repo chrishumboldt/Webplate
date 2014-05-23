@@ -2,7 +2,7 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	12 May 2014
+ * Last Edited:   	23 May 2014
  */
 
 
@@ -336,54 +336,10 @@ jQuery.web_window_type_execute 		= function()
 	}
 };
 
-jQuery.web_forms 					= function()
-{
-	// Execute forms
-	$(document).ready(function()
-	{
-		// Some variables
-		$form_colour				= '-blue';
-		$data_form_colour			= $('body').data('forms-colour');
-		$ar_form_colours			= ['red', 'green', 'blue', 'aero', 'grey', 'orange', 'yellow', 'pink', 'purple'];
-
-		// Check that CSS is needed
-		if(($data_form_colour) && ($data_form_colour.length > 0))
-		{
-			if(jQuery.inArray($data_form_colour, $ar_form_colours) > -1)
-			{
-				$form_colour		= '-' + $data_form_colour;
-			}	
-		}
-
-		// Set the html variable
-		$('html').addClass('web-forms-colour' + $form_colour);
-
-		// Execute iCheck
-		$('input').iCheck(
-		{
-			checkboxClass: 'icheckbox_square' + $form_colour,
-			radioClass: 'iradio_square' + $form_colour,
-			increaseArea: '20%',
-			labelHover: true
-		});
-
-		// Wrap all selects
-		$('select').wrap('<span class="drop-down"></span>');
-	});
-};
-
-jQuery.web_buttons 					= function()
-{
-	// Execute buttons
-	$(document).ready(function()
-	{
-		$('.button').buttonplate();
-	});
-};
-
-jQuery.web_load_plugins 			= function(js_path)
+jQuery.web_load_plugins 			= function($css_path, $js_path)
 {	
 	// Load plugins array
+	var $ar_css_plugins				= [];
 	var $ar_js_plugins				= [];
 	var $check_flicker				= false;
 	var $check_fastclick			= false; 
@@ -393,6 +349,7 @@ jQuery.web_load_plugins 			= function(js_path)
 	var $flickerplate_check			= $('.flickerplate:first');
 	if($.web_exists($flickerplate_check))
 	{
+		$ar_css_plugins.push($css_path + 'flickerplate.css');
 		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
 		$check_flicker				= true;
 	}
@@ -401,6 +358,7 @@ jQuery.web_load_plugins 			= function(js_path)
 	var $penplate_check				= $('.penplate:first');
 	if($.web_exists($penplate_check))
 	{
+		$ar_css_plugins.push($css_path + 'penplate.css');
 		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
 		$check_penplate				= true;
 	}
@@ -411,6 +369,9 @@ jQuery.web_load_plugins 			= function(js_path)
 		$ar_js_plugins.push($js_path + 'min/web-touch.min.js');
 		$check_fastclick			= true;
 	}
+
+	// Load plugins CSS
+	yepnope({ load: $ar_css_plugins });
 
 	// Load plugins js
 	yepnope({load: $ar_js_plugins, complete: function()

@@ -17,7 +17,9 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'../css/webplate.css': '../sass/web-engine.scss'
+					'../css/webplate.css': '../sass/web-engine.scss',
+					'../css/flickerplate.css': '../sass/web-flickerplate.scss',
+					'../css/penplate.css': '../sass/web-penplate.scss',
 				}
 			}
 		}, 
@@ -41,7 +43,7 @@ module.exports = function(grunt) {
 						'../js/web-velocity.js',
 						'../js/web-tools.js',
 						'../js/web-buttonplate.js',
-						'../js/web-forms.js'
+						'../js/web-formplate.js'
 					]
 				}
 			},
@@ -93,7 +95,7 @@ module.exports = function(grunt) {
 				tasks: ['uglify:stack']
 			},
 			imports: {
-				files: ['../js/web-jquery.js', '../js/web-modernizr.js', '../js/web-tools.js', '../js/web-buttonplate.js', '../js/web-forms.js'],
+				files: ['../js/web-jquery.js', '../js/web-modernizr.js', '../js/web-tools.js', '../js/web-buttonplate.js', '../js/web-formplate.js'],
 				tasks: ['uglify:imports']
 			},
 			touch: {

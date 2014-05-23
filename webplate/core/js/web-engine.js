@@ -2,7 +2,7 @@
  * engine.js
  *
  * Author:        	Chris Humboldt
- * Last Edited:   	26 January 2014
+ * Last Edited:   	23 May 2014
  * Edited By:   	Chris Humboldt
  */
 
@@ -48,8 +48,9 @@ yepnope([
 		// ------------------------------------------------ EXECUTE
 		$.web_navigation();
 		$.web_window_type();
-		$.web_forms();
-		$.web_load_plugins($js_path);
+		$('.button').buttonplate();
+		$('body').formplate();
+		$.web_load_plugins($css_path, $js_path);
 	}
 },
 {
@@ -91,14 +92,12 @@ yepnope([
 			{		
 				// Show the body
 				$('body').show();
-				$.web_buttons();
 			}});
 		}
 		else
 		{		
 			// Show the body
 			$('body').show();
-			$.web_buttons();
 		}
 		
 		// JS extras

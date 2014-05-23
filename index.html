@@ -18,7 +18,7 @@
     <script id="webplate-stack" src="webplate/stack.js"></script>
 
 </head>
-<body style="display: none;" data-project-css="welcome.css" data-project-js="min/welcome.min.js" data-forms-colour="blue">
+<body style="display: none;" data-project-css="welcome.css" data-project-js="min/welcome.min.js" data-formplate-colour="blue">
 	
 
 	<!--Header-->
@@ -211,13 +211,23 @@
 
 			<div class="form-example">
 
-				<div class="column-f"><input type="text" name="inp-example-1" value="" placeholder="Input field"></div>
 				<div class="column-f">
-					<select>
-					    <option value="1">Select Option 1</option>
-					    <option value="2">Select Option 2</option>
-					    <option value="3">Select Option 3</option>
-					</select>
+
+					<div class="formplate">
+						<input type="text" name="inp-example-1" value="" placeholder="Input field">
+					</div>
+
+				</div>
+				<div class="column-f">
+
+					<div class="formplate">
+						<select>
+						    <option value="1">Select Option 1</option>
+						    <option value="2">Select Option 2</option>
+						    <option value="3">Select Option 3</option>
+						</select>
+					</div>
+
 				</div>
 
 			</div>
@@ -225,39 +235,39 @@
 			<div class="form-example">
 				
 				<div class="column-l">
-					
-					<div class="inline">
-						<input type="checkbox">
-						<label>Checkbox 1</label>
+			
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-1" checked="checked">
+						<label for="checkbox-1">Checkbox 1</label>
 					</div>
 					
-					<div class="inline">
-						<input type="checkbox">
-						<label>Checkbox 2</label>
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-2">
+						<label for="checkbox-2">Checkbox 2</label>
 					</div>
 					
-					<div class="inline">
-						<input type="checkbox">
-						<label>Checkbox 3</label>
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-3">
+						<label for="checkbox-3">Checkbox 3</label>
 					</div>
 					
 				</div>
 				
 				<div class="column-r">
+			
+					<div class="formplate">
+						<input type="radio" id="radio-1" name="radio-selection" value="1" checked="checked">
+						<label for="radio-1">Radio Selection</label>
+					</div>
 					
-					<div class="inline">
-						<input type="radio" name="iCheck">
-						<label>Radio 1</label>
+					<div class="formplate">
+						<input type="radio" id="radio-2" name="radio-selection" value="2">
+						<label for="radio-2">Radio Selection</label>
 					</div>
-				
-					<div class="inline">
-						<input type="radio" name="iCheck">
-						<label>Radio 2</label>
-					</div>
-				
-					<div class="inline">
-						<input type="radio" name="iCheck">
-						<label>Radio 3</label>
+					
+					<div class="formplate">
+						<input type="radio" id="radio-3" name="radio-selection" value="2">
+						<label for="radio-3">Radio Selection</label>
 					</div>
 					
 				</div>

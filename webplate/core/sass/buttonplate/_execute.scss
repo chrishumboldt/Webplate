@@ -8,33 +8,14 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Variables
 // Buttonplate CSS
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
-// Used double quotes as colour words mean something in CSS
-$ar-colours 				: (
-	"grey"					: $grey-link, 
-	"black"					: $black-base, 
-	"aqua"					: $aqua, 
-	"blue"					: $blue, 
-	"blue-dark"				: $blue-dark, 
-	"green"					: $green, 
-	"orange"				: $orange, 
-	"purple"				: $purple, 
-	"red"					: $red, 
-	"yellow"				: $yellow
-);
-
 
 
 // Buttonplate CSS
 // ---------------------------------------------------------------------------------------
-@mixin buttonplate-css() {
+@mixin buttonplate-css($font: true) {
 	.button {
-		@include button-setup();
+		@include button-setup($font);
 
 		// Sizes
 		@include button-size-normal(); // Default
@@ -58,21 +39,21 @@ $ar-colours 				: (
 		}
 
 		// Flat buttons (shorthand = colour reference only)
-		@each $colour-name, $colour in $ar-colours {
+		@each $colour-name, $colour in $ar-colours-primary {
 			&.#{$colour-name}, &.flat-#{$colour-name} {
 				@include button-style-flat($colour);
 			}
 		}
 
 		// Gradient buttons
-		@each $colour-name, $colour in $ar-colours {
+		@each $colour-name, $colour in $ar-colours-primary {
 			&.gradient-#{$colour-name} {
 				@include button-style-gradient($colour);
 			}
 		}
 
 		// Line buttons
-		@each $colour-name, $colour in $ar-colours {
+		@each $colour-name, $colour in $ar-colours-primary {
 			&.line-#{$colour-name} {
 				@include button-style-line($colour);
 			}

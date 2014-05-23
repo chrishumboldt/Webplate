@@ -2,15 +2,21 @@
  * SASS File: 		_style.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	14 May 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Variables
 // Button style flat
 // Button style gradient
 // Button style line
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$lightness-threshold 	: 68%;
 
 
 // Button style flat
@@ -18,7 +24,7 @@
 @mixin button-style-flat($colour, $lighten: 5%) {
 
 	// Setup
-	@if lightness($colour) < 60% {
+	@if lightness($colour) < $lightness-threshold {
 		color: $white;
 	}
 	background-color: $colour;
@@ -39,7 +45,7 @@
 		}
 	}
 	&:active {
-		@if lightness($colour) < 60% {
+		@if lightness($colour) < $lightness-threshold {
 			color: darken($colour, 18%);
 		}
 		background-color: $colour;
@@ -60,21 +66,18 @@
 @mixin button-style-gradient($colour) {
 
 	// Setup
-	@if lightness($colour) < 60% {
+	@if lightness($colour) < $lightness-threshold {
 		color: $white;
 	}
 
 	// Gradient
-	$top-colour					: lighten($colour, 8%);
-	$bottom-colour				: darken($colour, 10%);
+	$top-colour					: lighten($colour, 6%);
+	$bottom-colour				: darken($colour, 4%);
 	@include gradient-vertical($top-colour, $bottom-colour);
-	border: 1px solid darken($colour, 14%);
-	border-top: 1px solid darken($colour, 8%);
-	border-bottom: 1px solid darken($colour, 20%);
 
 	// States
 	&:active {
-		@if lightness($colour) < 60% {
+		@if lightness($colour) < $lightness-threshold {
 			color: darken($colour, 18%);
 		}
 	}
@@ -88,10 +91,10 @@
 
 // Button style line
 // ---------------------------------------------------------------------------------------
-@mixin button-style-line($colour, $border-size: 2px, $lighten: 5%) {
+@mixin button-style-line($colour, $border-size: 1px, $lighten: 5%) {
 
 	// Setup
-	@if lightness($colour) < 60% {
+	@if lightness($colour) < $lightness-threshold {
 		color: $colour;
 	}	
 	background: transparent;
@@ -112,14 +115,13 @@
 		}
 		@else {
 			border: lighten($colour, $lighten) solid $border-size;
-			@if lightness($colour) < 60% {
+			@if lightness($colour) < 68% {
 				color: lighten($colour, $lighten);
 			}
 		}
 	}
 	&:active {
 		border: $colour solid $border-size;
-		background-color: fade-out($colour, 0.9);
 	}
 
 	// Drop-down link hover

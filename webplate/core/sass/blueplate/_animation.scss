@@ -2,14 +2,14 @@
  * SASS File: 		_animation.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	8 May 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Transition
-// Transform
+// Transform easing
 
 
 // Transition
@@ -23,21 +23,12 @@
 }
 
 
-// Transform
+// Transform easing
 // ---------------------------------------------------------------------------------------
 @mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition-speed: 0.2s) {
-	-webkit-transform: translate3d($x, $y, $z);
-	-o-transform: translate3d($x, $y, $z);
-	-moz-transform: translate3d($x, $y, $z);
-	transform: translate3d($x, $y, $z);
+	@include transform-translate-3d($x, $y, $z);
 	-webkit-transition: -webkit-transform $transition-speed ease-out;
 	-o-transition: -o-transform $transition-speed ease-out;
 	-moz-transition: -moz-transform $transition-speed ease-out;
 	transition: transform $transition-speed ease-out;
-}
-@mixin transform($x: 0px, $y: 0px, $z: 0px) {
-	-webkit-transform: translate3d($x, $y, $z);
-	-o-transform: translate3d($x, $y, $z);
-	-moz-transform: translate3d($x, $y, $z);
-	transform: translate3d($x, $y, $z);
 }

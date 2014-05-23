@@ -2,7 +2,7 @@
  * SASS File: 		_import.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	8 May 2014
  */
 
 
@@ -24,10 +24,13 @@
 @import "drop-shadow";
 @import "global";
 @import "gradient";
+@import "input_types";
 @import "ios";
+@import "layout";
 @import "responsive-layout";
 @import "spacing";
 @import "text";
+@import "transform";
 
 
 // CSS imports
@@ -35,6 +38,7 @@
 @import "css/alignment";
 @import "css/background";
 @import "css/display";
+@import "css/global";
 @import "css/position";
 @import "css/responsive-layout";
 @import "css/sizing";

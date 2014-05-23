@@ -8,12 +8,28 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Global
+// Variables
+// Spacing
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$space-base 							: 20px !default;
+$space-extra-small						: $space-base / 4;
+$space-small 							: $space-base / 2;
+$space-slight 							: $space-base * 1.25;
+$space-medium 							: $space-base * 2;
+$space-large 							: $space-base * 3;
+$space-extra-large 						: $space-base * 5;
 
 
 // Global
 // ---------------------------------------------------------------------------------------
 @mixin no-spacing() {
+	padding: 0px;
+	margin: 0px;
+}
+@mixin spacing-no() {
 	padding: 0px;
 	margin: 0px;
 }

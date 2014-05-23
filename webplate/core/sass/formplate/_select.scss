@@ -1,0 +1,104 @@
+/**
+ * SASS File: 		_select.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Select
+// Select colour states
+// Fixes
+
+
+// Select
+// ---------------------------------------------------------------------------------------
+.fp-select {
+	font-family: 'formplate';
+	padding: 8px 0px 11px 0px;
+	background-color: $white;
+	border: 1px solid $grey-form;
+	@include border-radius();
+
+	// Icon
+	&:after {
+		position: absolute;
+		content: "\e601";
+		margin-left: -31px;
+		margin-top: 8px;
+		font-size: 1.25em;
+		color: $grey-form;
+		z-index: 1;
+	}
+
+	// Hover
+	&:hover {
+		border-color: $blue;
+
+		// Icon
+		&:after {
+			color: $blue;
+		}
+	}
+
+	select {
+		position: relative;
+		padding: 8px $space-medium 8px $space-small;
+		border: 0px;
+		font-family: $font-family;
+		font-size: 0.875em;
+		letter-spacing: normal;
+		text-transform: none;
+		word-spacing: normal;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: none;
+		-webkit-user-select: text;
+		-webkit-font-smoothing: antialiased;
+		-moz-appearance: window;
+		z-index: 2;
+	}
+}
+
+
+// Select colour states
+// ---------------------------------------------------------------------------------------
+@each $colour-name, $colour in $ar-colours-form {
+	.fp-colour-#{$colour-name} {
+
+		// Focus
+		.fp-select:hover {
+			border-color: $colour;
+
+			// Icon
+			&:after {
+				color: $colour;
+			}
+		}
+	}
+}
+
+
+// Fixes
+// ---------------------------------------------------------------------------------------
+@-moz-document url-prefix() {
+	.fp-select:after {
+		margin-top: 5px;
+	}
+}
+.no-cssanimations .fp-select {
+	// Icon
+	&:after {
+		display: none;
+		content: "";
+	}
+
+	select {
+		padding: 7px $space-small 9px $space-small;
+	}
+}
+
+

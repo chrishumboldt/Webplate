@@ -20,6 +20,16 @@
 	text-align: center;
 }
 @mixin text-hide() {
-	text-indent: -10000px;
+	border:0; 
+	font: 0/0 a; 
+	text-shadow: none; 
+	color: transparent; 
+	background-color: transparent;
+}
+@mixin text-ellipsis($width: 100%) {
+	display: inline-block;
+	max-width: $width;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
