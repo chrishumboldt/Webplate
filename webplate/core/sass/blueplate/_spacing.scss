@@ -2,7 +2,7 @@
  * SASS File: 		_spacing.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2013
+ * Last Edited:   	27 May 2013
  */
 
 
@@ -15,12 +15,22 @@
 // Variables
 // ---------------------------------------------------------------------------------------
 $space-base 							: 20px !default;
-$space-extra-small						: $space-base / 4;
+$space-x-small							: $space-base / 4;
 $space-small 							: $space-base / 2;
 $space-slight 							: $space-base * 1.25;
 $space-medium 							: $space-base * 2;
 $space-large 							: $space-base * 3;
-$space-extra-large 						: $space-base * 5;
+$space-x-large 							: $space-base * 5;
+$space-xx-large 						: $space-base * 6;
+
+$space-base-em 							: 1.250em !default;
+$space-x-small-em						: $space-base-em / 4;
+$space-small-em 						: $space-base-em / 2;
+$space-slight-em 						: $space-base-em * 1.25;
+$space-medium-em 						: $space-base-em * 2;
+$space-large-em 						: $space-base-em * 3;
+$space-x-large-em 						: $space-base-em * 5;
+$space-xx-large-em 						: $space-base-em * 6;
 
 
 // Global

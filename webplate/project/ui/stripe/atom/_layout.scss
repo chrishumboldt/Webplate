@@ -1,0 +1,154 @@
+/**
+ * SASS File: 		_layout.scss
+ * Type: 			atom
+ * Author:        	Chris Humboldt
+ * Last Edited:   	27 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Columns
+// Stripes
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$limit  					: $limit-width + ($space-large-em * 2);
+
+
+// Columns
+// ---------------------------------------------------------------------------------------
+[class *= "col-"] { 
+	@include row();
+
+	> .col-left,
+	> .col-middle,
+	> .col-right {
+		@include span(12);
+	}
+}
+// Triple
+.col-triple { 
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .col-left {
+			@include new-span(4);
+			padding-right: $space-small;
+		}
+		> .col-middle {
+			@include new-span(4);
+			padding: 0px $space-x-small;
+		}
+		> .col-right {
+			@include new-span(4);
+			padding-left: $space-small;
+		}
+	}
+	// Respond large
+	@include respond-to($bp-large) {
+		> .col-left {
+			padding-right: $space-base;
+		}
+		> .col-middle {
+			padding: 0px $space-small;
+		}
+		> .col-right {
+			padding-left: $space-base;
+		}
+	}
+}
+// Side bar
+.col-side-bar {
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .col-left {
+			@include new-span(4);
+			padding-right: $space-small;
+		}
+		> .col-right {
+			@include new-span(8);
+			padding-left: $space-small;
+		}
+	}
+	// Respond large
+	@include respond-to($bp-large) {
+		> .col-left {
+			@include new-span(3);
+			padding-right: $space-base;
+		}
+		> .col-right {
+			@include new-span(9);
+			padding-left: $space-base;
+		}
+	}
+}
+// Side bar right
+.col-side-bar-right {
+	@extend .col-side-bar;
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .col-left {
+			@include new-span(8);
+		}
+		> .col-right {
+			@include new-span(4);
+		}
+	}
+	// Respond large
+	@include respond-to($bp-large) {
+		> .col-left {
+			@include new-span(9);
+		}
+		> .col-right {
+			@include new-span(3);
+		}
+	}
+}
+
+
+// Stripes
+// ---------------------------------------------------------------------------------------
+.stripe {
+	@include row();
+	padding: $space-medium $space-base;
+
+	// Contain
+	.contain {
+		@include respond-to($limit) {
+			@include center();
+			width: $limit-width;
+		}
+	}
+
+	// Grey
+	&:nth-child(even) {
+		background-color: $grey-x-light;
+	}
+
+	// Respond
+	@include respond-to($bp-small) {
+		padding: $space-large $space-medium;
+	}
+	@include respond-to($bp-large) {
+		padding: $space-x-large $space-large;
+	}
+}
+// Invert
+.invert .stripe {
+
+	// White
+	&:nth-child(even) {
+		background-color: $white;
+	}
+	// Grey
+	&:nth-child(odd) {
+		background-color: $grey-x-light;
+	}	
+}
+
+

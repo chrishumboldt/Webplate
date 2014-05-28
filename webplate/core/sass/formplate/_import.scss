@@ -2,28 +2,13 @@
  * SASS File: 		_import.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	22 May 2014
+ * Last Edited:   	23 May 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Icon fonts font face
 // Import
-
-
-// Icon fonts font face
-// ---------------------------------------------------------------------------------------
-@font-face {
-	font-family: 'formplate';
-	src:url('icon-font-formplate/icomoon.eot?c4hmew');
-	src:url('icon-font-formplate/icomoon.eot?#iefixc4hmew') format('embedded-opentype'),
-		url('icon-font-formplate/icomoon.woff?c4hmew') format('woff'),
-		url('icon-font-formplate/icomoon.ttf?c4hmew') format('truetype'),
-		url('icon-font-formplate/icomoon.svg?c4hmew#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 
 // Import
@@ -32,3 +17,7 @@
 @import "input";
 @import "label";
 @import "select";
+@import "setup";
+@import "textarea";
+
+@import "execute";

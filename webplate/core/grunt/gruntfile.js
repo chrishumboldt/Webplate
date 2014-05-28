@@ -16,11 +16,26 @@ module.exports = function(grunt) {
 				options: {
 					style: 'compressed'
 				},
-				files: {
+				files: [{
+					// Core file
 					'../css/webplate.css': '../sass/web-engine.scss',
 					'../css/flickerplate.css': '../sass/web-flickerplate.scss',
-					'../css/penplate.css': '../sass/web-penplate.scss',
-				}
+					'../css/penplate.css': '../sass/web-penplate.scss'
+				},{
+					// Project files
+					expand: true,
+					cwd: '../../project/sass',
+					src: ['**/*.scss'],
+					dest: '../../project/css',
+					ext: '.css'
+				},{
+					// UI files
+					expand: true,
+					cwd: '../../project/ui',
+					src: ['**/style.scss'],
+					dest: '../../project/ui',
+					ext: '.css'
+				}]
 			}
 		}, 
 		// End of SASS
@@ -79,13 +94,39 @@ module.exports = function(grunt) {
 						'../js/web-penplate.js'
 					],
 				}
-			}
+			},
+			// Project files
+			project: {
+				files: [{
+					expand: true,
+					cwd: '../../project/js',
+					src: '*.js',
+					dest: '../../project/js/min',
+					ext: '.min.js'
+				}]
+			},
+			// UI files
+			ui: {
+				files: [{
+					expand: true,
+					cwd: '../../project/ui',
+					src: '**/script.js',
+					dest: '../../project/ui',
+					ext: '.min.js'
+				}]
+			},
 		},
 		// Watch
 		watch: {
 			// CSS
 			css: {
-				files: ['../**/*.scss', '../../_settings.scss'],
+				files: [
+					'../**/*.scss', 
+					'../../_settings.scss', 
+					'../../project/sass/*.scss', 
+					'../../project/sass/**/*.scss',
+					'../../project/ui/**/*.scss'
+				],
 				tasks: ['sass']
 			},
 			// End of CSS
@@ -113,6 +154,14 @@ module.exports = function(grunt) {
 			penplate: {
 				files: ['../js/web-penplate.js'],
 				tasks: ['uglify:penplate']
+			},
+			project: {
+				files: ['../../project/js/*.js'],
+				tasks: ['uglify:project']
+			},
+			ui: {
+				files: ['../../project/ui/**/script.js'],
+				tasks: ['uglify:ui']
 			},
 			// End of scripts
 			// Live reload

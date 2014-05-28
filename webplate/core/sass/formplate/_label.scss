@@ -2,7 +2,7 @@
  * SASS File: 		_label.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	13 May 2014
+ * Last Edited:   	23 May 2014
  */
 
 
@@ -13,18 +13,22 @@
 
 // Label
 // ---------------------------------------------------------------------------------------
-label {
-	display: inline-block;
-	padding: 0px;
-	margin: 0px;
-	margin-bottom: 6px;
-	font-size: 0.875em;
-	font-weight: 400;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	color: $black-base;
+@mixin form-label() {
+	label {
+		display: inline-block;
+		padding: 0px;
+		margin: 0px;
+		margin-bottom: 6px;
+		font-size: 0.875em;
+		font-weight: 400;
+		font-family: $font-family;
+		color: $black-base;
 
-	// Large view
-	@include respond-to(large) {
-		font-size: 1em;
+		// Large view
+		@include respond-to(large) {
+			font-size: 1em;
+		}
 	}
 }
+
+

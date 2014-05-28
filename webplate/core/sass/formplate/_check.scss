@@ -2,7 +2,7 @@
  * SASS File: 		_check.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 May 2014
+ * Last Edited:   	23 May 2014
  */
 
 
@@ -16,67 +16,71 @@
 
 // Check input
 // ---------------------------------------------------------------------------------------
-.formplate {
-	.fp-checkbox,
-	.fp-radio {
-		display: inline-block;
-		position: relative;
-		width: 22px;
-		height: 22px;
-		line-height: 22px;
-		vertical-align: middle;
-		border: 1px solid $grey-form;
-		@include border-radius();
-
-		// Hover
-		&:hover {
-			cursor: pointer;
-			border: 1px solid $blue;
-		}
-
-		// Checked
-		&.checked {
-			font-family: 'formplate';
-			color: $white;
-			font-size: 0.613em;
-			text-align: center;
-			border: 1px solid $blue;
-			background-color: $blue;
-
-			&:before {
-				content: "\e600";
-			}
-		}
-
-		> input {
-			@include spacing-no();
-			display: inline-block;
-			height:22px;
-			width:22px; 
-			@include opacity(0);
-
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
-}
-
-// Hover / checked
-@each $colour-name, $colour in $ar-colours-form {
-	.fp-colour-#{$colour-name} .formplate {
+@mixin form-check-all() {
+	.formplate {
 		.fp-checkbox,
 		.fp-radio {
+			display: inline-block;
+			position: relative;
+			width: 22px;
+			height: 22px;
+			margin-right: $space-x-small;
+			margin-bottom: $space-x-small - 1px;
+			line-height: 22px;
+			vertical-align: middle;
+			border: 1px solid $grey-form;
+			@include border-radius();
 
 			// Hover
 			&:hover {
-				border: 1px solid $colour;
+				cursor: pointer;
+				border: 1px solid $blue;
 			}
 
 			// Checked
 			&.checked {
-				border: 1px solid $colour;
-				background-color: $colour;
+				font-family: 'formplate';
+				color: $white;
+				font-size: 0.613em;
+				text-align: center;
+				border: 1px solid $blue;
+				background-color: $blue;
+
+				&:before {
+					content: "\e600";
+				}
+			}
+
+			> input {
+				@include spacing-no();
+				display: inline-block;
+				height:22px;
+				width:22px; 
+				@include opacity(0);
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	// Hover / checked
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-colour-#{$colour-name} .formplate {
+			.fp-checkbox,
+			.fp-radio {
+
+				// Hover
+				&:hover {
+					border: 1px solid $colour;
+				}
+
+				// Checked
+				&.checked {
+					border: 1px solid $colour;
+					background-color: $colour;
+				}
 			}
 		}
 	}
@@ -85,18 +89,22 @@
 
 // Radio inputs
 // ---------------------------------------------------------------------------------------
-.formplate .fp-radio {
-	@include border-radius(50%);
+@mixin form-check-radio() {
+	.formplate .fp-radio {
+		@include border-radius(50%);
+	}
 }
 
 
 // Fixes
 // ---------------------------------------------------------------------------------------
-@-moz-document url-prefix() {
-	.formplate {
-		.fp-checkbox,
-		.fp-radio {
-			line-height: 20px;
+@mixin form-check-fixes() {
+	@-moz-document url-prefix() {
+		.formplate {
+			.fp-checkbox,
+			.fp-radio {
+				line-height: 20px;
+			}
 		}
 	}
 }

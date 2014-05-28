@@ -1,0 +1,77 @@
+/**
+ * SASS File: 		_text.scss
+ * Type: 			atom
+ * Author:        	Chris Humboldt
+ * Last Edited:   	27 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Headings
+// Basic text
+// Links
+
+
+// Headings
+// ---------------------------------------------------------------------------------------
+h1 { font-size: 2.125rem; }
+h2 { font-size: 1.875rem; font-weight: 500; }
+h3 { font-size: 1.625rem; }
+h4 { font-size: 1.375rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125 }
+h3, h4, h5, h6 { font-weight: 300; }
+h4 {
+	padding-bottom: $space-small;
+	border-bottom: 1px solid $grey-light;
+}
+
+// Respond
+@include respond-to($bp-small) {
+	h1 { font-size: 3.25rem; }
+	h2 { font-size: 2.75rem; }
+	h3 { font-size: 2rem; }
+	h4 { font-size: 1.5rem; }
+	h5 { font-size: 1.25rem; }
+}
+@include respond-to($bp-large) {
+	h1 { font-size: 3.75rem; }
+	h2 { font-size: 3rem; }
+	h3 { font-size: 2.3125rem; }
+	h4 { font-size: 1.5rem; }
+	h5 { font-size: 1.3125rem; }
+	h6 { font-size: 1.125rem; }
+}
+
+
+// Basic text
+// ---------------------------------------------------------------------------------------
+p {
+	font-size: 0.875em;
+	font-weight: 300;
+
+	@include respond-to($bp-medium) {
+		font-size: 0.913em;
+	}
+	@include respond-to($bp-large) {
+		font-size: 1em;
+	}
+}
+
+
+// Links
+// ---------------------------------------------------------------------------------------
+a:not(.button) {
+	color: $red;
+
+	&:visited {
+		color: $red;		
+	}
+	&:hover {
+		color: darken($red, 10%);
+		text-decoration: underline;
+	}
+}
+
+

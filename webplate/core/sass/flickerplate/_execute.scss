@@ -21,8 +21,8 @@
 		// Flicks
 		ul.flicks {
 			@include fp-flicks();
-			
-			li {
+
+			& > li {
 				@include fp-flick();
 				@include fp-flick-content();
 			}

@@ -2,7 +2,7 @@
  * jQuery File: 	formplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	22 May 2014
+ * Last Edited:   	23 May 2014
  */
 
 
@@ -55,7 +55,10 @@
 
 			// Set the colour scheme
 			$data_form_colour			= $('body').data('formplate-colour');
-			$('html').addClass('fp-colour-' + $data_form_colour);
+			if($data_form_colour != undefined)
+			{
+				$('html').addClass('fp-colour-' + $data_form_colour);
+			}
 
 			// Checkboxes
 			$('.formplate input[type="checkbox"]').each(function()
