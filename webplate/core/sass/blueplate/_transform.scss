@@ -25,3 +25,9 @@
 	-moz-transform: translateY($y);
 	transform: translateY($y);
 }
+@mixin scale-3d($x: 0px, $y: 0px, $z: 0px) {
+	-webkit-transform: scale3d($x, $y, $z);
+	-o-transform: scale3d($x, $y, $z);
+	-moz-transform: scale3d($x, $y, $z);
+	transform: scale3d($x, $y, $z);
+}

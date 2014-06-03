@@ -13,7 +13,55 @@
     <script id="webplate-stack" src="webplate/stack.js"></script>
     
 </head>
-<body style="display:none;" data-ui="stripe">
+<body style="display:none;" data-ui="stripe" class="invert">
+
+	<!-- Navigation trigger -->
+	<a href="#" class="navigation-trigger is-fixed icon-bars"></a>
+
+	<!-- Header -->
+	<header class="stripe">
+
+		<div class="bg-image"></div>
+		
+		<div class="contain">
+
+			<nav>
+
+				<ul class="navigation">
+					<li>
+						<a href="#">BASIC ELEMENTS<span class="icon-angle-down"></span></a>
+						<ul>
+							<li><a href="#">Buttons</a></li>
+							<li><a href="#">Inputs</a></li>
+							<li><a href="#">Lists</a></li>
+							<li><a href="#">Tables</a></li>
+							<li><a href="#">Text</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">COMPONENTS<span class="icon-angle-down"></span></a>
+						<ul>
+							<li><a href="#">Code Reference</a></li>
+							<li><a href="#">Download Stripe</a></li>
+							<li><a href="#">Image Hover</a></li>
+							<li><a href="#">Login Block</a></li>
+							<li><a href="#">Menus</a></li>
+							<li><a href="#">Prettify</a></li>
+							<li><a href="#">Pricing Table</a></li>
+							<li><a href="#">Stack List</a></li>
+							<li><a href="#">Tabs</a></li>
+						</ul>
+					</li>
+					<li><a href="#">LAYOUTS</a></li>
+				</ul>
+
+				<div class="logo-container"><a href="#" class="logo-line">STRIPE UI</a></div>
+
+			</nav>
+
+		</div>
+
+	</header>
 
 	<!-- Text -->
 	<div class="stripe"><div class="contain">
@@ -28,18 +76,6 @@
 		<p>Lorem ipsum dolor sit amet, consectetur <b>adipiscing</b> elit. Donec quis mauris mi. Quisque <i>sodales</i> vel orci eu consequat. Nunc vestibulum aliquet ornare. Quisque adipiscing ipsum at urna aliquet euismod. Mauris aliquam, nisl consectetur aliquam dictum, massa.</p>
 		<p><a href="#">Some Cool Link</a></p>
 
-<pre class="prettyprint linenums showcase-code">
-&lt;h1&gt;Heading 1&lt;/h1&gt;
-&lt;h2&gt;Heading 1&lt;/h2&gt;
-&lt;h3&gt;Heading 1&lt;/h3&gt;
-&lt;h4&gt;Heading 1&lt;/h4&gt;
-&lt;h5&gt;Heading 1&lt;/h5&gt;
-&lt;h6&gt;Heading 1&lt;/h6&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur &lt;b&gt;adipiscing&lt;/b&gt; elit. Donec quis mauris mi. Quisque &lt;i&gt;sodales&lt;/i&gt; vel orci eu consequat. Nunc vestibulum aliquet ornare. Quisque adipiscing ipsum at urna aliquet euismod. Mauris aliquam, nisl consectetur aliquam dictum, massa.&lt;/p&gt;
-&lt;p&gt;&lt;a href="#"&gt;Some Cool Link&lt;/a&gt;&lt;/p&gt;
-</pre>
-
 	</div></div>
 
 	<!-- Layout -->
@@ -47,78 +83,29 @@
 
 		<div class="col-triple">
 
-			<div class="col-left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
+			<div class="left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
 
-			<div class="col-middle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
+			<div class="middle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
 
-			<div class="col-right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
-
-		</div>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="col-triple"&gt;
-    &lt;div class="col-left"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.
-    &lt;/div&gt;
-    &lt;div class="col-middle"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.
-    &lt;/div&gt;
-    &lt;div class="col-right"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.
-    &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-
-		<div class="col-side-bar">
-
-			<div class="col-left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.</p></div>
-
-			<div class="col-right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.</p></div>
+			<div class="right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p></div>
 
 		</div>
 
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="col-side-bar"&gt;
-    &lt;div class="col-left"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.
-    &lt;/div&gt;
-    &lt;div class="col-right"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.
-    &lt;/div&gt;
-&lt;/div&gt;
-</pre>
+		<div class="col-left-bar">
 
-		<div class="col-side-bar-right">
+			<div class="left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.</p></div>
 
-			<div class="col-left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.</p></div>
-
-			<div class="col-right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.</p></div>
+			<div class="right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.</p></div>
 
 		</div>
 
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="col-side-bar-right"&gt;
-    &lt;div class="col-left"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.
-    &lt;/div&gt;
-    &lt;div class="col-right"&gt;
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.
-    &lt;/div&gt;
-&lt;/div&gt;
-</pre>
+		<div class="col-right-bar">
 
-	</div></div>
+			<div class="left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat. Morbi lacinia, ligula sit amet commodo interdum, ligula tortor rhoncus elit, quis pretium orci nunc nec nisi. Nunc ultrices dui et.</p></div>
 
-	<!-- Code -->
-	<div class="stripe"><div class="contain">
+			<div class="right"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales.</p></div>
 
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="code-example"&gt;
-    &lt;div class="classname-1"&gt;Div 1&lt;/div&gt;
-    &lt;div class="classname-2"&gt;Div 2&lt;/div&gt;
-    &lt;div class="classname-3"&gt;Div 3&lt;/div&gt;
-&lt;/div&gt;
-</pre>
+		</div>
 
 	</div></div>
 

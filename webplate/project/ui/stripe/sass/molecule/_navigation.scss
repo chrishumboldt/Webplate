@@ -1,0 +1,167 @@
+/**
+ * SASS File: 		_navigation.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	29 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Navigation trigger
+// Header navigation
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$link-fade-out 				: 0.25;
+$hover-colour 				: lighten($green, 30%);
+
+
+// Navigation trigger
+// ---------------------------------------------------------------------------------------
+a.navigation-trigger {
+	top: $space-large + 6px;
+	left: $space-slight - 4px;
+	color: $white;
+	font-size: 1.5em;
+	@include animate(color);
+
+	// States
+	&:visited {
+		color: $white;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+}
+.no-touch a.navigation-trigger {
+	&:hover {
+		color: fade-out($white, $link-fade-out);
+	}
+}
+.touch a.navigation-trigger {
+	&:hover {
+		color: $white;
+	}
+}
+
+
+// Header navigation
+// ---------------------------------------------------------------------------------------
+header.stripe nav {
+	position: relative;
+	@include row();
+	padding-top: $space-large;
+	z-index: 1;
+
+	// Links
+	a {
+		@include animate(all);
+	}
+
+	// Logo
+	.logo-container {
+		text-align: center;
+
+		.logo-line {
+			padding: 14px 24px;
+			color: $white;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			font-weight: 300;
+			font-size: 1.5em;
+			border: 1px solid $white;
+
+			&:hover {
+				color: $hover-colour;
+				text-decoration: none;
+				border: 1px solid $hover-colour;
+			}
+		}
+
+		// Respond
+		@include respond-to(large) {
+			float: left;
+
+			.logo-line {
+				padding: 12px 22px;
+				font-size: 1.125em;
+			}
+		}
+	}
+
+	// Navigation
+	ul.navigation {
+		float: right;
+		padding-top: $space-minor;
+		list-style: none;
+
+		> li {
+			float: left;
+			padding-left: $space-medium;
+
+			> a {
+				color: $white;
+				font-size: 0.813em;
+
+				&:hover {
+					color: $hover-colour;
+					text-decoration: none;
+				}
+
+				span {
+					font-size: 1.125em;
+					margin-left: $space-small;
+				}
+			}
+
+			// Sub menu
+			> ul {
+				@include hide();
+				position: absolute;
+				margin-left: -7px;
+				background-color: $white;
+				@include border-radius();
+
+				// Arrow
+				&:after {
+					bottom: 100%;
+					left: 50%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
+					position: absolute;
+					pointer-events: none;
+					border-bottom-color: $white;
+					border-width: 8px;
+					margin-left: -8px;
+				}
+
+				a {
+					display: block;
+					padding: $space-small $space-minor;
+					font-size: 0.815em;
+					color: $black-base;
+					border-top: 1px solid $grey-light;
+
+					&:hover {
+						color: $green-dark;
+						text-decoration: none;
+						background-color: $grey-x-light;
+					}
+				}
+
+				li:first-child a {
+					border-top: 0px;
+					@include border-radius-top();
+				}
+
+				li:last-child a {
+					@include border-radius-bottom();
+				}
+			}
+		}
+	}
+}

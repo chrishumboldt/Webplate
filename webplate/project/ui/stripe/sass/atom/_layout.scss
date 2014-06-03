@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	29 May 2014
  */
 
 
@@ -23,9 +23,9 @@ $limit  					: $limit-width + ($space-large-em * 2);
 [class *= "col-"] { 
 	@include row();
 
-	> .col-left,
-	> .col-middle,
-	> .col-right {
+	> .left,
+	> .middle,
+	> .right {
 		@include span(12);
 	}
 }
@@ -34,78 +34,76 @@ $limit  					: $limit-width + ($space-large-em * 2);
 
 	// Respond medium
 	@include respond-to($bp-medium) {
-		> .col-left {
+		> .left {
 			@include new-span(4);
 			padding-right: $space-small;
 		}
-		> .col-middle {
+		> .middle {
 			@include new-span(4);
 			padding: 0px $space-x-small;
 		}
-		> .col-right {
+		> .right {
 			@include new-span(4);
 			padding-left: $space-small;
 		}
 	}
 	// Respond large
 	@include respond-to($bp-large) {
-		> .col-left {
+		> .left {
 			padding-right: $space-base;
 		}
-		> .col-middle {
+		> .middle {
 			padding: 0px $space-small;
 		}
-		> .col-right {
+		> .right {
 			padding-left: $space-base;
 		}
 	}
 }
-// Side bar
-.col-side-bar {
+// Left bar
+.col-left-bar {
 
 	// Respond medium
 	@include respond-to($bp-medium) {
-		> .col-left {
+		> .left {
 			@include new-span(4);
 			padding-right: $space-small;
 		}
-		> .col-right {
+		> .right {
 			@include new-span(8);
 			padding-left: $space-small;
 		}
 	}
 	// Respond large
 	@include respond-to($bp-large) {
-		> .col-left {
-			@include new-span(3);
+		> .left {
 			padding-right: $space-base;
 		}
-		> .col-right {
-			@include new-span(9);
-			padding-left: $space-base;
+		> .right {
+			padding-left: $space-small;
 		}
 	}
 }
-// Side bar right
-.col-side-bar-right {
-	@extend .col-side-bar;
+// Right bar
+.col-right-bar {
+	@extend .col-left-bar;
 
 	// Respond medium
 	@include respond-to($bp-medium) {
-		> .col-left {
+		> .left {
 			@include new-span(8);
 		}
-		> .col-right {
+		> .right {
 			@include new-span(4);
 		}
 	}
 	// Respond large
 	@include respond-to($bp-large) {
-		> .col-left {
-			@include new-span(9);
+		> .left {
+			padding-right: $space-small;
 		}
-		> .col-right {
-			@include new-span(3);
+		> .right {
+			padding-left: $space-base;
 		}
 	}
 }
@@ -114,8 +112,10 @@ $limit  					: $limit-width + ($space-large-em * 2);
 // Stripes
 // ---------------------------------------------------------------------------------------
 .stripe {
+	position: relative;
 	@include row();
 	padding: $space-medium $space-base;
+	z-index: 100;
 
 	// Contain
 	.contain {
@@ -136,6 +136,17 @@ $limit  					: $limit-width + ($space-large-em * 2);
 	}
 	@include respond-to($bp-large) {
 		padding: $space-x-large $space-large;
+	}
+}
+header.stripe {
+	padding: 0px $space-base;
+
+	// Respond
+	@include respond-to($bp-small) {
+		padding: 0px $space-medium;
+	}
+	@include respond-to($bp-large) {
+		padding: 0px $space-large;
 	}
 }
 // Invert

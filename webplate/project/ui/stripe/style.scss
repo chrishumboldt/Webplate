@@ -2,7 +2,7 @@
  * SASS File: 		style.scss
  * Type: 			ui
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	28 May 2014
  */
 
 
@@ -10,8 +10,8 @@
 // ---------------------------------------------------------------------------------------
 // Imports
 // Atoms
-// Global
-// Layout
+// Molecules
+// Organisms
 
 
 // Imports
@@ -21,15 +21,19 @@
 
 // Atoms
 // ---------------------------------------------------------------------------------------
-@import "atom/code";
-@import "atom/layout";
-@import "atom/text";
+@import "sass/atom/code";
+@import "sass/atom/global";
+@import "sass/atom/layout";
+@import "sass/atom/text";
 
 
-// Global
+// Molecules
 // ---------------------------------------------------------------------------------------
-html {
-	font-weight: 300;
-}
+@import "sass/molecule/navigation";
+
+
+// Organisms
+// ---------------------------------------------------------------------------------------
+@import "sass/organism/header";
 
 

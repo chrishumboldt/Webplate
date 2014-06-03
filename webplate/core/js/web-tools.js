@@ -193,7 +193,7 @@ jQuery.web_navigation 				= function(){
 	{
 		$ev.preventDefault();
 
-		if($('html').hasClass('show-nav'))
+		if($('html').hasClass('nav-shown'))
 		{
 			$.web_hide_nav();
 		}
@@ -206,7 +206,7 @@ jQuery.web_navigation 				= function(){
 	// Close nav again
 	$('.webplate-content').on('click', function($e)
 	{
-		if($('html').hasClass('show-nav'))
+		if($('html').hasClass('nav-shown'))
 		{
 			$.web_hide_nav();
 		}
@@ -230,7 +230,7 @@ jQuery.web_navigation 				= function(){
 	{
 		$('.webplate-content').on('drag', function()
 		{
-			if($('html').hasClass('show-nav'))
+			if($('html').hasClass('nav-shown'))
 			{
 				$.web_hide_nav();
 			}
@@ -239,7 +239,7 @@ jQuery.web_navigation 				= function(){
 	else{
 		$('.webplate-content').on('scroll', function()
 		{
-			if($('html').hasClass('show-nav'))
+			if($('html').hasClass('nav-shown'))
 			{
 				$.web_hide_nav();
 			}
@@ -249,7 +249,7 @@ jQuery.web_navigation 				= function(){
 	// Prevent scroll on page open
 	$(document).on('touchmove',function($e)
 	{
-		if($('html').hasClass('show-nav'))
+		if($('html').hasClass('nav-shown'))
 		{
 			$e.preventDefault();
 		}
@@ -276,7 +276,7 @@ jQuery.web_show_nav 				= function()
 	// Variables
 	var $navigation_width 			= $('.webplate-navigation').width();
 
-	$('.webplate-shifter, .is-fixed').velocity(
+	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
 	{ 
 		left 					: $navigation_width
 	}, 
@@ -285,14 +285,23 @@ jQuery.web_show_nav 				= function()
 		easing 					: 'ease-out',
 		complete 				: function()
 		{
-			$('html').addClass('show-nav').removeClass('hide-nav');
+			$('html').addClass('nav-shown').removeClass('nav-hidden');
 		}
+	});
+
+	$('.navigation-trigger.is-fixed').velocity(
+	{ 
+		marginLeft 				: $navigation_width
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out'
 	});
 };
 
 jQuery.web_hide_nav 				= function()
 {
-	$('.webplate-shifter, .is-fixed').velocity(
+	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
 	{ 
 		left 					: 0
 	}, 
@@ -301,8 +310,17 @@ jQuery.web_hide_nav 				= function()
 		easing 					: 'ease-out',
 		complete 				: function()
 		{
-			$('html').removeClass('show-nav').addClass('hide-nav');
+			$('html').removeClass('nav-shown').addClass('nav-hidden');
 		}
+	});
+
+	$('.navigation-trigger.is-fixed').velocity(
+	{ 
+		marginLeft 				: 0
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out'
 	});
 };
 
