@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	30 May 2014
+ * Last Edited:   	4 June 2014
  */
 
 
@@ -58,7 +58,8 @@ $(document).ready(function()
 			$('.webplate-content').on('scroll', function($ev)
 			{
 				// Sets the current scroll position
-				$scroll_top 				= $(this).scrollTop();
+				var $new_position;
+				var $scroll_top 			= $(this).scrollTop();
 
 				// Determine direction of scroll
 				if($scroll_top > 0)
@@ -87,13 +88,7 @@ $(document).ready(function()
 	// Header adjustment
 	function fc_header_adjustment()
 	{
-		// Execute
 		fc_execute_header_adjustment();
-
-		$(window).resize(function()
-		{	
-			fc_execute_header_adjustment();
-		});
 	}
 
 	// Header adjustment execute
@@ -167,6 +162,44 @@ $(document).ready(function()
 		{
 			$ev.stopPropagation();
 		});
+		$('.has-sub-menu ul a').on('click', function()
+		{
+			$('header nav ul.navigation').find('.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
+			{ 
+				marginTop				: 0,
+				opacity					: 0
+			}, 
+			{
+				display 				: 'none',
+				duration 				: $sub_menu_animation_speed,
+				easing 					: 'ease-out'
+			});
+		});
+	}
+
+	// Scroll down
+	function fc_scroll_down()
+	{
+		$('header .scroll-down').on('click', function($ev)
+		{
+			$ev.preventDefault();
+
+			$('header').velocity('scroll',
+			{ 
+				container 				: $('.webplate-content'),
+				duration 				: 750,
+				offset 					: $window_h
+			});
+		});
+	}
+
+	// Window resize
+	function fc_window_resize()
+	{
+		$(window).resize(function()
+		{	
+			fc_execute_header_adjustment();
+		});
 	}
 
 
@@ -179,6 +212,10 @@ $(document).ready(function()
 	fc_header_adjustment();
 
 	fc_menus();
+
+	fc_scroll_down();
+
+	fc_window_resize();
 
 
 });

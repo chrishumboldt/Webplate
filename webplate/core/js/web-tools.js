@@ -156,7 +156,7 @@ jQuery.web_random_string 			= function($string_length)
 // URL
 // ---------------------------------------------------------------------------------------
 jQuery.web_get_url					= function()
-{	
+{
 	var $window_location			= window.location;
 	var $full_path					= $window_location.href;
 	var $ar_path 					= $window_location.href.split('/');
@@ -182,8 +182,142 @@ jQuery.web_get_url					= function()
 
 // Webplate
 // ---------------------------------------------------------------------------------------
-jQuery.web_navigation 				= function(){
+jQuery.web_hash_link 				= function()
+{
+	// Based on: http://css-tricks.com/snippets/jquery/smooth-scrolling/
+	$('a[href*=#]:not([href=#])').click(function()
+	{
+		if(location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname)
+		{
+			var $target 			= $(this.hash);
+			$target 				= $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
+			var $selector 			= $target.selector;
+			var $scroll_top;
 
+			if($target.length)
+			{
+				$scroll_top 		= Math.ceil($($selector).offset().top);
+				$('.webplate-content').scrollTop($scroll_top);
+				window.location 	= $selector;
+
+				return false;
+			}
+		}
+	});
+};
+
+jQuery.web_hash_link_setup			= function()
+{
+	setTimeout(function()
+	{
+		var $crt_url 				= $.web_get_url();
+		var $crt_hash 				= $crt_url['hash'];
+		var $scroll_top;
+
+		if($crt_hash.length)
+		{
+			$scroll_top 			= Math.ceil($('#' + $crt_hash).offset().top);
+			$('.webplate-content').scrollTop($scroll_top);
+		}
+	}, 
+	200);
+};
+
+jQuery.web_hide_nav 				= function()
+{
+	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
+	{ 
+		left 					: 0
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').removeClass('nav-shown').addClass('nav-hidden');
+		}
+	});
+
+	$('.navigation-trigger.is-fixed').velocity(
+	{ 
+		marginLeft 				: 0
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out'
+	});
+};
+
+jQuery.web_load_plugins 			= function($css_path, $js_path)
+{
+	// Load plugins array
+	var $ar_css_plugins				= [];
+	var $ar_js_plugins				= [];
+	var $check_flicker				= false;
+	var $check_fastclick			= false; 
+	var $check_penplate				= false; 
+
+	// Flickerplate check
+	var $flickerplate_check			= $('.flickerplate:first');
+	if($.web_exists($flickerplate_check))
+	{
+		$ar_css_plugins.push($css_path + 'flickerplate.css');
+		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
+		$check_flicker				= true;
+	}
+
+	// Penplate check
+	var $penplate_check				= $('.penplate:first');
+	if($.web_exists($penplate_check))
+	{
+		$ar_css_plugins.push($css_path + 'penplate.css');
+		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
+		$check_penplate				= true;
+	}
+
+	// FastClick
+	if(Modernizr.touch)
+	{
+		$ar_js_plugins.push($js_path + 'min/web-touch.min.js');
+		$check_fastclick			= true;
+	}
+
+	// Load plugins CSS
+	yepnope({ load: $ar_css_plugins });
+
+	// Load plugins js
+	yepnope({load: $ar_js_plugins, complete: function()
+	{
+		// Execute the flicker
+		if($check_flicker == true)
+		{
+			if(Modernizr.touch)
+			{
+				$('.flickerplate').flicker({ flick_animation: 'transform-slide' });
+			}
+			else
+			{
+				$('.flickerplate').flicker();
+			}
+		}
+
+		// Activate Penpalte
+		if($check_penplate == true)
+		{
+			$('.penplate').penplate();
+		}
+
+		// Activate fastclick
+		if($check_fastclick == true)
+		{
+			FastClick.attach(document.body);
+		}
+
+	}});
+}
+
+jQuery.web_navigation 				= function()
+{
 	// Duplicate navigation
 	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
 	$('.webplate-navigation').wrapInner('<div class="navigation-inner" />');
@@ -271,159 +405,8 @@ jQuery.web_navigation 				= function(){
 	});
 };
 
-jQuery.web_show_nav 				= function()
-{
-	// Variables
-	var $navigation_width 			= $('.webplate-navigation').width();
-
-	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
-	{ 
-		left 					: $navigation_width
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out',
-		complete 				: function()
-		{
-			$('html').addClass('nav-shown').removeClass('nav-hidden');
-		}
-	});
-
-	$('.navigation-trigger.is-fixed').velocity(
-	{ 
-		marginLeft 				: $navigation_width
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out'
-	});
-};
-
-jQuery.web_hide_nav 				= function()
-{
-	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
-	{ 
-		left 					: 0
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out',
-		complete 				: function()
-		{
-			$('html').removeClass('nav-shown').addClass('nav-hidden');
-		}
-	});
-
-	$('.navigation-trigger.is-fixed').velocity(
-	{ 
-		marginLeft 				: 0
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out'
-	});
-};
-
-jQuery.web_window_type 				= function()
-{
-	$.web_window_type_execute();
-	$(window).resize(function()
-	{
-		$.web_window_type_execute();
-	});
-};
-
-jQuery.web_window_type_execute 		= function()
-{
-	// Some variables
-	if($(window).width() <= 700)
-	{
-		// Set the type variable
-		$('html').addClass('web-small-view');
-		$('html').removeClass('web-large-view');
-	}
-	else
-	{
-		// Set the type variable
-		$('html').removeClass('web-small-view');
-		$('html').addClass('web-large-view');
-		if($('html').hasClass('show-nav'))
-		{
-			$.web_hide_nav();
-		}
-	}
-};
-
-jQuery.web_load_plugins 			= function($css_path, $js_path)
-{	
-	// Load plugins array
-	var $ar_css_plugins				= [];
-	var $ar_js_plugins				= [];
-	var $check_flicker				= false;
-	var $check_fastclick			= false; 
-	var $check_penplate				= false; 
-
-	// Flickerplate check
-	var $flickerplate_check			= $('.flickerplate:first');
-	if($.web_exists($flickerplate_check))
-	{
-		$ar_css_plugins.push($css_path + 'flickerplate.css');
-		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
-		$check_flicker				= true;
-	}
-
-	// Penplate check
-	var $penplate_check				= $('.penplate:first');
-	if($.web_exists($penplate_check))
-	{
-		$ar_css_plugins.push($css_path + 'penplate.css');
-		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
-		$check_penplate				= true;
-	}
-
-	// FastClick
-	if(Modernizr.touch)
-	{
-		$ar_js_plugins.push($js_path + 'min/web-touch.min.js');
-		$check_fastclick			= true;
-	}
-
-	// Load plugins CSS
-	yepnope({ load: $ar_css_plugins });
-
-	// Load plugins js
-	yepnope({load: $ar_js_plugins, complete: function()
-	{
-		// Execute the flicker
-		if($check_flicker == true)
-		{
-			if(Modernizr.touch)
-			{
-				$('.flickerplate').flicker({ flick_animation: 'transform-slide' });
-			}
-			else
-			{
-				$('.flickerplate').flicker();
-			}
-		}
-
-		// Activate Penpalte
-		if($check_penplate == true)
-		{
-			$('.penplate').penplate();
-		}
-
-		// Activate fastclick
-		if($check_fastclick == true)
-		{
-			FastClick.attach(document.body);
-		}
-
-	}});
-}
-
 jQuery.web_scroll 					= function()
-{	
+{
 	// Some variables
 	var $last_scroll 				= 0;
 
@@ -479,4 +462,62 @@ jQuery.web_scroll 					= function()
 		});
 	}
 }
+
+jQuery.web_show_nav 				= function()
+{
+	// Variables
+	var $navigation_width 			= $('.webplate-navigation').width();
+
+	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
+	{ 
+		left 					: $navigation_width
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').addClass('nav-shown').removeClass('nav-hidden');
+		}
+	});
+
+	$('.navigation-trigger.is-fixed').velocity(
+	{ 
+		marginLeft 				: $navigation_width
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out'
+	});
+};
+
+jQuery.web_window_type 				= function()
+{
+	$.web_window_type_execute();
+	$(window).resize(function()
+	{
+		$.web_window_type_execute();
+	});
+};
+
+jQuery.web_window_type_execute 		= function()
+{
+	// Some variables
+	if($(window).width() <= 700)
+	{
+		// Set the type variable
+		$('html').addClass('web-small-view');
+		$('html').removeClass('web-large-view');
+	}
+	else
+	{
+		// Set the type variable
+		$('html').removeClass('web-small-view');
+		$('html').addClass('web-large-view');
+		if($('html').hasClass('show-nav'))
+		{
+			$.web_hide_nav();
+		}
+	}
+};
 

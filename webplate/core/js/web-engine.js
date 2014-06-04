@@ -50,6 +50,7 @@ yepnope([
 		// Execute
 		$.web_navigation();
 		$.web_window_type();
+		$.web_hash_link();
 		$('.button').buttonplate();
 		$('body').formplate();
 		$.web_load_plugins($css_path, $js_path);
@@ -119,13 +120,15 @@ yepnope([
 		if($ar_extra_css.length > 0)
 		{
 			yepnope({ load: $ar_extra_css, complete: function()
-			{		
-				$('body').show();
+			{
+				$('body').css('display', 'block');
+				$.web_hash_link_setup();
 			}});
 		}
 		else
 		{
-			$('body').show();
+			$('body').css('display', 'block');
+			$.web_hash_link_setup();
 		}
 		yepnope({ load: $ar_extra_js });
 	}

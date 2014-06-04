@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-gici9');
-	src:url('fonts/icomoon.eot?#iefix-gici9') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-gici9') format('woff'),
-		url('fonts/icomoon.ttf?-gici9') format('truetype'),
-		url('fonts/icomoon.svg?-gici9#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-9hzmbl');
+	src:url('fonts/icomoon.eot?#iefix-9hzmbl') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-9hzmbl') format('woff'),
+		url('fonts/icomoon.ttf?-9hzmbl') format('truetype'),
+		url('fonts/icomoon.svg?-9hzmbl#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,33 +23,69 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-uniE69B:before {
-	content: "\e69b";
+.icon-search2:before {
+	content: "\f002";
 }
-.icon-arrow-down2:before {
-	content: "\e605";
+.icon-star:before {
+	content: "\f005";
 }
-.icon-github:before {
-	content: "\e60a";
+.icon-star-o:before {
+	content: "\f006";
 }
-.icon-twitter:before {
-	content: "\e60e";
+.icon-check:before {
+	content: "\f00c";
 }
-.icon-facebook:before {
-	content: "\e610";
+.icon-times:before {
+	content: "\f00d";
 }
-.icon-googleplus:before {
-	content: "\e612";
+.icon-gear:before {
+	content: "\f013";
 }
-.icon-pinterest:before {
-	content: "\e614";
+.icon-picture-o:before {
+	content: "\f03e";
 }
-.icon-tumblr:before {
-	content: "\e616";
+.icon-calendar2:before {
+	content: "\f073";
 }
-.icon-linkedin:before {
-	content: "\e618";
+.icon-chevron-down:before {
+	content: "\f078";
 }
-.icon-menu:before {
-	content: "\e641";
+.icon-twitter2:before {
+	content: "\f099";
+}
+.icon-facebook2:before {
+	content: "\f09a";
+}
+.icon-bars:before {
+	content: "\f0c9";
+}
+.icon-google-plus:before {
+	content: "\f0d5";
+}
+.icon-angle-left:before {
+	content: "\f104";
+}
+.icon-angle-right:before {
+	content: "\f105";
+}
+.icon-angle-up:before {
+	content: "\f106";
+}
+.icon-angle-down:before {
+	content: "\f107";
+}
+.icon-github-alt:before {
+	content: "\f113";
+}
+.icon-code:before {
+	content: "\f121";
+}
+.icon-star-half-empty:before {
+	content: "\f123";
+}
+.icon-ellipsis-h:before {
+	content: "\f141";
+}
+.icon-ellipsis-v:before {
+	content: "\f142";
 }

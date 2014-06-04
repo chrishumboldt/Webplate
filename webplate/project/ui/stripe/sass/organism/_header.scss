@@ -16,6 +16,7 @@
 header.stripe {
 	display: block;
 	
+	// Background image
 	.bg-image {
 		position: absolute;
 		top: 0;
@@ -27,5 +28,47 @@ header.stripe {
 		background-repeat: no-repeat;
 		z-index: 0;
 		@include transform-translate-3d(0px, 0px, 0px);
+	}
+
+	// Header text
+	.text {
+		position: absolute;
+		display: table;
+		top: 0;
+		height: 100%;
+		z-index: 1;
+
+		.inner {
+			display: table-cell; 
+			vertical-align: middle;
+		}
+		h1, h2, h3 {
+			color: $white;
+		}
+		h4, h5, h6, p, b, span, i, strong {
+			color: fade-out($white, 0.4);
+		}
+	}
+
+	// Scroll down
+	.scroll-down {
+		position: absolute;
+		bottom: $space-medium;
+		left: 50%;
+		margin-left: -($scroll-down-dimensions / 2);
+		color: $white;
+		font-size: 1.25em;
+		@include text-squared($scroll-down-dimensions);
+		@include border-radius(50%);
+		border: 1px solid $white;
+		z-index: 1;
+		@include animate(all);
+
+		// States
+		&:hover {
+			color: $hover-colour;
+			text-decoration: none;
+			border: 1px solid $hover-colour;
+		}
 	}
 }

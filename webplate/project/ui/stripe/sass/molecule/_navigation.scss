@@ -2,7 +2,7 @@
  * SASS File: 		_navigation.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	29 May 2014
+ * Last Edited:   	4 June 2014
  */
 
 
@@ -22,8 +22,8 @@ $hover-colour 				: lighten($green, 30%);
 // Navigation trigger
 // ---------------------------------------------------------------------------------------
 a.navigation-trigger {
-	top: $space-large + 6px;
-	left: $space-slight - 4px;
+	top: $space-medium + 6px;
+	left: $space-base;
 	color: $white;
 	font-size: 1.5em;
 	@include animate(color);
@@ -53,12 +53,16 @@ a.navigation-trigger {
 header.stripe nav {
 	position: relative;
 	@include row();
-	padding-top: $space-large;
-	z-index: 1;
+	padding-top: $space-medium;
+	z-index: 2;
+
+	@include respond-to(large) {
+		padding-top: $space-large;
+	}
 
 	// Links
 	a {
-		@include animate(all);
+		@include animate(color);
 	}
 
 	// Logo
@@ -94,7 +98,7 @@ header.stripe nav {
 	// Navigation
 	ul.navigation {
 		float: right;
-		padding-top: $space-minor;
+		padding-top: $space-x-small;
 		list-style: none;
 
 		> li {
