@@ -66,7 +66,7 @@ $(document).ready(function()
 				{
 					if($scroll_top < $window_h)
 					{
-						$new_position 		= 'translate3d(0px, ' + ($scroll_top / 2) + 'px, 0px)';
+						$new_position 		= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
 					}
 				}
 				else

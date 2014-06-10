@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	29 May 2014
+ * Last Edited:   	10 June 2014
  */
 
 
@@ -25,25 +25,26 @@ $limit  					: $limit-width + ($space-large-em * 2);
 
 	> .left,
 	> .middle,
-	> .right {
+	> .right,
+	> .full {
 		@include span(12);
 	}
 }
-// Triple
-.col-triple { 
+// Double
+.col-double {
 
 	// Respond medium
 	@include respond-to($bp-medium) {
 		> .left {
-			@include new-span(4);
+			@include new-span(6);
 			padding-right: $space-small;
 		}
 		> .middle {
-			@include new-span(4);
-			padding: 0px $space-x-small;
+			padding-left: $space-x-small;
+			padding-right: $space-x-small;
 		}
 		> .right {
-			@include new-span(4);
+			@include new-span(6);
 			padding-left: $space-small;
 		}
 	}
@@ -53,40 +54,48 @@ $limit  					: $limit-width + ($space-large-em * 2);
 			padding-right: $space-base;
 		}
 		> .middle {
-			padding: 0px $space-small;
+			padding-left: $space-small;
+			padding-right: $space-small;
 		}
 		> .right {
 			padding-left: $space-base;
+		}
+	}
+}
+// Triple
+.col-triple { 
+	@extend .col-double;
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .left {
+			@include new-span(4);
+		}
+		> .middle {
+			@include new-span(4);
+		}
+		> .right {
+			@include new-span(4);
 		}
 	}
 }
 // Left bar
 .col-left-bar {
+	@extend .col-double;
 
 	// Respond medium
 	@include respond-to($bp-medium) {
 		> .left {
 			@include new-span(4);
-			padding-right: $space-small;
 		}
 		> .right {
 			@include new-span(8);
-			padding-left: $space-small;
-		}
-	}
-	// Respond large
-	@include respond-to($bp-large) {
-		> .left {
-			padding-right: $space-base;
-		}
-		> .right {
-			padding-left: $space-small;
 		}
 	}
 }
 // Right bar
 .col-right-bar {
-	@extend .col-left-bar;
+	@extend .col-double;
 
 	// Respond medium
 	@include respond-to($bp-medium) {
@@ -95,15 +104,6 @@ $limit  					: $limit-width + ($space-large-em * 2);
 		}
 		> .right {
 			@include new-span(4);
-		}
-	}
-	// Respond large
-	@include respond-to($bp-large) {
-		> .left {
-			padding-right: $space-small;
-		}
-		> .right {
-			padding-left: $space-base;
 		}
 	}
 }

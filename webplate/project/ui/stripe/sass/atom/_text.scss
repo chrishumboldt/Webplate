@@ -2,7 +2,7 @@
  * SASS File: 		_text.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	9 June 2014
  */
 
 
@@ -15,12 +15,12 @@
 
 // Headings
 // ---------------------------------------------------------------------------------------
-h1 { font-size: 2.125rem; font-weight: 500; margin-bottom: 0.65rem; }
-h2 { font-size: 1.875rem; margin-bottom: 0.75rem; }
-h3 { font-size: 1.625rem; margin-bottom: 0.875rem; }
+h1 { font-size: 2.125rem; font-weight: 500; margin-bottom: 1.25rem; }
+h2 { font-size: 1.875rem; margin-bottom: 1.5rem; }
+h3 { font-size: 1.625rem; margin-bottom: 1.75rem; }
 h4 { font-size: 1.375rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1.125 }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.913rem }
 h1, h2, h3 { line-height: 1.25; }
 h4, h5, h6 { line-height: 1.375; }
 h2, h3, h4, h5, h6 { font-weight: 300; }
@@ -35,7 +35,8 @@ h4 {
 	h2 { font-size: 2.75rem; }
 	h3 { font-size: 2rem; }
 	h4 { font-size: 1.5rem; }
-	h5 { font-size: 1.25rem; }
+	h5 { font-size: 1.125rem; }
+	h6 { font-size: 1rem; }
 }
 @include respond-to($bp-large) {
 	h1 { font-size: 3.75rem; }
@@ -60,16 +61,21 @@ p {
 		font-size: 1em;
 	}
 }
+blockquote {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: $space-base;
+	padding-right: $space-base;
+	font-style: italic;
+	border-left: 3px solid $red-light;
+}
 
 
 // Links
 // ---------------------------------------------------------------------------------------
-a:not(.button) {
+a:not(.button):not([class *= "btn-"]) {
 	color: $red;
 
-	&:visited {
-		color: $red;		
-	}
 	&:hover {
 		color: darken($red, 10%);
 		text-decoration: underline;

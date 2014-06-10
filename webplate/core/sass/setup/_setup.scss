@@ -132,8 +132,10 @@ html.fixed-page .webplate .webplate-content {
 @include respond-to(large) {
 	
 	// Navigation
-	.navigation ul, ol {
-		list-style: none;
+	.navigation {
+		ul, ol {
+			list-style: none;
+		}
 	}
 }
 

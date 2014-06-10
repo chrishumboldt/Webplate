@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-9hzmbl');
-	src:url('fonts/icomoon.eot?#iefix-9hzmbl') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-9hzmbl') format('woff'),
-		url('fonts/icomoon.ttf?-9hzmbl') format('truetype'),
-		url('fonts/icomoon.svg?-9hzmbl#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?4er7xj');
+	src:url('fonts/icomoon.eot?#iefix4er7xj') format('embedded-opentype'),
+		url('fonts/icomoon.woff?4er7xj') format('woff'),
+		url('fonts/icomoon.ttf?4er7xj') format('truetype'),
+		url('fonts/icomoon.svg?4er7xj#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -24,68 +24,71 @@
 }
 
 .icon-search2:before {
-	content: "\f002";
+	content: "\e600";
 }
 .icon-star:before {
-	content: "\f005";
+	content: "\e601";
 }
 .icon-star-o:before {
-	content: "\f006";
+	content: "\e602";
 }
 .icon-check:before {
-	content: "\f00c";
+	content: "\e603";
 }
 .icon-times:before {
-	content: "\f00d";
+	content: "\e604";
 }
 .icon-gear:before {
-	content: "\f013";
+	content: "\e605";
 }
 .icon-picture-o:before {
-	content: "\f03e";
+	content: "\e606";
 }
 .icon-calendar2:before {
-	content: "\f073";
+	content: "\e607";
 }
 .icon-chevron-down:before {
-	content: "\f078";
+	content: "\e608";
 }
 .icon-twitter2:before {
-	content: "\f099";
+	content: "\e609";
 }
 .icon-facebook2:before {
-	content: "\f09a";
+	content: "\e60a";
 }
 .icon-bars:before {
-	content: "\f0c9";
+	content: "\e60b";
 }
 .icon-google-plus:before {
-	content: "\f0d5";
+	content: "\e60c";
 }
 .icon-angle-left:before {
-	content: "\f104";
+	content: "\e60d";
 }
 .icon-angle-right:before {
-	content: "\f105";
+	content: "\e60e";
 }
 .icon-angle-up:before {
-	content: "\f106";
+	content: "\e60f";
 }
 .icon-angle-down:before {
-	content: "\f107";
+	content: "\e610";
 }
 .icon-github-alt:before {
-	content: "\f113";
+	content: "\e611";
 }
 .icon-code:before {
-	content: "\f121";
+	content: "\e612";
 }
 .icon-star-half-empty:before {
-	content: "\f123";
+	content: "\e613";
 }
 .icon-ellipsis-h:before {
-	content: "\f141";
+	content: "\e614";
 }
 .icon-ellipsis-v:before {
-	content: "\f142";
+	content: "\e615";
+}
+.icon-cloud-download2:before {
+	content: "\e617";
 }
