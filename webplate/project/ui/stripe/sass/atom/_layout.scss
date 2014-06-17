@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	10 June 2014
+ * Last Edited:   	17 June 2014
  */
 
 
@@ -115,7 +115,7 @@ $limit  					: $limit-width + ($space-large-em * 2);
 	position: relative;
 	@include row();
 	padding: $space-medium $space-base;
-	z-index: 100;
+	background-color: $white;
 
 	// Contain
 	.contain {
@@ -138,6 +138,7 @@ $limit  					: $limit-width + ($space-large-em * 2);
 		padding: $space-x-large $space-large;
 	}
 }
+// Header stripe
 header.stripe {
 	padding: 0px $space-base;
 
@@ -160,6 +161,20 @@ header.stripe {
 	&:nth-child(odd) {
 		background-color: $grey-x-light;
 	}	
+}
+// Dark
+.stripe.dark, 
+.invert .strip.dark, {
+	background-color: $grey-blue-x-dark;
+
+	&:nth-child(even), &:nth-child(odd) {
+		background-color: $grey-blue-x-dark;
+	}
+
+	// Text
+	h1, h2, h3, h4, h5, h6 {
+		color: #AFB9C4;
+	}
 }
 
 

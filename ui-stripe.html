@@ -15,11 +15,11 @@
 </head>
 <body style="display:none;" data-ui="stripe" class="invert">
 
-	<!-- Navigation trigger -->
-	<a href="#" class="navigation-trigger is-fixed icon-bars"></a>
-
 	<!-- Header -->
 	<header class="stripe">
+
+		<!-- Navigation trigger -->
+		<a href="#" class="navigation-trigger icon-bars"></a>
 
 		<div class="bg-image"></div>
 		
@@ -75,20 +75,16 @@
 	<!-- Basic elements -->
 	<div class="stripe"><div class="contain">
 
-		<h3>BASIC ELEMENTS</h3>
+		<h3>Basic Elements</h3>
 
-		<!-- Buttons -->
 		<div id="buttons">
-
-			<h4>Buttons</h4>
 
 			<div class="btn-examples">
 
-				<button class="btn-default">Default Button</button>
 				<button class="btn-download">Download Button</button>
 				<button class="btn-error">Error Button</button>
 				<button class="btn-info">Info Button</button>
-				<button class="btn-link">Link Button</button><br>
+				<button class="btn-link">Link Button</button>
 				<button class="btn-primary">Primary Button</button>
 				<button class="btn-success">Success Button</button>
 				<button class="btn-warning">Warning Button</button>
@@ -97,77 +93,22 @@
 
 		</div>
 
-		<!-- Inputs -->
-		<div id="inputs" class="col-double">
-
-			<h4>Inputs</h4>
+		<div id="inputs" class="col-triple">
 
 			<div class="left">
 
 				<div class="formplate">
-					<label for="text-input">Text Input:</label>
-					<input type="text" id="text-input">
-				</div>
-		
-				<div class="col-double">
-
-					<div class="left">
-
-						<div class="formplate">
-							<input type="checkbox" id="checkbox-1">
-							<label for="checkbox-1">Checkbox 1</label>
-						</div>
-
-						<div class="formplate">
-							<input type="checkbox" id="checkbox-2">
-							<label for="checkbox-2">Checkbox 2</label>
-						</div>
-
-						<div class="formplate">
-							<input type="checkbox" id="checkbox-3">
-							<label for="checkbox-3">Checkbox 3</label>
-						</div>
-
-						<div class="formplate">
-							<input type="checkbox" id="checkbox-4">
-							<label for="checkbox-4">Checkbox 4</label>
-						</div>
-
-					</div>
-			
-					<div class="right">
-
-						<div class="formplate">
-							<input type="radio" id="radio-1" name="radio-selection">
-							<label for="radio-1">Radio 1</label>
-						</div>
-
-						<div class="formplate">
-							<input type="radio" id="radio-2" name="radio-selection">
-							<label for="radio-2">Radio 2</label>
-						</div>
-
-						<div class="formplate">
-							<input type="radio" id="radio-3" name="radio-selection">
-							<label for="radio-3">Radio 3</label>
-						</div>
-
-						<div class="formplate">
-							<input type="radio" id="radio-4" name="radio-selection">
-							<label for="radio-4">Radio 4</label>
-						</div>
-						
-					</div>
-
+					<label for="textarea">Text Area:</label>
+					<textarea id="textarea"></textarea>
 				</div>
 
 			</div>
 
-			<div class="right">
+			<div class="middle">
 
 				<div class="formplate">
-					<label for="textarea">Text Area:</label>
-					<textarea id="textarea"></textarea>
+					<label for="text-input">Text Input:</label>
+					<input type="text" id="text-input">
 				</div>
 
 				<div class="formplate">
@@ -180,12 +121,55 @@
 
 			</div>
 
+			<div class="right col-double">
+
+				<div class="formplate">
+					<label for="textarea">Selections:</label>
+				</div>
+
+				<div class="left">
+
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-1">
+						<label for="checkbox-1">Checkbox 1</label>
+					</div>
+
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-2">
+						<label for="checkbox-2">Checkbox 2</label>
+					</div>
+
+					<div class="formplate">
+						<input type="checkbox" id="checkbox-3">
+						<label for="checkbox-3">Checkbox 3</label>
+					</div>
+
+				</div>
+		
+				<div class="right">
+
+					<div class="formplate">
+						<input type="radio" id="radio-1" name="radio-selection">
+						<label for="radio-1">Radio 1</label>
+					</div>
+
+					<div class="formplate">
+						<input type="radio" id="radio-2" name="radio-selection">
+						<label for="radio-2">Radio 2</label>
+					</div>
+
+					<div class="formplate">
+						<input type="radio" id="radio-3" name="radio-selection">
+						<label for="radio-3">Radio 3</label>
+					</div>
+					
+				</div>
+
+			</div>
+
 		</div>
 
-		<!-- Lists -->
-		<div id="lists" class="col-double">
-
-			<h4>Lists</h4>
+		<div id="lists" class="col-triple">
 			
 			<div class="left">
 
@@ -193,39 +177,62 @@
 					<li>List item 1</li>
 					<li>List item 2</li>
 					<li>List item 3</li>
-					<li>List item 4</li>
 				</ul>
 
 			</div>
 
-			<div class="right">
+			<div class="middle">
 
 				<ol class="content">
 					<li>Ordered list item 1</li>
 					<li>Ordered list item 2</li>
 					<li>Ordered list item 3</li>
-					<li>Ordered list item 4</li>
 				</ol>
 				
 			</div>
 
-			<div class="full">
+			<div class="right">
 
 				<ul class="flat">
 					<li>Flat list item 1</li>
 					<li>Flat list item 2</li>
 					<li>Flat list item 3</li>
-					<li>Flat list item 4</li>
 				</ul>
 
 			</div>
 
 		</div>
 
-		<!-- Text -->
-		<div id="text">
+		<div id="tables">
 
-			<h4>Text</h4>
+			<table class="first-blue">
+
+				<thead>
+					<tr>
+						<th>First Blue</th>
+						<th>Heading</th>
+						<th>Heading</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>Table Cell</td>
+						<td>Table Cell</td>
+						<td>Table Cell</td>
+					</tr>
+					<tr>
+						<td>Table Cell</td>
+						<td>Table Cell</td>
+						<td>Table Cell</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+
+		<div id="text">
 
 			<h1>Heading 1</h1>
 			<h2>Heading 2</h2>
@@ -247,6 +254,19 @@
 
 	</div></div>
 
+	<!-- Code reference -->
+	<div class="stripe code-reference" id="code-reference"><div class="contain">
+
+		<h3>Code Reference</h3>
+
+		<h5>$.code_reference(<i>$x</i>)</h5>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p>
+
+		<h5>$.another_reference(<i>$x</i>, <i>$y</i>)</h5>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Quisque sodales vel orci eu consequat.</p>
+
+	</div></div>
+
 	<!-- Download stripe -->
 	<div class="stripe" id="download-stripe"><div class="contain">
 
@@ -263,6 +283,44 @@
 
 		</div>
 
+	</div></div>
+
+	<!-- Image hover -->
+	<div class="stripe" id="image-hover"><div class="contain">
+
+		<h3>Image Hover</h3>
+		
+		<a href="#image-hover" class="image-hover">
+			<div class="text">
+				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
+			</div>
+		</a>
+		
+		<a href="#image-hover" class="image-hover">
+			<div class="text">
+				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
+			</div>
+		</a>
+		
+		<a href="#image-hover" class="image-hover">
+			<div class="text">
+				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
+			</div>
+		</a>
+		
+		<a href="#image-hover" class="image-hover">
+			<div class="text">
+				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
+			</div>
+		</a>
+
+	</div></div>
+
+	<!-- Login block -->
+	<div class="stripe dark" id="login-block"><div class="contain">
+
+		<h3>Login Block</h3>
+		
 	</div></div>
 
 	<!-- Layout -->

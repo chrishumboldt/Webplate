@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	4 June 2014
+ * Last Edited:   	12 June 2014
  */
 
 
@@ -45,7 +45,7 @@ $(document).ready(function()
 // ------------------------------------------------ Some variables
 
 	var $sub_menu_animation_speed 			= 200;
-	var $window_h;
+	var $window_h 							= $(window).height();
 
 
 // ------------------------------------------------ Functions
@@ -55,24 +55,11 @@ $(document).ready(function()
 	{
 		if(Modernizr.touch === false)
 		{
-			$('.webplate-content').on('scroll', function($ev)
+			$(window).on('scroll', function($ev)
 			{
 				// Sets the current scroll position
-				var $new_position;
 				var $scroll_top 			= $(this).scrollTop();
-
-				// Determine direction of scroll
-				if($scroll_top > 0)
-				{
-					if($scroll_top < $window_h)
-					{
-						$new_position 		= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
-					}
-				}
-				else
-				{
-					$new_position 			= 'translate3d(0px, 0px, 0px)';
-				}
+				var $new_position 			= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
 
 				$('header.stripe .bg-image').css(
 				{ 
@@ -95,8 +82,7 @@ $(document).ready(function()
 	function fc_execute_header_adjustment()
 	{
 		$window_h						= $(window).height();
-		$('header.stripe').height($window_h);
-		$('.webplate').fadeIn();
+		$('header.stripe, header.stripe .contain, header.stripe .text').height($window_h);
 	}
 
 	// Menus
@@ -186,11 +172,30 @@ $(document).ready(function()
 
 			$('header').velocity('scroll',
 			{ 
-				container 				: $('.webplate-content'),
-				duration 				: 750,
+				duration 				: 1000,
 				offset 					: $window_h
 			});
 		});
+	}
+
+	// Square it
+	function fc_square_it()
+	{
+		fc_execute_square_it();
+	}
+
+	// Square it execute
+	function fc_execute_square_it()
+	{
+		$('.square-it, .image-hover').each(function()
+		{
+			// Width
+			var $square_w 					= $(this).width();
+			$.web_log($square_w + ' -- ' + $(this).attr('class'));
+
+			// Set the height
+			$(this).height($square_w);
+		})
 	}
 
 	// Window resize
@@ -199,6 +204,7 @@ $(document).ready(function()
 		$(window).resize(function()
 		{	
 			fc_execute_header_adjustment();
+			fc_execute_square_it();
 		});
 	}
 
@@ -214,6 +220,8 @@ $(document).ready(function()
 	fc_menus();
 
 	fc_scroll_down();
+
+	fc_square_it();
 
 	fc_window_resize();
 

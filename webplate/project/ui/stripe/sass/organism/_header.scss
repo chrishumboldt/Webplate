@@ -2,7 +2,7 @@
  * SASS File: 		_header.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	28 May 2014
+ * Last Edited:   	11 June 2014
  */
 
 
@@ -15,19 +15,19 @@
 // ---------------------------------------------------------------------------------------
 header.stripe {
 	display: block;
+	height: 100vh;
 	
 	// Background image
 	.bg-image {
 		position: absolute;
 		top: 0;
 		left: 0;
-		bottom: 0;
 		width: 100%;
+		height: 100%;
 		background-image: url(img/background.png);
 		background-size: cover;
 		background-repeat: no-repeat;
 		z-index: 0;
-		@include transform-translate-3d(0px, 0px, 0px);
 	}
 
 	// Header text
@@ -35,7 +35,7 @@ header.stripe {
 		position: absolute;
 		display: table;
 		top: 0;
-		height: 100%;
+		height: 100vh;
 		z-index: 1;
 
 		.inner {
@@ -72,3 +72,5 @@ header.stripe {
 		}
 	}
 }
+
+

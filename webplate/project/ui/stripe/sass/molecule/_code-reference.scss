@@ -1,0 +1,34 @@
+/**
+ * SASS File: 		_code-reference.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	11 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Code reference
+
+
+// Code reference
+// ---------------------------------------------------------------------------------------
+.code-reference {
+	h5 {
+		margin: 0px;
+		padding-top: $space-base;
+		padding-bottom: $space-small;
+		color: $bondi-blue;
+		font-family: $code-font;
+		font-size: 0.813em;
+
+		i {
+			color: $orange;
+		}
+
+		// Respond
+		@include respond-to(large) {
+			font-size: 0.913em;
+		}
+	}
+}

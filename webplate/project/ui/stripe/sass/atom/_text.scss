@@ -73,7 +73,7 @@ blockquote {
 
 // Links
 // ---------------------------------------------------------------------------------------
-a:not(.button):not([class *= "btn-"]) {
+p a:not(.button):not([class *= "btn-"]) {
 	color: $red;
 
 	&:hover {

@@ -2,7 +2,7 @@
  * jQuery File: 	web-tools.js
  * Type: 			tools
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	11 June 2014
  */
 
 
@@ -197,7 +197,7 @@ jQuery.web_hash_link 				= function()
 			if($target.length)
 			{
 				$scroll_top 		= Math.ceil($($selector).offset().top);
-				$('.webplate-content').scrollTop($scroll_top);
+				$(window).scrollTop($scroll_top);
 				window.location 	= $selector;
 
 				return false;
@@ -217,35 +217,10 @@ jQuery.web_hash_link_setup			= function()
 		if($crt_hash.length)
 		{
 			$scroll_top 			= Math.ceil($('#' + $crt_hash).offset().top);
-			$('.webplate-content').scrollTop($scroll_top);
+			$(window).scrollTop($scroll_top);
 		}
 	}, 
-	200);
-};
-
-jQuery.web_hide_nav 				= function()
-{
-	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
-	{ 
-		left 					: 0
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out',
-		complete 				: function()
-		{
-			$('html').removeClass('nav-shown').addClass('nav-hidden');
-		}
-	});
-
-	$('.navigation-trigger.is-fixed').velocity(
-	{ 
-		marginLeft 				: 0
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out'
-	});
+	10);
 };
 
 jQuery.web_load_plugins 			= function($css_path, $js_path)
@@ -316,10 +291,49 @@ jQuery.web_load_plugins 			= function($css_path, $js_path)
 	}});
 }
 
+jQuery.web_nav_hide 				= function()
+{
+	$('.webplate-navigation').velocity(
+	{ 
+		left 					: 0
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').removeClass('web-nav-shown').addClass('web-nav-hidden');
+		}
+	});
+	
+	$.web_overlay_hide();
+};
+
+jQuery.web_nav_show 				= function()
+{
+	// Variables
+	var $navigation_width 			= $('.webplate-navigation').width();
+
+	$('.webplate-navigation').velocity(
+	{ 
+		left 					: $navigation_width
+	}, 
+	{
+		duration 				: 200,
+		easing 					: 'ease-out',
+		complete 				: function()
+		{
+			$('html').addClass('web-nav-shown').removeClass('web-nav-hidden');
+		}
+	});
+
+	$.web_overlay_show();
+};
+
 jQuery.web_navigation 				= function()
 {
 	// Duplicate navigation
-	$('.webplate-shifter').prepend($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
+	$('body').append($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
 	$('.webplate-navigation').wrapInner('<div class="navigation-inner" />');
 
 	// On click
@@ -327,22 +341,22 @@ jQuery.web_navigation 				= function()
 	{
 		$ev.preventDefault();
 
-		if($('html').hasClass('nav-shown'))
+		if($('html').hasClass('web-nav-shown'))
 		{
-			$.web_hide_nav();
+			$.web_nav_hide();
 		}
 		else
 		{
-			$.web_show_nav();
+			$.web_nav_show();
 		}
 	});
 	
 	// Close nav again
-	$('.webplate-content').on('click', function($e)
+	$('body').on('click', function($e)
 	{
-		if($('html').hasClass('nav-shown'))
+		if($('html').hasClass('web-nav-shown'))
 		{
-			$.web_hide_nav();
+			$.web_nav_hide();
 		}
 	});
 
@@ -357,38 +371,18 @@ jQuery.web_navigation 				= function()
 	{
 		$('.webplate-navigation a.active').removeClass('active');
 		$(this).addClass('active');
-		$.web_hide_nav();
+		$.web_nav_hide();
 	});
 
-	if(Modernizr.touch)
-	{
-		$('.webplate-content').on('drag', function()
-		{
-			if($('html').hasClass('nav-shown'))
-			{
-				$.web_hide_nav();
-			}
-		});
-	}
-	else{
-		$('.webplate-content').on('scroll', function()
-		{
-			if($('html').hasClass('nav-shown'))
-			{
-				$.web_hide_nav();
-			}
-		});
-	}
-	
 	// Prevent scroll on page open
-	$(document).on('touchmove',function($e)
+	$(window).on('touchmove',function($e)
 	{
 		if($('html').hasClass('nav-shown'))
 		{
 			$e.preventDefault();
 		}
 	});
-	$('body').on('touchstart','.webplate-navigation',function($e)
+	$(window).on('touchstart', '.webplate-navigation',function($e)
 	{
 		if($e.currentTarget.scrollTop === 0)
 		{
@@ -399,9 +393,33 @@ jQuery.web_navigation 				= function()
 			$e.currentTarget.scrollTop -= 1;
 		}
 	});
-	$('body').on('touchmove','.webplate-navigation',function($e)
+	$(window).on('touchmove','.webplate-navigation',function($e)
 	{
 		$e.stopPropagation();
+	});
+};
+
+jQuery.web_overlay_hide 			= function()
+{
+	$('.webplate-overlay').velocity(
+	{
+		opacity 		: 0
+	}, 
+	{ 
+		display 		: 'none',
+		duration 		: 200
+	});
+};
+
+jQuery.web_overlay_show 			= function()
+{
+	$('.webplate-overlay').velocity(
+	{
+		opacity 		: 0.4
+	}, 
+	{ 
+		display 		: 'block',
+		duration 		: 200
 	});
 };
 
@@ -413,7 +431,7 @@ jQuery.web_scroll 					= function()
 	// On scroll or drag event
 	if(Modernizr.touch)
 	{
-		$('.webplate-content').on('drag', function($e)
+		$(window).on('drag', function($e)
 		{
 			if($e.orientation == 'vertical')
 			{
@@ -436,24 +454,24 @@ jQuery.web_scroll 					= function()
 	}
 	else
 	{
-		$($('.webplate-content')).scroll(function($e)
+		$(window).scroll(function($e)
 		{
 			// Sets the current scroll position
-			$scroll_top 			= $(this).scrollTop();
+			var $scroll_top 		= $(this).scrollTop();
 
 			// Determine direction of scroll
 			if($scroll_top > $last_scroll)
 			{
-				if($('html').hasClass('scroll-down') == false)
+				if($('html').hasClass('web-scroll-down') == false)
 				{
-					$('html').addClass('scroll-down');
+					$('html').addClass('web-scroll-down');
 				}
 			} 
 			else 
 			{
-				if($('html').hasClass('scroll-down') == true)
+				if($('html').hasClass('web-scroll-down') == true)
 				{
-					$('html').removeClass('scroll-down');
+					$('html').removeClass('web-scroll-down');
 				}
 			}
 
@@ -462,34 +480,6 @@ jQuery.web_scroll 					= function()
 		});
 	}
 }
-
-jQuery.web_show_nav 				= function()
-{
-	// Variables
-	var $navigation_width 			= $('.webplate-navigation').width();
-
-	$('.webplate-shifter, .is-fixed:not(.navigation-trigger)').velocity(
-	{ 
-		left 					: $navigation_width
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out',
-		complete 				: function()
-		{
-			$('html').addClass('nav-shown').removeClass('nav-hidden');
-		}
-	});
-
-	$('.navigation-trigger.is-fixed').velocity(
-	{ 
-		marginLeft 				: $navigation_width
-	}, 
-	{
-		duration 				: 200,
-		easing 					: 'ease-out'
-	});
-};
 
 jQuery.web_window_type 				= function()
 {
@@ -514,7 +504,7 @@ jQuery.web_window_type_execute 		= function()
 		// Set the type variable
 		$('html').removeClass('web-small-view');
 		$('html').addClass('web-large-view');
-		if($('html').hasClass('show-nav'))
+		if($('html').hasClass('web-show-nav'))
 		{
 			$.web_hide_nav();
 		}

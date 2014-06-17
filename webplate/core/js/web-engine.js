@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	13 June 2014
  */
 
 
@@ -41,15 +41,13 @@ yepnope([
 	complete								: function()
 	{
 		// DOM edits
-		$('body').wrapInner('<div class="webplate" />');
-		$('.webplate').wrapInner('<div class="webplate-shifter" />');
-		$('.webplate-shifter').wrapInner('<div class="webplate-content" />');
-		$('.webplate-content').wrapInner('<div class="webplate-inner" />');
-		$('.is-fixed').appendTo('body'); // Fixed elements fix
+		$('html').addClass('webplate');
+		$('body').append('<div class="webplate-overlay"></div>');
 
 		// Execute
 		$.web_navigation();
 		$.web_window_type();
+		$.web_scroll();
 		$.web_hash_link();
 		$('.button').buttonplate();
 		$('body').formplate();
@@ -122,14 +120,23 @@ yepnope([
 			yepnope({ load: $ar_extra_css, complete: function()
 			{
 				$('body').css('display', 'block');
+				setTimeout(function()
+				{
+					yepnope({ load: $ar_extra_js });
+				}, 
+				10);
 				$.web_hash_link_setup();
 			}});
 		}
 		else
 		{
 			$('body').css('display', 'block');
+			setTimeout(function()
+			{
+				yepnope({ load: $ar_extra_js });
+			}, 
+			10);
 			$.web_hash_link_setup();
 		}
-		yepnope({ load: $ar_extra_js });
 	}
 }]);

@@ -2,7 +2,7 @@
  * SASS File: 		style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	10 June 2014
+ * Last Edited:   	17 June 2014
  */
 
 
@@ -29,12 +29,16 @@
 @import "sass/atom/global";
 @import "sass/atom/layout";
 @import "sass/atom/list";
+@import "sass/atom/table";
 @import "sass/atom/text";
 
 
 // Molecules
 // ---------------------------------------------------------------------------------------
+@import "sass/molecule/code-reference";
 @import "sass/molecule/download-stripe";
+@import "sass/molecule/image-hover";
+@import "sass/molecule/login-block";
 @import "sass/molecule/navigation";
 
 
@@ -49,8 +53,8 @@
 	margin-top: $space-base;
 
 	button {
-		margin-right: $space-minor;
-		margin-bottom: $space-minor;
+		margin-right: $space-x-small;
+		margin-bottom: $space-x-small;
 	}
 }
 #lists .full {
@@ -59,8 +63,31 @@
 #buttons,
 #inputs,
 #lists,
+#tables,
 #text {
 	padding-top: $space-medium;
+}
+#image-hover {
+	.image-hover {
+		@include span(12);
+
+		&:nth-child(2) {
+			background-image: url(img/image-hover-1.jpg);
+		}
+		&:nth-child(3) {
+			background-image: url(img/image-hover-2.jpg);
+		}
+		&:nth-child(4) {
+			background-image: url(img/image-hover-3.jpg);
+		}
+		&:nth-child(5) {
+			background-image: url(img/image-hover-4.jpg);
+		}
+
+		@include respond-to(large) {
+			@include new-span(3);
+		}
+	}
 }
 
 

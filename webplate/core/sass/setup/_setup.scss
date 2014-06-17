@@ -2,7 +2,7 @@
  * SASS File: 		_setup.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 May 2014
+ * Last Edited:   	11 June 2014
  */
 
 
@@ -28,7 +28,6 @@ html {
 	background-color: #fff;
 	-ms-text-size-adjust: 100%;
 	-webkit-texts-size-adjust: 100%;
-	-webkit-backface-visibility: hidden;
 }
 div {
   display: block;
@@ -40,90 +39,54 @@ body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, s
 ul, ol {margin:0; padding:0px;}
 a, a:visited {text-decoration: none;}
 
-// Set the heights
-html, body, .webplate, .webplate-content, .webplate-navigation {
-    height: 100%;
-}
-// Fixed elements
-.is-fixed {
-	position: fixed;
-	z-index: 100;
-}
 // Webplate
 .webplate {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-
-	.webplate-shifter {
-		position: relative;
-		left: 0;
-		height: 100%;
-		@include ios-render();
-	}
-	.webplate-content {
-		position: relative;
-		width: 100%;
-		max-width: 100%;
+	.limit {
+		width: $limit-width;
 		margin: 0px auto;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		-webkit-backface-visibility: hidden;
-		z-index: 1;
-
-		.limit {
-			width: $limit-width;
-			margin: 0px auto;
-		}
 	}
 }
 // Navigation
 .webplate-navigation {
+	position: fixed;
 	display: block;
 	height: 100%;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	width: $menu-width;
-	position: absolute;
 	margin-left: -$menu-width;
 	overflow-y: auto;
 	background-color: $small-nav-back;
-	-webkit-overflow-scrolling: touch;
-	-webkit-backface-visibility: hidden;
-	-webkit-transform: translate3d(0, 0, 0);
-	z-index: 0;
+	z-index: 110;
 
-   .navigation-inner {
-	 	 position: relative;
-	 	 height: 100%;
-	 
-	 	.row{
-	 		padding-top: 15px;
-		
-	       a {
-	         display: block;
-	         padding: 10px 20px;
-	         font-size: 0.833em;
-	         color: #b0b0b0;
-	         @include animate(color);
-	  
-	 		  div.icon {
-	 			  float: left;
-	 			  padding-right: 12px;
-	 			  font-size: 1em;
-	 			  color: #E99272;
-	 		  }
-	       }
-	       a:hover {
-	         color: #fff;
-	       }
-	 	}
-   }
+	a {
+		display: block;
+		padding: 10px 20px;
+		font-size: 0.833em;
+		color: #b0b0b0;
+		@include animate(color);
+
+		div.icon {
+			float: left;
+			padding-right: 12px;
+			font-size: 1em;
+			color: #E99272;
+		}
+	}
+	a:hover {
+		color: #fff;
+	}
 }
-
-// Fixed page width setting
-html.fixed-page .webplate .webplate-content {
-    max-width: $limit-width;
+// Overlay
+.webplate-overlay {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $black;
 }
 
 
@@ -145,11 +108,8 @@ html.fixed-page .webplate .webplate-content {
 @include respond-to(fluid) {
 	
 	.webplate {
-		.webplate-content {
-			// Set inner width
-			.limit {
-				width: 100%;
-			}
+		.limit {
+			width: 100%;
 		}
 	}
 }

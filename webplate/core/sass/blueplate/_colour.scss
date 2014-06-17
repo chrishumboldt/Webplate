@@ -2,7 +2,7 @@
  * SASS File: 		_colour.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	11 June 2014
  */
 
 
@@ -61,15 +61,17 @@ $yellow-light 					: #ffce54;
 // ---------------------------------------------------------------------------------------
 $asbestos 						: #7f8c8d;
 $asphalt 						: #34495e;
+$bondi-blue 					: #008D9C;
 $cloud 							: #ecf0f1;
 $concrete 						: #95a5a6;
 $grey-blue-light 				: #ccd1d9;
 $grey-blue 						: #aab2bd;
 $grey-blue-dark 				: #656d78;
-$grey-blue-extra-dark 			: #434a54;
+$grey-blue-x-dark 				: #434a54;
 $midnight 						: #2c3e50;
 $off-white 						: #f5f7fa;
 $off-white-dark 				: #e6e9ed;
+$river-bed 						: #434d5a;
 $silver 						: #bdc3c7;
 
 
@@ -113,16 +115,18 @@ $ar-colours-primary-light		: (
 
 $ar-colours-secondary			: (
 	"asbestos"					: $asbestos, 
-	"asphalt"					: $asphalt, 
+	"asphalt"					: $asphalt,  
+	"bondi-blue"				: $bondi-blue, 
 	"cloud"						: $cloud, 
 	"concrete"					: $concrete, 
 	"grey-blue-light"			: $grey-blue-light, 
 	"grey-blue"					: $grey-blue, 
 	"grey-blue-dark"			: $grey-blue-dark, 
-	"grey-blue-extra-dark"		: $grey-blue-extra-dark,
+	"grey-blue-extra-dark"		: $grey-blue-x-dark,
 	"midnight"					: $midnight, 
 	"off-white"					: $off-white, 
 	"off-white-dark"			: $off-white-dark,
+	"river-bed" 				: $river-bed,
 	"silver"					: $silver
 );
 
@@ -138,8 +142,9 @@ $ar-colours-form 				: (
 	"purple"					: $purple, 
 	"red"						: $red, 
 	"yellow"					: $yellow,
-	"asbestos"					: $asbestos, 
+	"asbestos"					: $asbestos,
 	"asphalt"					: $asphalt,
+	"bondi-blue"				: $bondi-blue,
 	"grey-blue"					: $grey-blue,
 	"silver"					: $silver
 );

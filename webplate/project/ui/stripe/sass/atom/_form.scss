@@ -2,7 +2,7 @@
  * SASS File: 		_form.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	9 June 2014
+ * Last Edited:   	11 June 2014
  */
 
 
@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------------------
 // Checkboxes
 // Radio buttons
+// Text areas
 
 
 // Checkboxes
@@ -23,6 +24,13 @@
 // ---------------------------------------------------------------------------------------
 .formplate .fp-radio {
 	background-color: $white;
+}
+
+
+// Text areas
+// ---------------------------------------------------------------------------------------
+textarea {
+	width: 100%;
 }
 
 
