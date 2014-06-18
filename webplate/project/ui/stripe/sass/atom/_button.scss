@@ -2,7 +2,7 @@
  * SASS File: 		_button.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	17 June 2014
  */
 
 
@@ -13,13 +13,16 @@
 
 
 // Basic buttons
-// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------,
+.btn-cancel,
 .btn-default,
 .btn-download,
 .btn-error,
 .btn-info,
 .btn-link,
+.btn-ok,
 .btn-primary,
+.btn-signup,
 .btn-success,
 .btn-warning {
 	@include button-setup();
@@ -31,7 +34,7 @@
 
 // Buttons styles
 // ---------------------------------------------------------------------------------------
-.btn-download {
+.btn-download, .btn-ok {
 	@include button-style-flat($blue);
 }
 .btn-error {
@@ -43,7 +46,7 @@
 .btn-link {
 	@include button-style-flat($red);
 }
-.btn-primary {
+.btn-primary, .btn-cancel, .btn-signup {
 	@include button-style-flat($aqua);
 }
 .btn-success {

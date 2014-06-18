@@ -165,15 +165,18 @@ header.stripe {
 // Dark
 .stripe.dark, 
 .invert .strip.dark, {
-	background-color: $grey-blue-x-dark;
+	background-color: $river-bed;
 
 	&:nth-child(even), &:nth-child(odd) {
-		background-color: $grey-blue-x-dark;
+		background-color: $river-bed;
 	}
 
 	// Text
 	h1, h2, h3, h4, h5, h6 {
-		color: #AFB9C4;
+		color: lighten($river-bed, 42%);
+	}
+	p {
+		color: lighten($river-bed, 22%);
 	}
 }
 

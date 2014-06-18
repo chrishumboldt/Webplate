@@ -190,7 +190,7 @@ $(document).ready(function()
 		$('.square-it, .image-hover').each(function()
 		{
 			// Width
-			var $square_w 					= $(this).width();
+			var $square_w 					= Math.floor($(this).width());
 			$.web_log($square_w + ' -- ' + $(this).attr('class'));
 
 			// Set the height
