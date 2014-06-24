@@ -1,0 +1,62 @@
+/**
+ * SASS File: 		_user-profile.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// User profile
+// User image
+// User details
+
+
+// User profile
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile {
+	@include row();
+	position: relative;
+	padding: $space-slight $space-base;
+	border-bottom: 1px solid $river-bed-feint;
+}
+
+
+// User image
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile .user-image {
+	@include span(4);
+
+	.user-image-container {
+		@include text-squared(50px);
+		@include background-cover("img/profile-fallback.png");
+		@include border-radius(50%);
+	}
+}
+
+
+// User details
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile .user-details {
+	@include span(8);
+
+	// Name
+	.user-name {
+		margin-top: 3px;
+		color: $white;
+		font-size: 0.913em;
+	}
+
+	// Controls
+	.user-controls {
+		margin-top: -3px;
+
+		a {
+			margin-right: $space-x-small;
+			font-size: 0.813em;
+		}
+	}
+}
+
+

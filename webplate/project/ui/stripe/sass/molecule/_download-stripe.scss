@@ -2,7 +2,7 @@
  * SASS File: 		_download-stripe.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	9 June 2014
+ * Last Edited:   	19 June 2014
  */
 
 
@@ -16,7 +16,7 @@
 .download-stripe {
 	text-align: center;
 
-	h6 {
+	h5, h6 {
 		color: $grey;
 	}
 	a {
@@ -36,7 +36,7 @@
 	@include respond-to(large) {
 		@include row();
 
-		h3, h6 {
+		h3, h5, h6 {
 			padding: 0px $space-medium;
 		}
 		a {
@@ -54,6 +54,22 @@
 			@include offset(2);
 			padding-left: 0px;
 			padding-right: $space-x-small;
+		}
+	}
+	@include respond-to($bp-large) {
+		h3, h5, h6 {
+			padding: 0px $space-large;
+		}
+		.left, .right {
+			@include span(3);
+		}
+		.left {
+			@include offset(3);
+		}
+	}
+	@include respond-to($bp-x-large) {
+		h3, h5, h6 {
+			padding: 0px $space-x-large;
 		}
 	}
 }

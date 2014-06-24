@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	12 June 2014
+ * Last Edited:   	24 June 2014
  */
 
 
@@ -75,14 +75,8 @@ $(document).ready(function()
 	// Header adjustment
 	function fc_header_adjustment()
 	{
-		fc_execute_header_adjustment();
-	}
-
-	// Header adjustment execute
-	function fc_execute_header_adjustment()
-	{
 		$window_h						= $(window).height();
-		$('header.stripe, header.stripe .contain, header.stripe .text').height($window_h);
+		$('header.stripe, header.stripe .contain, header.stripe .text, header.stripe .text-center').height($window_h);
 	}
 
 	// Menus
@@ -181,21 +175,13 @@ $(document).ready(function()
 	// Square it
 	function fc_square_it()
 	{
-		fc_execute_square_it();
+		$.web_square('.image-hover, .showcase .image');
 	}
 
-	// Square it execute
-	function fc_execute_square_it()
+	// Wallpaper
+	function fc_wallpaper()
 	{
-		$('.square-it, .image-hover').each(function()
-		{
-			// Width
-			var $square_w 					= Math.floor($(this).width());
-			$.web_log($square_w + ' -- ' + $(this).attr('class'));
-
-			// Set the height
-			$(this).height($square_w);
-		})
+		$.web_wallpaper('.image-hover, .showcase .image');
 	}
 
 	// Window resize
@@ -203,8 +189,20 @@ $(document).ready(function()
 	{
 		$(window).resize(function()
 		{	
-			fc_execute_header_adjustment();
-			fc_execute_square_it();
+			fc_header_adjustment();
+			fc_square_it();
+
+			// Navigation widths
+			$('header nav ul:first > li').each(function()
+			{
+				if($.web_exists($(this).find('ul')))
+				{
+					$list_width 			= $(this).width() + 14;
+
+					$(this).addClass('has-sub-menu');
+					$(this).find('ul').width($list_width);
+				}
+			});
 		});
 	}
 
@@ -222,6 +220,8 @@ $(document).ready(function()
 	fc_scroll_down();
 
 	fc_square_it();
+
+	fc_wallpaper();
 
 	fc_window_resize();
 

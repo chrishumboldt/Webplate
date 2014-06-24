@@ -2,7 +2,7 @@
  * SASS File: 		_login-block.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	17 June 2014
+ * Last Edited:   	24 June 2014
  */
 
 
@@ -13,7 +13,7 @@
 
 // Login block
 // ---------------------------------------------------------------------------------------
-.stripe .login-block {
+.login-block {
 	@include row();
 	@include center();
 	width: 100%;

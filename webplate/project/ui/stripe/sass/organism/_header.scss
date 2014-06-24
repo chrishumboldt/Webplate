@@ -2,7 +2,7 @@
  * SASS File: 		_header.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	19 June 2014
  */
 
 
@@ -16,6 +16,11 @@
 header.stripe {
 	display: block;
 	height: 100vh;
+
+	.contain {
+		position: relative;
+		z-index: 1;
+	}
 	
 	// Background image
 	.bg-image {
@@ -32,21 +37,47 @@ header.stripe {
 
 	// Header text
 	.text {
-		position: absolute;
 		display: table;
-		top: 0;
+		position: absolute;
+		width: 100%;
 		height: 100vh;
-		z-index: 1;
 
 		.inner {
-			display: table-cell; 
-			vertical-align: middle;
+			display: table-cell;
+   			vertical-align: middle;
 		}
+
 		h1, h2, h3 {
 			color: $white;
 		}
 		h4, h5, h6, p, b, span, i, strong {
 			color: fade-out($white, 0.4);
+		}
+		h6 {
+			line-height: 1.5em;
+		}
+	}
+	.text-center {
+		@extend .text;
+
+		.inner {
+			text-align: center;
+
+			@include respond-to(large) {
+				padding: 0px 10%;
+			}
+			@include respond-to($bp-large) {
+				padding: 0px 16%;
+			}
+		}
+	}
+	.text-center-tight {
+		@extend .text-center;
+
+		.inner {
+			@include respond-to($bp-large) {
+				padding: 0px 26%;
+			}
 		}
 	}
 
@@ -63,14 +94,13 @@ header.stripe {
 		border: 1px solid $white;
 		z-index: 1;
 		@include animate(all);
-
-		// States
-		&:hover {
-			color: $hover-colour;
-			text-decoration: none;
-			border: 1px solid $hover-colour;
-		}
 	}
+}
+// States
+.no-touch header.stripe .scroll-down:hover {
+	color: $hover-colour;
+	text-decoration: none;
+	border: 1px solid $hover-colour;
 }
 
 

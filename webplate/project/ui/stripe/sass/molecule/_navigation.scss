@@ -2,7 +2,7 @@
  * SASS File: 		_navigation.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	4 June 2014
+ * Last Edited:   	19 June 2014
  */
 
 
@@ -53,7 +53,7 @@ $hover-colour 				: lighten($green, 32%);
 // Header navigation
 // ---------------------------------------------------------------------------------------
 header.stripe nav {
-	position: relative;
+	position: absolute;
 	@include row();
 	padding-top: $space-medium;
 	z-index: 2;
@@ -78,12 +78,6 @@ header.stripe nav {
 			font-weight: 300;
 			font-size: 1.5em;
 			border: 1px solid $white;
-
-			&:hover {
-				color: $hover-colour;
-				text-decoration: none;
-				border: 1px solid $hover-colour;
-			}
 		}
 
 		// Respond
@@ -110,11 +104,6 @@ header.stripe nav {
 			> a {
 				color: $white;
 				font-size: 0.813em;
-
-				&:hover {
-					color: $hover-colour;
-					text-decoration: none;
-				}
 
 				span {
 					font-size: 1.125em;
@@ -151,12 +140,6 @@ header.stripe nav {
 					font-size: 0.815em;
 					color: $black-base;
 					border-top: 1px solid $grey-light;
-
-					&:hover {
-						color: $green-dark;
-						text-decoration: none;
-						background-color: $grey-x-light;
-					}
 				}
 
 				li:first-child a {
@@ -171,3 +154,20 @@ header.stripe nav {
 		}
 	}
 }
+.no-touch header.stripe .logo-container a:hover,
+.no-touch header.stripe nav ul.navigation > li > a:hover {
+	color: $hover-colour;
+	text-decoration: none;
+}
+.no-touch header.stripe nav .logo-container .logo-line:hover {
+	color: $hover-colour;
+	text-decoration: none;
+	border: 1px solid $hover-colour;
+}
+.no-touch header.stripe nav ul.navigation > li > ul a:hover {
+	color: $green-dark;
+	text-decoration: none;
+	background-color: $grey-x-light;
+}
+
+

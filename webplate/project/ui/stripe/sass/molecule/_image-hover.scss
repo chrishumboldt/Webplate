@@ -2,7 +2,7 @@
  * SASS File: 		_image-hover.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	17 June 2014
+ * Last Edited:   	20 June 2014
  */
 
 
@@ -15,8 +15,6 @@
 // ---------------------------------------------------------------------------------------
 .image-hover {
 	display: inline-block;
-	background-position: center;
-	background-size: cover;
 
 	.text {
 		position: absolute;
@@ -45,15 +43,14 @@
 			}
 		}
 	}
+}
+// States
+.no-touch .image-hover:hover {
+	.text {
+		@include opacity(1);
 
-	// Hover
-	&:hover {
-		.text {
-			@include opacity(1);
-
-			p span.title {
-				margin-top: 0px;
-			}
+		p span.title {
+			margin-top: 0px;
 		}
 	}
 }

@@ -1,0 +1,25 @@
+/**
+ * SASS File: 		_app-controls.scss
+ * Type: 			organism
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Links
+
+
+// Links
+// ---------------------------------------------------------------------------------------
+.stripe-app .app-controls a {
+	color: $river-bed-light;
+	@include animate(color);
+}
+// States
+.no-touch.stripe-app .app-controls a:hover {
+	color: $white;
+}
+
+

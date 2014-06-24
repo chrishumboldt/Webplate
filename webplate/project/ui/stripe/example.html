@@ -10,7 +10,7 @@
     <title>Stripe UI</title>
 
     <!-- Inlcude Webplate -->
-    <script id="webplate-stack" src="webplate/stack.js"></script>
+    <script id="webplate-stack" src="../../../../webplate/stack.js"></script>
     
 </head>
 <body style="display:none;" data-ui="stripe" class="invert">
@@ -20,8 +20,6 @@
 
 		<!-- Navigation trigger -->
 		<a href="#" class="navigation-trigger icon-bars"></a>
-
-		<div class="bg-image"></div>
 		
 		<div class="contain">
 
@@ -47,6 +45,7 @@
 							<li><a href="#login-block">Login Block</a></li>
 							<li><a href="#prettify">Prettify</a></li>
 							<li><a href="#pricing-table">Pricing Table</a></li>
+							<li><a href="#showcase">Showcase</a></li>
 							<li><a href="#tabs">Tabs</a></li>
 						</ul>
 					</li>
@@ -67,6 +66,8 @@
 			<a href="#" class="scroll-down icon-angle-down"></a>
 
 		</div>
+
+		<div class="bg-image"></div>
 
 	</header>
 
@@ -288,19 +289,19 @@
 
 		<h3>Image Hover</h3>
 		
-		<a href="#image-hover" class="image-hover">
+		<a href="#image-hover" class="image-hover" data-wallpaper="img/image-1.jpg">
 			<div class="text">
 				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
 			</div>
 		</a>
 		
-		<a href="#image-hover" class="image-hover">
+		<a href="#image-hover" class="image-hover" data-wallpaper="img/image-2.jpg">
 			<div class="text">
 				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
 			</div>
 		</a>
 		
-		<a href="#image-hover" class="image-hover">
+		<a href="#image-hover" class="image-hover" data-wallpaper="img/image-3.jpg">
 			<div class="text">
 				<p><span class="title">Some Cool Heading</span>Here is some small additional text</p>
 			</div>
@@ -319,11 +320,11 @@
 				<p>Provide a valid username and password below.</p>
 
 				<div class="formplate">
-					<input type="text" placeholder="Username">
+					<input type="text" name="username" placeholder="Username">
 				</div>
 
 				<div class="formplate">
-					<input type="password" placeholder="Password">
+					<input type="password" name="password" placeholder="Password">
 				</div>
 
 			</div>
@@ -447,6 +448,73 @@
 				<a href="#" class="btn-signup">SIGN UP</a>
 
 			</div>
+
+		</div>
+
+	</div></div>
+
+	<!-- Showcase -->
+	<div class="stripe" id="showcase"><div class="contain">
+
+		<h3>Showcase</h3>
+		
+		<div class="showcase-list">
+	
+			<a href="#" class="showcase">
+
+				<div class="image" data-wallpaper="img/image-1.jpg">
+					<div class="caption">
+						<h6>Showcase <b>Title</b></h6>
+						<p>This is a basic caption with extra text for descriptions</p>
+					</div>
+				</div>
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Donec quis mauris mi.</p>
+				</div>
+
+			</a>
+	
+			<a href="#" class="showcase">
+
+				<div class="image" data-wallpaper="img/image-2.jpg">
+					<div class="caption">
+						<h6>Showcase <b>Title</b></h6>
+						<p>This is a basic caption with extra text for descriptions</p>
+					</div>
+				</div>
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Donec quis mauris mi.</p>
+				</div>
+
+			</a>
+	
+			<a href="#" class="showcase">
+
+				<div class="image" data-wallpaper="img/image-3.jpg">
+					<div class="caption">
+						<h6>Showcase <b>Title</b></h6>
+						<p>This is a basic caption with extra text for descriptions</p>
+					</div>
+				</div>
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Donec quis mauris mi.</p>
+				</div>
+
+			</a>
+	
+			<a href="#" class="showcase">
+
+				<div class="image" data-wallpaper="img/image-4.jpg">
+					<div class="caption">
+						<h6>Showcase <b>Title</b></h6>
+						<p>This is a basic caption with extra text for descriptions</p>
+					</div>
+				</div>
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis mauris mi. Donec quis mauris mi.</p>
+				</div>
+
+			</a>
 
 		</div>
 
