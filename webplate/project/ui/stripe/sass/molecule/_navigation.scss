@@ -55,7 +55,7 @@ $hover-colour 				: lighten($green, 32%);
 header.stripe nav {
 	position: absolute;
 	@include row();
-	padding-top: $space-medium;
+	padding-top: $space-medium + 2px;
 	z-index: 2;
 
 	@include respond-to(large) {

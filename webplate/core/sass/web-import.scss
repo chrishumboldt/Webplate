@@ -2,7 +2,7 @@
  * SASS File: 		web-import.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	9 June 2014
+ * Last Edited:   	26 June 2014
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
@@ -34,8 +34,8 @@ $default-flex-percent-option		: false !default;
 $break-main 						: 43.813em !default;
 $min-max 							: false !default;
 $font-family 						: 'Open Sans', Helvetica, Arial, sans-serif !default;
-$font-face-formplate				: "../../core/css/icon-font-formplate";
-$font-face-buttonplate				: "../../core/css/icon-font-buttonplate";
+$font-face-formplate				: "../../core/css/icon-font-formplate" !default;
+$font-face-buttonplate				: "../../core/css/icon-font-buttonplate" !default;
 
 
 // Plugins

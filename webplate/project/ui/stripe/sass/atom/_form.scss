@@ -2,13 +2,14 @@
  * SASS File: 		_form.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	25 June 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Checkboxes
+// Lables
 // Inputs
 // Radio buttons
 // Text areas
@@ -18,6 +19,14 @@
 // ---------------------------------------------------------------------------------------
 .formplate .fp-checkbox {
 	background-color: $white;
+}
+
+
+// Labels
+// ---------------------------------------------------------------------------------------
+label {
+	font-weight: 300;
+	font-family: $font-family;
 }
 
 

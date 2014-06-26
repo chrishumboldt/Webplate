@@ -186,7 +186,6 @@ pre.prettyprint {
   border: 0px;
   white-space: pre;
   @include border-radius();
-  @include drop-shadow-inset();
 
   ol {
     padding-left: 30px;
