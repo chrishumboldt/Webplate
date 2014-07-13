@@ -33,7 +33,7 @@
 			},
 			"properties": {
 				"id": 2,
-				"order": 15,
+				"order": 16,
 				"prevSize": 28,
 				"code": 58880,
 				"name": "search",
@@ -56,7 +56,7 @@
 			},
 			"properties": {
 				"id": 5,
-				"order": 17,
+				"order": 18,
 				"prevSize": 28,
 				"code": 58881,
 				"name": "star",
@@ -79,7 +79,7 @@
 			},
 			"properties": {
 				"id": 6,
-				"order": 16,
+				"order": 17,
 				"prevSize": 28,
 				"code": 58882,
 				"name": "star-empty",
@@ -101,7 +101,7 @@
 			},
 			"properties": {
 				"id": 12,
-				"order": 1,
+				"order": 2,
 				"prevSize": 28,
 				"code": 58883,
 				"name": "check",
@@ -124,7 +124,7 @@
 			},
 			"properties": {
 				"id": 13,
-				"order": 18,
+				"order": 19,
 				"prevSize": 28,
 				"code": 58884,
 				"name": "times",
@@ -147,7 +147,7 @@
 			},
 			"properties": {
 				"id": 18,
-				"order": 19,
+				"order": 20,
 				"prevSize": 28,
 				"code": 58885,
 				"name": "gear",
@@ -170,7 +170,7 @@
 			},
 			"properties": {
 				"id": 59,
-				"order": 2,
+				"order": 3,
 				"prevSize": 28,
 				"code": 58886,
 				"name": "picture-o",
@@ -193,7 +193,7 @@
 			},
 			"properties": {
 				"id": 108,
-				"order": 20,
+				"order": 21,
 				"prevSize": 28,
 				"code": 58887,
 				"name": "calendar",
@@ -216,7 +216,7 @@
 			},
 			"properties": {
 				"id": 113,
-				"order": 21,
+				"order": 22,
 				"prevSize": 28,
 				"code": 58888,
 				"name": "chevron-down",
@@ -239,7 +239,7 @@
 			},
 			"properties": {
 				"id": 144,
-				"order": 3,
+				"order": 4,
 				"prevSize": 28,
 				"code": 58889,
 				"name": "twitter",
@@ -262,7 +262,7 @@
 			},
 			"properties": {
 				"id": 145,
-				"order": 4,
+				"order": 5,
 				"prevSize": 28,
 				"code": 58890,
 				"name": "facebook",
@@ -284,7 +284,7 @@
 			},
 			"properties": {
 				"id": 177,
-				"order": 5,
+				"order": 6,
 				"prevSize": 28,
 				"code": 58891,
 				"name": "bars",
@@ -307,7 +307,7 @@
 			},
 			"properties": {
 				"id": 188,
-				"order": 6,
+				"order": 7,
 				"prevSize": 28,
 				"code": 58892,
 				"name": "google-plus",
@@ -330,7 +330,7 @@
 			},
 			"properties": {
 				"id": 232,
-				"order": 7,
+				"order": 8,
 				"prevSize": 28,
 				"code": 58893,
 				"name": "angle-left",
@@ -353,7 +353,7 @@
 			},
 			"properties": {
 				"id": 233,
-				"order": 8,
+				"order": 9,
 				"prevSize": 28,
 				"code": 58894,
 				"name": "angle-right",
@@ -376,7 +376,7 @@
 			},
 			"properties": {
 				"id": 234,
-				"order": 9,
+				"order": 10,
 				"prevSize": 28,
 				"code": 58895,
 				"name": "angle-up",
@@ -399,7 +399,7 @@
 			},
 			"properties": {
 				"id": 235,
-				"order": 10,
+				"order": 11,
 				"prevSize": 28,
 				"code": 58896,
 				"name": "angle-down",
@@ -422,7 +422,7 @@
 			},
 			"properties": {
 				"id": 246,
-				"order": 11,
+				"order": 12,
 				"prevSize": 28,
 				"code": 58897,
 				"name": "github",
@@ -445,7 +445,7 @@
 			},
 			"properties": {
 				"id": 257,
-				"order": 22,
+				"order": 23,
 				"prevSize": 28,
 				"code": 58898,
 				"name": "code",
@@ -470,7 +470,7 @@
 			},
 			"properties": {
 				"id": 259,
-				"order": 12,
+				"order": 13,
 				"prevSize": 28,
 				"code": 58899,
 				"name": "star-half-empty",
@@ -493,7 +493,7 @@
 			},
 			"properties": {
 				"id": 287,
-				"order": 13,
+				"order": 14,
 				"prevSize": 28,
 				"code": 58900,
 				"name": "ellipsis-h",
@@ -516,7 +516,7 @@
 			},
 			"properties": {
 				"id": 288,
-				"order": 14,
+				"order": 15,
 				"prevSize": 28,
 				"code": 58901,
 				"name": "ellipsis-v",
@@ -524,6 +524,31 @@
 			},
 			"setIdx": 3,
 			"iconIdx": 288
+		},
+		{
+			"icon": {
+				"paths": [
+					"M64 192h896v192h-896zM64 448h896v192h-896zM64 704h896v192h-896z"
+				],
+				"tags": [
+					"menu",
+					"list",
+					"items",
+					"lines",
+					"options"
+				],
+				"grid": 16
+			},
+			"properties": {
+				"id": 184,
+				"order": 32,
+				"prevSize": 32,
+				"code": 59064,
+				"name": "menu",
+				"ligatures": ""
+			},
+			"setIdx": 4,
+			"iconIdx": 184
 		},
 		{
 			"icon": {
@@ -540,7 +565,7 @@
 			},
 			"properties": {
 				"id": 187,
-				"order": 23,
+				"order": 24,
 				"prevSize": 32,
 				"code": 58903,
 				"name": "cloud-download2",
@@ -562,7 +587,7 @@
 			},
 			"properties": {
 				"id": 350,
-				"order": 27,
+				"order": 26,
 				"prevSize": 32,
 				"code": 59230,
 				"name": "share",
@@ -585,7 +610,7 @@
 			},
 			"properties": {
 				"id": 368,
-				"order": 26,
+				"order": 25,
 				"prevSize": 32,
 				"code": 59248,
 				"name": "feed",
@@ -607,7 +632,7 @@
 			},
 			"properties": {
 				"id": 371,
-				"order": 29,
+				"order": 27,
 				"prevSize": 32,
 				"code": 59251,
 				"name": "youtube",
@@ -629,7 +654,7 @@
 			},
 			"properties": {
 				"id": 373,
-				"order": 30,
+				"order": 28,
 				"prevSize": 32,
 				"code": 59253,
 				"name": "vimeo",
@@ -651,7 +676,7 @@
 			},
 			"properties": {
 				"id": 377,
-				"order": 31,
+				"order": 29,
 				"prevSize": 32,
 				"code": 59257,
 				"name": "flickr",
@@ -673,7 +698,7 @@
 			},
 			"properties": {
 				"id": 383,
-				"order": 34,
+				"order": 31,
 				"prevSize": 32,
 				"code": 59263,
 				"name": "dribbble",
@@ -696,7 +721,7 @@
 			},
 			"properties": {
 				"id": 394,
-				"order": 32,
+				"order": 30,
 				"prevSize": 32,
 				"code": 59274,
 				"name": "github-logo",

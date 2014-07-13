@@ -2,7 +2,7 @@
  * SASS File: 		_navigation.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	19 June 2014
+ * Last Edited:   	13 July 2014
  */
 
 
@@ -23,11 +23,14 @@ $hover-colour 				: lighten($green, 32%);
 // ---------------------------------------------------------------------------------------
 .webplate a.navigation-trigger {
 	position: fixed;
-	top: $space-medium + 6px;
-	left: $space-base;
+	padding: $space-small - 3px;
+	top: $space-medium;
+	left: $space-minor;
 	color: $white;
 	font-size: 1.5em;
-	@include animate(color);
+	text-align: center;
+	@include animate(all);
+	@include border-radius();
 	z-index: 10;
 
 	// States
@@ -37,11 +40,20 @@ $hover-colour 				: lighten($green, 32%);
 	&:hover {
 		text-decoration: none;
 	}
-}
-.no-touch a.navigation-trigger {
-	&:hover {
-		color: fade-out($white, $link-fade-out);
+
+	// Scroll position
+	&.scroll-position {
+		top: $space-small;
+		left: $space-small;
+		color: $black-base;
+		background-color: $white;
 	}
+}
+.no-touch a.navigation-trigger:hover {
+	color: fade-out($white, $link-fade-out);
+}
+.no-touch a.navigation-trigger.scroll-position:hover {
+	color: $aqua;
 }
 .touch a.navigation-trigger {
 	&:hover {

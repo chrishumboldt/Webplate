@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	24 June 2014
+ * Last Edited:   	13 July 2014
  */
 
 
@@ -46,37 +46,26 @@ $(document).ready(function()
 
 	var $sub_menu_animation_speed 			= 200;
 	var $window_h 							= $(window).height();
+	var $scroll_top 						= $(this).scrollTop();
 
 
 // ------------------------------------------------ Functions
 
-	// Background scroll
-	function fc_background_scroll()
+	// Forms
+	function fc_forms()
 	{
-		if(Modernizr.touch === false)
+		// Focus
+		$('.modalplate .input-outer').on('click', function()
 		{
-			$(window).on('scroll', function($ev)
-			{
-				// Sets the current scroll position
-				var $scroll_top 			= $(this).scrollTop();
-				var $new_position 			= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
-
-				$('header.stripe .bg-image').css(
-				{ 
-					'-webkit-transform' 	: $new_position,
-					'-o-transform' 			: $new_position,
-					'-moz-transform' 		: $new_position,
-					'transform' 			: $new_position
-				});
-			});
-		}
+			$(this).find('input').focus();
+		});
 	}
 
 	// Header adjustment
 	function fc_header_adjustment()
 	{
 		$window_h						= $(window).height();
-		$('header.stripe, header.stripe .contain, header.stripe .text, header.stripe .text-center').height($window_h);
+		$('header.stripe, header.stripe .contain, header.stripe .text, header.stripe .text-center, header.stripe .text-center-tight').height($window_h);
 	}
 
 	// Menus
@@ -157,6 +146,68 @@ $(document).ready(function()
 		});
 	}
 
+	// Messages
+	function fc_messages()
+	{
+		$('.message a.close').on('click', function($ev)
+		{
+			$ev.preventDefault();
+			$('.message').slideUp();
+		});
+
+		setTimeout(function()
+		{
+			$('.message').slideUp();
+		}
+		, 5000);
+	}
+
+	// Scroll
+	function fc_scroll()
+	{
+		// Scroll setup
+		if($scroll_top > 5)
+		{
+			$('.webplate a.navigation-trigger').addClass('scroll-position');
+		}
+		else
+		{
+			$('.webplate a.navigation-trigger').removeClass('scroll-position');	
+		}
+
+		// On scroll event
+		$(window).on('scroll', function($ev)
+		{
+			// Variables
+			$scroll_top 			= $(this).scrollTop();
+
+			// Background scroll
+			if(Modernizr.touch === false)
+			{
+				// Sets the current scroll position
+				var $new_position 			= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
+
+				$('header.stripe .bg-image').css(
+				{ 
+					'-webkit-transform' 	: $new_position,
+					'-o-transform' 			: $new_position,
+					'-moz-transform' 		: $new_position,
+					'transform' 			: $new_position
+				});
+			}
+
+			// Navigation trigger
+			if($scroll_top > 5)
+			{
+				$('.webplate a.navigation-trigger').addClass('scroll-position');
+			}
+			else
+			{
+				$('.webplate a.navigation-trigger').removeClass('scroll-position');	
+			}
+		});
+	}
+
 	// Scroll down
 	function fc_scroll_down()
 	{
@@ -211,11 +262,15 @@ $(document).ready(function()
 
 	prettyPrint();
 
-	fc_background_scroll();
+	fc_forms();
 
 	fc_header_adjustment();
 
 	fc_menus();
+
+	fc_messages();
+
+	fc_scroll();
 
 	fc_scroll_down();
 

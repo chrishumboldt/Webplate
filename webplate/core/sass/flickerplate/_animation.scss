@@ -2,19 +2,29 @@
  * SASS File: 		_animation.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	12 July 2014
+ * Edited by: 		Chris humboldt
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Animations
+// Animation Variables
 
+$animate-transform-slide-duration: 0.6s;
+$animate-transform-slide-easing: ease-out;
+
+$animate-transition-slide-duration: 0.4s;
+$animate-transition-slide-easing: ease-in-out;
+
+// fade settings
+$animate-transition-fade-duration: 0.8s;
+$animate-transition-fade-easing: linear;
 
 // Animations
 // ---------------------------------------------------------------------------------------
 @mixin fp-animations($identifier: ".flickerplate") {
-	
+
 	#{$identifier}.animate-transform-slide {
 		// Flicks
 		ul.flicks {
@@ -22,10 +32,10 @@
 			-webkit-backface-visibility: hidden;
 			transform: translate3d(0%, 0px, 0px);
 			-webkit-transform: translate3d(0%, 0px, 0px);
-			-webkit-transition: -webkit-transform 0.6s;
-			-o-transition: -o-transform 0.6s;
-			-moz-transition: -moz-transform 0.6s;
-			transition: transform 0.6s;
+			-webkit-transition: -webkit-transform $animate-transform-slide-duration $animate-transform-slide-easing;
+			-o-transition: -o-transform $animate-transform-slide-duration $animate-transform-slide-easing;
+			-moz-transition: -moz-transform $animate-transform-slide-duration $animate-transform-slide-easing;
+			transition: transform $animate-transform-slide-duration $animate-transform-slide-easing;
 		}
 	}
 	#{$identifier}.animate-transition-slide {
@@ -33,7 +43,7 @@
 		ul.flicks {
 			position: relative;
 			left: 0%;
-			@include animate(left, 0.4s);
+            @include animate(left, $animate-transition-slide-duration, $animate-transition-slide-easing);
 		}
 	}
 	#{$identifier}.animate-jquery-slide {
@@ -46,9 +56,44 @@
 	#{$identifier}.animate-scroller-slide {
 		padding-bottom: 0px;
 		overflow: auto;
-	
+
 		ul.flicks {
 			position: auto;
 		}
 	}
+
+    #{$identifier}.animate-transition-fade {
+        ul.flicks {
+            position: relative;
+            li {
+                float: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+        }
+        &.fade-inited {
+            ul.flicks li {
+                @include animate(opacity, $animate-transition-fade-duration, $animate-transition-fade-easing);
+                &.first-flick {
+                  opacity: 1;
+                }
+            }
+        }
+    }
+
+    #{$identifier}.animate-jquery-fade {
+        ul.flicks {
+            position: relative;
+            li {
+                float: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+        }
+    }
+
 }

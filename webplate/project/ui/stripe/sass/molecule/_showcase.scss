@@ -141,16 +141,37 @@
 		}
 	}
 }
+// Invert on certain stripes
+.stripe:nth-child(even) .showcase .image:before {
+	background-color: transparent;
+}
+.stripe:nth-child(odd) .showcase .image:before {
+	background-color: fade-out($showcase-hover-colour, 0.982);
+}
+.invert .stripe:nth-child(even) .showcase .image:before {
+	background-color: fade-out($showcase-hover-colour, 0.982);
+}
+.invert .stripe:nth-child(odd) .showcase .image:before {
+	background-color: transparent;
+}
 // States
-.no-touch .showcase .image:hover {
-	&:before {
-		background-color: fade-out($showcase-hover-colour, 0.7);
-	}
-	h6, p {
-		@include transform-translate-3d(0px, 0px, 0px);
-	}
-	p {
-		@include opacity(1);
+.no-touch {
+	.showcase .image,
+	.stripe:nth-child(even) .showcase .image,
+	.stripe:nth-child(odd) .showcase .image,
+	.invert .stripe:nth-child(even) .showcase .image,
+	.invert .stripe:nth-child(odd) .showcase .image {
+		&:hover {
+			&:before {
+				background-color: fade-out($white, 0.6);
+			}
+			h6, p {
+				@include transform-translate-3d(0px, 0px, 0px);
+			}
+			p {
+				@include opacity(1);
+			}
+		}
 	}
 }
 

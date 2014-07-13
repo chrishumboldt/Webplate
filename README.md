@@ -32,6 +32,13 @@ Documentation
 Webplate has many aspects to it so for more information view the comprehensive online documentation at http://getwebplate.com/documentation.
 
 
+Contributors
+=========
+
+<a href="https://github.com/chrishumboldt">Chris Humboldt</a><br>
+<a href="https://github.com/V1RTUOZ">Oleg Kalandarashvili</a>
+
+
 Copyright and License
 ========
 

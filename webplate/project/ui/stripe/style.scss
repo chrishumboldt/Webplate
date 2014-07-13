@@ -2,7 +2,7 @@
  * SASS File: 		style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	26 June 2014
+ * Last Edited:   	4 July 2014
  */
 
 
@@ -45,14 +45,23 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 @import "sass/molecule/download-stripe";
 @import "sass/molecule/image-hover";
 @import "sass/molecule/login-block";
+@import "sass/molecule/message";
+@import "sass/molecule/modal";
 @import "sass/molecule/navigation";
 @import "sass/molecule/pricing-table";
 @import "sass/molecule/showcase";
+@import "sass/molecule/user-profile";
 
 
 // Organisms
 // ---------------------------------------------------------------------------------------
+@import "sass/organism/app-controls";
 @import "sass/organism/header";
+
+
+// Templates
+// ---------------------------------------------------------------------------------------
+@import "sass/templates/app";
 
 
 // Custom CSS

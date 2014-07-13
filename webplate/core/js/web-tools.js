@@ -2,7 +2,7 @@
  * jQuery File:     web-tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     20 June 2014
+ * Last Edited:     13 July 2014
  */
 
 
@@ -117,7 +117,7 @@ jQuery.web_square                   = function($selector)
     });
 };
 
-jQuery.web_wallpaper                = function($selector)
+jQuery.web_wallpaper                = function($selector) 
 {
     $($selector).each(function()
     {
@@ -126,7 +126,7 @@ jQuery.web_wallpaper                = function($selector)
         var $wallpaper_image        = $this_wallpaper.data('wallpaper');
 
         // Set the bacgkround image
-        if($wallpaper_image != undefined)
+        if ($wallpaper_image != undefined)
         {
             $this_wallpaper.addClass('wallpaper');
             $this_wallpaper.css(
@@ -144,8 +144,8 @@ jQuery.web_input_mirror             = function($input, $output)
 {
     $($selector).keyup(function()
     {
-        var $ref_input                  = $(this).val();
-        var $ref_value                  = $ref_input.replace(/ /g,"_").toLowerCase();
+        var $ref_input              = $(this).val();
+        var $ref_value              = $ref_input.replace(/ /g,"_").toLowerCase();
 
         // Output the mirror
         $($output).text($ref_value);
@@ -217,6 +217,12 @@ jQuery.web_get_url                  = function()
 
 // Webplate
 // ---------------------------------------------------------------------------------------
+// Variables
+var $nav_end_position 				= 0;
+var $navigation_width;
+var $nav_track_position;
+
+// Functions
 jQuery.web_hash_link                = function()
 {
     // Based on: http://css-tricks.com/snippets/jquery/smooth-scrolling/
@@ -341,13 +347,17 @@ jQuery.web_nav_hide                 = function()
         }
     });
     
+    // Set nav end position
+    $nav_end_position				= 0;
+
+    // Hide overlay
     $.web_overlay_hide();
 };
 
 jQuery.web_nav_show                 = function()
 {
     // Variables
-    var $navigation_width           = $('.webplate-navigation').width();
+    $navigation_width           	= $('.webplate-navigation').width();
 
     $('.webplate-navigation').velocity(
     { 
@@ -362,6 +372,10 @@ jQuery.web_nav_show                 = function()
         }
     });
 
+    // Set nav end position
+    $nav_end_position				= 260;
+
+    // Show overlay
     $.web_overlay_show();
 };
 
@@ -387,12 +401,41 @@ jQuery.web_navigation               = function()
     });
     
     // Close nav again
-    $('body').on('click', function($e)
+    $('.webplate-overlay').on('click', function($e)
     {
         if($('html').hasClass('web-nav-shown'))
         {
             $.web_nav_hide();
         }
+    });
+
+    // Drag closed
+    $('body').hammer().on('panleft panend', function($ev)
+    {
+    	// Check events
+    	switch($ev.type)
+    	{
+    		case 'panleft':
+
+    			$nav_track_position		= $ev.gesture.deltaX + $nav_end_position;
+
+				if($nav_track_position <= $navigation_width)
+				{
+					$('.webplate-navigation').css(
+					{
+						left 			: $nav_track_position
+					});	
+				}
+
+    			break;
+
+    		case 'panend':
+
+				$.web_nav_hide();
+				$nav_end_position		= 0;
+
+    			break;
+    	}
     });
 
     // Show on mobile
@@ -402,35 +445,57 @@ jQuery.web_navigation               = function()
     }
 
     // Change active state and close menu
-    $('.webplate-navigation a').on('click', function()
+    $('.webplate-navigation a').on('click', function($ev)
     {
-        $('.webplate-navigation a.active').removeClass('active');
-        $(this).addClass('active');
-        $.web_nav_hide();
+    	if($nav_end_position === 260)
+		{
+			$('.webplate-navigation a.active').removeClass('active');
+			$(this).addClass('active');
+			$.web_nav_hide();
+	    }
+	    else
+	    {
+	    	$ev.preventDefault();
+	    }
     });
 
+    // Be able to drag webplate navigation
+    // $('.webplate-navigation').hammer().on('panup pandown', function($ev)
+    // {
+    // 	// Check events
+    // 	switch($ev.type)
+    // 	{
+    // 		case 'panup':
+    // 		case 'pandown':
+
+				// $('.webplate-navigation').scrollTop($ev.gesture.deltaY);
+
+    // 			break;
+    // 	}
+    // });
+
     // Prevent scroll on page open
-    $(window).on('touchmove',function($e)
+    // $(window).on('touchmove',function($ev)
+    // {
+    //     if($('html').hasClass('web-nav-shown'))
+    //     {
+    //         $ev.preventDefault();
+    //     }
+    // });
+    $(window).on('touchstart', '.webplate-navigation',function($ev)
     {
-        if($('html').hasClass('nav-shown'))
+        if($ev.currentTarget.scrollTop === 0)
         {
-            $e.preventDefault();
+            $ev.currentTarget.scrollTop = 1;
+        }
+        else if($ev.currentTarget.scrollHeight === $ev.currentTarget.scrollTop + $ev.currentTarget.offsetHeight)
+        {
+            $ev.currentTarget.scrollTop -= 1;
         }
     });
-    $(window).on('touchstart', '.webplate-navigation',function($e)
+    $(window).on('touchmove','.webplate-navigation',function($ev)
     {
-        if($e.currentTarget.scrollTop === 0)
-        {
-            $e.currentTarget.scrollTop = 1;
-        }
-        else if($e.currentTarget.scrollHeight === $e.currentTarget.scrollTop + $e.currentTarget.offsetHeight)
-        {
-            $e.currentTarget.scrollTop -= 1;
-        }
-    });
-    $(window).on('touchmove','.webplate-navigation',function($e)
-    {
-        $e.stopPropagation();
+        $ev.stopPropagation();
     });
 };
 

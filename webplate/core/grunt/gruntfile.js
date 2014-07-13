@@ -55,10 +55,13 @@ module.exports = function(grunt) {
 					'../js/min/web-imports.min.js': [
 						'../js/web-jquery.js',
 						'../js/web-modernizr.js',
+						'../js/web-hammer.js',
+						'../js/web-hammer-jquery.js',
 						'../js/web-velocity.js',
 						'../js/web-tools.js',
 						'../js/web-buttonplate.js',
-						'../js/web-formplate.js'
+						'../js/web-formplate.js',
+						'../js/web-modalplate.js'
 					]
 				}
 			},
@@ -66,8 +69,8 @@ module.exports = function(grunt) {
 			touch: {
 				files: {
 					'../js/min/web-touch.min.js': [
-						'../js/web-jquery.finger.js',
-						'../js/web-fastclick.js'
+						'../js/web-fastclick.js',
+						'../js/web-jquery-finger.js'
 					],
 				}
 			},
@@ -136,11 +139,24 @@ module.exports = function(grunt) {
 				tasks: ['uglify:stack']
 			},
 			imports: {
-				files: ['../js/web-jquery.js', '../js/web-modernizr.js', '../js/web-tools.js', '../js/web-buttonplate.js', '../js/web-formplate.js'],
+				files: [
+					'../js/web-jquery.js',
+					'../js/web-modernizr.js',
+					'../js/web-hammer.js',
+					'../js/web-hammer-jquery.js',
+					'../js/web-velocity.js',
+					'../js/web-tools.js',
+					'../js/web-buttonplate.js',
+					'../js/web-formplate.js',
+					'../js/web-modalplate.js'
+				],
 				tasks: ['uglify:imports']
 			},
 			touch: {
-				files: ['../js/web-jquery.finger.js', '../js/web-fastclick.js'],
+				files: [
+					'../js/web-fastclick.js',
+					'../js/web-jquery-finger.js'
+				],
 				tasks: ['uglify:touch']
 			},
 			less: {

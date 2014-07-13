@@ -2,8 +2,8 @@
  * flickerplate.js
  *
  * Author:        	Chris Humboldt
- * Last Edited:   	21 March 2014
- * Edited By:   	Chris Humboldt
+ * Last Edited:   	9 July 2014
+ * Edited By:   	dsuket
  */
 
 (function($){
@@ -198,7 +198,8 @@
 				$object.flick_flicker();
 			
 				// Kill the animation	
-				if($object.settings.flick_animation != 'jquery-slide') {
+				if($object.settings.flick_animation != 'jquery-slide' &&
+				   $object.settings.flick_animation != 'jquery-fade') {
 					$flicker.find('ul.flicks').bind("transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd", function() {
 
 						$flicker_moving 				= false;
@@ -339,7 +340,6 @@
 		
 		// ----- Start auto flicker
 		$object.auto_flick_start				= function() {
-			
 			if($object.settings.auto_flick == true) {
 				
 				$object.flicker_auto				= setInterval($object.auto_flick, $flick_delay);
@@ -397,7 +397,34 @@
 					$flicker_moving 			= false;
 				});
 			}
-			
+            else if($object.settings.flick_animation == 'transition-fade') {
+                var $pre_position = parseInt($flicker.attr("data-flick-position"), 10);
+                if ($pre_position === $new_position) {
+                    setTimeout(function () {
+                        $flicker.addClass("fade-inited");
+                    },10);
+                } else {
+                    $flicker.find('ul.flicks li:eq(' + $pre_position + ')').css("opacity", 0);
+                    $flicker.find('ul.flicks li:eq(' + $new_position + ')').css("opacity", 1);
+                }
+            }
+            else if($object.settings.flick_animation == 'jquery-fade') {
+            	var fadeSpeed = 800;
+                var $pre_position = parseInt($flicker.attr("data-flick-position"), 10);
+                if ($pre_position === $new_position) {
+                	// initialize
+                	$flicker.find('ul.flicks li:gt(' + $pre_position + ')').css("display", "none");
+                } else {
+                    $flicker.find('ul.flicks li:eq(' + $pre_position + ')')
+                    	.animate({opacity: 0}, fadeSpeed, function(){
+                    		$(this).css("display", "none");
+                    	});
+                }
+                $flicker.find('ul.flicks li:eq(' + $new_position + ')')
+                	.css("display", "")
+                	.animate({opacity: 1}, fadeSpeed);
+            }
+
 			// Flicker colour
 			$crt_flick							= $flicker.find('ul.flicks li:eq('+ $flick_position +')');
 			$flicker.removeClass('flicker-theme-light').removeClass('flicker-theme-dark');

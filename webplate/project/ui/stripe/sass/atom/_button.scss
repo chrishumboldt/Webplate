@@ -15,6 +15,7 @@
 // Basic buttons
 // ---------------------------------------------------------------------------------------,
 .btn-cancel,
+.btn-control,
 .btn-default,
 .btn-download,
 .btn-error,
@@ -36,6 +37,10 @@
 // ---------------------------------------------------------------------------------------
 .btn-download, .btn-ok {
 	@include button-style-flat($blue);
+}
+.btn-control {
+	@include button-size-large();
+	@include button-style-flat($river-bed-feint);
 }
 .btn-error {
 	@include button-style-flat($red-dark);

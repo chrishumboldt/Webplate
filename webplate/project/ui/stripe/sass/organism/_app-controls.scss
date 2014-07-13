@@ -2,23 +2,65 @@
  * SASS File: 		_app-controls.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	23 June 2014
+ * Last Edited:   	9 July 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Bottom link
 // Links
+
+
+// Bottom link
+// ---------------------------------------------------------------------------------------
+.bottom-link {
+	padding: $space-small;
+	padding-top: 0px;
+
+	// Links
+	a {
+		width: 100%;
+	}
+
+	// Respond
+	@include respond-to(large) {
+		position: absolute;
+		width: $menu-width;
+		bottom: 0;
+	}
+}
 
 
 // Links
 // ---------------------------------------------------------------------------------------
-.stripe-app .app-controls a {
-	color: $river-bed-light;
-	@include animate(color);
+.stripe-app .app-controls ul.links {
+	margin: $space-base 0px;
+
+	a {
+		display: block;
+		padding: $space-small $space-base;
+		color: $river-bed-light;
+		font-size: 0.913em;
+		@include animate(color);
+	}
+
+	// With icons
+	&.with-icons a {
+		padding-left: $space-medium;
+
+		span {
+			position: absolute;
+			margin-top: 3px;
+			margin-left: -$space-base - 4px;
+			font-size: 1.25em;
+			color: $aqua;
+		}
+	}
 }
 // States
-.no-touch.stripe-app .app-controls a:hover {
+.no-touch.stripe-app .app-controls ul li a:hover,
+.stripe-app .app-controls ul li a.active {
 	color: $white;
 }
 

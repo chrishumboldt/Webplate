@@ -2,7 +2,7 @@
  * SASS File: 		web-import.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	26 June 2014
+ * Last Edited:   	13 July 2014
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
@@ -25,7 +25,7 @@
 // ---------------------------------------------------------------------------------------
 $limit-width						: 75em !default;
 $menu-width							: 16.250em !default;
-$small-nav-back						: lighten(#000, 18%) !default;
+$small-nav-back						: #fff !default;
 $images-root						: "../img" !default;
 $column-limit						: 12 !default;
 $spacing-limit						: 10 !default;

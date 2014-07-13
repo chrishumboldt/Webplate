@@ -51,9 +51,9 @@
 		background-color: $grey-link-hover;
 	}
 	// Visited state
-	// &:visited {
-	// 	color: lighten(#000, 40%);
-	// }
+	&:visited {
+		color: lighten(#000, 40%);
+	}
 	// Active state
 	&:active {
 		@include drop-shadow-inset(fade-out(#000, 0.85), 5px, 2px, 0px);

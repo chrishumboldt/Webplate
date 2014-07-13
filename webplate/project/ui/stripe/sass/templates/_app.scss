@@ -1,0 +1,64 @@
+/**
+ * SASS File: 		app.scss
+ * Type: 			template
+ * Author:        	Chris Humboldt
+ * Last Edited:   	30 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Content
+// Navigation
+// Stripe
+
+
+// Content
+// ---------------------------------------------------------------------------------------
+.stripe-app .app-content {
+	background-color: $white;
+
+	// Respond
+	@include respond-to(large) {
+		padding-left: $menu-width;
+	}
+}
+
+
+// Navigation
+// ---------------------------------------------------------------------------------------
+.stripe-app.webplate a.navigation-trigger {
+	position: relative;
+	float: left;
+	top: auto;
+	left: auto;
+	margin-top: 4px;
+	margin-left: $space-x-small;
+	margin-right: $space-small;
+	color: $river-bed;
+	font-size: 0.913em;
+	@include animate(all);
+
+	// Respond
+	@include respond-to($bp-small) {
+		margin-top: 9px;
+		margin-right: $space-minor;
+		font-size: 0.75em;
+	}
+}
+
+
+// Stripe
+// ---------------------------------------------------------------------------------------
+.stripe-app .stripe {
+	padding: $space-small;
+
+	@include respond-to($bp-small) {
+		padding: $space-base;
+	}
+	@include respond-to($bp-large) {
+		padding: $space-medium;
+	}
+}
+
+

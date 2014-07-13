@@ -2,7 +2,7 @@
  * SASS File: 		web-engine.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	4 July 2014
  */
 
 
@@ -17,6 +17,7 @@
 // ---------------------------------------------------------------------------------------
 @import "web-import";
 @import "formplate/import";
+@import "modalplate/import";
 @import "setup/normalize"; 		// 2 kb
 @import "setup/typeplate-vars";
 @import "setup/typeplate";  	// 3 kb
@@ -28,8 +29,9 @@
 @include blueplate-css(); 		// 12 kb
 @include buttonplate-css();		// 18 kb
 @include formplate-css(); 		// 20 kb
+@include modalplate-css();		// 2 kb
 
 
 // Size total
 // ---------------------------------------------------------------------------------------
-// 57 kb
+// 59 kb

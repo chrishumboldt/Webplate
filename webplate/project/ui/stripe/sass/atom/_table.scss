@@ -2,7 +2,7 @@
  * SASS File: 		_table.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	5 July 2014
  */
 
 
@@ -33,6 +33,15 @@ table {
 
 			&:nth-child(odd) {
 				background-color: $grey-x-light;
+			}
+
+			td a {
+				color: $red;
+
+				&:hover {
+					color: darken($red, 10%);
+					text-decoration: underline;
+				}
 			}
 		}
 	}

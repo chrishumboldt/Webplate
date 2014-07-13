@@ -55,7 +55,7 @@
 			@include border-radius(0px);
 			font-size: 0.875em;
 
-			&.btn-cancel {
+			&.btn-ok {
 				@include border-radius-bottom();
 			}
 
@@ -67,10 +67,10 @@
 				font-size: 0.913em;
 
 				&.btn-cancel {
-					@include border-radius-bottom-right();
+					@include border-radius-bottom-left();
 				}
 				&.btn-ok {
-					@include border-radius-bottom-left();
+					@include border-radius-bottom-right();
 				}
 			}
 		}

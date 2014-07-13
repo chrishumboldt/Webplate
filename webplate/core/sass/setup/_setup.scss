@@ -59,11 +59,14 @@ a, a:visited {text-decoration: none;}
 	background-color: $small-nav-back;
 	z-index: 110;
 
-	a {
+	.navigation-inner {
+		margin: $space-minor 0px;
+	}
+	li a {
 		display: block;
 		padding: 10px 20px;
-		font-size: 0.833em;
-		color: #b0b0b0;
+		font-size: 0.875em;
+		color: $black-base;
 		@include animate(color);
 
 		div.icon {
@@ -72,10 +75,13 @@ a, a:visited {text-decoration: none;}
 			font-size: 1em;
 			color: #E99272;
 		}
+		.icon-angle-down {
+			@include hide();
+		}
 	}
-	a:hover {
-		color: #fff;
-	}
+}
+.no-touch .webplate-navigation li a:hover {
+	color: $red;
 }
 // Overlay
 .webplate-overlay {

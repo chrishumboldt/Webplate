@@ -2,33 +2,23 @@
  * SASS File: 		_animation.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	8 May 2014
+ * Last Edited:   	12 July 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Transition
-// Transform easing
+// Animate
 
 
-// Transition
+// Animate
 // ---------------------------------------------------------------------------------------
-@mixin animate($attribute, $transition-speed: 0.2s) {
-	-webkit-transition: $attribute $transition-speed ease-out;
-	-moz-transition: $attribute $transition-speed ease-out;
-	-o-transition: $attribute $transition-speed ease-out;
-	-ms-transition: $attribute $transition-speed ease-out;
-	transition: $attribute $transition-speed ease-out;
+@mixin animate($attribute, $transition-speed: 0.2s, $easing: ease-out) {
+	-webkit-transition: $attribute $transition-speed $easing;
+	-moz-transition: $attribute $transition-speed $easing;
+	-o-transition: $attribute $transition-speed $easing;
+	-ms-transition: $attribute $transition-speed $easing;
+	transition: $attribute $transition-speed $easing;
 }
 
 
-// Transform easing
-// ---------------------------------------------------------------------------------------
-@mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition-speed: 0.2s) {
-	@include transform-translate-3d($x, $y, $z);
-	-webkit-transition: -webkit-transform $transition-speed ease-out;
-	-o-transition: -o-transform $transition-speed ease-out;
-	-moz-transition: -moz-transform $transition-speed ease-out;
-	transition: transform $transition-speed ease-out;
-}

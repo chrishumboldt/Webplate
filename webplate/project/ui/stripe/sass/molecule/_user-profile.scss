@@ -2,7 +2,7 @@
  * SASS File: 		_user-profile.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	23 June 2014
+ * Last Edited:   	26 June 2014
  */
 
 
@@ -11,6 +11,7 @@
 // User profile
 // User image
 // User details
+// User controls
 
 
 // User profile
@@ -18,8 +19,12 @@
 .stripe-app .user-profile {
 	@include row();
 	position: relative;
-	padding: $space-slight $space-base;
-	border-bottom: 1px solid $river-bed-feint;
+	background-color: $grey-x-light;
+
+	.user-top {
+		@include span(12);
+		padding: ($space-base + 5px) $space-minor;
+	}
 }
 
 
@@ -29,9 +34,10 @@
 	@include span(4);
 
 	.user-image-container {
-		@include text-squared(50px);
+		@include text-squared(60px);
 		@include background-cover("img/profile-fallback.png");
 		@include border-radius(50%);
+		border: 4px solid $white;
 	}
 }
 
@@ -43,20 +49,33 @@
 
 	// Name
 	.user-name {
-		margin-top: 3px;
-		color: $white;
+		margin-top: 8px;
+		color: $river-bed;
 		font-size: 0.913em;
 	}
 
-	// Controls
-	.user-controls {
-		margin-top: -3px;
-
-		a {
-			margin-right: $space-x-small;
-			font-size: 0.813em;
-		}
+	// Information
+	.user-info {
+		color: $river-bed-light;
+		font-size: 0.75em;
 	}
+}
+
+
+// User Controls
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile .user-controls {
+	@include span(12);
+
+	a {
+		@include span(6);
+		margin: 0px;
+		@include border-radius(0px);
+		font-size: 0.875em;
+	}
+}
+.no-touch.stripe-app .user-profile .user-controls a:hover {
+	background-color: $aqua;
 }
 
 

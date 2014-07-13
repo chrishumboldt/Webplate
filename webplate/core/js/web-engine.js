@@ -51,6 +51,7 @@ yepnope([
 		$.web_hash_link();
 		$('.button').buttonplate();
 		$('body').formplate();
+		$('.modal-open').modalplate();
 		$.web_load_plugins($css_path, $js_path);
 	}
 },

@@ -50,9 +50,9 @@ $lightness-threshold 	: 68%;
 		}
 		background-color: $colour;
 	}
-	// &:visited {
-	// 	color: $white;
-	// }
+	&:visited {
+		color: $white;
+	}
 
 	// Drop-down link hover
 	&.button-drop-down ul li a:hover {
