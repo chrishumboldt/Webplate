@@ -15,10 +15,19 @@
   },
   "keywords": [
     "Webplate",
+    "UI",
+    "Framework",
     "Responsive",
+    "jQuery",
     "SASS",
-    "CSS",
-    "Javascript"
+    "Blueplate",
+    "Modernizr",
+    "Hammer.js",
+    "Velocity.js",
+    "Buttonplate",
+    "Modalplate",
+    "Formplate",
+    "Flickerplate"
   ],
   "author": "Chris Humboldt",
   "license": "Apache License, Version 2.0",
