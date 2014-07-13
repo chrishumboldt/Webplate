@@ -1,0 +1,36 @@
+{
+  "name": "Webplate",
+  "version": "2.0.0",
+  "homepage": "https://github.com/chrishumboldt/Webplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "An awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
+  "main": "stack.js",
+  "keywords": [
+    "Webplate",
+    "UI",
+    "Framework",
+    "jQuery",
+    "SASS",
+    "Blueplate",
+    "Modernizr",
+    "Hammer.js",
+    "Velocity.js",
+    "Buttonplate",
+    "Modalplate",
+    "Formplate",
+    "Flickerplate"
+  ],
+  "license": "Apache License, Version 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "core/grunt/node_modules",
+    "bower.json",
+    "index.html"
+  ]
+}
