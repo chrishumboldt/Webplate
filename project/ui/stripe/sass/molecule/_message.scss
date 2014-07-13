@@ -1,0 +1,63 @@
+/**
+ * SASS File: 		_message.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	5 July 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic message
+// Error message
+
+
+// Basic message
+// ---------------------------------------------------------------------------------------
+.message {
+	display: block;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	padding: $space-base;
+	padding-right: $space-base + 40px;
+	background-color: $aqua;
+	z-index: 2;
+
+	p {
+		@include spacing-no();
+		color: $white;
+	}
+	.close {
+		position: absolute;
+		right: $space-base;
+		font-size: 1em;
+		color: fade-out($white, 0.75);
+		border: 3px solid fade-out($white, 0.75);
+		@include text-squared(30px);
+		line-height: 24px;
+		@include border-radius(50%);
+		@include animate(all);
+		z-index: 3;
+	}
+
+	// Respond 
+	@include respond-to(large) {
+		padding: $space-slight $space-base;
+	}
+}
+.no-touch .message .close:hover {
+	color: $white;
+	border-color: $white;
+}
+
+
+// Error message
+// ---------------------------------------------------------------------------------------
+.message.error {
+	@extend .message;
+	background-color: $red;
+}
+
+

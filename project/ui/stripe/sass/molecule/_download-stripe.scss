@@ -1,0 +1,75 @@
+/**
+ * SASS File: 		_download-stripe.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	19 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Download stripe
+
+
+// Download stripe
+// ---------------------------------------------------------------------------------------
+.download-stripe {
+	text-align: center;
+
+	h5, h6 {
+		color: $grey;
+	}
+	a {
+		@include button-size-large();
+		padding-left: 0px;
+		padding-right: 0px;
+
+		span {
+			position: relative;
+			top: 3px;
+			margin-right: $space-small;
+			font-size: 1.25em;
+		}
+	}
+
+	// Respond
+	@include respond-to(large) {
+		@include row();
+
+		h3, h5, h6 {
+			padding: 0px $space-medium;
+		}
+		a {
+			width: 100%;
+			
+			span {
+				font-size: 1.375em;
+			}
+		}
+		.left, .right {
+			@include span(4);
+			padding-left: $space-x-small;
+		}
+		.left {
+			@include offset(2);
+			padding-left: 0px;
+			padding-right: $space-x-small;
+		}
+	}
+	@include respond-to($bp-large) {
+		h3, h5, h6 {
+			padding: 0px $space-large;
+		}
+		.left, .right {
+			@include span(3);
+		}
+		.left {
+			@include offset(3);
+		}
+	}
+	@include respond-to($bp-x-large) {
+		h3, h5, h6 {
+			padding: 0px $space-x-large;
+		}
+	}
+}

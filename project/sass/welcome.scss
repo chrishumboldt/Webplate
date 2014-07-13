@@ -1,0 +1,154 @@
+/**
+ * SASS File: 		welcome.scss
+ * Type: 			execute
+ * Author:        	Chris Humboldt
+ * Last Edited:   	25 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Imports
+// Global
+// Examples
+// Footer
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$site-family 					: 'Lato', sans-serif;
+
+
+// Imports
+// ---------------------------------------------------------------------------------------
+@import "../../core/sass/web-import";
+
+
+// Global
+// ---------------------------------------------------------------------------------------
+html {
+	font-family: $site-family;
+}
+label {
+	font-family: $site-family;
+}
+
+
+// Examples
+// ---------------------------------------------------------------------------------------
+.atomic-example, .class-example {
+	margin-bottom: 1.5em;
+	border: 1px solid lighten(#000, 88%);
+	text-align: center;
+	@include border-radius();
+
+	div {
+		padding: 6px 0px;
+		border: 1px solid lighten(#000, 88%);
+		background-color: lighten(#000, 92%);
+	}
+}
+.class-example.limit {
+	padding: 0px;
+}
+.atomic-example {
+	@include row();
+
+	// Columns
+	.left-col, .right-col, .middle-col {
+		@include span(12);
+	}
+
+	@include respond-to(large) {
+		.left-col {
+			@include new-span(6);
+		}
+		.middle-col, .right-col {
+			@include new-span(3);
+		}
+	}
+
+	@include respond-to(50em) {
+		.left-col {
+			@include new-span(12);
+		}
+		.middle-col {
+			@include new-span(9);
+		}
+		.right-col {
+			@include new-span(3);
+		}
+	}
+
+	@include respond-to(56.250em) {
+		.left-col, .right-col {
+			@include new-span(2);
+		}
+		.middle-col {
+			@include new-span(8);
+		}
+	}
+}
+
+
+// Footer
+// ---------------------------------------------------------------------------------------
+#footer {
+	text-align: center;
+
+	h6 {
+		@include center();
+
+		// Respond
+		@include respond-to(large) {
+			width: 70%;
+		}
+	}
+	.social {
+		padding-top: $space-medium;
+
+		.circle {
+			@include span(3);
+			
+			a {
+				display: block;
+				font-size: 1.4em;
+				color: $river-bed;
+				background-color: $white;
+				@include center();
+				@include text-squared(66px);
+				@include border-radius(50%);
+				@include animate(background-color);
+
+				// Respond
+				@include respond-to($bp-small ) {
+					font-size: 1.75em;
+					@include text-squared(80px);
+				}
+				@include respond-to(large) {
+					font-size: 2.25em;
+					@include text-squared(110px);
+				}
+			}
+		}
+		.circle:first-child {
+			@include offset(3);
+		}
+
+		// Respond
+		@include respond-to($bp-large) {
+			.circle {
+				@include new-span(2);
+			}
+			.circle:first-child {
+				@include offset(4);
+			}
+		}
+	}
+}
+.no-touch #footer .social .circle a:hover {
+	background-color: lighten(#E54028, 14%);
+}
+
+

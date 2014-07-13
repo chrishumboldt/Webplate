@@ -1,0 +1,33 @@
+/**
+ * SASS File: 		_list.scss
+ * Type: 			atom
+ * Author:        	Chris Humboldt
+ * Last Edited:   	10 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Content lists
+// Flat list
+
+
+// Content lists
+// ---------------------------------------------------------------------------------------
+ul.content, ol.content {
+	padding-left: $space-medium;
+}
+
+
+// Flat list
+// ---------------------------------------------------------------------------------------
+ul.flat, ol.flat {
+	@include spacing-no();
+	list-style: none;
+
+	li {
+		display: inline-block;
+	}
+}
+
+

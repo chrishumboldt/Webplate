@@ -1,0 +1,43 @@
+/**
+ * SASS File: 		_execute.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	22 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Execute
+
+
+// Execute
+// ---------------------------------------------------------------------------------------
+@mixin flickerplate-css() {
+	
+	.flickerplate {
+		@include fp-flicker();
+		
+		// Flicks
+		ul.flicks {
+			@include fp-flicks();
+
+			& > li {
+				@include fp-flick();
+				@include fp-flick-content();
+			}
+		}
+		
+		// Arrow navigation
+		@include fp-arrow-navigation();
+		
+		// Dot navigation
+		@include fp-dot-navigation();
+	}
+
+	// Dark theme
+	@include fp-dark-theme(".flickerplate");
+
+	// Animation type
+	@include fp-animations(".flickerplate");
+}

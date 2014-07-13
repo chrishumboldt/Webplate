@@ -1,0 +1,166 @@
+/**
+ * SASS File: 		_modal.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	5 July 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Modal
+// Modal close
+// Modal form
+// Modal static content
+
+
+// Modal
+// ---------------------------------------------------------------------------------------
+.modalplate {
+	@include drop-shadow(fade-out($black, 0.8), 8px, 2px);
+}
+
+
+// Modal close
+// ---------------------------------------------------------------------------------------
+.modalplate .close.icon-times {
+	display: block;
+	position: absolute;
+	top: $space-base;
+	right: $space-minor;
+	font-size: 1em;
+	color: $grey-light;
+	border: 3px solid $grey-light;
+	@include text-squared(30px);
+	line-height: 24px;
+	@include border-radius(50%);
+	@include animate(all);
+	z-index: 3;
+
+	// Respond
+	@include respond-to(large) {
+		right: $space-base;
+	}
+}
+.no-touch .modalplate .close.icon-times:hover {
+	color: $aqua;
+	border-color: $aqua;
+	text-decoration: none;
+}
+
+
+// Modal form
+// ---------------------------------------------------------------------------------------
+.modalplate form {
+	@include row();
+	border-bottom: 1px solid $grey-light;
+
+	h4 {
+		@include spacing-no();
+		@include span(12);
+		padding: $space-base;
+		border: none;
+		z-index: 2;
+	}
+	label {
+		@include span(5);
+		position: relative;
+		@include spacing-no();
+		text-align: right;
+		border-top: 1px solid $grey-light;
+		z-index: 2;
+	}
+	p {
+		@include span(12);
+		position: relative;
+		padding: $space-base;
+		margin: 0px;
+		border-top: 1px solid $grey-light;
+		z-index: 2;
+	}
+	.input-outer {
+		@include span(7);
+		position: relative;
+		background-color: $grey-x-light;
+		border-top: 1px solid $grey-light;
+		border-left: 1px solid $grey-light;
+		z-index: 2;
+
+		textarea {
+			height: 82px;
+		}
+		input, textarea {
+			@include spacing-no();
+			border: none;
+			background-color: transparent;
+		}
+		input:focus, textarea:focus {
+			border: none;
+		}
+
+		// Error
+		&.error {
+			background-color: lighten($red-light, 26%);
+
+			input {
+				color: $red;
+			}
+		}
+	}
+	label, .input-outer {
+		padding: $space-minor $space-small;
+	}
+
+	// Options
+	.options {
+		@include row();
+		position: absolute;
+		bottom: 0;
+		z-index: 1;
+
+		a, button {
+			@include button-size-large();
+			@include spacing-no();
+			@include border-radius(0px);
+			font-size: 0.875em;
+
+			&.btn-cancel {
+				@include span(5);
+			}
+			&.btn-ok {
+				@include span(7);
+			}
+
+			// Respond
+			@include respond-to(large) {
+				@include button-size-extra-large();
+				@include spacing-no();
+				font-size: 0.913em;
+			}
+		}
+	}
+
+	// Respond
+	@include respond-to(large) {
+		border-bottom: none;
+
+		.options {
+			position: relative;
+		}
+	}
+}
+
+
+// Modal static content
+// ---------------------------------------------------------------------------------------
+.modalplate .static {
+	padding: $space-base;
+
+	// Respond
+	@include respond-to(large) {
+		padding: $space-base $space-medium;
+	}
+}
+
+
+

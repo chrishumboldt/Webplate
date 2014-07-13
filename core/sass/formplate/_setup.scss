@@ -1,0 +1,25 @@
+/**
+ * SASS File: 		_setup.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Font face
+
+
+// Font face
+// ---------------------------------------------------------------------------------------
+@font-face {
+	font-family: 'formplate';
+	src:url('#{$font-face-formplate}/icomoon.eot?c4hmew');
+	src:url('#{$font-face-formplate}/icomoon.eot?#iefixc4hmew') format('embedded-opentype'),
+		url('#{$font-face-formplate}/icomoon.woff?c4hmew') format('woff'),
+		url('#{$font-face-formplate}/icomoon.ttf?c4hmew') format('truetype'),
+		url('#{$font-face-formplate}/icomoon.svg?c4hmew#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

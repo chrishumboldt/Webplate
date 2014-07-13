@@ -1,0 +1,31 @@
+/**
+ * SASS File: 		_display.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	28 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Show / hide
+// Opacity
+
+
+// Show / hide
+// ---------------------------------------------------------------------------------------
+@mixin hide() {
+	display: none;
+}
+@mixin show($type: block) {
+	display: $type;
+}
+
+
+// Opacity
+// ---------------------------------------------------------------------------------------
+@mixin opacity($opacity: 0.60) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}

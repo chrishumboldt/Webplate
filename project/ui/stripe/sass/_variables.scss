@@ -1,0 +1,37 @@
+/**
+ * SASS File: 		_variables.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Custom colours
+// Header
+// Showcase
+// Text
+
+
+// Custom colours
+// ---------------------------------------------------------------------------------------
+$river-bed-feint			: lighten($river-bed, 10%);
+$river-bed-light 			: lighten($river-bed, 30%);
+
+
+// Header
+// ---------------------------------------------------------------------------------------
+$scroll-down-dimensions 	: 50px;
+
+
+// Showcase
+// ---------------------------------------------------------------------------------------
+$showcase-hover-colour 		: $black;
+
+
+// Text
+// ---------------------------------------------------------------------------------------
+$code-font 					: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+
+

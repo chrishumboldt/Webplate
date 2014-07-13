@@ -1,0 +1,44 @@
+/**
+ * SASS File: 		web-import.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	13 July 2014
+ */
+
+// NOTE: Include this file in any custom SASS file you create to gain access to the 
+// $page-width variable and Webplate mixins.
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Settings
+// Variables
+// Plugins
+
+
+// Settings
+// ---------------------------------------------------------------------------------------
+@import "../../settings";
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$limit-width						: 75em !default;
+$menu-width							: 16.250em !default;
+$small-nav-back						: #fff !default;
+$images-root						: "../img" !default;
+$column-limit						: 12 !default;
+$spacing-limit						: 10 !default;
+$default-flex 						: 1 !default;
+$default-flex-percent-option		: false !default;
+$break-main 						: 43.813em !default;
+$min-max 							: false !default;
+$font-family 						: 'Open Sans', Helvetica, Arial, sans-serif !default;
+$font-face-formplate				: "../../core/css/icon-font-formplate" !default;
+$font-face-buttonplate				: "../../core/css/icon-font-buttonplate" !default;
+
+
+// Plugins
+// ---------------------------------------------------------------------------------------
+@import "blueplate/import";
+@import "buttonplate/import";

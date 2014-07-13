@@ -1,0 +1,230 @@
+/**
+ * SASS File: 		_responsive-layout.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	27 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Row
+// Span
+// Order
+// Offsets
+// Layout
+// Respond to
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+// Responsive
+$column-limit 						: 12 !default;
+$default-flex 						: 1 !default;
+$default-flex-percent-option		: false !default;
+$limit-width 						: 68.750em !default;
+$break-main 						: 43.813em !default;
+$min-max 							: false !default;
+
+
+// Containers
+// ---------------------------------------------------------------------------------------
+@mixin row() {
+	width: 100%;
+
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+@mixin flex-container() {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+}
+@mixin flex-row() {
+	@include flex-container();
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+@mixin flex-column() {
+	@include flex-container();
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+
+// Spans
+// ---------------------------------------------------------------------------------------
+@mixin span($span: $column-limit, $span-column-limit: $column-limit) {
+	float: left;
+ 	position: relative;
+	width: percentage($span / $span-column-limit);
+}
+@mixin new-span($span: $column-limit, $span-column-limit: $column-limit) {
+	width: percentage($span / $span-column-limit);
+}
+@mixin make-span($span: $column-limit, $span-column-limit: $column-limit){
+	width: percentage($span / $span-column-limit);
+}
+@mixin reset-span() {
+	@include span(12);
+	@include offset(0);
+	@include offset-r(0);
+}
+@mixin flex-size($flex, $percent-check) {
+	@if $percent-check == false {
+		-webkit-flex-grow: $flex;
+		-moz-flex-grow: $flex;
+		flex-grow: $flex;
+		-webkit-flex-basis: 1;
+		-moz-flex-basis: 1;
+		flex-basis: 1;
+	}
+	@else {
+		-webkit-flex-grow: 1;
+		-moz-flex-grow: 1;
+		flex-grow: 1;
+		-webkit-flex-basis: $flex;
+		-moz-flex-basis: $flex;
+		flex-basis: $flex;
+	}
+}
+@mixin flex($flex: $default-flex, $percent-check: $default-flex-percent-option) {
+	-webkit-flex-shrink: 1;
+	-moz-flex-shrink: 1;
+	flex-shrink: 1;
+	@include flex-size($flex, $percent-check);
+}
+@mixin new-flex($flex: $default-flex, $percent-check: $default-flex-percent-option) {
+	@include flex-size($flex, $percent-check);
+}
+@mixin flex-span($span: $column-limit, $span-column-limit: $column-limit) {
+	-webkit-flex-grow: 1;
+	-moz-flex-grow: 1;
+	flex-grow: 1;
+	-webkit-flex-shrink: 1;
+	-moz-flex-shrink: 1;
+	flex-shrink: 1;
+	-webkit-flex-basis: percentage($span / $span-column-limit);
+	-moz-flex-basis: percentage($span / $span-column-limit);
+	flex-basis: percentage($span / $span-column-limit);
+}
+@mixin new-flex-span($span: $column-limit, $span-column-limit: $column-limit) {
+	-webkit-flex-basis: percentage($span / $span-column-limit);
+	-moz-flex-basis: percentage($span / $span-column-limit);
+	flex-basis: percentage($span / $span-column-limit);
+}
+@mixin flex-reset() {
+	-webkit-flex-grow: auto;
+	-moz-flex-grow: auto;
+	flex-grow: auto;
+	-webkit-flex-shrink: auto;
+	-moz-flex-shrink: auto;
+	flex-shrink: auto;
+	-webkit-flex-basis: auto;
+	-moz-flex-basis: auto;
+	flex-basis: auto;
+}
+
+
+// Order
+// ---------------------------------------------------------------------------------------
+@mixin flex-order($order-int: 1) {
+	-webkit-order: $order-int;
+	-moz-order: $order-int;
+	order: $order-int;
+}
+
+
+// Offsets
+// ---------------------------------------------------------------------------------------
+@mixin offset($off-by, $span-column-limit: $column-limit) {
+	margin-left: percentage($off-by / $span-column-limit);
+}
+@mixin offset-r($off-by, $span-column-limit: $column-limit) {
+	margin-right: percentage($off-by / $span-column-limit);
+}
+
+
+// Layout
+// ---------------------------------------------------------------------------------------
+@mixin limit() {
+	width: $limit-width;
+	margin: 0px auto;
+
+	@media screen and (max-width: $limit-width) 
+	{
+		width: 100%;
+	}
+}
+
+
+// Respond to
+// ---------------------------------------------------------------------------------------
+@mixin respond-to($breakpoint, $breakpoint-type: false, $orientation: false){
+
+	// Retina breakpoint
+	@if $breakpoint == retina {
+		@media screen and (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) { 
+			@content; 
+		}
+	}
+	// Layout responding
+	@else {
+		// Min max
+		@if $breakpoint-type == false {
+
+			// Large
+			@if $breakpoint == small {
+				$min-max 				: max-width !global;
+			}
+			@else if $breakpoint == fluid {
+				$min-max 				: max-width !global;
+			}
+			@else {
+				$min-max 				: min-width !global;
+			}
+		}
+		@else {
+			@if $breakpoint-type == max {
+				$min-max 				: max-width !global;
+			}
+			@else {
+				$min-max 				: min-width !global;
+			}
+		}
+
+		// Breakpoint
+		@if $breakpoint == large {
+			$breakpoint					: $break-main;
+		}
+		@else if $breakpoint == fluid {
+			$breakpoint 				: $limit-width;	
+		}
+		@else if $breakpoint == small {
+			$breakpoint 				: $break-main;
+		}
+
+		// Return (check orientation)
+		@if $orientation != false {
+			@media only screen and ($min-max: $breakpoint) and (orientation : $orientation) { 
+				@content; 
+			} 
+		}
+		@else {
+			@media only screen and ($min-max: $breakpoint) { 
+				@content; 
+			}
+		}
+	}
+}

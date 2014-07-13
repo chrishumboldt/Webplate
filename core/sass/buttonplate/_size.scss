@@ -1,0 +1,68 @@
+/**
+ * SASS File: 		_size.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Button size
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$btn-size-s						: 30px;
+$btn-size-n						: 46px;
+$btn-size-l						: 58px;
+$btn-size-xl					: 70px;
+
+$btn-padding-s					: 14px;
+$btn-padding-n					: 26px;
+$btn-padding-l					: 34px;
+$btn-padding-xl					: 40px;
+
+$drp-height						: 34px;
+$drp-height-xl					: 40px;
+
+
+// Button size
+// ---------------------------------------------------------------------------------------
+@mixin button-size-small() {
+	padding: 0px $btn-padding-s;
+	height: $btn-size-s;
+	line-height: $btn-size-s;
+	font-size: 0.750em;
+
+	// Drop-down
+	@include drop-down-position($btn-padding-s, $drp-height, 0.938em);
+}
+@mixin button-size-normal() {
+	padding: 0px $btn-padding-n;
+	height: $btn-size-n;
+	line-height: $btn-size-n;
+	font-size: 0.875em;
+
+	// Drop-down
+	@include drop-down-position($btn-padding-n, $drp-height, 0.875em);
+}
+@mixin button-size-large() {
+	padding: 0px $btn-padding-l;
+	height: $btn-size-l;
+	line-height: $btn-size-l;
+	font-size: 1em;
+
+	// Drop-down
+	@include drop-down-position($btn-padding-l, $drp-height, 0.813em);
+}
+@mixin button-size-extra-large() {
+	padding: 0px $btn-padding-xl;
+	height: $btn-size-xl;
+	line-height: $btn-size-xl;
+	font-size: 1.125em;
+
+	// Drop-down
+	@include drop-down-position($btn-padding-xl, $drp-height-xl, 0.813em);
+}

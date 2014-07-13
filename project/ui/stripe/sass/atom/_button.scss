@@ -1,0 +1,64 @@
+/**
+ * SASS File: 		_button.scss
+ * Type: 			molecule
+ * Author:        	Chris Humboldt
+ * Last Edited:   	17 June 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic buttons
+// Button styles
+
+
+// Basic buttons
+// ---------------------------------------------------------------------------------------,
+.btn-cancel,
+.btn-control,
+.btn-default,
+.btn-download,
+.btn-error,
+.btn-info,
+.btn-link,
+.btn-ok,
+.btn-primary,
+.btn-signup,
+.btn-success,
+.btn-warning {
+	@include button-setup();
+	@include button-size-normal();
+	@include button-shape-rounded();
+	margin-bottom: $space-x-small;
+}
+
+
+// Buttons styles
+// ---------------------------------------------------------------------------------------
+.btn-download, .btn-ok {
+	@include button-style-flat($blue);
+}
+.btn-control {
+	@include button-size-large();
+	@include button-style-flat($river-bed-feint);
+}
+.btn-error {
+	@include button-style-flat($red-dark);
+}
+.btn-info {
+	@include button-style-flat($blue-light);
+}
+.btn-link {
+	@include button-style-flat($red);
+}
+.btn-primary, .btn-cancel, .btn-signup {
+	@include button-style-flat($aqua);
+}
+.btn-success {
+	@include button-style-flat($green);
+}
+.btn-warning {
+	@include button-style-flat($orange);
+}
+
+

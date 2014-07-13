@@ -1,0 +1,22 @@
+/**
+ * SASS File: 		web-flickerplate.scss
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 May 2014
+ * Edited By:		Chris Humboldt
+ * Link:			http://getwebplate.com/plugins/flickerplate
+ */
+
+// Table of Contents:
+// ---------------------------------------------------------------------------------------
+// Imports
+// Call styles
+
+// Imports
+// ---------------------------------------------------------------------------------------
+@import "blueplate/import";
+@import "flickerplate/import";
+
+
+// Call styles
+// ---------------------------------------------------------------------------------------
+@include flickerplate-css();

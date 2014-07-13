@@ -1,0 +1,57 @@
+/**
+ * SASS File: 		_input.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 May 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Input
+// Input colour states
+
+
+// Input
+// ---------------------------------------------------------------------------------------
+@mixin form-input() {
+	#{$basic-inputs} {
+		width: 100%;
+		padding: 10px;
+		margin: 0px;
+		margin-bottom: 1.5em;
+		font-family: $font-family;
+		font-size: 0.813em;
+		background-color: $white;
+		border: 1px solid $grey-form;
+		outline: none;
+		-webkit-appearance: none;	
+		@include border-radius(2px);
+
+		&:focus {
+			border-color: $blue;
+		}
+
+		@include respond-to(large) {
+			font-size: 0.875em;
+			padding: 12px;
+		}
+	}
+}
+
+
+// Input colour states
+// ---------------------------------------------------------------------------------------
+@mixin form-input-hover() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-colour-#{$colour-name} {
+
+			// Focus
+			#{$basic-inputs-focus} {
+				border-color: $colour;
+			}
+		}
+	}
+}
+
+

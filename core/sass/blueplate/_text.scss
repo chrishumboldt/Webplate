@@ -1,0 +1,35 @@
+/**
+ * SASS File: 		_text.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	28 March 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Text
+
+
+// Text
+// ---------------------------------------------------------------------------------------
+@mixin text-squared($size) {
+	width: $size;
+	height: $size;
+	line-height: $size;
+	text-align: center;
+}
+@mixin text-hide() {
+	border:0; 
+	font: 0/0 a; 
+	text-shadow: none; 
+	color: transparent; 
+	background-color: transparent;
+}
+@mixin text-ellipsis($width: 100%) {
+	display: inline-block;
+	max-width: $width;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

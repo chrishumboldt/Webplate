@@ -1,0 +1,35 @@
+/**
+ * SASS File: 		_layout.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	11 July 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Box sizing
+// Fixes
+
+
+// Box sizing
+// ---------------------------------------------------------------------------------------
+@mixin box-sizing($option: content-box) {
+	-webkit-box-sizing: $option;
+	-moz-box-sizing: $option;
+	box-sizing: $option;
+}
+
+
+// Fixes
+// ---------------------------------------------------------------------------------------
+@mixin clearfix() {
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
