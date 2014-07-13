@@ -15,15 +15,15 @@
 // Some variables
 // ---------------------------------------------------------------------------------------
 var $crt_script 							= document.getElementById('webplate-stack');
-var $crt_script_src							= $crt_script.getAttribute('src').replace('webplate/stack.js', '');
+var $crt_script_src							= $crt_script.getAttribute('src').replace('stack.js', '');
 var $root									= $crt_script_src;
-var $js_path								= $root + 'webplate/core/js/';
-var $css_path								= $root + 'webplate/core/css/';
-var $less_path								= $root + 'webplate/core/less/';
-var $icomoon_path							= $root + 'webplate/project/icomoon/';
-var $js_project_path						= $root + 'webplate/project/js/';
-var $css_project_path						= $root + 'webplate/project/css/';
-var $ui_project_path						= $root + 'webplate/project/ui/';
+var $js_path								= $root + 'core/js/';
+var $css_path								= $root + 'core/css/';
+var $less_path								= $root + 'core/less/';
+var $icomoon_path							= $root + 'project/icomoon/';
+var $js_project_path						= $root + 'project/js/';
+var $css_project_path						= $root + 'project/css/';
+var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
 var $ar_core_css							= [
 	$css_path + 'webplate.css',
