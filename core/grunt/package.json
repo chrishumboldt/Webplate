@@ -20,10 +20,6 @@
     "Responsive",
     "jQuery",
     "SASS",
-<<<<<<< HEAD:webplate/core/grunt/package.json
-    "CSS",
-    "javascript"
-=======
     "Blueplate",
     "Modernizr",
     "Hammer.js",
@@ -32,7 +28,6 @@
     "Modalplate",
     "Formplate",
     "Flickerplate"
->>>>>>> dev-chris:core/grunt/package.json
   ],
   "author": "Chris Humboldt",
   "license": "Apache License, Version 2.0",

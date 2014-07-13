@@ -11,11 +11,7 @@ This is a simple process that requires you dropping a copy of the Webplate direc
 
 ```
 <head>
-<<<<<<< HEAD
-    <script id="webplate-stack" src="webplate/stack.js" type="text/javascript"></script>
-=======
     <script id="webplate-stack" src="[webplate-directory]/stack.js"></script>
->>>>>>> dev-chris
 </head>
 ```
 

@@ -55,12 +55,9 @@ module.exports = function(grunt) {
 					'../js/min/web-imports.min.js': [
 						'../js/web-jquery.js',
 						'../js/web-modernizr.js',
-<<<<<<< HEAD:webplate/core/grunt/gruntfile.js
-=======
 						'../js/web-hammer.js',
 						'../js/web-hammer-jquery.js',
 						'../js/web-velocity.js',
->>>>>>> dev-chris:core/grunt/gruntfile.js
 						'../js/web-tools.js',
 						'../js/web-buttonplate.js',
 						'../js/web-formplate.js',
