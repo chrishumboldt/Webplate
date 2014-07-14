@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	13 July 2014
+ * Last Edited:   	14 July 2014
  */
 
 
@@ -76,7 +76,7 @@ $(document).ready(function()
 		{
 			if($.web_exists($(this).find('ul')))
 			{
-				$list_width 			= $(this).width() + 14;
+				$list_width 			= $(this).width() + 24;
 
 				$(this).addClass('has-sub-menu');
 				$(this).find('ul').width($list_width);
@@ -84,7 +84,7 @@ $(document).ready(function()
 		});
 
 		// Navigation sub menu
-		$('header nav li.has-sub-menu').on('click', function($ev)
+		$('header nav li.has-sub-menu').find('a:first').on('click', function($ev)
 		{
 			$ev.preventDefault();
 			
@@ -101,7 +101,7 @@ $(document).ready(function()
 			});
 
 			// Show
-			$(this).addClass('show-sub-menu').find('ul').velocity(
+			$(this).parents('li.has-sub-menu').addClass('show-sub-menu').find('ul').velocity(
 			{ 
 				marginTop				: 15,
 				opacity					: 1
@@ -227,6 +227,7 @@ $(document).ready(function()
 	function fc_square_it()
 	{
 		$.web_square('.image-hover, .showcase .image');
+		$.web_square('.showcase.wide .image', 0.75);
 	}
 
 	// Wallpaper
@@ -248,7 +249,7 @@ $(document).ready(function()
 			{
 				if($.web_exists($(this).find('ul')))
 				{
-					$list_width 			= $(this).width() + 14;
+					$list_width 			= $(this).width() + 24;
 
 					$(this).addClass('has-sub-menu');
 					$(this).find('ul').width($list_width);

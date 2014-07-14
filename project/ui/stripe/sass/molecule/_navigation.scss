@@ -127,7 +127,7 @@ header.stripe nav {
 			> ul {
 				@include hide();
 				position: absolute;
-				margin-left: -7px;
+				margin-left: -12px;
 				background-color: $white;
 				@include border-radius();
 
