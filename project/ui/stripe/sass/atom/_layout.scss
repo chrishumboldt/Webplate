@@ -173,10 +173,10 @@ header.stripe {
 	}
 
 	// Text
-	h1, h2, h3, h4, h5 {
+	h1, h2, h3, h4 {
 		color: lighten($river-bed, 42%);
 	}
-	h6, p {
+	h5, h6, p {
 		color: lighten($river-bed, 22%);
 	}
 }

@@ -105,12 +105,19 @@ jQuery.web_log                      = function($text)
 
 // DOM
 // ---------------------------------------------------------------------------------------
-jQuery.web_square                   = function($selector)
+jQuery.web_square                   = function($selector, $multiplier)
 {
+    // Variables
+    if(typeof($multiplier) === 'undefined')
+    {
+        $multiplier                 = 1;
+    }
+
+    // 
     $($selector).each(function()
     {
         // Width
-        var $square_dim             = Math.floor($(this).width());
+        var $square_dim             = Math.floor($(this).width() * $multiplier);
 
         // Set the dimensions
         $(this).height($square_dim);

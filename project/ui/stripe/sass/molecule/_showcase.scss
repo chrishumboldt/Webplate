@@ -2,7 +2,7 @@
  * SASS File: 		_showcase.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	20 June 2014
+ * Last Edited:   	14 July 2014
  */
 
 
@@ -138,6 +138,13 @@
 			p {
 				font-size: 0.875em;
 			}
+		}
+	}
+
+	// Wide
+	&.wide {
+		.caption {
+			height: 35%;
 		}
 	}
 }
