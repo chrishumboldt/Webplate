@@ -110,7 +110,7 @@
 
 			// Button sign up
 			.btn-signup {
-				@include button-size-extra-large();
+				@include button-size-x-large();
 				font-size: 0.913em;
 				border-left: 1px solid darken($aqua, 3%);
 			}

@@ -57,7 +57,7 @@ $drp-height-xl					: 40px;
 	// Drop-down
 	@include drop-down-position($btn-padding-l, $drp-height, 0.813em);
 }
-@mixin button-size-extra-large() {
+@mixin button-size-x-large() {
 	padding: 0px $btn-padding-xl;
 	height: $btn-size-xl;
 	line-height: $btn-size-xl;

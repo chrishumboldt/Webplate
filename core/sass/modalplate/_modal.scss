@@ -2,7 +2,7 @@
  * SASS File: 		_modal.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	4 July 2014
+ * Last Edited:   	16 July 2014
  */
 
 
@@ -37,6 +37,42 @@
 			max-height: 100%;
 			left: 50%;
 			margin-left: -(40.625em / 2);
+		}
+
+		// Title bar
+		.modalplate-title-bar {
+			padding: $space-base $space-small;
+			border-bottom: 1px solid $grey-light;
+
+			// All headings
+			h1, h2, h3, h4, h5, h6 {
+				@include spacing-no();
+			}
+
+			.close {
+				position: absolute;
+				top: $space-base;
+				right: $space-small;
+			}
+
+			// Respond
+			@include respond-to(large) {
+				padding: $space-base;
+
+				.close {
+					right: $space-base;
+				}
+			}
+		}
+
+		// Content
+		.modalplate-content {
+			padding: $space-small;
+
+			// Respond
+			@include respond-to(large) {
+				padding: $space-base;
+			}
 		}
 	}
 

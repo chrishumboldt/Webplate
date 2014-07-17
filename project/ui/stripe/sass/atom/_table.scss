@@ -2,7 +2,7 @@
  * SASS File: 		_table.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	5 July 2014
+ * Last Edited:   	15 July 2014
  */
 
 
@@ -75,7 +75,7 @@ table.first-blue {
 		font-size: 0.813em;
 		
 		span {
-			color: lighten(#000, 75%);
+			color: $orange;
 		}
 	}
 }

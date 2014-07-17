@@ -2,7 +2,7 @@
  * SASS File: 		_execute.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	15 July 2014
  */
 
 
@@ -25,8 +25,8 @@
 		&.large {
 			@include button-size-large();
 		}
-		&.extra-large {
-			@include button-size-extra-large();
+		&.x-large {
+			@include button-size-x-large();
 		}
 
 		// Shapes

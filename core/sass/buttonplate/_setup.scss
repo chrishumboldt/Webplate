@@ -44,15 +44,15 @@
 	@include respond-to(small) {
 		width: 100%;
 	}
-	
+
+	// Visited state
+	&:visited {
+		color: lighten(#000, 40%);
+	}
 	// Hover state
 	&:hover { 
 		cursor: pointer;
 		background-color: $grey-link-hover;
-	}
-	// Visited state
-	&:visited {
-		color: lighten(#000, 40%);
 	}
 	// Active state
 	&:active {
