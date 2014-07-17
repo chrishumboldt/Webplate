@@ -2,7 +2,7 @@
  * SASS File: 		_modal.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	16 July 2014
+ * Last Edited:   	17 July 2014
  */
 
 
@@ -27,6 +27,7 @@
 		background-color: $white;
 		overflow-y: scroll;
 		z-index: 1001;
+		visibility: hidden;
 		@include animate(all, 0.4s);
 		@include drop-shadow(fade-out($black, 0.7), 5px, 1px);
 
@@ -91,7 +92,6 @@
 	.modalplate.appear,
 	.modalplate.appear-scale {
 		top: 0;
-		visibility: hidden;
 		@include opacity(0);
 	}
 	.modalplate.appear-scale {
@@ -120,6 +120,7 @@
 @mixin modal-reveal() {
 	.modalplate-reveal .modalplate.reveal {
 		top: 0;
+		visibility: visible;
 	}
 	// Appear
 	.modalplate-reveal .modalplate.reveal.appear,
@@ -128,12 +129,14 @@
 		@include opacity(1);
 	}
 	.modalplate-reveal .modalplate.reveal.appear-scale {
+		visibility: visible;
 		@include transform-scale-3d(1, 1, 1);
 	}
 	// Sliding
 	.modalplate-reveal .modalplate.reveal.slide-from-left,
 	.modalplate-reveal .modalplate.reveal.slide-from-right {
 		left: 0;
+		visibility: visible;
 
 		// Respond
 		@include respond-to(large) {
