@@ -51,13 +51,13 @@
 // Stripe
 // ---------------------------------------------------------------------------------------
 .stripe-app .stripe {
-	padding: $space-small;
+	padding: $space-base $space-small;
 
 	@include respond-to($bp-small) {
-		padding: $space-base;
+		padding: $space-medium $space-slight;
 	}
 	@include respond-to($bp-large) {
-		padding: $space-medium;
+		padding: ($space-large + $space-minor) $space-large;
 	}
 }
 
