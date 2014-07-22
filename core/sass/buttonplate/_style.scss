@@ -30,6 +30,13 @@ $lightness-threshold 	: 68%;
 	background-color: $colour;
 
 	// States
+	@if $colour != #fff {
+		@if $colour != #EBEBEB {
+			&:visited {
+				color: $white;
+			}
+		}
+	}
 	&:hover {
 		// Check saturations
 		@if saturation($colour) > 0% {
@@ -49,9 +56,6 @@ $lightness-threshold 	: 68%;
 			color: darken($colour, 18%);
 		}
 		background-color: $colour;
-	}
-	&:visited {
-		color: $white;
 	}
 
 	// Drop-down link hover

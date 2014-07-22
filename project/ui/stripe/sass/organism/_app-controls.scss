@@ -2,7 +2,7 @@
  * SASS File: 		_app-controls.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	9 July 2014
+ * Last Edited:   	21 July 2014
  */
 
 
@@ -25,36 +25,60 @@
 
 	// Respond
 	@include respond-to(large) {
-		position: absolute;
 		width: $menu-width;
 		bottom: 0;
+
+		&.fix-it {
+			position: absolute;
+		}
 	}
 }
 
 
 // Links
 // ---------------------------------------------------------------------------------------
-.stripe-app .app-controls ul.links {
-	margin: $space-base 0px;
+.stripe-app .app-controls {
+	overflow: hidden;
 
-	a {
-		display: block;
-		padding: $space-small $space-base;
-		color: $river-bed-light;
-		font-size: 0.913em;
-		@include animate(color);
+	.inner {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		z-index: 1;
+		overflow: auto;
 	}
 
-	// With icons
-	&.with-icons a {
-		padding-left: $space-medium;
+	ul.links {
+		margin: ($space-base + 6px) 0px;
 
-		span {
-			position: absolute;
-			margin-top: 3px;
-			margin-left: -$space-base - 4px;
-			font-size: 1.25em;
-			color: $aqua;
+		a, h5 {
+			display: block;
+			padding: 10px $space-base;
+		}
+		a {
+			color: $river-bed-light;
+			font-size: 0.913em;
+			@include animate(color);
+		}
+		h5 {
+			margin: 0px;
+			padding-top: $space-base;
+			color: $white;
+		}
+
+		// With icons
+		&.with-icons a {
+			padding-left: $space-medium;
+
+			span {
+				position: absolute;
+				margin-top: 3px;
+				margin-left: -$space-base - 4px;
+				font-size: 1.25em;
+				color: $aqua;
+			}
 		}
 	}
 }

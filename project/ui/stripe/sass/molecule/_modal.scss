@@ -133,7 +133,7 @@
 
 			// Respond
 			@include respond-to(large) {
-				@include button-size-extra-large();
+				@include button-size-x-large();
 				@include spacing-no();
 				font-size: 0.913em;
 			}

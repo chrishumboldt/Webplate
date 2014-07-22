@@ -165,7 +165,7 @@ header.stripe {
 }
 // Dark
 .stripe.dark, 
-.invert .strip.dark, {
+.invert .stripe.dark, {
 	background-color: $river-bed;
 
 	&:nth-child(even), &:nth-child(odd) {
@@ -173,13 +173,31 @@ header.stripe {
 	}
 
 	// Text
-	h1, h2, h3, h4 {
+	h1, h2, h3, h4, b {
 		color: lighten($river-bed, 42%);
 	}
-	h5, h6, p {
+	h5, h6, p, div {
 		color: lighten($river-bed, 22%);
 	}
 }
+// Red
+.stripe.red, 
+.invert .stripe.red, {
+	background-color: $red;
+
+	&:nth-child(even), &:nth-child(odd) {
+		background-color: $red;
+	}
+
+	// Text
+	h1, h2, h3, h4, b {
+		color: lighten($red, 42%);
+	}
+	h5, h6, p, div {
+		color: lighten($red, 26%);
+	}
+}
+
 
 
 // App layout
