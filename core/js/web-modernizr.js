@@ -1,5 +1,5 @@
-/* Modernizr 2.7.1 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-applicationcache-canvas-canvastext-draganddrop-hashchange-history-audio-video-indexeddb-input-inputtypes-localstorage-postmessage-sessionstorage-websockets-websqldatabase-webworkers-geolocation-inlinesvg-svg-svgclippaths-touch-shiv-mq-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_mediaqueries-css_overflow_scrolling-css_scrollbars
+/* Modernizr 2.8.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-flexbox-opacity-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-applicationcache-canvas-hashchange-history-audio-video-localstorage-websockets-websqldatabase-webworkers-geolocation-inlinesvg-svg-touch-shiv-mq-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_mediaqueries-css_overflow_scrolling-css_scrollbars
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.7.1',
+    var version = '2.8.3',
 
     Modernizr = {},
 
@@ -19,7 +19,7 @@ window.Modernizr = (function( window, document, undefined ) {
     modElem = document.createElement(mod),
     mStyle = modElem.style,
 
-    inputElem  = document.createElement('input')  ,
+    inputElem  ,
 
     smile = ':)',
 
@@ -91,7 +91,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
       var matchMedia = window.matchMedia || window.msMatchMedia;
       if ( matchMedia ) {
-        return matchMedia(mq).matches;
+        return matchMedia(mq) && matchMedia(mq).matches || false;
       }
 
       var bool;
@@ -262,9 +262,6 @@ window.Modernizr = (function( window, document, undefined ) {
         return !!(elem.getContext && elem.getContext('2d'));
     };
 
-    tests['canvastext'] = function() {
-        return !!(Modernizr['canvas'] && is(document.createElement('canvas').getContext('2d').fillText, 'function'));
-    };
     tests['touch'] = function() {
         var bool;
 
@@ -283,21 +280,10 @@ window.Modernizr = (function( window, document, undefined ) {
 
     tests['geolocation'] = function() {
         return 'geolocation' in navigator;
-    };
-
-
-    tests['postmessage'] = function() {
-      return !!window.postMessage;
-    };
-
-
-    tests['websqldatabase'] = function() {
+    };    tests['websqldatabase'] = function() {
       return !!window.openDatabase;
     };
 
-    tests['indexedDB'] = function() {
-      return !!testPropsAll("indexedDB", window);
-    };
 
     tests['hashchange'] = function() {
       return isEventSupported('hashchange', window) && (document.documentMode === undefined || document.documentMode > 7);
@@ -307,51 +293,10 @@ window.Modernizr = (function( window, document, undefined ) {
       return !!(window.history && history.pushState);
     };
 
-    tests['draganddrop'] = function() {
-        var div = document.createElement('div');
-        return ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div);
-    };
 
     tests['websockets'] = function() {
         return 'WebSocket' in window || 'MozWebSocket' in window;
-    };
-
-
-    tests['rgba'] = function() {
-        setCss('background-color:rgba(150,255,150,.5)');
-
-        return contains(mStyle.backgroundColor, 'rgba');
-    };
-
-    tests['hsla'] = function() {
-            setCss('background-color:hsla(120,40%,100%,.5)');
-
-        return contains(mStyle.backgroundColor, 'rgba') || contains(mStyle.backgroundColor, 'hsla');
-    };
-
-    tests['multiplebgs'] = function() {
-                setCss('background:url(https://),url(https://),red url(https://)');
-
-            return (/(url\s*\(.*?){3}/).test(mStyle.background);
-    };    tests['backgroundsize'] = function() {
-        return testPropsAll('backgroundSize');
-    };
-
-    tests['borderimage'] = function() {
-        return testPropsAll('borderImage');
-    };
-
-
-
-    tests['borderradius'] = function() {
-        return testPropsAll('borderRadius');
-    };
-
-    tests['boxshadow'] = function() {
-        return testPropsAll('boxShadow');
-    };
-
-    tests['textshadow'] = function() {
+    };    tests['textshadow'] = function() {
         return document.createElement('div').style.textShadow === '';
     };
 
@@ -417,20 +362,6 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 
-    tests['fontface'] = function() {
-        var bool;
-
-        injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function( node, rule ) {
-          var style = document.getElementById('smodernizr'),
-              sheet = style.sheet || style.styleSheet,
-              cssText = sheet ? (sheet.cssRules && sheet.cssRules[0] ? sheet.cssRules[0].cssText : sheet.cssText || '') : '';
-
-          bool = /src/i.test(cssText) && cssText.indexOf(rule.split(' ')[0]) === 0;
-        });
-
-        return bool;
-    };
-
     tests['generatedcontent'] = function() {
         var bool;
 
@@ -489,15 +420,6 @@ window.Modernizr = (function( window, document, undefined ) {
         }
     };
 
-    tests['sessionstorage'] = function() {
-        try {
-            sessionStorage.setItem(mod, mod);
-            sessionStorage.removeItem(mod);
-            return true;
-        } catch(e) {
-            return false;
-        }
-    };
 
 
     tests['webworkers'] = function() {
@@ -518,62 +440,7 @@ window.Modernizr = (function( window, document, undefined ) {
       var div = document.createElement('div');
       div.innerHTML = '<svg/>';
       return (div.firstChild && div.firstChild.namespaceURI) == ns.svg;
-    };
-
-
-
-    tests['svgclippaths'] = function() {
-        return !!document.createElementNS && /SVGClipPath/.test(toString.call(document.createElementNS(ns.svg, 'clipPath')));
-    };
-
-    function webforms() {
-                                            Modernizr['input'] = (function( props ) {
-            for ( var i = 0, len = props.length; i < len; i++ ) {
-                attrs[ props[i] ] = !!(props[i] in inputElem);
-            }
-            if (attrs.list){
-                                  attrs.list = !!(document.createElement('datalist') && window.HTMLDataListElement);
-            }
-            return attrs;
-        })('autocomplete autofocus list placeholder max min multiple pattern required step'.split(' '));
-                            Modernizr['inputtypes'] = (function(props) {
-
-            for ( var i = 0, bool, inputElemType, defaultView, len = props.length; i < len; i++ ) {
-
-                inputElem.setAttribute('type', inputElemType = props[i]);
-                bool = inputElem.type !== 'text';
-
-                                                    if ( bool ) {
-
-                    inputElem.value         = smile;
-                    inputElem.style.cssText = 'position:absolute;visibility:hidden;';
-
-                    if ( /^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined ) {
-
-                      docElement.appendChild(inputElem);
-                      defaultView = document.defaultView;
-
-                                        bool =  defaultView.getComputedStyle &&
-                              defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
-                                                                                  (inputElem.offsetHeight !== 0);
-
-                      docElement.removeChild(inputElem);
-
-                    } else if ( /^(search|tel)$/.test(inputElemType) ){
-                                                                                    } else if ( /^(url|email)$/.test(inputElemType) ) {
-                                        bool = inputElem.checkValidity && inputElem.checkValidity() === false;
-
-                    } else {
-                                        bool = inputElem.value != smile;
-                    }
-                }
-
-                inputs[ props[i] ] = !!bool;
-            }
-            return inputs;
-        })('search tel url email datetime date month week time datetime-local number range color'.split(' '));
-        }
-    for ( var feature in tests ) {
+    };    for ( var feature in tests ) {
         if ( hasOwnProp(tests, feature) ) {
                                     featureName  = feature.toLowerCase();
             Modernizr[featureName] = tests[feature]();
@@ -582,7 +449,6 @@ window.Modernizr = (function( window, document, undefined ) {
         }
     }
 
-    Modernizr.input || webforms();
 
 
      Modernizr.addTest = function ( feature, test ) {
