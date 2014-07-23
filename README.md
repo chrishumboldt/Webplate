@@ -11,9 +11,13 @@ This is a simple process that requires you dropping a copy of the Webplate direc
 
 ```
 <head>
-    <script id="webplate-stack" src="[webplate-directory]/stack.js"></script>
+    <script id="webplate-stack" src="[webplate]/stack.js"></script>
 </head>
 ```
+
+In case you were wondering <b>[webplate]</b> is referencing the directory that houses the framework. By default it is often just called webplate and sits in your site root, but can be any name you wish. Just include the correct name in your stack call as above and all other paths will line up automatically.
+
+<b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
 
 This will load all the neccessary files required as well as give you the option to load your own "project" specific JS or CSS files. To load project files add a data attribute to your "body" like the example below.
 
