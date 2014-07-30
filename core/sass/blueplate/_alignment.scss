@@ -2,7 +2,7 @@
  * SASS File: 		_alignment.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	8 May 2014
+ * Last Edited:   	29 July 2014
  */
 
 
@@ -16,7 +16,7 @@
 @mixin center() {
 	margin: 0px auto;
 }
-@mixin vertical-align() {
+@mixin center-vertical() {
 	// As per: Sebastian Ekström
 	// URL: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
 	position: relative;

@@ -2,7 +2,7 @@
  * SASS File: 		_drop-shadow.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	29 July 2014
  */
 
 
@@ -24,6 +24,11 @@
 	-moz-box-shadow: inset $horizontal-offset $vertical-offset $size $color;
 }
 @mixin no-drop-shadow() {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+@mixin drop-shadow-no() {
 	box-shadow: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;

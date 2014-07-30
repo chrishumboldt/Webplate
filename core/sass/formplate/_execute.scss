@@ -2,7 +2,7 @@
  * SASS File: 		_execute.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	30 July 2014
  */
 
 
@@ -34,6 +34,7 @@
 
 	// Textareas
 	@include form-textarea();
+	@include form-textarea-states();
 }
 
 
