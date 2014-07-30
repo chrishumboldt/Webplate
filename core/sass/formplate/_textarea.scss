@@ -2,13 +2,14 @@
  * SASS File: 		_textarea.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	30 July 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Textarea
+// Textarea colour states
 
 
 // Textarea
@@ -36,6 +37,22 @@
 		@include respond-to(large) {
 			font-size: 0.875em;
 			padding: 12px;
+		}
+	}
+}
+
+
+// Textarea colour states
+// ---------------------------------------------------------------------------------------
+@mixin form-textarea-states() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-colour-#{$colour-name} {
+
+			// Focus
+			textarea:active,
+			textarea:focus {
+				border-color: $colour;
+			}
 		}
 	}
 }

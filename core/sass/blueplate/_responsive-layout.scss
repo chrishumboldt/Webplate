@@ -2,7 +2,7 @@
  * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	27 May 2014
+ * Last Edited:   	30 July 2014
  */
 
 
@@ -70,14 +70,26 @@ $min-max 							: false !default;
  	position: relative;
 	width: percentage($span / $span-column-limit);
 }
+// ----- DEPRECATED - WILL BE DELETED SOON
 @mixin new-span($span: $column-limit, $span-column-limit: $column-limit) {
+	width: percentage($span / $span-column-limit);
+}
+// ----- END
+@mixin span-new($span: $column-limit, $span-column-limit: $column-limit) {
 	width: percentage($span / $span-column-limit);
 }
 @mixin make-span($span: $column-limit, $span-column-limit: $column-limit){
 	width: percentage($span / $span-column-limit);
 }
+// ----- DEPRECATED - WILL BE DELETED SOON
 @mixin reset-span() {
-	@include span(12);
+	@include span($column-limit);
+	@include offset(0);
+	@include offset-r(0);
+}
+// ----- END
+@mixin span-reset() {
+	@include span($column-limit);
 	@include offset(0);
 	@include offset-r(0);
 }
@@ -105,7 +117,12 @@ $min-max 							: false !default;
 	flex-shrink: 1;
 	@include flex-size($flex, $percent-check);
 }
+// ----- DEPRECATED - WILL BE DELETED SOON
 @mixin new-flex($flex: $default-flex, $percent-check: $default-flex-percent-option) {
+	@include flex-size($flex, $percent-check);
+}
+// ----- END
+@mixin flex-new($flex: $default-flex, $percent-check: $default-flex-percent-option) {
 	@include flex-size($flex, $percent-check);
 }
 @mixin flex-span($span: $column-limit, $span-column-limit: $column-limit) {
@@ -119,7 +136,14 @@ $min-max 							: false !default;
 	-moz-flex-basis: percentage($span / $span-column-limit);
 	flex-basis: percentage($span / $span-column-limit);
 }
+// ----- DEPRECATED - WILL BE DELETED SOON
 @mixin new-flex-span($span: $column-limit, $span-column-limit: $column-limit) {
+	-webkit-flex-basis: percentage($span / $span-column-limit);
+	-moz-flex-basis: percentage($span / $span-column-limit);
+	flex-basis: percentage($span / $span-column-limit);
+}
+// ----- END
+@mixin flex-span-new($span: $column-limit, $span-column-limit: $column-limit) {
 	-webkit-flex-basis: percentage($span / $span-column-limit);
 	-moz-flex-basis: percentage($span / $span-column-limit);
 	flex-basis: percentage($span / $span-column-limit);

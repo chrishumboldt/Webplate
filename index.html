@@ -18,7 +18,7 @@
     <script id="webplate-stack" src="stack.js"></script>
 
 </head>
-<body style="display: none;" data-ui="stripe" data-project-css="welcome.css" data-project-js="min/welcome.min.js" class="invert">
+<body style="display: none;" data-ui="stripe" data-project-css="welcome.css" data-project-js="min/welcome.min.js" data-formplate-colour="aqua" class="invert">
 
 	<!-- Header -->
 	<header class="stripe">
@@ -86,9 +86,32 @@
 	<div class="stripe" id="going-responsive"><div class="contain">
 
 		<h3>Going Responsive</h3>
-		<p>Webplate includes its custom built <a href="http://getwebplate.com/plugins/blueplate">Blueplate</a> layout engine and can be used in one of two ways. You can either build your layouts using the recommended atomic implementation (requires SASS) or you can build it using the classing implementation. See a basic example of both below.</p>
+		<p>Webplate includes its custom built <a href="http://getwebplate.com/plugins/blueplate">Blueplate</a> layout engine and can be used in one of two ways. You can either build your layouts using the classing implementation or you can build it using the recommended mixin implementation (requires SASS). See a basic example of both below.</p>
 
-		<h4>Atomic Implementation</h4>
+		<p>&nbsp;</p>
+		<h4>Classed Implementation</h4>
+		<p>HTML</p>
+
+<pre class="prettyprint linenums showcase-code">
+&lt;div class="class-example row"&gt;
+    &lt;div class="span-12 large-span-2"&gt;Left&lt;/div&gt;
+    &lt;div class="span-6 large-span-8"&gt;Middle&lt;/div&gt;
+    &lt;div class="span-6 large-span-2"&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+		<p>RESULT (Screen Width: <span class="screen-width"></span>px)</p>
+		
+		<div class="class-example row">
+			
+			<div class="span-12 large-span-2">Left</div>
+			<div class="span-6 large-span-8">Middle</div>
+			<div class="span-6 large-span-2">Right</div>
+			
+		</div>
+
+		<p>&nbsp;</p>
+		<h4>Mixin Implementation</h4>
 		<p>HTML</p>
 
 <pre class="prettyprint linenums showcase-code">
@@ -111,33 +134,33 @@
     // Over 700px
     @include respond-to(large) {
         .left-col {
-            @include new-span(6);
+            @include span-new(6);
         }
         .middle-col, .right-col {
-            @include new-span(3);
+            @include span-new(3);
         }
     }
 
     // Over 800px
     @include respond-to(50em) {
         .left-col {
-            @include new-span(12);
+            @include span-new(12);
         }
         .middle-col {
-            @include new-span(9);
+            @include span-new(9);
         }
         .right-col {
-            @include new-span(3);
+            @include span-new(3);
         }
     }
 
     // Over 900px
     @include respond-to(56.250em) {
         .left-col, .right-col {
-            @include new-span(2);
+            @include span-new(2);
         }
         .middle-col {
-            @include new-span(8);
+            @include span-new(8);
         }
     }
 }
@@ -152,29 +175,8 @@
 			<div class="right-col">Right</div>
 			
 		</div>
+			
 		<p>&nbsp;</p>
-
-		<h4>Classed Implementation</h4>
-		<p>HTML</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="class-example row"&gt;
-    &lt;div class="span-12 large-span-2"&gt;Left&lt;/div&gt;
-    &lt;div class="span-6 large-span-8"&gt;Middle&lt;/div&gt;
-    &lt;div class="span-6 large-span-2"&gt;Right&lt;/div&gt;
-&lt;/div&gt;
-</pre>
-
-		<p>RESULT (Screen Width: <span class="screen-width"></span>px)</p>
-		
-		<div class="class-example row">
-			
-			<div class="span-12 large-span-2">Left</div>
-			<div class="span-6 large-span-8">Middle</div>
-			<div class="span-6 large-span-2">Right</div>
-			
-		</div>
-			
 		<p>There is a lot more that can be done and configured and it is recommended that you read the online documentation on layouts.<p>
 		<a href="http://getwebplate.com/documentation/layout" class="btn-primary">Read Documentation</a>
 

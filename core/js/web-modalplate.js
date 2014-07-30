@@ -2,7 +2,7 @@
  * jQuery File: 	modalplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	4 July 2014
+ * Last Edited:   	29 July 2014
  */
 
 
@@ -39,10 +39,18 @@
 			var $this_modal_trigger		= $(this.element);
 			var $modal_id 				= $this_modal_trigger.data('modal-open');
 			var $this_modal 			= $('[data-modal-id='+ $modal_id +']');
+			var $data_modal_reveal		= $this_modal.data('modal-reveal');
 
 			// Setup
 			$this.overlay_add();
-			$this_modal.addClass($this.settings.reveal);
+			if($data_modal_reveal != undefined)
+			{
+				$this_modal.addClass($data_modal_reveal);
+			}
+			else
+			{
+				$this_modal.addClass($this.settings.reveal);
+			}
 
 			// Execute
 			$this_modal_trigger.on('click', function($ev)
