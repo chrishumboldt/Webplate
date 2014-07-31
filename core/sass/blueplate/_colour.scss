@@ -2,7 +2,7 @@
  * SASS File: 		_colour.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	30 July 2014
  */
 
 
@@ -77,6 +77,17 @@ $silver 						: #bdc3c7;
 
 // Lists
 // ---------------------------------------------------------------------------------------
+$ar-colours-mono				: (
+	"white"						: $white,
+	"black"						: $black,
+	"black-base"				: $black-base,
+	"grey-x-light"				: $grey-x-light,
+	"grey-light"				: $grey-light,
+	"grey-medium"				: $grey-medium,
+	"grey"						: $grey,
+	"grey-dark"					: $grey-dark
+);
+
 $ar-colours-primary				: (
 	"grey"						: $grey-link, 
 	"black"						: $black-base, 
@@ -122,7 +133,7 @@ $ar-colours-secondary			: (
 	"grey-blue-light"			: $grey-blue-light, 
 	"grey-blue"					: $grey-blue, 
 	"grey-blue-dark"			: $grey-blue-dark, 
-	"grey-blue-extra-dark"		: $grey-blue-x-dark,
+	"grey-blue-x-dark"			: $grey-blue-x-dark,
 	"midnight"					: $midnight, 
 	"off-white"					: $off-white, 
 	"off-white-dark"			: $off-white-dark,

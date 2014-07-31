@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	29 July 2014
+ * Last Edited:   	31 July 2014
  */
 
 
@@ -51,7 +51,7 @@ yepnope([
 		$.web_hash_link();
 		$('.button').buttonplate();
 		$('body').formplate();
-		$('.modal-link').modalplate();
+		$('.modal-trigger').modalplate();
 		$.web_load_plugins($css_path, $js_path);
 	}
 },
