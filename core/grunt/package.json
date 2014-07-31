@@ -1,6 +1,6 @@
 {
   "name": "Webplate",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An awesome front-end javascript bootstrap that lets you stay focused on building your site or app all the while remaining really easy to use.",
   "main": "../../index.html",
   "dependencies": {
