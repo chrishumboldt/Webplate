@@ -34,10 +34,18 @@ Documentation
 Webplate has many aspects to it so for more information view the comprehensive online documentation at http://getwebplate.com/documentation.
 
 
+Author
+=========
+
+Created by Chris Humboldt<br>
+Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
+Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
+GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
+
+
 Contributors
 =========
 
-<a href="https://github.com/chrishumboldt">Chris Humboldt</a><br>
 <a href="https://github.com/V1RTUOZ">Oleg Kalandarashvili</a>
 
 
