@@ -37,7 +37,7 @@ Webplate has many aspects to it so for more information view the comprehensive o
 Author
 =========
 
-Created by Chris Humboldt<br>
+Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
 Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
