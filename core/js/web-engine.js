@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	31 July 2014
+ * Last Edited:   	1 August 2014
  */
 
 
@@ -20,15 +20,12 @@ var $root									= $crt_script_src;
 var $js_path								= $root + 'core/js/';
 var $css_path								= $root + 'core/css/';
 var $less_path								= $root + 'core/less/';
-var $icomoon_path							= $root + 'project/icomoon/';
+var $icon_font_path							= $root + 'project/icon-font/';
 var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
-var $ar_core_css							= [
-	$css_path + 'webplate.css',
-	$icomoon_path +'style.css'
-];
+var $ar_core_css							= [$css_path + 'webplate.css'];
 var $ar_extra_css							= [];
 var $ar_extra_js							= [];
 
@@ -60,9 +57,23 @@ yepnope([
 	complete								: function()
 	{	
 		// Variables
-		$ui 								= $('body').data('ui');
-		$project_css						= $('body').data('project-css');
-		$project_js 						= $('body').data('project-js');
+		var $icon_font						= $('body').data('icon-font');
+		var $ui 							= $('body').data('ui');
+		var $project_css					= $('body').data('project-css');
+		var $project_js 					= $('body').data('project-js');
+
+		// Icon fonts
+		if($icon_font != undefined)
+		{
+			if($icon_font == 'icomoon')
+			{
+				yepnope({ load: [$icon_font_path + 'icomoon/style.css'] });
+			}
+			else if($icon_font == 'font-awesome')
+			{
+				yepnope({ load: [$icon_font_path + 'font-awesome/css/font-awesome.min.css'] });
+			}
+		}
 
 		// Load UI
 		if($ui != undefined)
