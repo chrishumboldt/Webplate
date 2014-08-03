@@ -417,36 +417,36 @@ jQuery.web_navigation               = function()
 	});
 
 	// Drag closed
-	if(Modernizr.touch)
-	{
-		$('body').hammer().on('panleft panend', function($ev)
-		{
-			// Check events
-			switch($ev.type)
-			{
-				case 'panleft':
+	// if(Modernizr.touch)
+	// {
+	// 	$('body').hammer().on('panleft panend', function($ev)
+	// 	{
+	// 		// Check events
+	// 		switch($ev.type)
+	// 		{
+	// 			case 'panleft':
 
-					$nav_track_position     = $ev.gesture.deltaX + $nav_end_position;
+	// 				$nav_track_position     = $ev.gesture.deltaX + $nav_end_position;
 
-					if($nav_track_position <= $navigation_width)
-					{
-						$('.webplate-navigation').css(
-						{
-							left            : $nav_track_position
-						}); 
-					}
+	// 				if($nav_track_position <= $navigation_width)
+	// 				{
+	// 					$('.webplate-navigation').css(
+	// 					{
+	// 						left            : $nav_track_position
+	// 					}); 
+	// 				}
 
-					break;
+	// 				break;
 
-				case 'panend':
+	// 			case 'panend':
 
-					$.web_nav_hide();
-					$nav_end_position       = 0;
+	// 				$.web_nav_hide();
+	// 				$nav_end_position       = 0;
 
-					break;
-			}
-		});
-	}
+	// 				break;
+	// 		}
+	// 	});
+	// }
 
 	// Show on mobile
 	if($('.navigation-trigger').hasClass('small-show') == false)
@@ -455,19 +455,19 @@ jQuery.web_navigation               = function()
 	}
 
 	// Change active state and close menu
-	$('.webplate-navigation a').on('click', function($ev)
-	{
-		if($nav_end_position === 260)
-		{
-			$('.webplate-navigation a.active').removeClass('active');
-			$(this).addClass('active');
-			$.web_nav_hide();
-		}
-		else
-		{
-			$ev.preventDefault();
-		}
-	});
+	// $('.webplate-navigation a').on('click', function($ev)
+	// {
+	// 	if($nav_end_position === 260)
+	// 	{
+	// 		$('.webplate-navigation a.active').removeClass('active');
+	// 		$(this).addClass('active');
+	// 		$.web_nav_hide();
+	// 	}
+	// 	else
+	// 	{
+	// 		$ev.preventDefault();
+	// 	}
+	// });
 	$(window).on('touchstart', '.webplate-navigation',function($ev)
 	{
 		if($ev.currentTarget.scrollTop === 0)
