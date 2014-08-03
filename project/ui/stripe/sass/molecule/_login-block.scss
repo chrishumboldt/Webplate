@@ -2,7 +2,7 @@
  * SASS File: 		_login-block.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	24 June 2014
+ * Last Edited:   	3 August 2014
  */
 
 
@@ -55,7 +55,7 @@
 			@include border-radius(0px);
 			font-size: 0.875em;
 
-			&.btn-ok {
+			&.btn-cancel {
 				@include border-radius-bottom();
 			}
 
@@ -67,10 +67,10 @@
 				font-size: 0.913em;
 
 				&.btn-cancel {
-					@include border-radius-bottom-left();
+					@include border-radius-bottom-right();
 				}
 				&.btn-ok {
-					@include border-radius-bottom-right();
+					@include border-radius-bottom-left();
 				}
 			}
 		}
