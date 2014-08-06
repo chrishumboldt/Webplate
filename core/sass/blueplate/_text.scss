@@ -2,13 +2,42 @@
  * SASS File: 		_text.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2014
+ * Last Edited:   	6 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Font variables
+// Font
 // Text
+
+
+// Font variables
+// ---------------------------------------------------------------------------------------
+$georgia					: Georgia, Cambria, "Times New Roman", Times, serif;
+$helvetica 					: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$impact 					: Impact, Charcoal, sans-serif;
+$lato 						: 'Lato', sans-serif;
+$lucinda-grande 			: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$monospace 					: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+$open-sans 					: 'Open Sans', Helvetica, Arial, sans-serif;
+$tahoma 					: Tahoma, Geneva, sans-serif;
+$times-new-roman 			: "Times New Roman", Times, serif;
+$trebuchet 					: "Trebuchet MS", Helvetica, sans-serif;
+$verdana					: Verdana, Geneva, sans-serif;
+
+
+// Font
+// ---------------------------------------------------------------------------------------
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculate-rem-size($size);
+}
+@mixin line-height($size) {
+	line-height: $size;
+	line-height: calculate-rem-size($size);
+}
 
 
 // Text

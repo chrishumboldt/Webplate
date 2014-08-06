@@ -2,31 +2,59 @@
  * SASS File: 		_background.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2014
+ * Last Edited:   	6 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Background classes
+// Background colour
+// Background images
+// Deprecated - will be deleted
+
+
+// Background colour
+// ---------------------------------------------------------------------------------------
+@mixin background-colour($colour: $grey) {
+	background-color: $colour;
+}
+@mixin background-color($colour) {
+	@include background-colour($colour);
+}
 
 
 // Background images
 // ---------------------------------------------------------------------------------------
-@mixin background-cover($image, $position: center) {
+@mixin background-image($image, $position: top left) {
 	background-image: url($image);
+	background-position: $position;
+}
+@mixin background-image-cover($image, $position: center) {
+	@include background-image($image, $position);
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: $position;
+}
+@mixin background-image-parallax($url) {
+	@include background-image($image, center);
+	background-attachment: fixed;
+	background-size: cover;
+}
+@mixin background-image-single($image, $position: center) {
+	@include background-image($image, $position);
+	background-repeat: no-repeat;
+}
+
+
+// Deprecated - will be deleted
+// ---------------------------------------------------------------------------------------
+@mixin background-cover($image, $position: center) {
+	@include background-image-cover($image, $position);
 }
 @mixin background-single-image($image, $position: center) {
-	background-image: url($image);
-	background-repeat: no-repeat;
-	background-position: $position;
+	@include background-image-single($image, $position);
 }
 @mixin background-parallax($url) {
-	background-image: url($url);
-	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
+	@include background-image-parallax($url);
 }
+
+

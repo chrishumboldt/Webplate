@@ -1,0 +1,21 @@
+/**
+ * SASS File: 		_functions.scss
+ * Type: 			development
+ * Author:        	Chris Humboldt
+ * Last Edited:   	6 August 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Calculations
+
+
+// Calculations
+// ---------------------------------------------------------------------------------------
+@function calculate-rem-size($size) {
+	$rem-size: $size / 16px;
+	@return $rem-size * 1rem;
+}
+
+

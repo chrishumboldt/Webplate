@@ -2,23 +2,35 @@
  * SASS File: 		_gradient.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	6 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Global
+// Gradients
 
 
-// Global
+// Gradients
 // ---------------------------------------------------------------------------------------
-@mixin gradient-vertical($top-colour, $bottom-colour) {
-	background: $top-colour;
-	background: -webkit-gradient(linear, left top, left bottom, from($top-colour), to($bottom-colour));
-	background: -webkit-linear-gradient(top, $top-colour, $bottom-colour); 
-	background: -moz-linear-gradient(top, $top-colour, $bottom-colour); 
-	background: -ms-linear-gradient(top, $top-colour, $bottom-colour); 
-	background: -o-linear-gradient(top, $top-colour, $bottom-colour); 
-	background: linear-gradient(top, $top-colour, $bottom-colour);
+@mixin gradient-horizontal($left-colour, $right-colour) {
+	background: $left-colour; /* Fallback solid color for old browsers */
+    background: linear-gradient(to right, $left-colour 0%, $right-colour 100%); /* W3C */
+    background: -moz-linear-gradient(left,  $left-colour 0%, $right-colour 100%); /* FF 3.6+ */
+    background: -ms-linear-gradient(left, $left-colour 0%, $right-colour 100%); /* IE 10+ */
+    background: -o-linear-gradient(left, $left-colour 0%, $right-colour 100%); /* Opera 11.10+ */
+    background: -webkit-linear-gradient(left,  $left-colour 0%, $right-colour 100%); /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,$left-colour), color-stop(100%,$right-colour)); /* Chrome, Safari 4+ */
+
 }
+@mixin gradient-vertical($top-colour, $bottom-colour) {
+	background: $top-colour; /* Fallback solid color for old browsers */
+    background: linear-gradient(to bottom, $top-colour 0%, $bottom-colour 100%); /* W3C */
+    background: -moz-linear-gradient(top, $top-colour 0%, $bottom-colour 100%); /* FF 3.6+ */
+    background: -ms-linear-gradient(top, $top-colour 0%, $bottom-colour 100%); /* IE 10+ */
+    background: -o-linear-gradient(top, $top-colour 0%, $bottom-colour 100%); /* Opera 11.10+ */
+    background: -webkit-linear-gradient(top, $top-colour 0%, $bottom-colour 100%); /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top-colour), color-stop(100%,$bottom-colour)); /* Chrome, Safari 4+ */
+}
+
+

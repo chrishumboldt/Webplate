@@ -2,13 +2,14 @@
  * SASS File: 		_border.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	6 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Radius
+// Border lines
 // Border shades
 
 
@@ -20,6 +21,7 @@
 	-ms-border-radius: $radius;
 	-moz-border-radius: $radius;
 	-webkit-border-radius: $radius;
+	background-clip: padding-box;
 }
 @mixin border-radius-top($radius: 2px) {
 	border-radius: $radius $radius 0px 0px;
@@ -27,6 +29,7 @@
 	-ms-border-radius: $radius $radius 0px 0px;
 	-moz-border-radius: $radius $radius 0px 0px;
 	-webkit-border-radius: $radius $radius 0px 0px;
+	background-clip: padding-box;
 }
 @mixin border-radius-bottom($radius: 2px) {
 	border-radius: 0px 0px $radius $radius;
@@ -34,6 +37,7 @@
 	-ms-border-radius: 0px 0px $radius $radius;
 	-moz-border-radius: 0px 0px $radius $radius;
 	-webkit-border-radius: 0px 0px $radius $radius;
+	background-clip: padding-box;
 }
 @mixin border-radius-left($radius: 2px) {
 	border-radius: $radius 0px 0px $radius;
@@ -41,6 +45,7 @@
 	-ms-border-radius: $radius 0px 0px $radius;
 	-moz-border-radius: $radius 0px 0px $radius;
 	-webkit-border-radius: $radius 0px 0px $radius;
+	background-clip: padding-box;
 }
 @mixin border-radius-right($radius: 2px) {
 	border-radius: 0px $radius $radius 0px;
@@ -48,6 +53,7 @@
 	-ms-border-radius: 0px $radius $radius 0px;
 	-moz-border-radius: 0px $radius $radius 0px;
 	-webkit-border-radius: 0px $radius $radius 0px;
+	background-clip: padding-box;
 }
 @mixin border-radius-top-right($radius: 2px) {
 	border-radius: 0px $radius 0px 0px;
@@ -55,6 +61,7 @@
 	-ms-border-radius: 0px $radius 0px 0px;
 	-moz-border-radius: 0px $radius 0px 0px;
 	-webkit-border-radius: 0px $radius 0px 0px;
+	background-clip: padding-box;
 }
 @mixin border-radius-top-left($radius: 2px) {
 	border-radius: $radius 0px 0px 0px;
@@ -62,6 +69,7 @@
 	-ms-border-radius: $radius 0px 0px 0px;
 	-moz-border-radius: $radius 0px 0px 0px;
 	-webkit-border-radius: $radius 0px 0px 0px;
+	background-clip: padding-box;
 }
 @mixin border-radius-bottom-right($radius: 2px) {
 	border-radius: 0px 0px $radius 0px;
@@ -69,6 +77,7 @@
 	-ms-border-radius: 0px 0px $radius 0px;
 	-moz-border-radius: 0px 0px $radius 0px;
 	-webkit-border-radius: 0px 0px $radius 0px;
+	background-clip: padding-box;
 }
 @mixin border-radius-bottom-left($radius: 2px) {
 	border-radius: 0px 0px 0px $radius;
@@ -76,6 +85,34 @@
 	-ms-border-radius: 0px 0px 0px $radius;
 	-moz-border-radius: 0px 0px 0px $radius;
 	-webkit-border-radius: 0px 0px 0px $radius;
+	background-clip: padding-box;
+}
+
+
+// Border lines
+// ---------------------------------------------------------------------------------------
+@mixin border($colour: $grey, $size: 1px, $type: solid) {
+	border: $size $type $colour;
+}
+@mixin border-top($colour: $grey, $size: 1px, $type: solid) {
+	border-top: $size $type $colour;
+}
+@mixin border-bottom($colour: $grey, $size: 1px, $type: solid) {
+	border-bottom: $size $type $colour;
+}
+@mixin border-left($colour: $grey, $size: 1px, $type: solid) {
+	border-left: $size $type $colour;
+}
+@mixin border-right($colour: $grey, $size: 1px, $type: solid) {
+	border-right: $size $type $colour;
+}
+@mixin border-vertical($colour: $grey, $size: 1px, $type: solid) {
+	@include border-top($colour, $size, $type);
+	@include border-bottom($colour, $size, $type);
+}
+@mixin border-horizontal($colour: $grey, $size: 1px, $type: solid) {
+	@include border-left($colour, $size, $type);
+	@include border-right($colour, $size, $type);
 }
 
 
@@ -111,3 +148,5 @@
 @mixin border-dark-right($lowlight: 0.8, $colour: #000000) {
 	border-right: 1px solid fade-out($colour, $lowlight);
 }
+
+
