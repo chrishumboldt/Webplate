@@ -1,0 +1,27 @@
+/**
+ * SASS File: 		_size.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	6 August 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Size
+
+
+// Size
+// ---------------------------------------------------------------------------------------
+@mixin size($width: 0px, $height: 0px) {
+	@include width($width);
+	@include height($height);
+}
+@mixin width($width: 0px) {
+	width: $width;
+}
+@mixin height($height: 0px) {
+	height: $height;
+}
+
+
