@@ -1,0 +1,41 @@
+/**
+ * SASS File: 		_position.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	6 August 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Position
+
+
+// Position
+// ---------------------------------------------------------------------------------------
+@mixin position($position: relative, $arguments: false) {
+	position: $position;
+
+	// Arguments
+	@include position-set($arguments);
+}
+@mixin position-set($arguments: false) {
+	@include position-arguments($arguments);
+}
+@mixin position-absolute($arguments: false) {
+	@include position(absolute, $arguments);
+}
+@mixin position-fixed($arguments: false) {
+	@include position(fixed, $arguments);
+}
+@mixin position-relative($arguments: false) {
+	@include position(relative, $arguments);
+}
+@mixin position-static($arguments: false) {
+	@include position(static, $arguments);
+}
+@mixin position-inherit($arguments: false) {
+	@include position(inherit, $arguments);
+}
+
+
