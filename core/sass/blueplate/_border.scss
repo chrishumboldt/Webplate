@@ -8,12 +8,39 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Radius
 // Border lines
+// Border radius
 // Border shades
 
 
-// Radius
+// Border lines
+// ---------------------------------------------------------------------------------------
+@mixin border($colour: $grey, $size: 1px, $type: solid) {
+	border: $size $type $colour;
+}
+@mixin border-top($colour: $grey, $size: 1px, $type: solid) {
+	border-top: $size $type $colour;
+}
+@mixin border-bottom($colour: $grey, $size: 1px, $type: solid) {
+	border-bottom: $size $type $colour;
+}
+@mixin border-left($colour: $grey, $size: 1px, $type: solid) {
+	border-left: $size $type $colour;
+}
+@mixin border-right($colour: $grey, $size: 1px, $type: solid) {
+	border-right: $size $type $colour;
+}
+@mixin border-vertical($colour: $grey, $size: 1px, $type: solid) {
+	@include border-top($colour, $size, $type);
+	@include border-bottom($colour, $size, $type);
+}
+@mixin border-horizontal($colour: $grey, $size: 1px, $type: solid) {
+	@include border-left($colour, $size, $type);
+	@include border-right($colour, $size, $type);
+}
+
+
+// Border radius
 // ---------------------------------------------------------------------------------------
 @mixin border-radius($radius: 2px) {
 	border-radius: $radius;
@@ -86,33 +113,6 @@
 	-moz-border-radius: 0px 0px 0px $radius;
 	-webkit-border-radius: 0px 0px 0px $radius;
 	background-clip: padding-box;
-}
-
-
-// Border lines
-// ---------------------------------------------------------------------------------------
-@mixin border($colour: $grey, $size: 1px, $type: solid) {
-	border: $size $type $colour;
-}
-@mixin border-top($colour: $grey, $size: 1px, $type: solid) {
-	border-top: $size $type $colour;
-}
-@mixin border-bottom($colour: $grey, $size: 1px, $type: solid) {
-	border-bottom: $size $type $colour;
-}
-@mixin border-left($colour: $grey, $size: 1px, $type: solid) {
-	border-left: $size $type $colour;
-}
-@mixin border-right($colour: $grey, $size: 1px, $type: solid) {
-	border-right: $size $type $colour;
-}
-@mixin border-vertical($colour: $grey, $size: 1px, $type: solid) {
-	@include border-top($colour, $size, $type);
-	@include border-bottom($colour, $size, $type);
-}
-@mixin border-horizontal($colour: $grey, $size: 1px, $type: solid) {
-	@include border-left($colour, $size, $type);
-	@include border-right($colour, $size, $type);
 }
 
 

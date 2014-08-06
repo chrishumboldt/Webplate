@@ -15,7 +15,7 @@
 
 // Background colour
 // ---------------------------------------------------------------------------------------
-@mixin background-colour($colour: $grey) {
+@mixin background-colour($colour) {
 	background-color: $colour;
 }
 @mixin background-color($colour) {
