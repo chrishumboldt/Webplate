@@ -2,7 +2,7 @@
  * SASS File: 		_display.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2014
+ * Last Edited:   	11 August 2014
  */
 
 
@@ -10,10 +10,14 @@
 // ---------------------------------------------------------------------------------------
 // Show / hide
 // Opacity
+// Overflow
 
 
 // Show / hide
 // ---------------------------------------------------------------------------------------
+@mixin display($type: block) {
+	display: $type;
+}
 @mixin hide() {
 	display: none;
 }
@@ -28,7 +32,7 @@
 	position: absolute;
 }
 @mixin show($type: block) {
-	display: $type;
+	@include display($type);
 }
 
 
@@ -39,3 +43,15 @@
 	$opacity-ie: $opacity * 100;
 	filter: alpha(opacity=$opacity-ie); //IE8
 }
+@mixin transparency($transparency: 0.60) {
+	@include opacity($transparency);
+}
+
+
+// Overflow
+// ---------------------------------------------------------------------------------------
+@mixin overflow($overflow: visible) {
+	overflow: $overflow;
+}
+
+
