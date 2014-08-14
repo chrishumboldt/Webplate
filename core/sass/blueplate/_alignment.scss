@@ -8,20 +8,6 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Centering
 
-
-// Centering
-// ---------------------------------------------------------------------------------------
-@mixin center() {
-	margin: 0px auto;
-}
-@mixin center-vertical() {
-	// As per: Sebastian Ekström
-	// URL: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
-	position: relative;
- 	top: 50%;
-	@include transform-translate-y(-50%);
-}
 
 

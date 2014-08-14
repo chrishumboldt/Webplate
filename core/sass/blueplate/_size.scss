@@ -2,7 +2,7 @@
  * SASS File: 		_size.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2014
+ * Last Edited:   	9 August 2014
  */
 
 
@@ -17,11 +17,25 @@
 	@include width($width);
 	@include height($height);
 }
-@mixin width($width: 0px) {
-	width: $width;
-}
-@mixin height($height: 0px) {
+@mixin height($height: 0px, $max-height: false) {
 	height: $height;
+
+	@if $max-height != false {
+		@include max-height($max-height);
+	}
+}
+@mixin max-height($height: 0px) {
+	max-height: $height;
+}
+@mixin width($width: 0px, $max-width: false) {
+	width: $width;
+
+	@if $max-width != false {
+		@include max-width($max-width);
+	}
+}
+@mixin max-width($width: 0px) {
+	max-width: $width;
 }
 
 

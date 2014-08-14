@@ -2,13 +2,14 @@
  * SASS File: 		_mixins.scss
  * Type: 			development
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August
+ * Last Edited:   	9 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Position argument
+// Text arguments
 
 
 // Position argument
@@ -25,6 +26,24 @@
 			@if $i 
 			and $i + 1 <= length($arguments) 
 			and type-of( nth($arguments, $i + 1) ) == number {
+				#{$o}: nth($arguments, $i + 1);
+			}
+		}
+	}
+}
+
+
+// Text arguments
+// ---------------------------------------------------------------------------------------
+@mixin text-arguments($arguments: false) {
+	@if $arguments != false {
+		$offsets: text-align color font-family;
+
+		@each $o in $offsets {
+			$i: index($arguments, $o);
+
+			@if $i 
+			and $i + 1 <= length($arguments) {
 				#{$o}: nth($arguments, $i + 1);
 			}
 		}

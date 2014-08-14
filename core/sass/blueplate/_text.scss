@@ -41,30 +41,36 @@ $font-x2-large 				: 48px;
 
 // Font
 // ---------------------------------------------------------------------------------------
+@mixin font-family($font: $helvetica) {
+	font-family: $font;
+}
 @mixin font-size($size: $font-base) {
 	font-size: $size;
 	font-size: calculate-rem-size($size);
+}
+@mixin font-weight($weight: normal) {
+	font-weight: $weight;
 }
 @mixin line-height($size: $font-base) {
 	line-height: $size;
 	line-height: calculate-rem-size($size);
 }
+@mixin letter-spacing($letter-spacing: normal) {
+	letter-spacing: $letter-spacing;
+}
 
 
 // Text
 // ---------------------------------------------------------------------------------------
-@mixin text-squared($size) {
-	width: $size;
-	height: $size;
-	line-height: $size;
-	text-align: center;
+@mixin text($arguments: false) {
+	// Arguments
+	@include text-arguments($arguments);
 }
-@mixin text-hide() {
-	border:0; 
-	font: 0/0 a; 
-	text-shadow: none; 
-	color: transparent; 
-	background-color: transparent;
+@mixin text-align($align: left) {
+	text-align: $align;
+}
+@mixin text-colour($colour: $white) {
+	color: $colour;
 }
 @mixin text-ellipsis($width: 100%) {
 	display: inline-block;
@@ -73,3 +79,30 @@ $font-x2-large 				: 48px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+@mixin text-font($font: $helvetica) {
+	@include font-family($font);
+}
+@mixin text-hide() {
+	border:0; 
+	font: 0/0 a; 
+	text-shadow: none; 
+	color: transparent; 
+	background-color: transparent;
+}
+@mixin text-letter-spacing($letter-spacing: normal) {
+	@include letter-spacing($letter-spacing);
+}
+@mixin text-size($size: $font-base) {
+	@include font-size($size);
+}
+@mixin text-squared($size) {
+	width: $size;
+	height: $size;
+	line-height: $size;
+	text-align: center;
+}
+@mixin text-weight($weight: normal) {
+	@include font-weight($weight);
+}
+
+
