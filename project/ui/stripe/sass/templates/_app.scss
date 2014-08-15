@@ -2,7 +2,7 @@
  * SASS File: 		app.scss
  * Type: 			template
  * Author:        	Chris Humboldt
- * Last Edited:   	30 July 2014
+ * Last Edited:   	15 August 2014
  */
 
 
@@ -40,22 +40,21 @@
 // Navigation
 // ---------------------------------------------------------------------------------------
 .stripe-app.webplate a.navigation-trigger {
-	position: relative;
-	float: left;
-	top: auto;
-	left: auto;
-	margin-top: 4px;
-	margin-left: $space-x-small;
-	margin-right: $space-small;
-	color: $river-bed;
-	font-size: 0.913em;
+	@include position-fixed(top ($space-minor + 3px) left ($space-x-small - 2px));
+	@include text-colour($river-bed);
+	@include text-size(24px);
 	@include animate(all);
 
 	// Respond
 	@include respond-to($bp-small) {
-		margin-top: 9px;
-		margin-right: $space-minor;
-		font-size: 0.75em;
+		@include position-set(top ($space-medium) left ($space-base));
+	}
+}
+.stripe-app.webplate h3.nav-pad {
+	@include padding-left($space-slight);
+
+	@include respond-to(large) {
+		@include padding-left(0px);
 	}
 }
 
