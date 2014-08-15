@@ -65,7 +65,10 @@ $(document).ready(function()
 	function fc_header_adjustment()
 	{
 		$window_h						= $(window).height();
-		$('header.stripe, header.stripe .contain, header.stripe .text, header.stripe .text-center, header.stripe .text-center-tight').height($window_h);
+		$scroll_down_top 				= $window_h - 100;
+
+		$('header.stripe, header.stripe .text, header.stripe .text-center, header.stripe .text-center-tight').height($window_h);
+		$('header.stripe .scroll-down').css({ marginTop: $scroll_down_top })
 	}
 
 	// Menus

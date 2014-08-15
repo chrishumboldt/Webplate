@@ -2,43 +2,32 @@
  * SASS File: 		_user-profile.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	26 June 2014
+ * Last Edited:   	15 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// User profile
-// User image
-// User details
 // User controls
-
-
+// User details
+// User image
 // User profile
-// ---------------------------------------------------------------------------------------
-.stripe-app .user-profile {
-	@include row();
-	position: relative;
-	background-color: $grey-x-light;
 
-	.user-top {
-		@include span(12);
-		padding: ($space-base + 5px) $space-minor;
+
+// User Controls
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile .user-controls {
+	@include span(12);
+
+	a {
+		@include span(6);
+		margin: 0px;
+		@include border-radius(0px);
+		font-size: 0.875em;
 	}
 }
-
-
-// User image
-// ---------------------------------------------------------------------------------------
-.stripe-app .user-profile .user-image {
-	@include span(4);
-
-	.user-image-container {
-		@include text-squared(60px);
-		@include background-cover("img/profile-fallback.png");
-		@include border-radius(50%);
-		border: 4px solid $white;
-	}
+.no-touch.stripe-app .user-profile .user-controls a:hover {
+	background-color: $aqua;
 }
 
 
@@ -62,20 +51,31 @@
 }
 
 
-// User Controls
+// User image
 // ---------------------------------------------------------------------------------------
-.stripe-app .user-profile .user-controls {
-	@include span(12);
+.stripe-app .user-profile .user-image {
+	@include span(4);
 
-	a {
-		@include span(6);
-		margin: 0px;
-		@include border-radius(0px);
-		font-size: 0.875em;
+	.user-image-container {
+		@include text-squared(60px);
+		@include background-cover("img/profile-fallback.png");
+		@include border-radius(50%);
+		border: 4px solid $white;
 	}
 }
-.no-touch.stripe-app .user-profile .user-controls a:hover {
-	background-color: $aqua;
+
+
+// User profile
+// ---------------------------------------------------------------------------------------
+.stripe-app .user-profile {
+	@include row();
+	position: relative;
+	background-color: $grey-x-light;
+
+	.user-top {
+		@include span(12);
+		padding: ($space-base + 5px) $space-minor;
+	}
 }
 
 
