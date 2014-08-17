@@ -2,7 +2,7 @@
  * SASS File: 		_execute.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	3 May 2014
+ * Last Edited:   	17 August 2014
  */
 
 
@@ -15,13 +15,15 @@
 // ---------------------------------------------------------------------------------------
 @mixin blueplate-css() {
 	@include blueplate-layout();
+	@include blueplate-responsive-layout();
 	@include blueplate-flex-layout();
 	@include blueplate-display();
 	@include blueplate-global();
 	@include blueplate-position();
-	@include blueplate-alignment();
 	@include blueplate-text();
 	@include blueplate-background();
 	@include blueplate-sizing();
 	@include blueplate-spacing();
 }
+
+
