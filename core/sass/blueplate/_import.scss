@@ -22,7 +22,6 @@
 
 // Mixin imports
 // ---------------------------------------------------------------------------------------
-@import "alignment";
 @import "animation";
 @import "arrow";
 @import "background";
@@ -45,10 +44,10 @@
 
 // CSS imports
 // ---------------------------------------------------------------------------------------
-@import "css/alignment";
 @import "css/background";
 @import "css/display";
 @import "css/global";
+@import "css/layout";
 @import "css/position";
 @import "css/responsive-layout";
 @import "css/sizing";
