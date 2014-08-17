@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	9 August 2014
+ * Last Edited:   	14 August 2014
  */
 
 
@@ -11,6 +11,7 @@
 // Box sizing
 // Centering
 // Fixes
+// Floats
 // Index
 // Position
 
@@ -49,6 +50,25 @@
 	&:after {
 		clear: both;
 	}
+}
+
+
+// Floats
+// ---------------------------------------------------------------------------------------
+@mixin float($float: left) {
+	float: $float;
+}
+@mixin float-clear() {
+	clear: both;
+}
+@mixin float-left() {
+	@include float(left);
+}
+@mixin float-no() {
+	@include float(none);
+}
+@mixin float-right() {
+	@include float(right);
 }
 
 

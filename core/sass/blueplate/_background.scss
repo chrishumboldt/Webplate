@@ -2,15 +2,21 @@
  * SASS File: 		_background.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2014
+ * Last Edited:   	17 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Variables
 // Background colour
 // Background images
 // Deprecated - will be deleted
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$images-root 						: "" !default;
 
 
 // Background colour
@@ -26,7 +32,7 @@
 // Background images
 // ---------------------------------------------------------------------------------------
 @mixin background-image($image, $position: top left) {
-	background-image: url($image);
+	background-image: url("#{$images-root}/#{$image}");
 	background-position: $position;
 }
 @mixin background-image-cover($image, $position: center) {
@@ -34,7 +40,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-@mixin background-image-parallax($url) {
+@mixin background-image-parallax($image) {
 	@include background-image($image, center);
 	background-attachment: fixed;
 	background-size: cover;
@@ -53,8 +59,8 @@
 @mixin background-single-image($image, $position: center) {
 	@include background-image-single($image, $position);
 }
-@mixin background-parallax($url) {
-	@include background-image-parallax($url);
+@mixin background-parallax($image) {
+	@include background-image-parallax($image);
 }
 
 

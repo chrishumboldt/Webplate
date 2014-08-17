@@ -1,33 +1,33 @@
 /**
- * SASS File: 		_alignment.scss
+ * SASS File: 		_layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	14 August 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Alignment mixin
+// Layout classes
 
 
-// Alignment classes
+// Layout classes
 // ---------------------------------------------------------------------------------------
-@mixin blueplate-alignment() {
+@mixin blueplate-layout() {
 	.float-no {
-		float: none;
+		@include float-no();
 	}
 	.float-l {
-		float: left;
+		@include float-left();
 	}
 	.float-r {
-		float: right;
+		@include float-right();
 	}
 	.float-clear {
-		clear: both;
+		@include float-clear();
 	}
 	.center {
-		margin: 0px auto;
+		@include center();
 	}
 	.valign-t {
 		vertical-align: top;
