@@ -2,7 +2,7 @@
  * SASS File: 		_transform.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	12 July 2014
+ * Last Edited:   	18 August 2014
  * Edited by: 		Chris Humboldt
  */
 
@@ -21,6 +21,12 @@
 	-moz-transform: rotate($rotate);
 	transform: rotate($rotate);
 }
+@mixin transform-scale($x: 1, $y: 1) {
+	-webkit-transform: scale($x, $y);
+	-o-transform: scale($x, $y);
+	-moz-transform: scale($x, $y);
+	transform: scale($x, $y);
+}
 @mixin transform-scale-3d($x: 1, $y: 1, $z: 1) {
 	-webkit-transform: scale3d($x, $y, $z);
 	-o-transform: scale3d($x, $y, $z);
@@ -33,11 +39,23 @@
 	-moz-transform: translate3d($x, $y, $z);
 	transform: translate3d($x, $y, $z);
 }
+@mixin transform-translate-x($x: 0px) {
+	-webkit-transform: translateX($x);
+	-o-transform: translateX($x);
+	-moz-transform: translateX($x);
+	transform: translateX($x);
+}
 @mixin transform-translate-y($y: 0px) {
 	-webkit-transform: translateY($y);
 	-o-transform: translateY($y);
 	-moz-transform: translateY($y);
 	transform: translateY($y);
+}
+@mixin transform-translate-z($z: 0px) {
+	-webkit-transform: translateZ($z);
+	-o-transform: translateZ($z);
+	-moz-transform: translateZ($z);
+	transform: translateZ($z);
 }
 
 
