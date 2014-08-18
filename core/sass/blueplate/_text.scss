@@ -2,7 +2,7 @@
  * SASS File: 		_text.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2014
+ * Last Edited:   	18 August 2014
  */
 
 
@@ -51,9 +51,9 @@ $font-x2-large 				: 48px;
 @mixin font-weight($weight: normal) {
 	font-weight: $weight;
 }
-@mixin line-height($size: $font-base) {
-	line-height: $size;
-	line-height: calculate-rem-size($size);
+@mixin line-height($line-height: $font-base) {
+	line-height: $line-height;
+	line-height: calculate-rem-size($line-height);
 }
 @mixin letter-spacing($letter-spacing: normal) {
 	letter-spacing: $letter-spacing;
@@ -91,6 +91,9 @@ $font-x2-large 				: 48px;
 }
 @mixin text-letter-spacing($letter-spacing: normal) {
 	@include letter-spacing($letter-spacing);
+}
+@mixin text-line-height($line-height: $font-base) {
+	@include line-height($line-height);
 }
 @mixin text-size($size: $font-base) {
 	@include font-size($size);
