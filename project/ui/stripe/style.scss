@@ -2,7 +2,7 @@
  * SASS File: 		style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	4 July 2014
+ * Last Edited:   	21 August 2014
  */
 
 
@@ -57,6 +57,7 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 // ---------------------------------------------------------------------------------------
 @import "sass/organism/app-controls";
 @import "sass/organism/header";
+@import "sass/organism/title-bar";
 
 
 // Templates

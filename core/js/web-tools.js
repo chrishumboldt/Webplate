@@ -2,8 +2,21 @@
  * jQuery File:     web-tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     23 July 2014
+ * Last Edited:     19 August 2014
  */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic checks
+// Dates
+// Development
+// DOM
+// Forms
+// Objects
+// Strings
+// URL
+// Webplate
 
 
 // Basic checks
@@ -171,6 +184,30 @@ jQuery.web_lock_submit              = function($element)
 };
 
 
+// Objects
+// ---------------------------------------------------------------------------------------
+// As per Leon Revill
+// URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
+jQuery.web_search_objects 			= function($obj, $key, $val)
+{
+    var $objects 					= [];
+
+    for(var $i in $obj)
+    {
+        if(typeof $obj[$i] == 'object')
+        {
+            objects = objects.concat(searchObjects($obj[$i], $key, $val));
+        } 
+        else if($i == $key && $obj[$key] == $val)
+        {
+            objects.push($obj);
+        }
+    }
+
+    return objects;
+};
+
+
 // Strings
 // ---------------------------------------------------------------------------------------
 jQuery.web_get_ext                  = function($file)
@@ -192,6 +229,16 @@ jQuery.web_random_string            = function($string_length)
 	}
 
 	return $random_string;
+};
+
+jQuery.web_uc_all 					= function($string)
+{
+	return $string.toUpperCase();
+};
+
+jQuery.web_uc_first 				= function($string)
+{
+	return $string.charAt(0).toUpperCase() + $string.slice(1);
 };
 
 
