@@ -2,7 +2,7 @@
  * SASS File: 		_user-profile.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	15 August 2014
+ * Last Edited:   	18 August 2014
  */
 
 
@@ -21,13 +21,18 @@
 
 	a {
 		@include span(6);
-		margin: 0px;
+		@include margin(0px);
+		@include text-size(13px);
 		@include border-radius(0px);
-		font-size: 0.875em;
+		@include background-colour(lighten($river-bed, 64%));
 	}
 }
 .no-touch.stripe-app .user-profile .user-controls a:hover {
-	background-color: $aqua;
+	@include text-colour($white);
+	@include background-colour($aqua);
+}
+.no-touch.stripe-app .user-profile .user-controls a:active {
+	@include text-colour(darken($aqua, 18%));
 }
 
 
@@ -38,15 +43,15 @@
 
 	// Name
 	.user-name {
-		margin-top: 8px;
-		color: $river-bed;
-		font-size: 0.913em;
+		@include margin-top(8px);
+		@include text-colour($river-bed);
+		@include text-size(14px);
 	}
 
 	// Information
 	.user-info {
-		color: $river-bed-light;
-		font-size: 0.75em;
+		@include text-colour($river-bed);
+		@include text-size(12px);
 	}
 }
 
@@ -58,9 +63,9 @@
 
 	.user-image-container {
 		@include text-squared(60px);
-		@include background-cover("img/profile-fallback.png");
+		@include border($white, 4px);
 		@include border-radius(50%);
-		border: 4px solid $white;
+		@include background-image-cover("profile-fallback.png");
 	}
 }
 

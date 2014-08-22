@@ -2,7 +2,7 @@
  * jQuery File: 	modalplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	29 July 2014
+ * Last Edited:   	22 August 2014
  */
 
 
@@ -13,7 +13,8 @@
 	var $plugin_name					= 'modalplate', $defaults =
 	{
 		overlay_template 				: '<div class="modalplate-overlay"></div>',
-		reveal 							: 'slide-from-top'
+		reveal 							: 'slide-from-top',
+		reveal_large					: false
 	};
 	
 	// The actual plugin constructor
@@ -30,26 +31,33 @@
 	
 	// Plugin
 	// ---------------------------------------------------------------------------------------
-	Plugin.prototype 					= 
+	Plugin.prototype 						= 
 	{
-		init 							: function()
+		init 								: function()
 		{
 			// Variables
-			var $this 					= this;
-			var $this_modal_trigger		= $(this.element);
-			var $modal_id 				= $this_modal_trigger.data('modal-open');
-			var $this_modal 			= $('[data-modal-id='+ $modal_id +']');
-			var $data_modal_reveal		= $this_modal.data('modal-reveal');
+			var $this 						= this;
+			var $this_modal_trigger			= $(this.element);
+			var $modal_id 					= $this_modal_trigger.data('modal-open');
+			var $this_modal 				= $('[data-modal-id='+ $modal_id +']');
+			var $data_modal_reveal			= $this_modal.data('modal-reveal');
+			var $data_modal_reveal_large	= $this_modal.data('modal-reveal-large');
+			var $window_w 					= $(window).width();
 
 			// Setup
 			$this.overlay_add();
-			if($data_modal_reveal != undefined)
+			console.log($data_modal_reveal);
+			$this.settings.reveal			= $data_modal_reveal || $this.settings.reveal;
+			$this.settings.reveal_large		= $data_modal_reveal_large || $this.settings.reveal_large;
+
+			// Reveals
+			fc_set_modal_reveal();
+			if($this.settings.reveal_large != false)
 			{
-				$this_modal.addClass($data_modal_reveal);
-			}
-			else
-			{
-				$this_modal.addClass($this.settings.reveal);
+				$(window).resize(function()
+				{
+					fc_set_modal_reveal();
+				});
 			}
 
 			// Execute
@@ -64,6 +72,30 @@
 				$ev.preventDefault();
 				$this.modal_close($this_modal);
 			});
+
+			// Functions
+			function fc_set_modal_reveal()
+			{
+				if($this.settings.reveal_large != false)
+				{
+					$window_w 				= $(window).width();
+
+					if($window_w <= 700)
+					{
+						$this_modal.removeClass($this.settings.reveal_large);
+						$this_modal.addClass($this.settings.reveal);
+					}
+					else
+					{
+						$this_modal.removeClass($this.settings.reveal);
+						$this_modal.addClass($this.settings.reveal_large);
+					}
+				}
+				else
+				{
+					$this_modal.addClass($this.settings.reveal);
+				}
+			};
 		},
 
 		// Public functions
