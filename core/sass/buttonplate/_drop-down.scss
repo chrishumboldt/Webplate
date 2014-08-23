@@ -2,7 +2,7 @@
  * SASS File: 		_drop-down.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 August 2014
  */
 
 
@@ -27,19 +27,19 @@ $away-from-button			: 4px;
 
 	// List
 	ul {
-		display: none;
-		position: absolute;
-		padding: 0px;
-		margin-top: $away-from-button;
+		@include display(none);
+		@include position(absolute);
+		@include padding(0px);
+		@include margin-top($away-from-button);
 		list-style: none;
-		z-index: 1;
-		background-color: $white;
+		@include background-colour($white);
 		@include border-radius();
 		@include drop-shadow();
+		@include level(1);
 
 		li {
-			padding: 0px;
-			margin: 0px;
+			@include spacing-no();
+
 			&:first-child a {
 				@include border-radius-top();
 			}
@@ -55,14 +55,14 @@ $away-from-button			: 4px;
 			
 			// Links
 			a {
-				display: block;
-				text-align: left;
-				color: $black-base;
+				@include display(block);
+				@include text-align(left);
+				@include text-colour($black-base);
 				text-decoration: none;
 				vertical-align: middle;
 				
-				&:hover {
-					background-color: $grey-link-hover;
+				.no-touch &:hover {
+					@include background-colour($grey-link-hover);
 				}
 			}
 		}
@@ -76,12 +76,10 @@ $away-from-button			: 4px;
 	
 	// Determine where the line goes
 	@if $position == top {
-		
-		border-top: 1px solid $grey-light;
+		@include border-top($grey-light);
 	}
 	@else if $position == bottom {
-		
-		border-bottom: 1px solid $grey-light;
+		@include border-bottom($grey-light);
 	}
 }
 
@@ -92,19 +90,19 @@ $away-from-button			: 4px;
 
 	// Arrow
 	.arrow {
-		margin-left: $spacing / 2;
+		@include margin-left($spacing / 2);
 	}
 
 	// Drop down
 	&.button-drop-down {
 		ul {
-			margin-left: -$spacing;
+			@include margin-left(-$spacing);
 		}
 		li a {
-			padding: 0px $spacing;
-			height: $link-height;
-			line-height: $link-height;
-			font-size: $font-size;
+			@include padding-horizontal($spacing);
+			@include height($link-height);
+			@include text-line-height($link-height);
+			@include text-size($font-size);
 		}
 	}
 }
@@ -116,20 +114,20 @@ $away-from-button			: 4px;
 
 	// Colour
 	@if lightness($colour) < 68% {
-		color: $white
+		@include text-colour($white);
 	}
 	
 	// Check saturations
 	@if saturation($colour) > 0% {
 		@if saturation($colour) > 38% {
-			background-color: lighten(saturate($colour, 8%), $lighten);
+			@include background-colour(lighten(saturate($colour, 8%), $lighten));
 		}
 		@else{
-			background-color: lighten(saturate($colour, 30%), $lighten);
+			@include background-colour(lighten(saturate($colour, 30%), $lighten));
 		}
 	}
 	@else {
-		background-color: lighten($colour, $lighten);
+		@include background-colour(lighten($colour, $lighten));
 	}
 
 }
