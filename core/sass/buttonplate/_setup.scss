@@ -29,43 +29,44 @@
 // Button setup
 // ---------------------------------------------------------------------------------------
 @mixin button-setup($font: true) {
-	position: relative;
-	display: inline-block;
-	color: lighten(#000, 40%);
-	text-align: center;
+	@include position(relative);
+	@include display(inline-block);
+	@include text-align(center);
+	@include text-colour(lighten(#000, 40%));
 	text-decoration: none;
 	vertical-align: middle;
 	border: none;
-	background-color: $grey-link;
+	@include background-colour($grey-link);
 	outline: none;
 	-webkit-appearance: none;
 
 	// Respond
 	@include respond-to(small) {
-		width: 100%;
+		@include width(100%);
 	}
 
 	// Visited state
 	&:visited {
-		color: lighten(#000, 40%);
+		@include text-colour(lighten(#000, 40%));
 	}
 	// Hover state
-	&:hover { 
+	.no-touch &:hover { 
 		cursor: pointer;
-		background-color: $grey-link-hover;
+		@include background-colour($grey-link-hover);
 	}
 	// Active state
 	&:active {
 		@include drop-shadow-inset(fade-out(#000, 0.85), 5px, 2px, 0px);
 		text-shadow: fade-out($white, 0.75) 0px 1px 0;
-		background-color: $grey-link;
+		@include background-colour($grey-link);
 	}
 
 	// Arrow
 	.arrow {
-		display: inline-block;
-		height: 10px;
-		width: 12px;
+		@include display(inline-block);
+		@include height(10px);
+		@include width(12px);
+		@include text-line-height(10px);
 		speak: none;
 		font-family: 'buttonplate';
 		font-style: normal;
