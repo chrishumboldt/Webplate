@@ -38,6 +38,9 @@
 	@include border-left($colour, $size, $type);
 	@include border-right($colour, $size, $type);
 }
+@mixin border-no() {
+	border: medium none $black;
+}
 
 
 // Border radius
@@ -112,6 +115,14 @@
 	-ms-border-radius: 0px 0px 0px $radius;
 	-moz-border-radius: 0px 0px 0px $radius;
 	-webkit-border-radius: 0px 0px 0px $radius;
+	background-clip: padding-box;
+}
+@mixin border-radius-no() {
+	border-radius: 0px;
+	-o-border-radius: 0px;
+	-ms-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
 	background-clip: padding-box;
 }
 

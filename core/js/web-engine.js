@@ -48,7 +48,11 @@ yepnope([
 		$.web_hash_link();
 		$('.button').buttonplate();
 		$('body').formplate();
-		$('.modal-trigger').modalplate();
+		$('.modal-trigger').modalplate(
+		{
+			'reveal' 						: 'slide-from-right',
+			'reveal_large' 					: 'slide-from-top'
+		});
 		$.web_load_plugins($css_path, $js_path);
 	}
 },

@@ -2,14 +2,14 @@
  * SASS File: 		_background.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	17 August 2014
+ * Last Edited:   	1 September 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Variables
-// Background colour
+// General
 // Background images
 // Deprecated - will be deleted
 
@@ -19,13 +19,45 @@
 $images-root 						: "" !default;
 
 
-// Background colour
+// General
 // ---------------------------------------------------------------------------------------
+@mixin background-attachment($attachment: scroll) {
+	background-attachment: $attachment;
+}
+@mixin background-clip($clip: border-box) {
+	background-clip: $clip;
+}
 @mixin background-colour($colour) {
 	background-color: $colour;
 }
 @mixin background-color($colour) {
 	@include background-colour($colour);
+}
+@mixin background-contain() {
+	@include background-position(center);
+	@include background-repeat(no-repeat);
+	@include background-size(contain);
+}
+@mixin background-cover() {
+	@include background-position(center);
+	@include background-repeat(no-repeat);
+	@include background-size(cover);
+}
+@mixin background-origin($origin: padding-box) {
+	background-origin: $origin;
+}
+@mixin background-position($position: center) {
+	background-position: $position;
+}
+@mixin background-repeat($repeat: repeat) {
+	background-repeat: $repeat;
+}
+@mixin background-size($size: auto) {
+	background-size: $size;
+}
+@mixin background-single() {
+	@include background-position(center);
+	@include background-repeat(no-repeat);
 }
 
 
@@ -33,29 +65,31 @@ $images-root 						: "" !default;
 // ---------------------------------------------------------------------------------------
 @mixin background-image($image, $position: top left) {
 	background-image: url("#{$images-root}/#{$image}");
-	background-position: $position;
+	@include background-position($position);
+}
+@mixin background-image-contain($image, $position: center) {
+	@include background-image($image, $position);
+	@include background-repeat(no-repeat);
+	@include background-size(contain);
 }
 @mixin background-image-cover($image, $position: center) {
 	@include background-image($image, $position);
-	background-repeat: no-repeat;
-	background-size: cover;
+	@include background-repeat(no-repeat);
+	@include background-size(cover);
 }
-@mixin background-image-parallax($image) {
-	@include background-image($image, center);
-	background-attachment: fixed;
-	background-size: cover;
+@mixin background-image-parallax($image, $position: center) {
+	@include background-image($image, $position);
+	@include background-attachment(fixed);
+	@include background-size(cover);
 }
 @mixin background-image-single($image, $position: center) {
 	@include background-image($image, $position);
-	background-repeat: no-repeat;
+	@include background-repeat(no-repeat);
 }
 
 
 // Deprecated - will be deleted
 // ---------------------------------------------------------------------------------------
-@mixin background-cover($image, $position: center) {
-	@include background-image-cover($image, $position);
-}
 @mixin background-single-image($image, $position: center) {
 	@include background-image-single($image, $position);
 }

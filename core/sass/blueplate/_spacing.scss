@@ -2,7 +2,7 @@
  * SASS File: 		_spacing.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2013
+ * Last Edited:   	1 September 2013
  */
 
 
@@ -65,6 +65,9 @@ $space-x2-large-em 						: $space-base-em * 6;
 	@include margin-left($spacing);
 	@include margin-right($spacing);
 }
+@mixin margin-no() {
+	margin: 0px;
+}
 
 
 // Padding
@@ -91,6 +94,9 @@ $space-x2-large-em 						: $space-base-em * 6;
 @mixin padding-horizontal($spacing: $space-base) {
 	@include padding-left($spacing);
 	@include padding-right($spacing);
+}
+@mixin padding-no() {
+	padding: 0px;
 }
 
 

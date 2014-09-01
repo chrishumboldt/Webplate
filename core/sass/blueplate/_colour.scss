@@ -2,7 +2,7 @@
  * SASS File: 		_colour.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	3 August 2014
+ * Last Edited:   	1 September 2014
  */
 
 
@@ -19,13 +19,14 @@
 $white							: #fff;
 $black 							: #000;
 $black-base						: lighten($black, 22%);
-$grey-x-light					: lighten($black, 98%);
+$grey-x2-light					: lighten($black, 98%);
+$grey-x-light					: lighten($black, 96%);
 $grey-light						: lighten($black, 90%);
 $grey-medium 					: lighten($black, 65%);
 $grey 							: lighten($black, 50%);
 $grey-dark						: lighten($black, 40%);
 $grey-link						: lighten($black, 92%);
-$grey-link-hover				: lighten($black, 96%);
+$grey-link-hover				: $grey-x-light;
 $grey-form 						: lighten(#000, 82%);
 
 
