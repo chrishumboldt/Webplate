@@ -2,7 +2,7 @@
  * SASS File: 		_user-profile.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	18 August 2014
+ * Last Edited:   	1 September 2014
  */
 
 
@@ -75,7 +75,7 @@
 .stripe-app .user-profile {
 	@include row();
 	position: relative;
-	background-color: $grey-x-light;
+	background-color: $grey-x2-light;
 
 	.user-top {
 		@include span(12);

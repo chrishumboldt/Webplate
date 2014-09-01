@@ -39,14 +39,14 @@ label {
 // ---------------------------------------------------------------------------------------
 .atomic-example, .class-example {
 	margin-bottom: 1.5em;
-	border: 1px solid lighten(#000, 88%);
+	border: 1px solid lighten(#000, 84%);
 	text-align: center;
 	@include border-radius();
 
 	div {
 		padding: 6px 0px;
-		border: 1px solid lighten(#000, 88%);
-		background-color: lighten(#000, 92%);
+		border: 1px solid lighten(#000, 84%);
+		background-color: lighten(#000, 90%);
 	}
 }
 .class-example.limit {

@@ -2,7 +2,7 @@
  * SASS File: 		_text.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	18 August 2014
+ * Last Edited:   	1 September 2014
  */
 
 
@@ -71,6 +71,9 @@ $font-x2-large 				: 48px;
 }
 @mixin text-colour($colour: $white) {
 	color: $colour;
+}
+@mixin text-decoration($decoration: none) {
+	text-decoration: $decoration;
 }
 @mixin text-ellipsis($width: 100%) {
 	display: inline-block;
