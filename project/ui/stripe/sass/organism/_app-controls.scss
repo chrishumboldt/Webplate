@@ -96,7 +96,7 @@
 	@include margin(0px);
 	@include padding-vertical($space-medium);
 	@include text-align(center);
-	@include background-image-single("img/app-nav-background.jpg");
+	@include background-image-single("app-nav-background.jpg");
 
 	h5 {
 		@include spacing-no();
