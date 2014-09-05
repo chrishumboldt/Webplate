@@ -2,7 +2,7 @@
  * SASS File: 		_modal.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	5 July 2014
+ * Last Edited:   	6 September 2014
  */
 
 
@@ -23,29 +23,24 @@
 
 // Modal close
 // ---------------------------------------------------------------------------------------
-.modalplate .close.icon-times {
-	display: block;
-	position: absolute;
-	top: $space-base;
-	right: $space-minor;
-	font-size: 1em;
-	color: $grey-light;
-	border: 3px solid $grey-light;
+.modalplate .close.icon-cross {
+	@include display(block);
+	@include position(absolute, top $space-base right $space-minor);
 	@include text-squared(30px);
-	line-height: 24px;
-	@include border-radius(50%);
+	@include text-colour($grey-light);
+	@include text-line-height(24px);
+	@include text-size(24px);
 	@include animate(all);
-	z-index: 3;
+	@include level(3);
 
 	// Respond
 	@include respond-to(large) {
-		right: $space-base;
+		@include position-set(right $space-base);
 	}
 }
-.no-touch .modalplate .close.icon-times:hover {
-	color: $aqua;
-	border-color: $aqua;
-	text-decoration: none;
+.no-touch .modalplate .close.icon-cross:hover {
+	@include text-colour($aqua);
+	@include text-decoration(none);
 }
 
 
@@ -53,49 +48,41 @@
 // ---------------------------------------------------------------------------------------
 .modalplate form {
 	@include row();
-	border-bottom: 1px solid $grey-light;
+	@include border-bottom($grey-light);
 
-	h4 {
+	h5 {
 		@include spacing-no();
 		@include span(12);
-		padding: $space-base;
-		border: none;
-		z-index: 2;
+		@include padding($space-base);
 	}
 	label {
 		@include span(5);
-		position: relative;
 		@include spacing-no();
-		text-align: right;
-		border-top: 1px solid $grey-light;
-		z-index: 2;
+		@include text-align(right);
+		@include border-top($grey-light);
 	}
 	p {
 		@include span(12);
-		position: relative;
-		padding: $space-base;
-		margin: 0px;
-		border-top: 1px solid $grey-light;
-		z-index: 2;
+		@include padding($space-base);
+		@include margin(0px);
+		@include border-top($grey-light);
 	}
 	.input-outer {
 		@include span(7);
-		position: relative;
-		background-color: $grey-x-light;
-		border-top: 1px solid $grey-light;
-		border-left: 1px solid $grey-light;
-		z-index: 2;
+		@include background-color($stripe-off-colour);
+		@include border-top($grey-light);
+		@include border-left($grey-light);
 
 		textarea {
-			height: 82px;
+			@include height(100px);
 		}
 		input, textarea {
 			@include spacing-no();
-			border: none;
-			background-color: transparent;
+			@include border-no();
+			@include background-colour(transparent);
 		}
 		input:focus, textarea:focus {
-			border: none;
+			@include border-no();
 		}
 
 		// Error
@@ -114,15 +101,13 @@
 	// Options
 	.options {
 		@include row();
-		position: absolute;
-		bottom: 0;
-		z-index: 1;
+		@include level(2);
 
 		a, button {
 			@include button-size-large();
 			@include spacing-no();
 			@include border-radius(0px);
-			font-size: 0.875em;
+			@include text-size(14px);
 
 			&.btn-cancel {
 				@include span(5);
@@ -135,18 +120,14 @@
 			@include respond-to(large) {
 				@include button-size-x-large();
 				@include spacing-no();
-				font-size: 0.913em;
+				@include text-size(15px);
 			}
 		}
 	}
 
 	// Respond
 	@include respond-to(large) {
-		border-bottom: none;
-
-		.options {
-			position: relative;
-		}
+		@include border-bottom($black, 0px);
 	}
 }
 
@@ -154,11 +135,12 @@
 // Modal static content
 // ---------------------------------------------------------------------------------------
 .modalplate .static {
-	padding: $space-base;
+	@include padding($space-base);
 
 	// Respond
 	@include respond-to(large) {
-		padding: $space-base $space-medium;
+		@include padding-horizontal($space-medium);
+		@include padding-vertical($space-base);
 	}
 }
 

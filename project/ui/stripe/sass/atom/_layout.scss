@@ -128,7 +128,7 @@ $limit  					: $limit-width + ($space-large-em * 2);
 
 	// Grey
 	&:nth-child(even) {
-		background-color: $grey-x-light;
+		background-color: $stripe-off-colour;
 	}
 
 	// Respond
@@ -160,7 +160,7 @@ header.stripe {
 	}
 	// Grey
 	&:nth-child(odd) {
-		background-color: $grey-x-light;
+		background-color: $stripe-off-colour;
 	}	
 }
 // Dark
