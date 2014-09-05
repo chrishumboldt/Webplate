@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-766riv');
-	src:url('fonts/icomoon.eot?#iefix-766riv') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-766riv') format('woff'),
-		url('fonts/icomoon.ttf?-766riv') format('truetype'),
-		url('fonts/icomoon.svg?-766riv#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-l8rrw');
+	src:url('fonts/icomoon.eot?#iefix-l8rrw') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-l8rrw') format('woff'),
+		url('fonts/icomoon.ttf?-l8rrw') format('truetype'),
+		url('fonts/icomoon.svg?-l8rrw#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,10 +23,58 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cog:before {
+	content: "\e023";
+}
+.icon-search:before {
+	content: "\e036";
+}
+.icon-circle-plus:before {
+	content: "\e040";
+}
+.icon-circle-minus:before {
+	content: "\e041";
+}
+.icon-location-2:before {
+	content: "\e071";
+}
+.icon-head:before {
+	content: "\e074";
+}
+.icon-arrow-left:before {
+	content: "\e094";
+}
+.icon-arrow-right:before {
+	content: "\e095";
+}
+.icon-arrow-up:before {
+	content: "\e096";
+}
+.icon-arrow-down:before {
+	content: "\e097";
+}
+.icon-plus:before {
+	content: "\e114";
+}
+.icon-minus:before {
+	content: "\e115";
+}
+.icon-check:before {
+	content: "\e116";
+}
+.icon-cross:before {
+	content: "\e117";
+}
+.icon-menu:before {
+	content: "\e120";
+}
+.icon-inbox:before {
+	content: "\e122";
+}
 .icon-envelope:before {
 	content: "\e616";
 }
-.icon-search:before {
+.icon-search2:before {
 	content: "\e600";
 }
 .icon-star:before {
@@ -35,7 +83,7 @@
 .icon-star-empty:before {
 	content: "\e602";
 }
-.icon-check:before {
+.icon-check2:before {
 	content: "\e603";
 }
 .icon-times:before {
@@ -58,9 +106,6 @@
 }
 .icon-facebook:before {
 	content: "\e60a";
-}
-.icon-bars:before {
-	content: "\e60b";
 }
 .icon-google-plus:before {
 	content: "\e60c";
@@ -92,10 +137,10 @@
 .icon-ellipsis-v:before {
 	content: "\e615";
 }
-.icon-menu:before {
+.icon-menu-bold:before {
 	content: "\e6b8";
 }
-.icon-cloud-download2:before {
+.icon-cloud-download:before {
 	content: "\e617";
 }
 .icon-share:before {

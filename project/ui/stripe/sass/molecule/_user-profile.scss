@@ -24,7 +24,7 @@
 		@include margin(0px);
 		@include text-size(13px);
 		@include border-radius(0px);
-		@include background-colour(lighten($river-bed, 64%));
+		@include background-colour(darken($stripe-off-colour, 6%));
 	}
 }
 .no-touch.stripe-app .user-profile .user-controls a:hover {
@@ -74,12 +74,13 @@
 // ---------------------------------------------------------------------------------------
 .stripe-app .user-profile {
 	@include row();
-	position: relative;
-	background-color: $grey-x2-light;
+	@include position(relative);
+	@include background-colour($stripe-off-colour);
 
 	.user-top {
 		@include span(12);
-		padding: ($space-base + 5px) $space-minor;
+		@include padding-horizontal($space-minor);
+		@include padding-vertical($space-base + 5px);
 	}
 }
 

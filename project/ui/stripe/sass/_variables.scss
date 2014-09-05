@@ -2,7 +2,7 @@
  * SASS File: 		_variables.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 August 2014
+ * Last Edited:   	5 September 2014
  */
 
 
@@ -21,6 +21,7 @@
 $river-bed-feint			: lighten($river-bed, 10%);
 $river-bed-light 			: lighten($river-bed, 30%);
 $river-bed-x-light 			: lighten($river-bed, 54%);
+$stripe-off-colour			: lighten(#E7EAEF, 5%);
 
 
 // Header

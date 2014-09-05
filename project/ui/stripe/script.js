@@ -64,7 +64,7 @@ $(document).ready(function()
 	// Header adjustment
 	function fc_header_adjustment()
 	{
-		$window_h						= $(window).height();
+		$window_h						= Math.ceil($(window).height()) + 1;
 		$scroll_down_top 				= $window_h - 100;
 
 		$('header.stripe, header.stripe .text, header.stripe .text-center, header.stripe .text-center-tight').height($window_h);
