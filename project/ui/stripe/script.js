@@ -42,7 +42,7 @@ h={};g()}};typeof define==="function"&&define.amd&&define("google-code-prettify"
 
 $(document).ready(function()
 {
-// ------------------------------------------------ Some variables
+// ------------------------------------------------ Variables
 
 	var $sub_menu_animation_speed 			= 200;
 	var $window_h 							= $(window).height();
@@ -67,8 +67,8 @@ $(document).ready(function()
 		$window_h						= Math.ceil($(window).height()) + 1;
 		$scroll_down_top 				= $window_h - 100;
 
-		$('header.stripe, header.stripe .text, header.stripe .text-center, header.stripe .text-center-tight').height($window_h);
-		$('header.stripe .scroll-down').css({ marginTop: $scroll_down_top })
+		$('header.stripe.full, header.stripe.full .text, header.stripe.full .text-center, header.stripe.full .text-center-tight').height($window_h);
+		$('header.stripe.full .scroll-down').css({ marginTop: $scroll_down_top })
 	}
 
 	// Menus

@@ -2,20 +2,21 @@
  * SASS File: 		_header.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	15 August 2014
+ * Last Edited:   	10 September 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Header
+// Header full
+// States
 
 
 // Header
 // ---------------------------------------------------------------------------------------
 header.stripe {
 	display: block;
-	height: 100vh;
 
 	.contain {
 		position: relative;
@@ -40,7 +41,6 @@ header.stripe {
 		display: table;
 		position: absolute;
 		width: 100%;
-		height: 100vh;
 
 		.inner {
 			display: table-cell;
@@ -80,6 +80,18 @@ header.stripe {
 			}
 		}
 	}
+	// Not full page
+	&:not(.full) {
+		.text {
+			@include position(relative);
+			@include padding-vertical($space-medium);
+
+			// Respond
+			@include respond-to(large) {
+				@include padding-vertical($space-x2-large);
+			}
+		}
+	}
 
 	// Scroll down
 	.scroll-down {
@@ -96,7 +108,22 @@ header.stripe {
 		@include animate(all, 0.3s);
 	}
 }
+
+
+// Header full
+// ---------------------------------------------------------------------------------------
+header.stripe.full {
+	height: 100vh;
+
+	// Header text
+	.text {
+		height: 100vh;
+	}
+}
+
+
 // States
+// ---------------------------------------------------------------------------------------
 .no-touch header.stripe .scroll-down:hover {
 	color: $hover-colour;
 	text-decoration: none;
