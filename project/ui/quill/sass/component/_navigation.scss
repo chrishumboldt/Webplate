@@ -14,7 +14,7 @@
 // Webplate navigation
 // ---------------------------------------------------------------------------------------
 .webplate-navigation {
-	@include background-colour($grey-blue-x-dark);
+	@include background-colour($black-base);
 
 	// Links
 	li > {

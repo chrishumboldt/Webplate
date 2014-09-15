@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------------------
 // Title bar
 // Title bar clear
+// Title bar dark
 
 
 // Title bar
@@ -93,10 +94,10 @@
 
 // Title bar clear
 // ---------------------------------------------------------------------------------------
-.title-bar-clear {
+.title-bar-clear,
+.title-bar-dark {
 	@extend .title-bar;
 
-	@include padding-vertical($space-base);
 	@include background-colour(transparent);
 	@include border-bottom($black, 0px);
 	@include drop-shadow($black, 0px);
@@ -104,7 +105,6 @@
 	// Navigation trigger
 	a.navigation-trigger,
 	div.navigation-trigger {
-		@include position-set(top $space-base);
 		@include button-style-line($white);
 
 		.no-touch &:hover {
@@ -121,6 +121,22 @@
 	ul.right-links li a.basic {
 		@include text-colour($white);
 	}
+}
+.title-bar-clear {
+	@include padding-vertical($space-base);
+
+	// Navigation trigger
+	a.navigation-trigger,
+	div.navigation-trigger {
+		@include position-set(top $space-base);
+	}
+}
+
+
+// Title bar dark
+// ---------------------------------------------------------------------------------------
+.title-bar-dark {
+	@include background-colour($black-base);
 }
 
 
