@@ -2,7 +2,7 @@
  * SASS File: 		_style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	14 September 2014
+ * Last Edited:   	15 September 2014
  */
 
 
@@ -30,5 +30,7 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 @import "sass/component/button";
 @import "sass/component/header";
 @import "sass/component/line";
+@import "sass/component/navigation";
+@import "sass/component/title-bar";
 
 

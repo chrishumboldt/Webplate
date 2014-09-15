@@ -12,6 +12,7 @@
 // Images root
 // Lines
 // Text
+// Title bar
 
 
 // Layout
@@ -35,5 +36,10 @@ $font-colour					: $grey-blue-dark;
 $font-colour 					: $black-base;
 $font-colour-dark 				: darken($font-colour, 28%);
 $font-colour-dark 				: $black-base;
+
+
+// Title bar
+// ---------------------------------------------------------------------------------------
+$title-bar-h 					: 68px;
 
 

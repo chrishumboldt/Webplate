@@ -16,11 +16,12 @@
 // Basic text
 // ---------------------------------------------------------------------------------------
 html, body {
-	@include text-font($georgia);
+	@include text-font($helvetica);
 	@include text-weight(normal);
 }
 p {
-	@include text-colour($font-colour);
+	@include text-colour(lighten($font-colour, 15%));
+	@include text-font($georgia);
 	@include text-line-height(30px);
 	@include text-size($font-base);
 
@@ -80,7 +81,7 @@ h6 {
 		@include text-size(28px);
 	}
 	h5 {
-		@include text-size(22px);
+		@include text-size(24px);
 	}
 	h6 {
 		@include text-size($font-medium);
@@ -90,12 +91,15 @@ h6 {
 
 // Links
 // ---------------------------------------------------------------------------------------
-a:not(.button):not([class *= "btn-"]) {
-	@include text-colour($blue-dark);
-	@include animate(color);
+article,
+section {
+	a:not(.button):not([class *= "btn-"]) {
+		@include text-colour($blue-dark);
+		@include animate(color);
 
-	&:hover {
-		@include text-colour($purple);
+		&:hover {
+			@include text-colour($purple);
+		}
 	}
 }
 

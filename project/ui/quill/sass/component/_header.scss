@@ -26,11 +26,25 @@ header {
 	}
 
 	// Title
-	.title {
-		@include limit();
-		@include position(relative);
+	.title,
+	.title-tight {
+		@include width(100%);
 		@include padding-vertical($space-medium);
 		@include padding-horizontal($space-small);
+		@include level(1);
+
+		// Respond
+		@include respond-to($bp-medium) {
+			@include padding-vertical($space-large);
+			@include padding-horizontal($space-medium);
+		}
+		@include respond-to($bp-large) {
+			@include padding-vertical($space-x2-large);
+		}
+	}
+	.inner {
+		@include limit();
+		@include position(relative);
 		@include text-colour($white);
 		@include level(1);
 
@@ -44,20 +58,12 @@ header {
 		h5 {
 			@include padding-top($space-base);
 			@include text-colour(fade-out($white, 0.2));
+			@include text-font($georgia);
 			@include text-weight(300);
 		}
-
-		// Respond
-		@include respond-to($bp-medium) {
-			@include padding-vertical($space-large);
-			@include padding-horizontal($space-base);
-		}
-		@include respond-to($bp-large) {
-			@include padding-vertical($space-x-large);
-		}
 	}
-	.title-tight {
-		@extend .title;
+	.title-tight .inner {
+		@extend .inner;
 		@include respond-to($content-tight-w) {
 			@include width($content-tight-w);
 			@include center();
@@ -68,8 +74,9 @@ header {
 	&.full {
 		height: 100vh;
 
-		.title {
-			@include center-vertical();
+		.title,
+		.title-tight {
+			@include position(absolute, bottom 0);
 		}
 	}
 }

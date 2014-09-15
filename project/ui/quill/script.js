@@ -45,7 +45,7 @@ $(document).ready(function()
 			// Variables
 			$scroll_top 			= $(this).scrollTop();
 
-			// Background scroll
+			// Background scroll & opacity
 			if(Modernizr.touch === false)
 			{
 				// Sets the current scroll position
@@ -58,6 +58,10 @@ $(document).ready(function()
 					'-moz-transform' 		: $new_position,
 					'transform' 			: $new_position
 				});
+
+				// Header opacity
+				$new_opacity 			= 1 - ($scroll_top / $window_h);
+				$('header.full .title, header.full .title-tight').css('opacity', $new_opacity);
 			}
 
 			// Navigation trigger
