@@ -2,7 +2,7 @@
  * SASS File: 		_style.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 August 2014
+ * Last Edited:   	15 September 2014
  */
 
 
@@ -108,33 +108,38 @@ $lightness-threshold 	: 68%;
 	@include border($colour, $border-size);
 
 	// States
+	@if $colour != #fff {
+		@if $colour != #EBEBEB {
+			&:visited {
+				@include text-colour($colour);
+			}
+		}
+	}
 	.no-touch &:hover {
-		@include background-colour(fade-out($colour, 0.9));
+		@include text-colour($white);
 
 		// Check saturations
 		@if saturation($colour) > 0% {
 			@if saturation($colour) > 50% {
+				@include background-colour(lighten(saturate($colour, 8%), $lighten));
 				@include border(lighten(saturate($colour, 8%), $lighten), $border-size);
-				@include text-colour(lighten(saturate($colour, 8%), $lighten));
 			}
 			@else{
+				@include background-colour(lighten(saturate($colour, 30%), $lighten));
 				@include border(lighten(saturate($colour, 30%), $lighten), $border-size);
-				@include text-colour(lighten(saturate($colour, 30%), $lighten));
 			}
 		}
 		@else {
+			@include background-colour(lighten($colour, $lighten));
 			@include border(lighten($colour, $lighten), $border-size);
-
-			@if lightness($colour) < 68% {
-				@include text-colour(lighten($colour, $lighten));
-			}
 		}
 	}
 	.no-touch &:active,
 	&:active {
-		@include background-colour(fade-out($colour, 0.75));
-		@include border($colour, $border-size);
-		text-shadow: none;
+		@if lightness($colour) < $lightness-threshold {
+			@include text-colour(darken($colour, 18%));
+		}
+		@include background-colour($colour);
 	}
 
 	// Drop-down link hover

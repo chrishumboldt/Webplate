@@ -2,16 +2,38 @@
  * SASS File: 		_variables.scss
  * Type: 			variables
  * Author:        	Chris Humboldt
- * Last Edited:   	10 September 2014
+ * Last Edited:   	15 September 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Global
+// Layout
+// Images root
+// Lines
+// Text
 
 
-// Global
+// Layout
 // ---------------------------------------------------------------------------------------
+$content-tight-w				: 56.250em;
+
+
+// Images root
+// ---------------------------------------------------------------------------------------
+$images-root 					: "img";
+
+
+// Lines
+// ---------------------------------------------------------------------------------------
+$line-h 						: 50px;
+
+
+// Text
+// ---------------------------------------------------------------------------------------
+$font-colour					: $grey-blue-dark;
+$font-colour 					: $black-base;
+$font-colour-dark 				: darken($font-colour, 28%);
+$font-colour-dark 				: $black-base;
 
 

@@ -1,0 +1,34 @@
+/**
+ * SASS File: 		_button.scss
+ * Type: 			component
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Button setup
+// Basic buttons
+
+
+// Button setup
+// ---------------------------------------------------------------------------------------
+.btn-primary,
+.btn-secondary {
+	@include button-setup();
+	@include button-shape-pill();
+	@include button-size-normal();
+}
+
+
+// Basic buttons
+// ---------------------------------------------------------------------------------------
+.btn-primary {
+	@include button-style-line($blue-dark);
+}
+.btn-secondary {
+	@include button-style-line($purple);
+}
+
+
