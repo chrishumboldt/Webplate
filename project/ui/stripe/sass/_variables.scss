@@ -2,7 +2,7 @@
  * SASS File: 		_variables.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	5 September 2014
+ * Last Edited:   	18 September 2014
  */
 
 
@@ -18,14 +18,16 @@
 
 // Custom colours
 // ---------------------------------------------------------------------------------------
+$hover-colour 				: lighten($green, 32%);
 $river-bed-feint			: lighten($river-bed, 10%);
 $river-bed-light 			: lighten($river-bed, 30%);
 $river-bed-x-light 			: lighten($river-bed, 54%);
-$stripe-off-colour			: lighten(#E7EAEF, 5%);
+$stripe-off-colour			: #f5f6f7;
 
 
 // Header
 // ---------------------------------------------------------------------------------------
+$link-fade-out 				: 0.24;
 $scroll-down-dimensions 	: 50px;
 
 

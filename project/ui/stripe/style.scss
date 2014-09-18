@@ -2,7 +2,7 @@
  * SASS File: 		style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	21 August 2014
+ * Last Edited:   	18 September 2014
  */
 
 
@@ -27,42 +27,38 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 @import "sass/variables";
 
 
-// Atoms
+// Basic elements
 // ---------------------------------------------------------------------------------------
-@import "sass/atom/button";
-@import "sass/atom/code";
-@import "sass/atom/form";
-@import "sass/atom/global";
-@import "sass/atom/layout";
-@import "sass/atom/list";
-@import "sass/atom/table";
-@import "sass/atom/text";
+@import "sass/basic/button";
+@import "sass/basic/code";
+@import "sass/basic/form";
+@import "sass/basic/global";
+@import "sass/basic/layout";
+@import "sass/basic/list";
+@import "sass/basic/table";
+@import "sass/basic/text";
 
 
-// Molecules
+// Components
 // ---------------------------------------------------------------------------------------
-@import "sass/molecule/code-reference";
-@import "sass/molecule/download-stripe";
-@import "sass/molecule/image-hover";
-@import "sass/molecule/login-block";
-@import "sass/molecule/message";
-@import "sass/molecule/modal";
-@import "sass/molecule/navigation";
-@import "sass/molecule/pricing-table";
-@import "sass/molecule/showcase";
-@import "sass/molecule/user-profile";
-
-
-// Organisms
-// ---------------------------------------------------------------------------------------
-@import "sass/organism/app-controls";
-@import "sass/organism/header";
-@import "sass/organism/title-bar";
+@import "sass/component/app-controls";
+@import "sass/component/code-reference";
+@import "sass/component/download-stripe";
+@import "sass/component/header";
+@import "sass/component/image-hover";
+@import "sass/component/login-block";
+@import "sass/component/message";
+@import "sass/component/modal";
+@import "sass/component/navigation";
+@import "sass/component/pricing-table";
+@import "sass/component/showcase";
+@import "sass/component/title-bar";
+@import "sass/component/user-profile";
 
 
 // Templates
 // ---------------------------------------------------------------------------------------
-@import "sass/templates/app";
+@import "sass/template/app";
 
 
 // Custom CSS
@@ -75,17 +71,19 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 		margin-bottom: $space-x-small;
 	}
 }
-#stripe-lists .full {
+#lists .full {
 	margin-top: $space-base;
 }
-#stripe-buttons,
-#stripe-inputs,
-#stripe-lists,
-#stripe-tables,
-#stripe-text {
+#buttons {
+	padding-top: $space-small;
+}
+#inputs,
+#lists,
+#tables,
+#text {
 	padding-top: $space-medium;
 }
-#stripe-image-hover {
+#image-hover {
 	.image-hover {
 		@include span(12);
 

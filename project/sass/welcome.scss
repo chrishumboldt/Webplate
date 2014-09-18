@@ -33,6 +33,9 @@ html {
 label {
 	font-family: $site-family;
 }
+.webplate header.stripe .bg-image {
+	@include background-image-cover("welcome/background.jpg");
+}
 
 
 // Examples
