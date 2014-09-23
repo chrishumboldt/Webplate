@@ -1,0 +1,138 @@
+/**
+ * SASS File: 		_layout.scss
+ * Type: 			basic
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Columns
+// Content
+
+
+// Columns
+// ---------------------------------------------------------------------------------------
+[class *= "col-"] { 
+	@include row();
+
+	> .left,
+	> .middle,
+	> .right,
+	> .full {
+		@include span(12);
+	}
+}
+// Double
+.col-double {
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .left {
+			@include new-span(6);
+			padding-right: $space-small;
+		}
+		> .middle {
+			padding-left: $space-x-small;
+			padding-right: $space-x-small;
+		}
+		> .right {
+			@include new-span(6);
+			padding-left: $space-small;
+		}
+	}
+	// Respond large
+	@include respond-to($bp-large) {
+		> .left {
+			padding-right: $space-base;
+		}
+		> .middle {
+			padding-left: $space-small;
+			padding-right: $space-small;
+		}
+		> .right {
+			padding-left: $space-base;
+		}
+	}
+}
+// Triple
+.col-triple { 
+	@extend .col-double;
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .left {
+			@include new-span(4);
+		}
+		> .middle {
+			@include new-span(4);
+		}
+		> .right {
+			@include new-span(4);
+		}
+	}
+}
+// Left bar
+.col-left-bar {
+	@extend .col-double;
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .left {
+			@include new-span(4);
+		}
+		> .right {
+			@include new-span(8);
+		}
+	}
+}
+// Right bar
+.col-right-bar {
+	@extend .col-double;
+
+	// Respond medium
+	@include respond-to($bp-medium) {
+		> .left {
+			@include new-span(8);
+		}
+		> .right {
+			@include new-span(4);
+		}
+	}
+}
+
+
+// Content
+// ---------------------------------------------------------------------------------------
+article,
+section {
+	@include position(relative);
+	@include padding-vertical($space-medium);
+	@include padding-horizontal($space-small);
+	@include background-colour($white);
+	@include level(0);
+
+	// Respond
+	@include respond-to($bp-medium) {
+		@include padding-vertical($space-large);
+		@include padding-horizontal($space-base);
+	}
+	@include respond-to($bp-large) {
+		@include padding-vertical($space-x-large);
+	}
+
+	// Contain
+	.contain {
+		@include limit();
+	}
+	.contain-tight {
+		@include respond-to($content-tight-w) {
+			@include width($content-tight-w);
+			@include center();
+		}
+	}
+}
+
+
+

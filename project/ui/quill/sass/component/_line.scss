@@ -1,0 +1,40 @@
+/**
+ * SASS File: 		_line.scss
+ * Type: 			component
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Line
+// Line icon
+
+
+// Line
+// ---------------------------------------------------------------------------------------
+.line {
+	@include border-top($grey-light);
+}
+
+
+// Line icon
+// ---------------------------------------------------------------------------------------
+.line-icon {
+	@include padding-top($line-h / 2);
+	@include margin-bottom($space-base);
+
+	i {
+		@include display(block);
+		@include center();
+		@include margin-top(-($line-h / 2));
+		@include text-colour($grey);
+		@include text-squared($line-h);
+		@include background-colour($white);
+		@include border($grey-light);
+		@include border-radius(50%);
+	}
+}
+
+
