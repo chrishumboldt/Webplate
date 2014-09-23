@@ -48,6 +48,9 @@ $font-x2-large 				: 48px;
 	font-size: $size;
 	font-size: calculate-rem-size($size);
 }
+@mixin font-style($style: normal) {
+	font-style: $style;
+}
 @mixin font-weight($weight: normal) {
 	font-weight: $weight;
 }
@@ -106,6 +109,9 @@ $font-x2-large 				: 48px;
 	height: $size;
 	line-height: $size;
 	text-align: center;
+}
+@mixin text-style($style: normal) {
+	@include font-style($style);
 }
 @mixin text-weight($weight: normal) {
 	@include font-weight($weight);

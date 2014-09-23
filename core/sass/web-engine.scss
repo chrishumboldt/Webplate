@@ -2,13 +2,14 @@
  * SASS File: 		web-engine.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	4 July 2014
+ * Last Edited:   	23 September 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Imports
+// Overwrites
 // Execute
 // Size total
 
@@ -22,6 +23,11 @@
 @import "setup/typeplate-vars";
 @import "setup/typeplate";  	// 3 kb
 @import "setup/setup"; 			// 3 kb
+
+
+// Overwrites
+// ---------------------------------------------------------------------------------------
+$font-base 						: 16px;
 
 
 // Execute

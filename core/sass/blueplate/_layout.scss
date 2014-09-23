@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	14 August 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -14,6 +14,7 @@
 // Floats
 // Index
 // Position
+// Vertical align
 
 
 // Box sizing
@@ -107,6 +108,13 @@
 }
 @mixin position-inherit($arguments: false) {
 	@include position(inherit, $arguments);
+}
+
+
+// Vertical align
+// ---------------------------------------------------------------------------------------
+@mixin vertical-align($position) {
+	vertical-align: $position;
 }
 
 

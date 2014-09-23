@@ -2,7 +2,7 @@
  * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	17 August 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -21,6 +21,7 @@
 		@include row();
 
 		.row {
+			@include width(auto);
 			width: auto;
 		}
 		[class *= "span-"] {
