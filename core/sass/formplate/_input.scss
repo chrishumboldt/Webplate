@@ -2,7 +2,7 @@
  * SASS File: 		_input.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -10,31 +10,34 @@
 // ---------------------------------------------------------------------------------------
 // Input
 // Input colour states
+// Input groups
+// Input icon
 
 
 // Input
 // ---------------------------------------------------------------------------------------
 @mixin form-input() {
-	#{$basic-inputs} {
-		width: 100%;
-		padding: 10px;
-		margin: 0px;
-		margin-bottom: 1.5em;
-		font-family: $font-family;
-		font-size: 0.813em;
-		background-color: $white;
-		border: 1px solid $grey-form;
-		outline: none;
-		-webkit-appearance: none;	
+	input {
+		@include width(100%);
+		@include padding(12px);
+		@include margin(0px);
+		@include margin-bottom(1.5em);
+		@include text-font($font-family);
+		@include text-size(13px);
+		@include background-colour($white);
+		@include border($grey-form);
 		@include border-radius(2px);
+		@include level(1);
+		outline: none;
+		-webkit-appearance: none;
 
 		&:focus {
-			border-color: $blue;
+			@include border($blue);
+			@include level(2);
 		}
 
 		@include respond-to(large) {
-			font-size: 0.875em;
-			padding: 12px;
+			@include text-size(14px);
 		}
 	}
 }
@@ -51,6 +54,77 @@
 				border-color: $colour;
 			}
 		}
+	}
+}
+
+
+// Input groups
+// ---------------------------------------------------------------------------------------
+.input-group {
+	@include row();
+
+	// Inputs
+	input {
+		@include margin-left(-1px);
+		@include border-radius(0px);
+	}
+	input:first-child {
+		@include margin-left(0px);
+		@include border-radius-left(2px);
+	}
+	input:last-child {
+		@include border-radius-right(2px);
+	}
+
+	// Inputs with icon
+	.input-icon {
+		input {
+			@include width(100%);
+		}
+		&:first-child input {
+			@include margin-left(0px);
+			@include border-radius-left(2px);
+		}
+		&:last-child input {
+			@include border-radius-right(2px);
+		}
+	}
+}
+.input-group-two {
+	@extend .input-group;
+
+	// Inputs and input icon divs
+	input,
+	.input-icon {
+		@include span(6);
+	}
+}
+.input-group-three {
+	@extend .input-group;
+
+	// Inputs and input icon divs
+	input,
+	.input-icon {
+		@include span(4);
+	}
+}
+
+
+// Input icon
+// ---------------------------------------------------------------------------------------
+.input-icon {
+	@include position(relative);
+
+	// Icons
+	i {
+		@include position(absolute, margin-top ($space-small + 1px) right $space-small);
+		@include font-size($font-base);
+		@include level(4);
+	}
+
+	// Input
+	input {
+		@include padding-right($space-slight);
 	}
 }
 

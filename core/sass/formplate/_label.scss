@@ -2,7 +2,7 @@
  * SASS File: 		_label.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -15,18 +15,17 @@
 // ---------------------------------------------------------------------------------------
 @mixin form-label() {
 	label {
-		display: inline-block;
-		padding: 0px;
-		margin: 0px;
-		margin-bottom: 6px;
-		font-size: 0.875em;
-		font-weight: 400;
-		font-family: $font-family;
-		color: $black-base;
+		@include display(inline-block);
+		@include spacing-no();
+		@include margin-bottom(6px);
+		@include text-colour($black-base);
+		@include text-font($font-family);
+		@include text-size(14px);
+		@include text-weight(normal);
 
-		// Large view
-		@include respond-to(large) {
-			font-size: 1em;
+		// Hover
+		.no-touch &:hover {
+			cursor: pointer;
 		}
 	}
 }

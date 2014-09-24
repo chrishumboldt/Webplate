@@ -2,7 +2,7 @@
  * SASS File: 		_select.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -17,51 +17,63 @@
 // ---------------------------------------------------------------------------------------
 @mixin form-select() {
 	.fp-select {
-		font-family: 'formplate';
-		padding: 8px 0px 11px 0px;
-		background-color: $white;
-		border: 1px solid $grey-form;
+		@include display(inline-block);
+		@include position(relative);
+		@include width(auto);
+		@include text-font('formplate');
+		@include border($grey-form);
+		@include background-colour($white);
 		@include border-radius();
+		@include overflow(hidden);
+		@include level(1);
 
 		// Icon
-		&:after {
-			position: absolute;
+		&:before {
+			@include position(absolute, right ($space-x-small + 1px));
+			@include height(36px);
 			content: "\e601";
-			margin-left: -31px;
-			margin-top: 6px;
-			font-size: 1.25em;
-			line-height: 1.25em;
-			color: $grey-form;
-			z-index: 1;
+			font-size: 20px;
+			@include text-line-height(37px);
+			@include text-colour($grey-form);
+			@include background-colour($white);
+			@include level(1);
 		}
 
 		// Hover
 		&:hover {
-			border-color: $blue;
+			@include border($blue);
 
 			// Icon
-			&:after {
-				color: $blue;
+			&:before {
+				@include text-colour($blue);
 			}
 		}
 
 		select {
 			position: relative;
-			padding: 8px $space-medium 8px $space-small;
-			border: 0px;
-			font-family: $font-family;
-			font-size: 0.875em;
-			letter-spacing: normal;
+			@include height(36px);
+			@include width(110%);
+			@include margin(0px);
+			@include padding-left($space-small);
+			@include padding-right($space-medium);
+			@include border-no();
+			@include text-font($font-family);
+			@include text-letter-spacing(normal);
+			@include text-size(14px);
 			text-transform: none;
 			word-spacing: normal;
-			border: none;
-			background: transparent;
 			outline: none;
-			-webkit-appearance: none;
 			-webkit-user-select: text;
 			-webkit-font-smoothing: antialiased;
-			-moz-appearance: window;
-			z-index: 2;
+			-webkit-appearance: none;
+		    -moz-appearance: none;
+		    appearance: none;
+		    @include background-colour(transparent);
+		    @include level(2);
+
+			&::-ms-expand {
+				@include hide();
+			}
 		}
 	}
 }
@@ -75,11 +87,11 @@
 
 			// Focus
 			.fp-select:hover {
-				border-color: $colour;
+				@include border($colour);
 
 				// Icon
-				&:after {
-					color: $colour;
+				&:before {
+					@include text-colour($colour);
 				}
 			}
 		}
@@ -91,19 +103,27 @@
 // ---------------------------------------------------------------------------------------
 @mixin form-select-fixes() {
 	@-moz-document url-prefix() {
-		.fp-select:after {
-			margin-top: 4px;
+		// .fp-select:after {
+		// 	@include margin-top(4px);
+		// }
+		.fp-select select {
+			@include padding-top($space-small - 2px);
+			@include padding-bottom($space-small - 4px);
 		}
 	}
 	.no-cssanimations .fp-select {
 		// Icon
 		&:after {
-			display: none;
+			@include hide();
 			content: "";
 		}
 
 		select {
-			padding: 7px $space-small 9px $space-small;
+			@include width(100%);
+			@include padding-top(7px);
+			@include padding-right($space-small);
+			@include padding-bottom(9px);
+			@include padding-left($space-small);
 		}
 	}
 }

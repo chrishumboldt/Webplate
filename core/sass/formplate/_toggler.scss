@@ -1,0 +1,83 @@
+/**
+ * SASS File: 		_toggler.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Toggler
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$toggler-h 						: 30px;
+$toggler-w 						: 50px;
+$toggler-handle-dim				: $toggler-h - 2px;
+
+
+// Toggler
+// ---------------------------------------------------------------------------------------
+@mixin form-toggler() {
+	.formplate {
+		.fp-toggler {
+			@include position(relative);
+			@include display(inline-block);
+			@include size($toggler-w, $toggler-h);
+			@include background-colour($grey-x-light);
+			@include border-radius($toggler-h / 2);
+			@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
+			@include animate(background-color);
+
+			// Hide the input
+			> input {
+				@include spacing-no();
+				@include opacity(0);
+			}
+
+			// Handle
+			.handle {
+				@include display(block);
+				@include position(absolute, top 1px left 1px);
+				@include size($toggler-handle-dim, $toggler-handle-dim);
+				@include background-colour($white);
+				@include border-radius(50%);
+				@include drop-shadow(fade-out($black, 0.9), 2px, 1px);
+				@include animate(all);
+			}
+
+			// Checked
+			&.checked {
+				@include background-colour($blue);
+
+				// Handle
+				.handle {
+					@include position-set(left 21px);
+				}
+			}
+
+			// Hover
+			.no-touch &:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	// Hover / checked
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-colour-#{$colour-name} .formplate {
+			.fp-toggler {
+
+				// Checked
+				&.checked {
+					@include background-color($colour);
+				}
+			}
+		}
+	}
+}
+
+
