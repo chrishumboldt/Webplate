@@ -2,7 +2,7 @@
  * SASS File: 		welcome.scss
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	30 July 2014
+ * Last Edited:   	18 September 2014
  */
 
 
@@ -32,6 +32,9 @@ html {
 }
 label {
 	font-family: $site-family;
+}
+.webplate header.stripe .bg-image {
+	@include background-image-cover("welcome/background.jpg");
 }
 
 

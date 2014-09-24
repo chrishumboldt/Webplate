@@ -2,7 +2,7 @@
  * SASS File: 		_layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	14 August 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -30,12 +30,12 @@
 		@include center();
 	}
 	.valign-t {
-		vertical-align: top;
+		@include vertical-align(top);
 	}
 	.valign-m {
-		vertical-align: middle;
+		@include vertical-align(middle);
 	}
 	.valign-b {
-		vertical-align: bottom;
+		@include vertical-align(bottom);
 	}
 }

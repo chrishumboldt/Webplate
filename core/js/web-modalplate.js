@@ -2,7 +2,7 @@
  * jQuery File: 	modalplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	22 August 2014
+ * Last Edited:   	17 September 2014
  */
 
 
@@ -14,7 +14,9 @@
 	{
 		overlay_template 				: '<div class="modalplate-overlay"></div>',
 		reveal 							: 'slide-from-top',
-		reveal_large					: false
+		reveal_large					: false,
+		trigger_max 					: false,
+		trigger_min 					: false
 	};
 	
 	// The actual plugin constructor
@@ -42,13 +44,16 @@
 			var $this_modal 				= $('[data-modal-id='+ $modal_id +']');
 			var $data_modal_reveal			= $this_modal.data('modal-reveal');
 			var $data_modal_reveal_large	= $this_modal.data('modal-reveal-large');
+			var $data_modal_trigger_max		= $this_modal.data('modal-trigger-max');
+			var $data_modal_trigger_min		= $this_modal.data('modal-trigger-min');
 			var $window_w 					= $(window).width();
 
 			// Setup
 			$this.overlay_add();
-			console.log($data_modal_reveal);
 			$this.settings.reveal			= $data_modal_reveal || $this.settings.reveal;
 			$this.settings.reveal_large		= $data_modal_reveal_large || $this.settings.reveal_large;
+			$this.settings.trigger_max		= $data_modal_trigger_max || $this.settings.trigger_max;
+			$this.settings.trigger_min		= $data_modal_trigger_min || $this.settings.trigger_min;
 
 			// Reveals
 			fc_set_modal_reveal();
@@ -63,8 +68,32 @@
 			// Execute
 			$this_modal_trigger.on('click', function($ev)
 			{
-				$ev.preventDefault();
-				$this.modal_reveal($this_modal);
+				// Check the trigger max / min
+				if($this.settings.trigger_max != false)
+				{
+					$window_w 				= $(window).width();
+
+					if($window_w < $this.settings.trigger_max)
+					{
+						$ev.preventDefault();
+						$this.modal_reveal($this_modal);
+					}
+				}
+				else if($this.settings.trigger_min != false)
+				{
+					$window_w 				= $(window).width();
+
+					if($window_w >= $this.settings.trigger_min)
+					{
+						$ev.preventDefault();
+						$this.modal_reveal($this_modal);
+					}
+				}
+				else
+				{
+					$ev.preventDefault();
+					$this.modal_reveal($this_modal);
+				}
 			});
 
 			$('.modalplate-overlay, .modalplate .close').on('click', function($ev)

@@ -1,9 +1,8 @@
 /**
  * SASS File: 		_display.scss
- * Requires: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -16,48 +15,59 @@
 // ---------------------------------------------------------------------------------------
 @mixin blueplate-display() {
 	.show {
-		display: block;
+		@include show();
 	}
 	.hide {
-		display: none;
+		@include hide();
 	}
-	.opacity-100 {
-		opacity: 1;
+	.opacity-100,
+	.transparency-100 {
+		@include transparency(1);
 	}
-	.opacity-75 {
-		opacity: 0.75;
+	.opacity-75,
+	.transparency-75 {
+		@include transparency(0.75);
 	}
-	.opacity-50 {
-		opacity: 0.5;
+	.opacity-50,
+	.transparency-50 {
+		@include transparency(0.5);
 	}
-	.opacity-25 {
-		opacity: 0.25;
+	.opacity-25,
+	.transparency-25 {
+		@include transparency(0.25);
 	}
-	.opacity-0 {
-		opacity: 0;
+	.opacity-0,
+	.transparency-0 {
+		@include transparency(0);
 	}
 
 	// Respond
 	@include respond-to(large) {
-		.small-show {
-			display: none;
+		.small-show,
+		.show-small {
+			@include hide();
 		}
-		.large-show {
-			display: block;
+		.large-show,
+		.show-large {
+			@include show();
 		}
-		.large-hide {
-			display: none;
+		.large-hide,
+		.hide-large {
+			@include hide();
 		}
 	}
 	@include respond-to(small) {
-		.small-show {
-			display: block;
+		.small-show,
+		.show-small {
+			@include show();
 		}
-		.small-hide {
-			display: none;
+		.small-hide,
+		.hide-small {
+			@include hide();
 		}
-		.large-show {
-			display: none;
+		.large-show,
+		.show-large {
+			@include hide();
 		}
 	}
 }

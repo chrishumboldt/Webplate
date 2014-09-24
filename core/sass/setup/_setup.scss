@@ -2,7 +2,7 @@
  * SASS File: 		_setup.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	11 June 2014
+ * Last Edited:   	24 September 2014
  */
 
 
@@ -62,7 +62,7 @@ a, a:visited {text-decoration: none;}
 	.navigation-inner {
 		margin: $space-minor 0px;
 	}
-	li a {
+	li a:not(.button):not([class *= "btn-"]) {
 		display: block;
 		padding: 10px 20px;
 		font-size: 0.875em;
@@ -78,11 +78,13 @@ a, a:visited {text-decoration: none;}
 		.icon-angle-down {
 			@include hide();
 		}
+
+		.no-touch &:hover {
+			color: $red;
+		}
 	}
 }
-.no-touch .webplate-navigation li a:hover {
-	color: $red;
-}
+
 // Overlay
 .webplate-overlay {
 	display: none;

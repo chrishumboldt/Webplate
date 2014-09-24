@@ -178,7 +178,7 @@
 	.invert .stripe:nth-child(odd) .showcase .image {
 		&:hover {
 			&:before {
-				background-color: fade-out($white, 0.6);
+				background-color: fade-out($black, 0.6);
 			}
 			h6, p {
 				@include transform-translate-3d(0px, 0px, 0px);

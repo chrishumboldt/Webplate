@@ -42,3 +42,5 @@ node_modules
 bower_components
 core/grunt/node_modules
 core/grunt/.sass-cache
+
+# Temporary ignore

@@ -1,0 +1,81 @@
+/**
+ * SASS File: 		_table.scss
+ * Type: 			basic
+ * Author:        	Chris Humboldt
+ * Last Edited:   	24 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic table
+// First blue
+
+
+// Basic table
+// ---------------------------------------------------------------------------------------
+table {
+	@include width(100%);
+
+	th, td {
+		@include padding-horizontal($space-x-small);
+		@include padding-vertical($space-small);
+		@include width-min(175px);
+		@include text-align(left);
+	}
+	tbody {
+		tr {
+			@include border-top($grey-light);
+			@include background-colour($white);
+
+			td {
+				@include text-colour(lighten($font-colour, 15%));
+			}
+			td a {
+				@include text-colour($red);
+				@include text-colour($blue-dark);
+
+				.no-touch &:hover {
+					@include text-colour($purple);
+				}
+			}
+		}
+	}
+
+	// Respond
+	@include respond-to(small) {
+		th, td {
+			@include display(block);
+			@include width(100%);
+			@include padding-top(0px);
+			@include font-size(14px);
+
+			&:first-child {
+				@include padding-top($space-small);
+			}
+		}
+		thead {
+			@include hide();
+		}
+		tbody {
+			tr:first-child {
+				@include border-no();
+			}
+		}
+	}
+}
+
+
+// First limit
+// ---------------------------------------------------------------------------------------
+table.first-limit {
+	tbody tr td:first-child {
+		@include width(185px);
+		
+		span {
+			@include text-colour($orange);
+		}
+	}
+}
+
+

@@ -2,7 +2,7 @@
  * SASS File: 		_sizing.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -15,45 +15,45 @@
 // ---------------------------------------------------------------------------------------
 @mixin blueplate-sizing() {
 	.block-h-10 {
-		height: 10px;
+		@include height(10px);
 	}
 	.block-h-20 {
-		height: 20px;
+		@include height(20px);
 	}
 	.block-h-50 {
-		height: 50px;
+		@include height(50px);
 	}
 	.block-h-100 {
-		height: 100px;
+		@include height(100px);
 	}
 	.block-h-200 {
-		height: 200px;
+		@include height(200px);
 	}
 	.block-h-500 {
-		height: 500px;
+		@include height(500px);
 	}
 	.block-h-1000 {
-		height: 1000px;
+		@include height(1000px);
 	}
 	.block-w-10 {
-		width: 10px;
+		@include width(10px);
 	}
 	.block-w-20 {
-		width: 20px;
+		@include width(20px);
 	}
 	.block-w-50 {
-		width: 50px;
+		@include width(50px);
 	}
 	.block-w-100 {
-		width: 100px;
+		@include width(109px);
 	}
 	.block-w-200 {
-		width: 200px;
+		@include width(200px);
 	}
 	.block-w-500 {
-		width: 500px;
+		@include width(500px);
 	}
 	.block-w-1000 {
-		width: 1000px;
+		@include width(1000px);
 	}
 }

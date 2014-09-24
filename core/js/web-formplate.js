@@ -2,7 +2,7 @@
  * jQuery File: 	formplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -63,18 +63,35 @@
 			// Checkboxes
 			$('.formplate input[type="checkbox"]').each(function()
 			{
-				// Wrap input
-				$(this).wrap('<span class="fp-checkbox"></span>');
-
-				// Check state
-				if($(this).is(':checked'))
+				if($(this).hasClass('toggler'))
 				{
-					$(this).parents('.fp-checkbox').addClass('checked');
+					// Wrap input
+					$(this).wrap('<span class="fp-toggler"></span>');
+
+					// Check state
+					if($(this).is(':checked'))
+					{
+						$(this).parents('.fp-toggler').addClass('checked');
+					}
+				}
+				else
+				{
+					// Wrap input
+					$(this).wrap('<span class="fp-checkbox"></span>');
+
+					// Check state
+					if($(this).is(':checked'))
+					{
+						$(this).parents('.fp-checkbox').addClass('checked');
+					}
 				}
 			});
 
+			// Add handle to togglers
+			$('.fp-toggler').prepend('<span class="handle"></span>');
+
 			// Toggle on change
-			$('.formplate .fp-checkbox').on('click', function()
+			$('.formplate .fp-checkbox, .formplate .fp-toggler').on('click', function()
 			{
 				var $checkbox 		= $(this).find('input[type="checkbox"]');
 

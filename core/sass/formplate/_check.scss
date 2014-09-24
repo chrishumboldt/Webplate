@@ -2,7 +2,7 @@
  * SASS File: 		_check.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -20,42 +20,42 @@
 	.formplate {
 		.fp-checkbox,
 		.fp-radio {
-			display: inline-block;
-			position: relative;
-			width: 22px;
-			height: 22px;
-			margin-right: $space-x-small;
-			margin-bottom: $space-x-small - 1px;
-			line-height: 22px;
-			vertical-align: middle;
-			border: 1px solid $grey-form;
+			@include display(inline-block);
+			@include position(relative, margin-right $space-x-small margin-bottom ($space-x-small - 1px));
+			@include margin-top(0px);
+			@include margin-bottom(2px);
+			@include size(22px, 22px);
+			@include text-line-height(22px);
+			@include text-size(10px);
+			@include vertical-align(middle);
+			@include border($grey-form);
 			@include border-radius();
+			@include background-clip();
 
 			// Hover
 			&:hover {
 				cursor: pointer;
-				border: 1px solid $blue;
+				@include border($blue);
 			}
 
 			// Checked
 			&.checked {
-				font-family: 'formplate';
-				color: $white;
-				font-size: 0.613em;
-				text-align: center;
-				border: 1px solid $blue;
-				background-color: $blue;
+				@include text-align(center);
+				@include text-colour($white);
+				@include text-font('formplate');
+				@include border($blue);
+				@include background-colour($blue);
 
 				&:before {
 					content: "\e600";
 				}
 			}
 
+			// Hide inputs
 			> input {
 				@include spacing-no();
-				display: inline-block;
-				height:22px;
-				width:22px; 
+				@include display(inline-block);
+				@include size(22px, 22px);
 				@include opacity(0);
 
 				&:hover {
@@ -73,13 +73,13 @@
 
 				// Hover
 				&:hover {
-					border: 1px solid $colour;
+					@include border($colour);
 				}
 
 				// Checked
 				&.checked {
-					border: 1px solid $colour;
-					background-color: $colour;
+					@include border($colour);
+					@include background-color($colour);
 				}
 			}
 		}
@@ -92,6 +92,7 @@
 @mixin form-check-radio() {
 	.formplate .fp-radio {
 		@include border-radius(50%);
+		@include background-clip();
 	}
 }
 
@@ -103,7 +104,7 @@
 		.formplate {
 			.fp-checkbox,
 			.fp-radio {
-				line-height: 20px;
+				@include text-line-height(21px);
 			}
 		}
 	}

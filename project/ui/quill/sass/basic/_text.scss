@@ -1,0 +1,106 @@
+/**
+ * SASS File: 		_text.scss
+ * Type: 			basic
+ * Author:        	Chris Humboldt
+ * Last Edited:   	14 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic text
+// Headings
+// Links
+
+
+// Basic text
+// ---------------------------------------------------------------------------------------
+html, body {
+	@include text-font($helvetica);
+	@include text-weight(normal);
+}
+p {
+	@include text-colour(lighten($font-colour, 15%));
+	@include text-font($georgia);
+	@include text-line-height(30px);
+	@include text-size($font-base);
+
+	// Respond
+	@include respond-to($bp-medium) {
+		@include text-size($font-slight);
+		@include text-line-height(32px);
+	}
+
+	// Bold
+	b {
+		@include text-colour($font-colour-dark);
+		@include text-weight(bold);
+	}
+}
+blockquote {
+	@include spacing-no();
+	@include padding-left($space-base);
+	@include border-left($blue, 3px);
+	font-style: italic;
+}
+
+
+// Headings
+// ---------------------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+	@include margin-bottom(1.5rem);
+	@include text-weight(500);
+	@include text-colour($font-colour-dark);
+}
+h1 { 
+	@include margin-bottom(1.375rem);
+}
+h5 {
+	@include text-line-height(26px);
+}
+h6 {
+	@include margin-bottom(0.75rem);
+	@include text-weight(600);
+	@include text-line-height(26px);
+}
+
+// Respond
+@include respond-to($bp-small, max) {
+	h1 { @include text-size(48px); }
+	h2 { @include text-size(40px); }
+	h3 { @include text-size(30px); }
+	h4 { @include text-size(20px); }
+	h5 { @include text-size(18px); }
+	h6 { @include text-size(16px); }
+}
+@include respond-to($bp-medium) {
+	h3 {
+		@include text-size(38px);
+	}
+	h4 {
+		@include text-size(28px);
+	}
+	h5 {
+		@include text-size(24px);
+	}
+	h6 {
+		@include text-size($font-medium);
+	}
+}
+
+
+// Links
+// ---------------------------------------------------------------------------------------
+article,
+section {
+	a:not(.button):not([class *= "btn-"]) {
+		@include text-colour($blue-dark);
+		@include animate(color);
+
+		&:hover {
+			@include text-colour($purple);
+		}
+	}
+}
+
+

@@ -3,7 +3,7 @@
  * Requires: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	28 March 2014
+ * Last Edited:   	23 September 2014
  */
 
 
@@ -16,112 +16,115 @@
 // ---------------------------------------------------------------------------------------
 @mixin blueplate-text() {
 	.hide-text {
-		text-indent: -10000px;
-		overflow: hidden;
+		@include text-hide();
 	}
 	.txt-l {
-		text-align: left; 
+		@include text-align(left);
 	}
 	.txt-c {
-		text-align: center;
+		@include text-align(center);
 	}
 	.txt-r {
-		text-align: right;  
+		@include text-align(right);
 	}
-	.txt-size-xxl {
-		font-size: 1.5em;
+	.txt-size-x2l {
+		@include text-size($font-x2-large);
 	}
 	.txt-size-xl {
-		font-size: 1.250em;
+		@include text-size($font-x-large);
 	}
 	.txt-size-l {
-		font-size: 1.125em;
-	}
-	.txt-size-n {
-		font-size: 1em;
+		@include text-size($font-large);
 	}
 	.txt-size-m {
-		font-size: 0.875em;
+		@include text-size($font-medium);
+	}
+	.txt-size-n {
+		@include text-size($font-base);
 	}
 	.txt-size-s {
-		font-size: 0.750em;
+		@include text-size($font-small);
 	}
 	.txt-size-xs {
-		font-size: 0.625em;
+		@include text-size($font-x-small);
+	}
+	.txt-size-x2s {
+		@include text-size($font-x2-small);
 	}
 	.txt-weight-xb {
-		font-weight: 900;
+		@include text-weight(900);
 	}
 	.txt-weight-b, .txt-bold {
-		font-weight: 700;
+		@include text-weight(700);
 	}
 	.txt-weight-n {
-		font-weight: 400;
+		@include text-weight(400);
 	}
 	.txt-weight-l, .txt-light {
-		font-weight: 300;
+		@include text-weight(300);
 	}
 	.txt-weight-xl {
-		font-weight: 100;
+		@include text-weight(100);
 	}
 	.txt-normal {
-		font-weight: 400;
-		font-style: normal;
+		@include text-weight(normal);
 	}
 	.txt-italics {
-		font-style: italic;
+		@include text-style(italic);
 	}
 	.txt-oblique {
-		font-style: oblique;
+		@include text-style(oblique);
 	}
 	.txt-white {
-		color: #fff;
+		@include text-colour($white);
 	}
 	.txt-grey {
-		color: fadeout(#000, 50%);
+		@include text-colour($grey);
 	}
 
 	// Respond
 	@include respond-to(large) {
-		.large-txt-size-xxl {
-			font-size: 1.444em;
+		.large-txt-size-x2l {
+			@include text-size($font-x2-large);
 		}
 		.large-txt-size-xl {
-			font-size: 1.222em;
+			@include text-size($font-x-large);
 		}
 		.large-txt-size-l {
-			font-size: 1.111em;
-		}
-		.large-txt-size-n {
-			font-size: 1em;
+			@include text-size($font-large);
 		}
 		.large-txt-size-m {
-			font-size: 0.889em;
+			@include text-size($font-medium);
+		}
+		.large-txt-size-n {
+			@include text-size($font-base);
 		}
 		.large-txt-size-s {
-			font-size: 0.778em;
+			@include text-size($font-small);
 		}
 		.large-txt-size-xs {
-			font-size: 0.667em;
+			@include text-size($font-x-small);
+		}
+		.large-txt-size-x2s {
+			@include text-size($font-x2-small);
 		}
 		.large-txt-weight-xb {
-			font-weight: 900;
+			@include text-weight(900);
 		}
 		.large-txt-weight-b, .large-txt-bold {
-			font-weight: 700;
+			@include text-weight(700);
 		}
 		.large-txt-weight-n {
-			font-weight: 400;
+			@include text-weight(400);
 		}
 		.large-txt-weight-l, .large-txt-light {
-			font-weight: 300;
+			@include text-weight(300);
 		}
 		.large-txt-weight-xl {
-			font-weight: 100;
+			@include text-weight(100);
 		}
 		.large-txt-normal {
-			font-weight: 400;
-			font-style: normal;
+			@include text-weight(normal);
 		}
 	}
 }
