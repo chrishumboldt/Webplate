@@ -94,76 +94,71 @@
 
 		</div>
 
-		<div id="inputs" class="col-triple">
+		<div id="inputs" class="col-double">
 
 			<div class="left">
-
+				
 				<div class="formplate">
-					<label for="textarea">Text Area:</label>
-					<textarea id="textarea"></textarea>
+				    <input type="text" placeholder="Text Input" name="text-input">
+				</div>
+				
+				<div class="formplate">
+					<textarea placeholder="Textarea"></textarea>
 				</div>
 
 			</div>
 
-			<div class="middle">
+			<div class="right">
+							
+				<div class="col-double">
 
-				<div class="formplate">
-					<label for="text-input">Text Input:</label>
-					<input type="text" id="text-input">
-				</div>
+					<div class="left">
 
-				<div class="formplate">
-					<select>
-					    <option value="1">Select Option 1</option>
-					    <option value="2">Select Option 2</option>
-					    <option value="3">Select Option 3</option>
-					</select>
-				</div>
+						<div class="formplate">
+							<input type="checkbox" name="checkbox-1" value="checkbox-1" id="checkbox-1">
+							<label for="checkbox-1">Checkbox 1</label>
+						</div>
+						<div class="formplate">
+							<input type="checkbox" name="checkbox-2" value="checkbox-2" id="checkbox-2">
+							<label for="checkbox-2">Checkbox 2</label>
+						</div>
+						<div class="formplate">
+							<input type="checkbox" name="checkbox-3" value="checkbox-3" id="checkbox-3">
+							<label for="checkbox-3">Checkbox 3</label>
+						</div>
+						<br>
+						<div class="formplate">
+							<select>
+								<option value="1">Select Option 1</option>
+								<option value="2">Select Option 2</option>
+								<option value="3">Select Option 3</option>
+							</select>
+						</div>
+						<br>
 
-			</div>
+					</div>	
 
-			<div class="right col-double">
+					<div class="right">
 
-				<div class="formplate">
-					<label for="textarea">Selections:</label>
-				</div>
-
-				<div class="left">
-
-					<div class="formplate">
-						<input type="checkbox" id="checkbox-1">
-						<label for="checkbox-1">Checkbox 1</label>
+						<div class="formplate">
+							<input type="radio" name="radio" value="radio-1" id="radio-1">
+							<label for="radio-1">Radio 1</label>
+						</div>
+						<div class="formplate">
+							<input type="radio" name="radio" value="radio-2" id="radio-2">
+							<label for="radio-2">Radio 2</label>
+						</div>
+						<div class="formplate">
+							<input type="radio" name="radio" value="radio-3" id="radio-3">
+							<label for="radio-3">Radio 3</label>
+						</div>
+						<br>
+						<div class="formplate">
+							<input type="checkbox" name="toggler" value="toggler" class="toggler">
+						</div>
+						
 					</div>
 
-					<div class="formplate">
-						<input type="checkbox" id="checkbox-2">
-						<label for="checkbox-2">Checkbox 2</label>
-					</div>
-
-					<div class="formplate">
-						<input type="checkbox" id="checkbox-3">
-						<label for="checkbox-3">Checkbox 3</label>
-					</div>
-
-				</div>
-		
-				<div class="right">
-
-					<div class="formplate">
-						<input type="radio" id="radio-1" name="radio-selection">
-						<label for="radio-1">Radio 1</label>
-					</div>
-
-					<div class="formplate">
-						<input type="radio" id="radio-2" name="radio-selection">
-						<label for="radio-2">Radio 2</label>
-					</div>
-
-					<div class="formplate">
-						<input type="radio" id="radio-3" name="radio-selection">
-						<label for="radio-3">Radio 3</label>
-					</div>
-					
 				</div>
 
 			</div>

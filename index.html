@@ -202,13 +202,9 @@
     &lt;input type="text" id="text-input" name="text-input"&gt;
 &lt;/div&gt;
 
-// Drop-down
+// Textarea
 &lt;div class="formplate"&gt;
-    &lt;select&gt;
-        &lt;option value="1"&gt;Select Option 1&lt;/option&gt;
-        &lt;option value="2"&gt;Select Option 2&lt;/option&gt;
-        &lt;option value="3"&gt;Select Option 3&lt;/option&gt;
-    &lt;/select&gt;
+    &lt;textarea placeholder="Textarea"&gt;&lt;/textarea&gt;
 &lt;/div&gt;
 
 // Checkboxes
@@ -220,6 +216,10 @@
     &lt;input type="checkbox" name="checkbox-2" value="checkbox-2" id="checkbox-2"&gt;
     &lt;label for="checkbox-2"&gt;Checkbox 2&lt;/label&gt;
 &lt;/div&gt;
+&lt;div class="formplate"&gt;
+    &lt;input type="checkbox" name="checkbox-3" value="checkbox-3" id="checkbox-3"&gt;
+    &lt;label for="checkbox-3"&gt;Checkbox 3&lt;/label&gt;
+&lt;/div&gt;
 
 // Radio buttons
 &lt;div class="formplate"&gt;
@@ -230,34 +230,43 @@
     &lt;input type="radio" name="radio" value="radio-2" id="radio-2"&gt;
     &lt;label for="radio-2"&gt;Radio 2&lt;/label&gt;
 &lt;/div&gt;
-
-// Textarea
 &lt;div class="formplate"&gt;
-    &lt;textarea placeholder="Textarea"&gt;&lt;/textarea&gt;
+    &lt;input type="radio" name="radio" value="radio-3" id="radio-3"&gt;
+    &lt;label for="radio-3"&gt;Radio 3&lt;/label&gt;
+&lt;/div&gt;
+
+// Drop-down
+&lt;div class="formplate"&gt;
+    &lt;select&gt;
+        &lt;option value="1"&gt;Select Option 1&lt;/option&gt;
+        &lt;option value="2"&gt;Select Option 2&lt;/option&gt;
+        &lt;option value="3"&gt;Select Option 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+// Toggler
+&lt;div class="formplate"&gt;
+    &lt;input type="checkbox" class="toggler" name="toggler" value="toggler"&gt;
 &lt;/div&gt;
 </pre>
 
 		<p>RESULT</p>
 
-		<div class="col-triple">
+		<div class="col-double">
 
 			<div class="left">
 				
 				<div class="formplate">
 				    <input type="text" placeholder="Text Input" name="text-input">
 				</div>
-
+				
 				<div class="formplate">
-				    <select>
-				        <option value="1">Select Option 1</option>
-				        <option value="2">Select Option 2</option>
-				        <option value="3">Select Option 3</option>
-				    </select>
+					<textarea placeholder="Textarea"></textarea>
 				</div>
 
 			</div>
 
-			<div class="middle">
+			<div class="right">
 							
 				<div class="col-double">
 
@@ -275,6 +284,15 @@
 							<input type="checkbox" name="checkbox-3" value="checkbox-3" id="checkbox-3">
 							<label for="checkbox-3">Checkbox 3</label>
 						</div>
+						<br>
+						<div class="formplate">
+							<select>
+								<option value="1">Select Option 1</option>
+								<option value="2">Select Option 2</option>
+								<option value="3">Select Option 3</option>
+							</select>
+						</div>
+						<br>
 
 					</div>	
 
@@ -285,12 +303,16 @@
 							<label for="radio-1">Radio 1</label>
 						</div>
 						<div class="formplate">
-							<input type="radio" name="radio" value="radio-1" id="radio-2">
+							<input type="radio" name="radio" value="radio-2" id="radio-2">
 							<label for="radio-2">Radio 2</label>
 						</div>
 						<div class="formplate">
-							<input type="radio" name="radio" value="radio-1" id="radio-3">
+							<input type="radio" name="radio" value="radio-3" id="radio-3">
 							<label for="radio-3">Radio 3</label>
+						</div>
+						<br>
+						<div class="formplate">
+							<input type="checkbox" name="toggler" value="toggler" class="toggler">
 						</div>
 						
 					</div>
@@ -299,17 +321,9 @@
 
 			</div>
 
-			<div class="right">
-				
-				<div class="formplate">
-					<textarea placeholder="Textarea"></textarea>
-				</div>
-
-			</div>
-
 		</div>
-			
-		<p>&nbsp;</p>
+		
+		<br>
 		<p>For more information read the online documentation on forms.<p>
 		<a href="http://getwebplate.com/documentation/forms" class="btn-primary">Read Documentation</a>
 

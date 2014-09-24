@@ -18,7 +18,7 @@
 
 	// Links
 	li > {
-		a {
+		a:not(.button):not([class *= "btn-"]) {
 			@include text-colour($white);
 			@include text-size($font-base);
 			@include text-weight(300);
