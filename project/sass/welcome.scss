@@ -13,6 +13,7 @@
 // Global
 // Examples
 // Footer
+// Navigation
 
 
 // Variables
@@ -152,6 +153,20 @@ label {
 }
 .no-touch #footer .social .circle a:hover {
 	background-color: lighten(#E54028, 14%);
+}
+
+
+// Navigation
+// ---------------------------------------------------------------------------------------
+.no-touch header.stripe nav .logo-container .logo-line:hover,
+.no-touch header.stripe nav ul.navigation > li > a:hover,
+.no-touch header.stripe nav ul.navigation > li > ul a:hover,
+.no-touch header.stripe .scroll-down:hover {
+	@include text-colour($red-dark);
+}
+.no-touch header.stripe nav .logo-container .logo-line:hover,
+.no-touch header.stripe .scroll-down:hover {
+	@include border($red-dark);
 }
 
 
