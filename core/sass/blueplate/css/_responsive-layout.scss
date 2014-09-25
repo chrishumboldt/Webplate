@@ -2,7 +2,7 @@
  * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * Last Edited:   	25 September 2014
  */
 
 
@@ -58,17 +58,17 @@
 
 			// Large span loop
 			@for $index from 1 through $column-limit {
-				.large-span-#{$index} {
+				.span-large-#{$index} {
 					@include make-span($index);
 				}
 			}
 
 			// Offset loop
 			@for $index from 1 through ($column-limit - 1) {
-				.large-offset-#{$index} {
+				.offset-large-#{$index} {
 					@include offset($index);
 				}
-				.large-offset-r-#{$index} {
+				.offset-large-r-#{$index} {
 					@include offset-r($index);
 				}
 			}
@@ -81,17 +81,17 @@
 			
 			// Small span loop
 			@for $index from 1 through $column-limit {
-				.small-span-#{$index} {
+				.span-small-#{$index} {
 					@include make-span($index);
 				}
 			}
 
 			// Offset loop
 			@for $index from 1 through ($column-limit - 1) {
-				.small-offset-#{$index} {
+				.offset-small-#{$index} {
 					@include offset($index);
 				}
-				.small-offset-r-#{$index} {
+				.offset-small-r-#{$index} {
 					@include offset-r($index);
 				}
 			}
