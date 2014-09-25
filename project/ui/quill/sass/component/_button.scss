@@ -25,6 +25,7 @@
 	@include button-setup();
 	@include button-shape-pill();
 	@include button-size-normal();
+	@include margin-bottom($space-small);
 
 	// Icon only
 	&.icon-only {

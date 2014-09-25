@@ -59,6 +59,7 @@ header {
 			@include padding-top($space-base);
 			@include text-colour(fade-out($white, 0.2));
 			@include text-font($georgia);
+			@include text-line-height(30px);
 			@include text-weight(300);
 		}
 	}

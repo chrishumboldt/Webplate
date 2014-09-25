@@ -61,6 +61,16 @@ $(document).ready(function()
 		});
 	}
 
+	// Go back
+	function fc_go_back()
+	{
+		$('.go-back').on('click', function($ev)
+		{
+			$ev.preventDefault();
+			window.history.back();
+		});
+	}
+
 	// Header adjustment
 	function fc_header_adjustment()
 	{
@@ -267,6 +277,8 @@ $(document).ready(function()
 	prettyPrint();
 
 	fc_forms();
+
+	fc_go_back();
 
 	fc_header_adjustment();
 

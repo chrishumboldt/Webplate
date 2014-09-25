@@ -2,7 +2,7 @@
  * SASS File: 		_navigation.scss
  * Type: 			component
  * Author:        	Chris Humboldt
- * Last Edited:   	15 September 2014
+ * Last Edited:   	25 September 2014
  */
 
 
@@ -30,6 +30,7 @@
 		}
 		a.button,
 		[class *= "btn-"] {
+			@include width(auto);
 			@include margin-horizontal(20px);
 			@include margin-vertical(10px);
 			@include padding-vertical(0px);
