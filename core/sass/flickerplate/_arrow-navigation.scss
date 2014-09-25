@@ -44,7 +44,9 @@ $images-path					: "../img" !default;
 		.arrow {
 			opacity: 0;
 			margin: 0px 0px 0px 50%;
-			@include background-single-image("#{$images-path}/flickerplate/arrow-left-light.png", left);
+			background-image: url("../img/flickerplate/arrow-left-light.png");
+			background-position: left;
+			background-repeat: no-repeat;
 		}
 	}
 	.arrow-navigation.right {
@@ -53,7 +55,9 @@ $images-path					: "../img" !default;
 		.arrow {
 			opacity: 0;
 			margin: 0px 0px 0px -50%;
-			@include background-single-image("#{$images-path}/flickerplate/arrow-right-light.png", right);
+			background-image: url("../img/flickerplate/arrow-right-light.png");
+			background-position: right;
+			background-repeat: no-repeat;
 		}
 	}
 	.arrow-navigation.left.hover .arrow {
