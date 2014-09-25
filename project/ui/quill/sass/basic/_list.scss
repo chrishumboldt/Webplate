@@ -2,7 +2,7 @@
  * SASS File: 		_list.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	24 September 2014
+ * Last Edited:   	25 September 2014
  */
 
 
@@ -15,7 +15,8 @@
 // Content lists
 // ---------------------------------------------------------------------------------------
 ul.content, ol.content {
-	padding-left: $space-medium;
+	@include margin-bottom(1.5em);
+	@include padding-left($space-medium);
 }
 
 
@@ -26,7 +27,7 @@ ul.flat, ol.flat {
 	list-style: none;
 
 	li {
-		display: inline-block;
+		@include display(inline-block);
 	}
 }
 
