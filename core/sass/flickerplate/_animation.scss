@@ -2,7 +2,7 @@
  * SASS File: 		_animation.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	12 July 2014
+ * Last Edited:   	27 September 2014
  * Edited by: 		Chris humboldt
  */
 
@@ -11,15 +11,17 @@
 // ---------------------------------------------------------------------------------------
 // Animation Variables
 
-$animate-transform-slide-duration: 0.6s;
-$animate-transform-slide-easing: ease-out;
+$transform-slide-duration			: 0.2s;
+$transform-slide-duration-large		: 0.6s;
+$transform-slide-easing				: ease-out;
 
-$animate-transition-slide-duration: 0.4s;
-$animate-transition-slide-easing: ease-in-out;
+$transition-slide-duration			: 0.2s;
+$transition-slide-duration-large	: 0.6s;
+$transition-slide-easing			: ease-in-out;
 
 // fade settings
-$animate-transition-fade-duration: 0.8s;
-$animate-transition-fade-easing: linear;
+$transition-fade-duration			: 0.8s;
+$transition-fade-easing				: linear;
 
 // Animations
 // ---------------------------------------------------------------------------------------
@@ -32,68 +34,76 @@ $animate-transition-fade-easing: linear;
 			-webkit-backface-visibility: hidden;
 			transform: translate3d(0%, 0px, 0px);
 			-webkit-transform: translate3d(0%, 0px, 0px);
-			-webkit-transition: -webkit-transform $animate-transform-slide-duration $animate-transform-slide-easing;
-			-o-transition: -o-transform $animate-transform-slide-duration $animate-transform-slide-easing;
-			-moz-transition: -moz-transform $animate-transform-slide-duration $animate-transform-slide-easing;
-			transition: transform $animate-transform-slide-duration $animate-transform-slide-easing;
+			-webkit-transition: -webkit-transform $transform-slide-duration $transform-slide-easing;
+			-o-transition: -o-transform $transform-slide-duration $transform-slide-easing;
+			-moz-transition: -moz-transform $transform-slide-duration $transform-slide-easing;
+			transition: transform $transform-slide-duration $transform-slide-easing;
+
+			@include respond-to(large) {
+				-webkit-transition: -webkit-transform $transform-slide-duration-large $transform-slide-easing;
+				-o-transition: -o-transform $transform-slide-duration-large $transform-slide-easing;
+				-moz-transition: -moz-transform $transform-slide-duration-large $transform-slide-easing;
+				transition: transform $transform-slide-duration-large $transform-slide-easing;				
+			}
 		}
 	}
 	#{$identifier}.animate-transition-slide {
 		// Flicks
 		ul.flicks {
-			position: relative;
-			left: 0%;
-            @include animate(left, $animate-transition-slide-duration, $animate-transition-slide-easing);
+			@include position(relative, left 0%);
+			@include animate(left, $transition-slide-duration, $transition-slide-easing);
+
+			@include respond-to(large) {
+				@include animate(left, $transition-slide-duration-large, $transition-slide-easing);
+			}
 		}
 	}
 	#{$identifier}.animate-jquery-slide {
 		// Flicks
 		ul.flicks {
-			position: relative;
-			left: 0%;
+			@include position(relative, left 0%);
 		}
 	}
 	#{$identifier}.animate-scroller-slide {
-		padding-bottom: 0px;
-		overflow: auto;
+		@include padding-bottom(0px);
+		@include overflow(auto);
 
 		ul.flicks {
-			position: auto;
+			@include position(auto);
 		}
 	}
 
-    #{$identifier}.animate-transition-fade {
-        ul.flicks {
-            position: relative;
-            li {
-                float: none;
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-            }
-        }
-        &.fade-inited {
-            ul.flicks li {
-                @include animate(opacity, $animate-transition-fade-duration, $animate-transition-fade-easing);
-                &.first-flick {
-                  opacity: 1;
-                }
-            }
-        }
-    }
+	#{$identifier}.animate-transition-fade {
+		ul.flicks {
+			@include position(relative);
 
-    #{$identifier}.animate-jquery-fade {
-        ul.flicks {
-            position: relative;
-            li {
-                float: none;
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-            }
-        }
-    }
+			li {
+				@include float(none);
+				@include position(absolute, top 0 left 0);
+				@include transparency(0);
+			}
+		}
+		&.fade-inited {
+			ul.flicks li {
+				@include animate(opacity, $transition-fade-duration, $transition-fade-easing);
 
-}
+				&.first-flick {
+					@include transparency(1);
+				}
+			}
+		}
+	}
+
+	#{$identifier}.animate-jquery-fade {
+		ul.flicks {
+			@include position(relative);
+
+			li {
+				@include float(none);
+				@include position(absolute, top 0 left 0);
+				@include transparency(0);
+			}
+		}
+	}
+
+	}
