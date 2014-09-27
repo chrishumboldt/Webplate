@@ -70,8 +70,7 @@ module.exports = function(grunt) {
 			touch: {
 				files: {
 					'../js/min/web-touch.min.js': [
-						'../js/web-fastclick.js',
-						'../js/web-jquery-finger.js'
+						'../js/web-fastclick.js'
 					],
 				}
 			},

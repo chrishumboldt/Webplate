@@ -62,24 +62,27 @@ $limit-width 						: 68.750em !default;
 }
 @mixin fp-flick-content() {
 	.flick-title {
-		padding: 0px 0px;
-		font-size: 2.778em;
-		line-height: 1.995em;
-		text-align: center;
+		@include padding-no();
+		@include text-align(center);
+		@include text-line-height(56px);
+		@include font-size(28px);
 
-		@include respond-to(small){
-			font-size: 1.667em;
+		@include respond-to(large){
+			@include text-line-height(75px);
+			@include text-size(44px);
 		}
 	}
 	.flick-sub-text {
-		padding: 5px;
-		font-weight: 300;
-		line-height: 2.5em;
-		color: fade-out(#fff, 0.2);
-		text-align: center;
+		@include padding(5px);
+		@include text-align(center);
+		@include text-colour(fade-out($white, 0.2));
+		@include text-line-height(42px);
+		@include text-size(16px);
+		@include text-weight(300);
 	}
 	.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
-		padding: 12px 18px;
-		background-color: fade-out(#000, 0.4);
+		@include padding-horizontal(18px);
+		@include padding-vertical(12px);
+		@include background-colour(fade-out(#000, 0.4));
 	}
 }

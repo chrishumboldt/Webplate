@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	1 August 2014
+ * Last Edited:   	27 September 2014
  */
 
 

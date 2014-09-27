@@ -2,7 +2,7 @@
  * jQuery File:     web-tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     19 August 2014
+ * Last Edited:     27 September 2014
  */
 
 
@@ -361,14 +361,7 @@ jQuery.web_load_plugins             = function($css_path, $js_path)
 		// Execute the flicker
 		if($check_flicker == true)
 		{
-			if(Modernizr.touch)
-			{
-				$('.flickerplate').flicker({ flick_animation: 'transform-slide' });
-			}
-			else
-			{
-				$('.flickerplate').flicker();
-			}
+			$('.flickerplate').flickerplate({ flick_animation: 'transform-slide' });
 		}
 
 		// Activate Penpalte

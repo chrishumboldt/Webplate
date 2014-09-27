@@ -2,70 +2,73 @@
  * SASS File: 		_arrow-navigation.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	22 March 2014
+ * Last Edited:   	26 September 2014
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Variables
 // Arrow navigation
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
-$images-path					: "../img" !default;
 
 
 // Arrow navigation
 // ---------------------------------------------------------------------------------------
 @mixin fp-arrow-navigation() {
 	.arrow-navigation {
-		position: absolute;
-		height: 80%;
-		width: 10%;
-		top: 10%;
-		z-index: 100;
-		overflow: hidden;
-		
-		.arrow {
-			display: block;
-			height: 100%;
-			width: 90%;
-			@include animate(all);
+		@include display(block);
+		@include position(absolute, top 10%);
+		@include size(10%, 80%);
+		@include level(100);
+		@include overflow(hidden);
+		@include text-font('flickerplate');
+		@include vertical-align(middle);
+
+		// Arrow
+		&:before {
+			@include position(absolute, top 50% left 50%);
+			@include margin-left(-25px);
+			@include margin-top(-25px);
+			@include height(50px);
+			@include width(50px);
+			@include transparency(0);
+			@include text-align(center);
+			@include text-colour($white);
+			@include text-size($font-x2-large);
+			@include animate(opacity);
 		}
-	}
-	.arrow-navigation:hover, .arrow-navigation .arrow:hover {
-		cursor: pointer;
-	}
-	.arrow-navigation.left {
-		left: 0%;
-		
-		.arrow {
-			opacity: 0;
-			margin: 0px 0px 0px 50%;
-			background-image: url("../img/flickerplate/arrow-left-light.png");
-			background-position: left;
-			background-repeat: no-repeat;
+
+		// Hover state
+		.no-touch &:hover {
+			cursor: pointer;
+
+			&.left:before,
+			&.right:before {
+				@include transparency(1);
+			}
 		}
-	}
-	.arrow-navigation.right {
-		right: 0%;
-		
-		.arrow {
-			opacity: 0;
-			margin: 0px 0px 0px -50%;
-			background-image: url("../img/flickerplate/arrow-right-light.png");
-			background-position: right;
-			background-repeat: no-repeat;
+		.no-touch &:active {
+			&.left:before,
+			&.right:before {
+				@include margin-top(-23px);
+			}
 		}
-	}
-	.arrow-navigation.left.hover .arrow {
-		opacity: 1;
-		margin: 0px 0px 0px 20%;
-	}
-	.arrow-navigation.right.hover .arrow {
-		opacity: 1;
-		margin: 0px 0px 0px -20%;
+
+		// Left arrow
+		&.left {
+			@include position-set(left 0%);
+
+			&:before {
+				content: "\f104";
+			}
+		}
+
+		// Right arrow
+		&.right {
+			@include position-set(right 0%);
+
+			&:before {
+				content: "\f105";
+			}
+		}
 	}
 }
