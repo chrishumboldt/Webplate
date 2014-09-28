@@ -21,7 +21,6 @@
 		dot_navigation					: true,
 		flick_animation					: 'transition-slide',
 		flick_position 					: 1,
-		inner_width						: false,
 		theme							: 'light'
 	};
 	
@@ -67,8 +66,18 @@
 			{
 				$settings.arrows 				= $flicker.data('arrows');
 			}
-			$settings.arrows_constraint			= $flicker.data('arrows-constraint') || $settings.arrows_constraint;
-			$settings.auto_flick_delay			= ($flicker.data('auto-flick-delay') || $settings.auto_flick_delay) * 1000;
+			if($flicker.data('arrows-constraint') != undefined)
+			{
+				$settings.arrows_constraint		= $flicker.data('arrows-constraint');
+			}
+			if($flicker.data('auto-flick-delay') != undefined)
+			{
+				$settings.auto_flick_delay		= $flicker.data('auto-flick-delay') * 1000;
+			}
+			else
+			{
+				$settings.auto_flick_delay 		= $settings.auto_flick_delay * 1000
+			}
 			if($flicker.data('block-text') != undefined)
 			{
 				$settings.block_text 			= $flicker.data('block-text');
