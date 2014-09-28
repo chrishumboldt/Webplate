@@ -50,7 +50,6 @@
 			var $flicker 				= $($this.element);
 
 			var $auto_flick;
-			var $block_text 			= $flicker.data('block-text');
 			var $dot_count				= 0;
 			var $fade_speed 			= 800;
 			var $flick_count 			= 0;
@@ -64,15 +63,21 @@
 
 			// Change settings
 			// ---------------------------------------------------------------------------------------
-			$settings.arrows					= $flicker.data('arrows') || $settings.arrows;
+			if($flicker.data('arrows') != undefined)
+			{
+				$settings.arrows 				= $flicker.data('arrows');
+			}
 			$settings.arrows_constraint			= $flicker.data('arrows-constraint') || $settings.arrows_constraint;
 			$settings.auto_flick_delay			= ($flicker.data('auto-flick-delay') || $settings.auto_flick_delay) * 1000;
-			if($block_text != undefined)
+			if($flicker.data('block-text') != undefined)
 			{
-				$settings.block_text 			= $block_text;
+				$settings.block_text 			= $flicker.data('block-text');
 			}
 			$settings.dot_alignment				= $flicker.data('dot-alignment') || $settings.dot_alignment;
-			$settings.dot_navigation			= $flicker.data('dot-navigation') || $settings.dot_navigation;
+			if($flicker.data('dot-navigation') != undefined)
+			{
+				$settings.dot_navigation 		= $flicker.data('dot-navigation');
+			}
 			$settings.fade_speed 				= $fade_speed;
 			$settings.flick_animation			= $flicker.data('flick-animation') || $settings.flick_animation;
 			$settings.flick_position			= $flicker.data('flick-position') || $settings.flick_position;
