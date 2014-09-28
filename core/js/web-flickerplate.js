@@ -2,7 +2,7 @@
  * jQuery File: 	flickerplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	27 September 2014
+ * Last Edited:   	28 September 2014
  */
 
 
@@ -106,7 +106,7 @@
 
 				// Set the flick position
 				$flicker.attr('data-flick-position', $settings.flick_position);
-				fc_move_flicker($settings.flick_position);
+				fc_move_flicker();
 
 				// Each flick
 				$flicker.find('ul.flicks > li').each(function()
@@ -183,7 +183,7 @@
 						}
 					
 						// Move flicker
-						fc_move_flicker($settings.flick_position);
+						fc_move_flicker();
 						fc_auto_flick_reset();
 					});
 				}
@@ -219,8 +219,10 @@
 					// Actions
 					$flicker.find('.dot-navigation li').on('click', function()
 					{
+						$settings.flick_position 	= $(this).index() + 1;
+
 						// Invoke the movement
-						fc_move_flicker($(this).index() + 1);
+						fc_move_flicker();
 						fc_auto_flick_reset();
 					});
 				}
@@ -243,7 +245,7 @@
 				}
 				
 				// Move flicker
-				fc_move_flicker($settings.flick_position);
+				fc_move_flicker();
 			};
 			function fc_auto_flick_stop()
 			{
@@ -366,7 +368,7 @@
 				}
 
 				// Move the flicker
-				fc_move_flicker($settings.flick_position);
+				setTimeout(function(){ fc_move_flicker(); }, 10);
 
 				// Start auto flick
 				fc_auto_flick_start();
@@ -388,16 +390,15 @@
 					}
 				}
 
-				fc_move_flicker($settings.flick_position);
+				fc_move_flicker();
 				fc_auto_flick_reset();
 			};
 
 			// Move flicker
-			function fc_move_flicker($position)
+			function fc_move_flicker()
 			{
 				// Set the position
-				$settings.flick_position 	= $position;
-				$position 					= $position - 1;
+				$position 							= $settings.flick_position - 1;
 
 				// Moved based on animation type
 				switch($settings.flick_animation)
