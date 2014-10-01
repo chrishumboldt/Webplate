@@ -2,7 +2,7 @@
  * jQuery File: 	formplate.js
  * Type:			plugin
  * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * Last Edited:   	1 October 2014
  */
 
 
@@ -91,7 +91,7 @@
 			$('.fp-toggler').prepend('<span class="handle"></span>');
 
 			// Toggle on change
-			$('.formplate .fp-checkbox, .formplate .fp-toggler').on('click', function()
+			$(document).on('click', '.formplate .fp-checkbox, .formplate .fp-toggler', function()
 			{
 				var $checkbox 		= $(this).find('input[type="checkbox"]');
 
@@ -123,7 +123,7 @@
 			});
 
 			// Execute on change
-			$('.formplate input[type="radio"]').change(function()
+			$(document).on('change', '.formplate input[type="radio"]', function()
 			{
 				// Check for all other similarly named elements
 				var $radio_name 	= $(this).attr('name');

@@ -71,19 +71,19 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 		margin-bottom: $space-x-small;
 	}
 }
-#lists .full {
+#stripe-lists .full {
 	margin-top: $space-base;
 }
-#buttons {
+#stripe-buttons {
 	padding-top: $space-small;
 }
-#inputs,
-#lists,
-#tables,
-#text {
+#stripe-inputs,
+#stripe-lists,
+#stripe-tables,
+#stripe-text {
 	padding-top: $space-medium;
 }
-#image-hover {
+#stripe-image-hover {
 	.image-hover {
 		@include span(12);
 

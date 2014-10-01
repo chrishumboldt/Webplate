@@ -2,7 +2,7 @@
  * SASS File: 		_select.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * Last Edited:   	1 October 2014
  */
 
 
@@ -62,6 +62,7 @@
 			@include text-size(14px);
 			text-transform: none;
 			word-spacing: normal;
+			word-wrap: normal;
 			outline: none;
 			-webkit-user-select: text;
 			-webkit-font-smoothing: antialiased;
