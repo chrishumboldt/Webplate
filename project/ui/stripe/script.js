@@ -2,7 +2,7 @@
  * jQuery File: 	script.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	14 July 2014
+ * Last Edited:   	1 October 2014
  */
 
 
@@ -40,52 +40,223 @@ o.className&&e.test(o.className)){m=!0;break}if(!m){d.className+=" prettyprinted
 h={};g()}};typeof define==="function"&&define.amd&&define("google-code-prettify",[],function(){return Y})})();}()
 
 
-$(document).ready(function()
+// Functions
+// ---------------------------------------------------------------------------------------
+// Form adjustments
+jQuery.stripe_form_adjustments 			= function()
 {
-// ------------------------------------------------ Variables
-
-	var $sub_menu_animation_speed 			= 200;
-	var $window_h 							= $(window).height();
-	var $scroll_top 						= $(this).scrollTop();
-
-
-// ------------------------------------------------ Functions
-
-	// Forms
-	function fc_forms()
+	// Focus
+	$('.modalplate .input-outer').on('click', function()
 	{
-		// Focus
-		$('.modalplate .input-outer').on('click', function()
+		$(this).find('input').focus();
+	});
+};
+
+// Go back
+jQuery.stripe_go_back 					= function()
+{
+	$('.go-back').on('click', function($ev)
+	{
+		$ev.preventDefault();
+		window.history.back();
+	});
+};
+
+// Header adjustment
+jQuery.stripe_header_adjustment			= function()
+{
+	var $window_h						= Math.ceil($(window).height()) + 1;
+	var $scroll_down_top 				= $window_h - 100;
+
+	$('header.stripe.full, header.stripe.full .text, header.stripe.full .text-center, header.stripe.full .text-center-tight').height($window_h);
+	$('header.stripe.full .scroll-down').css({ marginTop: $scroll_down_top })
+};
+
+// Menus
+jQuery.stripe_menus						= function()
+{
+	var $sub_menu_animation_speed 		= 200;
+
+	// Setup
+	$('nav ul:first > li').each(function()
+	{
+		if($.web_exists($(this).find('ul')))
 		{
-			$(this).find('input').focus();
-		});
-	}
+			$list_width 				= $(this).width() + 24;
 
-	// Go back
-	function fc_go_back()
+			$(this).addClass('has-sub-menu');
+			$(this).find('ul').width($list_width);
+		}
+	});
+
+	// Navigation sub menu
+	$('nav li.has-sub-menu').find('a:first').on('click', function($ev)
 	{
-		$('.go-back').on('click', function($ev)
+		$ev.preventDefault();
+		
+		// Hide all the other menus
+		$('nav li.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
+		{ 
+			marginTop					: 0,
+			opacity						: 0
+		}, 
 		{
-			$ev.preventDefault();
-			window.history.back();
+			display 					: 'none',
+			duration 					: $sub_menu_animation_speed,
+			easing 						: 'ease-out'
 		});
+
+		// Show
+		$(this).parents('li.has-sub-menu').addClass('show-sub-menu').find('ul').velocity(
+		{ 
+			marginTop					: 15,
+			opacity						: 1
+		}, 
+		{
+			display 					: 'block',
+			duration 					: $sub_menu_animation_speed,
+			easing 						: 'ease-out'
+		});
+	});
+
+	// Hide sub menu
+	$('html').on('click', function()
+	{
+		$('nav ul.navigation').find('.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
+		{ 
+			marginTop					: 0,
+			opacity						: 0
+		}, 
+		{
+			display 					: 'none',
+			duration 					: $sub_menu_animation_speed,
+			easing 						: 'ease-out'
+		});
+	});
+	$('nav ul.navigation').bind('click', function ($ev)
+	{
+		$ev.stopPropagation();
+	});
+	$('.has-sub-menu ul a').on('click', function()
+	{
+		$('nav ul.navigation').find('.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
+		{ 
+			marginTop					: 0,
+			opacity						: 0
+		}, 
+		{
+			display 					: 'none',
+			duration 					: $sub_menu_animation_speed,
+			easing 						: 'ease-out'
+		});
+	});
+};
+
+// Messages
+jQuery.stripe_messages					= function()
+{
+	$('.message a.close').on('click', function($ev)
+	{
+		$ev.preventDefault();
+		$('.message').slideUp();
+	});
+
+	setTimeout(function()
+	{
+		$('.message').slideUp();
+	}
+	, 5000);
+};
+
+// Scroll
+jQuery.stripe_scroll					= function()
+{
+	// Variables
+	var $scroll_top 					= $(document).scrollTop();
+
+	// Scroll setup
+	if($scroll_top > 5)
+	{
+		$('.webplate a.navigation-trigger').addClass('scroll-position');
+	}
+	else
+	{
+		$('.webplate a.navigation-trigger').removeClass('scroll-position');	
 	}
 
-	// Header adjustment
-	function fc_header_adjustment()
+	// On scroll event
+	$(window).on('scroll', function($ev)
 	{
-		$window_h						= Math.ceil($(window).height()) + 1;
-		$scroll_down_top 				= $window_h - 100;
+		// Variables
+		$scroll_top 					= $(document).scrollTop();
 
-		$('header.stripe.full, header.stripe.full .text, header.stripe.full .text-center, header.stripe.full .text-center-tight').height($window_h);
-		$('header.stripe.full .scroll-down').css({ marginTop: $scroll_down_top })
-	}
+		// Background scroll
+		if(Modernizr.touch === false)
+		{
+			// Sets the current scroll position
+			var $new_position 			= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
 
-	// Menus
-	function fc_menus()
+			$('header.stripe .bg-image').css(
+			{ 
+				'-webkit-transform' 	: $new_position,
+				'-o-transform' 			: $new_position,
+				'-moz-transform' 		: $new_position,
+				'transform' 			: $new_position
+			});
+		}
+
+		// Navigation trigger
+		if($scroll_top > 5)
+		{
+			$('.webplate a.navigation-trigger').addClass('scroll-position');
+		}
+		else
+		{
+			$('.webplate a.navigation-trigger').removeClass('scroll-position');	
+		}
+	});
+};
+
+// Scroll down
+jQuery.stripe_scroll_down 				= function()
+{
+	var $window_h 						= $(window).height();
+
+	$('header .scroll-down').on('click', function($ev)
 	{
-		// Setup
-		$('header nav ul:first > li').each(function()
+		$ev.preventDefault();
+
+		$('header').velocity('scroll',
+		{ 
+			duration 					: 1000,
+			offset 						: $window_h
+		});
+	});
+};
+
+// Square it
+jQuery.stripe_square_it 				= function()
+{
+	$.web_square('.image-hover, .showcase .image');
+	$.web_square('.showcase.wide .image', 0.75);
+};
+
+// Wallpaper
+jQuery.stripe_wallpaper 				= function()
+{
+	$.web_wallpaper('.image-hover, .showcase .image');
+}
+
+// Window resize
+jQuery.stripe_window_resize 			= function()
+{
+	$(window).resize(function()
+	{	
+		$.stripe_header_adjustment();
+		$.stripe_square_it();
+
+		// Navigation widths
+		$('nav ul:first > li').each(function()
 		{
 			if($.web_exists($(this).find('ul')))
 			{
@@ -95,206 +266,35 @@ $(document).ready(function()
 				$(this).find('ul').width($list_width);
 			}
 		});
-
-		// Navigation sub menu
-		$('header nav li.has-sub-menu').find('a:first').on('click', function($ev)
-		{
-			$ev.preventDefault();
-			
-			// Hide all the other menus
-			$('header nav li.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
-			{ 
-				marginTop				: 0,
-				opacity					: 0
-			}, 
-			{
-				display 				: 'none',
-				duration 				: $sub_menu_animation_speed,
-				easing 					: 'ease-out'
-			});
-
-			// Show
-			$(this).parents('li.has-sub-menu').addClass('show-sub-menu').find('ul').velocity(
-			{ 
-				marginTop				: 15,
-				opacity					: 1
-			}, 
-			{
-				display 				: 'block',
-				duration 				: $sub_menu_animation_speed,
-				easing 					: 'ease-out'
-			});
-		});
-
-		// Hide sub menu
-		$('html').on('click', function()
-		{
-			$('header nav ul.navigation').find('.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
-			{ 
-				marginTop				: 0,
-				opacity					: 0
-			}, 
-			{
-				display 				: 'none',
-				duration 				: $sub_menu_animation_speed,
-				easing 					: 'ease-out'
-			});
-		});
-		$('header nav ul.navigation').bind('click', function ($ev)
-		{
-			$ev.stopPropagation();
-		});
-		$('.has-sub-menu ul a').on('click', function()
-		{
-			$('header nav ul.navigation').find('.show-sub-menu').removeClass('show-sub-menu').find('ul').velocity(
-			{ 
-				marginTop				: 0,
-				opacity					: 0
-			}, 
-			{
-				display 				: 'none',
-				duration 				: $sub_menu_animation_speed,
-				easing 					: 'ease-out'
-			});
-		});
-	}
-
-	// Messages
-	function fc_messages()
-	{
-		$('.message a.close').on('click', function($ev)
-		{
-			$ev.preventDefault();
-			$('.message').slideUp();
-		});
-
-		setTimeout(function()
-		{
-			$('.message').slideUp();
-		}
-		, 5000);
-	}
-
-	// Scroll
-	function fc_scroll()
-	{
-		// Scroll setup
-		if($scroll_top > 5)
-		{
-			$('.webplate a.navigation-trigger').addClass('scroll-position');
-		}
-		else
-		{
-			$('.webplate a.navigation-trigger').removeClass('scroll-position');	
-		}
-
-		// On scroll event
-		$(window).on('scroll', function($ev)
-		{
-			// Variables
-			$scroll_top 			= $(this).scrollTop();
-
-			// Background scroll
-			if(Modernizr.touch === false)
-			{
-				// Sets the current scroll position
-				var $new_position 			= 'translate3d(0px, ' + ($scroll_top / 3) + 'px, 0px)';
-
-				$('header.stripe .bg-image').css(
-				{ 
-					'-webkit-transform' 	: $new_position,
-					'-o-transform' 			: $new_position,
-					'-moz-transform' 		: $new_position,
-					'transform' 			: $new_position
-				});
-			}
-
-			// Navigation trigger
-			if($scroll_top > 5)
-			{
-				$('.webplate a.navigation-trigger').addClass('scroll-position');
-			}
-			else
-			{
-				$('.webplate a.navigation-trigger').removeClass('scroll-position');	
-			}
-		});
-	}
-
-	// Scroll down
-	function fc_scroll_down()
-	{
-		$('header .scroll-down').on('click', function($ev)
-		{
-			$ev.preventDefault();
-
-			$('header').velocity('scroll',
-			{ 
-				duration 				: 1000,
-				offset 					: $window_h
-			});
-		});
-	}
-
-	// Square it
-	function fc_square_it()
-	{
-		$.web_square('.image-hover, .showcase .image');
-		$.web_square('.showcase.wide .image', 0.75);
-	}
-
-	// Wallpaper
-	function fc_wallpaper()
-	{
-		$.web_wallpaper('.image-hover, .showcase .image');
-	}
-
-	// Window resize
-	function fc_window_resize()
-	{
-		$(window).resize(function()
-		{	
-			fc_header_adjustment();
-			fc_square_it();
-
-			// Navigation widths
-			$('header nav ul:first > li').each(function()
-			{
-				if($.web_exists($(this).find('ul')))
-				{
-					$list_width 			= $(this).width() + 24;
-
-					$(this).addClass('has-sub-menu');
-					$(this).find('ul').width($list_width);
-				}
-			});
-		});
-	}
+	});
+}
 
 
-// ------------------------------------------------ Execute
-
+// Execute
+// ---------------------------------------------------------------------------------------
+$(document).ready(function()
+{
 	prettyPrint();
 
-	fc_forms();
+	$.stripe_form_adjustments();
 
-	fc_go_back();
+	$.stripe_go_back();
 
-	fc_header_adjustment();
+	$.stripe_header_adjustment();
 
-	fc_menus();
+	$.stripe_menus();
 
-	fc_messages();
+	$.stripe_messages();
 
-	fc_scroll();
+	$.stripe_scroll();
 
-	fc_scroll_down();
+	$.stripe_scroll_down();
 
-	fc_square_it();
+	$.stripe_square_it();
 
-	fc_wallpaper();
+	$.stripe_wallpaper();
 
-	fc_window_resize();
+	$.stripe_window_resize();
 
 
 });

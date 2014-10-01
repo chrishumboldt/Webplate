@@ -46,55 +46,55 @@ module.exports = function(grunt) {
 			stack: {
 				files: {
 					'../../stack.js': [
-						'../js/web-engine.js'
+						'../js/engine.js'
 					]
 				}
 			},
 			// Imports
 			imports: {
 				files: {
-					'../js/min/web-imports.min.js': [
-						'../js/web-jquery.js',
-						'../js/web-modernizr.js',
-						'../js/web-hammer.js',
-						'../js/web-hammer-jquery.js',
-						'../js/web-velocity.js',
-						'../js/web-tools.js',
-						'../js/web-buttonplate.js',
-						'../js/web-formplate.js',
-						'../js/web-modalplate.js'
+					'../js/min/webplate.min.js': [
+						'../js/jquery.js',
+						'../js/modernizr.js',
+						'../js/hammer.js',
+						'../js/hammer-jquery.js',
+						'../js/velocity.js',
+						'../js/tools.js',
+						'../js/buttonplate.js',
+						'../js/formplate.js',
+						'../js/modalplate.js'
 					]
 				}
 			},
 			// Touch
 			touch: {
 				files: {
-					'../js/min/web-touch.min.js': [
-						'../js/web-fastclick.js'
+					'../js/min/touch.min.js': [
+						'../js/fastclick.js'
 					],
 				}
 			},
 			// LESS
 			less: {
 				files: {
-					'../js/min/web-less.min.js': [
-						'../js/web-less.js'
+					'../js/min/less.min.js': [
+						'../js/less.js'
 					],
 				}
 			},
 			// Flickerplate
 			flickerplate: {
 				files: {
-					'../js/min/web-flickerplate.min.js': [
-						'../js/web-flickerplate.js'
+					'../js/min/flickerplate.min.js': [
+						'../js/flickerplate.js'
 					],
 				}
 			},
 			// Penplate
 			penplate: {
 				files: {
-					'../js/min/web-penplate.min.js': [
-						'../js/web-penplate.js'
+					'../js/min/penplate.min.js': [
+						'../js/penplate.js'
 					],
 				}
 			},
@@ -135,40 +135,39 @@ module.exports = function(grunt) {
 			// End of CSS
 			// Scripts
 			stack: {
-				files: ['../js/web-engine.js'],
+				files: ['../js/engine.js'],
 				tasks: ['uglify:stack']
 			},
 			imports: {
 				files: [
-					'../js/web-jquery.js',
-					'../js/web-modernizr.js',
-					'../js/web-hammer.js',
-					'../js/web-hammer-jquery.js',
-					'../js/web-velocity.js',
-					'../js/web-tools.js',
-					'../js/web-buttonplate.js',
-					'../js/web-formplate.js',
-					'../js/web-modalplate.js'
+					'../js/jquery.js',
+					'../js/modernizr.js',
+					'../js/hammer.js',
+					'../js/hammer-jquery.js',
+					'../js/velocity.js',
+					'../js/tools.js',
+					'../js/buttonplate.js',
+					'../js/formplate.js',
+					'../js/modalplate.js'
 				],
 				tasks: ['uglify:imports']
 			},
 			touch: {
 				files: [
-					'../js/web-fastclick.js',
-					'../js/web-jquery-finger.js'
+					'../js/fastclick.js'
 				],
 				tasks: ['uglify:touch']
 			},
 			less: {
-				files: ['../js/web-less.js'],
+				files: ['../js/less.js'],
 				tasks: ['uglify:less']
 			},
 			flickerplate: {
-				files: ['../js/web-flickerplate.js'],
+				files: ['../js/flickerplate.js'],
 				tasks: ['uglify:flickerplate']
 			},
 			penplate: {
-				files: ['../js/web-penplate.js'],
+				files: ['../js/penplate.js'],
 				tasks: ['uglify:penplate']
 			},
 			project: {

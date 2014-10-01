@@ -55,139 +55,147 @@
 }
 
 
-// Header navigation
+// Navigation
 // ---------------------------------------------------------------------------------------
-header.stripe {
+// Basic
+nav {
+	position: relative;
+	@include row();
+	@include padding-horizontal($space-slight);
+	padding-top: $space-medium + 2px;
+	z-index: 2;
 
-	// Basic
-	nav {
-		position: relative;
-		@include row();
-		padding-top: $space-medium + 2px;
-		z-index: 2;
+	@include respond-to(large) {
+		padding-top: $space-medium;
+	}
 
+	// Links
+	a {
+		@include animate(color);
+	}
+
+	// Logo
+	.logo-container {
+		text-align: center;
+
+		.logo-line {
+			padding: 14px 24px;
+			color: $white;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			font-weight: 300;
+			font-size: 1.5em;
+			border: 1px solid $white;
+		}
+
+		// Respond
 		@include respond-to(large) {
-			padding-top: $space-medium;
-		}
-
-		// Links
-		a {
-			@include animate(color);
-		}
-
-		// Logo
-		.logo-container {
-			text-align: center;
+			float: left;
 
 			.logo-line {
-				padding: 14px 24px;
+				padding: 12px 22px;
+				font-size: 1.125em;
+			}
+		}
+	}
+
+	// Navigation
+	ul.navigation {
+		float: right;
+		padding-top: $space-x-small;
+		list-style: none;
+
+		> li {
+			float: left;
+			padding-left: $space-medium;
+
+			> a {
 				color: $white;
-				font-family: "Trebuchet MS", Helvetica, sans-serif;
-				font-weight: 300;
-				font-size: 1.5em;
-				border: 1px solid $white;
-			}
+				font-size: 0.813em;
 
-			// Respond
-			@include respond-to(large) {
-				float: left;
-
-				.logo-line {
-					padding: 12px 22px;
+				span {
 					font-size: 1.125em;
+					margin-left: $space-small;
 				}
 			}
-		}
 
-		// Navigation
-		ul.navigation {
-			float: right;
-			padding-top: $space-x-small;
-			list-style: none;
+			// Sub menu
+			> ul {
+				@include hide();
+				position: absolute;
+				margin-left: -12px;
+				background-color: $white;
+				@include border-radius();
 
-			> li {
-				float: left;
-				padding-left: $space-medium;
-
-				> a {
-					color: $white;
-					font-size: 0.813em;
-
-					span {
-						font-size: 1.125em;
-						margin-left: $space-small;
-					}
-				}
-
-				// Sub menu
-				> ul {
-					@include hide();
+				// Arrow
+				&:after {
+					bottom: 100%;
+					left: 50%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
 					position: absolute;
-					margin-left: -12px;
-					background-color: $white;
-					@include border-radius();
+					pointer-events: none;
+					border-bottom-color: $white;
+					border-width: 8px;
+					margin-left: -8px;
+				}
 
-					// Arrow
-					&:after {
-						bottom: 100%;
-						left: 50%;
-						border: solid transparent;
-						content: " ";
-						height: 0;
-						width: 0;
-						position: absolute;
-						pointer-events: none;
-						border-bottom-color: $white;
-						border-width: 8px;
-						margin-left: -8px;
-					}
+				a {
+					display: block;
+					padding: $space-small $space-minor;
+					font-size: 0.815em;
+					color: $black-base;
+					border-top: 1px solid $grey-light;
+				}
 
-					a {
-						display: block;
-						padding: $space-small $space-minor;
-						font-size: 0.815em;
-						color: $black-base;
-						border-top: 1px solid $grey-light;
-					}
+				li:first-child a {
+					border-top: 0px;
+					@include border-radius-top();
+				}
 
-					li:first-child a {
-						border-top: 0px;
-						@include border-radius-top();
-					}
-
-					li:last-child a {
-						@include border-radius-bottom();
-					}
+				li:last-child a {
+					@include border-radius-bottom();
 				}
 			}
 		}
 	}
 
-	// Full header
-	&.full {
-		nav {
-			position: absolute;
+	// Absolute positioning
+	&.absolute {
+		position: absolute;
 
-			@include respond-to(large) {
-				padding-top: $space-large;
-			}
+		@include respond-to(large) {
+			padding-top: $space-large;
 		}
 	}
-}
-.no-touch header.stripe .logo-container a:hover,
-.no-touch header.stripe nav ul.navigation > li > a:hover {
-	color: $hover-colour;
-	text-decoration: none;
-}
-.no-touch header.stripe nav .logo-container .logo-line:hover {
-	color: $hover-colour;
-	text-decoration: none;
-	border: 1px solid $hover-colour;
-}
-.no-touch header.stripe nav ul.navigation > li > ul a:hover {
-	color: $green-dark;
-	text-decoration: none;
-	background-color: $grey-x-light;
+
+	// Contain
+	.contain {
+		@include respond-to($limit) {
+			@include center();
+			width: $limit-width;
+		}
+	}
+
+	// States
+	.no-touch & {
+		.logo-container a:hover,
+		ul.navigation > li > a:hover {
+			color: $hover-colour;
+			text-decoration: none;
+		}
+		.logo-container .logo-line:hover {
+			color: $hover-colour;
+			text-decoration: none;
+			border: 1px solid $hover-colour;
+		}
+		ul.navigation > li > ul a:hover {
+			color: $green-dark;
+			text-decoration: none;
+			background-color: $grey-x-light;
+		}
+	}
 }
 
 
