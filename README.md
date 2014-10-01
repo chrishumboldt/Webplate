@@ -47,6 +47,7 @@ Contributors
 =========
 
 <a href="https://github.com/V1RTUOZ">Oleg Kalandarashvili</a>
+<a href="https://github.com/simeydotme">Simon Goellner</a>
 
 
 Copyright and License
