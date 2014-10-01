@@ -90,25 +90,6 @@
 			// Add handle to togglers
 			$('.fp-toggler').prepend('<span class="handle"></span>');
 
-			// Toggle on change
-			$(document).on('click', '.formplate .fp-checkbox, .formplate .fp-toggler', function()
-			{
-				var $checkbox 		= $(this).find('input[type="checkbox"]');
-
-				// Check current state
-				if($(this).hasClass('checked'))
-				{
-					$checkbox.removeAttr('checked');
-				}
-				else
-				{
-					$checkbox.attr('checked', 'checked');
-				}
-
-				// Toggle the class
-				$(this).toggleClass('checked');
-			});
-
 			// Radio inputs
 			$('.formplate input[type="radio"]').each(function()
 			{
@@ -122,17 +103,6 @@
 				}
 			});
 
-			// Execute on change
-			$(document).on('change', '.formplate input[type="radio"]', function()
-			{
-				// Check for all other similarly named elements
-				var $radio_name 	= $(this).attr('name');
-				$('input[name="'+ $radio_name +'"]').parents('.fp-radio').removeClass('checked');
-				
-				// Check current one
-				$(this).parents('.fp-radio').toggleClass('checked');
-			});
-
 			// Drop-down selects
 			$('.formplate select').each(function()
 			{
@@ -141,6 +111,39 @@
 			});
 		}
 	};
+
+
+	// Global calls
+	// ---------------------------------------------------------------------------------------
+	// Change events
+	$(document).on('change', '.formplate input[type="radio"]', function()
+	{
+		// Check for all other similarly named elements
+		var $radio_name 	= $(this).attr('name');
+		$('input[name="'+ $radio_name +'"]').parents('.fp-radio').removeClass('checked');
+		
+		// Check current one
+		$(this).parents('.fp-radio').toggleClass('checked');
+	});
+
+	// Click events
+	$(document).on('click', '.formplate .fp-checkbox, .formplate .fp-toggler', function()
+	{
+		var $checkbox 		= $(this).find('input[type="checkbox"]');
+
+		// Check current state
+		if($(this).hasClass('checked'))
+		{
+			$checkbox.removeAttr('checked');
+		}
+		else
+		{
+			$checkbox.attr('checked', 'checked');
+		}
+
+		// Toggle the class
+		$(this).toggleClass('checked');
+	});
 
 
 	// Plugin wrapper

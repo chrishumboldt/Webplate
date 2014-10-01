@@ -1,8 +1,8 @@
 /**
- * jQuery File:     web-tools.js
+ * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     27 September 2014
+ * Last Edited:     1 October 2014
  */
 
 
@@ -332,7 +332,7 @@ jQuery.web_load_plugins             = function($css_path, $js_path)
 	if($.web_exists($flickerplate_check))
 	{
 		$ar_css_plugins.push($css_path + 'flickerplate.css');
-		$ar_js_plugins.push($js_path + 'min/web-flickerplate.min.js');
+		$ar_js_plugins.push($js_path + 'min/flickerplate.min.js');
 		$check_flicker              = true;
 	}
 
@@ -341,14 +341,14 @@ jQuery.web_load_plugins             = function($css_path, $js_path)
 	if($.web_exists($penplate_check))
 	{
 		$ar_css_plugins.push($css_path + 'penplate.css');
-		$ar_js_plugins.push($js_path + 'min/web-penplate.min.js');
+		$ar_js_plugins.push($js_path + 'min/penplate.min.js');
 		$check_penplate             = true;
 	}
 
 	// FastClick
 	if(Modernizr.touch)
 	{
-		$ar_js_plugins.push($js_path + 'min/web-touch.min.js');
+		$ar_js_plugins.push($js_path + 'min/touch.min.js');
 		$check_fastclick            = true;
 	}
 
@@ -456,58 +456,12 @@ jQuery.web_navigation               = function()
 		}
 	});
 
-	// Drag closed
-	// if(Modernizr.touch)
-	// {
-	// 	$('body').hammer().on('panleft panend', function($ev)
-	// 	{
-	// 		// Check events
-	// 		switch($ev.type)
-	// 		{
-	// 			case 'panleft':
-
-	// 				$nav_track_position     = $ev.gesture.deltaX + $nav_end_position;
-
-	// 				if($nav_track_position <= $navigation_width)
-	// 				{
-	// 					$('.webplate-navigation').css(
-	// 					{
-	// 						left            : $nav_track_position
-	// 					}); 
-	// 				}
-
-	// 				break;
-
-	// 			case 'panend':
-
-	// 				$.web_nav_hide();
-	// 				$nav_end_position       = 0;
-
-	// 				break;
-	// 		}
-	// 	});
-	// }
-
 	// Show on mobile
 	if($('.navigation-trigger').hasClass('small-show') == false)
 	{
 		$('.navigation-trigger').addClass('small-show');
 	}
 
-	// Change active state and close menu
-	// $('.webplate-navigation a').on('click', function($ev)
-	// {
-	// 	if($nav_end_position === 260)
-	// 	{
-	// 		$('.webplate-navigation a.active').removeClass('active');
-	// 		$(this).addClass('active');
-	// 		$.web_nav_hide();
-	// 	}
-	// 	else
-	// 	{
-	// 		$ev.preventDefault();
-	// 	}
-	// });
 	$(window).on('touchstart', '.webplate-navigation',function($ev)
 	{
 		if($ev.currentTarget.scrollTop === 0)
@@ -523,32 +477,6 @@ jQuery.web_navigation               = function()
 	{
 		$ev.stopPropagation();
 	});
-
-
-	// KEEP FOR NOW
-	// Be able to drag webplate navigation
-	// $('.webplate-navigation').hammer().on('panup pandown', function($ev)
-	// {
-	//  // Check events
-	//  switch($ev.type)
-	//  {
-	//      case 'panup':
-	//      case 'pandown':
-
-				// $('.webplate-navigation').scrollTop($ev.gesture.deltaY);
-
-	//          break;
-	//  }
-	// });
-
-	// Prevent scroll on page open
-	// $(window).on('touchmove',function($ev)
-	// {
-	//     if($('html').hasClass('web-nav-shown'))
-	//     {
-	//         $ev.preventDefault();
-	//     }
-	// });
 };
 
 jQuery.web_overlay_hide             = function()

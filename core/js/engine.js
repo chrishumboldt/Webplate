@@ -34,7 +34,7 @@ var $ar_extra_js							= [];
 // ---------------------------------------------------------------------------------------
 yepnope([
 {
-	load									: $js_path + 'min/web-imports.min.js',
+	load									: $js_path + 'min/webplate.min.js',
 	complete								: function()
 	{
 		// DOM edits
