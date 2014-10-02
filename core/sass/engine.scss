@@ -1,8 +1,8 @@
 /**
- * SASS File: 		web-engine.scss
+ * SASS File: 		engine.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * Last Edited:   	2 October 2014
  */
 
 
@@ -16,7 +16,8 @@
 
 // Imports
 // ---------------------------------------------------------------------------------------
-@import "web-import";
+@import "import";
+@import "flickerplate/import";
 @import "formplate/import";
 @import "modalplate/import";
 @import "setup/normalize"; 		// 2 kb
@@ -34,8 +35,9 @@ $font-base 						: 16px;
 // ---------------------------------------------------------------------------------------
 @include blueplate-css(); 		// 12 kb
 @include buttonplate-css();		// 18 kb
-@include formplate-css(); 		// 20 kb
-@include modalplate-css();		// 2 kb
+@include flickerplate-css(); 	// 7 kb
+@include formplate-css(); 		// 27 kb
+@include modalplate-css();		// 2 kb		
 
 
 // Size total
