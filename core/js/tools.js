@@ -2,7 +2,7 @@
  * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     1 October 2014
+ * Last Edited:     2 October 2014
  */
 
 
@@ -276,7 +276,21 @@ var $nav_end_position               = 0;
 var $navigation_width;
 var $nav_track_position;
 
-// Functions
+// Execute plugins
+jQuery.web_execute_plugins			= function($selector)
+{
+	// Execute components
+	$($selector + ' .button').buttonplate();
+	$($selector + ' .flickerplate').flickerplate({ flick_animation: 'transform-slide' });
+	$($selector).formplate();
+	$($selector + ' .modal-trigger').modalplate(
+	{
+		'reveal' 					: 'slide-from-right',
+		'reveal_large' 				: 'slide-from-top'
+	});
+};
+
+// Hash link
 jQuery.web_hash_link                = function()
 {
 	// Based on: http://css-tricks.com/snippets/jquery/smooth-scrolling/
@@ -318,68 +332,7 @@ jQuery.web_hash_link_setup          = function()
 	10);
 };
 
-jQuery.web_load_plugins             = function($css_path, $js_path)
-{
-	// Load plugins array
-	var $ar_css_plugins             = [];
-	var $ar_js_plugins              = [];
-	var $check_flicker              = false;
-	var $check_fastclick            = false; 
-	var $check_penplate             = false; 
-
-	// Flickerplate check
-	var $flickerplate_check         = $('.flickerplate:first');
-	if($.web_exists($flickerplate_check))
-	{
-		$ar_css_plugins.push($css_path + 'flickerplate.css');
-		$ar_js_plugins.push($js_path + 'min/flickerplate.min.js');
-		$check_flicker              = true;
-	}
-
-	// Penplate check
-	var $penplate_check             = $('.penplate:first');
-	if($.web_exists($penplate_check))
-	{
-		$ar_css_plugins.push($css_path + 'penplate.css');
-		$ar_js_plugins.push($js_path + 'min/penplate.min.js');
-		$check_penplate             = true;
-	}
-
-	// FastClick
-	if(Modernizr.touch)
-	{
-		$ar_js_plugins.push($js_path + 'min/touch.min.js');
-		$check_fastclick            = true;
-	}
-
-	// Load plugins CSS
-	yepnope({ load: $ar_css_plugins });
-
-	// Load plugins js
-	yepnope({load: $ar_js_plugins, complete: function()
-	{
-		// Execute the flicker
-		if($check_flicker == true)
-		{
-			$('.flickerplate').flickerplate({ flick_animation: 'transform-slide' });
-		}
-
-		// Activate Penpalte
-		if($check_penplate == true)
-		{
-			$('.penplate').penplate();
-		}
-
-		// Activate fastclick
-		if($check_fastclick == true)
-		{
-			FastClick.attach(document.body);
-		}
-
-	}});
-}
-
-jQuery.web_nav_hide                 = function()
+jQuery.web_nav_hide					= function()
 {
 	$('.webplate-navigation').velocity(
 	{ 
@@ -408,12 +361,12 @@ jQuery.web_nav_show                 = function()
 
 	$('.webplate-navigation').velocity(
 	{ 
-		left                    : $navigation_width
+		left                    	: $navigation_width
 	}, 
 	{
-		duration                : 200,
-		easing                  : 'ease-out',
-		complete                : function()
+		duration               		: 200,
+		easing                  	: 'ease-out',
+		complete                	: function()
 		{
 			$('html').addClass('web-nav-shown').removeClass('web-nav-hidden');
 		}
@@ -448,7 +401,7 @@ jQuery.web_navigation               = function()
 	});
 	
 	// Close nav again
-	$('.webplate-overlay').on('click', function($e)
+	$('.webplate-overlay, .webplate-navigation a').on('click', function($e)
 	{
 		if($('html').hasClass('web-nav-shown'))
 		{
@@ -589,4 +542,10 @@ jQuery.web_window_type_execute      = function()
 			$.web_hide_nav();
 		}
 	}
+};
+
+// Webplate plugins reload
+jQuery.webplate_reload 				= function($selector)
+{
+	$.web_load_plugins($selector);
 };

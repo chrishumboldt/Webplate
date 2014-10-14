@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	27 September 2014
+ * Last Edited:   	2 October 2014
  */
 
 
@@ -46,20 +46,25 @@ yepnope([
 		$.web_window_type();
 		$.web_scroll();
 		$.web_hash_link();
-		$('.button').buttonplate();
-		$('body').formplate();
-		$('.modal-trigger').modalplate(
+
+		// Touch check
+		if(Modernizr.touch)
 		{
-			'reveal' 						: 'slide-from-right',
-			'reveal_large' 					: 'slide-from-top'
-		});
-		$.web_load_plugins($css_path, $js_path);
+			// Load the library
+			yepnope({ load: $js_path + 'min/touch.min.js', complete: function()
+			{
+				FastClick.attach(document.body);
+			}});
+		}
 	}
 },
 {
 	load									: $ar_core_css,
 	complete								: function()
 	{	
+		// Load plugins
+		$.web_execute_plugins('body');
+		
 		// Variables
 		var $icon_font						= $('body').data('icon-font');
 		var $ui 							= $('body').data('ui');

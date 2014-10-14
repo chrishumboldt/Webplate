@@ -19,9 +19,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					// Core file
-					'../css/webplate.css': '../sass/web-engine.scss',
-					'../css/flickerplate.css': '../sass/web-flickerplate.scss',
-					'../css/penplate.css': '../sass/web-penplate.scss'
+					'../css/webplate.css': '../sass/engine.scss'
 				},{
 					// Project files
 					expand: true,
@@ -61,6 +59,7 @@ module.exports = function(grunt) {
 						'../js/velocity.js',
 						'../js/tools.js',
 						'../js/buttonplate.js',
+						'../js/flickerplate.js',
 						'../js/formplate.js',
 						'../js/modalplate.js'
 					]
@@ -79,22 +78,6 @@ module.exports = function(grunt) {
 				files: {
 					'../js/min/less.min.js': [
 						'../js/less.js'
-					],
-				}
-			},
-			// Flickerplate
-			flickerplate: {
-				files: {
-					'../js/min/flickerplate.min.js': [
-						'../js/flickerplate.js'
-					],
-				}
-			},
-			// Penplate
-			penplate: {
-				files: {
-					'../js/min/penplate.min.js': [
-						'../js/penplate.js'
 					],
 				}
 			},
@@ -147,6 +130,7 @@ module.exports = function(grunt) {
 					'../js/velocity.js',
 					'../js/tools.js',
 					'../js/buttonplate.js',
+					'../js/flickerplate.js',
 					'../js/formplate.js',
 					'../js/modalplate.js'
 				],
@@ -161,14 +145,6 @@ module.exports = function(grunt) {
 			less: {
 				files: ['../js/less.js'],
 				tasks: ['uglify:less']
-			},
-			flickerplate: {
-				files: ['../js/flickerplate.js'],
-				tasks: ['uglify:flickerplate']
-			},
-			penplate: {
-				files: ['../js/penplate.js'],
-				tasks: ['uglify:penplate']
 			},
 			project: {
 				files: ['../../project/js/*.js'],

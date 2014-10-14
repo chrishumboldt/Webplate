@@ -134,7 +134,7 @@
 
 	// Logo
 	.logo {
-		@include padding-top($space-base - 5px);
+		@include padding-top($space-medium - 2px);
 	}
 
 	// Navigation trigger
