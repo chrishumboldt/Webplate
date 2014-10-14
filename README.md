@@ -46,8 +46,9 @@ GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><b
 Contributors
 =========
 
+<a href="https://github.com/simeydotme">Simon Goellner</a><br>
 <a href="https://github.com/V1RTUOZ">Oleg Kalandarashvili</a><br>
-<a href="https://github.com/simeydotme">Simon Goellner</a>
+<a href="https://github.com/digiltd">digiltd</a>
 
 
 Copyright and License
