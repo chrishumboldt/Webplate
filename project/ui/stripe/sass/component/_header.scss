@@ -2,7 +2,7 @@
  * SASS File: 		_header.scss
  * Type: 			organism
  * Author:        	Chris Humboldt
- * Last Edited:   	10 September 2014
+ * Last Edited:   	15 October 2014
  */
 
 
@@ -25,15 +25,10 @@ header.stripe {
 	
 	// Background image
 	.bg-image {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url(img/background.png);
-		background-size: cover;
-		background-repeat: no-repeat;
-		z-index: 0;
+		@include position(absolute, top 0 left 0);
+		@include size(100%, 100%);
+		@include background-image-cover("background.jpg");
+		@include level(0);
 	}
 
 	// Header text

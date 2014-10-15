@@ -71,19 +71,20 @@ blockquote {
 // Links
 // ---------------------------------------------------------------------------------------
 p a:not(.button):not([class *= "btn-"]), .login-block a {
-	color: $red;
+	@include text-colour($red);
 
 	&:hover {
-		color: darken($red, 10%);
-		text-decoration: underline;
+		@include text-colour($red-dark);
+		@include text-decoration(underline);
 	}
 }
 .stripe.dark {
 	a, a:visited {
-		color: lighten(#E54028, 14%);
+		@include text-colour(lighten(#E54028, 14%));
 	}
 	a:hover {
-		color: lighten(#E54028, 8%);
+		@include text-colour(lighten(#E54028, 8%));
+		@include text-decoration(underline);
 	}
 }
 
