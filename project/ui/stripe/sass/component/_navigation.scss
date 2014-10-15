@@ -2,7 +2,7 @@
  * SASS File: 		_navigation.scss
  * Type: 			molecule
  * Author:        	Chris Humboldt
- * Last Edited:   	18 September 2014
+ * Last Edited:   	15 October 2014
  */
 
 
@@ -85,6 +85,9 @@ nav {
 			font-weight: 300;
 			font-size: 1.5em;
 			border: 1px solid $white;
+		}
+		a {
+			@include animate(all);
 		}
 
 		// Respond
@@ -191,7 +194,7 @@ nav {
 			border: 1px solid $hover-colour;
 		}
 		ul.navigation > li > ul a:hover {
-			color: $green-dark;
+			color: $red-dark;
 			text-decoration: none;
 			background-color: $grey-x-light;
 		}
