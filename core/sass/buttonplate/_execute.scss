@@ -18,44 +18,44 @@
 		@include button-setup($font);
 
 		// Sizes
-		@include button-size-normal(); // Default
+		@include button-size("normal"); // Default
 		&.small {
-			@include button-size-small();
+			@include button-size("small");
 		}
 		&.large {
-			@include button-size-large();
+			@include button-size("large");
 		}
 		&.x-large {
-			@include button-size-x-large();
+			@include button-size("x-large");
 		}
 
 		// Shapes
 		@include button-shape-rounded(); // Default
 		&.square {
-			@include button-shape-square();
+			@include button-shape("square");
 		}
 		&.pill {
-			@include button-shape-pill();
+			@include button-shape("pill");
 		}
 
 		// Flat buttons (shorthand = colour reference only)
 		@each $colour-name, $colour in $ar-colours-primary {
 			&.#{$colour-name}, &.flat-#{$colour-name} {
-				@include button-style-flat($colour);
+				@include button-style("flat", $colour);
 			}
 		}
 
 		// Gradient buttons
 		@each $colour-name, $colour in $ar-colours-primary {
 			&.gradient-#{$colour-name} {
-				@include button-style-gradient($colour);
+				@include button-style("gradient", $colour);
 			}
 		}
 
 		// Line buttons
 		@each $colour-name, $colour in $ar-colours-primary {
 			&.line-#{$colour-name} {
-				@include button-style-line($colour);
+				@include button-style("line", $colour);
 			}
 		}
 

@@ -2,7 +2,7 @@
  * SASS File: 		_responsive-layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	30 July 2014
+ * Last Edited:   	4 December 2014
  */
 
 
@@ -252,3 +252,63 @@ $min-max 							: false !default;
 		}
 	}
 }
+// Breakpoint
+@mixin breakpoint($breakpoint, $breakpoint-type: false, $orientation: false){
+
+	// Retina breakpoint
+	@if $breakpoint == retina {
+		@media screen and (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) { 
+			@content; 
+		}
+	}
+	// Layout responding
+	@else {
+		// Min max
+		@if $breakpoint-type == false {
+
+			// Large
+			@if $breakpoint == small {
+				$min-max 				: max-width !global;
+			}
+			@else if $breakpoint == fluid {
+				$min-max 				: max-width !global;
+			}
+			@else {
+				$min-max 				: min-width !global;
+			}
+		}
+		@else {
+			@if $breakpoint-type == max {
+				$min-max 				: max-width !global;
+			}
+			@else {
+				$min-max 				: min-width !global;
+			}
+		}
+
+		// Breakpoint
+		@if $breakpoint == large {
+			$breakpoint					: $break-main;
+		}
+		@else if $breakpoint == fluid {
+			$breakpoint 				: $limit-width;	
+		}
+		@else if $breakpoint == small {
+			$breakpoint 				: $break-main;
+		}
+
+		// Return (check orientation)
+		@if $orientation != false {
+			@media only screen and ($min-max: $breakpoint) and (orientation : $orientation) { 
+				@content; 
+			} 
+		}
+		@else {
+			@media only screen and ($min-max: $breakpoint) { 
+				@content; 
+			}
+		}
+	}
+}
+
+

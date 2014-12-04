@@ -2,7 +2,7 @@
  * SASS File: 		_shape.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 April 2014
+ * Last Edited:   	4 December 2014
  */
 
 
@@ -13,6 +13,25 @@
 
 // Button shape
 // ---------------------------------------------------------------------------------------
+@mixin button-shape($shape) {
+
+	// Pill
+	@if $shape == pill {
+		@include border-radius(100px);
+	}
+	// Square
+	@else if $shape == square {
+		@include border-radius(0px);
+	}
+	// Rounded
+	@else {
+		@include border-radius();
+	}
+}
+
+
+// WILL BE DEPRECATED
+// ---------------------------------------------------------------------------------------
 @mixin button-shape-rounded() {
 	@include border-radius();
 }
@@ -22,3 +41,5 @@
 @mixin button-shape-square() {
 	@include border-radius(0px);
 }
+
+
