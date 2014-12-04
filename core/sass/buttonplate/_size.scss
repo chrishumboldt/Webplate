@@ -2,7 +2,7 @@
  * SASS File: 		_size.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	15 September 2014
+ * Last Edited:   	4 December 2014
  */
 
 
@@ -42,6 +42,34 @@ $drp-height-xl					: 40px;
 	@include text-line-height($height);
 	@include text-size($font-size);
 }
+@mixin button-size($size) {
+
+	// Small
+	@if $size == small {
+		@include button-size-custom($btn-size-s, $btn-padding-s, $btn-text-s);
+		@include drop-down-position($btn-padding-s, $drp-height, 11px);
+	}
+	// Large
+	@else if $size == large {
+		@include button-size-custom($btn-size-l, $btn-padding-l, $btn-text-l);
+		@include drop-down-position($btn-padding-l, $drp-height, 15px);
+	}
+	// Extra large
+	@else if $size == x-large {
+		@include button-size-custom($btn-size-xl, $btn-padding-xl, $btn-text-xl);
+		@include drop-down-position($btn-padding-xl, $drp-height-xl, 15px);
+	}
+	// Normal - Also default
+	@else {
+		@include button-size-custom();
+		@include drop-down-position($btn-padding-n, $drp-height, 13px);
+	}
+
+}
+
+
+// WILL BE DEPRECATED
+// ---------------------------------------------------------------------------------------
 @mixin button-size-small() {
 	@include button-size-custom($btn-size-s, $btn-padding-s, $btn-text-s);
 
@@ -66,3 +94,5 @@ $drp-height-xl					: 40px;
 	// Drop-down
 	@include drop-down-position($btn-padding-xl, $drp-height-xl, 15px);
 }
+
+
