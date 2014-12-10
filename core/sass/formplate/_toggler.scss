@@ -55,7 +55,7 @@ $toggler-handle-dim				: $toggler-h - 2px;
 
 				// Handle
 				.handle {
-					@include position-set(left 21px);
+					@include transform-translate-x(20px);
 				}
 			}
 
