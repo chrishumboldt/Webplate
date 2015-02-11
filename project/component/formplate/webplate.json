@@ -1,0 +1,11 @@
+{
+	"name": "Formplate",
+	"production": {
+		"css": ["css/formplate.css"],
+		"js": ["js/min/formplate.min.js"]
+	},
+	"development": {
+		"css": ["css/formplate.css"],
+		"js": ["js/formplate.js"]
+	}
+}

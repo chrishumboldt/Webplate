@@ -1,0 +1,6 @@
+{
+	"app": false,
+	"page": false,
+	"fallback": false,
+	"sass": true
+}

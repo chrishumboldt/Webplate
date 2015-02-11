@@ -4,13 +4,28 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-shared-config');
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['sass', 'uglify']);
+	grunt.registerTask('build', ['shared_config', 'sass', 'uglify']);
 	
 	// Initialize config
 	grunt.initConfig({
 		// Package
 		pkg: grunt.file.readJSON('package.json'),
+		// Shared config
+		shared_config: {
+			default: {
+				options: {
+					name: "config",
+					cssFormat: "dash",
+					mask: 'config-mask.json'
+				},
+				src: '../../project/config.json',
+				dest: [
+					'../sass/config.scss'
+				]
+			}
+		},
 		// SASS
 		sass: {
 			dist: {
@@ -58,11 +73,7 @@ module.exports = function(grunt) {
 						'../js/hammer.js',
 						'../js/hammer-jquery.js',
 						'../js/velocity.js',
-						'../js/tools.js',
-						'../js/buttonplate.js',
-						'../js/flickerplate.js',
-						'../js/formplate.js',
-						'../js/modalplate.js'
+						'../js/tools.js'
 					]
 				}
 			},
@@ -129,11 +140,7 @@ module.exports = function(grunt) {
 					'../js/hammer.js',
 					'../js/hammer-jquery.js',
 					'../js/velocity.js',
-					'../js/tools.js',
-					'../js/buttonplate.js',
-					'../js/flickerplate.js',
-					'../js/formplate.js',
-					'../js/modalplate.js'
+					'../js/tools.js'
 				],
 				tasks: ['uglify:imports']
 			},
@@ -156,6 +163,12 @@ module.exports = function(grunt) {
 				tasks: ['uglify:ui']
 			},
 			// End of scripts
+			// Config
+			config: {
+				files: ['../../project/config.json'],
+				tasks: ['shared_config', 'sass', 'uglify']
+			},
+			// End of config
 			// Live reload
 			options: {
 		    	livereload: true,

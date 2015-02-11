@@ -2,7 +2,7 @@
  * SASS File: 		_style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	2 October 2014
+ * Last Edited:   	10 February 2015
  */
 
 
@@ -12,27 +12,28 @@
 // Imports
 
 
-// Setup
-// ---------------------------------------------------------------------------------------
-$font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
-
-
 // Imports
 // ---------------------------------------------------------------------------------------
+// Webplate
 @import "../../../core/sass/import";
+
+// Components
+@import "../../component/buttonplate/sass/buttonplate";
+
+// Variables
 @import "sass/variables";
 
-// Basic
+// Basic elements
 @import "sass/basic/layout";
 @import "sass/basic/list";
 @import "sass/basic/table";
 @import "sass/basic/text";
 
-// Component
-@import "sass/component/button";
-@import "sass/component/header";
-@import "sass/component/line";
-@import "sass/component/navigation";
-@import "sass/component/title-bar";
+// Modules
+@import "sass/module/button";
+@import "sass/module/header";
+@import "sass/module/line";
+@import "sass/module/navigation";
+@import "sass/module/title-bar";
 
 

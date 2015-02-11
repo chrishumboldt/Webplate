@@ -1,0 +1,11 @@
+{
+	"name": "Buttonplate",
+	"production": {
+		"css": ["css/buttonplate.css"],
+		"js": ["js/min/buttonplate.min.js"]
+	},
+	"development": {
+		"css": ["css/buttonplate.css"],
+		"js": ["js/buttonplate.js"]
+	}
+}

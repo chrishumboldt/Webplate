@@ -2,28 +2,35 @@
  * SASS File: 		style.scss
  * Type: 			loader
  * Author:        	Chris Humboldt
- * Last Edited:   	2 October 2014
+ * Last Edited:   	10 February 2015
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Setup
 // Imports
-// Atoms
-// Molecules
-// Organisms
+// Webplate import
+// Variables
+// Components
+// Basic elements
+// Modules
+// Templates
 // Custom CSS
 
 
-// Setup
-// ---------------------------------------------------------------------------------------
-$font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
-
-
-// Imports
+// Webplate import
 // ---------------------------------------------------------------------------------------
 @import "../../../core/sass/import";
+
+
+// Components
+// ---------------------------------------------------------------------------------------
+$font-face-buttonplate				: "../../component/buttonplate/css/icon-font-buttonplate";
+@import "../../component/buttonplate/sass/buttonplate";
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
 @import "sass/variables";
 
 
@@ -39,21 +46,21 @@ $font-face-buttonplate				: "../../../core/css/icon-font-buttonplate";
 @import "sass/basic/text";
 
 
-// Components
+// Modules
 // ---------------------------------------------------------------------------------------
-@import "sass/component/app-controls";
-@import "sass/component/code-reference";
-@import "sass/component/download-stripe";
-@import "sass/component/header";
-@import "sass/component/image-hover";
-@import "sass/component/login-block";
-@import "sass/component/message";
-@import "sass/component/modal";
-@import "sass/component/navigation";
-@import "sass/component/pricing-table";
-@import "sass/component/showcase";
-@import "sass/component/title-bar";
-@import "sass/component/user-profile";
+@import "sass/module/app-controls";
+@import "sass/module/code-reference";
+@import "sass/module/download-stripe";
+@import "sass/module/header";
+@import "sass/module/image-hover";
+@import "sass/module/login-block";
+@import "sass/module/message";
+@import "sass/module/modal";
+@import "sass/module/navigation";
+@import "sass/module/pricing-table";
+@import "sass/module/showcase";
+@import "sass/module/title-bar";
+@import "sass/module/user-profile";
 
 
 // Templates

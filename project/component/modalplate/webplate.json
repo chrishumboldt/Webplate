@@ -1,0 +1,11 @@
+{
+	"name": "Modalplate",
+	"production": {
+		"css": ["css/modalplate.css"],
+		"js": ["js/min/modalplate.min.js"]
+	},
+	"development": {
+		"css": ["css/modalplate.css"],
+		"js": ["js/modalplate.js"]
+	}
+}

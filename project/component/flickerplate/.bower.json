@@ -1,0 +1,44 @@
+{
+  "name": "Flickerplate",
+  "version": "2.1.0",
+  "homepage": "http://getwebplate.com/plugins/flickerplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A cool jQuery plugin that lets you flick through content.",
+  "main": "js/min/flickerplate.min.js",
+  "keywords": [
+    "Webplate",
+    "Flickerplate",
+    "Slider",
+    "jQuery",
+    "Javascript"
+  ],
+  "license": "Apache License, Version 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gruntfile.js",
+    "package.json",
+    "index.html",
+    "bower.json",
+    "img",
+    "sass",
+    "css/demo.css",
+    "css/demo.map.css",
+    "css/flickerplate.css.map"
+  ],
+  "_release": "2.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.0",
+    "commit": "5899cc7b09e64affce13076af7a10900325b3f0d"
+  },
+  "_source": "git://github.com/chrishumboldt/Flickerplate.git",
+  "_target": "~2.1.0",
+  "_originalSource": "flickerplate",
+  "_direct": true
+}

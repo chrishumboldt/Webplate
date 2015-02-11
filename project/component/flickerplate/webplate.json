@@ -1,0 +1,11 @@
+{
+	"name": "Flickerplate",
+	"production": {
+		"css": ["css/flickerplate.css"],
+		"js": ["js/min/flickerplate.min.js"]
+	},
+	"development": {
+		"css": ["css/flickerplate.css"],
+		"js": ["js/flickerplate.js"]
+	}
+}

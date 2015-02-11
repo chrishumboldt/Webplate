@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	2 October 2014
+ * Last Edited:   	10 February 2015
  */
 
 
@@ -17,15 +17,17 @@
 var $crt_script 							= document.getElementById('webplate-stack');
 var $crt_script_src							= $crt_script.getAttribute('src').replace('stack.js', '');
 var $root									= $crt_script_src;
+var $config_file 							= $root + 'project/config.json';
 var $js_path								= $root + 'core/js/';
 var $css_path								= $root + 'core/css/';
 var $less_path								= $root + 'core/less/';
+var $component_path							= $root + 'project/component/';
 var $icon_font_path							= $root + 'project/icon-font/';
 var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
-var $ar_core_css							= [$css_path + 'webplate.css'];
+var $ar_core_files							= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
 var $ar_extra_css							= [];
 var $ar_extra_js							= [];
 
@@ -34,9 +36,19 @@ var $ar_extra_js							= [];
 // ---------------------------------------------------------------------------------------
 yepnope([
 {
-	load									: $js_path + 'min/webplate.min.js',
+	load									: $ar_core_files,
 	complete								: function()
 	{
+		// Touch check
+		if(Modernizr.touch)
+		{
+			// Load the library
+			yepnope({ load: $js_path + 'min/touch.min.js', complete: function()
+			{
+				FastClick.attach(document.body);
+			}});
+		}
+
 		// DOM edits
 		$('html').addClass('webplate');
 		$('body').append('<div class="webplate-overlay"></div>');
@@ -47,117 +59,292 @@ yepnope([
 		$.web_scroll();
 		$.web_hash_link();
 
-		// Touch check
-		if(Modernizr.touch)
+		// Get config
+		$.ajax(
 		{
-			// Load the library
-			yepnope({ load: $js_path + 'min/touch.min.js', complete: function()
-			{
-				FastClick.attach(document.body);
-			}});
-		}
-	}
-},
-{
-	load									: $ar_core_css,
-	complete								: function()
-	{	
-		// Load plugins
-		$.web_execute_plugins('body');
-		
-		// Variables
-		var $icon_font						= $('body').data('icon-font');
-		var $ui 							= $('body').data('ui');
-		var $project_css					= $('body').data('project-css');
-		var $project_js 					= $('body').data('project-js');
-
-		// Icon fonts
-		if($icon_font != undefined)
+			url 					: $config_file,
+			type 					: 'GET',
+			dataType 				: 'json',
+		})
+		// Success
+		.success(function($json, $text_status)
 		{
-			if($icon_font == 'icomoon')
+			// Variables
+			$url_data 						= $.web_get_url();
+
+			// Root config
+			$state 							= $json.app['state'] || 'production';
+			$body_class						= $json.app['body-class'] || false;
+			$component 						= $json.app['component'] || [];
+			$form_colour 					= $json.app['form-colour'] || false;
+			$icon_font 						= $json.app['icon-font'] || false;
+			$project_css 					= $json.app['project-css'] || [];
+			$project_js 					= $json.app['project-js'] || [];
+			$ui 							= $json.app['ui'] || false;
+
+			// Url base
+			$url_site 						= $url_data['site_path'];
+			$url_check 						= false;
+			$url_page_check 				= false;
+
+			if(($root == '') || ($root.substr(0, 3) == '../'))
 			{
-				yepnope({ load: [$icon_font_path + 'icomoon/style.css'] });
-			}
-			else if($icon_font == 'font-awesome')
-			{
-				yepnope({ load: [$icon_font_path + 'font-awesome/css/font-awesome.min.css'] });
-			}
-		}
+				$ex_root 					= $root.split('/');
+				$ex_url 					= $url_site.split('/');
+				$url_base					= '';
 
-		// Load UI
-		if($ui != undefined)
-		{
-			$ar_extra_css.push($ui_project_path + $ui + '/style.css');
-			$ar_extra_js.push($ui_project_path + $ui + '/script.min.js');
-		}
-
-		// Load project CSS
-		if($project_css != undefined)
-		{
-			$split_project_css				= $project_css.split(',');
-
-			// Loop through and load each CSS module
-			$.each($split_project_css, function($index, $file)
-			{
-				$file 						= jQuery.trim($file);
-				$extension 					= $.web_get_ext($file);
-
-				// Add to the arrays
-				if($extension == 'css')
-				{	
-					$ar_extra_css.push($css_project_path + $file);
-				}
-				else if($extension == 'less')
+				// Pop based on root
+				$.each($ex_root, function($i, $val) 
 				{
-					$ar_extra_css.push('less!' + $less_project_path + $file);
-					$ar_extra_css.push($js_path + 'min/web-less.min.js');
+					$ex_url.pop();
+				});
+
+				// Build new url
+				$.each($ex_url, function($i, $val)
+				{
+					$url_base 				+= $val + '/';
+				});
+			}
+			else
+			{
+				$url_base 					= $root;
+			}
+
+			// Url segments
+			$url_segments 					= [];
+			$ex_segments 					= $url_site.replace($url_base, '').split('/');
+			$.each($ex_segments, function($i, $val) 
+			{
+				if($.web_exists($val))
+				{
+					$url_segments.push($val);
 				}
 			});
-		}
-		
-		// Load project JS
-		if($project_js != undefined)
-		{
-			// Split the js
-			$split_project_js				= $project_js.split(',');
 
-			// Loop through and load each js extra
-			$.each($split_project_js, function($index, $file)
+			// Page check
+			if($json.app.page)
 			{
-				$file 						= jQuery.trim($file);
-				$extension                  = $.web_get_ext($file);
-
-				// Add to the arrays
-				if($extension == 'js')
+				$.each($json.app.page, function($i, $page)
 				{
-					$ar_extra_js.push($js_project_path + $file);
+					// Url page
+					$url_page_segments 			= [];
+					$ex_page_segments 			= $page['url'].split('/');
+					$page_match 				= true;
+
+					// Add to the segments object
+					$.each($ex_page_segments, function($i, $val)
+					{
+						if($.web_exists($val))
+						{
+							$url_page_segments.push($val);
+						}
+					});
+
+					// Wildcard check
+					if($page['url'].indexOf('*') == -1)
+					{
+						$url_page_segments_length 	= $url_page_segments.length;
+					}
+					else
+					{
+						$url_page_segments_length 	= $url_page_segments.length - 1;
+					}
+
+					// Perform the page match
+					if($url_segments.length >= $url_page_segments_length)
+					{
+						$.each($url_segments, function($i, $val)
+						{
+							if(($url_page_segments[$i] === '*'))
+							{
+								return false;
+							}
+							else
+							{
+								if($val != $url_page_segments[$i])
+								{
+									$page_match 	= false;
+								}
+							}
+						});
+					}
+					else
+					{
+						$page_match 				= false;
+					}
+
+					// Apply the config
+					if($page_match === true)
+					{
+						// Page overwrite
+						$page_overwrite 			= $page.overwrite || false;
+
+						if($page_overwrite === true)
+						{
+							// Overwrites
+							$body_class						= $page['body-class'] || $body_class;
+							$component 						= $page['component'] || $component;
+							$form_colour 					= $page['form-colour'] || $form_colour;
+							$icon_font 						= $page['icon-font'] || $icon_font;
+							$project_css 					= $page['project-css'] || $project_css;
+							$project_js 					= $page['project-js'] || $project_js;
+							$ui 							= $page['ui'] || $ui;
+						}
+						else
+						{
+							// Basic additions (some have to be overwritten by design)
+							$body_class 					= $body_class + ' ' + $page['body-class'];
+							$form_colour 					= $form_colour + ' ' + $page['form-colour'];
+							$icon_font 						= $page['icon-font'] || $icon_font;
+							$ui 							= $page['ui'] || $ui;
+
+							// Component add
+							if($page['component'])
+							{
+								$.each($page['component'], function($i, $add_component)
+								{
+									if($component.indexOf($add_component) == -1)
+									{
+										$component.push($add_component);
+									}
+								});
+							}
+
+							// Project CSS
+							if($page['project-css'])
+							{
+								$.each($page['project-css'], function($i, $add_project_css)
+								{
+									if($project_css.indexOf($add_project_css) == -1)
+									{
+										$project_css.push($add_project_css);
+									}
+								});
+							}
+
+							// Project JS
+							if($page['project-js'])
+							{
+								$.each($page['project-js'], function($i, $add_project_js)
+								{
+									if($project_js.indexOf($add_project_js) == -1)
+									{
+										$project_js.push($add_project_js);
+									}
+								});
+							}
+						}
+
+						// Break loop
+						return false;
+					}
+				});
+			}
+
+			// Set the body class
+			if($body_class != false)
+			{
+				$('body').addClass($body_class);
+			}
+
+			// Set the form colour
+			$('body').attr({ 'data-formplate-colour': $form_colour });
+
+			// Icon fonts
+			if($icon_font != false)
+			{
+				if($icon_font == 'icomoon')
+				{
+					yepnope({ load: [$icon_font_path + 'icomoon/style.css'] });
+				}
+				else if($icon_font == 'font-awesome')
+				{
+					yepnope({ load: [$icon_font_path + 'font-awesome/css/font-awesome.min.css'] });
+				}
+			}
+
+			// Load UI
+			if($ui != false)
+			{
+				$ar_extra_css.push($ui_project_path + $ui + '/style.css');
+				$ar_extra_js.push($ui_project_path + $ui + '/script.min.js');
+			}
+
+			// Load the components & project files
+			var $component_json 		= [];
+			$.each($component, function($i, $val)
+			{
+				$component_json.push(
+					$.getJSON($component_path + $val + '/webplate.json', function ($json)
+					{
+						if($json[$state].css)
+						{
+							yepnope({ load: $component_path + $val + '/' + $json[$state].css });
+						}
+						if($json[$state].js)
+						{
+							yepnope({ load: $component_path + $val + '/' + $json[$state].js });
+						}
+					})
+				);
+			});
+
+			// Once complete
+			$.when.apply($, $component_json).done(function()
+			{
+				// Add in project files
+				$.each($project_css, function($i, $val)
+				{
+					$file 						= jQuery.trim($val);
+					$extension                  = $.web_get_ext($file);
+
+					// Add to the array
+					if($extension == 'css')
+					{
+						$ar_extra_css.push($css_project_path + $file);
+					}
+				});
+				$.each($project_js, function($i, $val)
+				{
+					$file 						= jQuery.trim($val);
+					$extension                  = $.web_get_ext($file);
+
+					// Add to the array
+					if($extension == 'js')
+					{
+						$ar_extra_js.push($js_project_path + $file);
+					}
+				});
+
+			    // Load
+				if($ar_extra_css.length > 0)
+				{
+					yepnope({ load: $ar_extra_css, complete: function()
+					{
+						$('body').css('display', 'block');
+						setTimeout(function()
+						{
+							yepnope({ load: $ar_extra_js });
+						}, 
+						10);
+						$.web_hash_link_setup();
+					}});
+				}
+				else if($ar_extra_js.length > 0)
+				{
+					$('body').css('display', 'block');
+					setTimeout(function()
+					{
+						yepnope({ load: $ar_extra_js });
+					}, 
+					10);
+					$.web_hash_link_setup();
+				}
+				else
+				{
+					$('body').css('display', 'block');
 				}
 			});
-		}
-	
-		// Load
-		if($ar_extra_css.length > 0)
-		{
-			yepnope({ load: $ar_extra_css, complete: function()
-			{
-				$('body').css('display', 'block');
-				setTimeout(function()
-				{
-					yepnope({ load: $ar_extra_js });
-				}, 
-				10);
-				$.web_hash_link_setup();
-			}});
-		}
-		else
-		{
-			$('body').css('display', 'block');
-			setTimeout(function()
-			{
-				yepnope({ load: $ar_extra_js });
-			}, 
-			10);
-			$.web_hash_link_setup();
-		}
+		});
 	}
 }]);
