@@ -5,8 +5,8 @@
 		"form-colour": "pink",
 		"icon-font": "icomoon",
 		"project-css": ["welcome.css"],
-		"project-js": ["welcome.js"],
-		"ui": "stripe"
+		"project-js": ["min/welcome.min.js"],
+		"ui": "fuse"
 	},
 	"fallback": {
 		"title": "Webplate Project"

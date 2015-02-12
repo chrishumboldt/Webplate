@@ -39,6 +39,12 @@ $font-large 				: 24px;
 $font-x-large 				: 36px;
 $font-x2-large 				: 48px;
 
+$weight-thin 				: 100;
+$weight-light 				: 300;
+$weight-base 				: 400;
+$weight-bold 				: 700;
+$weight-heavy 				: 900;
+
 
 // Font
 // ---------------------------------------------------------------------------------------
@@ -85,6 +91,7 @@ $font-x2-large 				: 48px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	word-wrap: normal;
 }
 @mixin text-font($font: $helvetica) {
 	@include font-family($font);
@@ -96,6 +103,12 @@ $font-x2-large 				: 48px;
 	color: transparent; 
 	background-color: transparent;
 }
+@mixin text-hyphen($type: none) {
+	-webkit-hyphens: $type;
+	-moz-hyphens: $type;
+	-ms-hyphens: $type;
+	hyphens: $type;
+}
 @mixin text-letter-spacing($letter-spacing: normal) {
 	@include letter-spacing($letter-spacing);
 }
@@ -103,19 +116,83 @@ $font-x2-large 				: 48px;
 	@include line-height($line-height);
 }
 @mixin text-size($size: $font-base) {
-	@include font-size($size);
+
+	@if $size == x2-small {
+		@include font-size($font-x2-small);
+	}
+	@else if $size == x-small {
+		@include font-size($font-x-small);
+	}
+	@else if $size == small {
+		@include font-size($font-small);
+	}
+	@else if $size == minor {
+		@include font-size($font-minor);
+	}
+	@else if $size == base {
+		@include font-size($font-base);
+	}
+	@else if $size == slight {
+		@include font-size($font-slight);
+	}
+	@else if $size == medium {
+		@include font-size($font-medium);
+	}
+	@else if $size == large {
+		@include font-size($font-large);
+	}
+	@else if $size == x-large {
+		@include font-size($font-x-large);
+	}
+	@else if $size == x2-large {
+		@include font-size($font-x2-large);
+	}
+	@else
+	{
+		@include font-size($size);
+	}
 }
+// ----- DEPRECATED - WILL BE DELETED SOON
 @mixin text-squared($size) {
 	width: $size;
 	height: $size;
 	line-height: $size;
 	text-align: center;
 }
+// ----- END
 @mixin text-style($style: normal) {
 	@include font-style($style);
 }
 @mixin text-weight($weight: normal) {
-	@include font-weight($weight);
+
+	@if $weight == thin {
+		@include font-weight($weight-thin);
+	}
+	@else if $weight == light {
+		@include font-weight($weight-light);
+	}
+	@else if $weight == base {
+		@include font-weight($weight-base);
+	}
+	@else if $weight == bold {
+		@include font-weight($weight-bold);
+	}
+	@else if $weight == heavy {
+		@include font-weight($weight-heavy);
+	}
+	@else {
+		@include font-weight($weight);
+	}
+}
+@mixin text-wrap($wrap: break-word) {
+	overflow-wrap: $wrap;
+	word-wrap: $wrap;
+
+	@if $wrap == break-word {
+		word-break: break-all;
+	} @else {
+		word-break: $wrap;
+	}
 }
 
 

@@ -1,0 +1,26 @@
+/**
+ * Title: 			Fuse UI Kit
+ * SASS File: 		style.scss
+ * Type: 			importer
+ * Author:        	Chris Humboldt
+ * Last Edited:   	12 February 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Imports
+
+
+// Imports
+// ---------------------------------------------------------------------------------------
+// Webplate
+@import "../../../core/sass/import";
+
+// Basic
+@import "sass/basic/text";
+
+// Modules
+@import "sass/module/banner";
+
+

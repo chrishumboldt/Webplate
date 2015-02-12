@@ -1,0 +1,68 @@
+/**
+ * Title: 			Banners
+ * SASS File: 		_banner.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	12 February 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic banner
+
+
+// Basic banner
+// ---------------------------------------------------------------------------------------
+.banner-basic {
+	@include display(block);
+	@include position(relative);
+	@include width(100%);
+	@include text-align(center);
+	@include text-colour($white);
+	@include gradient-animate-angle($blue, $red);
+
+	// Limit
+	.limit {
+		@include padding-horizontal($space-base);
+		@include padding-vertical($space-large + $space-base);
+
+		// Adapt
+		@include breakpoint(large) {
+			@include padding-vertical($space-x2-large + $space-medium);
+		}
+	}
+
+	// Text
+	h1 {
+		@include display(block);
+		@include padding-bottom(0px);
+		@include width(100%, 800px);
+		@include center();
+		@include text-colour($white);
+		@include text-line-height(40px);
+		@include text-size(30px);
+		@include text-weight(100);
+
+		// Adapt
+		@include breakpoint(large) {
+			@include text-line-height(60px);
+			@include text-size(48px);
+		}
+	}
+	p {
+		@include width-max(800px);
+		@include spacing-no();
+		@include center();
+		@include padding-top($space-base);
+		@include text-colour(fade-out($white, 0.25));
+		@include text-weight(300);
+
+		// Adapt
+		@include breakpoint(large) {
+			@include text-size(medium);
+		}
+	}
+}
+
+

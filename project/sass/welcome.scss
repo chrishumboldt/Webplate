@@ -2,7 +2,7 @@
  * SASS File: 		welcome.scss
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	15 October 2014
+ * Last Edited:   	11 Februaruy 2015
  */
 
 
@@ -11,14 +11,10 @@
 // Variables
 // Imports
 // Global
-// Examples
-// Footer
-// Navigation
 
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$site-family 					: 'Lato', sans-serif;
 
 
 // Imports
@@ -28,104 +24,5 @@ $site-family 					: 'Lato', sans-serif;
 
 // Global
 // ---------------------------------------------------------------------------------------
-html {
-	font-family: $site-family;
-}
-label {
-	font-family: $site-family;
-}
-.webplate header.stripe .bg-image {
-	@include background-image-cover("welcome/background.jpg");
-}
-
-
-// Examples
-// ---------------------------------------------------------------------------------------
-.atomic-example, .class-example {
-	margin-bottom: 1.5em;
-	border: 1px solid lighten(#000, 84%);
-	text-align: center;
-	@include border-radius();
-
-	div {
-		padding: 6px 0px;
-		border: 1px solid lighten(#000, 84%);
-		background-color: lighten(#000, 90%);
-	}
-}
-.class-example.limit {
-	padding: 0px;
-}
-.atomic-example {
-	@include row();
-
-	// Columns
-	.left-col, .right-col, .middle-col {
-		@include span(12);
-	}
-
-	@include respond-to(large) {
-		.left-col {
-			@include span-new(6);
-		}
-		.middle-col, .right-col {
-			@include span-new(3);
-		}
-	}
-
-	@include respond-to(50em) {
-		.left-col {
-			@include span-new(12);
-		}
-		.middle-col {
-			@include span-new(9);
-		}
-		.right-col {
-			@include span-new(3);
-		}
-	}
-
-	@include respond-to(56.250em) {
-		.left-col, .right-col {
-			@include span-new(2);
-		}
-		.middle-col {
-			@include span-new(8);
-		}
-	}
-}
-
-
-// Footer
-// ---------------------------------------------------------------------------------------
-#footer {
-	text-align: center;
-
-	h6 {
-		@include center();
-
-		// Respond
-		@include respond-to(large) {
-			width: 70%;
-		}
-	}
-}
-.no-touch #footer .social .circle a:hover {
-	background-color: lighten(#E54028, 14%);
-}
-
-
-// Navigation
-// ---------------------------------------------------------------------------------------
-.no-touch header.stripe nav .logo-container .logo-line:hover,
-.no-touch header.stripe nav ul.navigation > li > a:hover,
-.no-touch header.stripe nav ul.navigation > li > ul a:hover,
-.no-touch header.stripe .scroll-down:hover {
-	@include text-colour($red-dark);
-}
-.no-touch header.stripe nav .logo-container .logo-line:hover,
-.no-touch header.stripe .scroll-down:hover {
-	@include border($red-dark);
-}
 
 

@@ -2,7 +2,7 @@
  * jQuery File: 	web-engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	10 February 2015
+ * Last Edited:   	11 February 2015
  */
 
 
@@ -28,6 +28,7 @@ var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
 var $ar_core_files							= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
+var $ar_component_files						= [];
 var $ar_extra_css							= [];
 var $ar_extra_js							= [];
 
@@ -279,11 +280,11 @@ yepnope([
 					{
 						if($json[$state].css)
 						{
-							yepnope({ load: $component_path + $val + '/' + $json[$state].css });
+							$ar_component_files.push($component_path + $val + '/' + $json[$state].css);
 						}
 						if($json[$state].js)
 						{
-							yepnope({ load: $component_path + $val + '/' + $json[$state].js });
+							$ar_component_files.push($component_path + $val + '/' + $json[$state].js);
 						}
 					})
 				);
@@ -292,45 +293,52 @@ yepnope([
 			// Once complete
 			$.when.apply($, $component_json).done(function()
 			{
-				// Add in project files
-				$.each($project_css, function($i, $val)
+				// Load the components
+				if($ar_component_files.length > 0)
 				{
-					$file 						= jQuery.trim($val);
-					$extension                  = $.web_get_ext($file);
-
-					// Add to the array
-					if($extension == 'css')
+					yepnope({ load: $ar_component_files, complete: function()
 					{
-						$ar_extra_css.push($css_project_path + $file);
-					}
-				});
-				$.each($project_js, function($i, $val)
-				{
-					$file 						= jQuery.trim($val);
-					$extension                  = $.web_get_ext($file);
-
-					// Add to the array
-					if($extension == 'js')
-					{
-						$ar_extra_js.push($js_project_path + $file);
-					}
-				});
-
-			    // Load
-				if($ar_extra_css.length > 0)
-				{
-					yepnope({ load: $ar_extra_css, complete: function()
-					{
-						$('body').css('display', 'block');
-						setTimeout(function()
-						{
-							yepnope({ load: $ar_extra_js });
-						}, 
-						10);
-						$.web_hash_link_setup();
+						fc_load_project_files();
 					}});
 				}
-				else if($ar_extra_js.length > 0)
+				else
+				{
+					fc_load_project_files();
+				}
+			});
+		});
+
+		// Functions
+		function fc_load_project_files()
+		{
+			// Add in project files
+			$.each($project_css, function($i, $val)
+			{
+				$file 						= jQuery.trim($val);
+				$extension                  = $.web_get_ext($file);
+
+				// Add to the array
+				if($extension == 'css')
+				{
+					$ar_extra_css.push($css_project_path + $file);
+				}
+			});
+			$.each($project_js, function($i, $val)
+			{
+				$file 						= jQuery.trim($val);
+				$extension                  = $.web_get_ext($file);
+
+				// Add to the array
+				if($extension == 'js')
+				{
+					$ar_extra_js.push($js_project_path + $file);
+				}
+			});
+
+		    // Load
+			if($ar_extra_css.length > 0)
+			{
+				yepnope({ load: $ar_extra_css, complete: function()
 				{
 					$('body').css('display', 'block');
 					setTimeout(function()
@@ -339,12 +347,22 @@ yepnope([
 					}, 
 					10);
 					$.web_hash_link_setup();
-				}
-				else
+				}});
+			}
+			else if($ar_extra_js.length > 0)
+			{
+				$('body').css('display', 'block');
+				setTimeout(function()
 				{
-					$('body').css('display', 'block');
-				}
-			});
-		});
+					yepnope({ load: $ar_extra_js });
+				}, 
+				10);
+				$.web_hash_link_setup();
+			}
+			else
+			{
+				$('body').css('display', 'block');
+			}
+		}
 	}
 }]);

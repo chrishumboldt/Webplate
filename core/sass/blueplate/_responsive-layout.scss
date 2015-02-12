@@ -310,5 +310,62 @@ $min-max 							: false !default;
 		}
 	}
 }
+@mixin breakpoint-vertical($breakpoint, $breakpoint-type: false, $orientation: false){
+
+	// Retina breakpoint
+	@if $breakpoint == retina {
+		@media screen and (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) { 
+			@content; 
+		}
+	}
+	// Layout responding
+	@else {
+		// Min max
+		@if $breakpoint-type == false {
+
+			// Large
+			@if $breakpoint == small {
+				$min-max 				: max-height !global;
+			}
+			@else if $breakpoint == fluid {
+				$min-max 				: max-height !global;
+			}
+			@else {
+				$min-max 				: min-height !global;
+			}
+		}
+		@else {
+			@if $breakpoint-type == max {
+				$min-max 				: max-height !global;
+			}
+			@else {
+				$min-max 				: min-height !global;
+			}
+		}
+
+		// Breakpoint
+		@if $breakpoint == large {
+			$breakpoint					: $break-main;
+		}
+		@else if $breakpoint == fluid {
+			$breakpoint 				: $limit-width;	
+		}
+		@else if $breakpoint == small {
+			$breakpoint 				: $break-main;
+		}
+
+		// Return (check orientation)
+		@if $orientation != false {
+			@media only screen and ($min-max: $breakpoint) and (orientation : $orientation) { 
+				@content; 
+			} 
+		}
+		@else {
+			@media only screen and ($min-max: $breakpoint) { 
+				@content; 
+			}
+		}
+	}
+}
 
 

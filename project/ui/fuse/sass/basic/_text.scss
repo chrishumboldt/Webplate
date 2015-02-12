@@ -1,0 +1,56 @@
+/**
+ * Title: 			Text
+ * SASS File: 		_text.scss
+ * Type: 			atom
+ * Author:        	Chris Humboldt
+ * Last Edited:   	
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Global
+// Headings
+
+
+// Global
+// ---------------------------------------------------------------------------------------
+html {
+	@include text-font($roboto);
+}
+label {
+	@include text-font($roboto);
+}
+
+
+// Headings
+// ---------------------------------------------------------------------------------------
+h1 { @include text-size(34px); font-weight: 500; margin-bottom: 1.25rem; }
+h2 { @include text-size(30px); margin-bottom: 1.5rem; }
+h3 { @include text-size(26px); margin-bottom: 1.75rem; }
+h4 { @include text-size(22px); }
+h5 { @include text-size(18px); }
+h6 { @include text-size(16px); }
+h1, h2, h3 { @include text-line-height(38px); }
+h4, h5, h6 { @include text-line-height(24px); }
+h2, h3, h4, h5, h6 { @include font-weight(300); }
+
+// Respond
+@include respond-to($bp-small) {
+	h1 { @include text-size(50px); }
+	h2 { @include text-size(44px); }
+	h3 { @include text-size(32px); }
+	h4 { @include text-size(24px); }
+	h5 { @include text-size(18px); }
+	h6 { @include text-size(16px); }
+}
+@include respond-to($bp-large) {
+	h1 { @include text-size(60px); }
+	h2 { @include text-size(48px); }
+	h3 { @include text-size(38px); }
+	h4 { @include text-size(24px); }
+	h5 { @include text-size(20px); }
+	h6 { @include text-size(18px); }
+}
+
+
