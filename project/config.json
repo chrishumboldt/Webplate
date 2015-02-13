@@ -2,8 +2,10 @@
 	"app": {
 		"body-class": "page-welcome",
 		"component": ["buttonplate", "formplate"],
+		"component-execute": false,
 		"form-colour": "pink",
 		"icon-font": "icomoon",
+		"navivation": "slide-from-left",
 		"project-css": ["welcome.css"],
 		"project-js": ["min/welcome.min.js"],
 		"ui": "fuse"

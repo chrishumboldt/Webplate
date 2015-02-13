@@ -8,8 +8,4 @@
 
 $(document).ready(function()
 {
-	// Execute components
-	// ---------------------------------------------------------------------------------------
-	$('.button').buttonplate();
-	$('body').formplate();
 });

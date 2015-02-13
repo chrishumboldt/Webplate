@@ -2,10 +2,12 @@
 	"name": "Formplate",
 	"production": {
 		"css": ["css/formplate.css"],
-		"js": ["js/min/formplate.min.js"]
+		"js": ["js/min/formplate.min.js"],
+		"execute": "$('body').formplate()"
 	},
 	"development": {
 		"css": ["css/formplate.css"],
-		"js": ["js/formplate.js"]
+		"js": ["js/formplate.js"],
+		"execute": "$('body').formplate()"
 	}
 }

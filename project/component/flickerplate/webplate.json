@@ -2,10 +2,12 @@
 	"name": "Flickerplate",
 	"production": {
 		"css": ["css/flickerplate.css"],
-		"js": ["js/min/flickerplate.min.js"]
+		"js": ["js/min/flickerplate.min.js"],
+		"execute": "$('.flicker').flickerplate()"
 	},
 	"development": {
 		"css": ["css/flickerplate.css"],
-		"js": ["js/flickerplate.js"]
+		"js": ["js/flickerplate.js"],
+		"execute": "$('.flicker').flickerplate()"
 	}
 }

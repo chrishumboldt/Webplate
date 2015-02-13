@@ -2,10 +2,12 @@
 	"name": "Buttonplate",
 	"production": {
 		"css": ["css/buttonplate.css"],
-		"js": ["js/min/buttonplate.min.js"]
+		"js": ["js/min/buttonplate.min.js"],
+		"execute": "$('.button').buttonplate()"
 	},
 	"development": {
 		"css": ["css/buttonplate.css"],
-		"js": ["js/buttonplate.js"]
+		"js": ["js/buttonplate.js"],
+		"execute": "$('.button').buttonplate()"
 	}
 }

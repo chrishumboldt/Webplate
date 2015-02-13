@@ -20,9 +20,9 @@ module.exports = function(grunt) {
 					cssFormat: "dash",
 					mask: 'config-mask.json'
 				},
-				src: '../../project/config.json',
+				src: '../project/config.json',
 				dest: [
-					'../sass/config.scss'
+					'sass/config.scss'
 				]
 			}
 		},
@@ -35,20 +35,20 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					// Core file
-					'../css/webplate.css': '../sass/engine.scss'
+					'css/webplate.css': 'sass/engine.scss'
 				},{
 					// Project files
 					expand: true,
-					cwd: '../../project/sass',
+					cwd: '../project/sass',
 					src: ['**/*.scss'],
-					dest: '../../project/css',
+					dest: '../project/css',
 					ext: '.css'
 				},{
 					// UI files
 					expand: true,
-					cwd: '../../project/ui',
+					cwd: '../project/ui',
 					src: ['**/style.scss'],
-					dest: '../../project/ui',
+					dest: '../project/ui',
 					ext: '.css'
 				}]
 			}
@@ -59,37 +59,37 @@ module.exports = function(grunt) {
 			// Stack file
 			stack: {
 				files: {
-					'../../stack.js': [
-						'../js/engine.js'
+					'../stack.js': [
+						'js/engine.js'
 					]
 				}
 			},
 			// Imports
 			imports: {
 				files: {
-					'../js/min/webplate.min.js': [
-						'../js/jquery.js',
-						'../js/modernizr.js',
-						'../js/hammer.js',
-						'../js/hammer-jquery.js',
-						'../js/velocity.js',
-						'../js/tools.js'
+					'js/min/webplate.min.js': [
+						'js/jquery.js',
+						'js/modernizr.js',
+						'js/hammer.js',
+						'js/hammer-jquery.js',
+						'js/velocity.js',
+						'js/tools.js'
 					]
 				}
 			},
 			// Touch
 			touch: {
 				files: {
-					'../js/min/touch.min.js': [
-						'../js/fastclick.js'
+					'js/min/touch.min.js': [
+						'js/fastclick.js'
 					],
 				}
 			},
 			// LESS
 			less: {
 				files: {
-					'../js/min/less.min.js': [
-						'../js/less.js'
+					'js/min/less.min.js': [
+						'js/less.js'
 					],
 				}
 			},
@@ -97,9 +97,9 @@ module.exports = function(grunt) {
 			project: {
 				files: [{
 					expand: true,
-					cwd: '../../project/js',
+					cwd: '../project/js',
 					src: '*.js',
-					dest: '../../project/js/min',
+					dest: '../project/js/min',
 					ext: '.min.js'
 				}]
 			},
@@ -107,9 +107,9 @@ module.exports = function(grunt) {
 			ui: {
 				files: [{
 					expand: true,
-					cwd: '../../project/ui',
+					cwd: '../project/ui',
 					src: '**/script.js',
-					dest: '../../project/ui',
+					dest: '../project/ui',
 					ext: '.min.js'
 				}]
 			},
@@ -119,53 +119,53 @@ module.exports = function(grunt) {
 			// CSS
 			css: {
 				files: [
-					'../**/*.scss', 
-					'../../_settings.scss', 
-					'../../project/sass/*.scss', 
-					'../../project/sass/**/*.scss',
-					'../../project/ui/**/*.scss'
+					'**/*.scss', 
+					'../_settings.scss', 
+					'../project/sass/*.scss', 
+					'../project/sass/**/*.scss',
+					'../project/ui/**/*.scss'
 				],
 				tasks: ['sass']
 			},
 			// End of CSS
 			// Scripts
 			stack: {
-				files: ['../js/engine.js'],
+				files: ['js/engine.js'],
 				tasks: ['uglify:stack']
 			},
 			imports: {
 				files: [
-					'../js/jquery.js',
-					'../js/modernizr.js',
-					'../js/hammer.js',
-					'../js/hammer-jquery.js',
-					'../js/velocity.js',
-					'../js/tools.js'
+					'js/jquery.js',
+					'js/modernizr.js',
+					'js/hammer.js',
+					'js/hammer-jquery.js',
+					'js/velocity.js',
+					'js/tools.js'
 				],
 				tasks: ['uglify:imports']
 			},
 			touch: {
 				files: [
-					'../js/fastclick.js'
+					'js/fastclick.js'
 				],
 				tasks: ['uglify:touch']
 			},
 			less: {
-				files: ['../js/less.js'],
+				files: ['js/less.js'],
 				tasks: ['uglify:less']
 			},
 			project: {
-				files: ['../../project/js/*.js'],
+				files: ['../project/js/*.js'],
 				tasks: ['uglify:project']
 			},
 			ui: {
-				files: ['../../project/ui/**/script.js'],
+				files: ['../project/ui/**/script.js'],
 				tasks: ['uglify:ui']
 			},
 			// End of scripts
 			// Config
 			config: {
-				files: ['../../project/config.json'],
+				files: ['../project/config.json'],
 				tasks: ['shared_config', 'sass', 'uglify']
 			},
 			// End of config

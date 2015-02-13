@@ -1,6 +1,6 @@
 {
   "name": "Formplate",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "homepage": "http://getwebplate.com/plugins/formplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -27,14 +27,14 @@
     "css/demo.css",
     "sass"
   ],
-  "_release": "1.4.1",
+  "_release": "1.4.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.4.1",
-    "commit": "f5c6c69fa97b8ee1baa97e3d6e30050e9881cf6c"
+    "tag": "v1.4.2",
+    "commit": "c1ab972c7e51cd278c01e57ceaac4b0555d73a0e"
   },
   "_source": "git://github.com/chrishumboldt/Formplate.git",
-  "_target": "~1.4.1",
+  "_target": "~1.4.2",
   "_originalSource": "formplate",
   "_direct": true
 }

@@ -47,7 +47,7 @@ a, a:visited {text-decoration: none;}
 	}
 }
 // Navigation
-.webplate-navigation {
+.web-navigation {
 	position: fixed;
 	display: block;
 	height: 100%;
@@ -86,7 +86,7 @@ a, a:visited {text-decoration: none;}
 }
 
 // Overlay
-.webplate-overlay {
+.web-overlay {
 	display: none;
 	position: fixed;
 	z-index: 100;
@@ -108,7 +108,7 @@ a, a:visited {text-decoration: none;}
 @include respond-to(large) {
 	
 	// Navigation
-	.navigation {
+	nav {
 		ul, ol {
 			list-style: none;
 		}
@@ -133,7 +133,7 @@ a, a:visited {text-decoration: none;}
 @include respond-to(small) {
 
 	// Navigation
-	.navigation {
+	nav {
 		display: none;
 	}
 }

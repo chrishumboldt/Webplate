@@ -2,10 +2,12 @@
 	"name": "Modalplate",
 	"production": {
 		"css": ["css/modalplate.css"],
-		"js": ["js/min/modalplate.min.js"]
+		"js": ["js/min/modalplate.min.js"],
+		"execute": "$('.modal').modalplate()"
 	},
 	"development": {
 		"css": ["css/modalplate.css"],
-		"js": ["js/modalplate.js"]
+		"js": ["js/modalplate.js"],
+		"execute": "$('.modal').modalplate()"
 	}
 }

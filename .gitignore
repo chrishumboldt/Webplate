@@ -40,7 +40,7 @@ validation-report.json
 # Folders to ignore
 node_modules
 bower_components
-core/grunt/node_modules
-core/grunt/.sass-cache
+core/node_modules
+core/.sass-cache
 
 # Temporary ignore

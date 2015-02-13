@@ -22,6 +22,7 @@ var $js_path								= $root + 'core/js/';
 var $css_path								= $root + 'core/css/';
 var $less_path								= $root + 'core/less/';
 var $component_path							= $root + 'project/component/';
+var $component_json 						= [];
 var $icon_font_path							= $root + 'project/icon-font/';
 var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
@@ -29,6 +30,7 @@ var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
 var $ar_core_files							= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
 var $ar_component_files						= [];
+var $ar_component_execute					= [];
 var $ar_extra_css							= [];
 var $ar_extra_js							= [];
 
@@ -52,7 +54,7 @@ yepnope([
 
 		// DOM edits
 		$('html').addClass('webplate');
-		$('body').append('<div class="webplate-overlay"></div>');
+		$('body').append('<div class="web-overlay"></div>');
 
 		// Execute
 		$.web_navigation();
@@ -272,9 +274,9 @@ yepnope([
 			}
 
 			// Load the components & project files
-			var $component_json 		= [];
 			$.each($component, function($i, $val)
 			{
+				// Get Webplate config
 				$component_json.push(
 					$.getJSON($component_path + $val + '/webplate.json', function ($json)
 					{
@@ -285,6 +287,10 @@ yepnope([
 						if($json[$state].js)
 						{
 							$ar_component_files.push($component_path + $val + '/' + $json[$state].js);
+						}
+						if($json[$state].execute)
+						{
+							$ar_component_execute.push($json[$state].execute);
 						}
 					})
 				);
@@ -299,6 +305,12 @@ yepnope([
 					yepnope({ load: $ar_component_files, complete: function()
 					{
 						fc_load_project_files();
+
+						// Execute known components
+						$.each($ar_component_execute, function($i, $val)
+						{
+							eval($val);
+						});
 					}});
 				}
 				else
@@ -340,23 +352,23 @@ yepnope([
 			{
 				yepnope({ load: $ar_extra_css, complete: function()
 				{
-					$('body').css('display', 'block');
 					setTimeout(function()
 					{
 						yepnope({ load: $ar_extra_js });
+						$('body').css('display', 'block');
 					}, 
-					10);
+					20);
 					$.web_hash_link_setup();
 				}});
 			}
 			else if($ar_extra_js.length > 0)
 			{
-				$('body').css('display', 'block');
 				setTimeout(function()
 				{
 					yepnope({ load: $ar_extra_js });
+					$('body').css('display', 'block');
 				}, 
-				10);
+				20);
 				$.web_hash_link_setup();
 			}
 			else

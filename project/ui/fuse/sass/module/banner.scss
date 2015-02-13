@@ -29,7 +29,7 @@
 
 		// Adapt
 		@include breakpoint(large) {
-			@include padding-vertical($space-x2-large + $space-medium);
+			@include padding-vertical($space-x2-large + $space-large);
 		}
 	}
 

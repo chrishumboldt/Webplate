@@ -39,7 +39,8 @@
 		{
 			// Variables
 			var $this 						= this;
-			var $this_modal_trigger			= $(this.element);
+			var $modal_reference			= '.' + this.element.className;
+			var $this_modal_trigger			= $($modal_reference + '-trigger');
 			var $modal_id 					= $this_modal_trigger.data('modal-open');
 			var $this_modal 				= $('[data-modal-id='+ $modal_id +']');
 			var $data_modal_reveal			= $this_modal.data('modal-reveal');
@@ -49,6 +50,7 @@
 			var $window_w 					= $(window).width();
 
 			// Setup
+			$($modal_reference).addClass('modalplate');
 			$this.overlay_add();
 			$this.settings.reveal			= $data_modal_reveal || $this.settings.reveal;
 			$this.settings.reveal_large		= $data_modal_reveal_large || $this.settings.reveal_large;

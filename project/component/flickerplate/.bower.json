@@ -1,6 +1,6 @@
 {
   "name": "Flickerplate",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "homepage": "http://getwebplate.com/plugins/flickerplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -31,14 +31,14 @@
     "css/demo.map.css",
     "css/flickerplate.css.map"
   ],
-  "_release": "2.1.0",
+  "_release": "2.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "v2.1.0",
-    "commit": "5899cc7b09e64affce13076af7a10900325b3f0d"
+    "tag": "v2.1.1",
+    "commit": "4a043f2e821e0076ff4a77e97da11eafca02f94b"
   },
   "_source": "git://github.com/chrishumboldt/Flickerplate.git",
-  "_target": "~2.1.0",
+  "_target": "~2.1.1",
   "_originalSource": "flickerplate",
   "_direct": true
 }
