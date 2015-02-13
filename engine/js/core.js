@@ -1,8 +1,8 @@
 /**
- * jQuery File: 	web-engine.js
+ * jQuery File: 	engine.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	11 February 2015
+ * Last Edited:   	14 February 2015
  */
 
 
@@ -18,9 +18,9 @@ var $crt_script 							= document.getElementById('webplate-stack');
 var $crt_script_src							= $crt_script.getAttribute('src').replace('stack.js', '');
 var $root									= $crt_script_src;
 var $config_file 							= $root + 'project/config.json';
-var $js_path								= $root + 'core/js/';
-var $css_path								= $root + 'core/css/';
-var $less_path								= $root + 'core/less/';
+var $js_path								= $root + 'engine/js/';
+var $css_path								= $root + 'engine/css/';
+var $less_path								= $root + 'engine/less/';
 var $component_path							= $root + 'project/component/';
 var $component_json 						= [];
 var $icon_font_path							= $root + 'project/icon-font/';
@@ -28,7 +28,7 @@ var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
-var $ar_core_files							= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
+var $ar_engine_files						= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
 var $ar_component_files						= [];
 var $ar_component_execute					= [];
 var $ar_extra_css							= [];
@@ -39,7 +39,7 @@ var $ar_extra_js							= [];
 // ---------------------------------------------------------------------------------------
 yepnope([
 {
-	load									: $ar_core_files,
+	load									: $ar_engine_files,
 	complete								: function()
 	{
 		// Touch check

@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					// Core file
-					'css/webplate.css': 'sass/engine.scss'
+					'css/webplate.css': 'sass/core.scss'
 				},{
 					// Project files
 					expand: true,
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 			stack: {
 				files: {
 					'../stack.js': [
-						'js/engine.js'
+						'js/core.js'
 					]
 				}
 			},
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 			// End of CSS
 			// Scripts
 			stack: {
-				files: ['js/engine.js'],
+				files: ['js/core.js'],
 				tasks: ['uglify:stack']
 			},
 			imports: {
