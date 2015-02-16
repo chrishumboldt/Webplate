@@ -25,7 +25,8 @@
   ],
   "license": "Apache License, Version 2.0",
   "ignore": [
-    "**/.*",
+    "engine/.sass-cache",
+    "engine/node_modules",
     "node_modules",
     "bower_components",
     "test",
