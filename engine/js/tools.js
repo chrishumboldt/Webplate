@@ -276,20 +276,6 @@ var $nav_end_position               = 0;
 var $navigation_width;
 var $nav_track_position;
 
-// Execute plugins
-jQuery.web_execute_plugins			= function($selector)
-{
-	// Execute components
-	$($selector + ' .button').buttonplate();
-	$($selector + ' .flickerplate').flickerplate({ flick_animation: 'transform-slide' });
-	$($selector).formplate();
-	$($selector + ' .modal-trigger').modalplate(
-	{
-		'reveal' 					: 'slide-from-right',
-		'reveal_large' 				: 'slide-from-top'
-	});
-};
-
 // Hash link
 jQuery.web_hash_link                = function()
 {
@@ -334,7 +320,7 @@ jQuery.web_hash_link_setup          = function()
 
 jQuery.web_nav_hide					= function()
 {
-	$('.webplate-navigation').velocity(
+	$('.web-navigation').velocity(
 	{ 
 		left                    : 0
 	}, 
@@ -356,10 +342,11 @@ jQuery.web_nav_hide					= function()
 
 jQuery.web_nav_show                 = function()
 {
+// alert('woot');
 	// Variables
-	$navigation_width               = $('.webplate-navigation').width();
+	$navigation_width               = $('.web-navigation').width();
 
-	$('.webplate-navigation').velocity(
+	$('.web-navigation').velocity(
 	{ 
 		left                    	: $navigation_width
 	}, 
@@ -382,8 +369,8 @@ jQuery.web_nav_show                 = function()
 jQuery.web_navigation               = function()
 {
 	// Duplicate navigation
-	$('body').append($('.navigation').clone().addClass('webplate-navigation').removeClass('navigation'));
-	$('.webplate-navigation').wrapInner('<div class="navigation-inner" />');
+	$('body').append($('.navigation').clone().addClass('web-navigation').removeClass('navigation'));
+	$('.web-navigation').wrapInner('<div class="navigation-inner" />');
 
 	// On click
 	$('.navigation-trigger').on('click', function($ev)
@@ -401,7 +388,7 @@ jQuery.web_navigation               = function()
 	});
 	
 	// Close nav again
-	$('.webplate-overlay, .webplate-navigation a').on('click', function($e)
+	$('.web-overlay, .web-navigation a').on('click', function($e)
 	{
 		if($('html').hasClass('web-nav-shown'))
 		{
@@ -415,7 +402,7 @@ jQuery.web_navigation               = function()
 		$('.navigation-trigger').addClass('small-show');
 	}
 
-	$(window).on('touchstart', '.webplate-navigation',function($ev)
+	$(window).on('touchstart', '.web-navigation',function($ev)
 	{
 		if($ev.currentTarget.scrollTop === 0)
 		{
@@ -426,7 +413,7 @@ jQuery.web_navigation               = function()
 			$ev.currentTarget.scrollTop -= 1;
 		}
 	});
-	$(window).on('touchmove','.webplate-navigation',function($ev)
+	$(window).on('touchmove','.web-navigation',function($ev)
 	{
 		$ev.stopPropagation();
 	});
@@ -434,7 +421,7 @@ jQuery.web_navigation               = function()
 
 jQuery.web_overlay_hide             = function()
 {
-	$('.webplate-overlay').velocity(
+	$('.web-overlay').velocity(
 	{
 		opacity         : 0
 	}, 
@@ -446,7 +433,7 @@ jQuery.web_overlay_hide             = function()
 
 jQuery.web_overlay_show             = function()
 {
-	$('.webplate-overlay').velocity(
+	$('.web-overlay').velocity(
 	{
 		opacity         : 0.4
 	}, 
@@ -542,10 +529,4 @@ jQuery.web_window_type_execute      = function()
 			$.web_hide_nav();
 		}
 	}
-};
-
-// Webplate plugins reload
-jQuery.webplate_reload 				= function($selector)
-{
-	$.web_load_plugins($selector);
 };

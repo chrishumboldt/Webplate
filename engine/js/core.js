@@ -1,5 +1,5 @@
 /**
- * jQuery File: 	engine.js
+ * jQuery File: 	core.js
  * Type: 			execute
  * Author:        	Chris Humboldt
  * Last Edited:   	14 February 2015
@@ -81,6 +81,7 @@ yepnope([
 			$component 						= $json.app['component'] || [];
 			$form_colour 					= $json.app['form-colour'] || false;
 			$icon_font 						= $json.app['icon-font'] || false;
+			$navigation 					= $json.app['navigation'] || false;
 			$project_css 					= $json.app['project-css'] || [];
 			$project_js 					= $json.app['project-js'] || [];
 			$ui 							= $json.app['ui'] || false;
@@ -189,6 +190,7 @@ yepnope([
 							$component 						= $page['component'] || $component;
 							$form_colour 					= $page['form-colour'] || $form_colour;
 							$icon_font 						= $page['icon-font'] || $icon_font;
+							$navivation 					= $page['navigation'] || false;
 							$project_css 					= $page['project-css'] || $project_css;
 							$project_js 					= $page['project-js'] || $project_js;
 							$ui 							= $page['ui'] || $ui;
@@ -199,6 +201,7 @@ yepnope([
 							$body_class 					= $body_class + ' ' + $page['body-class'];
 							$form_colour 					= $form_colour + ' ' + $page['form-colour'];
 							$icon_font 						= $page['icon-font'] || $icon_font;
+							$navivation 					= $page['navigation'] || $navigation;
 							$ui 							= $page['ui'] || $ui;
 
 							// Component add
@@ -249,6 +252,17 @@ yepnope([
 			{
 				$('body').addClass($body_class);
 			}
+
+			// Set the navigation type
+			if($navigation === false)
+			{
+				$navigation 			= 'web-nav-slide-from-left';
+			}	
+			else
+			{
+				$navigation 			= 'web-nav-' + $navigation;
+			}
+			$('html').addClass($navigation);
 
 			// Set the form colour
 			$('body').attr({ 'data-formplate-colour': $form_colour });

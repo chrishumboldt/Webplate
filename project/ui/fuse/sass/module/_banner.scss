@@ -3,8 +3,13 @@
  * SASS File: 		_banner.scss
  * Type: 			module
  * Author:        	Chris Humboldt
- * Last Edited:   	12 February 2015
+ * Last Edited:   	16 February 2015
  */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic banner
 
 
 // Table of contents
@@ -14,13 +19,14 @@
 
 // Basic banner
 // ---------------------------------------------------------------------------------------
-.banner-basic {
+.banner {
 	@include display(block);
 	@include position(relative);
 	@include width(100%);
 	@include text-align(center);
-	@include text-colour($white);
-	@include gradient-animate-angle($blue, $red);
+	@include background-colour($grey-x-light);
+	@include text-colour($black-base);
+	@include level(1);
 
 	// Limit
 	.limit {
@@ -39,7 +45,7 @@
 		@include padding-bottom(0px);
 		@include width(100%, 800px);
 		@include center();
-		@include text-colour($white);
+		@include text-colour($black-base);
 		@include text-line-height(40px);
 		@include text-size(30px);
 		@include text-weight(100);
@@ -55,13 +61,28 @@
 		@include spacing-no();
 		@include center();
 		@include padding-top($space-base);
-		@include text-colour(fade-out($white, 0.25));
+		@include text-colour(fade-out($black-base, 0.2));
 		@include text-weight(300);
 
 		// Adapt
 		@include breakpoint(large) {
 			@include text-size(medium);
 		}
+	}
+}
+
+
+// Banner fuze
+// ---------------------------------------------------------------------------------------
+.banner.fuze {
+	@include gradient-animate-angle($blue, $red);
+
+	// Text
+	h1 {
+		@include text-colour($white);
+	}
+	p {
+		@include text-colour(fade-out($white, 0.25));
 	}
 }
 

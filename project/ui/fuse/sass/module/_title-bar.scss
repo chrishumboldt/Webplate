@@ -1,0 +1,114 @@
+/**
+ * Title: 			Title bar
+ * SASS File: 		_title-bar.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	15 February 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Variables
+// Title bar
+// Title bar basic
+// Title bar clear
+// Title bar fixed
+// Title bar padding
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+
+
+// Title bar
+// ---------------------------------------------------------------------------------------
+.title-bar {
+	@include position(relative);
+	@include width(100%);
+	@include padding($space-minor);
+	@include level(10);
+	@include background-colour($white);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include padding-vertical($space-base);
+		@include padding-horizontal($space-slight);
+	}
+
+	// Navigation trigger
+	.navigation-trigger {
+		@include position(absolute, margin-top -9px margin-left -9px);
+		@include square(44px);
+		@include text-colour($black-base);
+		@include text-size(22px);
+		// @include background-colour($red);
+	}
+
+	// Title
+	.title {
+		@include display(block);
+		@include padding-top(3px);
+		@include text-align(center);
+		@include text-size(18px);
+
+		i {
+			@include margin-right(6px);
+
+			// Adapt
+			@include breakpoint(large) {
+				@include margin-right($space-small);
+			}
+		}
+
+		// Adapt
+		@include breakpoint(large) {
+			@include text-align(left);
+			@include text-size(20px);
+		}
+	}
+}
+
+
+// Title bar basic
+// ---------------------------------------------------------------------------------------
+.title-bar-basic {
+	@extend .title-bar;
+}
+
+
+// Title bar clear
+// ---------------------------------------------------------------------------------------
+.title-bar.clear {
+	@include text-colour($white);
+	@include background-colour(transparent);
+
+	// Navigation trigger
+	.navigation-trigger {
+		@include text-colour($white);
+	}
+}
+
+
+// Title bar fixed
+// ---------------------------------------------------------------------------------------
+.title-bar-fixed {
+	@extend .title-bar;
+	@include position(fixed);
+}
+
+
+// Title bar padding
+// ---------------------------------------------------------------------------------------
+.title-bar-offset {
+	@include display(block);
+	@include position(relative);
+	@include height(64px);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include height(64px);
+	}
+}
+
+

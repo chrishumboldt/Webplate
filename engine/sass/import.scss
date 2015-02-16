@@ -2,7 +2,7 @@
  * SASS File: 		import.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	10 February 2015
+ * Last Edited:   	15 February 2015
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
@@ -36,7 +36,12 @@ $min-max 							: false !default;
 $font-family 						: $sass-font-family !default;
 
 
-// Plugins
+// Components
 // ---------------------------------------------------------------------------------------
 @import "blueplate/import";
-@import "layout";
+
+
+// Modules
+// ---------------------------------------------------------------------------------------
+@import "module/layout";
+@import "module/navigation";

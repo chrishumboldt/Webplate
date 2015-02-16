@@ -1,0 +1,32 @@
+/**
+ * Title: 			Navigation
+ * SASS File: 		_navigation.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	15 February 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Title bar basic navigation
+
+
+// Title bar basic navigation
+// ---------------------------------------------------------------------------------------
+.title-bar-basic nav.navigation {
+	@include position(absolute, right 0px top 0px);
+
+	li {
+		@include float(left);
+	}
+	a {
+		@include display(block);
+		@include padding-horizontal($space-base);
+		@include padding-top($space-base + 6px);
+		@include padding-bottom($space-base + 4px);
+		@include text-colour($black-base);
+	}
+}
+
+
