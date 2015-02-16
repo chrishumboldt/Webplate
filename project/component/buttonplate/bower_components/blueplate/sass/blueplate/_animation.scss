@@ -1,0 +1,24 @@
+/**
+ * SASS File: 		_animation.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	12 July 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Animate
+
+
+// Animate
+// ---------------------------------------------------------------------------------------
+@mixin animate($attribute, $transition-speed: 0.2s, $easing: ease-out) {
+	-webkit-transition: $attribute $transition-speed $easing;
+	-moz-transition: $attribute $transition-speed $easing;
+	-o-transition: $attribute $transition-speed $easing;
+	-ms-transition: $attribute $transition-speed $easing;
+	transition: $attribute $transition-speed $easing;
+}
+
+

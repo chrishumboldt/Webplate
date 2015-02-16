@@ -28,10 +28,8 @@
     "engine/.sass-cache",
     "engine/node_modules",
     "node_modules",
-    "bower_components",
     "test",
     "tests",
-    "core/grunt/node_modules",
     "bower.json",
     "index.html"
   ]

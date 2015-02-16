@@ -1,0 +1,29 @@
+/**
+ * SASS File: 		_position.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Position mixin
+
+
+// Position mixin
+// ---------------------------------------------------------------------------------------
+@mixin blueplate-position() {
+	.pos-absolute {
+		@include position(absolute);
+	}
+	.pos-relative {
+		@include position(relative);
+	}
+	.pos-static {
+		@include position(static);
+	}
+	.pos-fixed {
+		@include position(fixed);
+	}
+}
