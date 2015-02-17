@@ -302,10 +302,10 @@ yepnope([
 						{
 							$ar_component_files.push($component_path + $val + '/' + $json[$state].js);
 						}
-						if($json[$state].execute)
-						{
-							$ar_component_execute.push($json[$state].execute);
-						}
+						// if($json[$state].execute)
+						// {
+						// 	$ar_component_execute.push($json[$state].execute);
+						// }
 					})
 				);
 			});
@@ -319,12 +319,6 @@ yepnope([
 					yepnope({ load: $ar_component_files, complete: function()
 					{
 						fc_load_project_files();
-
-						// Execute known components
-						$.each($ar_component_execute, function($i, $val)
-						{
-							eval($val);
-						});
 					}});
 				}
 				else
