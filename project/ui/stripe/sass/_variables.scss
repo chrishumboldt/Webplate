@@ -53,3 +53,9 @@ $title-bar-h-medium			: 68px;
 $title-bar-h-large			: 118px;
 
 
+// Check units
+// ---------------------------------------------------------------------------------------
+$unit 						: unit($limit_width);
+$limit 						: if($unit == "px", $limit-width + ($space-large * 2), $limit-width + ($space-large-em * 2));
+
+
