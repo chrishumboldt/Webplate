@@ -2,7 +2,7 @@
  * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     2 October 2014
+ * Last Edited:     29 March 2015
  */
 
 
@@ -21,7 +21,7 @@
 
 // Basic checks
 // ---------------------------------------------------------------------------------------
-jQuery.web_exists                   = function($element)
+jQuery.web_exists					= function($element)
 {
 	return (($element) && ($element.length > 0));
 };

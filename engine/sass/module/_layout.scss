@@ -28,7 +28,7 @@
 .col-double {
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(6);
 			padding-right: $space-small;
@@ -78,7 +78,7 @@
 	@extend .col-double;
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(4);
 		}
@@ -92,7 +92,7 @@
 	@extend .col-double;
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(8);
 		}
