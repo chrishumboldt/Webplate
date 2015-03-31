@@ -3,13 +3,46 @@
  * SASS File: 		_layout.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	12 february 2015
+ * Last Edited:   	31 March 2015
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Basic
+// Content
+
+
+// Content
+// ---------------------------------------------------------------------------------------
+.content {
+	@include padding-horizontal($space-small);
+	@include padding-vertical($space-medium);
+
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint(large) {
+		@include padding-horizontal($space-base);
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
+.content-tight {
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
 
 
 // Basic

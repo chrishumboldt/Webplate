@@ -1,113 +1,164 @@
 /**
- * Title: 			Title bar
+ * Title: 			Title Bar
  * SASS File: 		_title-bar.scss
- * Type: 			module
+ * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	15 February 2015
+ * Last Edited:   	29 March 2015
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Variables
 // Title bar
-// Title bar basic
-// Title bar clear
-// Title bar fixed
-// Title bar padding
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
+// Title bar spacing
 
 
 // Title bar
 // ---------------------------------------------------------------------------------------
 .title-bar {
-	@include position(relative);
+	@include position(fixed, top 0);
+	@include height($title-bar-h);
 	@include width(100%);
-	@include padding($space-minor);
+	@include padding-horizontal($space-minor);
+	@include background-colour(fade-out($white, 0.05));
 	@include level(10);
-	@include background-colour($white);
 
 	// Adapt
 	@include breakpoint(large) {
-		@include padding-vertical($space-base);
+		@include height($title-bar-h-large);
 		@include padding-horizontal($space-slight);
 	}
 
-	// Navigation trigger
-	.navigation-trigger {
-		@include position(absolute, margin-top -9px margin-left -9px);
-		@include square(44px);
-		@include text-colour($black-base);
-		@include text-size(22px);
-		// @include background-colour($red);
-	}
-
-	// Title
-	.title {
-		@include display(block);
-		@include padding-top(3px);
-		@include text-align(center);
-		@include text-size(18px);
-
-		i {
-			@include margin-right(6px);
-
-			// Adapt
-			@include breakpoint(large) {
-				@include margin-right($space-small);
-			}
-		}
+	// Logo
+	.logo {
+		@include float(left);
+		@include height($title-bar-h);
+		@include text-colour($pink);
+		@include text-line-height($title-bar-h);
+		@include text-size($font-slight);
+		@include animate(all);
 
 		// Adapt
 		@include breakpoint(large) {
-			@include text-align(left);
-			@include text-size(20px);
+			@include height($title-bar-h-large);
+			@include text-line-height($title-bar-h-large);
+			@include text-size($font-medium);
+		}
+
+		// Icon
+		i {
+			@include text-line-height(74px);
+			@include text-size(26px);
+
+			// Adapt
+			@include breakpoint(large) {
+				@include text-line-height(84px);
+				@include text-size(38px);
+			}
+		}
+
+		// Text
+		span {
+			@include position(absolute, margin-top 1px margin-left $space-slight);
+
+			// Adapt
+			@include breakpoint(large) {
+				@include position-set(margin-left $space-medium);
+			}
+		}
+	}
+	// States
+	.no-touch & a.logo:hover {
+		@include text-colour($blue);
+	}
+
+	// Links
+	ul {
+		@include float(right);
+		list-style: none;
+
+		li {
+			@include float(left);
+			@include margin-left(4px);
+
+			a {
+				@include display(block);
+				@include height($title-bar-h);
+				@include padding-horizontal($space-small + 2px);
+				@include text-colour($grey-dark);
+				@include text-line-height($title-bar-h);
+				@include text-size($font-minor);
+				@include border-top($white, 2px);
+				@include border-bottom($white, 2px);
+				@include animate(all);
+
+				// Adapt
+				@include breakpoint(large) {
+					@include height($title-bar-h-large);
+					@include padding-horizontal($space-base - 2px);
+					@include text-line-height($title-bar-h-large);
+					@include text-size($font-base);
+				}
+
+				// Borders
+				&.border-pink {
+					@include border-top($pink, 2px);
+				}
+				&.border-blue {
+					@include border-top($blue, 2px);
+				}
+
+				// States
+				.no-touch &:hover {
+					@include border-top($white, 2px);
+					@include text-colour($pink);
+				}
+				.no-touch &.border-blue:hover,
+				.no-touch &.border-pink:hover {
+					@include text-colour($white);
+				}
+				.no-touch &.border-blue:hover {
+					@include background-colour($blue);
+					@include border-top($blue, 2px);
+					@include border-bottom($blue, 2px);
+				}
+				.no-touch &.border-pink:hover {
+					@include background-colour($pink);
+					@include border-top($pink, 2px);
+					@include border-bottom($pink, 2px);
+				}
+
+				// Icon only
+				&[class *= "icon-"] {
+					@include text-size(24px);
+
+					// Adapt
+					@include breakpoint(large) {
+						@include text-size(30px);
+					}
+				}
+			}
 		}
 	}
 }
 
 
-// Title bar basic
+// Title bar spacing
 // ---------------------------------------------------------------------------------------
-.title-bar-basic {
-	@extend .title-bar;
-}
-
-
-// Title bar clear
-// ---------------------------------------------------------------------------------------
-.title-bar.clear {
-	@include text-colour($white);
-	@include background-colour(transparent);
-
-	// Navigation trigger
-	.navigation-trigger {
-		@include text-colour($white);
-	}
-}
-
-
-// Title bar fixed
-// ---------------------------------------------------------------------------------------
-.title-bar-fixed {
-	@extend .title-bar;
-	@include position(fixed);
-}
-
-
-// Title bar padding
-// ---------------------------------------------------------------------------------------
-.title-bar-offset {
-	@include display(block);
-	@include position(relative);
-	@include height(64px);
+.title-bar-margin {
+	@include margin-top($title-bar-h);
 
 	// Adapt
 	@include breakpoint(large) {
-		@include height(64px);
+		@include margin-top($title-bar-h-large);
+	}
+}
+.title-bar-padding {
+	@include padding-top($title-bar-h);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include padding-top($title-bar-h-large);
 	}
 }
 

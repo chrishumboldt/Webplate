@@ -3,13 +3,21 @@
  * SASS File: 		style.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	12 February 2015
+ * Last Edited:   	31 March 2015
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Variables
 // Imports
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+// Title bar
+$title-bar-h 					: 76px;
+$title-bar-h-large				: 92px;
 
 
 // Imports
@@ -22,6 +30,9 @@
 
 // Modules
 @import "sass/module/banner";
+@import "sass/module/card";
+@import "sass/module/cool-list";
+@import "sass/module/image-hover";
 @import "sass/module/navigation";
 @import "sass/module/title-bar";
 

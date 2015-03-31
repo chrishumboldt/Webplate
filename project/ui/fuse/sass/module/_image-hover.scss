@@ -1,0 +1,56 @@
+/**
+ * Title: 			Image hover
+ * SASS File: 		_image-hover.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	17 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Image hover
+
+
+// Image hover
+// ---------------------------------------------------------------------------------------
+a.image-hover {
+	@include display(block);
+	@include position(relative);
+	@include width(100%);
+	@include height(100px);
+
+	// Heading
+	h6 {
+		@include spacing-no();
+		@include position(relative);
+		@include padding-vertical($space-minor);
+		@include text-align(center);
+		@include text-colour($white);
+		@include text-size($font-large);
+		@include center-vertical();
+		@include level(2);
+		@include animate(all);
+	}
+
+	// Overlay
+	.overlay {
+		@include display(block);
+		@include position(absolute, left 0 top 0 right 0 bottom 0);
+		@include background-colour(fade-out($black, 0.85));
+		@include level(1);
+		@include animate(all);
+	}
+
+	// Hover
+	.no-touch &:hover {
+		h6 {
+			@include padding-top(0px);
+		}
+		.overlay {
+			@include background-colour(fade-out($black, 0.5));
+		}
+	}
+}
+
+

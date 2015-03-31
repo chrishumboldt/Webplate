@@ -1,0 +1,118 @@
+/**
+ * Title: 			Card module
+ * SASS File: 		_card.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	17 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Card basics
+// Card grid
+
+
+// Card basics
+// ---------------------------------------------------------------------------------------
+.card {
+	@include background-colour($white);
+
+	// Image
+	.image {
+		@include position(relative);
+		@include height-min(100px);
+		@include background-cover();
+
+		.info {
+			@include position(absolute, bottom 0 right 0);
+			@include padding-horizontal($space-small);
+			@include padding-vertical($space-x-small);
+			@include text-colour($white);
+			@include background-colour($pink);
+
+			span {
+				@include text-colour($pink-light);
+				@include text-size($font-small);
+			}
+		}
+	}
+
+	// Details
+	.details {
+		@include padding($space-minor);
+		@include text-size($font-minor);
+
+		// Adapt
+		@include breakpoint(large) {
+			@include padding($space-base);
+		}
+
+		// Headings
+		h6 {
+			@include spacing-no();
+			@include text-colour($black-base);
+			@include text-weight(400);
+		}
+
+		// Sub text
+		.sub-text {
+			@include display(block);
+			@include spacing-no();
+			@include text-colour($grey-medium);
+			@include text-size($font-small);
+
+			// Adapt
+			@include breakpoint($bp-medium) {
+				@include margin-bottom($space-minor);
+			}
+		}
+
+		// Text
+		p {
+			@include margin-bottom(0px);
+		}
+	}
+}
+// Links
+.no-touch a.card {
+	@include display(block);
+	@include animate(all);
+
+	&:hover {
+		cursor: pointer;
+		@include drop-shadow(fade-out($black, 0.9), 14px);
+	}
+}
+
+
+// Card grid
+// ---------------------------------------------------------------------------------------
+.card-grid {
+	@include row();
+
+	ul {
+		list-style: none;
+
+		// Each list item
+		> li {
+			@include span(12);
+			// @include padding-bottom($space-minor);
+
+			// Adapt
+			@include breakpoint($bp-small) {
+				@include span-new(6);
+				@include padding-bottom($space-small);
+				@include padding-horizontal($space-x-small);
+			}
+			@include breakpoint($bp-large) {
+				@include span-new(4);
+			}
+			@include breakpoint($bp-x-large) {
+				@include span-new(3);
+			}
+		}
+	}
+}
+
+
