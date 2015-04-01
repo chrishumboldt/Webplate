@@ -292,20 +292,19 @@ yepnope([
 			{
 				// Get Webplate config
 				$component_json.push(
-					$.getJSON($component_path + $val + '/webplate.json', function ($json)
+					$.getJSON($component_path + $val + '/.bower.json', function($json)
 					{
-						if($json[$state].css)
+						if($.type($json.main) == 'array')
 						{
-							$ar_component_files.push($component_path + $val + '/' + $json[$state].css);
+							$.each($json.main, function($i_2, $val_2)
+							{
+								$ar_component_files.push($component_path + $val + '/' + $val_2);
+							});
 						}
-						if($json[$state].js)
+						else
 						{
-							$ar_component_files.push($component_path + $val + '/' + $json[$state].js);
+							$ar_component_files.push($component_path + $val + '/' + $json.main);
 						}
-						// if($json[$state].execute)
-						// {
-						// 	$ar_component_execute.push($json[$state].execute);
-						// }
 					})
 				);
 			});
