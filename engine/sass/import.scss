@@ -2,7 +2,7 @@
  * SASS File: 		import.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	15 February 2015
+ * Last Edited:   	1 April 2015
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
@@ -11,9 +11,25 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Config
 // Variables
+// Config
+// Reset the variables
 // Plugins
+
+
+// Variables
+// ---------------------------------------------------------------------------------------
+$option-limit-width						: 75em !default;
+$option-menu-width						: 16.250em !default;
+$option-small-nav-back					: #fff !default;
+$option-images-root						: "../img" !default;
+$option-column-limit					: 12 !default;
+$option-spacing-limit					: 10 !default;
+$option-default-flex 					: 1 !default;
+$option-default-flex-percent-option		: false !default;
+$option-break-main 						: 43.813em !default;
+$option-min-max 						: false !default;
+$option-font-family 					: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 
 // Config
@@ -21,19 +37,19 @@
 @import "config";
 
 
-// Variables
+// Reset the variables
 // ---------------------------------------------------------------------------------------
-$limit-width						: $sass-limit-width !default;
-$menu-width							: $sass-menu-width !default;
-$small-nav-back						: $sass-menu-colour !default;
-$images-root						: $sass-images-root !default;
-$column-limit						: $sass-column-limit !default;
-$spacing-limit						: $sass-spacing-limit !default;
-$default-flex 						: $sass-default-flex !default;
-$default-flex-percent-option		: false !default;
-$break-main 						: $sass-break-main !default;
-$min-max 							: false !default;
-$font-family 						: $sass-font-family !default;
+$limit-width							: $option-limit-width;
+$menu-width 							: $option-menu-width;
+$small-nav-back 						: $option-small-nav-back;
+$images-root 							: $option-images-root;
+$column-limit 							: $option-column-limit;
+$spacing-limit 							: $option-spacing-limit;
+$default-flex							: $option-default-flex;
+$default-flex-percent-option 			: $option-default-flex-percent-option;
+$break-main 							: $option-break-main;
+$min-max 								: $option-min-max;
+$font-family 							: $option-font-family;
 
 
 // Components

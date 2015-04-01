@@ -2,7 +2,7 @@
  * jQuery File: 	core.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	14 February 2015
+ * Last Edited:   	1 April 2015
  */
 
 
@@ -28,7 +28,7 @@ var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
 var $is_less								= false;
-var $ar_engine_files						= [$js_path + 'min/webplate.min.js', $css_path + 'webplate.css'];
+var $ar_engine_files						= [$js_path + 'min/scripts.min.js', $css_path + 'styles.css'];
 var $ar_component_files						= [];
 var $ar_component_execute					= [];
 var $ar_extra_css							= [];
@@ -76,15 +76,15 @@ yepnope([
 			$url_data 						= $.web_get_url();
 
 			// Root config
-			$state 							= $json.app['state'] || 'production';
-			$body_class						= $json.app['body-class'] || false;
-			$component 						= $json.app['component'] || [];
-			$form_colour 					= $json.app['form-colour'] || false;
-			$icon_font 						= $json.app['icon-font'] || false;
-			$navigation 					= $json.app['navigation'] || false;
-			$project_css 					= $json.app['project-css'] || [];
-			$project_js 					= $json.app['project-js'] || [];
-			$ui 							= $json.app['ui'] || false;
+			$state 							= $json.project['state'] || 'production';
+			$body_class						= $json.project['body-class'] || false;
+			$component 						= $json.project['component'] || [];
+			$form_colour 					= $json.project['form-colour'] || false;
+			$icon_font 						= $json.project['icon-font'] || false;
+			$navigation 					= $json.project['navigation'] || false;
+			$project_css 					= $json.project['css'] || [];
+			$project_js 					= $json.project['js'] || [];
+			$ui 							= $json.project['ui'] || false;
 
 			// Url base
 			$url_site 						= $url_data['site_path'];
@@ -126,9 +126,9 @@ yepnope([
 			});
 
 			// Page check
-			if($json.app.page)
+			if($json.project.page)
 			{
-				$.each($json.app.page, function($i, $page)
+				$.each($json.project.page, function($i, $page)
 				{
 					// Url page
 					$url_page_segments 			= [];
@@ -191,8 +191,8 @@ yepnope([
 							$form_colour 					= $page['form-colour'] || $form_colour;
 							$icon_font 						= $page['icon-font'] || $icon_font;
 							$navivation 					= $page['navigation'] || false;
-							$project_css 					= $page['project-css'] || $project_css;
-							$project_js 					= $page['project-js'] || $project_js;
+							$project_css 					= $page['css'] || $project_css;
+							$project_js 					= $page['js'] || $project_js;
 							$ui 							= $page['ui'] || $ui;
 						}
 						else
@@ -217,9 +217,9 @@ yepnope([
 							}
 
 							// Project CSS
-							if($page['project-css'])
+							if($page['css'])
 							{
-								$.each($page['project-css'], function($i, $add_project_css)
+								$.each($page['css'], function($i, $add_project_css)
 								{
 									if($project_css.indexOf($add_project_css) == -1)
 									{
@@ -229,9 +229,9 @@ yepnope([
 							}
 
 							// Project JS
-							if($page['project-js'])
+							if($page['js'])
 							{
-								$.each($page['project-js'], function($i, $add_project_js)
+								$.each($page['js'], function($i, $add_project_js)
 								{
 									if($project_js.indexOf($add_project_js) == -1)
 									{

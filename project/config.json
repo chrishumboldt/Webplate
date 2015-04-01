@@ -1,27 +1,11 @@
 {
-	"app": {
-		"body-class": "page-welcome",
+	"project": {
 		"component": ["buttonplate", "formplate"],
-		"component-execute": false,
+		"css": ["welcome.css"],
+		"js": ["min/welcome.min.js"],
+		"body-class": "page-welcome",
 		"form-colour": "pink",
 		"icon-font": "icomoon",
-		"navivation": "slide-from-left",
-		"project-css": ["welcome.css"],
-		"project-js": ["min/welcome.min.js"],
 		"ui": "fuse"
-	},
-	"fallback": {
-		"title": "Webplate Project"
-	},
-	"sass": {
-		"limit-width": "75em",
-		"menu-width": "16.250em",
-		"menu-colour": "#fff",
-		"images-root": "'../img'",
-		"column-limit": "12",
-		"spacing-limit": "10",
-		"default-flex": "1",
-		"break-main": "43.813em",
-		"font-family": "'Open Sans', Helvetica, Arial, sans-serif"
 	}
 }

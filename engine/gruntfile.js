@@ -7,6 +7,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shared-config');
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('build', ['shared_config', 'sass', 'uglify']);
+
+	// Clean out the contents of the config file
+	grunt.file.write('sass/config.scss', '');
 	
 	// Initialize config
 	grunt.initConfig({
@@ -35,7 +38,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					// Core file
-					'css/webplate.css': 'sass/core.scss'
+					'css/styles.css': 'sass/core.scss'
 				},{
 					// Project files
 					expand: true,
@@ -67,7 +70,7 @@ module.exports = function(grunt) {
 			// Imports
 			imports: {
 				files: {
-					'js/min/webplate.min.js': [
+					'js/min/scripts.min.js': [
 						'js/jquery.js',
 						'js/modernizr.js',
 						'js/hammer.js',

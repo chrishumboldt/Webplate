@@ -1,6 +1,6 @@
 {
-	"app": false,
+	"project": false,
 	"page": false,
 	"fallback": false,
-	"sass": true
+	"option": true
 }
