@@ -3,7 +3,7 @@
  * SASS File: 		style.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	1 April 2015
+ * Last Edited:   	2 April 2015
  */
 
 
@@ -30,11 +30,13 @@ $title-bar-h-large				: 92px;
 $grey-blue-super-light			: lighten($grey-blue-light, 14%);
 
 // Basic
+@import "sass/basic/link";
 @import "sass/basic/text";
 
 // Modules
 @import "sass/module/banner";
 @import "sass/module/card";
+@import "sass/module/code";
 @import "sass/module/cool-list";
 @import "sass/module/grey-strip";
 @import "sass/module/image-hover";

@@ -1,0 +1,84 @@
+/**
+ * Title: 			Code styling
+ * SASS File: 		_code.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	2 April 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Prettify
+
+
+// Prettify
+// ---------------------------------------------------------------------------------------
+.prettyprint {
+	@include position(relative);
+	@include padding($space-small);
+	@include margin-bottom(1.5em);
+	font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+	@include text-size(12px);
+	@include background-colour(lighten($grey-blue-light, 15%));
+	@include overflow(scroll);
+	word-wrap: normal;
+	white-space: pre;
+
+	// Adapt
+	@include breakpoint(large) {
+		@include padding($space-base);
+	}
+}
+code {
+	@include text-size(16px);
+}
+
+.pln,
+.pun,
+.kwd,
+.opn,
+.clo,
+.dec {
+	@include text-colour($grey-blue-dark);
+}
+.str {
+	@include text-colour($red);
+}
+
+.com {
+	@include text-colour($grey-blue);
+}
+
+.typ {
+	@include text-colour($blue);
+}
+
+.lit {
+	@include text-colour($purple-dark);
+}
+
+.tag {
+	@include text-colour($blue-dark);
+}
+
+.atn {
+	@include text-colour($aqua);
+}
+
+.atv {
+	@include text-colour($pink);
+}
+
+.var {
+	@include text-colour($aqua);
+}
+
+.fun {
+	@include text-colour($red-dark);
+}
+// Line numbers
+ol.linenums {
+	@include spacing-no();
+	@include margin-left($space-base);
+}

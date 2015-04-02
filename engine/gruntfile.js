@@ -59,10 +59,10 @@ module.exports = function(grunt) {
 		// End of SASS
 		// Uglify
 		uglify: {
-			// Stack file
-			stack: {
+			// Start file
+			start: {
 				files: {
-					'../stack.js': [
+					'../start.js': [
 						'js/core.js'
 					]
 				}
@@ -132,9 +132,9 @@ module.exports = function(grunt) {
 			},
 			// End of CSS
 			// Scripts
-			stack: {
+			start: {
 				files: ['js/core.js'],
-				tasks: ['uglify:stack']
+				tasks: ['uglify:start']
 			},
 			imports: {
 				files: [

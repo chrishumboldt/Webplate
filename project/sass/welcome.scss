@@ -2,21 +2,17 @@
  * SASS File: 		welcome.scss
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	1 April 2015
+ * Last Edited:   	2 April 2015
  */
 
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Variables
 // Imports
-// Global
 // Banner
+// Layouts
+// Text
 // Title bar
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
 
 
 // Imports
@@ -64,6 +60,34 @@
 			@include text-colour($white);
 		}
 	}
+}
+
+
+// Layouts
+// ---------------------------------------------------------------------------------------
+.row.example {
+	@include border(3px, lighten($grey-blue-light, 14%));
+
+	div {
+		@include padding-vertical($space-small);
+		@include text-align(center);
+		@include text-size(14px);
+		@include text-weight(300);
+		@include background-colour(lighten($grey-blue-light, 10%));
+		@include border(3px, lighten($grey-blue-light, 14%));
+
+		// Adapt
+		@include breakpoint(large) {
+			@include text-size(16px);
+		}
+	}
+}
+
+
+// Text
+// ---------------------------------------------------------------------------------------
+h4 {
+	@include text-colour($pink);
 }
 
 

@@ -89,7 +89,7 @@
 				@include text-line-height($title-bar-h);
 				@include text-size($font-minor);
 				@include border-top($white, 2px);
-				@include border-bottom($white, 2px);
+				@include border-bottom(transparent, 2px);
 				@include animate(all);
 
 				// Adapt

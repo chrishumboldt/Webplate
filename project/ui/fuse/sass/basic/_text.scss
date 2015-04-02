@@ -3,7 +3,7 @@
  * SASS File: 		_text.scss
  * Type: 			atom
  * Author:        	Chris Humboldt
- * Last Edited:   	
+ * Last Edited:   	2 April 2015
  */
 
 
@@ -35,7 +35,20 @@ h1, h2, h3 { @include text-line-height(38px); }
 h4, h5, h6 { @include text-line-height(24px); }
 h2, h3, h4, h5, h6 { @include font-weight(300); }
 p {
-	@include font-weight(300);
+	@include text-size(15px);
+	@include text-weight(300);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include text-size(16px);
+	}
+
+	// Note
+	&.note {
+		@include text-colour($grey-medium);
+		@include text-size(14px);
+		@include text-style(italic);
+	}
 }
 
 // Respond

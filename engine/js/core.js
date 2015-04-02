@@ -14,8 +14,8 @@
 
 // Some variables
 // ---------------------------------------------------------------------------------------
-var $crt_script 							= document.getElementById('webplate-stack');
-var $crt_script_src							= $crt_script.getAttribute('src').replace('stack.js', '');
+var $crt_script 							= document.getElementById('webplate');
+var $crt_script_src							= $crt_script.getAttribute('src').replace('start.js', '');
 var $root									= $crt_script_src;
 var $config_file 							= $root + 'project/config.json';
 var $js_path								= $root + 'engine/js/';
