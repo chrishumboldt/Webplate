@@ -2,7 +2,7 @@
  * SASS File: 		welcome.scss
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	11 Februaruy 2015
+ * Last Edited:   	1 April 2015
  */
 
 
@@ -11,6 +11,8 @@
 // Variables
 // Imports
 // Global
+// Banner
+// Title bar
 
 
 // Variables
@@ -20,9 +22,59 @@
 // Imports
 // ---------------------------------------------------------------------------------------
 @import "../../engine/sass/import";
+@import "../component/buttonplate/sass/buttonplate";
 
 
-// Global
+// Banner
 // ---------------------------------------------------------------------------------------
+.banner {
+	@include position(relative);
+	@include gradient-animate-angle($blue-dark, $red);
+
+	// Text
+	h1 {
+		@include text-colour($white);
+		@include text-weight(400);
+	}
+	p {
+		@include padding-bottom($space-medium);
+		@include text-colour(fade-out($white, 0.3));
+	}
+
+	// Buttons
+	.btn-banner {
+		@include button-setup();
+		@include button-style-line($white);
+		@include button-size(x-large);
+		@include margin-horizontal($space-x-small);
+		@include text-weight(100);
+
+		// Size
+		@include breakpoint(small) {
+			@include width(auto);
+			@include button-size(large);
+
+			&.small-hide {
+				@include hide();
+			}
+		}
+
+		// States
+		&:visited {
+			@include text-colour($white);
+		}
+	}
+}
+
+
+// Title bar
+// ---------------------------------------------------------------------------------------
+.title-bar {
+
+	// Links
+	.no-touch & ul li a {
+		@include text-weight(300);
+	}
+}
 
 

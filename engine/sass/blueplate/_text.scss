@@ -2,7 +2,7 @@
  * SASS File: 		_text.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	23 October 2014
+ * Last Edited:   	1 April 2014
  */
 
 
@@ -42,6 +42,7 @@ $font-x2-large 				: 48px;
 $weight-thin 				: 100;
 $weight-light 				: 300;
 $weight-base 				: 400;
+$weight-slight 				: 500;
 $weight-bold 				: 700;
 $weight-heavy 				: 900;
 
@@ -173,6 +174,9 @@ $weight-heavy 				: 900;
 	}
 	@else if $weight == base {
 		@include font-weight($weight-base);
+	}
+	@else if $weight == slight {
+		@include font-weight($weight-slight);
 	}
 	@else if $weight == bold {
 		@include font-weight($weight-bold);

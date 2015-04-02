@@ -18,10 +18,10 @@
 	@include gradient-animate(135deg, $top-left-colour, $bottom-right-colour);
 }
 @mixin gradient-animate-horizontal($left-colour, $right-colour) {
-	@include gradient-animate(left, $left-colour, $right-colour);
+	@include gradient-animate(90deg, $left-colour, $right-colour);
 }
 @mixin gradient-animate-vertical($top-colour, $bottom-colour) {
-	@include gradient-animate(top, $left-colour, $right-colour);
+	@include gradient-animate(0deg, $left-colour, $right-colour);
 }
 @mixin gradient-animate($angle, $colour-1, $colour-2) {
 	@if $angle != top {

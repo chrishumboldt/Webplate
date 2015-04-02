@@ -34,6 +34,9 @@ h6 { @include text-size(16px); }
 h1, h2, h3 { @include text-line-height(38px); }
 h4, h5, h6 { @include text-line-height(24px); }
 h2, h3, h4, h5, h6 { @include font-weight(300); }
+p {
+	@include font-weight(300);
+}
 
 // Respond
 @include respond-to($bp-small) {

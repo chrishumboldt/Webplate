@@ -1,0 +1,35 @@
+/**
+ * Title: 			Grey strip
+ * SASS File: 		_grey-strip.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	1 April 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Grey strip
+
+
+// Grey strip
+// ---------------------------------------------------------------------------------------
+.grey-strip {
+	@include padding($space-base);
+	@include text-align(center);
+	@include text-colour($grey-blue-dark);
+	@include text-size(slight);
+	@include background-colour($grey-blue-super-light);
+	@include arrow(bottom, $grey-blue-super-light, 10px);
+	@include text-weight(light);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include padding($space-medium);
+		@include text-size(large);
+		@include text-weight(thin);
+		@include arrow(bottom, $grey-blue-super-light);
+	}
+}
+
+

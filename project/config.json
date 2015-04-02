@@ -7,5 +7,8 @@
 		"form-colour": "pink",
 		"icon-font": "icomoon",
 		"ui": "fuse"
+	},
+	"option": {
+		"font-family": "'Roboto', 'Helvetic Neue', Helvetica, Arial"
 	}
 }
