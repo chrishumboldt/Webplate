@@ -88,6 +88,7 @@
 				@include text-colour($grey-dark);
 				@include text-line-height($title-bar-h);
 				@include text-size($font-minor);
+				@include text-weight(300);
 				@include border-top($white, 2px);
 				@include border-bottom(transparent, 2px);
 				@include animate(all);

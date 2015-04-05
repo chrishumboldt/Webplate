@@ -71,10 +71,7 @@ module.exports = function(grunt) {
 			imports: {
 				files: {
 					'js/min/scripts.min.js': [
-						'js/jquery.js',
 						'js/modernizr.js',
-						'js/hammer.js',
-						'js/hammer-jquery.js',
 						'js/velocity.js',
 						'js/tools.js'
 					]
