@@ -1,0 +1,47 @@
+/**
+ * Title: 			Buttons
+ * SASS File: 		_button.scss
+ * Type: 			module
+ * Author:        	Chris Humboldt
+ * Last Edited:   	4 April 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Buttons setup
+// Banner buttons
+
+
+// Buttons setup
+// ---------------------------------------------------------------------------------------
+.btn-banner {
+	@include button-setup();
+}
+
+
+// Banner buttons
+// ---------------------------------------------------------------------------------------
+.btn-banner {
+	@include button-style-line($white);
+	@include button-size(x-large);
+	@include margin-horizontal($space-x-small);
+	@include text-weight(100);
+
+	// Size
+	@include breakpoint(small) {
+		@include width(auto);
+		@include button-size(large);
+
+		&.small-hide {
+			@include hide();
+		}
+	}
+
+	// States
+	&:visited {
+		@include text-colour($white);
+	}
+}
+
+

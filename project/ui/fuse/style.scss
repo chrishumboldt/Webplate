@@ -3,7 +3,7 @@
  * SASS File: 		style.scss
  * Type: 			importer
  * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * Last Edited:   	5 April 2015
  */
 
 
@@ -23,8 +23,8 @@ $title-bar-h-large				: 92px;
 
 // Imports
 // ---------------------------------------------------------------------------------------
-// Webplate
-@import "../../../engine/sass/import";
+@import "../../../engine/sass/import"; // Webplate
+@import "../../component/buttonplate/sass/buttonplate"; // Buttonplate
 
 // Variables
 $grey-blue-super-light			: lighten($grey-blue-light, 14%);
@@ -35,9 +35,11 @@ $grey-blue-super-light			: lighten($grey-blue-light, 14%);
 
 // Modules
 @import "sass/module/banner";
+@import "sass/module/button";
 @import "sass/module/card";
 @import "sass/module/code";
 @import "sass/module/cool-list";
+@import "sass/module/footer";
 @import "sass/module/grey-strip";
 @import "sass/module/image-hover";
 @import "sass/module/navigation";

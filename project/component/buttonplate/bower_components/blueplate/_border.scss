@@ -151,7 +151,7 @@
 	border-top: 1px solid fade-out($colour, $lowlight);
 }
 @mixin border-dark-bottom($lowlight: 0.8, $colour: #000000) {
-	border-bottom: 1px solid fade-out($colour, $owlight);
+	border-bottom: 1px solid fade-out($colour, $lowlight);
 }
 @mixin border-dark-left($lowlight: 0.8, $colour: #000000) {
 	border-left: 1px solid fade-out($colour, $lowlight);

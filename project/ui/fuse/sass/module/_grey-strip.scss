@@ -3,7 +3,7 @@
  * SASS File: 		_grey-strip.scss
  * Type: 			module
  * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * Last Edited:   	4 April 2015
  */
 
 
@@ -19,15 +19,15 @@
 	@include text-align(center);
 	@include text-colour($grey-blue-dark);
 	@include text-size(slight);
-	@include background-colour($grey-blue-super-light);
-	@include arrow(bottom, $grey-blue-super-light, 10px);
+	@include background-colour($grey-blue-x-light);
+	@include arrow(bottom, $grey-blue-x-light, 10px);
 	@include text-weight(light);
 
 	// Adapt
 	@include breakpoint(large) {
 		@include padding($space-medium);
 		@include text-size(large);
-		@include arrow(bottom, $grey-blue-super-light);
+		@include arrow(bottom, $grey-blue-x-light);
 	}
 }
 

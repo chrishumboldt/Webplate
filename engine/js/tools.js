@@ -2,7 +2,7 @@
  * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     29 March 2015
+ * Last Edited:     5 April 2015
  */
 
 
@@ -21,38 +21,38 @@
 
 // Basic checks
 // ---------------------------------------------------------------------------------------
-jQuery.web_exists					= function($element)
+$.web_exists						= function($element)
 {
 	return (($element) && ($element.length > 0));
 };
 
-jQuery.web_has_white_space          = function($check)
+$.web_has_white_space				= function($check)
 {
 	return /\s/.test($check);
 };
 
-jQuery.web_is_color                 = function($color)
+$.web_is_color						= function($color)
 {
 	return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
 };
 
-jQuery.web_is_date                  = function($date)
+$.web_is_date						= function($date)
 {
 	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 };
 // -- Depreciated -- Will soon be removed
-jQuery.web_check_date               = function($date)
+$.web_check_date					= function($date)
 {
 	return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 };
 // -- Depreciated --
 
-jQuery.web_is_email                 = function($email)
+$.web_is_email						= function($email)
 {
 	return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
 };
 
-jQuery.web_is_ext                   = function($file, $ar_allowed_types)
+$.web_is_ext						= function($file, $ar_allowed_types)
 {
 	var $allowed_types              = $ar_allowed_types || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
 
@@ -61,7 +61,7 @@ jQuery.web_is_ext                   = function($file, $ar_allowed_types)
 	return (jQuery.inArray($file_ext, $allowed_types) != -1);
 };
 // -- Depreciated -- Will soon be removed
-jQuery.web_check_ext                = function($file, $ar_allowed_types)
+$.web_check_ext						= function($file, $ar_allowed_types)
 {
 	var $allowed_types              = $ar_allowed_types || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
 
@@ -71,12 +71,12 @@ jQuery.web_check_ext                = function($file, $ar_allowed_types)
 };
 // -- Depreciated --
 
-jQuery.web_is_full_integer          = function($int)
+$.web_is_full_integer				= function($int)
 {
 	return /^[0-9]+$/.test($int);
 };
 
-jQuery.web_is_image                 = function($file, $ar_allowed_types)
+$.web_is_image						= function($file, $ar_allowed_types)
 {
 	var $allowed_types              = $ar_allowed_types || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
 
@@ -85,12 +85,12 @@ jQuery.web_is_image                 = function($file, $ar_allowed_types)
 	return (jQuery.inArray($file_ext, $allowed_types) != -1);
 };
 
-jQuery.web_is_integer               = function($int)
+$.web_is_integer 					= function($int)
 {
 	return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
 };
 
-jQuery.web_is_password              = function($password)
+$.web_is_password					= function($password)
 {
 	return /^[A-Za-z0-9]{6,}$/.test($password);
 };
@@ -98,7 +98,7 @@ jQuery.web_is_password              = function($password)
 
 // Dates
 // ---------------------------------------------------------------------------------------
-jQuery.web_crt_db_date              = function()
+$.web_crt_db_date					= function()
 {
 	var $now                        = new Date();
 	return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
@@ -107,7 +107,7 @@ jQuery.web_crt_db_date              = function()
 
 // Development
 // ---------------------------------------------------------------------------------------
-jQuery.web_log                      = function($text)
+$.web_log							= function($text)
 {
 	if(window.console)
 	{
@@ -118,7 +118,7 @@ jQuery.web_log                      = function($text)
 
 // DOM
 // ---------------------------------------------------------------------------------------
-jQuery.web_square                   = function($selector, $multiplier)
+$.web_square						= function($selector, $multiplier)
 {
 	// Variables
 	if(typeof($multiplier) === 'undefined')
@@ -130,14 +130,14 @@ jQuery.web_square                   = function($selector, $multiplier)
 	$($selector).each(function()
 	{
 		// Width
-		var $square_dim             = Math.floor($(this).width() * $multiplier);
+		var $square_dim				= Math.floor($(this).width() * $multiplier);
 
 		// Set the dimensions
 		$(this).height($square_dim);
 	});
 };
 
-jQuery.web_wallpaper                = function($selector) 
+$.web_wallpaper						= function($selector) 
 {
 	$($selector).each(function()
 	{
@@ -160,7 +160,7 @@ jQuery.web_wallpaper                = function($selector)
 
 // Forms
 // ---------------------------------------------------------------------------------------
-jQuery.web_input_mirror             = function($input, $output)
+$.web_input_mirror					= function($input, $output)
 {
 	$($selector).keyup(function()
 	{
@@ -172,7 +172,7 @@ jQuery.web_input_mirror             = function($input, $output)
 	});
 };
 
-jQuery.web_lock_submit              = function($element)
+$.web_lock_submit					= function($element)
 {
 	$($element).live('keypress', function($e)
 	{
@@ -188,34 +188,34 @@ jQuery.web_lock_submit              = function($element)
 // ---------------------------------------------------------------------------------------
 // As per Leon Revill
 // URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
-jQuery.web_search_objects 			= function($obj, $key, $val)
+$.web_search_objects				= function($obj, $key, $val)
 {
-    var $objects 					= [];
+	var $objects 					= [];
 
-    for(var $i in $obj)
-    {
-        if(typeof $obj[$i] == 'object')
-        {
-            objects = objects.concat(searchObjects($obj[$i], $key, $val));
-        } 
-        else if($i == $key && $obj[$key] == $val)
-        {
-            objects.push($obj);
-        }
-    }
+	for(var $i in $obj)
+	{
+		if(typeof $obj[$i] == 'object')
+		{
+			objects = objects.concat(searchObjects($obj[$i], $key, $val));
+		} 
+		else if($i == $key && $obj[$key] == $val)
+		{
+			objects.push($obj);
+		}
+	}
 
-    return objects;
+	return objects;
 };
 
 
 // Strings
 // ---------------------------------------------------------------------------------------
-jQuery.web_get_ext                  = function($file)
+$.web_get_ext						= function($file)
 {
 	return $file.split('.').pop().toLowerCase();
 };
 
-jQuery.web_random_string            = function($string_length)
+$.web_random_string					= function($string_length)
 {
 	var $chars                      = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 
@@ -231,12 +231,12 @@ jQuery.web_random_string            = function($string_length)
 	return $random_string;
 };
 
-jQuery.web_uc_all 					= function($string)
+$.web_uc_all						= function($string)
 {
 	return $string.toUpperCase();
 };
 
-jQuery.web_uc_first 				= function($string)
+$.web_uc_first						= function($string)
 {
 	return $string.charAt(0).toUpperCase() + $string.slice(1);
 };
@@ -244,7 +244,7 @@ jQuery.web_uc_first 				= function($string)
 
 // URL
 // ---------------------------------------------------------------------------------------
-jQuery.web_get_url                  = function()
+$.web_get_url 						= function()
 {
 	var $window_location            = window.location;
 	var $full_path                  = $window_location.href;
@@ -277,7 +277,7 @@ var $navigation_width;
 var $nav_track_position;
 
 // Hash link
-jQuery.web_hash_link                = function()
+$.web_hash_link 					= function()
 {
 	// Based on: http://css-tricks.com/snippets/jquery/smooth-scrolling/
 	$('a[href*=#]:not([href=#])').click(function()
@@ -301,7 +301,7 @@ jQuery.web_hash_link                = function()
 	});
 };
 
-jQuery.web_hash_link_setup          = function()
+$.web_hash_link_setup 				= function()
 {
 	setTimeout(function()
 	{
@@ -318,29 +318,29 @@ jQuery.web_hash_link_setup          = function()
 	10);
 };
 
-jQuery.web_nav_hide					= function()
+$.web_nav_hide						= function()
 {
 	$('.web-navigation').velocity(
 	{ 
-		left                    : 0
+		left 						: 0
 	}, 
 	{
-		duration                : 200,
-		easing                  : 'ease-out',
-		complete                : function()
+		duration					: 200,
+		easing						: 'ease-out',
+		complete					: function()
 		{
 			$('html').removeClass('web-nav-shown').addClass('web-nav-hidden');
 		}
 	});
 	
 	// Set nav end position
-	$nav_end_position               = 0;
+	$nav_end_position				= 0;
 
 	// Hide overlay
 	$.web_overlay_hide();
 };
 
-jQuery.web_nav_show                 = function()
+$.web_nav_show						= function()
 {
 // alert('woot');
 	// Variables
@@ -366,7 +366,7 @@ jQuery.web_nav_show                 = function()
 	$.web_overlay_show();
 };
 
-jQuery.web_navigation               = function()
+$.web_navigation					= function()
 {
 	// Duplicate navigation
 	$('body').append($('.navigation').clone().addClass('web-navigation').removeClass('navigation'));
@@ -419,7 +419,7 @@ jQuery.web_navigation               = function()
 	});
 };
 
-jQuery.web_overlay_hide             = function()
+$.web_overlay_hide 					= function()
 {
 	$('.web-overlay').velocity(
 	{
@@ -431,7 +431,7 @@ jQuery.web_overlay_hide             = function()
 	});
 };
 
-jQuery.web_overlay_show             = function()
+$.web_overlay_show					= function()
 {
 	$('.web-overlay').velocity(
 	{
@@ -443,10 +443,13 @@ jQuery.web_overlay_show             = function()
 	});
 };
 
-jQuery.web_scroll                   = function()
+$.web_scroll						= function()
 {
 	// Some variables
 	var $last_scroll                = 0;
+
+	// Setup
+	$('html').addClass('web-scroll-none');
 
 	// On scroll or drag event
 	if(Modernizr.touch)
@@ -455,18 +458,27 @@ jQuery.web_scroll                   = function()
 		{
 			if($e.orientation == 'vertical')
 			{
+				// Remove scroll none
+				if($('html').hasClass('web-scroll-none') == true)
+				{
+					$('html').removeClass('web-scroll-none');
+				}
+
+				// Check direction and apply class
 				if($e.direction == -1)
 				{
-					if($('html').hasClass('scroll-down') == false)
+					if($('html').hasClass('web-scroll-down') == false)
 					{
-						$('html').addClass('scroll-down');
+						$('html').addClass('web-scroll-down');
+						$('html').removeClass('web-scroll-up');
 					}
 				}
 				else
 				{
-					if($('html').hasClass('scroll-down') == true)
+					if($('html').hasClass('web-scroll-down') == true)
 					{
-						$('html').removeClass('scroll-down');
+						$('html').removeClass('web-scroll-down');
+						$('html').addClass('web-scroll-up');
 					}
 				}
 			}
@@ -476,6 +488,12 @@ jQuery.web_scroll                   = function()
 	{
 		$(window).scroll(function($e)
 		{
+			// Remove scroll nonw class
+			if($('html').hasClass('web-scroll-none') == true)
+			{
+				$('html').removeClass('web-scroll-none');
+			}
+
 			// Sets the current scroll position
 			var $scroll_top         = $(this).scrollTop();
 
@@ -485,6 +503,7 @@ jQuery.web_scroll                   = function()
 				if($('html').hasClass('web-scroll-down') == false)
 				{
 					$('html').addClass('web-scroll-down');
+					$('html').removeClass('web-scroll-up');
 				}
 			} 
 			else 
@@ -492,6 +511,7 @@ jQuery.web_scroll                   = function()
 				if($('html').hasClass('web-scroll-down') == true)
 				{
 					$('html').removeClass('web-scroll-down');
+					$('html').addClass('web-scroll-up');
 				}
 			}
 
@@ -501,7 +521,29 @@ jQuery.web_scroll                   = function()
 	}
 }
 
-jQuery.web_window_type              = function()
+$.web_scroll_to 					= function()
+{
+	$('.scroll-to').on('click', function($ev)
+	{
+		$ev.preventDefault();
+
+		// Variables
+		var $scroll_to 			= $(this).data('scroll-to');
+		var $scroll_element		= $('[data-scroll-id='+ $scroll_to +']');
+
+		// Scroll
+		if($(window).width() < 700)
+		{
+			$scroll_element.velocity("scroll", { duration: 1200, easing: "easeOutCubic", offset: -75 });
+		}
+		else
+		{
+			$scroll_element.velocity("scroll", { duration: 1200, easing: "easeOutCubic", offset: -91 });
+		}
+	});	
+};
+
+$.web_window_type 					= function()
 {
 	$.web_window_type_execute();
 	$(window).resize(function()
@@ -510,7 +552,7 @@ jQuery.web_window_type              = function()
 	});
 };
 
-jQuery.web_window_type_execute      = function()
+$.web_window_type_execute 			= function()
 {
 	// Some variables
 	if($(window).width() <= 700)

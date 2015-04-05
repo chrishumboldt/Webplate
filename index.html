@@ -18,14 +18,14 @@
 <body style="display: none;">
 
 	<!-- Title bar -->
-	<div class="title-bar">
+	<section class="title-bar">
 
 		<ul>
-			<li class="small-hide"><a href="#" data-scroll-to="getting-started" class="border-pink">Getting Started</a></li>
+			<li class="small-hide"><a href="#" data-scroll-to="getting-started" class="border-pink scroll-to">Getting Started</a></li>
 			<li class="small-hide"><a href="http://paypur.com/webplate-3.0">Documentation</a></li>
 			<li class="small-show"><a href="http://paypur.com/webplate-3.0">Docs</a></li>
 			<li class="small-hide"><a href="http://getwebplate/ui-kits">UI Kits</a></li>
-			<li><a href="https://twitter.com/webplate" class="icon-twitter" target="_blank"></a></li>
+			<li><a href="https://twitter.com/webplatetweets" class="icon-twitter" target="_blank"></a></li>
 		</ul>
 
 		<a href="#" class="logo">
@@ -33,10 +33,10 @@
 			<i class="icon-nfc"></i>
 		</a>
 
-	</div>
+	</section>
 
 	<!-- Banner -->
-	<div class="banner title-bar-padding">
+	<section class="banner title-bar-padding">
 
 		<div class="limit">
 			<h1>Make Something Awesome</h1>
@@ -47,11 +47,11 @@
 
 		<div class="mountain-left"></div>
 
-	</div>
+	</section>
 
 	<!-- Starting guide -->
 	<div id="starting-guide" class="grey-strip">Getting Started</div>
-	<div class="content limit">
+	<section class="content limit">
 
 		<h4>Include Webplate</h4>
 		<p>Simply drop the Webplate directory into your web project and include the <b>start.js</b> file before your ending body tag. Below is an example of this and note that an id of <b>webplate</b> is required.</p>
@@ -77,11 +77,26 @@
 
 		<br><br>
 		<h4>Lets Go To The Next Level</h4>
-		<p>Before you have even started, Webplate has already loaded up <a href="http://jquery.com/" target="_blank">jQuery</a>, <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>, <a href="http://modernizr.com/" target="_blank">Modernizr</a>, <a href="http://typeplate.com/" target="_blank">Typeplate</a>, <a href="http://julian.com/research/velocity/" target="_blank">Velocity.js</a>, <a href="http://hammerjs.github.io/" target="_blank">Hammer.js</a> and icon font support and at a minimal size knock. This takes away most of the set up time and acts as a kind of advanced boilerplate.</p>
+		<p>Before you have even started, Webplate has already loaded up <a href="http://jquery.com/" target="_blank">jQuery</a>, <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>, <a href="http://modernizr.com/" target="_blank">Modernizr</a>, <a href="http://typeplate.com/" target="_blank">Typeplate</a>, <a href="http://julian.com/research/velocity/" target="_blank">Velocity.js</a>, <a href="http://hammerjs.github.io/" target="_blank">Hammer.js</a> and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.</p>
 		<p>This will get you up and running for most projects but if you want to include Webplate components like <a href="http://paypur.com/webplate-3/buttons" target="_blank">Buttons</a>, <a href="http://paypur.com/webplate-3/forms" target="_blank">Forms</a> or <a href="http://paypur.com/webplate-3/modals" target="_blank">Modals</a> or perhaps you want to even start delving into Webplate's automatic <b>Bower, SASS</b> and <b>Grunt</b> intergration then just read over some of the online documentation and become a bonafide pro.</p>
 		<p><b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera</p>
 
-	</div>
+	</section>
+
+	<!-- Footer -->
+	<footer><div class="content col-double limit">
+
+		<div class="left">
+			Made by <a href="http://chrishumboldt.com" target="_blank">Chris Humboldt</a>
+		</div>
+
+		<div class="right">
+			<a href="http://paypur.com/webplate-3" target="_blank">Docs</a>&nbsp;&nbsp;
+			<a href="http://getwebplate.com/legal.html" target="_blank">Legal Stuff</a>&nbsp;&nbsp;
+			Want updates? <a href="http://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>
+		</div>
+
+	</div></footer>
 
     <!--Include Webplate-->
     <script id="webplate" src="start.js"></script>

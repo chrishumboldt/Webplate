@@ -2,7 +2,7 @@
  * SASS File: 		welcome.scss
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * Last Edited:   	4 April 2015
  */
 
 
@@ -18,7 +18,6 @@
 // Imports
 // ---------------------------------------------------------------------------------------
 @import "../../engine/sass/import";
-@import "../component/buttonplate/sass/buttonplate";
 
 
 // Banner
@@ -35,30 +34,6 @@
 	p {
 		@include padding-bottom($space-medium);
 		@include text-colour(fade-out($white, 0.3));
-	}
-
-	// Buttons
-	.btn-banner {
-		@include button-setup();
-		@include button-style-line($white);
-		@include button-size(x-large);
-		@include margin-horizontal($space-x-small);
-		@include text-weight(100);
-
-		// Size
-		@include breakpoint(small) {
-			@include width(auto);
-			@include button-size(large);
-
-			&.small-hide {
-				@include hide();
-			}
-		}
-
-		// States
-		&:visited {
-			@include text-colour($white);
-		}
 	}
 }
 

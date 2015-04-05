@@ -15,7 +15,8 @@
 // Basic links
 // ---------------------------------------------------------------------------------------
 p a,
-a.link {
+a.link,
+footer a {
 	@include position(relative);
 	@include display(inline-block);
 	@include text-colour($blue);
