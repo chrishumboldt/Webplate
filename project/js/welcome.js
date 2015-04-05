@@ -41,7 +41,4 @@ h={};g()}};typeof define==="function"&&define.amd&&define("google-code-prettify"
 
 
 // Call functions
-$(document).ready(function()
-{
-	prettyPrint();
-});
+prettyPrint();

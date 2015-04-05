@@ -2,7 +2,7 @@
  * jQuery File: 	core.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	1 April 2015
+ * Last Edited:   	5 April 2015
  */
 
 
@@ -15,6 +15,8 @@
 // Some variables
 // ---------------------------------------------------------------------------------------
 var $crt_script 							= document.getElementById('webplate');
+var $body_element 							= document.getElementsByTagName('body')[0];
+var $html_element 							= document.getElementsByTagName('html')[0];
 var $crt_script_src							= $crt_script.getAttribute('src').replace('start.js', '');
 var $root									= $crt_script_src;
 var $config_file 							= $root + 'project/config.json';
@@ -35,6 +37,76 @@ var $ar_extra_css							= [];
 var $ar_extra_js							= [];
 
 
+
+// Some functions
+// ---------------------------------------------------------------------------------------
+// Load JSON
+function load_json($file, $callback)
+{
+	var $xmlhttp					= new XMLHttpRequest();
+	$xmlhttp.onreadystatechange 	= $callback;
+	$xmlhttp.open('GET', $file, true);
+	$xmlhttp.send();
+}
+
+// Load project files
+function load_project_files($project_css, $project_js)
+{
+	// Add in project files
+	for($i = 0; $i < $project_css.length; $i++)
+	{
+		var $val 					= $project_css[$i];
+		var $file 					= $val.trim();
+		var $extension				= web_get_ext($file);
+
+		// Add to the array
+		if($extension == 'css')
+		{
+			$ar_extra_css.push($css_project_path + $file);
+		}
+	};
+	for($i = 0; $i < $project_js.length; $i++)
+	{
+		var $val 					= $project_js[$i];
+		var $file 					= $val.trim();
+		var $extension				= web_get_ext($file);
+
+		// Add to the array
+		if($extension == 'js')
+		{
+			$ar_extra_js.push($js_project_path + $file);
+		}
+	};
+
+    // Load
+	if($ar_extra_css.length > 0)
+	{
+		yepnope({ load: $ar_extra_css, complete: function()
+		{
+			setTimeout(function()
+			{
+				yepnope({ load: $ar_extra_js });
+				$body_element.removeAttribute('style');
+			}, 
+			20);
+		}});
+	}
+	else if($ar_extra_js.length > 0)
+	{
+		setTimeout(function()
+		{
+			yepnope({ load: $ar_extra_js });
+			$body_element.removeAttribute('style');
+		}, 
+		20);
+	}
+	else
+	{
+		$body_element.removeAttribute('style');
+	}
+}
+
+
 // Load the necessary files and execute
 // ---------------------------------------------------------------------------------------
 yepnope([
@@ -52,336 +124,300 @@ yepnope([
 			}});
 		}
 
-		// DOM edits
-		$('html').addClass('webplate');
-		$('body').append('<div class="web-overlay"></div>');
+		// Add Webplate class
+		web_class_add($html_element, 'webplate');
 
-		// Execute
-		$.web_navigation();
-		$.web_window_type();
-		$.web_scroll();
-		$.web_hash_link();
+		// Add webplate overlay
+		var $webplate_overlay 				= document.createElement('div');
+		$webplate_overlay.setAttribute('class', 'web-overlay');
+		$body_element.appendChild($webplate_overlay);
 
-		// Get config
-		$.ajax(
+		// Load the config file
+		$config_json 						= load_json($config_file, function()
 		{
-			url 					: $config_file,
-			type 					: 'GET',
-			dataType 				: 'json',
-		})
-		// Success
-		.success(function($json, $text_status)
-		{
-			// Variables
-			$url_data 						= $.web_get_url();
-
-			// Root config
-			$state 							= $json.project['state'] || 'production';
-			$body_class						= $json.project['body-class'] || false;
-			$component 						= $json.project['component'] || [];
-			$form_colour 					= $json.project['form-colour'] || false;
-			$icon_font 						= $json.project['icon-font'] || false;
-			$navigation 					= $json.project['navigation'] || false;
-			$project_css 					= $json.project['css'] || [];
-			$project_js 					= $json.project['js'] || [];
-			$ui 							= $json.project['ui'] || false;
-
-			// Url base
-			$url_site 						= $url_data['site_path'];
-			$url_check 						= false;
-			$url_page_check 				= false;
-
-			if(($root == '') || ($root.substr(0, 3) == '../'))
+			if(this.readyState == 4 && this.status == 200)
 			{
-				$ex_root 					= $root.split('/');
-				$ex_url 					= $url_site.split('/');
-				$url_base					= '';
+				var $json 					= JSON.parse(this.responseText);
 
-				// Pop based on root
-				$.each($ex_root, function($i, $val) 
+				// Variables
+				$url_data 					= web_get_url();
+
+				// Root config
+				$state 							= $json.project['state'] || 'production';
+				$body_class						= $json.project['body-class'] || false;
+				$component 						= $json.project['component'] || [];
+				$form_colour 					= $json.project['form-colour'] || false;
+				$icon_font 						= $json.project['icon-font'] || false;
+				$navigation 					= $json.project['navigation'] || false;
+				$project_css 					= $json.project['css'] || [];
+				$project_js 					= $json.project['js'] || [];
+				$ui 							= $json.project['ui'] || false;
+
+				// Url base
+				$url_site 						= $url_data['site_path'];
+				$url_check 						= false;
+				$url_page_check 				= false;
+
+				if(($root == '') || ($root.substr(0, 3) == '../'))
 				{
-					$ex_url.pop();
-				});
+					$ex_root 					= $root.split('/');
+					$ex_url 					= $url_site.split('/');
+					$url_base					= '';
 
-				// Build new url
-				$.each($ex_url, function($i, $val)
-				{
-					$url_base 				+= $val + '/';
-				});
-			}
-			else
-			{
-				$url_base 					= $root;
-			}
-
-			// Url segments
-			$url_segments 					= [];
-			$ex_segments 					= $url_site.replace($url_base, '').split('/');
-			$.each($ex_segments, function($i, $val) 
-			{
-				if($.web_exists($val))
-				{
-					$url_segments.push($val);
-				}
-			});
-
-			// Page check
-			if($json.project.page)
-			{
-				$.each($json.project.page, function($i, $page)
-				{
-					// Url page
-					$url_page_segments 			= [];
-					$ex_page_segments 			= $page['url'].split('/');
-					$page_match 				= true;
-
-					// Add to the segments object
-					$.each($ex_page_segments, function($i, $val)
+					// Pop based on the root
+					for($i = 0; $i < $ex_root.length; $i++)
 					{
-						if($.web_exists($val))
-						{
-							$url_page_segments.push($val);
-						}
-					});
+						$ex_url.pop();
+					};
 
-					// Wildcard check
-					if($page['url'].indexOf('*') == -1)
+					// Build new URL
+					for($i = 0; $i < $ex_url.length; $i++)
 					{
-						$url_page_segments_length 	= $url_page_segments.length;
-					}
-					else
-					{
-						$url_page_segments_length 	= $url_page_segments.length - 1;
-					}
-
-					// Perform the page match
-					if($url_segments.length >= $url_page_segments_length)
-					{
-						$.each($url_segments, function($i, $val)
-						{
-							if(($url_page_segments[$i] === '*'))
-							{
-								return false;
-							}
-							else
-							{
-								if($val != $url_page_segments[$i])
-								{
-									$page_match 	= false;
-								}
-							}
-						});
-					}
-					else
-					{
-						$page_match 				= false;
-					}
-
-					// Apply the config
-					if($page_match === true)
-					{
-						// Page overwrite
-						$page_overwrite 			= $page.overwrite || false;
-
-						if($page_overwrite === true)
-						{
-							// Overwrites
-							$body_class						= $page['body-class'] || $body_class;
-							$component 						= $page['component'] || $component;
-							$form_colour 					= $page['form-colour'] || $form_colour;
-							$icon_font 						= $page['icon-font'] || $icon_font;
-							$navivation 					= $page['navigation'] || false;
-							$project_css 					= $page['css'] || $project_css;
-							$project_js 					= $page['js'] || $project_js;
-							$ui 							= $page['ui'] || $ui;
-						}
-						else
-						{
-							// Basic additions (some have to be overwritten by design)
-							$body_class 					= $body_class + ' ' + $page['body-class'];
-							$form_colour 					= $form_colour + ' ' + $page['form-colour'];
-							$icon_font 						= $page['icon-font'] || $icon_font;
-							$navivation 					= $page['navigation'] || $navigation;
-							$ui 							= $page['ui'] || $ui;
-
-							// Component add
-							if($page['component'])
-							{
-								$.each($page['component'], function($i, $add_component)
-								{
-									if($component.indexOf($add_component) == -1)
-									{
-										$component.push($add_component);
-									}
-								});
-							}
-
-							// Project CSS
-							if($page['css'])
-							{
-								$.each($page['css'], function($i, $add_project_css)
-								{
-									if($project_css.indexOf($add_project_css) == -1)
-									{
-										$project_css.push($add_project_css);
-									}
-								});
-							}
-
-							// Project JS
-							if($page['js'])
-							{
-								$.each($page['js'], function($i, $add_project_js)
-								{
-									if($project_js.indexOf($add_project_js) == -1)
-									{
-										$project_js.push($add_project_js);
-									}
-								});
-							}
-						}
-
-						// Break loop
-						return false;
-					}
-				});
-			}
-
-			// Set the body class
-			if($body_class != false)
-			{
-				$('body').addClass($body_class);
-			}
-
-			// Set the navigation type
-			if($navigation === false)
-			{
-				$navigation 			= 'web-nav-slide-from-left';
-			}	
-			else
-			{
-				$navigation 			= 'web-nav-' + $navigation;
-			}
-			$('html').addClass($navigation);
-
-			// Set the form colour
-			$('body').attr({ 'data-formplate-colour': $form_colour });
-
-			// Icon fonts
-			if($icon_font != false)
-			{
-				if($icon_font == 'icomoon')
-				{
-					yepnope({ load: [$icon_font_path + 'icomoon/style.css'] });
-				}
-				else if($icon_font == 'font-awesome')
-				{
-					yepnope({ load: [$icon_font_path + 'font-awesome/css/font-awesome.min.css'] });
-				}
-			}
-
-			// Load UI
-			if($ui != false)
-			{
-				$ar_extra_css.push($ui_project_path + $ui + '/style.css');
-				$ar_extra_js.push($ui_project_path + $ui + '/script.min.js');
-			}
-
-			// Load the components & project files
-			$.each($component, function($i, $val)
-			{
-				// Get Webplate config
-				$component_json.push(
-					$.getJSON($component_path + $val + '/.bower.json', function($json)
-					{
-						if($.type($json.main) == 'array')
-						{
-							$.each($json.main, function($i_2, $val_2)
-							{
-								$ar_component_files.push($component_path + $val + '/' + $val_2);
-							});
-						}
-						else
-						{
-							$ar_component_files.push($component_path + $val + '/' + $json.main);
-						}
-					})
-				);
-			});
-
-			// Once complete
-			$.when.apply($, $component_json).done(function()
-			{
-				// Load the components
-				if($ar_component_files.length > 0)
-				{
-					yepnope({ load: $ar_component_files, complete: function()
-					{
-						fc_load_project_files();
-					}});
+						$url_base 			+= $ex_url[$i] + '/';
+					};
 				}
 				else
 				{
-					fc_load_project_files();
+					$url_base 					= $root;
 				}
-			});
+
+				// Url segments
+				$url_segments 					= [];
+				$ex_segments 					= $url_site.replace($url_base, '').split('/');
+				for($i = 0; $i < $ex_segments.length; $i++)
+				{
+					var $val 					= $ex_segments[$i];
+					if(web_exists($ex_segments[$val]))
+					{
+						$url_segments.push($val);
+					}
+				}
+
+				// Page check
+				if($json.project.page)
+				{
+					for($i = 0; $i < $json.project.page.length; $i++)
+					{
+						// Variables
+						$page 						= $json.project.page[$i];
+
+						// Url page
+						$url_page_segments 			= [];
+						$ex_page_segments 			= $page['url'].split('/');
+						$page_match 				= true;
+
+						// Add to the segments object
+						for($i = 0; $i < $ex_page_segments.length; $i++)
+						{
+							var $val 				= $ex_page_segments[$i];
+							if(web_exists($val))
+							{
+								$url_page_segments.push($val);
+							}
+						}
+
+						// Wildcard check
+						if($page['url'].indexOf('*') == -1)
+						{
+							$url_page_segments_length 	= $url_page_segments.length;
+						}
+						else
+						{
+							$url_page_segments_length 	= $url_page_segments.length - 1;
+						}
+
+						// Perform the page match
+						if($url_segments.length >= $url_page_segments_length)
+						{
+							for($i = 0; $i < $url_segments.length; $i++)
+							{
+								var $val 			= $url_segments[$i];
+
+								if(($url_page_segments[$i] === '*'))
+								{
+									return false;
+								}
+								else
+								{
+									if($val != $url_page_segments[$i])
+									{
+										$page_match 	= false;
+									}
+								}
+							};
+						}
+						else
+						{
+							$page_match 				= false;
+						}
+
+						// Apply the config
+						if($page_match === true)
+						{
+							// Page overwrite
+							$page_overwrite 			= $page.overwrite || false;
+
+							if($page_overwrite === true)
+							{
+								// Overwrites
+								$body_class						= $page['body-class'] || $body_class;
+								$component 						= $page['component'] || $component;
+								$form_colour 					= $page['form-colour'] || $form_colour;
+								$icon_font 						= $page['icon-font'] || $icon_font;
+								$navivation 					= $page['navigation'] || false;
+								$project_css 					= $page['css'] || $project_css;
+								$project_js 					= $page['js'] || $project_js;
+								$ui 							= $page['ui'] || $ui;
+							}
+							else
+							{
+								// Basic additions (some have to be overwritten by design)
+								$body_class 					= $body_class + ' ' + $page['body-class'];
+								$form_colour 					= $form_colour + ' ' + $page['form-colour'];
+								$icon_font 						= $page['icon-font'] || $icon_font;
+								$navivation 					= $page['navigation'] || $navigation;
+								$ui 							= $page['ui'] || $ui;
+
+								// Component add
+								if($page['component'])
+								{
+									for($i = 0; $i < $page['component'].length; $i++)
+									{
+										var $add_component 		= $page['component'][$i];
+
+										if($component.indexOf($add_component) == -1)
+										{
+											$component.push($add_component);
+										}
+									};
+								}
+
+								// Project CSS
+								if($page['css'])
+								{
+									for($i; $i < $page['css'].length; $i++)
+									{
+										var $add_project_css 	= $page['css'][$i];
+										if($project_css.indexOf($add_project_css) == -1)
+										{
+											$project_css.push($add_project_css);
+										}
+									};
+								}
+
+								// Project JS
+								if($page['js'])
+								{
+									for($i = 0; $i < $page['js'].length; $i++)
+									{
+										var $add_project_js 	= $page['js'][$i];
+										if($project_js.indexOf($add_project_js) == -1)
+										{
+											$project_js.push($add_project_js);
+										}
+									};
+								}
+							}
+
+							// Break loop
+							return false;
+						}
+					};
+				}
+
+				// Set the body class
+				if($body_class != false)
+				{
+					$body_element.setAttribute('class', $body_class);
+				}
+
+				// Set the navigation type
+				if($navigation === false)
+				{
+					$navigation 			= 'web-nav-slide-from-left';
+				}	
+				else
+				{
+					$navigation 			= 'web-nav-' + $navigation;
+				}
+				web_class_add($html_element, $navigation);
+
+				// Set the form colour
+				$body_element.setAttribute('data-formplate-colour', $form_colour);
+
+				// Icon fonts
+				if($icon_font != false)
+				{
+					if($icon_font == 'icomoon')
+					{
+						yepnope({ load: [$icon_font_path + 'icomoon/style.css'] });
+					}
+					else if($icon_font == 'font-awesome')
+					{
+						yepnope({ load: [$icon_font_path + 'font-awesome/css/font-awesome.min.css'] });
+					}
+				}
+
+				// Load UI
+				if($ui != false)
+				{
+					$ar_extra_css.push($ui_project_path + $ui + '/style.css');
+					$ar_extra_js.push($ui_project_path + $ui + '/script.min.js');
+				}
+
+				// Load the components & project files
+				$component_length 			= $component.length;
+				if($component_length > 0)
+				{
+					for($i = 0; $i < $component_length; $i++)
+					{
+						// Get Webplate config
+						(function($i_2)
+						{
+							var $val 					= $component[$i_2++];
+
+							$component_json 			= load_json($component_path + $val + '/.bower.json', function()
+							{
+								if(this.readyState == 4 && this.status == 200)
+								{
+									var $json 		= JSON.parse(this.responseText);
+
+									if(typeof $json.main == 'object')
+									{
+										for($i = 0; $i < $json.main.length; $i++)
+										{
+											$ar_component_files.push($component_path + $val + '/' + $json.main[$i]);
+										}
+									}
+									else
+									{
+										$ar_component_files.push($component_path + $val + '/' + $json.main);
+									}
+
+									// Load the project file
+									if($i_2 == $component_length)
+									{
+										yepnope({ load: $ar_component_files, complete: function()
+										{
+											load_project_files($project_css, $project_js);
+										}});
+									}
+								}
+							});
+						}($i));
+					};
+				}
+				else
+				{
+					load_project_files($project_css, $project_js);
+				}
+			}
 		});
 
-		// Functions
-		function fc_load_project_files()
-		{
-			// Add in project files
-			$.each($project_css, function($i, $val)
-			{
-				$file 						= jQuery.trim($val);
-				$extension                  = $.web_get_ext($file);
-
-				// Add to the array
-				if($extension == 'css')
-				{
-					$ar_extra_css.push($css_project_path + $file);
-				}
-			});
-			$.each($project_js, function($i, $val)
-			{
-				$file 						= jQuery.trim($val);
-				$extension                  = $.web_get_ext($file);
-
-				// Add to the array
-				if($extension == 'js')
-				{
-					$ar_extra_js.push($js_project_path + $file);
-				}
-			});
-
-		    // Load
-			if($ar_extra_css.length > 0)
-			{
-				yepnope({ load: $ar_extra_css, complete: function()
-				{
-					setTimeout(function()
-					{
-						yepnope({ load: $ar_extra_js });
-						$('body').css('display', 'block');
-					}, 
-					20);
-					$.web_hash_link_setup();
-				}});
-			}
-			else if($ar_extra_js.length > 0)
-			{
-				setTimeout(function()
-				{
-					yepnope({ load: $ar_extra_js });
-					$('body').css('display', 'block');
-				}, 
-				20);
-				$.web_hash_link_setup();
-			}
-			else
-			{
-				$('body').css('display', 'block');
-			}
-		}
+		// // Execute
+		// $.web_navigation();
+		// $.web_window_type();
+		// $.web_scroll();
+		// $.web_hash_link();
 	}
 }]);
