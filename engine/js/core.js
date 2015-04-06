@@ -132,9 +132,8 @@ yepnope([
 
 		// Call Webplate functions
 		web_navigation();
-		// $.web_window_type();
-		// $.web_scroll();
-		// $.web_hash_link();
+		web_window_type();
+		web_scroll();
 
 		// Load the config file
 		$config_json 						= load_json($config_file, function()

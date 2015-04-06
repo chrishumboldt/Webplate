@@ -2,7 +2,7 @@
  * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     5 April 2015
+ * Last Edited:     6 April 2015
  */
 
 
@@ -23,7 +23,14 @@
 // ---------------------------------------------------------------------------------------
 var web_exists						= function($element)
 {
-	return (($element) && ($element.length > 0));
+	if($element == null || typeof($element) == 'undefined')
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 };
 
 var web_has_white_space				= function($check)
@@ -91,6 +98,24 @@ var web_crt_db_date					= function()
 
 // Development
 // ---------------------------------------------------------------------------------------
+var web_add_event 					= function(elem, type, eventHandle)
+{
+	// Check element
+    if(elem == null || typeof(elem) == 'undefined') return;
+
+    if(elem.addEventListener)
+    {
+        elem.addEventListener(type, eventHandle, false);
+    }
+    else if(elem.attachEvent)
+    {
+        elem.attachEvent("on" + type, eventHandle);
+    } 
+    else
+    {
+        elem["on" + type] 			= eventHandle;
+    }
+};
 var web_class_add 					= function($selector, $class) 
 {
 	var $crt_class 					= $selector.getAttribute('class');
@@ -128,96 +153,89 @@ var web_log							= function($text)
 };
 
 
-// // DOM
-// // ---------------------------------------------------------------------------------------
-// web_square						= function($selector, $multiplier)
-// {
-// 	// Variables
-// 	if(typeof($multiplier) === 'undefined')
-// 	{
-// 		$multiplier                 = 1;
-// 	}
+// DOM
+// ---------------------------------------------------------------------------------------
+var web_square 						= function($selector, $multiplier)
+{
+	// Variables
+	var $elements 					= document.querySelectorAll($selector);
+	if(typeof($multiplier) === 'undefined')
+	{
+		$multiplier 				= 1;
+	}
 
-// 	// 
-// 	$($selector).each(function()
-// 	{
-// 		// Width
-// 		var $square_dim				= Math.floor($(this).width() * $multiplier);
+	// Loop through elements
+	for(var $i = 0; $i < $elements.length; $i++)
+	{
+		// Width
+		var $square_dim 			= Math.floor($elements[$i].offsetWidth * $multiplier);
 
-// 		// Set the dimensions
-// 		$(this).height($square_dim);
-// 	});
-// };
+		// Set the dimensions
+		$elements[$i].style.height 	= $square_dim + 'px';
+	}
+};
 
-// web_wallpaper						= function($selector) 
-// {
-// 	$($selector).each(function()
-// 	{
-// 		// Image
-// 		var $this_wallpaper         = $(this);
-// 		var $wallpaper_image        = $this_wallpaper.data('wallpaper');
+var web_wallpaper					= function($selector) 
+{
+	// Variables
+	var $elements 					= document.querySelectorAll($selector);
 
-// 		// Set the bacgkround image
-// 		if ($wallpaper_image != undefined)
-// 		{
-// 			$this_wallpaper.addClass('wallpaper');
-// 			$this_wallpaper.css(
-// 			{
-// 				'background-image': 'url(' + $wallpaper_image + ')'
-// 			});
-// 		}
-// 	});
-// };
+	// Loop through elements
+	for(var $i = 0; $i < $elements.length; $i++)
+	{
+		// Variables
+		var $this_wallpaper 		= $elements[$i].getAttribute('data-wallpaper');
 
-
-// // Forms
-// // ---------------------------------------------------------------------------------------
-// web_input_mirror					= function($input, $output)
-// {
-// 	$($selector).keyup(function()
-// 	{
-// 		var $ref_input              = $(this).val();
-// 		var $ref_value              = $ref_input.replace(/ /g,"_").toLowerCase();
-
-// 		// Output the mirror
-// 		$($output).text($ref_value);
-// 	});
-// };
-
-// web_lock_submit					= function($element)
-// {
-// 	$($element).live('keypress', function($e)
-// 	{
-// 		if($e.keyCode == 13)
-// 		{     
-// 			return false;
-// 		}
-// 	});
-// };
+		// Set the dimensions
+		if($this_wallpaper !== null)
+		{
+			$elements[$i].style.backgroundImage 	= 'url("' + $this_wallpaper + '")';	
+		}
+	}
+};
 
 
-// // Objects
-// // ---------------------------------------------------------------------------------------
-// // As per Leon Revill
-// // URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
-// web_search_objects				= function($obj, $key, $val)
-// {
-// 	var $objects 					= [];
+// Forms
+// ---------------------------------------------------------------------------------------
+var web_lock_submit					= function($selector)
+{
+	var $elements 					= document.querySelectorAll($selector);
 
-// 	for(var $i in $obj)
-// 	{
-// 		if(typeof $obj[$i] == 'object')
-// 		{
-// 			objects = objects.concat(searchObjects($obj[$i], $key, $val));
-// 		} 
-// 		else if($i == $key && $obj[$key] == $val)
-// 		{
-// 			objects.push($obj);
-// 		}
-// 	}
+	for($i = 0; $i < $elements.length; $i++)
+	{
+		$elements[$i].onclick 		= function($ev)
+		{
+			if($ev.keyCode == 13)
+			{
+				return false;
+			}
+		};
+	}
+};
 
-// 	return objects;
-// };
+
+// Objects
+// ---------------------------------------------------------------------------------------
+// As per Leon Revill
+// URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
+web_search_objects					= function($obj, $key, $val)
+{
+	var $objects 					= [];
+
+	for(var $i in $obj)
+	{
+		if(typeof $obj[$i] == 'object')
+		{
+			objects = objects.concat(searchObjects($obj[$i], $key, $val));
+		} 
+		else if($i == $key && $obj[$key] == $val)
+		{
+			objects.push($obj);
+		}
+	}
+
+	return objects;
+};
 
 
 // Strings
@@ -292,48 +310,6 @@ var $nav_track_position;
 var $navigation 					= document.getElementById('navigation');
 var $navigation_trigger 			= document.getElementById('navigation-trigger');
 
-// // Hash link
-// web_hash_link 					= function()
-// {
-// 	// Based on: http://css-tricks.com/snippets/jquery/smooth-scrolling/
-// 	$('a[href*=#]:not([href=#])').click(function()
-// 	{
-// 		if(location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname)
-// 		{
-// 			var $target             = $(this.hash);
-// 			$target                 = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
-// 			var $selector           = $target.selector;
-// 			var $scroll_top;
-
-// 			if($target.length)
-// 			{
-// 				$scroll_top         = Math.ceil($($selector).offset().top);
-// 				$(window).scrollTop($scroll_top);
-// 				window.location     = $selector;
-
-// 				return false;
-// 			}
-// 		}
-// 	});
-// };
-
-// web_hash_link_setup 				= function()
-// {
-// 	setTimeout(function()
-// 	{
-// 		var $crt_url                = web_get_url();
-// 		var $crt_hash               = $crt_url['hash'];
-// 		var $scroll_top;
-
-// 		if($crt_hash.length)
-// 		{
-// 			$scroll_top             = Math.ceil($('#' + $crt_hash).offset().top);
-// 			$(window).scrollTop($scroll_top);
-// 		}
-// 	}, 
-// 	10);
-// };
-
 var web_nav_hide					= function()
 {
 	var $web_navigation 			= document.getElementById('web-navigation');
@@ -389,7 +365,7 @@ var web_nav_show					= function()
 var web_navigation					= function()
 {
 	// Check
-	if($navigation !== null)
+	if(web_exists($navigation))
 	{
 		// Variables
 		var $navigation_clone 			= $navigation.cloneNode(true);
@@ -462,132 +438,117 @@ var web_overlay_show					= function()
 	});
 };
 
-// web_scroll						= function()
-// {
-// 	// Some variables
-// 	var $last_scroll                = 0;
+var web_scroll							= function()
+{
+	// Some variables
+	var $doc 							= document.documentElement;
+	var $last_scroll					= 0;
+	var $scroll_top;
 
-// 	// Setup
-// 	$('html').addClass('web-scroll-none');
+	// Setup
+	web_class_add($html_element, 'web-scroll-none');
 
-// 	// On scroll or drag event
-// 	if(Modernizr.touch)
-// 	{
-// 		$(window).on('drag', function($e)
-// 		{
-// 			if($e.orientation == 'vertical')
-// 			{
-// 				// Remove scroll none
-// 				if($('html').hasClass('web-scroll-none') == true)
-// 				{
-// 					$('html').removeClass('web-scroll-none');
-// 				}
+	// On scroll event
+	web_add_event(window, 'scroll', function()
+	{
+		// Remove scroll nonw class
+		if(web_has_class($html_element, 'web-scroll-none'))
+		{
+			web_class_remove($html_element, 'web-scroll-none');
+		}
 
-// 				// Check direction and apply class
-// 				if($e.direction == -1)
-// 				{
-// 					if($('html').hasClass('web-scroll-down') == false)
-// 					{
-// 						$('html').addClass('web-scroll-down');
-// 						$('html').removeClass('web-scroll-up');
-// 					}
-// 				}
-// 				else
-// 				{
-// 					if($('html').hasClass('web-scroll-down') == true)
-// 					{
-// 						$('html').removeClass('web-scroll-down');
-// 						$('html').addClass('web-scroll-up');
-// 					}
-// 				}
-// 			}
-// 		});
-// 	}
-// 	else
-// 	{
-// 		$(window).scroll(function($e)
-// 		{
-// 			// Remove scroll nonw class
-// 			if($('html').hasClass('web-scroll-none') == true)
-// 			{
-// 				$('html').removeClass('web-scroll-none');
-// 			}
+		// Sets the current scroll position
+		$scroll_top 					= (window.pageYOffset || $doc.scrollTop)  - ($doc.clientTop || 0);
 
-// 			// Sets the current scroll position
-// 			var $scroll_top         = $(this).scrollTop();
+		// Determine direction of scroll
+		if($scroll_top > $last_scroll)
+		{
+			if(!web_has_class($html_element, 'web-scroll-down'))
+			{
+				web_class_remove($html_element, 'web-scroll-up');
+				web_class_add($html_element, 'web-scroll-down');
+			}
+		} 
+		else 
+		{
+			if(web_has_class($html_element, 'web-scroll-down'))
+			{
+				web_class_remove($html_element, 'web-scroll-down');
+				web_class_add($html_element, 'web-scroll-up');
+			}
+		}
 
-// 			// Determine direction of scroll
-// 			if($scroll_top > $last_scroll)
-// 			{
-// 				if($('html').hasClass('web-scroll-down') == false)
-// 				{
-// 					$('html').addClass('web-scroll-down');
-// 					$('html').removeClass('web-scroll-up');
-// 				}
-// 			} 
-// 			else 
-// 			{
-// 				if($('html').hasClass('web-scroll-down') == true)
-// 				{
-// 					$('html').removeClass('web-scroll-down');
-// 					$('html').addClass('web-scroll-up');
-// 				}
-// 			}
+		// Updates scroll position
+		$last_scroll				= $scroll_top;
+	});
+}
 
-// 			// Updates scroll position
-// 			$last_scroll            = $scroll_top;
-// 		});
-// 	}
-// }
+var web_scroll_to 					= function($selector, $offset)
+{
+	// Variables
+	var $elements 					= document.querySelectorAll($selector);
+	if(typeof($offset) === 'undefined')
+	{
+		var $offset 				= 0;
+	}
 
-// web_scroll_to 					= function()
-// {
-// 	$('.scroll-to').on('click', function($ev)
-// 	{
-// 		$ev.preventDefault();
+	for($i = 0; $i < $elements.length; $i++)
+	{
+		// Variables
+		$scroll_top_id 				= $elements[$i].getAttribute('data-scroll-to');
 
-// 		// Variables
-// 		var $scroll_to 			= $(this).data('scroll-to');
-// 		var $scroll_element		= $('[data-scroll-id='+ $scroll_to +']');
+		$elements[$i].onclick 		= function($ev)
+		{
+			Velocity(document.getElementById($scroll_top_id), "scroll",
+			{ 
+				duration: 1200,
+				easing: "easeOutCubic",
+				offset: $offset
+			});
+		};
+	}
+};
 
-// 		// Scroll
-// 		if($(window).width() < 700)
-// 		{
-// 			$scroll_element.velocity("scroll", { duration: 1200, easing: "easeOutCubic", offset: -75 });
-// 		}
-// 		else
-// 		{
-// 			$scroll_element.velocity("scroll", { duration: 1200, easing: "easeOutCubic", offset: -91 });
-// 		}
-// 	});	
-// };
+var web_window_type 				= function()
+{
+	web_window_type_execute();
+	web_add_event(window, 'resize', function()
+	{
+		web_window_type_execute();
+	});
+};
 
-// web_window_type 					= function()
-// {
-// 	web_window_type_execute();
-// 	$(window).resize(function()
-// 	{
-// 		web_window_type_execute();
-// 	});
-// };
+var web_window_type_execute 		= function()
+{
+	// Some variables
+	if(window.innerWidth <= 700)
+	{
+		// Set the class
+		if(web_has_class($html_element, 'web-view-large'))
+		{
+			web_class_remove($html_element, 'web-view-large');
+		}
+		if(web_has_class($html_element, 'web-view-small') == false)
+		{
+			web_class_add($html_element, 'web-view-small');
+		}
+	}
+	else
+	{
+		// Set the class
+		if(web_has_class($html_element, 'web-view-small'))
+		{
+			web_class_remove($html_element, 'web-view-small');
+		}
+		if(web_has_class($html_element, 'web-view-large') == false)
+		{
+			web_class_add($html_element, 'web-view-large');
+		}
+		if(web_has_class($html_element, 'web-nav-shown'))
+		{
+			web_nav_hide();
+		}
+	}
+};
 
-// web_window_type_execute 			= function()
-// {
-// 	// Some variables
-// 	if($(window).width() <= 700)
-// 	{
-// 		// Set the type variable
-// 		$('html').addClass('web-small-view');
-// 		$('html').removeClass('web-large-view');
-// 	}
-// 	else
-// 	{
-// 		// Set the type variable
-// 		$('html').removeClass('web-small-view');
-// 		$('html').addClass('web-large-view');
-// 		if($('html').hasClass('web-show-nav'))
-// 		{
-// 			web_hide_nav();
-// 		}
-// 	}
-// };
+
