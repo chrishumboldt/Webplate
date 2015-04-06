@@ -2,7 +2,7 @@
  * jQuery File: 	core.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	5 April 2015
+ * Last Edited:   	6 April 2015
  */
 
 
@@ -22,14 +22,12 @@ var $root									= $crt_script_src;
 var $config_file 							= $root + 'project/config.json';
 var $js_path								= $root + 'engine/js/';
 var $css_path								= $root + 'engine/css/';
-var $less_path								= $root + 'engine/less/';
 var $component_path							= $root + 'project/component/';
 var $component_json 						= [];
 var $icon_font_path							= $root + 'project/icon-font/';
 var $js_project_path						= $root + 'project/js/';
 var $css_project_path						= $root + 'project/css/';
 var $ui_project_path						= $root + 'project/ui/';
-var $is_less								= false;
 var $ar_engine_files						= [$js_path + 'min/scripts.min.js', $css_path + 'styles.css'];
 var $ar_component_files						= [];
 var $ar_component_execute					= [];
@@ -125,12 +123,18 @@ yepnope([
 		}
 
 		// Add Webplate class
-		web_class_add($html_element, 'webplate');
+		web_id_add($html_element, 'web-html');
 
 		// Add webplate overlay
 		var $webplate_overlay 				= document.createElement('div');
-		$webplate_overlay.setAttribute('class', 'web-overlay');
+		web_id_add($webplate_overlay, 'web-overlay');
 		$body_element.appendChild($webplate_overlay);
+
+		// Call Webplate functions
+		web_navigation();
+		// $.web_window_type();
+		// $.web_scroll();
+		// $.web_hash_link();
 
 		// Load the config file
 		$config_json 						= load_json($config_file, function()
@@ -413,11 +417,5 @@ yepnope([
 				}
 			}
 		});
-
-		// // Execute
-		// $.web_navigation();
-		// $.web_window_type();
-		// $.web_scroll();
-		// $.web_hash_link();
 	}
 }]);

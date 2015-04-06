@@ -85,14 +85,6 @@ module.exports = function(grunt) {
 					],
 				}
 			},
-			// LESS
-			less: {
-				files: {
-					'js/min/less.min.js': [
-						'js/less.js'
-					],
-				}
-			},
 			// Project files
 			project: {
 				files: [{
@@ -149,10 +141,6 @@ module.exports = function(grunt) {
 					'js/fastclick.js'
 				],
 				tasks: ['uglify:touch']
-			},
-			less: {
-				files: ['js/less.js'],
-				tasks: ['uglify:less']
 			},
 			project: {
 				files: ['../project/js/*.js'],

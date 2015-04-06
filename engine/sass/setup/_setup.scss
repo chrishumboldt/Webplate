@@ -40,14 +40,14 @@ ul, ol {margin:0; padding:0px;}
 a, a:visited {text-decoration: none;}
 
 // Webplate
-.webplate {
+#webplate {
 	.limit {
 		width: $limit-width;
 		margin: 0px auto;
 	}
 }
 // Navigation
-.web-navigation {
+#web-navigation {
 	position: fixed;
 	display: block;
 	height: 100%;
@@ -59,9 +59,6 @@ a, a:visited {text-decoration: none;}
 	background-color: $small-nav-back;
 	z-index: 110;
 
-	.navigation-inner {
-		margin: $space-minor 0px;
-	}
 	li a:not(.button):not([class *= "btn-"]) {
 		display: block;
 		padding: 10px 20px;
@@ -86,7 +83,7 @@ a, a:visited {text-decoration: none;}
 }
 
 // Overlay
-.web-overlay {
+#web-overlay {
 	display: none;
 	position: fixed;
 	z-index: 100;
@@ -120,7 +117,7 @@ a, a:visited {text-decoration: none;}
 // ---------------------------------------------------------------------------------------
 @include respond-to(fluid) {
 	
-	.webplate {
+	#web-html {
 		.limit {
 			width: 100%;
 		}
