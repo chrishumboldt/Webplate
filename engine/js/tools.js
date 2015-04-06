@@ -499,6 +499,7 @@ var web_scroll_to 					= function($selector, $offset)
 
 		$elements[$i].onclick 		= function($ev)
 		{
+			$ev.preventDefault();
 			Velocity(document.getElementById($scroll_top_id), "scroll",
 			{ 
 				duration: 1200,
