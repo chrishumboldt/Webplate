@@ -15,8 +15,9 @@
 
 // Global
 // ---------------------------------------------------------------------------------------
-html {
+html, body {
 	@include text-font($roboto);
+	@include text-weight(300);
 }
 label {
 	@include text-font($roboto);

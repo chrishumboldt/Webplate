@@ -2,7 +2,7 @@
  * jQuery File:     tools.js
  * Type:            tools
  * Author:          Chris Humboldt
- * Last Edited:     6 April 2015
+ * Last Edited:     7 April 2015
  */
 
 
@@ -483,30 +483,35 @@ var web_scroll							= function()
 	});
 }
 
-var web_scroll_to 					= function($selector, $offset)
+var web_scroll_to 					= function($selector, $offset, $offset_large)
 {
 	// Variables
 	var $elements 					= document.querySelectorAll($selector);
-	if(typeof($offset) === 'undefined')
-	{
-		var $offset 				= 0;
-	}
+	var $offset 					= $offset || 0;
+	var $offset_large 				= $offset_large || false;
 
 	for($i = 0; $i < $elements.length; $i++)
 	{
-		// Variables
-		$scroll_top_id 				= $elements[$i].getAttribute('data-scroll-to');
-
 		$elements[$i].onclick 		= function($ev)
 		{
-			$ev.preventDefault();
-			Velocity(document.getElementById($scroll_top_id), "scroll",
-			{ 
-				duration: 1200,
-				easing: "easeOutCubic",
-				offset: $offset
-			});
-		};
+			return function($ev)
+			{
+				$ev.preventDefault();
+
+				// Check the screen size
+				var $v_offset 		= $offset;
+				if(($offset_large !== false) && (window.innerWidth > 700))
+				{
+					$v_offset 		= $offset_large;
+				}
+				Velocity(document.getElementById(this.getAttribute('data-scroll-to')), "scroll",
+				{ 
+					duration: 1200,
+					easing: "easeOutCubic",
+					offset: $v_offset
+				});
+			};
+		}($i);
 	}
 };
 

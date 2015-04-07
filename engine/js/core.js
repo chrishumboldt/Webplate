@@ -149,7 +149,7 @@ yepnope([
 				$state 							= $json.project['state'] || 'production';
 				$body_class						= $json.project['body-class'] || false;
 				$component 						= $json.project['component'] || [];
-				$form_colour 					= $json.project['form-colour'] || false;
+				$form_colour 					= $json.project['form-colour'] || 'blue';
 				$icon_font 						= $json.project['icon-font'] || false;
 				$navigation 					= $json.project['navigation'] || false;
 				$project_css 					= $json.project['css'] || [];
