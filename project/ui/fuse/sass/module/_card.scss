@@ -67,10 +67,16 @@
 				@include margin-bottom($space-minor);
 			}
 		}
+	}
+}
+.card-medium {
+	@extend .card;
 
-		// Text
-		p {
-			@include margin-bottom(0px);
+	// Details
+	.details {
+		// Adapt
+		@include breakpoint($bp-x-large) {
+			@include padding($space-medium);
 		}
 	}
 }

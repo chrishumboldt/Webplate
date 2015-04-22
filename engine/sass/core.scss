@@ -1,38 +1,30 @@
 /**
- * SASS File: 		core.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	10 February 2015
+ * File: core.scss
+ * Type: SASS core file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Imports
 // Overwrites
 // Execute
-// Size total
-
 
 // Imports
 // ---------------------------------------------------------------------------------------
 @import "import";
-@import "setup/normalize"; 		// 2 kb
-@import "setup/typeplate-vars";
-@import "setup/typeplate";  	// 3 kb
-@import "setup/setup"; 			// 3 kb
 
+@import "setup/normalize";
+@import "setup/typeplate";
+@import "setup/setup";
+
+@import "module/navigation";
 
 // Overwrites
 // ---------------------------------------------------------------------------------------
-$font-base 						: 16px;
-
+$font-base: 16px;
 
 // Execute
 // ---------------------------------------------------------------------------------------
-@include blueplate-css(); 		// 12 kb	
-
-
-// Size total
-// ---------------------------------------------------------------------------------------
-// 20 kb
+@include blueplate-css();

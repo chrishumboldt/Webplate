@@ -46,41 +46,6 @@ a, a:visited {text-decoration: none;}
 		margin: 0px auto;
 	}
 }
-// Navigation
-#web-navigation {
-	position: fixed;
-	display: block;
-	height: 100%;
-	top: 0;
-	left: 0;
-	width: $menu-width;
-	margin-left: -$menu-width;
-	overflow-y: auto;
-	background-color: $small-nav-back;
-	z-index: 110;
-
-	li a:not(.button):not([class *= "btn-"]) {
-		display: block;
-		padding: 10px 20px;
-		font-size: 0.875em;
-		color: $black-base;
-		@include animate(color);
-
-		div.icon {
-			float: left;
-			padding-right: 12px;
-			font-size: 1em;
-			color: #E99272;
-		}
-		.icon-angle-down {
-			@include hide();
-		}
-
-		.no-touch &:hover {
-			color: $red;
-		}
-	}
-}
 
 // Overlay
 #web-overlay {

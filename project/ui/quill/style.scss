@@ -1,14 +1,12 @@
 /**
- * SASS File: 		_style.scss
- * Type: 			loader
- * Author:        	Chris Humboldt
- * Last Edited:   	10 February 2015
+ * File: style.scss
+ * Type: SASS loader file
+ * Author: Chris Humboldt
+ * Last Edited: 21 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Setup
 // Imports
 
 
@@ -21,19 +19,15 @@
 @import "../../component/buttonplate/sass/buttonplate";
 
 // Variables
-@import "sass/variables";
+@import "sass/variable";
 
 // Basic elements
 @import "sass/basic/layout";
 @import "sass/basic/list";
-@import "sass/basic/table";
 @import "sass/basic/text";
 
 // Modules
 @import "sass/module/button";
 @import "sass/module/header";
-@import "sass/module/line";
-@import "sass/module/navigation";
-@import "sass/module/title-bar";
 
 

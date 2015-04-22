@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
 	// Clean out the contents of the config file
 	grunt.file.write('sass/config.scss', '');
-	
+
 	// Initialize config
 	grunt.initConfig({
 		// Package
@@ -38,15 +38,15 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					// Core file
-					'css/styles.css': 'sass/core.scss'
-				},{
+					'css/style.css': 'sass/core.scss'
+				}, {
 					// Project files
 					expand: true,
 					cwd: '../project/sass',
 					src: ['**/*.scss'],
 					dest: '../project/css',
 					ext: '.css'
-				},{
+				}, {
 					// UI files
 					expand: true,
 					cwd: '../project/ui',
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 					ext: '.css'
 				}]
 			}
-		}, 
+		},
 		// End of SASS
 		// Uglify
 		uglify: {
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 			// Imports
 			imports: {
 				files: {
-					'js/min/scripts.min.js': [
+					'js/min/script.min.js': [
 						'js/modernizr.js',
 						'js/velocity.js',
 						'js/tools.js'
@@ -111,9 +111,9 @@ module.exports = function(grunt) {
 			// CSS
 			css: {
 				files: [
-					'**/*.scss', 
-					'../_settings.scss', 
-					'../project/sass/*.scss', 
+					'**/*.scss',
+					'../_settings.scss',
+					'../project/sass/*.scss',
 					'../project/sass/**/*.scss',
 					'../project/ui/**/*.scss'
 				],
@@ -159,10 +159,10 @@ module.exports = function(grunt) {
 			// End of config
 			// Live reload
 			options: {
-		    	livereload: true,
-		    } 
-		    // End of live reload
-		} 
+				livereload: true,
+			}
+			// End of live reload
+		}
 		// End of watch
 	});
 	// End of initialize config

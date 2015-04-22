@@ -1,51 +1,16 @@
 /**
- * Title: 			Different Layouts
- * SASS File: 		_layout.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	31 March 2015
+ * File: _layout.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Basic
+// Columns
 // Content
 
-
-// Content
-// ---------------------------------------------------------------------------------------
-.content {
-	@include padding-horizontal($space-minor);
-	@include padding-vertical($space-medium);
-
-	// Adapt
-	@include breakpoint($bp-small) {
-		@include padding-vertical($space-large);
-	}
-	@include breakpoint(large) {
-		@include padding-horizontal($space-slight);
-		@include padding-vertical($space-large);
-	}
-	@include breakpoint($bp-x-large) {
-		@include padding-vertical($space-x-large);
-	}
-}
-.content-tight {
-	// Adapt
-	@include breakpoint($bp-small) {
-		@include padding($space-base);
-	}
-	@include breakpoint(large) {
-		@include padding-vertical($space-large);
-	}
-	@include breakpoint($bp-x-large) {
-		@include padding-vertical($space-x-large);
-	}
-}
-
-
-// Basic
+// Columns
 // ---------------------------------------------------------------------------------------
 [class *= "col-"] { 
 	@include row();
@@ -135,4 +100,34 @@
 	}
 }
 
+// Content
+// ---------------------------------------------------------------------------------------
+.content {
+	@include padding-horizontal($space-minor);
+	@include padding-vertical($space-medium);
+
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint(large) {
+		@include padding-horizontal($space-slight);
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
+.content-tight {
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
 

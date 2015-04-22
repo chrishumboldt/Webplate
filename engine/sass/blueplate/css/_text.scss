@@ -28,28 +28,28 @@
 		@include text-align(right);
 	}
 	.txt-size-x2l {
-		@include text-size($font-x2-large);
+		@include text-size($size-x2-large);
 	}
 	.txt-size-xl {
-		@include text-size($font-x-large);
+		@include text-size($size-x-large);
 	}
 	.txt-size-l {
-		@include text-size($font-large);
+		@include text-size($size-large);
 	}
 	.txt-size-m {
-		@include text-size($font-medium);
+		@include text-size($size-medium);
 	}
 	.txt-size-n {
-		@include text-size($font-base);
+		@include text-size($size-base);
 	}
 	.txt-size-s {
-		@include text-size($font-small);
+		@include text-size($size-small);
 	}
 	.txt-size-xs {
-		@include text-size($font-x-small);
+		@include text-size($size-x-small);
 	}
 	.txt-size-x2s {
-		@include text-size($font-x2-small);
+		@include text-size($size-x2-small);
 	}
 	.txt-weight-xb {
 		@include text-weight(900);
@@ -85,28 +85,28 @@
 	// Respond
 	@include respond-to(large) {
 		.large-txt-size-x2l {
-			@include text-size($font-x2-large);
+			@include text-size($size-x2-large);
 		}
 		.large-txt-size-xl {
-			@include text-size($font-x-large);
+			@include text-size($size-x-large);
 		}
 		.large-txt-size-l {
-			@include text-size($font-large);
+			@include text-size($size-large);
 		}
 		.large-txt-size-m {
-			@include text-size($font-medium);
+			@include text-size($size-medium);
 		}
 		.large-txt-size-n {
-			@include text-size($font-base);
+			@include text-size($size-base);
 		}
 		.large-txt-size-s {
-			@include text-size($font-small);
+			@include text-size($size-small);
 		}
 		.large-txt-size-xs {
-			@include text-size($font-x-small);
+			@include text-size($size-x-small);
 		}
 		.large-txt-size-x2s {
-			@include text-size($font-x2-small);
+			@include text-size($size-x2-small);
 		}
 		.large-txt-weight-xb {
 			@include text-weight(900);

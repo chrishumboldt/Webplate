@@ -1,16 +1,54 @@
 /**
- * SASS File: 		_layout.scss
- * Type: 			basic
- * Author:        	Chris Humboldt
- * Last Edited:   	14 September 2014
+ * File: _layout.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Columns
 // Content
+// Columns
 
+// Content
+// ---------------------------------------------------------------------------------------
+.content {
+	@include padding-horizontal($space-minor);
+	@include padding-vertical($space-medium);
+
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint(large) {
+		@include padding-horizontal($space-slight);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
+.content-small {
+	@include padding-horizontal($space-minor);
+	@include padding-vertical($space-base);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include padding-horizontal($space-slight);
+		@include padding-vertical($space-medium);
+	}
+}
+.content-tight {
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large);
+	}
+}
 
 // Columns
 // ---------------------------------------------------------------------------------------
@@ -28,7 +66,7 @@
 .col-double {
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(6);
 			padding-right: $space-small;
@@ -78,12 +116,25 @@
 	@extend .col-double;
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(4);
 		}
 		> .right {
 			@include new-span(8);
+		}
+	}
+}
+.col-left-bar-tight {
+	@extend .col-left-bar;
+
+	// Respond medium
+	@include respond-to($bp-x-large) {
+		> .left {
+			@include new-span(3);
+		}
+		> .right {
+			@include new-span(9);
 		}
 	}
 }
@@ -92,7 +143,7 @@
 	@extend .col-double;
 
 	// Respond medium
-	@include respond-to($bp-medium) {
+	@include respond-to(large) {
 		> .left {
 			@include new-span(8);
 		}
@@ -101,38 +152,4 @@
 		}
 	}
 }
-
-
-// Content
-// ---------------------------------------------------------------------------------------
-article,
-section {
-	@include position(relative);
-	@include padding-vertical($space-medium);
-	@include padding-horizontal($space-small);
-	@include background-colour($white);
-	@include level(0);
-
-	// Respond
-	@include respond-to($bp-medium) {
-		@include padding-vertical($space-large);
-		@include padding-horizontal($space-base);
-	}
-	@include respond-to($bp-large) {
-		@include padding-vertical($space-x-large);
-	}
-
-	// Contain
-	.contain {
-		@include limit();
-	}
-	.contain-tight {
-		@include respond-to($content-tight-w) {
-			@include width($content-tight-w);
-			@include center();
-		}
-	}
-}
-
-
 

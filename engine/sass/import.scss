@@ -1,63 +1,52 @@
 /**
- * SASS File: 		import.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	1 April 2015
+ * File: import.scss
+ * Type: SASS import file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
 
 // NOTE: Include this file in any custom SASS file you create to gain access to the 
 // $page-width variable and Webplate mixins.
 
-
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Variables
 // Config
-// Reset the variables
-// Plugins
-
+// Map variables
+// Components
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$option-limit-width						: 75em !default;
-$option-menu-width						: 16.250em !default;
-$option-small-nav-back					: #fff !default;
-$option-images-root						: "../img" !default;
-$option-column-limit					: 12 !default;
-$option-spacing-limit					: 10 !default;
-$option-default-flex 					: 1 !default;
-$option-default-flex-percent-option		: false !default;
-$option-break-main 						: 43.813em !default;
-$option-min-max 						: false !default;
-$option-font-family 					: 'Open Sans', Helvetica, Arial, sans-serif !default;
-
+$option-limit-width: 75em !default;
+$option-menu-width: 16.250em !default;
+$option-small-nav-back: #fff !default;
+$option-images-root: "../img" !default;
+$option-column-limit: 12 !default;
+$option-spacing-limit: 10 !default;
+$option-default-flex: 1 !default;
+$option-default-flex-percent-option: false !default;
+$option-break-main: 43.813em !default;
+$option-min-max: false !default;
+$option-font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 // Config
 // ---------------------------------------------------------------------------------------
 @import "config";
 
-
-// Reset the variables
+// Map variables
 // ---------------------------------------------------------------------------------------
-$limit-width							: $option-limit-width;
-$menu-width 							: $option-menu-width;
-$small-nav-back 						: $option-small-nav-back;
-$images-root 							: $option-images-root;
-$column-limit 							: $option-column-limit;
-$spacing-limit 							: $option-spacing-limit;
-$default-flex							: $option-default-flex;
-$default-flex-percent-option 			: $option-default-flex-percent-option;
-$break-main 							: $option-break-main;
-$min-max 								: $option-min-max;
-$font-family 							: $option-font-family;
-
+$limit-width: $option-limit-width;
+$menu-width: $option-menu-width;
+$small-nav-back: $option-small-nav-back;
+$images-root: $option-images-root;
+$column-limit: $option-column-limit;
+$spacing-limit: $option-spacing-limit;
+$default-flex: $option-default-flex;
+$default-flex-percent-option: $option-default-flex-percent-option;
+$break-main: $option-break-main;
+$min-max: $option-min-max;
+$font-family: $option-font-family;
 
 // Components
 // ---------------------------------------------------------------------------------------
 @import "blueplate/import";
-
-
-// Modules
-// ---------------------------------------------------------------------------------------
-@import "module/layout";
-@import "module/navigation";

@@ -1,85 +1,59 @@
 /**
- * SASS File: 		_header.scss
- * Type: 			component
- * Author:        	Chris Humboldt
- * Last Edited:   	14 September 2014
+ * File: _header.scss
+ * Type: SASS module file
+ * Author: Chris Humboldt
+ * Last Edited: 21 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Header
+// App header
+// Header padding
 
-
-// Header
+// App header
 // ---------------------------------------------------------------------------------------
-header {
-	@include display(block);
-	
-	// Background image
-	.bg-image {
-		@include position(absolute, top 0 left 0);
-		@include height(100%);
-		@include width(100%);
-		@include background-image-cover("background.jpg");
-		@include level(0);
+header.app {
+	@include block(100%, $header-h, fixed, top 0 left 0);
+	@include text-colour($colour-header-text);
+	@include text-line-height($header-h);
+	@include background-colour($colour-dark);
+	@include level(10);
+
+	@include breakpoint(large) {
+		@include height($header-h-l);
+		@include text-line-height($header-h-l);
 	}
 
-	// Title
-	.title,
-	.title-tight {
-		@include width(100%);
-		@include padding-vertical($space-medium);
-		@include padding-horizontal($space-small);
-		@include level(1);
+	a#navigation-trigger {
+		@include block($header-h, $header-h, absolute, top 0 left 0);
+		@include text-colour($colour-primary);
+		@include text-size($font-large);
+		@include level(2);
 
-		// Respond
-		@include respond-to($bp-medium) {
-			@include padding-vertical($space-large);
-			@include padding-horizontal($space-medium);
-		}
-		@include respond-to($bp-large) {
-			@include padding-vertical($space-x2-large);
+		@include breakpoint(large) {
+			@include square($header-h-l);
 		}
 	}
-	.inner {
-		@include limit();
+
+	.info {
 		@include position(relative);
-		@include text-colour($white);
+		@include padding-left($header-h);
+		@include text-ellipsis();
 		@include level(1);
 
-		// Headings
-		h1, h2, h3, h4, h5, h6, p {
-			@include text-colour($white);		
-		}
-		h1, h2, h3 {
-			@include spacing-no();
-		}
-		h5 {
-			@include padding-top($space-base);
-			@include text-colour(fade-out($white, 0.2));
-			@include text-font($georgia);
-			@include text-line-height(30px);
-			@include text-weight(300);
-		}
-	}
-	.title-tight .inner {
-		@extend .inner;
-		@include respond-to($content-tight-w) {
-			@include width($content-tight-w);
-			@include center();
-		}
-	}
-
-	// Full
-	&.full {
-		height: 100vh;
-
-		.title,
-		.title-tight {
-			@include position(absolute, bottom 0);
+		@include breakpoint(large) {
+			@include padding-horizontal($header-h-l);
 		}
 	}
 }
 
+// Header padding
+// ---------------------------------------------------------------------------------------
+.header-padding {
+	@include block(100%, $header-h);
+
+	@include breakpoint(large) {
+		@include height($header-h-l);
+	}
+}
 
