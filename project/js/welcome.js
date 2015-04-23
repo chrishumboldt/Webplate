@@ -568,4 +568,4 @@
 
 // Call functions
 prettyPrint();
-webScrollTo('.scroll-to', -92);
+web.scrollTo('.scroll-to', -92);

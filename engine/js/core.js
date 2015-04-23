@@ -223,7 +223,7 @@ function loadProjectFiles($projectCSS, $projectJS) {
 	for ($i = 0; $i < $projectCSS.length; $i++) {
 		var $val = $projectCSS[$i];
 		var $file = $val.trim();
-		var $extension = webGetExt($file);
+		var $extension = web.getExtension($file);
 
 		// Add to the array
 		if ($extension == 'css') {
@@ -233,7 +233,7 @@ function loadProjectFiles($projectCSS, $projectJS) {
 	for ($i = 0; $i < $projectJS.length; $i++) {
 		var $val = $projectJS[$i];
 		var $file = $val.trim();
-		var $extension = webGetExt($file);
+		var $extension = web.getExtension($file);
 
 		// Add to the array
 		if ($extension == 'js') {
@@ -284,17 +284,17 @@ yepnope([{
 		}
 
 		// Add Webplate class
-		webIdAdd($htmlElement, 'web-html');
+		web.idAdd($htmlElement, 'web-html');
 
 		// Add webplate overlay
 		var $webplateOverlay = document.createElement('div');
-		webIdAdd($webplateOverlay, 'web-overlay');
+		web.idAdd($webplateOverlay, 'web-overlay');
 		$bodyElement.appendChild($webplateOverlay);
 
 		// Call Webplate functions
-		webNavigation();
-		webWindowType();
-		webScroll();
+		web.navigation();
+		web.windowType();
+		web.scroll();
 
 		// Load the config file
 		$configJSON = loadJSON($configFile, function() {
@@ -302,7 +302,7 @@ yepnope([{
 				var $json = JSON.parse(this.responseText);
 
 				// Variables
-				$urlData = webGetUrl();
+				$urlData = web.getUrl();
 
 				// Root config
 				$state = $json.project['state'] || 'production';
@@ -343,7 +343,7 @@ yepnope([{
 				$exSegments = $urlSite.replace($urlBase, '').split('/');
 				for ($i = 0; $i < $exSegments.length; $i++) {
 					var $val = $exSegments[$i];
-					if (webExists($exSegments[$val])) {
+					if (web.exists($exSegments[$val])) {
 						$urlSegments.push($val);
 					}
 				}
@@ -362,7 +362,7 @@ yepnope([{
 						// Add to the segments object
 						for ($i = 0; $i < $exPageSegments.length; $i++) {
 							var $val = $exPageSegments[$i];
-							if (webExists($val)) {
+							if (web.exists($val)) {
 								$urlPageSegments.push($val);
 							}
 						}
@@ -463,7 +463,7 @@ yepnope([{
 				} else {
 					$navigation = 'web-nav-' + $navigation;
 				}
-				webClassAdd($htmlElement, $navigation);
+				web.classAdd($htmlElement, $navigation);
 
 				// Set the form colour
 				$bodyElement.setAttribute('data-formplate-colour', $formColour);
