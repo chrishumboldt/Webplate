@@ -2,7 +2,7 @@
 	"project": {
 		"component": [],
 		"css": ["welcome.css"],
-		"js": ["min/welcome.min.js"],
+		"js": ["welcome.js"],
 		"body-class": "page-welcome",
 		"form-colour": "pink",
 		"icon-font": "icomoon",

@@ -569,3 +569,5 @@
 // Call functions
 prettyPrint();
 web.scrollTo('.scroll-to', -92);
+
+new Modalplate('.modal');

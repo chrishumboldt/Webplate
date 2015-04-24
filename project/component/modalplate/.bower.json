@@ -1,12 +1,14 @@
 {
   "name": "Modalplate",
-  "version": "1.5.3",
   "homepage": "http://getwebplate.com/plugins/modalplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
   "description": "A cool little modal plugin.",
-  "main": "js/min/modalplate.min.js",
+  "main": [
+    "js/min/modalplate.min.js",
+    "css/modalplate.css"
+  ],
   "keywords": [
     "Webplate",
     "Modalplate",
@@ -28,14 +30,14 @@
     "bower_components",
     "sass"
   ],
-  "_release": "1.5.3",
+  "_release": "28bca8e144",
   "_resolution": {
-    "type": "version",
-    "tag": "v1.5.3",
-    "commit": "c46e9ef775eeb3196d4e7529446e05f88ae3f666"
+    "type": "branch",
+    "branch": "dev-chris",
+    "commit": "28bca8e14438b07dbb62aeb785f9e79d05db8d24"
   },
   "_source": "git://github.com/chrishumboldt/Modalplate.git",
-  "_target": "~1.5.3",
+  "_target": "dev-chris",
   "_originalSource": "modalplate",
   "_direct": true
 }
