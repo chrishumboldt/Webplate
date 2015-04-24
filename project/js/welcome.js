@@ -2,7 +2,7 @@
  * jQuery File: 	welcome.js
  * Type: 			execute
  * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * Last Edited:   	24 April 2015
  */
 
 
@@ -569,5 +569,3 @@
 // Call functions
 prettyPrint();
 web.scrollTo('.scroll-to', -92);
-
-new Modalplate('.modal');
