@@ -43,6 +43,9 @@ var web = {
 	hasWhiteSpace: function($check) {
 		return /\s/.test($check);
 	},
+	hasClass: function($element, $class) {
+		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
+	},
 	isColor: function($color) {
 		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
 	},
@@ -75,7 +78,7 @@ var web = {
 		return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
 	},
 	// Development
-	addEvent: function($elem, $type, $eventHandle) {
+	eventAdd: function($elem, $type, $eventHandle) {
 		if ($elem == null || typeof($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
 			$elem.addEventListener($type, $eventHandle, false);
@@ -101,9 +104,6 @@ var web = {
 			}).toString().replace(/,/g, ' ');
 		}
 	},
-	hasClass: function($element, $class) {
-		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-	},
 	idAdd: function($selector, $id) {
 		$selector.setAttribute('id', $id);
 	},
@@ -111,6 +111,14 @@ var web = {
 		if (window.console) {
 			console.log($text);
 		}
+	},
+	wrap: function($element, $tag, $className) {
+		var $wrapper = document.createElement($tag);
+		var $tempElement = $element.cloneNode(true);
+		$wrapper.className = $className;
+
+		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
+		$element.parentNode.removeChild($element);
 	},
 	// DOM
 	square: function($selector, $multiplier) {
@@ -322,7 +330,7 @@ var web = {
 		this.classAdd($htmlElement, 'web-scroll-none');
 
 		// On scroll event
-		this.addEvent(window, 'scroll', function() {
+		this.eventAdd(window, 'scroll', function() {
 			// Remove scroll nonw class
 			if (web.hasClass($htmlElement, 'web-scroll-none')) {
 				web.classRemove($htmlElement, 'web-scroll-none');
@@ -354,7 +362,7 @@ var web = {
 		var $offset = $offset || 0;
 		var $offsetLarge = $offsetLarge || false;
 
-		for ($i = 0; $i < $elements.length; $i++) {
+		for (var $i = 0; $i < $elements.length; $i++) {
 			$elements[$i].onclick = function($ev) {
 				return function($ev) {
 					$ev.preventDefault();
@@ -375,7 +383,7 @@ var web = {
 	},
 	windowType: function() {
 		this.windowTypeExecute();
-		this.addEvent(window, 'resize', function() {
+		this.eventAdd(window, 'resize', function() {
 			web.windowTypeExecute();
 		});
 	},

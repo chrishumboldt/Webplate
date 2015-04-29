@@ -1,12 +1,14 @@
 {
   "name": "Formplate",
-  "version": "1.4.2",
-  "homepage": "http://getwebplate.com/plugins/formplate",
+  "homepage": "http://paypur.com/#/view/formplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
-  "description": "A global form plugin.",
-  "main": "css/formplate.css",
+  "description": "A global form component.",
+  "main": [
+    "css/formplate.css",
+    "js/min/formplate.min.js"
+  ],
   "keywords": [
     "Webplate",
     "Formplate",
@@ -27,14 +29,14 @@
     "css/demo.css",
     "sass"
   ],
-  "_release": "1.4.2",
+  "_release": "195e2c6ac1",
   "_resolution": {
-    "type": "version",
-    "tag": "v1.4.2",
-    "commit": "c1ab972c7e51cd278c01e57ceaac4b0555d73a0e"
+    "type": "branch",
+    "branch": "dev-chris",
+    "commit": "195e2c6ac14e77f1066c1fcbd8cf6314536dcca5"
   },
   "_source": "git://github.com/chrishumboldt/Formplate.git",
-  "_target": "~1.4.2",
+  "_target": "dev-chris",
   "_originalSource": "formplate",
   "_direct": true
 }

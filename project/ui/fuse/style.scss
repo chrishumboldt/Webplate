@@ -1,9 +1,8 @@
 /**
- * Title: 			Fuse UI Kit
- * SASS File: 		style.scss
- * Type: 			importer
- * Author:        	Chris Humboldt
- * Last Edited:   	5 April 2015
+ * File: style.scss
+ * Type: SASS import file
+ * Author: Chris Humboldt
+ * Last Edited: 29 April 2015
  */
 
 
@@ -15,10 +14,10 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-
+$font-face-buttonplate: "../../component/buttonplate/css/icon-font-buttonplate";
 // Title bar
-$title-bar-h 					: 76px;
-$title-bar-h-large				: 92px;
+$title-bar-h: 76px;
+$title-bar-h-large: 92px;
 
 
 // Imports
@@ -27,7 +26,7 @@ $title-bar-h-large				: 92px;
 @import "../../component/buttonplate/sass/buttonplate"; // Buttonplate
 
 // Variables
-$grey-blue-super-light			: lighten($grey-blue-light, 14%);
+$grey-blue-super-light: lighten($grey-blue-light, 14%);
 
 // Basic
 @import "sass/basic/layout";
