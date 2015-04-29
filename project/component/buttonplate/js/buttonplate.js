@@ -1,108 +1,120 @@
 /**
- * jQuery File: 	buttonplate.js
- * Type:			plugin
- * Author:        	Chris Humboldt
- * Last Edited:   	1 October 2014
+ * File: buttonplate.js
+ * Type: Javascript component
+ * Author: Chris Humboldt
+ * Last Edited: 29 April 2015
  */
 
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Tools
+// Component call
+// Prototype component
 
-// Plugin
-;(function($, window, document, undefined)
-{
-	// Plugin setup & settings
-	var $plugin_name					= 'buttonplate', $defaults =
-	{
-	};
-	
-	// The actual plugin constructor
-	function Plugin($element, $options) 
-	{
-		this.element 					= $element;
-		this.settings 					= $.extend({}, $defaults, $options);
-		this._defaults 					= $defaults;
-		this._name 						= $plugin_name;
-
-		// Initilize plugin
-		this.init();
-	}
-	
-	// Plugin
-	// ---------------------------------------------------------------------------------------
-	Plugin.prototype 					= 
-	{
-		init 							: function()
-		{
-			// Variables
-			// ---------------------------------------------------------------------------------------
-			var $this 					= this;
-			var $settings 				= $this.settings;
-			var $button 				= $($this.element);
-
-
-			// Execute
-			// ---------------------------------------------------------------------------------------
-			fc_button_setup();
-
-
-			// Functions
-			// ---------------------------------------------------------------------------------------
-			// Button drop size
-			function fc_button_setup()
-			{
-				if($button.find('ul').length > 0)
-				{
-					$button.addClass('button-drop-down');
-				}
-			};
+// Tools
+// ---------------------------------------------------------------------------------------
+var tool = {
+	addEvent: function($elem, $type, $eventHandle) {
+		if ($elem == null || typeof($elem) == 'undefined') return;
+		if ($elem.addEventListener) {
+			$elem.addEventListener($type, $eventHandle, false);
+		} else if ($elem.attachEvent) {
+			$elem.attachEvent("on" + $type, $eventHandle);
+		} else {
+			$elem["on" + $type] = $eventHandle;
 		}
+	},
+	classAdd: function($selector, $class) {
+		var $crtClass = $selector.className;
+
+		if ($selector.className.indexOf($class) === -1) {
+			$selector.className = $selector.className === '' ? $class : $selector.className + ' ' + $class;
+		}
+	},
+	classRemove: function($selector, $class) {
+		var $crtClass = $selector.className;
+
+		if ($crtClass.indexOf($class) > -1) {
+			$selector.className = $selector.className.split(' ').filter(function($val) {
+				return $val != $class;
+			}).toString().replace(/,/g, ' ');
+		}
+	},
+	hasClass: function($element, $class) {
+		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
+	},
+	idAdd: function($selector, $id) {
+		$selector.setAttribute('id', $id);
+	},
+	log: function($text) {
+		if (window.console) {
+			console.log($text);
+		}
+	}
+};
+
+// Component call
+// ---------------------------------------------------------------------------------------
+function Buttonplate($selector) {
+	var $selectorType = $selector.charAt(0).toString();
+
+	if ($selectorType === '.') {
+		var $elements = document.querySelectorAll($selector);
+		for (var $i = 0; $i < $elements.length; $i++) {
+			new ButtonplateComponent($elements[$i]);
+		};
+	} else if ($selectorType === '#') {
+		new ButtonplateComponent(document.getElementById($selector.substring(1)));
 	};
+};
 
+// Component
+// ---------------------------------------------------------------------------------------
+function ButtonplateComponent($this) {
+	this.element = $this;
+	this.init();
+};
 
-	// Global calls
-	// ---------------------------------------------------------------------------------------
-	// On click show
-	$(document).on('click', '.button-drop-down', function()
-	{
-		var $button 					= $(this);
-		var $button_w					= $button.outerWidth();
+// Prototype component
+// ---------------------------------------------------------------------------------------
+ButtonplateComponent.prototype = {
+	init: function() {
+		var $button = this.element;
+		var $buttonDropDown = $button.getElementsByTagName('ul')[0];
 
-		// Show drop down
-		$button.find('ul').width($button_w).fadeIn('fast', function()
-		{	
-			$button.addClass('button-drop-down-open');
-		});
-	});
+		// Setup
+		buttonSetup();
 
-	// Close drop-downs
-	$(document).on('click', function(){
-		
-		$('.button-drop-down-open').removeClass('button-drop-down-open').find('ul').hide();
-	});
-
-	// On resize
-	$(window).resize(function()
-	{
-		$('.button-drop-down-open').removeClass('button-drop-down-open').find('ul').hide();
-	});
-
-
-	// Plugin wrapper
-	// ---------------------------------------------------------------------------------------
-	$.fn[$plugin_name] 					= function($options)
-	{
-		var $plugin;
-
-		this.each(function()
-		{
-			$plugin 					= $.data(this, 'plugin_' + $plugin_name);
-
-			if(!$plugin)
-			{
-				$plugin 				= new Plugin(this, $options);
-				$.data(this, 'plugin_' + $plugin_name, $plugin);
+		// Functions
+		function buttonSetup() {
+			if ($buttonDropDown !== undefined) {
+				tool.classAdd($button, 'button-drop-down');
+				buttonTrigger();
 			}
-		});
+		};
 
-		return $plugin;
-	};
-})(jQuery, window, document);
+		function buttonTrigger() {
+			// Hide existing
+			document.onclick = function() {
+				var $openDropDowns = document.querySelectorAll('.button-drop-down-open');
+				for (var $i = 0; $i < $openDropDowns.length; $i++) {
+					tool.classRemove($openDropDowns[$i], 'button-drop-down-open');
+				};
+			};
+			$buttonDropDown.onclick = function() {
+				setTimeout(function() {
+					tool.classRemove($buttonDropDown, 'button-drop-down-open');
+				}, 15);
+			};
+
+			// Show
+			$button.onclick = function() {
+				setTimeout(function() {
+					var $buttonW = $button.clientWidth;
+					$buttonDropDown.style.width = $buttonW + 'px';
+					tool.classAdd($buttonDropDown, 'button-drop-down-open');
+				}, 10);
+			};
+		};
+	}
+};

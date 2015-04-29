@@ -5,6 +5,9 @@
  * Last Edited:   	24 April 2015
  */
 
+// Custom calls
+web.scrollTo('.scroll-to', -92);
+new Buttonplate('.button');
 
 // Prettify
 // ---------------------------------------------------------------------------------------
@@ -564,8 +567,4 @@
 		})
 	})();
 }()
-
-
-// Call functions
 prettyPrint();
-web.scrollTo('.scroll-to', -92);

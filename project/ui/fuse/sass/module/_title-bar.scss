@@ -35,14 +35,14 @@
 		@include height($title-bar-h);
 		@include text-colour($pink);
 		@include text-line-height($title-bar-h);
-		@include text-size($font-slight);
+		@include text-size($size-slight);
 		@include animate(all);
 
 		// Adapt
 		@include breakpoint(large) {
 			@include height($title-bar-h-large);
 			@include text-line-height($title-bar-h-large);
-			@include text-size($font-medium);
+			@include text-size($size-medium);
 		}
 
 		// Icon
@@ -87,7 +87,7 @@
 				@include padding-horizontal($space-small + 2px);
 				@include text-colour($grey-dark);
 				@include text-line-height($title-bar-h);
-				@include text-size($font-minor);
+				@include text-size($size-minor);
 				@include text-weight(300);
 				@include border-top($white, 2px);
 				@include border-bottom(transparent, 2px);
@@ -98,7 +98,7 @@
 					@include height($title-bar-h-large);
 					@include padding-horizontal($space-base - 2px);
 					@include text-line-height($title-bar-h-large);
-					@include text-size($font-base);
+					@include text-size($size-base);
 				}
 
 				// Borders

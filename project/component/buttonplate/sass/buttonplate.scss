@@ -1,27 +1,21 @@
 /**
- * SASS File: 		buttonplate.sass
- * Author:        	Chris Humboldt
- * Link:			http://getwebplate.com/plugins/buttonplate
- * Last Edited:   	4 December 2014
- * Edited By:		Chris Humboldt
+ * File: buttonplate.scss
+ * Type: SASS
+ * Author: Chris Humboldt
+ * Last Edited: 24 April 2015
  */
-
 
 // Table of Contents:
 // ---------------------------------------------------------------------------------------
 // Imports
-// Execute Buttonplate CSS
-
+// Call styles
 
 // Imports
 // ---------------------------------------------------------------------------------------
-@import "../bower_components/blueplate/import";
-@import "buttonplate/import";
+@import "import";
 
-
-// Execute Buttonplate CSS
+// Call styles
 // ---------------------------------------------------------------------------------------
-// Call this mixin if you want to load up all the styles
-// @include buttonplate-css();
+@include buttonplate-css();
 
 

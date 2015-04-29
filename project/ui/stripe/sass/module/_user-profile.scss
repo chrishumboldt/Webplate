@@ -62,7 +62,7 @@
 	@include span(4);
 
 	.user-image-container {
-		@include text-squared(60px);
+		@include square(60px);
 		@include border($white, 4px);
 		@include border-radius(50%);
 		@include background-image-cover("profile-fallback.png");

@@ -33,7 +33,7 @@
 
 			span {
 				@include text-colour($pink-light);
-				@include text-size($font-small);
+				@include text-size($size-small);
 			}
 		}
 	}
@@ -41,7 +41,7 @@
 	// Details
 	.details {
 		@include padding($space-minor);
-		@include text-size($font-minor);
+		@include text-size($size-minor);
 
 		// Adapt
 		@include breakpoint(large) {
@@ -60,7 +60,7 @@
 			@include display(block);
 			@include spacing-no();
 			@include text-colour($grey-medium);
-			@include text-size($font-small);
+			@include text-size($size-small);
 
 			// Adapt
 			@include breakpoint($bp-medium) {

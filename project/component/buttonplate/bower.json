@@ -1,0 +1,28 @@
+{
+	"name": "Buttonplate",
+	"version": "1.5.0",
+	"homepage": "http://getwebplate.com/plugins/buttonplate",
+	"authors": [
+		"Chris Humboldt <chrismodem@gmail.com>"
+	],
+	"description": "A global button library.",
+	"main": ["css/buttonplate.css", "js/min/buttonplate.min.js"],
+	"keywords": [
+		"Webplate",
+		"Buttonplate",
+		"Button"
+	],
+	"license": "Apache License, Version 2.0",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"test",
+		"tests",
+		"gruntfile.js",
+		"package.json",
+		"index.html",
+		"bower.json",
+		"css/demo.css",
+		"sass/demo.scss"
+	]
+}

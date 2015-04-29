@@ -30,11 +30,11 @@
     "bower_components",
     "sass"
   ],
-  "_release": "28bca8e144",
+  "_release": "bae8a618c4",
   "_resolution": {
     "type": "branch",
     "branch": "dev-chris",
-    "commit": "28bca8e14438b07dbb62aeb785f9e79d05db8d24"
+    "commit": "bae8a618c4cfbc2ebf00b005d21f8fe3233ad43b"
   },
   "_source": "git://github.com/chrishumboldt/Modalplate.git",
   "_target": "dev-chris",

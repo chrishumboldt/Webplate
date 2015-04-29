@@ -1,17 +1,16 @@
 /**
- * SASS File: 		_display.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	11 August 2014
+ * File: _display.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Show / hide
 // Opacity
 // Overflow
-
+// Visibility
 
 // Show / hide
 // ---------------------------------------------------------------------------------------
@@ -35,7 +34,6 @@
 	@include display($type);
 }
 
-
 // Opacity
 // ---------------------------------------------------------------------------------------
 @mixin opacity($opacity: 0.60) {
@@ -47,11 +45,24 @@
 	@include opacity($transparency);
 }
 
-
 // Overflow
 // ---------------------------------------------------------------------------------------
-@mixin overflow($overflow: visible) {
-	overflow: $overflow;
+@mixin overflow($overflow: visible, $orientation: false) {
+	@if $orientation == vertical {
+		overflow-y: $overflow;
+	}
+	@else if $orientation == horizontal {
+		overflow-x: $overflow;
+	}
+	@else {
+		overflow: $overflow;
+	}
+}
+
+// Visibility
+// ---------------------------------------------------------------------------------------
+@mixin visibility($visibility: visible) {
+	visibility: $visibility;
 }
 
 

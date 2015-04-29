@@ -1,6 +1,6 @@
 {
 	"project": {
-		"component": [],
+		"component": ["buttonplate"],
 		"css": ["welcome.css"],
 		"js": ["welcome.js"],
 		"body-class": "page-welcome",

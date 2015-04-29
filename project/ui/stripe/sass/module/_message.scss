@@ -35,7 +35,7 @@
 		font-size: 1em;
 		color: fade-out($white, 0.75);
 		border: 3px solid fade-out($white, 0.75);
-		@include text-squared(30px);
+		@include square(30px);
 		line-height: 24px;
 		@include border-radius(50%);
 		@include animate(all);

@@ -27,7 +27,7 @@ a.image-hover {
 		@include padding-vertical($space-minor);
 		@include text-align(center);
 		@include text-colour($white);
-		@include text-size($font-large);
+		@include text-size($size-large);
 		@include center-vertical();
 		@include level(2);
 		@include animate(all);

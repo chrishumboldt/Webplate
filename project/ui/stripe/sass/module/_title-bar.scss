@@ -29,7 +29,7 @@
 		@include spacing-no();
 		@include text-colour($aqua);
 		@include text-size(18px);
-		@include text-squared($title-bar-h - 1px);
+		@include square($title-bar-h - 1px);
 		@include background-colour(none);
 		@include level(3);
 	}
@@ -61,7 +61,7 @@
 		.navigation-trigger,
 		.right-trigger {
 			@include text-size(24px);
-			@include text-squared($title-bar-h-medium - 1px);
+			@include square($title-bar-h-medium - 1px);
 		}
 		.stripe-title {
 			@include height($title-bar-h-medium);
@@ -78,7 +78,7 @@
 
 		//  Right trigger
 		.right-trigger {
-			@include text-squared($title-bar-h-large - 1px);
+			@include square($title-bar-h-large - 1px);
 			@include width($space-large);
 		}
 
@@ -97,7 +97,7 @@
 
 		//  Right trigger
 		.right-trigger {
-			@include text-squared($title-bar-h-large - 1px);
+			@include square($title-bar-h-large - 1px);
 		}
 
 		// Title

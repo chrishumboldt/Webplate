@@ -1,16 +1,14 @@
 /**
- * SASS File: 		_setup.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 May 2014
+ * File: _setup.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 24 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Font face
 // Button setup
-
 
 // Font face
 // ---------------------------------------------------------------------------------------
@@ -25,7 +23,6 @@
 	font-style: normal;
 }
 
-
 // Button setup
 // ---------------------------------------------------------------------------------------
 @mixin button-setup($font: true) {
@@ -33,17 +30,12 @@
 	@include display(inline-block);
 	@include text-align(center);
 	@include text-colour(lighten(#000, 40%));
-	text-decoration: none;
-	vertical-align: middle;
-	border: none;
+	@include text-decoration(none);
+	@include vertical-align(middle);
+	@include border(none);
 	@include background-colour($grey-link);
 	outline: none;
 	-webkit-appearance: none;
-
-	// Respond
-	@include respond-to(small) {
-		@include width(100%);
-	}
 
 	// Visited state
 	&:visited {
@@ -51,7 +43,7 @@
 	}
 	// Hover state
 	.no-touch &:hover { 
-		cursor: pointer;
+		@include cursor(pointer);
 		@include background-colour($grey-link-hover);
 	}
 	// Active state

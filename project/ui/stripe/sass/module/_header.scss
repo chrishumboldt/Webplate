@@ -96,7 +96,7 @@ header.stripe {
 		@include margin-top(100vh);
 		color: $white;
 		font-size: 1.25em;
-		@include text-squared($scroll-down-dimensions);
+		@include square($scroll-down-dimensions);
 		@include border-radius(50%);
 		border: 1px solid $white;
 		z-index: 1;

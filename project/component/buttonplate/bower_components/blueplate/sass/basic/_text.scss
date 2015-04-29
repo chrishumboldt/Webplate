@@ -1,50 +1,47 @@
 /**
- * SASS File: 		_text.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 October 2014
+ * File: _text.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Font variables
+// Variables
 // Font
 // Text
 
-
-// Font variables
+// Variables
 // ---------------------------------------------------------------------------------------
-$georgia					: Georgia, Cambria, "Times New Roman", Times, serif;
-$helvetica 					: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$impact 					: Impact, Charcoal, sans-serif;
-$lato 						: 'Lato', sans-serif;
-$lucinda-grande 			: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-$monospace 					: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
-$open-sans 					: 'Open Sans', Helvetica, Arial, sans-serif;
-$roboto 					: 'Roboto', 'Helvetic Neue', Helvetica, Arial;
-$tahoma 					: Tahoma, Geneva, sans-serif;
-$times-new-roman 			: "Times New Roman", Times, serif;
-$trebuchet 					: "Trebuchet MS", Helvetica, sans-serif;
-$verdana					: Verdana, Geneva, sans-serif;
+$georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$impact: Impact, Charcoal, sans-serif;
+$lato: 'Lato', sans-serif;
+$lucinda-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$monospace: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+$open-sans: 'Open Sans', Helvetica, Arial, sans-serif;
+$roboto: 'Roboto', 'Helvetic Neue', Helvetica, Arial;
+$tahoma: Tahoma, Geneva, sans-serif;
+$times-new-roman: "Times New Roman", Times, serif;
+$trebuchet: "Trebuchet MS", Helvetica, sans-serif;
+$verdana: Verdana, Geneva, sans-serif;
 
-$font-x2-small 				: 8px;
-$font-x-small 				: 10px;
-$font-small 				: 12px;
-$font-minor 				: 14px;
-$font-base 					: 16px;
-$font-slight				: 18px;
-$font-medium 				: 20px;
-$font-large 				: 24px;
-$font-x-large 				: 36px;
-$font-x2-large 				: 48px;
+$size-x2-small: 8px;
+$size-x-small: 10px;
+$size-small: 12px;
+$size-minor: 14px;
+$size-base: 16px;
+$size-slight: 18px;
+$size-medium: 20px;
+$size-large: 24px;
+$size-x-large: 36px;
+$size-x2-large: 48px;
 
-$weight-thin 				: 100;
-$weight-light 				: 300;
-$weight-base 				: 400;
-$weight-bold 				: 700;
-$weight-heavy 				: 900;
-
+$weight-thin: 100;
+$weight-light: 300;
+$weight-base: 400;
+$weight-bold: 700;
+$weight-heavy: 900;
 
 // Font
 // ---------------------------------------------------------------------------------------
@@ -68,7 +65,6 @@ $weight-heavy 				: 900;
 @mixin letter-spacing($letter-spacing: normal) {
 	letter-spacing: $letter-spacing;
 }
-
 
 // Text
 // ---------------------------------------------------------------------------------------
@@ -112,54 +108,49 @@ $weight-heavy 				: 900;
 @mixin text-letter-spacing($letter-spacing: normal) {
 	@include letter-spacing($letter-spacing);
 }
-@mixin text-line-height($line-height: $font-base) {
+@mixin text-line-height($line-height: $size-base) {
 	@include line-height($line-height);
 }
-@mixin text-size($size: $font-base) {
+@mixin text-shadow($distance: 2px, $blur: 2px, $colour: fade-out(#000, 0.5), $angle: 0px) {
+	text-shadow: $angle $distance $blur $colour;
+}
+@mixin text-size($size: $size-base) {
 
 	@if $size == x2-small {
-		@include font-size($font-x2-small);
+		@include font-size($size-x2-small);
 	}
 	@else if $size == x-small {
-		@include font-size($font-x-small);
+		@include font-size($size-x-small);
 	}
 	@else if $size == small {
-		@include font-size($font-small);
+		@include font-size($size-small);
 	}
 	@else if $size == minor {
-		@include font-size($font-minor);
+		@include font-size($size-minor);
 	}
 	@else if $size == base {
-		@include font-size($font-base);
+		@include font-size($size-base);
 	}
 	@else if $size == slight {
-		@include font-size($font-slight);
+		@include font-size($size-slight);
 	}
 	@else if $size == medium {
-		@include font-size($font-medium);
+		@include font-size($size-medium);
 	}
 	@else if $size == large {
-		@include font-size($font-large);
+		@include font-size($size-large);
 	}
 	@else if $size == x-large {
-		@include font-size($font-x-large);
+		@include font-size($size-x-large);
 	}
 	@else if $size == x2-large {
-		@include font-size($font-x2-large);
+		@include font-size($size-x2-large);
 	}
 	@else
 	{
 		@include font-size($size);
 	}
 }
-// ----- DEPRECATED - WILL BE DELETED SOON
-@mixin text-squared($size) {
-	width: $size;
-	height: $size;
-	line-height: $size;
-	text-align: center;
-}
-// ----- END
 @mixin text-style($style: normal) {
 	@include font-style($style);
 }
@@ -194,5 +185,4 @@ $weight-heavy 				: 900;
 		word-break: $wrap;
 	}
 }
-
 

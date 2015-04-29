@@ -24,11 +24,11 @@ p {
 
 	// Respond
 	@include respond-to($bp-medium) {
-		@include text-size($font-base);
+		@include text-size($size-base);
 		@include text-line-height(28px);
 	}
 	@include respond-to($bp-large) {
-		@include text-size($font-slight);
+		@include text-size($size-slight);
 		@include text-line-height(30px);
 	}
 
@@ -84,7 +84,7 @@ h6 {
 		@include text-size(24px);
 	}
 	h6 {
-		@include text-size($font-medium);
+		@include text-size($size-medium);
 	}
 }
 

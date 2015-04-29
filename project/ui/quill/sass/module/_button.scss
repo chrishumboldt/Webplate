@@ -55,7 +55,7 @@
 a.navigation-trigger,
 div.navigation-trigger {
 	@include button-style-line($grey-blue);
-	@include text-size($font-medium);
+	@include text-size($size-medium);
 }
 
 

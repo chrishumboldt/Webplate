@@ -8,9 +8,9 @@
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Tools
-// Plugin call
+// Component call
 // Component
-// Prototype
+// Prototype component
 
 // Tools
 // ---------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ var tool = {
 	}
 };
 
-// Plugin call
+// Component call
 // ---------------------------------------------------------------------------------------
 function Modalplate($selector, $userOptions) {
 	var $selectorType = $selector.charAt(0).toString();
@@ -65,9 +65,9 @@ function Modalplate($selector, $userOptions) {
 			new ModalplateComponent($elements[$i], $userOptions);
 		};
 	} else {
-		new ModalplateComponent(document.getElementById($selector.substring(1)));
-	}
-}
+		new ModalplateComponent(document.getElementById($selector.substring(1)), $userOptions);
+	};
+};
 
 // Component
 // ---------------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ function ModalplateComponent($this, $userOptions) {
 	this.init();
 };
 
-// Prototype
+// Prototype component
 // ---------------------------------------------------------------------------------------
 ModalplateComponent.prototype = {
 	// Initialize

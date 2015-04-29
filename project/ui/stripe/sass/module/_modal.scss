@@ -26,7 +26,7 @@
 .modalplate .close.icon-cross {
 	@include display(block);
 	@include position(absolute, top $space-base right $space-minor);
-	@include text-squared(30px);
+	@include square(30px);
 	@include text-colour($grey-light);
 	@include text-line-height(24px);
 	@include text-size(24px);

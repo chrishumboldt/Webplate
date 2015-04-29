@@ -1,12 +1,14 @@
 {
   "name": "Buttonplate",
-  "version": "1.4.3",
   "homepage": "http://getwebplate.com/plugins/buttonplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
   "description": "A global button library.",
-  "main": "css/buttonplate.css",
+  "main": [
+    "css/buttonplate.css",
+    "js/min/buttonplate.min.js"
+  ],
   "keywords": [
     "Webplate",
     "Buttonplate",
@@ -25,14 +27,14 @@
     "css/demo.css",
     "sass/demo.scss"
   ],
-  "_release": "1.4.3",
+  "_release": "55400e487c",
   "_resolution": {
-    "type": "version",
-    "tag": "v1.4.3",
-    "commit": "6e5d367a64e078feb073f6ba0fb357093624418c"
+    "type": "branch",
+    "branch": "dev-chris",
+    "commit": "55400e487c7a53f665fe8ac388e4abdab1034f97"
   },
   "_source": "git://github.com/chrishumboldt/Buttonplate.git",
-  "_target": "~1.4.3",
+  "_target": "dev-chris",
   "_originalSource": "buttonplate",
   "_direct": true
 }

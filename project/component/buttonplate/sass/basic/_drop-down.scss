@@ -1,10 +1,9 @@
 /**
- * SASS File: 		_drop-down.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	25 September 2014
+ * File: _drop-down.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 24 April 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
@@ -14,12 +13,10 @@
 // Drop-down position
 // Drop-down link hover
 
-
 // Variables
 // ---------------------------------------------------------------------------------------
 $default-colour 			: $blue;
 $away-from-button			: 4px;
-
 
 // Drop-downs
 // ---------------------------------------------------------------------------------------
@@ -27,15 +24,17 @@ $away-from-button			: 4px;
 
 	// List
 	ul {
-		@include display(none);
 		@include position(absolute);
 		@include padding(0px);
 		@include margin-top($away-from-button);
-		list-style: none;
+		@include list-style(none);
 		@include background-colour($white);
 		@include border-radius();
 		@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
 		@include level(2);
+		@include opacity(0);
+		@include visibility(hidden);
+		@include animate(all, 0.2s);
 
 		li {
 			@include spacing-no();
@@ -66,9 +65,14 @@ $away-from-button			: 4px;
 				}
 			}
 		}
+
+		// Show state
+		&.button-drop-down-open {
+			@include opacity(1);
+			@include visibility(visible);
+		}
 	}
 }
-
 
 // Set line
 // ---------------------------------------------------------------------------------------
@@ -82,7 +86,6 @@ $away-from-button			: 4px;
 		@include border-bottom($grey-light);
 	}
 }
-
 
 // Drop-down position
 // ---------------------------------------------------------------------------------------
@@ -106,7 +109,6 @@ $away-from-button			: 4px;
 		}
 	}
 }
-
 
 // Drop-down link hover
 // ---------------------------------------------------------------------------------------

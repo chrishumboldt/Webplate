@@ -27,7 +27,7 @@ header.app {
 	a#navigation-trigger {
 		@include block($header-h, $header-h, absolute, top 0 left 0);
 		@include text-colour($colour-primary);
-		@include text-size($font-large);
+		@include text-size($size-large);
 		@include level(2);
 
 		@include breakpoint(large) {
