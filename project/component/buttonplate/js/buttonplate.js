@@ -2,12 +2,13 @@
  * File: buttonplate.js
  * Type: Javascript component
  * Author: Chris Humboldt
- * Last Edited: 29 April 2015
+ * Last Edited: 1 May 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Tools
+// Touch check
 // Component call
 // Prototype component
 
@@ -46,12 +47,46 @@ var tool = {
 	idAdd: function($selector, $id) {
 		$selector.setAttribute('id', $id);
 	},
+	getIndex: function($node) {
+		return [].indexOf.call($node.parentNode.children, $node);
+	},
+	isTouch: function() {
+		return 'ontouchstart' in window || 'onmsgesturechange' in window;
+	},
 	log: function($text) {
 		if (window.console) {
 			console.log($text);
 		}
+	},
+	wrap: function($element, $tag, $className) {
+		var $wrapper = document.createElement($tag);
+		var $tempElement = $element.cloneNode(true);
+		$wrapper.className = $className;
+
+		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
+		$element.parentNode.removeChild($element);
+	},
+	wrapInner: function($element, $tag, $className) {
+		if (typeof $tag === "string") {
+			$tag = document.createElement($tag);
+		}
+		if ($className !== undefined) {
+			var $div = $element.appendChild($tag).setAttribute('class', $className);
+		} else {
+			var $div = $element.appendChild($tag);
+		}
+		while ($element.firstChild !== $tag) {
+			$tag.appendChild($element.firstChild);
+		}
 	}
 };
+
+// Touch check
+// ---------------------------------------------------------------------------------------
+var $htmlElement = document.getElementsByTagName('html')[0];
+if (!tool.isTouch() && !tool.hasClass($htmlElement, 'bp-no-touch')) {
+	tool.classAdd($htmlElement, 'bp-no-touch');
+}
 
 // Component call
 // ---------------------------------------------------------------------------------------
@@ -88,7 +123,7 @@ ButtonplateComponent.prototype = {
 		// Functions
 		function buttonSetup() {
 			if ($buttonDropDown !== undefined) {
-				tool.classAdd($button, 'button-drop-down');
+				tool.classAdd($button, 'bp-drop-down');
 				buttonTrigger();
 			}
 		};
@@ -96,14 +131,14 @@ ButtonplateComponent.prototype = {
 		function buttonTrigger() {
 			// Hide existing
 			document.onclick = function() {
-				var $openDropDowns = document.querySelectorAll('.button-drop-down-open');
+				var $openDropDowns = document.querySelectorAll('.bp-drop-down-open');
 				for (var $i = 0; $i < $openDropDowns.length; $i++) {
-					tool.classRemove($openDropDowns[$i], 'button-drop-down-open');
+					tool.classRemove($openDropDowns[$i], 'bp-drop-down-open');
 				};
 			};
 			$buttonDropDown.onclick = function() {
 				setTimeout(function() {
-					tool.classRemove($buttonDropDown, 'button-drop-down-open');
+					tool.classRemove($buttonDropDown, 'bp-drop-down-open');
 				}, 15);
 			};
 
@@ -112,7 +147,7 @@ ButtonplateComponent.prototype = {
 				setTimeout(function() {
 					var $buttonW = $button.clientWidth;
 					$buttonDropDown.style.width = $buttonW + 'px';
-					tool.classAdd($buttonDropDown, 'button-drop-down-open');
+					tool.classAdd($buttonDropDown, 'bp-drop-down-open');
 				}, 10);
 			};
 		};

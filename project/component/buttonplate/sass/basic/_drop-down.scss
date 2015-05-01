@@ -2,7 +2,7 @@
  * File: _drop-down.scss
  * Type: SASS basic file
  * Author: Chris Humboldt
- * Last Edited: 24 April 2015
+ * Last Edited: 1 May 2015
  */
 
 // Table of contents
@@ -60,14 +60,14 @@ $away-from-button			: 4px;
 				text-decoration: none;
 				vertical-align: middle;
 				
-				.no-touch &:hover {
+				.bp-no-touch &:hover {
 					@include background-colour($grey-link-hover);
 				}
 			}
 		}
 
 		// Show state
-		&.button-drop-down-open {
+		&.bp-drop-down-open {
 			@include opacity(1);
 			@include visibility(visible);
 		}
@@ -97,7 +97,7 @@ $away-from-button			: 4px;
 	}
 
 	// Drop down
-	&.button-drop-down {
+	&.bp-drop-down {
 		ul {
 			@include margin-left(-$spacing);
 		}

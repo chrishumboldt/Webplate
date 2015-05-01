@@ -27,11 +27,11 @@
     "css/demo.css",
     "sass/demo.scss"
   ],
-  "_release": "55400e487c",
+  "_release": "056198143c",
   "_resolution": {
     "type": "branch",
     "branch": "dev-chris",
-    "commit": "55400e487c7a53f665fe8ac388e4abdab1034f97"
+    "commit": "056198143cc91ef73944b73a87d858bcee5de2d8"
   },
   "_source": "git://github.com/chrishumboldt/Buttonplate.git",
   "_target": "dev-chris",

@@ -2,12 +2,13 @@
  * File: formplate.js
  * Type: Javascript component
  * Author: Chris Humboldt
- * Last Edited: 29 April 2015
+ * Last Edited: 1 May 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Tools
+// Touch check
 // Component call
 
 // Tools
@@ -45,6 +46,9 @@ var tool = {
 	idAdd: function($selector, $id) {
 		$selector.setAttribute('id', $id);
 	},
+	isTouch: function() {
+		return 'ontouchstart' in window || 'onmsgesturechange' in window;
+	},
 	log: function($text) {
 		if (window.console) {
 			console.log($text);
@@ -59,6 +63,13 @@ var tool = {
 		$element.parentNode.removeChild($element);
 	}
 };
+
+// Touch check
+// ---------------------------------------------------------------------------------------
+var $htmlElement = document.getElementsByTagName('html')[0];
+if (!tool.isTouch() && !tool.hasClass($htmlElement, 'fp-no-touch')) {
+	tool.classAdd($htmlElement, 'fp-no-touch');
+}
 
 // Component call
 // ---------------------------------------------------------------------------------------

@@ -66,11 +66,14 @@ var web = {
 		var $allowedTypes = $arAllowedTypes || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
 		return $allowedTypes[$file.split('.').pop().toLowerCase()];
 	},
-	IsInteger: function($int) {
+	isInteger: function($int) {
 		return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
 	},
 	isPassword: function($password) {
 		return /^[A-Za-z0-9]{6,}$/.test($password);
+	},
+	isTouch: function() {
+		return 'ontouchstart' in window || 'onmsgesturechange' in window;
 	},
 	// Dates
 	crtDBDate: function() {
@@ -112,15 +115,10 @@ var web = {
 			console.log($text);
 		}
 	},
-	wrap: function($element, $tag, $className) {
-		var $wrapper = document.createElement($tag);
-		var $tempElement = $element.cloneNode(true);
-		$wrapper.className = $className;
-
-		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
-		$element.parentNode.removeChild($element);
-	},
 	// DOM
+	getIndex: function($node) {
+		return [].indexOf.call($node.parentNode.children, $node);
+	},
 	square: function($selector, $multiplier) {
 		// Variables
 		var $elements = document.querySelectorAll($selector);
@@ -143,6 +141,27 @@ var web = {
 			if ($thisWallpaper !== null) {
 				$elements[$i].style.backgroundImage = 'url("' + $thisWallpaper + '")';
 			}
+		}
+	},
+	wrap: function($element, $tag, $className) {
+		var $wrapper = document.createElement($tag);
+		var $tempElement = $element.cloneNode(true);
+		$wrapper.className = $className;
+
+		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
+		$element.parentNode.removeChild($element);
+	},
+	wrapInner: function($element, $tag, $className) {
+		if (typeof $tag === "string") {
+			$tag = document.createElement($tag);
+		}
+		if ($className !== undefined) {
+			var $div = $element.appendChild($tag).setAttribute('class', $className);
+		} else {
+			var $div = $element.appendChild($tag);
+		}
+		while ($element.firstChild !== $tag) {
+			$tag.appendChild($element.firstChild);
 		}
 	},
 	// Forms

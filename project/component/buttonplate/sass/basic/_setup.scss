@@ -2,7 +2,7 @@
  * File: _setup.scss
  * Type: SASS basic file
  * Author: Chris Humboldt
- * Last Edited: 24 April 2015
+ * Last Edited: 1 May 2015
  */
 
 // Table of contents
@@ -42,7 +42,7 @@
 		@include text-colour(lighten(#000, 40%));
 	}
 	// Hover state
-	.no-touch &:hover { 
+	.bp-no-touch &:hover { 
 		@include cursor(pointer);
 		@include background-colour($grey-link-hover);
 	}

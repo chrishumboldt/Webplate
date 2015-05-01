@@ -29,11 +29,11 @@
     "css/demo.css",
     "sass"
   ],
-  "_release": "195e2c6ac1",
+  "_release": "c462eb5389",
   "_resolution": {
     "type": "branch",
     "branch": "dev-chris",
-    "commit": "195e2c6ac14e77f1066c1fcbd8cf6314536dcca5"
+    "commit": "c462eb53891caa8035bc8fb7b57a0d4c7360ae61"
   },
   "_source": "git://github.com/chrishumboldt/Formplate.git",
   "_target": "dev-chris",

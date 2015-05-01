@@ -2,7 +2,7 @@
  * SASS File: 		_style.scss
  * Type: 			partial
  * Author:        	Chris Humboldt
- * Last Edited:   	4 December 2014
+ * Last Edited:   	1 May 2015
  */
 
 
@@ -44,7 +44,7 @@ $lightness-threshold-line 	: 98%;
 		}
 
 		// Drop-down link hover
-		.no-touch &.button-drop-down ul li a:hover {
+		.bp-no-touch &.button-drop-down ul li a:hover {
 			@include drop-down-link-hover($colour);
 		}
 	}
@@ -70,7 +70,7 @@ $lightness-threshold-line 	: 98%;
 				}
 			}
 		}
-		.no-touch &:hover {
+		.bp-no-touch &:hover {
 			// Check lightness
 			@if lightness($colour) > 80% {
 				@include text-colour($grey);
@@ -95,7 +95,7 @@ $lightness-threshold-line 	: 98%;
 				@include border(lighten($colour, $lighten), $border-size);
 			}
 		}
-		.no-touch &:active,
+		.bp-no-touch &:active,
 		&:active {
 			@if lightness($colour) < $lightness-threshold {
 				@include text-colour(darken($colour, 18%));
@@ -104,7 +104,7 @@ $lightness-threshold-line 	: 98%;
 		}
 
 		// Drop-down link hover
-		.no-touch &.button-drop-down ul li a:hover {
+		.bp-no-touch &.button-drop-down ul li a:hover {
 			@include drop-down-link-hover($colour, $lighten);
 		}
 	}
@@ -126,7 +126,7 @@ $lightness-threshold-line 	: 98%;
 				}
 			}
 		}
-		.no-touch &:hover {
+		.bp-no-touch &:hover {
 			// Check saturations
 			@if saturation($colour) > 0% {
 				@if saturation($colour) > 50% {
@@ -148,7 +148,7 @@ $lightness-threshold-line 	: 98%;
 		}
 
 		// Drop-down link hover
-		.no-touch &.button-drop-down ul li a:hover {
+		.bp-no-touch &.button-drop-down ul li a:hover {
 			@include drop-down-link-hover($colour, $lighten);
 		}
 	}
@@ -175,7 +175,7 @@ $lightness-threshold-line 	: 98%;
 			}
 		}
 	}
-	.no-touch &:hover {
+	.bp-no-touch &:hover {
 		// Check saturations
 		@if saturation($colour) > 0% {
 			@if saturation($colour) > 50% {
@@ -197,7 +197,7 @@ $lightness-threshold-line 	: 98%;
 	}
 
 	// Drop-down link hover
-	.no-touch &.button-drop-down ul li a:hover {
+	.bp-no-touch &.button-drop-down ul li a:hover {
 		@include drop-down-link-hover($colour, $lighten);
 	}
 }
@@ -225,7 +225,7 @@ $lightness-threshold-line 	: 98%;
 	}
 
 	// Drop-down link hover
-	.no-touch &.button-drop-down ul li a:hover {
+	.bp-no-touch &.button-drop-down ul li a:hover {
 		@include drop-down-link-hover($colour);
 	}
 }
@@ -253,7 +253,7 @@ $lightness-threshold-line 	: 98%;
 			}
 		}
 	}
-	.no-touch &:hover {
+	.bp-no-touch &:hover {
 		// Check lightness
 		@if lightness($colour) > 80% {
 			@include text-colour($grey);
@@ -278,7 +278,7 @@ $lightness-threshold-line 	: 98%;
 			@include border(lighten($colour, $lighten), $border-size);
 		}
 	}
-	.no-touch &:active,
+	.bp-no-touch &:active,
 	&:active {
 		@if lightness($colour) < $lightness-threshold {
 			@include text-colour(darken($colour, 18%));
@@ -287,7 +287,7 @@ $lightness-threshold-line 	: 98%;
 	}
 
 	// Drop-down link hover
-	.no-touch &.button-drop-down ul li a:hover {
+	.bp-no-touch &.button-drop-down ul li a:hover {
 		@include drop-down-link-hover($colour, $lighten);
 	}
 }
