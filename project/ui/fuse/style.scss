@@ -2,7 +2,7 @@
  * File: style.scss
  * Type: SASS import file
  * Author: Chris Humboldt
- * Last Edited: 29 April 2015
+ * Last Edited: 2 May 2015
  */
 
 
@@ -29,8 +29,11 @@ $title-bar-h-large: 92px;
 $grey-blue-super-light: lighten($grey-blue-light, 14%);
 
 // Basic
+@import "sass/basic/background";
 @import "sass/basic/layout";
 @import "sass/basic/link";
+@import "sass/basic/list";
+@import "sass/basic/table";
 @import "sass/basic/text";
 
 // Modules

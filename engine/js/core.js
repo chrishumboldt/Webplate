@@ -2,7 +2,7 @@
  * File: core.js
  * Type: Javascript core file
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
+ * Last Edited: 2 May 2015
  */
 
 // Table of contents
@@ -250,8 +250,10 @@ function loadProjectFiles($projectCSS, $projectJS) {
 					yepnope({
 						load: $arExtraJS
 					});
-					$bodyElement.removeAttribute('style');
-				}, 20);
+					setTimeout(function() {
+						$bodyElement.removeAttribute('style');
+					}, 50);
+				}, 50);
 			}
 		});
 	} else if ($arExtraJS.length > 0) {
@@ -259,10 +261,14 @@ function loadProjectFiles($projectCSS, $projectJS) {
 			yepnope({
 				load: $arExtraJS
 			});
-			$bodyElement.removeAttribute('style');
-		}, 20);
+			setTimeout(function() {
+				$bodyElement.removeAttribute('style');
+			}, 50);
+		}, 50);
 	} else {
-		$bodyElement.removeAttribute('style');
+		setTimeout(function() {
+			$bodyElement.removeAttribute('style');
+		}, 50);
 	}
 }
 
@@ -341,16 +347,16 @@ yepnope([{
 				// Url segments
 				$urlSegments = [];
 				$exSegments = $urlSite.replace($urlBase, '').split('/');
-				for ($i = 0; $i < $exSegments.length; $i++) {
+				for (var $i = 0; $i < $exSegments.length; $i++) {
 					var $val = $exSegments[$i];
-					if (web.exists($exSegments[$val])) {
+					if (web.exists($val) && $val !== '') {
 						$urlSegments.push($val);
 					}
 				}
 
 				// Page check
 				if ($json.project.page) {
-					for ($i = 0; $i < $json.project.page.length; $i++) {
+					for (var $i = 0; $i < $json.project.page.length; $i++) {
 						// Variables
 						$page = $json.project.page[$i];
 
@@ -360,23 +366,22 @@ yepnope([{
 						$pageMatch = true;
 
 						// Add to the segments object
-						for ($i = 0; $i < $exPageSegments.length; $i++) {
+						for (var $i = 0; $i < $exPageSegments.length; $i++) {
 							var $val = $exPageSegments[$i];
-							if (web.exists($val)) {
+							if (web.exists($val) && $val !== '') {
 								$urlPageSegments.push($val);
 							}
 						}
 
 						// Wildcard check
-						if ($page['url'].indexOf('*') == -1) {
-							$urlPageSegments_length = $urlPageSegments.length;
+						if ($page['url'].indexOf('*') === -1) {
+							$urlPageSegmentsLength = $urlPageSegments.length;
 						} else {
-							$urlPageSegments_length = $urlPageSegments.length - 1;
+							$urlPageSegmentsLength = $urlPageSegments.length - 1;
 						}
 
-						// Perform the page match
-						if ($urlSegments.length >= $urlPageSegments_length) {
-							for ($i = 0; $i < $urlSegments.length; $i++) {
+						if ($urlSegments.length >= $urlPageSegmentsLength) {
+							for (var $i = 0; $i < $urlSegments.length; $i++) {
 								var $val = $urlSegments[$i];
 
 								if (($urlPageSegments[$i] === '*')) {
@@ -394,29 +399,28 @@ yepnope([{
 						// Apply the config
 						if ($pageMatch === true) {
 							// Page overwrite
-							$page_overwrite = $page.overwrite || false;
+							$configType = $page['config-type'] || 'merge';
 
-							if ($page_overwrite === true) {
-								// Overwrites
-								$bodyClass = $page['body-class'] || $bodyClass;
-								$component = $page['component'] || $component;
-								$formColour = $page['form-colour'] || $formColour;
-								$iconFont = $page['icon-font'] || $iconFont;
+							if ($configType == 'new') {
+								$bodyClass = $page['body-class'] || false;
+								$component = $page['component'] || [];
+								$formColour = $page['form-colour'] || 'blue';
+								$iconFont = $page['icon-font'] || false;
 								$navivation = $page['navigation'] || false;
-								$projectCSS = $page['css'] || $projectCSS;
-								$projectJS = $page['js'] || $projectJS;
-								$ui = $page['ui'] || $ui;
+								$projectCSS = $page['css'] || [];
+								$projectJS = $page['js'] || [];
+								$ui = $page['ui'] || false;
 							} else {
 								// Basic additions (some have to be overwritten by design)
-								$bodyClass = $bodyClass + ' ' + $page['body-class'];
-								$formColour = $formColour + ' ' + $page['form-colour'];
-								$iconFont = $page['icon-font'] || $iconFont;
-								$navivation = $page['navigation'] || $navigation;
-								$ui = $page['ui'] || $ui;
+								$bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
+								$formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
+								$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
+								$navivation = $page['navigation'] ? $page['navigation'] : $navigation;
+								$ui = $page['ui'] ? $page['ui'] : $ui;
 
 								// Component add
 								if ($page['component']) {
-									for ($i = 0; $i < $page['component'].length; $i++) {
+									for (var $i = 0; $i < $page['component'].length; $i++) {
 										var $addComponent = $page['component'][$i];
 
 										if ($component.indexOf($addComponent) == -1) {
@@ -427,9 +431,9 @@ yepnope([{
 
 								// Project CSS
 								if ($page['css']) {
-									for ($i; $i < $page['css'].length; $i++) {
+									for (var $i = 0; $i < $page['css'].length; $i++) {
 										var $addProjectCSS = $page['css'][$i];
-										if ($projectCSS.indexOf($addProjectCSS) == -1) {
+										if ($projectCSS.indexOf($addProjectCSS) === -1) {
 											$projectCSS.push($addProjectCSS);
 										}
 									};
@@ -437,9 +441,9 @@ yepnope([{
 
 								// Project JS
 								if ($page['js']) {
-									for ($i = 0; $i < $page['js'].length; $i++) {
+									for (var $i = 0; $i < $page['js'].length; $i++) {
 										var $addProjectJS = $page['js'][$i];
-										if ($projectJS.indexOf($addProjectJS) == -1) {
+										if ($projectJS.indexOf($addProjectJS) === -1) {
 											$projectJS.push($addProjectJS);
 										}
 									};
@@ -447,14 +451,14 @@ yepnope([{
 							}
 
 							// Break loop
-							return false;
+							break;
 						}
 					};
 				}
 
 				// Set the body class
-				if ($bodyClass != false) {
-					$bodyElement.setAttribute('class', $bodyClass);
+				if ($bodyClass !== false) {
+					web.classAdd($bodyElement, $bodyClass.trim());
 				}
 
 				// Set the navigation type

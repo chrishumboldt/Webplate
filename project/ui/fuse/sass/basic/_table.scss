@@ -1,0 +1,51 @@
+/**
+ * File: _table.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 2 May 2015
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Basic table
+
+// Basic table
+// ---------------------------------------------------------------------------------------
+table {
+	@include width(100%);
+
+	th, td {
+		@include padding($space-minor);
+		@include width-min(175px);
+		@include text-align(left);
+	}
+	thead {
+		tr {
+			@include border-bottom($pink);
+			@include background-color($white);
+		}
+	}
+	tbody {
+		tr {
+			@include border-bottom($grey-light);
+			@include background-color($white);
+		}
+		td {
+			@include text-colour($grey-dark);
+		}
+	}
+
+	// Respond
+	@include respond-to(small) {
+		tr {
+			@include display(block);
+			@include padding-vertical($space-x-small);
+		}
+		th, td {
+			@include display(block);
+			@include width(100%);
+			@include padding($space-x-small);
+			@include text-size($size-minor);
+		}
+	}
+}

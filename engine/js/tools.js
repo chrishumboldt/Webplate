@@ -2,7 +2,7 @@
  * File: tools.js
  * Type: Javascript tools file
  * Author: Chris Humboldt
- * Last Edited: 23 April 2015
+ * Last Edited: 1 May 2015
  */
 
 
@@ -34,7 +34,7 @@ var $navigationTrigger = document.getElementById('navigation-trigger');
 var web = {
 	// Basic checks
 	exists: function($element) {
-		if ($element == null || typeof($element) == 'undefined') {
+		if ($element === null || typeof($element) === undefined) {
 			return false;
 		} else {
 			return true;
@@ -119,17 +119,36 @@ var web = {
 	getIndex: function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	},
+	snap: function($selector, $breakpoint) {
+		var $elements = document.querySelectorAll($selector);
+		var $breakpoint = $breakpoint || 0;
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
+			var $snapElement = $elements[$i];
+			var $elementPositionTop = $snapElement.getBoundingClientRect().top;
+			web.eventAdd(window, 'scroll', function() {
+				var $doc = document.documentElement;
+				var $scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
+
+				if ($scrollTop >= $elementPositionTop) {
+					if (window.innerWidth >= $breakpoint) {
+						web.classAdd($snapElement, 'pos-fixed');
+						$snapElement.style.top = 0;
+					}
+				} else {
+					web.classRemove($snapElement, 'pos-fixed');
+					$snapElement.style.top = 'auto';
+				}
+			});
+		}
+	},
 	square: function($selector, $multiplier) {
-		// Variables
 		var $elements = document.querySelectorAll($selector);
 		if (typeof($multiplier) === 'undefined') {
 			$multiplier = 1;
 		}
-
-		// Loop through elements
-		for (var $i = 0; $i < $elements.length; $i++) {
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
-		}
+		};
 	},
 	wallpaper: function($selector) {
 		var $elements = document.querySelectorAll($selector);
@@ -196,7 +215,7 @@ var web = {
 	getExtension: function($file) {
 		return $file.split('.').pop().toLowerCase();
 	},
-	RandomString: function($stringLength) {
+	randomString: function($stringLength) {
 		var $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 
 		var $len = $stringLength || 5;

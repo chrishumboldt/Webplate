@@ -1,17 +1,15 @@
 /**
- * Title: 			Card module
- * SASS File: 		_card.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	17 March 2015
+ * File: _card.scss
+ * Type: SASS module file
+ * Author: Chris Humboldt
+ * Last Edited: 2 May 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Card basics
+// Card grey
 // Card grid
-
 
 // Card basics
 // ---------------------------------------------------------------------------------------
@@ -61,11 +59,6 @@
 			@include spacing-no();
 			@include text-colour($grey-medium);
 			@include text-size($size-small);
-
-			// Adapt
-			@include breakpoint($bp-medium) {
-				@include margin-bottom($space-minor);
-			}
 		}
 	}
 }
@@ -80,6 +73,11 @@
 		}
 	}
 }
+.card-grey {
+	@extend .card;
+
+	@include background-colour($grey-x-light);
+}
 // Links
 .no-touch a.card {
 	@include display(block);
@@ -90,7 +88,6 @@
 		@include drop-shadow(fade-out($black, 0.9), 14px);
 	}
 }
-
 
 // Card grid
 // ---------------------------------------------------------------------------------------

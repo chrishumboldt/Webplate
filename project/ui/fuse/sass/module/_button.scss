@@ -1,24 +1,25 @@
 /**
- * Title: 			Buttons
- * SASS File: 		_button.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	4 April 2015
+ * File: _button.scss
+ * Type: SASS module file
+ * Author: Chris Humboldt
+ * Last Edited: 2 May 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Buttons setup
 // Banner buttons
-
+// Basic buttons
 
 // Buttons setup
 // ---------------------------------------------------------------------------------------
-.btn-banner {
+.btn-banner,
+.btn-notice,
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
 	@include button-setup();
 }
-
 
 // Banner buttons
 // ---------------------------------------------------------------------------------------
@@ -44,4 +45,30 @@
 	}
 }
 
+// Basic buttons
+// ---------------------------------------------------------------------------------------
+.btn-primary {
+	@include button-style-flat($pink);
+	@include button-size(normal);
+}
+.btn-notice {
+	@extend .btn-primary;
+	@include button-size(large);
+}
+.btn-primary-small {
+	@extend .btn-primary;
+	@include button-size(small);
+}
+.btn-secondary {
+	@include button-style-flat($blue);
+	@include button-size(normal);
+}
+.btn-secondary-small {
+	@extend .btn-secondary;
+	@include button-size(small);
+}
+.btn-tertiary {
+	@include button-style-flat($aqua);
+	@include button-size(small);
+}
 

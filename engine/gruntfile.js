@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					style: 'compressed',
-					sourcemap: 'none'
+					sourcemap: 'auto'
 				},
 				files: [{
 					// Core file

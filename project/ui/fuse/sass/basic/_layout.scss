@@ -2,7 +2,7 @@
  * File: _layout.scss
  * Type: SASS basic file
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
+ * Last Edited: 2 May 2015
  */
 
 // Table of contents
@@ -71,6 +71,11 @@
 		}
 	}
 }
+.col-triple-fixed {
+	> .left, > .middle, > .right {
+		@include new-span(4);
+	}
+}
 // Left bar
 .col-left-bar {
 	@extend .col-double;
@@ -78,10 +83,10 @@
 	// Respond medium
 	@include respond-to(large) {
 		> .left {
-			@include new-span(4);
+			@include new-span(3);
 		}
 		> .right {
-			@include new-span(8);
+			@include new-span(9);
 		}
 	}
 }
@@ -116,6 +121,17 @@
 	}
 	@include breakpoint($bp-x-large) {
 		@include padding-vertical($space-x-large);
+	}
+}
+.content-small {
+	@include padding($space-minor);
+
+	// Adapt
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-medium);
 	}
 }
 .content-tight {

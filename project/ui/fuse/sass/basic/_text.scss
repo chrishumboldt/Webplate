@@ -1,17 +1,14 @@
 /**
- * Title: 			Text
- * SASS File: 		_text.scss
- * Type: 			atom
- * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * File: _text.scss
+ * Type: SASS basic gile
+ * Author: Chris Humboldt
+ * Last Edited: 2 May 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Global
 // Headings
-
 
 // Global
 // ---------------------------------------------------------------------------------------
@@ -23,19 +20,18 @@ label {
 	@include text-font($roboto);
 }
 
-
 // Headings
 // ---------------------------------------------------------------------------------------
-h1 { @include text-size(34px); font-weight: 500; margin-bottom: 1.25rem; }
-h2 { @include text-size(30px); margin-bottom: 1.5rem; }
-h3 { @include text-size(26px); margin-bottom: 1.75rem; }
-h4 { @include text-size(22px); }
-h5 { @include text-size(18px); }
-h6 { @include text-size(16px); }
+h1 { @include text-size(34px); @include text-weight($weight-thin); @include margin-bottom(1.85rem); }
+h2 { @include text-size(30px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
+h3 { @include text-size(26px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
+h4 { @include text-size(22px); @include text-weight($weight-light); }
+h5 { @include text-size(18px); @include text-weight($weight-base); }
+h6 { @include text-size(16px); @include text-weight($weight-bold); }
 h1, h2, h3 { @include text-line-height(38px); }
 h4, h5, h6 { @include text-line-height(24px); }
-h2, h3, h4, h5, h6 { @include font-weight(300); }
 p {
+	@include text-colour($grey-dark);
 	@include text-size(15px);
 	@include text-weight(300);
 
@@ -49,6 +45,17 @@ p {
 		@include text-colour($grey-medium);
 		@include text-size(14px);
 		@include text-style(italic);
+	}
+}
+h1, h2, h3, h4, h5, h6 {
+	&.line {
+		@include padding-bottom($space-small);
+		@include border-bottom($grey-light);
+	}
+	span {
+		@include padding-right($space-x-small);
+		@include text-colour($pink);
+		font-size: 0.7em;
 	}
 }
 

@@ -1,0 +1,22 @@
+/**
+ * File: _list.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ * Last Edited: 2 May 2015
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Text list
+
+// Text list
+// ---------------------------------------------------------------------------------------
+ul.text, ol.text {
+	@include margin-left($space-slight);
+	@include text-colour($grey-dark);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include margin-left($space-medium + $space-small);
+	}
+}

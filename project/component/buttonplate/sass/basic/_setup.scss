@@ -32,7 +32,7 @@
 	@include text-colour(lighten(#000, 40%));
 	@include text-decoration(none);
 	@include vertical-align(middle);
-	@include border(none);
+	@include border-no();
 	@include background-colour($grey-link);
 	outline: none;
 	-webkit-appearance: none;
