@@ -119,6 +119,21 @@ var web = {
 	getIndex: function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	},
+	remove: function($selector) {
+		if ($selector.charAt(0) === '#') {
+			var $element = document.getElementById($selector.substring(1));
+			if ($element !== null) {
+				$element.parentNode.removeChild($element);
+			}
+		} else if ($selector.charAt(0) === '.') {
+			var $elements = document.querySelectorAll($selector);
+			for (var $i = $elements.length - 1; $i >= 0; $i--) {
+				if ($elements[$i] !== null) {
+					$elements[$i].parentNode.removeChild($element);
+				}
+			}
+		}
+	},
 	snap: function($selector, $breakpoint) {
 		var $elements = document.querySelectorAll($selector);
 		var $breakpoint = $breakpoint || 0;
@@ -267,8 +282,8 @@ var web = {
 			duration: 200,
 			easing: 'ease-out',
 			complete: function() {
-				this.classRemove($htmlElement, 'web-nav-shown');
-				this.classAdd($htmlElement, 'web-nav-hidden');
+				web.classRemove($htmlElement, 'web-nav-shown');
+				web.classAdd($htmlElement, 'web-nav-hidden');
 			}
 		});
 
@@ -276,7 +291,7 @@ var web = {
 		$navEndPosition = 0;
 
 		// Hide overlay
-		this.overlayHide();
+		web.overlayHide();
 	},
 	navShow: function() {
 		// Variables
@@ -289,8 +304,8 @@ var web = {
 			duration: 200,
 			easing: 'ease-out',
 			complete: function() {
-				this.classAdd($htmlElement, 'web-nav-shown');
-				this.classRemove($htmlElement, 'web-nav-hidden');
+				web.classAdd($htmlElement, 'web-nav-shown');
+				web.classRemove($htmlElement, 'web-nav-hidden');
 			}
 		});
 
@@ -298,11 +313,11 @@ var web = {
 		$navEndPosition = 260;
 
 		// Show overlay
-		this.overlayShow();
+		web.overlayShow();
 	},
 	navigation: function() {
 		// Check
-		if (this.exists($navigation)) {
+		if (web.exists($navigation)) {
 			// Variables
 			var $navigationClone = $navigation.cloneNode(true);
 
@@ -315,10 +330,10 @@ var web = {
 				$ev.preventDefault();
 
 				// Check state
-				if (this.hasClass($htmlElement, 'web-nav-shown')) {
-					this.navHide();
+				if (web.hasClass($htmlElement, 'web-nav-shown')) {
+					web.navHide();
 				} else {
-					this.navShow();
+					web.navShow();
 				}
 			};
 
@@ -328,12 +343,12 @@ var web = {
 			var $webNavigationLinks = $webNavigation.getElementsByTagName('a');
 
 			$webOverlay.onclick = function() {
-				this.navHide();
+				web.navHide();
 			};
 
 			for ($i = 0; $i < $webNavigationLinks.length; $i++) {
 				$webNavigationLinks[$i].onclick = function($ev) {
-					this.navHide();
+					web.navHide();
 				};
 			};
 		}

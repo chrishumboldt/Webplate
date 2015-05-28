@@ -21,7 +21,8 @@
 		"Buttonplate",
 		"Modalplate",
 		"Formplate",
-		"Flickerplate"
+		"Flickerplate",
+		"Messageplate"
 	],
 	"license": "Apache License, Version 2.0",
 	"ignore": [

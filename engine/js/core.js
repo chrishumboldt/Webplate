@@ -2,14 +2,14 @@
  * File: core.js
  * Type: Javascript core file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
+ * Last Edited: 16 May 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Yepnope
 // Variables
-// Functions
+// Function
 
 // Yepnope
 // ---------------------------------------------------------------------------------------
@@ -201,6 +201,7 @@ var $jsProjectPath = $root + 'project/js/';
 var $cssProjectPath = $root + 'project/css/';
 var $uiProjectPath = $root + 'project/ui/';
 var $arEngineFiles = [$jsPath + 'min/script.min.js', $cssPath + 'style.css'];
+var $arComponentFirstFiles = [];
 var $arComponentFiles = [];
 var $arExtraCSS = [];
 var $arExtraJS = [];
@@ -313,6 +314,7 @@ yepnope([{
 				// Root config
 				$state = $json.project['state'] || 'production';
 				$bodyClass = $json.project['body-class'] || false;
+				$componentFirst = $json.project['component-first'] || [];
 				$component = $json.project['component'] || [];
 				$formColour = $json.project['form-colour'] || 'blue';
 				$iconFont = $json.project['icon-font'] || false;
@@ -403,6 +405,7 @@ yepnope([{
 
 							if ($configType == 'new') {
 								$bodyClass = $page['body-class'] || false;
+								$componentFirst = $page['component-first'] || [];
 								$component = $page['component'] || [];
 								$formColour = $page['form-colour'] || 'blue';
 								$iconFont = $page['icon-font'] || false;
@@ -419,6 +422,15 @@ yepnope([{
 								$ui = $page['ui'] ? $page['ui'] : $ui;
 
 								// Component add
+								if ($page['component-first']) {
+									for (var $i = 0; $i < $page['component-first'].length; $i++) {
+										var $addComponentFirst = $page['component-first'][$i];
+
+										if ($componentFirst.indexOf($addComponentFirst) == -1) {
+											$componentFirst.push($addComponentFirst);
+										}
+									};
+								}
 								if ($page['component']) {
 									for (var $i = 0; $i < $page['component'].length; $i++) {
 										var $addComponent = $page['component'][$i];
@@ -492,9 +504,72 @@ yepnope([{
 				}
 
 				// Load the components & project files
-				$componentLength = $component.length;
-				if ($componentLength > 0) {
-					for ($i = 0; $i < $componentLength; $i++) {
+				if ($componentFirst.length > 0) {
+					for ($r = 0; $r < $componentFirst.length; $r++) {
+						// Get Webplate config
+						(function($r2) {
+							var $val = $componentFirst[$r2++];
+
+							$componentJSON = loadJSON($componentPath + $val + '/.bower.json', function() {
+								if (this.readyState == 4 && this.status == 200) {
+									var $json = JSON.parse(this.responseText);
+
+									if (typeof $json.main == 'object') {
+										for ($r = 0; $r < $json.main.length; $r++) {
+											$arComponentFirstFiles.push($componentPath + $val + '/' + $json.main[$r]);
+										}
+									} else {
+										$arComponentFirstFiles.push($componentPath + $val + '/' + $json.main);
+									}
+
+									// Load the project file
+									if ($r2 == $componentFirst.length) {
+										yepnope({
+											load: $arComponentFirstFiles,
+											complete: function() {
+												if ($component.length > 0) {
+													for ($i = 0; $i < $component.length; $i++) {
+														// Get Webplate config
+														(function($i2) {
+															var $val = $component[$i2++];
+
+															$componentJSON = loadJSON($componentPath + $val + '/.bower.json', function() {
+																if (this.readyState == 4 && this.status == 200) {
+																	var $json = JSON.parse(this.responseText);
+
+																	if (typeof $json.main == 'object') {
+																		for ($i = 0; $i < $json.main.length; $i++) {
+																			$arComponentFiles.push($componentPath + $val + '/' + $json.main[$i]);
+																		}
+																	} else {
+																		$arComponentFiles.push($componentPath + $val + '/' + $json.main);
+																	}
+
+																	// Load the project file
+																	if ($i2 == $component.length) {
+																		yepnope({
+																			load: $arComponentFiles,
+																			complete: function() {
+																				loadProjectFiles($projectCSS, $projectJS);
+																			}
+																		});
+																	}
+																}
+															});
+														}($i));
+													};
+												} else {
+													loadProjectFiles($projectCSS, $projectJS);
+												}
+											}
+										});
+									}
+								}
+							});
+						}($r));
+					};
+				} else if ($component.length > 0) {
+					for ($i = 0; $i < $component.length; $i++) {
 						// Get Webplate config
 						(function($i2) {
 							var $val = $component[$i2++];
@@ -512,7 +587,7 @@ yepnope([{
 									}
 
 									// Load the project file
-									if ($i2 == $componentLength) {
+									if ($i2 == $component.length) {
 										yepnope({
 											load: $arComponentFiles,
 											complete: function() {

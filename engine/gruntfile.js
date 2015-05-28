@@ -7,6 +7,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shared-config');
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('build', ['shared_config', 'sass', 'uglify']);
+	grunt.registerTask('build-sass', ['shared_config', 'sass']);
+	grunt.registerTask('build-js', ['shared_config', 'uglify']);
 
 	// Clean out the contents of the config file
 	grunt.file.write('sass/config.scss', '');

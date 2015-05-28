@@ -37,4 +37,10 @@
 		}
 	}
 }
+#navigation {
+	@include hide();
 
+	@include breakpoint(large) {
+		@include show();
+	}
+}

@@ -1,0 +1,47 @@
+{
+  "name": "messageplate",
+  "version": "1.0.0",
+  "homepage": "https://github.com/chrishumboldt/Messageplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A basic message component.",
+  "main": [
+    "js/min/messageplate.min.js",
+    "css/messageplate.css"
+  ],
+  "keywords": [
+    "Message",
+    "Popup",
+    "Webplate",
+    "Javascript",
+    "CSS",
+    "Responsive"
+  ],
+  "license": "Apache License, Version 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gruntfile.js",
+    "package.json",
+    "index.html",
+    "bower.json",
+    "css/demo.css",
+    "sass/demo.scss",
+    "bower_components",
+    "sass"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "0e933649eb0aef9f26783192a83f7d4b08aba781"
+  },
+  "_source": "git://github.com/chrishumboldt/Messageplate.git",
+  "_target": "~1.0.0",
+  "_originalSource": "messageplate",
+  "_direct": true
+}
