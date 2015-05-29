@@ -230,6 +230,9 @@ var web = {
 	getExtension: function($file) {
 		return $file.split('.').pop().toLowerCase();
 	},
+	getIntegers: function($string) {
+		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
+	},
 	randomString: function($stringLength) {
 		var $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 
