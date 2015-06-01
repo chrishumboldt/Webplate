@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				src: $styles,
-				dest: 'sass/build-import.scss',
+				dest: 'sass/build-import.scss'
 			}
 		},
 		sass: {
@@ -144,7 +144,7 @@ module.exports = function(grunt) {
 					'../project/sass/**/*.scss',
 					'../project/ui/**/*.scss'
 				],
-				tasks: ['concat', 'sass']
+				tasks: ['shared_config', 'concat', 'sass']
 			},
 			// End of CSS
 			// Scripts
