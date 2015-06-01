@@ -15,10 +15,10 @@ module.exports = function(grunt) {
 	var $webConfig = grunt.file.readJSON('../project/config.json');
 	var $styles = ['sass/core.scss'];
 	var $scripts = ['js/modernizr.js', 'js/velocity.js', 'js/tools.js'];
-	var $sourceMap = $webConfig.project.build.sourcemap || 'none';
+	var $sourceMap = $webConfig.project.build != undefined && $webConfig.project.build.sourcemap != undefined ? $webConfig.project.build.sourcemap : 'none';
 
 	// Add to styles
-	if ($webConfig.project.build.css) {
+	if ($webConfig.project.build != undefined && $webConfig.project.build.css != undefined) {
 		var $webConfigCSS = $webConfig.project.build.css;
 		for (var $i = 0; $i < $webConfigCSS.length; $i++) {
 			$styles.push('../project/' + $webConfigCSS[$i]);
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 	}
 
 	// Add to scripts
-	if ($webConfig.project.build.js) {
+	if ($webConfig.project.build != undefined && $webConfig.project.build.js != undefined) {
 		var $webConfigJS = $webConfig.project.build.js;
 		for (var $i = 0; $i < $webConfigJS.length; $i++) {
 			$scripts.push('../project/' + $webConfigJS[$i]);
