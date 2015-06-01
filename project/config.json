@@ -1,6 +1,9 @@
 {
 	"project": {
-		"component": ["buttonplate", "modalplate"],
+		"build": {
+			"js": ["component/modalplate/js/modalplate.js", "component/formplate/js/formplate.js"],
+			"css": ["component/modalplate/css/modalplate.css", "component/modalplate/css/modalplate.css"]
+		},
 		"css": ["welcome.css"],
 		"js": ["welcome.js"],
 		"body-class": "page-welcome",

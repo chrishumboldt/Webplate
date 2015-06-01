@@ -5,10 +5,33 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-shared-config');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['shared_config', 'sass', 'uglify']);
-	grunt.registerTask('build-sass', ['shared_config', 'sass']);
+	grunt.registerTask('build', ['shared_config', 'concat', 'sass', 'uglify']);
+	grunt.registerTask('build-sass', ['shared_config', 'concat', 'sass']);
 	grunt.registerTask('build-js', ['shared_config', 'uglify']);
+
+	// Variables
+	var $webConfig = grunt.file.readJSON('../project/config.json');
+	var $styles = ['sass/core.scss'];
+	var $scripts = ['js/modernizr.js', 'js/velocity.js', 'js/tools.js'];
+	var $sourceMap = $webConfig.project.build.sourcemap || 'none';
+
+	// Add to styles
+	if ($webConfig.project.build.css) {
+		var $webConfigCSS = $webConfig.project.build.css;
+		for (var $i = 0; $i < $webConfigCSS.length; $i++) {
+			$styles.push('../project/' + $webConfigCSS[$i]);
+		}
+	}
+
+	// Add to scripts
+	if ($webConfig.project.build.js) {
+		var $webConfigJS = $webConfig.project.build.js;
+		for (var $i = 0; $i < $webConfigJS.length; $i++) {
+			$scripts.push('../project/' + $webConfigJS[$i]);
+		}
+	}
 
 	// Clean out the contents of the config file
 	grunt.file.write('sass/config.scss', '');
@@ -32,15 +55,21 @@ module.exports = function(grunt) {
 			}
 		},
 		// SASS
+		concat: {
+			dist: {
+				src: $styles,
+				dest: 'sass/build-import.scss',
+			}
+		},
 		sass: {
 			dist: {
 				options: {
 					style: 'compressed',
-					sourcemap: 'auto'
+					sourcemap: $sourceMap
 				},
 				files: [{
 					// Core file
-					'css/style.css': 'sass/core.scss'
+					'css/styles.css': 'sass/build-import.scss'
 				}, {
 					// Project files
 					expand: true,
@@ -72,17 +101,13 @@ module.exports = function(grunt) {
 			// Imports
 			imports: {
 				files: {
-					'js/min/script.min.js': [
-						'js/modernizr.js',
-						'js/velocity.js',
-						'js/tools.js'
-					]
+					'js/min/scripts.min.js': $scripts
 				}
 			},
 			// Touch
 			touch: {
 				files: {
-					'js/min/touch.min.js': [
+					'../project/js/min/touch.min.js': [
 						'js/fastclick.js'
 					],
 				}
@@ -119,7 +144,7 @@ module.exports = function(grunt) {
 					'../project/sass/**/*.scss',
 					'../project/ui/**/*.scss'
 				],
-				tasks: ['sass']
+				tasks: ['concat', 'sass']
 			},
 			// End of CSS
 			// Scripts
@@ -129,10 +154,7 @@ module.exports = function(grunt) {
 			},
 			imports: {
 				files: [
-					'js/jquery.js',
 					'js/modernizr.js',
-					'js/hammer.js',
-					'js/hammer-jquery.js',
 					'js/velocity.js',
 					'js/tools.js'
 				],
@@ -156,7 +178,7 @@ module.exports = function(grunt) {
 			// Config
 			config: {
 				files: ['../project/config.json'],
-				tasks: ['shared_config', 'sass', 'uglify']
+				tasks: ['shared_config', 'concat', 'sass', 'uglify']
 			},
 			// End of config
 			// Live reload
