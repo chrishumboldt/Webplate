@@ -1,3 +1,14 @@
+/**
+ * File: gruntfile.js
+ * Type: Grunt build file
+ * Author: Chris Humboldt
+ * Last Edited: 2 June 2015
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// 
+
 module.exports = function(grunt) {
 
 	// Load NPM tasks
@@ -17,19 +28,29 @@ module.exports = function(grunt) {
 	var $scripts = ['js/modernizr.js', 'js/velocity.js', 'js/tools.js'];
 	var $sourceMap = $webConfig.project.build != undefined && $webConfig.project.build.sourcemap != undefined ? $webConfig.project.build.sourcemap : 'none';
 
-	// Add to styles
-	if ($webConfig.project.build != undefined && $webConfig.project.build.css != undefined) {
-		var $webConfigCSS = $webConfig.project.build.css;
-		for (var $i = 0; $i < $webConfigCSS.length; $i++) {
-			$styles.push('../project/' + $webConfigCSS[$i]);
-		}
-	}
-
-	// Add to scripts
-	if ($webConfig.project.build != undefined && $webConfig.project.build.js != undefined) {
-		var $webConfigJS = $webConfig.project.build.js;
-		for (var $i = 0; $i < $webConfigJS.length; $i++) {
-			$scripts.push('../project/' + $webConfigJS[$i]);
+	// Add to scripts & styles
+	if ($webConfig.project['build']['component'] != undefined) {
+		var $webComponentBuild = $webConfig.project['build']['component'];
+		for (var $i = 0; $i < $webComponentBuild.length; $i++) {
+			var $componentName = $webComponentBuild[$i];
+			var $bowerJSON = grunt.file.readJSON('../project/component/' + $componentName + '/.bower.json');
+			if (typeof $bowerJSON.main == 'object') {
+				for (var $i2 = 0; $i2 < $bowerJSON.main.length; $i2++) {
+					var $thisPath = '../project/component/' + $componentName + '/' + $bowerJSON.main[$i2];
+					if ($bowerJSON.main[$i2].indexOf('.js') > -1) {
+						$scripts.push($thisPath);
+					} else if ($bowerJSON.main[$i2].indexOf('.css') > -1) {
+						$styles.push($thisPath);
+					}
+				}
+			} else {
+				var $thisPath = '../project/component/' + $componentName + '/' + $bowerJSON.main;
+				if ($bowerJSON.main.indexOf('.js') > -1) {
+					$scripts.push($thisPath);
+				} else if ($bowerJSON.main.indexOf('.css') > -1) {
+					$styles.push($thisPath);
+				}
+			}
 		}
 	}
 
@@ -68,9 +89,6 @@ module.exports = function(grunt) {
 					sourcemap: $sourceMap
 				},
 				files: [{
-					// Core file
-					'css/styles.css': 'sass/build-import.scss'
-				}, {
 					// Project files
 					expand: true,
 					cwd: '../project/sass',
@@ -84,6 +102,9 @@ module.exports = function(grunt) {
 					src: ['**/style.scss'],
 					dest: '../project/ui',
 					ext: '.css'
+				}, {
+					// Core file
+					'css/styles.css': 'sass/build-import.scss'
 				}]
 			}
 		},

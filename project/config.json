@@ -1,8 +1,7 @@
 {
 	"project": {
 		"build": {
-			"js": ["component/modalplate/js/modalplate.js", "component/formplate/js/formplate.js"],
-			"css": ["component/modalplate/css/modalplate.css", "component/modalplate/css/modalplate.css"]
+			"component": ["formplate", "modalplate"]
 		},
 		"css": ["welcome.css"],
 		"js": ["welcome.js"],
