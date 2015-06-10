@@ -319,17 +319,20 @@ var web = {
 		web.overlayShow();
 	},
 	navigation: function() {
+		var $navigationEl = document.getElementById('navigation');
+		var $navigationTriggerEl = document.getElementById('navigation-trigger');
+
 		// Check
-		if (web.exists($navigation)) {
+		if (web.exists($navigationEl)) {
 			// Variables
-			var $navigationClone = $navigation.cloneNode(true);
+			var $navigationClone = $navigationEl.cloneNode(true);
 
 			// Duplicate navigation & change class name
 			$navigationClone.setAttribute('id', 'web-navigation');
 			$bodyElement.appendChild($navigationClone);
 
 			// On click
-			$navigationTrigger.onclick = function($ev) {
+			$navigationTriggerEl.onclick = function($ev) {
 				$ev.preventDefault();
 
 				// Check state
