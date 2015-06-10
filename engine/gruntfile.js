@@ -128,7 +128,7 @@ module.exports = function(grunt) {
 			// Touch
 			touch: {
 				files: {
-					'../project/js/min/touch.min.js': [
+					'js/min/touch.min.js': [
 						'js/fastclick.js'
 					],
 				}
