@@ -33,6 +33,7 @@
 		"tests",
 		"bower.json",
 		"index.html",
-		"README.json"
+		"README.md",
+		"test.html"
 	]
 }
