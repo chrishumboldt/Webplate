@@ -39,19 +39,19 @@ footer a {
 		@include background-colour($blue);
 		@include transparency(0);
 		@include animate(all);
-		@include transform-translate-y(-$space-x-small);
+		@include transform-translate-y(-$space-x-small - 2px);
 
 		// States
 		.no-touch &:hover,
 		.no-touch &:focus {
 			@include transparency(1);
-			@include transform-translate-y(0px);
+			@include transform-translate-y(-2px);
 		}
 	}
 	.no-touch &:hover::after,
 	.no-touch &:focus::after {
 		@include transparency(1);
-		@include transform-translate-y(0px);
+		@include transform-translate-y(-2px);
 	}
 }
 

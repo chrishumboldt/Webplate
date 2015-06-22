@@ -206,8 +206,6 @@ var $arComponentFiles = [];
 var $arExtraCSS = [];
 var $arExtraJS = [];
 
-
-
 // Functions
 // ---------------------------------------------------------------------------------------
 // Load JSON
@@ -290,9 +288,6 @@ yepnope([{
 			});
 		}
 
-		// Add Webplate class
-		web.idAdd($htmlElement, 'web-html');
-
 		// Add webplate overlay
 		var $webplateOverlay = document.createElement('div');
 		web.idAdd($webplateOverlay, 'web-overlay');
@@ -309,10 +304,9 @@ yepnope([{
 				var $json = JSON.parse(this.responseText);
 
 				// Variables
-				$urlData = web.getUrl();
+				var $urlData = web.getUrl();
 
 				// Root config
-				$state = $json.project['state'] || 'production';
 				$bodyClass = $json.project['body-class'] || false;
 				$componentFirst = $json.project['component-first'] || [];
 				$component = $json.project['component'] || [];
@@ -323,82 +317,23 @@ yepnope([{
 				$projectJS = $json.project['js'] || [];
 				$ui = $json.project['ui'] || false;
 
-				// Url base
-				$urlSite = $urlData['sitePath'];
-				$urlCheck = false;
-				$urlPageCheck = false;
-
-				if (($root == '') || ($root.substr(0, 3) == '../')) {
-					$exRoot = $root.split('/');
-					$exUrl = $urlSite.split('/');
-					$urlBase = '';
-
-					// Pop based on the root
-					for ($i = 0; $i < $exRoot.length; $i++) {
-						$exUrl.pop();
-					};
-
-					// Build new URL
-					for ($i = 0; $i < $exUrl.length; $i++) {
-						$urlBase += $exUrl[$i] + '/';
-					};
-				} else {
-					$urlBase = $root;
-				}
-
-				// Url segments
-				$urlSegments = [];
-				$exSegments = $urlSite.replace($urlBase, '').split('/');
-				for (var $i = 0; $i < $exSegments.length; $i++) {
-					var $val = $exSegments[$i];
-					if (web.exists($val) && $val !== '') {
-						$urlSegments.push($val);
-					}
-				}
-
 				// Page check
 				if ($json.project.page) {
-					for (var $i = 0; $i < $json.project.page.length; $i++) {
-						// Variables
-						$page = $json.project.page[$i];
+					for (var $i = $json.project.page.length - 1; $i >= 0; $i--) {
+						var $page = $json.project.page[$i];
+						var $pageMatch = false;
 
-						// Url page
-						$urlPageSegments = [];
-						$exPageSegments = $page['url'].split('/');
-						$pageMatch = true;
-
-						// Add to the segments object
-						for (var $i = 0; $i < $exPageSegments.length; $i++) {
-							var $val = $exPageSegments[$i];
-							if (web.exists($val) && $val !== '') {
-								$urlPageSegments.push($val);
+						// Wildcard check
+						if ($page['url'].indexOf('*') > -1) {
+							if ($urlData.postScriptPath.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
+								$pageMatch = true;
+							}
+						} else {
+							if ($urlData.sitePath === $urlData.scriptPath + $page['url']) {
+								$pageMatch = true;
 							}
 						}
 
-						// Wildcard check
-						if ($page['url'].indexOf('*') === -1) {
-							$urlPageSegmentsLength = $urlPageSegments.length;
-						} else {
-							$urlPageSegmentsLength = $urlPageSegments.length - 1;
-						}
-
-						if ($urlSegments.length >= $urlPageSegmentsLength) {
-							for (var $i = 0; $i < $urlSegments.length; $i++) {
-								var $val = $urlSegments[$i];
-
-								if (($urlPageSegments[$i] === '*')) {
-									return false;
-								} else {
-									if ($val != $urlPageSegments[$i]) {
-										$pageMatch = false;
-									}
-								}
-							};
-						} else {
-							$pageMatch = false;
-						}
-
-						// Apply the config
 						if ($pageMatch === true) {
 							// Page overwrite
 							$configType = $page['config-type'] || 'merge';
@@ -461,8 +396,6 @@ yepnope([{
 									};
 								}
 							}
-
-							// Break loop
 							break;
 						}
 					};

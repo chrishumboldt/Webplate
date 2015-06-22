@@ -32,6 +32,7 @@
 		"test",
 		"tests",
 		"bower.json",
-		"index.html"
+		"index.html",
+		"README.json"
 	]
 }

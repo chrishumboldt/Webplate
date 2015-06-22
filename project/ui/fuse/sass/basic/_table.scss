@@ -16,7 +16,6 @@ table {
 
 	th, td {
 		@include padding($space-minor);
-		@include width-min(175px);
 		@include text-align(left);
 	}
 	thead {

@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 	var $sourceMap = $webConfig.project.build != undefined && $webConfig.project.build.sourcemap != undefined ? $webConfig.project.build.sourcemap : 'none';
 
 	// Add to scripts & styles
-	if ($webConfig.project['build']['component'] != undefined) {
+	if ($webConfig.project['build'] != undefined && $webConfig.project['build']['component'] != undefined) {
 		var $webComponentBuild = $webConfig.project['build']['component'];
 		for (var $i = 0; $i < $webComponentBuild.length; $i++) {
 			var $componentName = $webComponentBuild[$i];

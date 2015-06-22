@@ -28,6 +28,16 @@ var $navigationWidth;
 var $navTrackPosition;
 var $navigation = document.getElementById('navigation');
 var $navigationTrigger = document.getElementById('navigation-trigger');
+var $webAltStates = {
+	active: 'inactive',
+	closed: 'open',
+	hidden: 'visible',
+	inactive: 'active',
+	open: 'closed',
+	visible: 'hidden'
+};
+var $webStates = ['active', 'closed', 'hidden', 'inactive', 'open', 'selected', 'toggled', 'visible'];
+var $webStatePrefix = 'web-state-';
 
 // Create web function object
 // ---------------------------------------------------------------------------------------
@@ -81,6 +91,12 @@ var web = {
 		return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
 	},
 	// Development
+	log: function($text) {
+		if (window.console) {
+			console.log($text);
+		}
+	},
+	// DOM
 	eventAdd: function($elem, $type, $eventHandle) {
 		if ($elem == null || typeof($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
@@ -94,6 +110,16 @@ var web = {
 	classAdd: function($selector, $class) {
 		var $crtClass = $selector.className;
 
+		if (typeof $class === 'object') {
+			$class.sort().reverse();
+			for (var $i = $class.length - 1; $i >= 0; $i--) {
+				web.classAddExecute($selector, $class[$i], $crtClass);
+			}
+		} else {
+			web.classAddExecute($selector, $class, $crtClass);
+		}
+	},
+	classAddExecute: function($selector, $class, $crtClass) {
 		if ($selector.className.indexOf($class) === -1) {
 			$selector.className = $selector.className === '' ? $class : $selector.className + ' ' + $class;
 		}
@@ -101,6 +127,15 @@ var web = {
 	classRemove: function($selector, $class) {
 		var $crtClass = $selector.className;
 
+		if (typeof $class === 'object') {
+			for (var $i = $class.length - 1; $i >= 0; $i--) {
+				web.classRemoveExecute($selector, $class[$i], $crtClass);
+			}
+		} else {
+			web.classRemoveExecute($selector, $class, $crtClass);
+		}
+	},
+	classRemoveExecute: function($selector, $class, $crtClass) {
 		if ($crtClass.indexOf($class) > -1) {
 			$selector.className = $selector.className.split(' ').filter(function($val) {
 				return $val != $class;
@@ -116,12 +151,6 @@ var web = {
 	idRemove: function($selector) {
 		$selector.removeAttribute('id');
 	},
-	log: function($text) {
-		if (window.console) {
-			console.log($text);
-		}
-	},
-	// DOM
 	getIndex: function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	},
@@ -141,14 +170,15 @@ var web = {
 		}
 	},
 	snap: function($selector, $breakpoint) {
-		var $elements = document.querySelectorAll($selector);
 		var $breakpoint = $breakpoint || 0;
+		var $doc = document.documentElement;
+		var $elements = document.querySelectorAll($selector);
+		var $scrollTop = 0;
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			var $snapElement = $elements[$i];
 			var $elementPositionTop = $snapElement.getBoundingClientRect().top;
 			web.eventAdd(window, 'scroll', function() {
-				var $doc = document.documentElement;
-				var $scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
+				$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
 
 				if ($scrollTop >= $elementPositionTop) {
 					if (window.innerWidth >= $breakpoint) {
@@ -160,6 +190,19 @@ var web = {
 					$snapElement.style.top = 'auto';
 				}
 			});
+			if ($breakpoint > 0) {
+				web.eventAdd(window, 'resize', function() {
+					if (window.innerWidth < $breakpoint) {
+						web.classRemove($snapElement, 'pos-fixed');
+						$snapElement.style.top = 'auto';
+					} else {
+						if ($scrollTop >= $elementPositionTop) {
+							web.classAdd($snapElement, 'pos-fixed');
+							$snapElement.style.top = 0;
+						}
+					}
+				});
+			}
 		}
 	},
 	square: function($selector, $multiplier) {
@@ -170,6 +213,38 @@ var web = {
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
 		};
+	},
+	stateClear: function($element) {
+		var $newWebStates = $webStates.slice().map(function($newState) {
+			return 'web-state-' + $newState;
+		});
+		web.classRemove($element, $newWebStates);
+	},
+	stateSet: function($element, $state) {
+		var $newWebStates = $webStates.slice().map(function($newState) {
+			return $webStatePrefix + $newState;
+		});
+		var $stateClass = $newWebStates.splice($newWebStates.indexOf($webStatePrefix + $state), 1);
+
+		web.classRemove($element, $newWebStates);
+		web.classAdd($element, $stateClass);
+	},
+	stateToggle: function($element, $state, $clear) {
+		if ($webStates.indexOf($state) > 1) {
+			var $altState = $webAltStates[$state] || false;
+			var $clear = $clear || false;
+			var $stateClass = $webStatePrefix + $state;
+
+			if (web.hasClass($element, $stateClass)) {
+				if ($clear || $altState === false) {
+					web.stateClear($element);
+				} else {
+					web.stateSet($element, $altState);
+				}
+			} else {
+				web.stateSet($element, $state);
+			}
+		}
 	},
 	wallpaper: function($selector) {
 		var $elements = document.querySelectorAll($selector);
@@ -192,7 +267,7 @@ var web = {
 		$element.parentNode.removeChild($element);
 	},
 	wrapInner: function($element, $tag, $className) {
-		if (typeof $tag === "string") {
+		if (typeof $tag === 'string') {
 			$tag = document.createElement($tag);
 		}
 		if ($className !== undefined) {
@@ -260,6 +335,8 @@ var web = {
 	},
 	// URL
 	getUrl: function() {
+		var $crtScriptSrc = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
+		var $crtScriptSrcCount = $crtScriptSrc.split('/').length;
 		var $windowLocation = window.location;
 		var $fullPath = $windowLocation.href;
 		var $arPath = $windowLocation.href.split('/');
@@ -268,19 +345,25 @@ var web = {
 		var $host = $arPath[2];
 		var $baseUrl = $protocol + '//' + $host;
 		var $hashUrl = $windowLocation.hash.substring(1);
+		var $scriptPath = '';
 		var $sitePath = $hashSplit[0];
-		var $arReturn = [];
-
-		// Set the return array
-		$arReturn['hash'] = $hashUrl;
-		$arReturn['host'] = $host;
-		$arReturn['baseUrl'] = $baseUrl;
-		$arReturn['sitePath'] = $sitePath;
-		$arReturn['fullPath'] = $fullPath;
-		$arReturn['segments'] = $fullPath.replace($sitePath, '').split('/');
-
-		// Return
-		return $arReturn;
+		for (var $i = 0; $i < ($arPath.length - $crtScriptSrcCount); $i++) {
+			if ($arPath[$i] != undefined) {
+				$scriptPath += $arPath[$i] + '/';
+			}
+		}
+		var $objReturn = {
+			baseUrl: $baseUrl,
+			fullPath: $fullPath,
+			hash: $hashUrl,
+			host: $host,
+			postScriptPath: $fullPath.replace($scriptPath, ''),
+			postScriptSegments: $fullPath.replace($scriptPath, '').split('/'),
+			scriptPath: $scriptPath,
+			sitePath: $sitePath,
+			segments: $fullPath.replace($sitePath, '').split('/')
+		};
+		return $objReturn;
 	},
 	// Webplate
 	navHide: function() {

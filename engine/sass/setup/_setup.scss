@@ -81,11 +81,8 @@ a, a:visited {text-decoration: none;}
 // Fluid View
 // ---------------------------------------------------------------------------------------
 @include respond-to(fluid) {
-	
-	#web-html {
-		.limit {
-			width: 100%;
-		}
+	html .limit {
+		width: 100%;
 	}
 }
 

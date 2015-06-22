@@ -5,7 +5,23 @@
 		"body-class": "page-welcome",
 		"form-colour": "pink",
 		"icon-font": "icomoon",
-		"ui": "fuse"
+		"ui": "fuse",
+		"page": [{
+			"config-type": "new",
+			"component": ["modalplate", "tabplate"],
+			"url": "project/ui/fuse/example.html",
+			"js": ["../ui/fuse/demo.js"],
+			"ui": "fuse"
+		}, {
+			"config-type": "new",
+			"component": ["modalplate", "tabplate"],
+			"url": "project/ui/stripe/example.html",
+			"ui": "stripe"
+		}, {
+			"config-type": "new",
+			"url": "test.html",
+			"js": ["test.js"]
+		}]
 	},
 	"option": {
 		"font-family": "'Roboto', 'Helvetic Neue', Helvetica, Arial"
