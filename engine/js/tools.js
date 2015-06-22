@@ -105,10 +105,16 @@ var web = {
 			$selector.className = $selector.className.split(' ').filter(function($val) {
 				return $val != $class;
 			}).toString().replace(/,/g, ' ');
+			if ($selector.className === '') {
+				$selector.removeAttribute('class');
+			}
 		}
 	},
 	idAdd: function($selector, $id) {
 		$selector.setAttribute('id', $id);
+	},
+	idRemove: function($selector) {
+		$selector.removeAttribute('id');
 	},
 	log: function($text) {
 		if (window.console) {
@@ -271,6 +277,7 @@ var web = {
 		$arReturn['baseUrl'] = $baseUrl;
 		$arReturn['sitePath'] = $sitePath;
 		$arReturn['fullPath'] = $fullPath;
+		$arReturn['segments'] = $fullPath.replace($sitePath, '').split('/');
 
 		// Return
 		return $arReturn;
