@@ -1,20 +1,11 @@
 {
 	"project": {
-		"build": {
-			"component": ["formplate", "modalplate"]
-		},
 		"css": ["welcome.css"],
 		"js": ["welcome.js"],
 		"body-class": "page-welcome",
 		"form-colour": "pink",
 		"icon-font": "icomoon",
-		"ui": "fuse",
-		"page": [{
-			"config-type": "new",
-			"url": "project/ui/fuse/example.html",
-			"body-class": "page-ui-fuse",
-			"ui": "fuse"
-		}]
+		"ui": "fuse"
 	},
 	"option": {
 		"font-family": "'Roboto', 'Helvetic Neue', Helvetica, Arial"
