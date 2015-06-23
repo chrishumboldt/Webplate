@@ -42,3 +42,8 @@ engine/node_modules
 engine/.sass-cache
 
 # Temporary ignore
+test.html
+project/sass/test.scss
+project/css/test.css
+project/js/test.js
+project/js/min/test.min.js

@@ -34,6 +34,10 @@
 		"bower.json",
 		"index.html",
 		"README.md",
-		"test.html"
+		"test.html",
+		"project/sass/test.scss",
+		"project/css/test.css",
+		"project/js/test.js",
+		"project/js/min/test.min.js"
 	]
 }
