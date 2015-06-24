@@ -3,7 +3,6 @@
 		"css": ["welcome.css"],
 		"js": ["welcome.js"],
 		"body-class": "page-welcome",
-		"form-colour": "pink",
 		"icon-font": "icomoon",
 		"ui": "fuse",
 		"page": [{
@@ -19,6 +18,8 @@
 			"ui": "stripe"
 		}, {
 			"config-type": "new",
+			"body-class": "test-page",
+			"icon-font": "icomoon",
 			"url": "test.html",
 			"js": ["test.js"]
 		}]

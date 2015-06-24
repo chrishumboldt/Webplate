@@ -1,10 +1,8 @@
 /**
  * File: tools.js
- * Type: Javascript tools file
+ * Type: Javascript engine
  * Author: Chris Humboldt
- * Last Edited: 1 May 2015
  */
-
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
@@ -19,85 +17,98 @@
 // URL
 // Webplate
 
-// Variables
-// ---------------------------------------------------------------------------------------
-var $bodyElement = document.getElementsByTagName('body')[0];
-var $htmlElement = document.getElementsByTagName('html')[0];
-var $navEndPosition = 0;
-var $navigationWidth;
-var $navTrackPosition;
-var $navigation = document.getElementById('navigation');
-var $navigationTrigger = document.getElementById('navigation-trigger');
-var $webAltStates = {
-	active: 'inactive',
-	closed: 'open',
-	hidden: 'visible',
-	inactive: 'active',
-	open: 'closed',
-	visible: 'hidden'
-};
-var $webStates = ['active', 'closed', 'hidden', 'inactive', 'open', 'selected', 'toggled', 'visible'];
-var $webStatePrefix = 'web-state-';
+var web = function() {
 
-// Create web function object
-// ---------------------------------------------------------------------------------------
-var web = {
+	// Variables
+	var $webEl = {
+		body: document.getElementsByTagName('body')[0],
+		html: document.getElementsByTagName('html')[0],
+		navigation: document.getElementById('navigation'),
+		navigationTrigger: document.getElementById('navigation-trigger'),
+		webplateScript: document.getElementById('webplate')
+	};
+	var $webPrefix = {
+		basic: 'web-',
+		navigation: 'web-nav-',
+		position: 'web-pos-',
+		scroll: 'web-scroll-',
+		state: 'web-state-'
+	};
+	var $webState = {
+		alts: {
+			active: 'inactive',
+			closed: 'open',
+			hidden: 'visible',
+			inactive: 'active',
+			open: 'closed',
+			visible: 'hidden'
+		},
+		list: ['active', 'closed', 'hidden', 'inactive', 'open', 'selected', 'toggled', 'visible']
+	};
+	var $webTypes = {
+		extensions: ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'],
+		images: ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png']
+	};
+
 	// Basic checks
-	exists: function($element) {
+	var exists = function($element) {
 		if ($element === null || typeof($element) === undefined) {
 			return false;
 		} else {
 			return true;
 		}
-	},
-	hasWhiteSpace: function($check) {
+	};
+	var hasWhiteSpace = function($check) {
 		return /\s/.test($check);
-	},
-	hasClass: function($element, $class) {
+	};
+	var hasClass = function($element, $class) {
 		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-	},
-	isColor: function($color) {
+	};
+	var isColor = function($color) {
 		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
-	},
-	isDate: function($date) {
+	};
+	var isDate = function($date) {
 		return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
-	},
-	isEmail: function($email) {
+	};
+	var isEmail = function($email) {
 		return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
-	},
-	isExtension: function($file, $arAllowedTypes) {
-		var $allowedTypes = $arAllowedTypes || ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'];
+	};
+	var isExtension = function($file, $arAllowedTypes) {
+		var $allowedTypes = $arAllowedTypes || $webTypes.extensions;
 		return $allowedTypes[$file.split('.').pop().toLowerCase()];
-	},
-	isFullInteger: function($int) {
+	};
+	var isFullInteger = function($int) {
 		return /^[0-9]+$/.test($int);
-	},
-	isImage: function($file, $arAllowedTypes) {
-		var $allowedTypes = $arAllowedTypes || ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png'];
+	};
+	var isImage = function($file, $arAllowedTypes) {
+		var $allowedTypes = $arAllowedTypes || $webTypes.images;
 		return $allowedTypes[$file.split('.').pop().toLowerCase()];
-	},
-	isInteger: function($int) {
+	};
+	var isInteger = function($int) {
 		return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
-	},
-	isPassword: function($password) {
+	};
+	var isPassword = function($password) {
 		return /^[A-Za-z0-9]{6,}$/.test($password);
-	},
-	isTouch: function() {
+	};
+	var isTouch = function() {
 		return 'ontouchstart' in window || 'onmsgesturechange' in window;
-	},
+	};
+
 	// Dates
-	crtDBDate: function() {
+	var crtDBDate = function() {
 		var $now = new Date();
 		return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
-	},
+	};
+
 	// Development
-	log: function($text) {
+	var log = function($text) {
 		if (window.console) {
 			console.log($text);
 		}
-	},
+	};
+
 	// DOM
-	eventAdd: function($elem, $type, $eventHandle) {
+	var eventAdd = function($elem, $type, $eventHandle) {
 		if ($elem == null || typeof($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
 			$elem.addEventListener($type, $eventHandle, false);
@@ -106,55 +117,60 @@ var web = {
 		} else {
 			$elem["on" + $type] = $eventHandle;
 		}
-	},
-	classAdd: function($selector, $class) {
-		var $crtClass = $selector.className;
-
+	};
+	var classAdd = function($element, $class) {
 		if (typeof $class === 'object') {
-			$class.sort().reverse();
-			for (var $i = $class.length - 1; $i >= 0; $i--) {
-				web.classAddExecute($selector, $class[$i], $crtClass);
+			for (var $i = 0, $len = $class.length; $i < $len; $i++) {
+				classAddExecute($element, $class[$i]);
 			}
 		} else {
-			web.classAddExecute($selector, $class, $crtClass);
+			classAddExecute($element, $class);
 		}
-	},
-	classAddExecute: function($selector, $class, $crtClass) {
-		if ($selector.className.indexOf($class) === -1) {
-			$selector.className = $selector.className === '' ? $class : $selector.className + ' ' + $class;
+	};
+	var classAddExecute = function($element, $class) {
+		var $crtClass = $element.className;
+		if ($crtClass.indexOf($class) === -1) {
+			$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
 		}
-	},
-	classRemove: function($selector, $class) {
-		var $crtClass = $selector.className;
-
+	};
+	var classClear = function($element) {
+		if ($element.className) {
+			$element.removeAttribute('class');
+		}
+	};
+	var classRemove = function($element, $class) {
 		if (typeof $class === 'object') {
 			for (var $i = $class.length - 1; $i >= 0; $i--) {
-				web.classRemoveExecute($selector, $class[$i], $crtClass);
+				classRemoveExecute($element, $class[$i]);
 			}
 		} else {
-			web.classRemoveExecute($selector, $class, $crtClass);
+			classRemoveExecute($element, $class);
 		}
-	},
-	classRemoveExecute: function($selector, $class, $crtClass) {
-		if ($crtClass.indexOf($class) > -1) {
-			$selector.className = $selector.className.split(' ').filter(function($val) {
+	};
+	var classRemoveExecute = function($element, $class) {
+		if ($element.className.indexOf($class) > -1) {
+			$element.className = $element.className.split(' ').filter(function($val) {
 				return $val != $class;
 			}).toString().replace(/,/g, ' ');
-			if ($selector.className === '') {
-				$selector.removeAttribute('class');
+			if ($element.className === '') {
+				classClear();
 			}
 		}
-	},
-	idAdd: function($selector, $id) {
-		$selector.setAttribute('id', $id);
-	},
-	idRemove: function($selector) {
-		$selector.removeAttribute('id');
-	},
-	getIndex: function($node) {
+	};
+	var classReplace = function($element, $removeClass, $addClass) {
+		classAdd($element, $addClass);
+		classRemove($element, $removeClass);
+	};
+	var idAdd = function($element, $id) {
+		$element.setAttribute('id', $id);
+	};
+	var idRemove = function($element) {
+		$element.removeAttribute('id');
+	};
+	var getIndex = function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
-	},
-	remove: function($selector) {
+	};
+	var remove = function($selector) {
 		if ($selector.charAt(0) === '#') {
 			var $element = document.getElementById($selector.substring(1));
 			if ($element !== null) {
@@ -168,8 +184,8 @@ var web = {
 				}
 			}
 		}
-	},
-	snap: function($selector, $breakpoint) {
+	};
+	var snap = function($selector, $breakpoint) {
 		var $breakpoint = $breakpoint || 0;
 		var $doc = document.documentElement;
 		var $elements = document.querySelectorAll($selector);
@@ -177,35 +193,35 @@ var web = {
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			var $snapElement = $elements[$i];
 			var $elementPositionTop = $snapElement.getBoundingClientRect().top;
-			web.eventAdd(window, 'scroll', function() {
+			eventAdd(window, 'scroll', function() {
 				$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
 
 				if ($scrollTop >= $elementPositionTop) {
 					if (window.innerWidth >= $breakpoint) {
-						web.classAdd($snapElement, 'pos-fixed');
+						classAdd($snapElement, 'pos-fixed');
 						$snapElement.style.top = 0;
 					}
 				} else {
-					web.classRemove($snapElement, 'pos-fixed');
+					classRemove($snapElement, 'pos-fixed');
 					$snapElement.style.top = 'auto';
 				}
 			});
 			if ($breakpoint > 0) {
-				web.eventAdd(window, 'resize', function() {
+				eventAdd(window, 'resize', function() {
 					if (window.innerWidth < $breakpoint) {
-						web.classRemove($snapElement, 'pos-fixed');
+						classRemove($snapElement, 'pos-fixed');
 						$snapElement.style.top = 'auto';
 					} else {
 						if ($scrollTop >= $elementPositionTop) {
-							web.classAdd($snapElement, 'pos-fixed');
+							classAdd($snapElement, 'pos-fixed');
 							$snapElement.style.top = 0;
 						}
 					}
 				});
 			}
 		}
-	},
-	square: function($selector, $multiplier) {
+	};
+	var square = function($selector, $multiplier) {
 		var $elements = document.querySelectorAll($selector);
 		if (typeof($multiplier) === 'undefined') {
 			$multiplier = 1;
@@ -213,60 +229,55 @@ var web = {
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
 		};
-	},
-	stateClear: function($element) {
-		var $newWebStates = $webStates.slice().map(function($newState) {
-			return 'web-state-' + $newState;
+	};
+	var stateClear = function($element) {
+		var $newWebStates = $webState.list.slice().map(function($newState) {
+			return $webPrefix.state + $newState;
 		});
-		web.classRemove($element, $newWebStates);
-	},
-	stateSet: function($element, $state) {
-		var $newWebStates = $webStates.slice().map(function($newState) {
-			return $webStatePrefix + $newState;
+		classRemove($element, $newWebStates);
+	};
+	var stateSet = function($element, $state) {
+		var $newWebStates = $webState.list.slice().map(function($newState) {
+			return $webPrefix.state + $newState;
 		});
-		var $stateClass = $newWebStates.splice($newWebStates.indexOf($webStatePrefix + $state), 1);
-
-		web.classRemove($element, $newWebStates);
-		web.classAdd($element, $stateClass);
-	},
-	stateToggle: function($element, $state, $clear) {
-		if ($webStates.indexOf($state) > 1) {
-			var $altState = $webAltStates[$state] || false;
+		var $stateClass = $newWebStates.splice($newWebStates.indexOf($webPrefix.state + $state), 1);
+		classReplace($element, $newWebStates, $stateClass);
+	};
+	var stateToggle = function($element, $state, $clear) {
+		if ($webState.list.indexOf($state) > 1) {
+			var $altState = $webState.alts[$state] || false;
 			var $clear = $clear || false;
-			var $stateClass = $webStatePrefix + $state;
+			var $stateClass = $webPrefix.state + $state;
 
-			if (web.hasClass($element, $stateClass)) {
+			if (hasClass($element, $stateClass)) {
 				if ($clear || $altState === false) {
-					web.stateClear($element);
+					stateClear($element);
 				} else {
-					web.stateSet($element, $altState);
+					stateSet($element, $altState);
 				}
 			} else {
-				web.stateSet($element, $state);
+				stateSet($element, $state);
 			}
 		}
-	},
-	wallpaper: function($selector) {
+	};
+	var wallpaper = function($selector) {
 		var $elements = document.querySelectorAll($selector);
-		for (var $i = 0; $i < $elements.length; $i++) {
-			// Variables
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			var $thisWallpaper = $elements[$i].getAttribute('data-wallpaper');
-
-			// Set the dimensions
 			if ($thisWallpaper !== null) {
 				$elements[$i].style.backgroundImage = 'url("' + $thisWallpaper + '")';
 			}
 		}
-	},
-	wrap: function($element, $tag, $className) {
+	};
+	var wrap = function($element, $tag, $className) {
 		var $wrapper = document.createElement($tag);
 		var $tempElement = $element.cloneNode(true);
 		$wrapper.className = $className;
 
 		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
 		$element.parentNode.removeChild($element);
-	},
-	wrapInner: function($element, $tag, $className) {
+	};
+	var wrapInner = function($element, $tag, $className) {
 		if (typeof $tag === 'string') {
 			$tag = document.createElement($tag);
 		}
@@ -278,9 +289,10 @@ var web = {
 		while ($element.firstChild !== $tag) {
 			$tag.appendChild($element.firstChild);
 		}
-	},
+	};
+
 	// Forms
-	lockSubmit: function($selector) {
+	var lockSubmit = function($selector) {
 		var $elements = document.querySelectorAll($selector);
 
 		for ($i = 0; $i < $elements.length; $i++) {
@@ -290,11 +302,12 @@ var web = {
 				}
 			};
 		}
-	},
+	};
+
 	// Objects
 	// As per Leon Revill
 	// URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
-	searchObjects: function($obj, $key, $val) {
+	var searchObjects = function($obj, $key, $val) {
 		var $objects = [];
 
 		for (var $i in $obj) {
@@ -304,19 +317,18 @@ var web = {
 				$objects.push($obj);
 			}
 		}
-
 		return $objects;
-	},
-	// Strings
-	getExtension: function($file) {
-		return $file.split('.').pop().toLowerCase();
-	},
-	getIntegers: function($string) {
-		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
-	},
-	randomString: function($stringLength) {
-		var $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	};
 
+	// Strings
+	var getExtension = function($file) {
+		return $file.split('.').pop().toLowerCase();
+	};
+	var getIntegers = function($string) {
+		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
+	};
+	var randomString = function($stringLength) {
+		var $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 		var $len = $stringLength || 5;
 		var $randomString = '';
 
@@ -326,16 +338,17 @@ var web = {
 		}
 
 		return $randomString;
-	},
-	ucAll: function($string) {
+	};
+	var ucAll = function($string) {
 		return $string.toUpperCase();
-	},
-	ucFirst: function($string) {
+	};
+	var ucFirst = function($string) {
 		return $string.charAt(0).toUpperCase() + $string.slice(1);
-	},
+	};
+
 	// URL
-	getUrl: function() {
-		var $crtScriptSrc = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
+	var getUrl = function() {
+		var $crtScriptSrc = $webEl.webplateScript.getAttribute('src').replace('start.js', '');
 		var $crtScriptSrcCount = $crtScriptSrc.split('/').length;
 		var $windowLocation = window.location;
 		var $fullPath = $windowLocation.href;
@@ -347,7 +360,7 @@ var web = {
 		var $hashUrl = $windowLocation.hash.substring(1);
 		var $scriptPath = '';
 		var $sitePath = $hashSplit[0];
-		for (var $i = 0; $i < ($arPath.length - $crtScriptSrcCount); $i++) {
+		for (var $i = 0, $len = ($arPath.length - $crtScriptSrcCount); $i < $len; $i++) {
 			if ($arPath[$i] != undefined) {
 				$scriptPath += $arPath[$i] + '/';
 			}
@@ -364,31 +377,25 @@ var web = {
 			segments: $fullPath.replace($sitePath, '').split('/')
 		};
 		return $objReturn;
-	},
-	// Webplate
-	navHide: function() {
-		var $webNavigation = document.getElementById('web-navigation');
+	};
 
+	// Webplate
+	var navHide = function() {
+		var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
 		Velocity($webNavigation, {
 			left: 0
 		}, {
 			duration: 200,
 			easing: 'ease-out',
 			complete: function() {
-				web.classRemove($htmlElement, 'web-nav-shown');
-				web.classAdd($htmlElement, 'web-nav-hidden');
+				classReplace($webEl.html, $webPrefix.navigation + 'shown', $webPrefix.navigation + 'hidden');
 			}
 		});
-
-		// Set nav end position
-		$navEndPosition = 0;
-
-		// Hide overlay
-		web.overlayHide();
-	},
-	navShow: function() {
+		overlayHide();
+	};
+	var navShow = function() {
 		// Variables
-		var $webNavigation = document.getElementById('web-navigation');
+		var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
 		var $navigationWidth = $webNavigation.offsetWidth;
 
 		Velocity($webNavigation, {
@@ -397,60 +404,52 @@ var web = {
 			duration: 200,
 			easing: 'ease-out',
 			complete: function() {
-				web.classAdd($htmlElement, 'web-nav-shown');
-				web.classRemove($htmlElement, 'web-nav-hidden');
+				classReplace($webEl.html, $webPrefix.navigation + 'hidden', $webPrefix.navigation + 'shown');
 			}
 		});
-
-		// Set nav end position
-		$navEndPosition = 260;
-
-		// Show overlay
-		web.overlayShow();
-	},
-	navigation: function() {
-		var $navigationEl = document.getElementById('navigation');
-		var $navigationTriggerEl = document.getElementById('navigation-trigger');
-
-		// Check
-		if (web.exists($navigationEl)) {
-			// Variables
+		overlayShow();
+	};
+	var navigation = function() {
+		if (exists($webEl.navigation)) {
 			var $navigationClone = $navigationEl.cloneNode(true);
 
-			// Duplicate navigation & change class name
-			$navigationClone.setAttribute('id', 'web-navigation');
-			$bodyElement.appendChild($navigationClone);
+			$navigationClone.setAttribute('id', $webPrefix.basic + 'navigation');
+			$webEl.body.appendChild($navigationClone);
 
 			// On click
-			$navigationTriggerEl.onclick = function($ev) {
+			$webEl.navigationTrigger.onclick = function($ev) {
 				$ev.preventDefault();
 
-				// Check state
-				if (web.hasClass($htmlElement, 'web-nav-shown')) {
-					web.navHide();
+				if (hasClass($webEl.html, $webPrefix.navigation + 'shown')) {
+					navHide();
 				} else {
-					web.navShow();
+					navShow();
 				}
 			};
 
 			// Close nav again
-			var $webOverlay = document.getElementById('web-overlay');
-			var $webNavigation = document.getElementById('web-navigation');
+			var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
+			var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
 			var $webNavigationLinks = $webNavigation.getElementsByTagName('a');
 
 			$webOverlay.onclick = function() {
-				web.navHide();
+				navHide();
 			};
 
-			for ($i = 0; $i < $webNavigationLinks.length; $i++) {
+			for (var $i = $webNavigationLinks.length - 1; $i >= 0; $i--) {
 				$webNavigationLinks[$i].onclick = function($ev) {
-					web.navHide();
+					navHide();
 				};
 			};
 		}
-	},
-	overlayHide: function() {
-		var $webOverlay = document.getElementById('web-overlay');
+	};
+	var overlayAdd = function() {
+		var $webplateOverlay = document.createElement('div');
+		idAdd($webplateOverlay, $webPrefix.basic + 'overlay');
+		$webEl.body.appendChild($webplateOverlay);
+	};
+	var overlayHide = function() {
+		var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
 
 		Velocity($webOverlay, {
 			opacity: 0
@@ -458,9 +457,9 @@ var web = {
 			display: 'none',
 			duration: 200
 		});
-	},
-	overlayShow: function() {
-		var $webOverlay = document.getElementById('web-overlay');
+	};
+	var overlayShow = function() {
+		var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
 
 		Velocity($webOverlay, {
 			opacity: 0.4
@@ -468,55 +467,17 @@ var web = {
 			display: 'block',
 			duration: 200
 		});
-	},
-	scroll: function() {
-		// Some variables
-		var $doc = document.documentElement;
-		var $lastScroll = 0;
-		var $scrollTop;
-
-		// Setup
-		this.classAdd($htmlElement, 'web-scroll-none');
-
-		// On scroll event
-		this.eventAdd(window, 'scroll', function() {
-			// Remove scroll nonw class
-			if (web.hasClass($htmlElement, 'web-scroll-none')) {
-				web.classRemove($htmlElement, 'web-scroll-none');
-			}
-
-			// Sets the current scroll position
-			$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
-
-			// Determine direction of scroll
-			if ($scrollTop > $lastScroll) {
-				if (!web.hasClass($htmlElement, 'web-scroll-down')) {
-					web.classRemove($htmlElement, 'web-scroll-up');
-					web.classAdd($htmlElement, 'web-scroll-down');
-				}
-			} else {
-				if (web.hasClass($htmlElement, 'web-scroll-down')) {
-					web.classRemove($htmlElement, 'web-scroll-down');
-					web.classAdd($htmlElement, 'web-scroll-up');
-				}
-			}
-
-			// Updates scroll position
-			$lastScroll = $scrollTop;
-		});
-	},
-	scrollTo: function($selector, $offset, $offsetLarge) {
-		// Variables
+	};
+	var scrollTo = function($selector, $offset, $offsetLarge) {
 		var $elements = document.querySelectorAll($selector);
 		var $offset = $offset || 0;
 		var $offsetLarge = $offsetLarge || false;
 
-		for (var $i = 0; $i < $elements.length; $i++) {
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			$elements[$i].onclick = function($ev) {
 				return function($ev) {
 					$ev.preventDefault();
 
-					// Check the screen size
 					var $vOffset = $offset;
 					if (($offsetLarge !== false) && (window.innerWidth > 700)) {
 						$vOffset = $offsetLarge;
@@ -529,34 +490,111 @@ var web = {
 				};
 			}($i);
 		}
-	},
-	windowType: function() {
-		this.windowTypeExecute();
-		this.eventAdd(window, 'resize', function() {
-			web.windowTypeExecute();
-		});
-	},
-	windowTypeExecute: function() {
-		// Some variables
-		if (window.innerWidth <= 700) {
-			// Set the class
-			if (this.hasClass($htmlElement, 'web-view-large')) {
-				this.classRemove($htmlElement, 'web-view-large');
+	};
+	var scrollWatch = function() {
+		var $doc = document.documentElement;
+		var $lastScroll = 0;
+		var $scrollTop;
+
+		classAdd($webEl.html, $webPrefix.scroll + 'none');
+		eventAdd(window, 'scroll', function() {
+			if (hasClass($webEl.html, $webPrefix.scroll + 'none')) {
+				classRemove($webEl.html, $webPrefix.scroll + 'none');
 			}
-			if (this.hasClass($htmlElement, 'web-view-small') == false) {
-				this.classAdd($htmlElement, 'web-view-small');
+			$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
+			if ($scrollTop > $lastScroll) {
+				if (!hasClass($webEl.html, $webPrefix.scroll + 'down')) {
+					classRemove($webEl.html, $webPrefix.scroll + 'up');
+					classAdd($webEl.html, $webPrefix.scroll + 'down');
+				}
+			} else {
+				if (hasClass($webEl.html, $webPrefix.scroll + 'down')) {
+					classRemove($webEl.html, $webPrefix.scroll + 'down');
+					classAdd($webEl.html, $webPrefix.scroll + 'up');
+				}
+			}
+			$lastScroll = $scrollTop;
+		});
+	};
+	var windowWatch = function() {
+		windowTypeExecute();
+		eventAdd(window, 'resize', function() {
+			windowTypeExecute();
+		});
+	};
+	var windowTypeExecute = function() {
+		if (window.innerWidth <= 700) {
+			if (hasClass($webEl.html, 'web-view-large')) {
+				classRemove($webEl.html, 'web-view-large');
+				classAdd($webEl.html, 'web-view-small');
+			} else {
+				classAdd($webEl.html, 'web-view-small');
 			}
 		} else {
-			// Set the class
-			if (this.hasClass($htmlElement, 'web-view-small')) {
-				this.classRemove($htmlElement, 'web-view-small');
+			if (hasClass($webEl.html, 'web-view-small')) {
+				classRemove($webEl.html, 'web-view-small');
+				classAdd($webEl.html, 'web-view-large');
+			} else {
+				classAdd($webEl.html, 'web-view-large');
 			}
-			if (this.hasClass($htmlElement, 'web-view-large') == false) {
-				this.classAdd($htmlElement, 'web-view-large');
-			}
-			if (this.hasClass($htmlElement, 'web-nav-shown')) {
-				this.navHide();
+			if (hasClass($webEl.html, 'web-nav-shown')) {
+				navHide();
 			}
 		}
-	}
-};
+	};
+
+	// Return
+	return {
+		element: $webEl,
+		prefix: $webPrefix,
+		exists: exists,
+		hasWhiteSpace: hasWhiteSpace,
+		hasClass: hasClass,
+		isColor: isColor,
+		isDate: isDate,
+		isEmail: isEmail,
+		isExtension: isExtension,
+		isFullInteger: isFullInteger,
+		isImage: isImage,
+		isInteger: isInteger,
+		isPassword: isPassword,
+		isTouch: isTouch,
+		crtDBDate: crtDBDate,
+		log: log,
+		eventAdd: eventAdd,
+		classAdd: classAdd,
+		classClear: classClear,
+		classRemove: classRemove,
+		classReplace: classReplace,
+		idAdd: idAdd,
+		idRemove: idRemove,
+		getIndex: getIndex,
+		remove: remove,
+		snap: snap,
+		square: square,
+		stateClear: stateClear,
+		stateSet: stateSet,
+		stateToggle: stateToggle,
+		wallpaper: wallpaper,
+		wrap: wrap,
+		wrapInner: wrapInner,
+		lockSubmit: lockSubmit,
+		searchObjects: searchObjects,
+		getExtension: getExtension,
+		getIntegers: getIntegers,
+		randomString: randomString,
+		ucAll: ucAll,
+		ucFirst: ucFirst,
+		getUrl: getUrl,
+		navHide: navHide,
+		navShow: navShow,
+		navigation: navigation,
+		overlayAdd: overlayAdd,
+		overlayHide: overlayHide,
+		overlayShow: overlayShow,
+		scrollWatch: scrollWatch,
+		scrollTo: scrollTo,
+		windowWatch: windowWatch,
+		windowTypeExecute: windowTypeExecute
+	};
+}();

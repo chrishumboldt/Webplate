@@ -1,10 +1,9 @@
- /**
-  * File: welcome.js
-  * Type: Javascript execute file
-  * Author: Chris Humboldt
-  * Last Edited: 1 May 2015
-  */
+/**
+ * File: welcome.hs
+ * Type: Javascript
+ * Author: Chris Humboldt
+ */
 
- // Custom calls
- // ---------------------------------------------------------------------------------------
- web.scrollTo('.scroll-to', -92);
+// Custom calls
+// ---------------------------------------------------------------------------------------
+web.scrollTo('.scroll-to', -88);

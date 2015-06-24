@@ -1,19 +1,16 @@
 /**
  * File: core.js
- * Type: Javascript core file
+ * Type: Javascript engine
  * Author: Chris Humboldt
- * Last Edited: 16 May 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Yepnope
-// Variables
-// Function
+// Webplate
 
-// Yepnope
+// Yepnope - 1.5.x|WTFPL
 // ---------------------------------------------------------------------------------------
-/*yepnope1.5.x|WTFPL*/
 (function(a, b, c) {
 	function d(a) {
 		return "[object Function]" == o.call(a)
@@ -183,359 +180,324 @@
 	}
 })(this, document);
 
-
-// Variables
+// Webplate
 // ---------------------------------------------------------------------------------------
-var $crtScript = document.getElementById('webplate');
-var $bodyElement = document.getElementsByTagName('body')[0];
-var $htmlElement = document.getElementsByTagName('html')[0];
-var $crtScriptSrc = $crtScript.getAttribute('src').replace('start.js', '');
-var $root = $crtScriptSrc;
-var $configFile = $root + 'project/config.json';
-var $jsPath = $root + 'engine/js/';
-var $cssPath = $root + 'engine/css/';
-var $componentPath = $root + 'project/component/';
-var $componentJSON = [];
-var $iconFontPath = $root + 'project/icon-font/';
-var $jsProjectPath = $root + 'project/js/';
-var $cssProjectPath = $root + 'project/css/';
-var $uiProjectPath = $root + 'project/ui/';
-var $arEngineFiles = [$jsPath + 'min/scripts.min.js', $cssPath + 'styles.css'];
-var $arComponentFirstFiles = [];
-var $arComponentFiles = [];
-var $arExtraCSS = [];
-var $arExtraJS = [];
+(function() {
+	'use strict';
 
-// Functions
-// ---------------------------------------------------------------------------------------
-// Load JSON
-function loadJSON($file, $callback) {
-	var $xmlhttp = new XMLHttpRequest();
-	$xmlhttp.onreadystatechange = $callback;
-	$xmlhttp.open('GET', $file, true);
-	$xmlhttp.send();
-}
-
-// Load project files
-function loadProjectFiles($projectCSS, $projectJS) {
-	// Add in project files
-	for ($i = 0; $i < $projectCSS.length; $i++) {
-		var $val = $projectCSS[$i];
-		var $file = $val.trim();
-		var $extension = web.getExtension($file);
-
-		// Add to the array
-		if ($extension == 'css') {
-			$arExtraCSS.push($cssProjectPath + $file);
-		}
-	};
-	for ($i = 0; $i < $projectJS.length; $i++) {
-		var $val = $projectJS[$i];
-		var $file = $val.trim();
-		var $extension = web.getExtension($file);
-
-		// Add to the array
-		if ($extension == 'js') {
-			$arExtraJS.push($jsProjectPath + $file);
-		}
+	// Variables
+	var $pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
+	var $pathEngine = $pathRoot + 'engine/';
+	var $pathProject = $pathRoot + 'project/';
+	var $path = {
+		component: $pathProject + 'component/',
+		config: $pathProject + 'config.json',
+		engine: {
+			css: $pathEngine + 'css/',
+			js: $pathEngine + 'js/',
+			jsMin: $pathEngine + 'js/min/'
+		},
+		project: {
+			css: $pathProject + 'css/',
+			iconFont: {
+				fontAwesome: $pathProject + 'font-awesome/css/font-awesome.min.css',
+				icoMoon: $pathProject + 'icon-font/icomoon/style.css'
+			},
+			js: $pathProject + 'js/',
+			jsMin: $pathProject + 'js/min/',
+			ui: $pathProject + 'ui/'
+		},
+		root: $pathRoot
 	};
 
-	// Load
-	if ($arExtraCSS.length > 0) {
-		yepnope({
-			load: $arExtraCSS,
-			complete: function() {
+	var $arComponentFirstFiles = [];
+	var $arComponentFiles = [];
+	var $arExtraCSS = [];
+	var $arExtraJS = [];
+	var $engineFiles = [$path.engine.jsMin + 'scripts.min.js', $path.engine.css + 'styles.css'];
+
+	// Core
+	var core = {
+		init: function() {
+			yepnope([{
+				load: $engineFiles,
+				complete: function() {
+					// Touch inclusion
+					if (Modernizr.touch) {
+						yepnope({
+							load: $path.engine.jsMin + 'touch.min.js',
+							complete: function() {
+								FastClick.attach(document.body);
+							}
+						});
+					}
+
+					// Call webplate functions
+					web.navigation();
+					web.overlayAdd();
+					web.scrollWatch();
+					web.windowWatch();
+
+					// Load config
+					core.loadJSON($path.config, function() {
+						if (this.readyState == 4 && this.status == 200) {
+							var $responseText = this.responseText;
+							var $json = JSON.parse($responseText);
+							var $pageMatch = false;
+							var $urlData = web.getUrl();
+
+							// Root config
+							var $bodyClass = $json.project['body-class'] || false;
+							var $componentFirst = $json.project['component-first'] || [];
+							var $component = $json.project['component'] || [];
+							var $formColour = $json.project['form-colour'] || 'blue';
+							var $iconFont = $json.project['icon-font'] || false;
+							var $navigation = $json.project['navigation'] || false;
+							var $projectCSS = $json.project['css'] || [];
+							var $projectJS = $json.project['js'] || [];
+							var $ui = $json.project['ui'] || false;
+
+							// Page check
+							if ($json.project.page) {
+								for (var $i = $json.project.page.length - 1; $i >= 0; $i--) {
+									var $page = $json.project.page[$i];
+
+									// Wildcard check
+									if ($page['url'].indexOf('*') > -1) {
+										if ($urlData.postScriptPath.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
+											$pageMatch = true;
+										}
+									} else {
+										if ($urlData.sitePath === $urlData.scriptPath + $page['url']) {
+											$pageMatch = true;
+										}
+									}
+									if ($pageMatch === true) {
+										// Page overwrite
+										var $configType = $page['config-type'] || 'merge';
+
+										if ($configType == 'new') {
+											$bodyClass = $page['body-class'] || false;
+											$componentFirst = $page['component-first'] || [];
+											$component = $page['component'] || [];
+											$formColour = $page['form-colour'] || 'blue';
+											$iconFont = $page['icon-font'] || false;
+											$navigation = $page['navigation'] || false;
+											$projectCSS = $page['css'] || [];
+											$projectJS = $page['js'] || [];
+											$ui = $page['ui'] || false;
+										} else {
+											// Basic additions (some have to be overwritten by design)
+											$bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
+											$formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
+											$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
+											$navigation = $page['navigation'] ? $page['navigation'] : $navigation;
+											$ui = $page['ui'] ? $page['ui'] : $ui;
+
+											// Component add
+											if ($page['component-first']) {
+												for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
+													var $addComponentFirst = $page['component-first'][$i];
+
+													if ($componentFirst.indexOf($addComponentFirst) == -1) {
+														$componentFirst.push($addComponentFirst);
+													}
+												};
+											}
+											if ($page['component']) {
+												for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
+													var $addComponent = $page['component'][$i];
+
+													if ($component.indexOf($addComponent) == -1) {
+														$component.push($addComponent);
+													}
+												};
+											}
+
+											// Project CSS
+											if ($page['css']) {
+												for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
+													var $addProjectCSS = $page['css'][$i];
+													if ($projectCSS.indexOf($addProjectCSS) === -1) {
+														$projectCSS.push($addProjectCSS);
+													}
+												};
+											}
+
+											// Project JS
+											if ($page['js']) {
+												for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
+													var $addProjectJS = $page['js'][$i];
+													if ($projectJS.indexOf($addProjectJS) === -1) {
+														$projectJS.push($addProjectJS);
+													}
+												};
+											}
+										}
+										break;
+									}
+								};
+							}
+
+							// Set the body class
+							if ($bodyClass !== false) {
+								web.classAdd(web.element.body, $bodyClass.trim());
+							}
+
+							// Set the navigation type
+							$navigation = ($navigation !== false) ? web.prefix.navigation + $navigation : web.prefix.navigation + 'slide-from-left';
+							web.classAdd(web.element.html, $navigation);
+
+							// Form colour
+							if ($responseText.indexOf('formplate') > -1) {
+								web.element.body.setAttribute('data-formplate-colour', $formColour);
+							}
+
+							// Icon fonts
+							if ($iconFont == 'icomoon') {
+								yepnope({
+									load: $path.project.iconFont.icoMoon
+								});
+							} else if ($iconFont == 'font-awesome') {
+								yepnope({
+									load: $path.project.iconFont.fontAwesome
+								});
+							}
+
+							// Load UI
+							if ($ui != false) {
+								$arExtraCSS.push($path.project.ui + $ui + '/style.css');
+								$arExtraJS.push($path.project.ui + $ui + '/script.min.js');
+							}
+
+							// Load the components & project files
+							if ($componentFirst.length > 0) {
+								core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
+							} else if ($component.length > 0) {
+								core.loadComponents($component, $projectCSS, $projectJS);
+							} else {
+								core.loadProjectFiles($projectCSS, $projectJS);
+							}
+						};
+					});
+				}
+			}]);
+		},
+		loadComponents: function($component, $projectCSS, $projectJS) {
+			for (var $i = 0, $len = $component.length; $i < $len; $i++) {
+				(function($i2) {
+					var $val = $component[$i2++];
+
+					core.loadJSON($path.component + $val + '/.bower.json', function() {
+						if (this.readyState == 4 && this.status == 200) {
+							var $json = JSON.parse(this.responseText);
+
+							if (typeof $json.main == 'object') {
+								for ($i = 0; $i < $json.main.length; $i++) {
+									$arComponentFiles.push($path.component + $val + '/' + $json.main[$i]);
+								}
+							} else {
+								$arComponentFiles.push($path.component + $val + '/' + $json.main);
+							}
+
+							// Load the project file
+							if ($i2 == $component.length) {
+								yepnope({
+									load: $arComponentFiles,
+									complete: function() {
+										core.loadProjectFiles($projectCSS, $projectJS);
+									}
+								});
+							}
+						}
+					});
+				}($i));
+			};
+		},
+		loadComponentsFirst: function($componentFirst, $component, $projectCSS, $projectJS) {
+			for (var $r = 0, $len = $componentFirst.length; $r < $len; $r++) {
+				(function($r2) {
+					var $val = $componentFirst[$r2++];
+
+					core.loadJSON($path.component + $val + '/.bower.json', function() {
+						if (this.readyState == 4 && this.status == 200) {
+							var $json = JSON.parse(this.responseText);
+
+							if (typeof $json.main == 'object') {
+								for (var $r = 0, $len = $json.main.length; $r < $len; $r++) {
+									$arComponentFirstFiles.push($path.component + $val + '/' + $json.main[$r]);
+								}
+							} else {
+								$arComponentFirstFiles.push($path.component + $val + '/' + $json.main);
+							}
+
+							if ($r2 == $componentFirst.length) {
+								yepnope({
+									load: $arComponentFirstFiles,
+									complete: function() {
+										if ($component.length > 0) {
+											core.loadComponents($component, $projectCSS, $projectJS);
+										} else {
+											core.loadProjectFiles($projectCSS, $projectJS);
+										}
+									}
+								});
+							}
+						}
+					});
+				}($r));
+			};
+		},
+		loadJSON: function($file, $callback) {
+			var $xmlhttp = new XMLHttpRequest();
+			$xmlhttp.onreadystatechange = $callback;
+			$xmlhttp.open('GET', $file, true);
+			$xmlhttp.send();
+		},
+		loadProjectFiles: function($css, $js) {
+			for (var $i = 0, $len = $css.length; $i < $len; $i++) {
+				var $file = $css[$i].trim();
+				if (web.getExtension($file) === 'css') {
+					$arExtraCSS.push($path.project.css + $file);
+				}
+			};
+			for ($i = 0; $i < $js.length; $i++) {
+				var $file = $js[$i].trim();
+				if (web.getExtension($file) === 'js') {
+					$arExtraJS.push($path.project.js + $file);
+				}
+			};
+			if ($arExtraCSS.length > 0) {
+				yepnope({
+					load: $arExtraCSS,
+					complete: function() {
+						setTimeout(function() {
+							yepnope({
+								load: $arExtraJS
+							});
+							setTimeout(function() {
+								web.element.body.removeAttribute('style');
+							}, 50);
+						}, 50);
+					}
+				});
+			} else if ($arExtraJS.length > 0) {
 				setTimeout(function() {
 					yepnope({
 						load: $arExtraJS
 					});
 					setTimeout(function() {
-						$bodyElement.removeAttribute('style');
+						web.element.body.removeAttribute('style');
 					}, 50);
 				}, 50);
+			} else {
+				setTimeout(function() {
+					web.element.body.removeAttribute('style');
+				}, 50);
 			}
-		});
-	} else if ($arExtraJS.length > 0) {
-		setTimeout(function() {
-			yepnope({
-				load: $arExtraJS
-			});
-			setTimeout(function() {
-				$bodyElement.removeAttribute('style');
-			}, 50);
-		}, 50);
-	} else {
-		setTimeout(function() {
-			$bodyElement.removeAttribute('style');
-		}, 50);
-	}
-}
-
-
-// Load the necessary files and execute
-// ---------------------------------------------------------------------------------------
-yepnope([{
-	load: $arEngineFiles,
-	complete: function() {
-		// Touch check
-		if (Modernizr.touch) {
-			// Load the library
-			yepnope({
-				load: $jsPath + 'min/touch.min.js',
-				complete: function() {
-					FastClick.attach(document.body);
-				}
-			});
 		}
+	};
 
-		// Add webplate overlay
-		var $webplateOverlay = document.createElement('div');
-		web.idAdd($webplateOverlay, 'web-overlay');
-		$bodyElement.appendChild($webplateOverlay);
-
-		// Call Webplate functions
-		web.navigation();
-		web.windowType();
-		web.scroll();
-
-		// Load the config file
-		$configJSON = loadJSON($configFile, function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var $json = JSON.parse(this.responseText);
-
-				// Variables
-				var $urlData = web.getUrl();
-
-				// Root config
-				$bodyClass = $json.project['body-class'] || false;
-				$componentFirst = $json.project['component-first'] || [];
-				$component = $json.project['component'] || [];
-				$formColour = $json.project['form-colour'] || 'blue';
-				$iconFont = $json.project['icon-font'] || false;
-				$navigation = $json.project['navigation'] || false;
-				$projectCSS = $json.project['css'] || [];
-				$projectJS = $json.project['js'] || [];
-				$ui = $json.project['ui'] || false;
-
-				// Page check
-				if ($json.project.page) {
-					for (var $i = $json.project.page.length - 1; $i >= 0; $i--) {
-						var $page = $json.project.page[$i];
-						var $pageMatch = false;
-
-						// Wildcard check
-						if ($page['url'].indexOf('*') > -1) {
-							if ($urlData.postScriptPath.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
-								$pageMatch = true;
-							}
-						} else {
-							if ($urlData.sitePath === $urlData.scriptPath + $page['url']) {
-								$pageMatch = true;
-							}
-						}
-
-						if ($pageMatch === true) {
-							// Page overwrite
-							$configType = $page['config-type'] || 'merge';
-
-							if ($configType == 'new') {
-								$bodyClass = $page['body-class'] || false;
-								$componentFirst = $page['component-first'] || [];
-								$component = $page['component'] || [];
-								$formColour = $page['form-colour'] || 'blue';
-								$iconFont = $page['icon-font'] || false;
-								$navivation = $page['navigation'] || false;
-								$projectCSS = $page['css'] || [];
-								$projectJS = $page['js'] || [];
-								$ui = $page['ui'] || false;
-							} else {
-								// Basic additions (some have to be overwritten by design)
-								$bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
-								$formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
-								$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
-								$navivation = $page['navigation'] ? $page['navigation'] : $navigation;
-								$ui = $page['ui'] ? $page['ui'] : $ui;
-
-								// Component add
-								if ($page['component-first']) {
-									for (var $i = 0; $i < $page['component-first'].length; $i++) {
-										var $addComponentFirst = $page['component-first'][$i];
-
-										if ($componentFirst.indexOf($addComponentFirst) == -1) {
-											$componentFirst.push($addComponentFirst);
-										}
-									};
-								}
-								if ($page['component']) {
-									for (var $i = 0; $i < $page['component'].length; $i++) {
-										var $addComponent = $page['component'][$i];
-
-										if ($component.indexOf($addComponent) == -1) {
-											$component.push($addComponent);
-										}
-									};
-								}
-
-								// Project CSS
-								if ($page['css']) {
-									for (var $i = 0; $i < $page['css'].length; $i++) {
-										var $addProjectCSS = $page['css'][$i];
-										if ($projectCSS.indexOf($addProjectCSS) === -1) {
-											$projectCSS.push($addProjectCSS);
-										}
-									};
-								}
-
-								// Project JS
-								if ($page['js']) {
-									for (var $i = 0; $i < $page['js'].length; $i++) {
-										var $addProjectJS = $page['js'][$i];
-										if ($projectJS.indexOf($addProjectJS) === -1) {
-											$projectJS.push($addProjectJS);
-										}
-									};
-								}
-							}
-							break;
-						}
-					};
-				}
-
-				// Set the body class
-				if ($bodyClass !== false) {
-					web.classAdd($bodyElement, $bodyClass.trim());
-				}
-
-				// Set the navigation type
-				if ($navigation === false) {
-					$navigation = 'web-nav-slide-from-left';
-				} else {
-					$navigation = 'web-nav-' + $navigation;
-				}
-				web.classAdd($htmlElement, $navigation);
-
-				// Set the form colour
-				$bodyElement.setAttribute('data-formplate-colour', $formColour);
-
-				// Icon fonts
-				if ($iconFont != false) {
-					if ($iconFont == 'icomoon') {
-						yepnope({
-							load: [$iconFontPath + 'icomoon/style.css']
-						});
-					} else if ($iconFont == 'font-awesome') {
-						yepnope({
-							load: [$iconFontPath + 'font-awesome/css/font-awesome.min.css']
-						});
-					}
-				}
-
-				// Load UI
-				if ($ui != false) {
-					$arExtraCSS.push($uiProjectPath + $ui + '/style.css');
-					$arExtraJS.push($uiProjectPath + $ui + '/script.min.js');
-				}
-
-				// Load the components & project files
-				if ($componentFirst.length > 0) {
-					for ($r = 0; $r < $componentFirst.length; $r++) {
-						// Get Webplate config
-						(function($r2) {
-							var $val = $componentFirst[$r2++];
-
-							$componentJSON = loadJSON($componentPath + $val + '/.bower.json', function() {
-								if (this.readyState == 4 && this.status == 200) {
-									var $json = JSON.parse(this.responseText);
-
-									if (typeof $json.main == 'object') {
-										for ($r = 0; $r < $json.main.length; $r++) {
-											$arComponentFirstFiles.push($componentPath + $val + '/' + $json.main[$r]);
-										}
-									} else {
-										$arComponentFirstFiles.push($componentPath + $val + '/' + $json.main);
-									}
-
-									// Load the project file
-									if ($r2 == $componentFirst.length) {
-										yepnope({
-											load: $arComponentFirstFiles,
-											complete: function() {
-												if ($component.length > 0) {
-													for ($i = 0; $i < $component.length; $i++) {
-														// Get Webplate config
-														(function($i2) {
-															var $val = $component[$i2++];
-
-															$componentJSON = loadJSON($componentPath + $val + '/.bower.json', function() {
-																if (this.readyState == 4 && this.status == 200) {
-																	var $json = JSON.parse(this.responseText);
-
-																	if (typeof $json.main == 'object') {
-																		for ($i = 0; $i < $json.main.length; $i++) {
-																			$arComponentFiles.push($componentPath + $val + '/' + $json.main[$i]);
-																		}
-																	} else {
-																		$arComponentFiles.push($componentPath + $val + '/' + $json.main);
-																	}
-
-																	// Load the project file
-																	if ($i2 == $component.length) {
-																		yepnope({
-																			load: $arComponentFiles,
-																			complete: function() {
-																				loadProjectFiles($projectCSS, $projectJS);
-																			}
-																		});
-																	}
-																}
-															});
-														}($i));
-													};
-												} else {
-													loadProjectFiles($projectCSS, $projectJS);
-												}
-											}
-										});
-									}
-								}
-							});
-						}($r));
-					};
-				} else if ($component.length > 0) {
-					for ($i = 0; $i < $component.length; $i++) {
-						// Get Webplate config
-						(function($i2) {
-							var $val = $component[$i2++];
-
-							$componentJSON = loadJSON($componentPath + $val + '/.bower.json', function() {
-								if (this.readyState == 4 && this.status == 200) {
-									var $json = JSON.parse(this.responseText);
-
-									if (typeof $json.main == 'object') {
-										for ($i = 0; $i < $json.main.length; $i++) {
-											$arComponentFiles.push($componentPath + $val + '/' + $json.main[$i]);
-										}
-									} else {
-										$arComponentFiles.push($componentPath + $val + '/' + $json.main);
-									}
-
-									// Load the project file
-									if ($i2 == $component.length) {
-										yepnope({
-											load: $arComponentFiles,
-											complete: function() {
-												loadProjectFiles($projectCSS, $projectJS);
-											}
-										});
-									}
-								}
-							});
-						}($i));
-					};
-				} else {
-					loadProjectFiles($projectCSS, $projectJS);
-				}
-			}
-		});
-	}
-}]);
+	// Initialize core
+	core.init();
+})();
