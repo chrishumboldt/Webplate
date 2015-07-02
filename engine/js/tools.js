@@ -23,8 +23,6 @@ var web = function() {
 	var $webEl = {
 		body: document.getElementsByTagName('body')[0],
 		html: document.getElementsByTagName('html')[0],
-		navigation: document.getElementById('navigation'),
-		navigationTrigger: document.getElementById('navigation-trigger'),
 		webplateScript: document.getElementById('webplate')
 	};
 	var $webPrefix = {
@@ -129,14 +127,12 @@ var web = function() {
 	};
 	var classAddExecute = function($element, $class) {
 		var $crtClass = $element.className;
-		if ($crtClass.indexOf($class) === -1) {
+		if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
 			$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
 		}
 	};
 	var classClear = function($element) {
-		if ($element.className) {
-			$element.removeAttribute('class');
-		}
+		$element.removeAttribute('class');
 	};
 	var classRemove = function($element, $class) {
 		if (typeof $class === 'object') {
@@ -153,7 +149,7 @@ var web = function() {
 				return $val != $class;
 			}).toString().replace(/,/g, ' ');
 			if ($element.className === '') {
-				classClear();
+				classClear($element);
 			}
 		}
 	};
@@ -410,22 +406,25 @@ var web = function() {
 		overlayShow();
 	};
 	var navigation = function() {
-		if (exists($webEl.navigation)) {
-			var $navigationClone = $navigationEl.cloneNode(true);
+		var $navigation = document.getElementById('navigation');
+		var $navigationTrigger = document.getElementById('navigation-trigger');
+		if (exists($navigation)) {
+			var $navigationClone = $navigation.cloneNode(true);
 
 			$navigationClone.setAttribute('id', $webPrefix.basic + 'navigation');
 			$webEl.body.appendChild($navigationClone);
 
 			// On click
-			$webEl.navigationTrigger.onclick = function($ev) {
-				$ev.preventDefault();
-
-				if (hasClass($webEl.html, $webPrefix.navigation + 'shown')) {
-					navHide();
-				} else {
-					navShow();
-				}
-			};
+			if (exists($navigationTrigger)) {
+				$navigationTrigger.onclick = function($ev) {
+					$ev.preventDefault();
+					if (hasClass($webEl.html, $webPrefix.navigation + 'shown')) {
+						navHide();
+					} else {
+						navShow();
+					}
+				};
+			}
 
 			// Close nav again
 			var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
