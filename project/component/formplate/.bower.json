@@ -1,5 +1,6 @@
 {
   "name": "Formplate",
+  "version": "2.0.2",
   "homepage": "http://paypur.com/#/view/formplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -29,14 +30,14 @@
     "css/demo.css",
     "sass"
   ],
-  "_release": "c462eb5389",
+  "_release": "2.0.2",
   "_resolution": {
-    "type": "branch",
-    "branch": "dev-chris",
-    "commit": "c462eb53891caa8035bc8fb7b57a0d4c7360ae61"
+    "type": "version",
+    "tag": "v2.0.2",
+    "commit": "bb32f646faa0c707ab9d68e2fd1ebd4f747e123a"
   },
   "_source": "git://github.com/chrishumboldt/Formplate.git",
-  "_target": "dev-chris",
+  "_target": "~2.0.2",
   "_originalSource": "formplate",
   "_direct": true
 }

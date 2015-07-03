@@ -7,7 +7,7 @@ A small plugin to style all forms uniformly across all screens.
 Documentation
 =========
 
-For a more detailed explanation and a complete overview of all the options available, read the online documentation at http://getwebplate.com/plugins/formplate.
+Coming soon.
 
 
 Author

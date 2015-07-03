@@ -74,9 +74,16 @@ var tabplateComponent = function($this, $userOptions) {
 		};
 	}(document, $self.options);
 
-	// Calls
-	tabSetup();
-	triggerSetup();
+	// Public functions
+	$self.changeTab = function($index) {
+		tool.classRemove($self.querySelector('li.active'), 'active');
+		tool.classAdd($self.querySelector('li:nth-child(' + ($index + 1) + ')'), 'active');
+		tool.classRemove($tabs.querySelector('li.active'), 'active');
+		tool.classAdd($tabs.querySelector('li:nth-child(' + ($index + 1) + ')'), 'active');
+		if ($self.options.animate.toString() == 'true') {
+			$tabs.style.height = $tabs.querySelector('li.active').clientHeight + 'px';
+		}
+	};
 
 	// Internal functions
 	function tabSetup() {
@@ -116,14 +123,7 @@ var tabplateComponent = function($this, $userOptions) {
 		}
 	}
 
-	// External functions
-	$self.changeTab = function($index) {
-		tool.classRemove($self.querySelector('li.active'), 'active');
-		tool.classAdd($self.querySelector('li:nth-child(' + ($index + 1) + ')'), 'active');
-		tool.classRemove($tabs.querySelector('li.active'), 'active');
-		tool.classAdd($tabs.querySelector('li:nth-child(' + ($index + 1) + ')'), 'active');
-		if ($self.options.animate.toString() == 'true') {
-			$tabs.style.height = $tabs.querySelector('li.active').clientHeight + 'px';
-		}
-	};
+	// Calls
+	tabSetup();
+	triggerSetup();
 };

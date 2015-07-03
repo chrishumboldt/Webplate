@@ -416,8 +416,8 @@ var web = function() {
 
 			// On click
 			if (exists($navigationTrigger)) {
-				$navigationTrigger.onclick = function($ev) {
-					$ev.preventDefault();
+				$navigationTrigger.onclick = function(event) {
+					event.preventDefault();
 					if (hasClass($webEl.html, $webPrefix.navigation + 'shown')) {
 						navHide();
 					} else {
@@ -431,9 +431,11 @@ var web = function() {
 			var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
 			var $webNavigationLinks = $webNavigation.getElementsByTagName('a');
 
-			$webOverlay.onclick = function() {
-				navHide();
-			};
+			if (exists($webOverlay)) {
+				$webOverlay.onclick = function() {
+					navHide();
+				};
+			}
 
 			for (var $i = $webNavigationLinks.length - 1; $i >= 0; $i--) {
 				$webNavigationLinks[$i].onclick = function($ev) {

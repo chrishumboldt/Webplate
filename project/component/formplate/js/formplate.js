@@ -2,124 +2,117 @@
  * File: formplate.js
  * Type: Javascript component
  * Author: Chris Humboldt
- * Last Edited: 1 May 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
 // Tools
-// Touch check
-// Component call
+// Variables
 
-// Tools
-// ---------------------------------------------------------------------------------------
-var tool = {
-	addEvent: function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
-		if ($elem.addEventListener) {
-			$elem.addEventListener($type, $eventHandle, false);
-		} else if ($elem.attachEvent) {
-			$elem.attachEvent("on" + $type, $eventHandle);
-		} else {
-			$elem["on" + $type] = $eventHandle;
+function formplate($selector) {
+	// Tools
+	var tool = function(document) {
+		// Elements
+		var $toolEl = {
+			body: document.getElementsByTagName('body')[0],
+			html: document.getElementsByTagName('html')[0]
+		};
+
+		// Functions
+		var classAdd = function($element, $class) {
+			var $crtClass = $element.className;
+			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
+				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
+			}
+		};
+		var classClear = function($element) {
+			$element.removeAttribute('class');
+		};
+		var classRemove = function($element, $class) {
+			if ($element.className.indexOf($class) > -1) {
+				$element.className = $element.className.split(' ').filter(function($val) {
+					return $val != $class;
+				}).toString().replace(/,/g, ' ');
+				if ($element.className === '') {
+					classClear($element);
+				}
+			}
+		};
+		var hasClass = function($element, $class) {
+			return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
+		};
+		var isTouch = function() {
+			return 'ontouchstart' in window || 'onmsgesturechange' in window;
+		};
+		var wrap = function($element, $tag, $className) {
+			var $wrapper = document.createElement($tag);
+			var $tempElement = $element.cloneNode(true);
+			$wrapper.className = $className;
+
+			$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
+			$element.parentNode.removeChild($element);
+		};
+
+		return {
+			classAdd: classAdd,
+			classClear: classClear,
+			classRemove: classRemove,
+			element: $toolEl,
+			hasClass: hasClass,
+			isTouch: isTouch,
+			wrap: wrap
 		}
-	},
-	classAdd: function($selector, $class) {
-		var $crtClass = $selector.className;
+	}(document);
 
-		if ($selector.className.indexOf($class) === -1) {
-			$selector.className = $selector.className === '' ? $class : $selector.className + ' ' + $class;
-		}
-	},
-	classRemove: function($selector, $class) {
-		var $crtClass = $selector.className;
-
-		if ($crtClass.indexOf($class) > -1) {
-			$selector.className = $selector.className.split(' ').filter(function($val) {
-				return $val != $class;
-			}).toString().replace(/,/g, ' ');
-		}
-	},
-	hasClass: function($element, $class) {
-		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-	},
-	idAdd: function($selector, $id) {
-		$selector.setAttribute('id', $id);
-	},
-	isTouch: function() {
-		return 'ontouchstart' in window || 'onmsgesturechange' in window;
-	},
-	log: function($text) {
-		if (window.console) {
-			console.log($text);
-		}
-	},
-	wrap: function($element, $tag, $className) {
-		var $wrapper = document.createElement($tag);
-		var $tempElement = $element.cloneNode(true);
-		$wrapper.className = $className;
-
-		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
-		$element.parentNode.removeChild($element);
-	}
-};
-
-// Touch check
-// ---------------------------------------------------------------------------------------
-var $htmlElement = document.getElementsByTagName('html')[0];
-if (!tool.isTouch() && !tool.hasClass($htmlElement, 'fp-no-touch')) {
-	tool.classAdd($htmlElement, 'fp-no-touch');
-}
-
-// Component call
-// ---------------------------------------------------------------------------------------
-function Formplate($selector) {
 	// Variables
-	var $bodyElement = document.getElementsByTagName('body')[0];
-	var $formColour = $bodyElement.getAttribute('data-formplate-colour');
+	var $formColour = tool.element.body.getAttribute('data-formplate-colour');
 	var $formCheckboxes = document.querySelectorAll('.formplate input[type="checkbox"]');
 	var $formRadioButtons = document.querySelectorAll('.formplate input[type="radio"]');
 	var $formSelects = document.querySelectorAll('.formplate select');
 	var $formTogglerHTML = document.createElement('span');
 	$formTogglerHTML.className = 'handle';
 
+	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'formplate-no-touch')) {
+		tool.classAdd(tool.element.html, 'formplate-no-touch');
+	}
+
 	// Set the colour
-	tool.classAdd($bodyElement, 'fp-colour-' + $formColour);
+	tool.classAdd(tool.element.body, 'formplate-colour-' + $formColour);
 
 	// Checkboxes
 	for (var $i = 0; $i < $formCheckboxes.length; $i++) {
-		var $classes = (tool.hasClass($formCheckboxes[$i], 'toggler') === true) ? 'fp-toggler' : 'fp-checkbox';
+		var $classes = (tool.hasClass($formCheckboxes[$i], 'toggler') === true) ? 'formplate-toggler' : 'formplate-checkbox';
 		$classes += ($formCheckboxes[$i].getAttribute('checked') === 'checked') ? ' checked' : '';
 
-		if (!tool.hasClass($formCheckboxes[$i].parentNode, 'fp-toggler') && !tool.hasClass($formCheckboxes[$i].parentNode, 'fp-checkbox')) {
+		if (!tool.hasClass($formCheckboxes[$i].parentNode, 'formplate-toggler') && !tool.hasClass($formCheckboxes[$i].parentNode, 'formplate-checkbox')) {
 			tool.wrap($formCheckboxes[$i], 'span', $classes);
 		}
 	}
 
 	// Add toggler handle
-	var $formTogglers = document.querySelectorAll('.fp-toggler');
+	var $formTogglers = document.querySelectorAll('.formplate-toggler');
 	for (var $i = 0; $i < $formTogglers.length; $i++) {
 		$formTogglers[$i].appendChild($formTogglerHTML.cloneNode());
 	}
 
 	// Radio buttons
 	for (var $i = 0; $i < $formRadioButtons.length; $i++) {
-		var $classes = ($formRadioButtons[$i].getAttribute('checked') === 'checked') ? 'fp-radio checked' : 'fp-radio';
+		var $classes = ($formRadioButtons[$i].getAttribute('checked') === 'checked') ? 'formplate-radio checked' : 'formplate-radio';
 
-		if (!tool.hasClass($formRadioButtons[$i].parentNode, 'fp-radio')) {
+		if (!tool.hasClass($formRadioButtons[$i].parentNode, 'formplate-radio')) {
 			tool.wrap($formRadioButtons[$i], 'span', $classes);
 		}
 	}
 
 	// Selects
 	for (var $i = 0; $i < $formSelects.length; $i++) {
-		if (!tool.hasClass($formSelects[$i].parentNode, 'fp-select')) {
-			tool.wrap($formSelects[$i], 'span', 'fp-select');
+		if (!tool.hasClass($formSelects[$i].parentNode, 'formplate-select')) {
+			tool.wrap($formSelects[$i], 'span', 'formplate-select');
 		}
 	}
 
 	// Events
-	var $formCheckboxesNew = document.querySelectorAll('.fp-checkbox');
+	var $formCheckboxesNew = document.querySelectorAll('.formplate-checkbox');
 	for (var $i = 0; $i < $formCheckboxesNew.length; $i++)(function($i) {
 		$formCheckboxesNew[$i].onclick = function() {
 			if (tool.hasClass($formCheckboxesNew[$i], 'checked')) {
@@ -129,7 +122,7 @@ function Formplate($selector) {
 			}
 		};
 	})($i);
-	var $formRadioButtonsNew = document.querySelectorAll('.fp-radio');
+	var $formRadioButtonsNew = document.querySelectorAll('.formplate-radio');
 	for (var $i = 0; $i < $formRadioButtonsNew.length; $i++)(function($i) {
 		$formRadioButtonsNew[$i].onclick = function() {
 			var $formRadioButtonInputName = $formRadioButtonsNew[$i].getElementsByTagName('input')[0].getAttribute('name');
@@ -142,7 +135,7 @@ function Formplate($selector) {
 			tool.classAdd($formRadioButtonsNew[$i], 'checked');
 		};
 	})($i);
-	var $formTogglersNew = document.querySelectorAll('.fp-toggler');
+	var $formTogglersNew = document.querySelectorAll('.formplate-toggler');
 	for (var $i = 0; $i < $formTogglersNew.length; $i++)(function($i) {
 		$formTogglersNew[$i].onclick = function() {
 			if (tool.hasClass($formTogglersNew[$i], 'checked')) {

@@ -233,8 +233,8 @@
 					}
 
 					// Call webplate functions
-					web.navigation();
 					web.overlayAdd();
+					web.navigation();
 					web.scrollWatch();
 					web.windowWatch();
 
