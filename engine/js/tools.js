@@ -445,27 +445,17 @@ var web = function() {
 	var overlayAdd = function() {
 		var $webplateOverlay = document.createElement('div');
 		idAdd($webplateOverlay, $webPrefix.basic + 'overlay');
-		$webEl.body.appendChild($webplateOverlay);
+		if (!exists(document.getElementById($webPrefix.basic + 'overlay'))) {
+			$webEl.body.appendChild($webplateOverlay);
+		}
 	};
 	var overlayHide = function() {
-		var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
-
-		Velocity($webOverlay, {
-			opacity: 0
-		}, {
-			display: 'none',
-			duration: 200
-		});
+		classRemove($webEl.html, 'web-overlay-reveal');
 	};
 	var overlayShow = function() {
-		var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
-
-		Velocity($webOverlay, {
-			opacity: 0.4
-		}, {
-			display: 'block',
-			duration: 200
-		});
+		setTimeout(function() {
+			classAdd($webEl.html, 'web-overlay-reveal');
+		}, 50);
 	};
 	var scrollTo = function($selector, $offset, $offsetLarge) {
 		var $elements = document.querySelectorAll($selector);

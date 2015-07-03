@@ -25,28 +25,34 @@ var messageplate = function($userOptions) {
 		buttonFalse: $userOptions.buttonFalse || false,
 		buttonTrue: $userOptions.buttonTrue || false,
 		close: $userOptions.close || 'close',
+		parseEvent: $userOptions.parseEvent || false,
 		heading: $userOptions.heading || false,
-		message: $userOptions.message || false,
+		body: $userOptions.body || false,
 		onTrue: $userOptions.onTrue || false,
-		overlay: $userOptions.overlay || true,
+		overlay: ($userOptions.overlay === false) ? $userOptions.overlay : true,
 		type: $userOptions.type || false
 	};
+
+	// Prevent event
+	if ($self.options.parseEvent !== false) {
+		$self.options.parseEvent.preventDefault();
+	}
 
 	// Tools
 	var tool = function(document, $options) {
 		// HTML
 		var $messageBox = document.createElement('div');
 		var $messageBoxHTML = '';
-		$messageBoxHTML += '<a class="message-close"></a>';
-		$messageBoxHTML += '<div class="message-type"></div>';
-		$messageBoxHTML += '<div class="message-heading"></div>';
-		$messageBoxHTML += '<div class="message-text"></div>';
-		$messageBoxHTML += '<div class="message-buttons"></div>';
-		$messageBox.id = 'message-box';
+		$messageBoxHTML += '<a class="messageplate-close"></a>';
+		$messageBoxHTML += '<div class="messageplate-type"></div>';
+		$messageBoxHTML += '<div class="messageplate-heading"></div>';
+		$messageBoxHTML += '<div class="messageplate-body"></div>';
+		$messageBoxHTML += '<div class="messageplate-buttons"></div>';
+		$messageBox.id = 'messageplate';
 		$messageBox.innerHTML = $messageBoxHTML;
 
 		var $messageOverlay = document.createElement('div');
-		$messageOverlay.id = 'message-overlay';
+		$messageOverlay.id = 'web-overlay';
 
 		var $buttonsBoth = document.createElement('div');
 		var $buttonsBothHtml = '';
@@ -139,37 +145,45 @@ var messageplate = function($userOptions) {
 		}
 	}(document, $self.options);
 
-	// Calls
-	basicSetup();
-	callbackOnTrue();
-	messageHideBinding();
-	messageReveal();
+	// Public functions
+	$self.close = function() {
+		tool.classRemove(tool.element.html, 'messageplate-reveal');
+		setTimeout(function() {
+			tool.remove('#messageplate');
+		}, 300);
+	};
+
+	$self.reveal = function() {
+		setTimeout(function() {
+			tool.classAdd(tool.element.html, 'messageplate-reveal');
+		}, 50);
+	};
 
 	// Internal functions
 	function basicSetup() {
 		if (!tool.isTouch()) {
-			tool.classAdd(tool.element.html, 'message-no-touch');
+			tool.classAdd(tool.element.html, 'messageplate-no-touch');
 		}
-		tool.remove('#message-box');
+		tool.remove('#messageplate');
 		tool.element.body.appendChild(tool.html.messageBox);
-		if ($self.options.overlay === true && !tool.exists(document.getElementById('message-overlay'))) {
+		if ($self.options.overlay === true && !tool.exists(document.getElementById('web-overlay'))) {
 			tool.element.body.appendChild(tool.html.messageOverlay);
 		}
 
-		$messageBoxEl = document.getElementById('message-box');
-		$overlayEl = document.getElementById('message-overlay');
+		$messageBoxEl = document.getElementById('messageplate');
+		$overlayEl = document.getElementById('web-overlay');
 
-		$messageBoxEl.querySelector('.message-close').innerHTML = ($self.options.close !== false) ? $self.options.close : '';
-		$messageBoxEl.querySelector('.message-type').innerHTML = ($self.options.type === false || $self.options.type === 'none') ? '' : '<div class="type-' + $self.options.type + '"><div class="line-one"></div><div class="line-two"></div></div>';
-		$messageBoxEl.querySelector('.message-heading').innerHTML = $self.options.heading !== false ? '<h6>' + $self.options.heading + '</h6>' : '';
-		$messageBoxEl.querySelector('.message-text').innerHTML = $self.options.message !== false ? $self.options.message : '';
+		$messageBoxEl.querySelector('.messageplate-close').innerHTML = ($self.options.close !== false) ? $self.options.close : '';
+		$messageBoxEl.querySelector('.messageplate-type').innerHTML = ($self.options.type === false || $self.options.type === 'none') ? '' : '<div class="type-' + $self.options.type + '"><div class="line-one"></div><div class="line-two"></div></div>';
+		$messageBoxEl.querySelector('.messageplate-heading').innerHTML = $self.options.heading !== false ? '<h6>' + $self.options.heading + '</h6>' : '';
+		$messageBoxEl.querySelector('.messageplate-body').innerHTML = $self.options.body !== false ? $self.options.body : '';
 
 		if ($self.options.buttonFalse !== false && $self.options.buttonTrue !== false) {
-			$messageBoxEl.querySelector('.message-buttons').appendChild(tool.html.buttonsBoth);
+			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonsBoth);
 		} else if ($self.options.buttonTrue) {
-			$messageBoxEl.querySelector('.message-buttons').appendChild(tool.html.buttonTrue);
+			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonTrue);
 		} else if ($self.options.buttonFalse) {
-			$messageBoxEl.querySelector('.message-buttons').appendChild(tool.html.buttonFalse);
+			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonFalse);
 		}
 	};
 
@@ -184,28 +198,20 @@ var messageplate = function($userOptions) {
 	function messageHideBinding() {
 		if ($self.options.buttonFalse !== false) {
 			$messageBoxEl.querySelector('.btn-false').onclick = function() {
-				$self.messageClose();
+				$self.close();
 			};
 		}
-		$messageBoxEl.querySelector('.message-close').onclick = function() {
-			$self.messageClose();
+		$messageBoxEl.querySelector('.messageplate-close').onclick = function() {
+			$self.close();
 		};
 		$overlayEl.onclick = function() {
-			$self.messageClose();
+			$self.close();
 		};
 	};
 
-	function messageReveal() {
-		setTimeout(function() {
-			tool.classAdd(tool.element.html, 'message-reveal');
-		}, 50);
-	};
-
-	// Public functions
-	$self.messageClose = function() {
-		tool.classRemove(tool.element.html, 'message-reveal');
-		setTimeout(function() {
-			tool.remove('#message-box');
-		}, 300);
-	};
+	// Calls
+	basicSetup();
+	callbackOnTrue();
+	messageHideBinding();
+	$self.reveal();
 };

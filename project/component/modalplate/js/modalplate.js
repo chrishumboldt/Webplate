@@ -1,206 +1,193 @@
 /**
  * File: modalplate.js
- * Type: Javacript component file
+ * Type: Javascript component
  * Author: Chris Humboldt
- * Last Edited: 24 April 2015
  */
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
+// Variables
+// Options
 // Tools
-// Component call
-// Component
-// Prototype component
+// Calls
 
-// Tools
-// ---------------------------------------------------------------------------------------
-var tool = {
-	addEvent: function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
-		if ($elem.addEventListener) {
-			$elem.addEventListener($type, $eventHandle, false);
-		} else if ($elem.attachEvent) {
-			$elem.attachEvent("on" + $type, $eventHandle);
-		} else {
-			$elem["on" + $type] = $eventHandle;
+var modalplate = function($userOptions) {
+	// Variables
+	var $self = this;
+	var $overlayEl;
+	var $thisModal;
+
+	// Options
+	$userOptions = $userOptions || false;
+	$self.options = {
+		body: $userOptions.body || '',
+		classAdd: $userOptions.classAdd || false,
+		close: $userOptions.close || 'close',
+		breakpoint: $userOptions.breakpoint || 700,
+		heading: $userOptions.heading || false,
+		overlay: ($userOptions.overlay === false) ? $userOptions.overlay : true,
+		parseEvent: $userOptions.parseEvent || false,
+		reveal: $userOptions.reveal || 'slide-from-top',
+		revealLarge: $userOptions.revealLarge || false,
+		trigger: $userOptions.trigger || 'always'
+	};
+
+	// Tools
+	var tool = function(document, $options) {
+		// HTML
+		var $modal = document.createElement('div');
+		var $modalHTML = '';
+		if ($self.options.close !== false) {
+			$modalHTML += '<a href class="modalplate-close">' + $options.close + '</a>';
 		}
-	},
-	classAdd: function($selector, $class) {
-		var $crtClass = $selector.className;
-
-		if ($selector.className.indexOf($class) === -1) {
-			$selector.className = $selector.className === '' ? $class : $selector.className + ' ' + $class;
+		if ($self.options.heading !== false) {
+			$modalHTML += '<div class="modalplate-heading"><h6>' + $options.heading + '</h6></div>';
 		}
-	},
-	classRemove: function($selector, $class) {
-		var $crtClass = $selector.className;
-
-		if ($crtClass.indexOf($class) > -1) {
-			$selector.className = $selector.className.split(' ').filter(function($val) {
-				return $val != $class;
-			}).toString().replace(/,/g, ' ');
+		$modalHTML += '<div class="modalplate-body">' + $options.body + '</div>';
+		$modal.id = 'modalplate';
+		if ($options.classAdd !== false) {
+			$modal.className = $options.classAdd;
 		}
-	},
-	hasClass: function($element, $class) {
-		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-	},
-	idAdd: function($selector, $id) {
-		$selector.setAttribute('id', $id);
-	},
-	log: function($text) {
-		if (window.console) {
-			console.log($text);
-		}
-	}
-};
+		$modal.innerHTML = $modalHTML;
 
-// Component call
-// ---------------------------------------------------------------------------------------
-function Modalplate($selector, $userOptions) {
-	var $selectorType = $selector.charAt(0).toString();
+		var $modalOverlay = document.createElement('div');
+		$modalOverlay.id = 'web-overlay';
 
-	if ($selectorType === '.') {
-		var $elements = document.querySelectorAll($selector);
-		for (var $i = 0; $i < $elements.length; $i++) {
-			new ModalplateComponent($elements[$i], $userOptions);
+		// Elements
+		var $toolEl = {
+			body: document.getElementsByTagName('body')[0],
+			html: document.getElementsByTagName('html')[0]
 		};
-	} else {
-		new ModalplateComponent(document.getElementById($selector.substring(1)), $userOptions);
-	};
-};
-
-// Component
-// ---------------------------------------------------------------------------------------
-function ModalplateComponent($this, $userOptions) {
-
-	// Setup
-	this.element = $this;
-	this.options = {
-		reveal: 'slide-from-top',
-		revealLarge: false,
-		trigger: '.modal-trigger',
-		triggerMax: false,
-		triggerMin: false
-	};
-
-	// User options
-	if (typeof $userOptions === 'object') {
-		for (var $optionKey in $userOptions) {
-			if ($userOptions.hasOwnProperty($optionKey)) {
-				this.options[$optionKey] = $userOptions[$optionKey];
-			}
-		}
-	}
-
-	// Initialise
-	this.init();
-};
-
-// Prototype component
-// ---------------------------------------------------------------------------------------
-ModalplateComponent.prototype = {
-	// Initialize
-	init: function() {
-		// Variables
-		var $element = this.element;
-		var $options = this.options;
-
-		var $htmlElement = document.getElementsByTagName('html')[0];
-		var $modalTrigger = $element.getAttribute('data-modal-trigger') || $options.trigger;
-		var $modalReveal = $element.getAttribute('data-modal-reveal') || $options.reveal;
-		var $modalRevealLarge = $element.getAttribute('data-modal-reveal-large') || $options.revealLarge;
-		var $modalTriggerMax = $element.getAttribute('data-modal-trigger-max') || $options.triggerMax;
-		var $modalTriggerMin = $element.getAttribute('data-modal-trigger-min') || $options.triggerMin;
-
-		// Setup
-		tool.classAdd($element, 'modalplate');
-		setupOverlay();
-		setupReveal();
-		tool.addEvent(window, 'resize', function() {
-			setupReveal();
-		});
-
-		// Show & hide
-		triggerReveal();
-		triggerClose();
-
+		// HTML
+		var $toolHtml = {
+			modal: $modal,
+			modalOverlay: $modalOverlay
+		};
 		// Functions
-		function modalClose() {
-			if (tool.hasClass($htmlElement, 'modalplate-reveal')) {
-				tool.classRemove($element, 'reveal');
-				tool.classRemove($htmlElement, 'modalplate-reveal');
-			}
-		}
-
-		function modalReveal($ev) {
-			if (triggerCheck() && !tool.hasClass($htmlElement, 'modalplate-reveal')) {
-				$ev.preventDefault();
-				tool.classAdd($element, 'reveal');
-				tool.classAdd($htmlElement, 'modalplate-reveal');
+		var classAdd = function($element, $class) {
+			var $crtClass = $element.className;
+			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
+				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
 			}
 		};
-
-		function setupOverlay() {
-			if (document.getElementById('modalplate-overlay') === null) {
-				var $overlay = document.createElement('div');
-				tool.idAdd($overlay, 'modalplate-overlay');
-				document.getElementsByTagName('body')[0].appendChild($overlay);
-			};
-		}
-
-		function setupReveal($resizeCheck) {
-			if ($modalRevealLarge !== false) {
-				if (window.innerWidth <= 700) {
-					tool.classRemove($element, $modalRevealLarge);
-					tool.classAdd($element, $modalReveal);
-				} else {
-					tool.classRemove($element, $modalReveal);
-					tool.classAdd($element, $modalRevealLarge);
+		var classClear = function($element) {
+			$element.removeAttribute('class');
+		};
+		var classRemove = function($element, $class) {
+			if ($element.className.indexOf($class) > -1) {
+				$element.className = $element.className.split(' ').filter(function($val) {
+					return $val != $class;
+				}).toString().replace(/,/g, ' ');
+				if ($element.className === '') {
+					classClear($element);
 				}
-			} else {
-				tool.classAdd($element, $modalReveal);
 			}
 		};
-
-		function triggerCheck() {
-			if ($modalTriggerMax !== false && window.innerWidth < $modalTriggerMax) {
-				return true;
-			} else if ($modalTriggerMin !== false && window.innerWidth >= $modalTriggerMin) {
-				return true;
-			} else if ($modalTriggerMax === false && $modalTriggerMin === false) {
-				return true;
-			} else {
+		var exists = function($element) {
+			if ($element === null || typeof($element) === undefined) {
 				return false;
-			};
-		}
-
-		function triggerClose() {
-			var $closeTriggers = document.querySelectorAll('#modalplate-overlay, .modalplate .close');
-			for (var $i = 0; $i < $closeTriggers.length; $i++) {
-				$closeTriggers[$i].onclick = function($ev) {
-					return function($ev) {
-						$ev.preventDefault();
-						modalClose();
-					};
-				}($i);
-			};
-		};
-
-		function triggerReveal() {
-			if ($modalTrigger.charAt(0) === '.') {
-				var $classTriggers = document.querySelectorAll($modalTrigger);
-				for (var $i = 0; $i < $classTriggers.length; $i++) {
-					$classTriggers[$i].onclick = function($ev) {
-						return function($ev) {
-							modalReveal($ev);
-						};
-					}($i);
-				}
-			} else if ($modalTrigger.charAt(0) === '#') {
-				document.getElementById($modalTrigger.substring(1)).onclick = function($ev) {
-					modalReveal($ev);
-				};
+			} else {
+				return true;
 			}
 		};
+		var isTouch = function() {
+			return 'ontouchstart' in window || 'onmsgesturechange' in window;
+		};
+		var remove = function($selector) {
+			if ($selector.charAt(0) === '#') {
+				var $element = document.getElementById($selector.substring(1));
+				if ($element !== null) {
+					$element.parentNode.removeChild($element);
+				}
+			} else if ($selector.charAt(0) === '.') {
+				var $elements = document.querySelectorAll($selector);
+				for (var $i = $elements.length - 1; $i >= 0; $i--) {
+					if ($elements[$i] !== null) {
+						$elements[$i].parentNode.removeChild($element);
+					}
+				}
+			}
+		};
+
+		return {
+			classAdd: classAdd,
+			classClear: classClear,
+			classRemove: classRemove,
+			element: $toolEl,
+			exists: exists,
+			html: $toolHtml,
+			isTouch: isTouch,
+			remove: remove
+		}
+	}(document, $self.options);
+
+	// Public functions
+	$self.close = function() {
+		tool.classRemove(tool.element.html, 'modalplate-reveal');
+		setTimeout(function() {
+			tool.remove('#modalplate');
+		}, 800);
+	};
+
+	$self.reveal = function() {
+		setTimeout(function() {
+			tool.classAdd(tool.element.html, 'modalplate-reveal');
+			tool.classAdd($thisModal, 'reveal');
+		}, 50);
+	};
+
+	// Internal functions
+	function executeModal() {
+		if ($self.options.parseEvent !== false) {
+			$self.options.parseEvent.preventDefault();
+		}
+		setupModal();
+		$self.reveal();
+	};
+
+	function basicSetup() {
+		if (!tool.isTouch()) {
+			tool.classAdd(tool.element.html, 'modalplate-no-touch');
+		}
+		tool.remove('#modalplate');
+		if ($self.options.overlay === true && !tool.exists(document.getElementById('web-overlay'))) {
+			tool.element.body.appendChild(tool.html.modalOverlay);
+		}
+	};
+
+	function setupModal() {
+		tool.element.body.appendChild(tool.html.modal);
+		$thisModal = document.getElementById('modalplate');
+		if ($self.options.revealLarge !== false) {
+			if (window.innerWidth < $self.options.breakpoint) {
+				tool.classAdd($thisModal, $self.options.reveal);
+			} else {
+				tool.classAdd($thisModal, $self.options.revealLarge);
+			}
+		} else {
+			tool.classAdd($thisModal, $self.options.reveal);
+		};
+
+		$closeTriggers = document.querySelectorAll('#modalplate .modalplate-close, #web-overlay');
+		for (var $i = $closeTriggers.length - 1; $i >= 0; $i--) {
+			$closeTriggers[$i].onclick = function($ev) {
+				return function($ev) {
+					$ev.preventDefault();
+					$self.close();
+				};
+			}($i);
+		};
+	};
+
+	// Basic setup
+	basicSetup();
+
+	// Manage click
+	if ($self.options.trigger === 'always') {
+		executeModal();
+	} else if ($self.options.trigger === 'large' && window.innerWidth >= $self.options.breakpoint) {
+		executeModal();
+	} else if ($self.options.trigger === 'small' && window.innerWidth <= $self.options.breakpoint) {
+		executeModal();
 	}
 };

@@ -1,6 +1,6 @@
 {
   "name": "messageplate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/chrishumboldt/Messageplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -34,14 +34,14 @@
     "bower_components",
     "sass"
   ],
-  "_release": "1.0.2",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.2",
-    "commit": "f87d19beda0f8f18742e9d681acd91a76225ec98"
+    "tag": "v1.0.3",
+    "commit": "f550c8e9280f320127dfce9198ae4b9166f94069"
   },
   "_source": "git://github.com/chrishumboldt/Messageplate.git",
-  "_target": "~1.0.2",
+  "_target": "~1.0.3",
   "_originalSource": "messageplate",
   "_direct": true
 }
