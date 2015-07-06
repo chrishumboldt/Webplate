@@ -11,12 +11,12 @@ See an example below of a basic include.
 
 ```
 <head>
-	<!--Required javascript-->
-	<script src="js/min/modernizr-custom-v2.7.1.min.js"></script>
+	<!-- Include Hammer (optional) -->
+	<script src="js/min/hammer-v2.0.3.min.js"></script>
 	
-	<!--Flickerplate-->
+	<!-- Include Flickerplate -->
 	<script src="js/min/flickerplate.min.js"></script>
-	<link href="css/flickerplate.css" rel="stylesheet" type="text/css">
+	<link href="css/flickerplate.css"  type="text/css" rel="stylesheet">
 </head>
 ```
 
@@ -25,10 +25,7 @@ Once included, create the neccessary HTML and call Flickerplate by referencing t
 Javascript call:
 
 ```
-$(document).ready(function()
-{
-	$('.flicker-example').flickerplate();
-});
+new flickerplate('.flicker-example');
 ```
 
 Basic HTML:
@@ -56,7 +53,7 @@ Basic HTML:
 Documentation
 =========
 
-For a more detailed explanation read the online documentation at http://getwebplate.com/plugins/flickerplate.
+Coming soon.
 
 
 Author
