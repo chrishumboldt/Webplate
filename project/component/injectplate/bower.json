@@ -1,0 +1,33 @@
+{
+	"name": "injectplate",
+	"version": "1.0.0",
+	"homepage": "https://github.com/chrishumboldt/Injectplate",
+	"authors": [
+		"Chris Humboldt <chrismodem@gmail.com>"
+	],
+	"description": "A basic message component.",
+	"main": ["js/min/injectplate.min.js"],
+	"keywords": [
+		"Javascript Components",
+		"Components",
+		"Injector",
+		"Webplate",
+		"Javascript"
+	],
+	"license": "Apache License, Version 2.0",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests",
+		"gruntfile.js",
+		"package.json",
+		"index.html",
+		"bower.json",
+		"css/demo.css",
+		"sass/demo.scss",
+		"bower_components",
+		"sass"
+	]
+}
