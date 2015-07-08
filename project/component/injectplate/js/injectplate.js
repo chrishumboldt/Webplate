@@ -15,139 +15,144 @@ var injectplate = function() {
 	var $componentList = {};
 
 	// Functions
-	var applyHTML = function($element, $generatedHTML, $className, $onDone) {
-		if ($className !== false) {
-			$element.className = $className;
+	var append = function($html, $element, $overwrite, $onDone) {
+		// var $container = document.createElement($containerType);
+		// $container.innerHTML = $html;
+		// $element.appendChild($container.firstChild);
+		if ($overwrite === true) {
+			$element.innerHTML = $html;
+		} else {
+			$element.innerHTML += $html;
 		}
-		$element.innerHTML = $generatedHTML;
-		if ($onDone.length > 0) {
+		$element.setAttribute('data-inject', 'true');
+		if ($onDone !== undefined) {
 			setTimeout(function() {
-				$onDone.reverse();
-				for (var $i = 0, $len = $onDone.length; $i < $len; $i++) {
-					if ($onDone[$i] !== undefined) {
-						$onDone[$i].call(window);
-					}
-				}
+				$onDone.call(window);
 			});
 		}
 	};
-	var bind = function($bindObj) {
-		var $generatedHTML;
-		var $className = $bindObj.className || false;
-		var $componentHTML = ($bindObj.html) ? $bindObj.html : $componentList[$bindObj.component].html;
-		var $data = $bindObj.data || false;
-		var $returnHTML = $bindObj.returnHTML || false;
-		var $selector = $bindObj.selector || '#inject-' + $bindObj.component;
-		var $selectorType = $selector.charAt(0);
-		var $onDone = [];
-
-		// Return functions
-		if ($bindObj.onDone) {
-			$onDone.push($bindObj.onDone);
-		} else if ($componentList[$bindObj.component].onDone !== false) {
-			$onDone.push($componentList[$bindObj.component].onDone);
-		};
-
-		if ($returnHTML === true) {
-			$generatedHTML = generateHTML($componentHTML, $data)
-			return {
-				html: $generatedHTML.flatHTML,
-				onDone: $onDone
-			};
+	var bind = function($objBind) {
+		// Binding element
+		var $selectorType = ($objBind.to) ? $objBind.to.charAt(0) : false;
+		var $element = false;
+		if ($selectorType === false) {
+			$element = document.getElementById('inject-' + $objBind.component);
 		} else {
-			if ($selectorType === '.') {
-				var $elements = document.querySelectorAll($selector);
-				$generatedHTML = generateHTML($componentHTML, $data);
-				for (var $i = $generatedHTML.onDone.length - 1; $i >= 0; $i--) {
-					$onDone.push($generatedHTML.onDone[$i][0]);
-				}
-				for (var $i = $elements.length - 1; $i >= 0; $i--) {
-					applyHTML($elements[$i].innerHTML, $generatedHTML.flatHTML, $className, $onDone);
-				}
-			} else if ($selectorType === '#') {
-				var $idElement = document.getElementById($selector.substring(1));
-				if (exists($idElement)) {
-					$generatedHTML = generateHTML($componentHTML, $data);
-					for (var $i = $generatedHTML.onDone.length - 1; $i >= 0; $i--) {
-						$onDone.push($generatedHTML.onDone[$i][0]);
-					}
-					applyHTML($idElement, $generatedHTML.flatHTML, $className, $onDone);
-				}
+			if ($selectorType === '#') {
+				$element = document.getElementById($objBind.to.substring(1));
+			} else if ($selectorType === '.') {
+				$element = document.querySelector($objBind.to);
+			} else {
+				$element = document.getElementsByTagName($objBind.to)[0];
 			}
+		}
+
+		// Flatten HTML
+		if (exists($element)) {
+			var $flatHTML = flattenHTML($componentList[$objBind.component].html, $objBind.data);
+			if ($objBind.className || $componentList[$objBind.component].className) {
+				$element.className = ($objBind.className || $componentList[$objBind.component].className);
+			}
+			append($flatHTML, $element, $objBind.overwrite || $componentList[$objBind.component].overwrite, $objBind.onDone);
 		}
 	};
 	var component = function($objComponent) {
 		$componentList[$objComponent.name] = {
+			className: $objComponent.className || false,
 			html: $objComponent.html,
-			onDone: $objComponent.onDone || false
+			onDone: $objComponent.onDone || false,
+			overwrite: $objComponent.overwrite || false
 		};
 	};
 	var exists = function($element) {
-		if ($element === null || typeof($element) === undefined) {
+		if ($element === undefined || $element === null || typeof($element) === undefined) {
 			return false;
 		} else {
 			return true;
 		}
 	};
-	var generateHTML = function($html, $data) {
+	var flattenHTML = function($componentHTML, $bindData) {
 		var $flatHTML = '';
-		var $onDone = [];
-		if ($html !== undefined) {
-			for (var $i = 0, $len = $html.length; $i < $len; $i++) {
-				if (typeof $html[$i] === 'object') {
-					for (var $key in $html[$i]) {
-						if ($key === 'inject') {
-							var $innerBinding = bind({
-								component: $html[$i][$key],
-								data: $data,
-								returnHTML: true
-							});
-							$flatHTML += $innerBinding.html;
-							$onDone.push($innerBinding.onDone);
-						} else {
-							$flatHTML += generateObjHTML($data[$key], $html[$i][$key]);
+		var $bracketRegExp = new RegExp('{{([^}]+)}}', 'g');
+
+		// Manage data
+		var $topLevelBinding = [];
+		var $nestedBinding = [];
+		for (var $dataKey in $bindData) {
+			if (!$bindData.hasOwnProperty($dataKey)) {
+				continue;
+			}
+			if (typeof $bindData[$dataKey] === 'object') {
+				$nestedBinding[$dataKey] = $bindData[$dataKey];
+			} else {
+				$topLevelBinding[$dataKey] = $bindData[$dataKey];
+			}
+		}
+
+		// Flatten HTML
+		for (var $i = 0, $len = $componentHTML.length; $i < $len; $i++) {
+			if (typeof $componentHTML[$i] === 'object') {
+				for (var $componentHTMLKey in $componentHTML[$i]) {
+					// Inner HTML flat
+					var $innerFlatHTML = '';
+					var $arInnerHTML = $componentHTML[$i][$componentHTMLKey];
+					for (var $r = $arInnerHTML.length - 1; $r >= 0; $r--) {
+						$innerFlatHTML += $arInnerHTML[$r];
+					}
+
+					// Bind data
+					var $componentData = $nestedBinding[$componentHTMLKey];
+					for (var $componentDataKey in $componentData) {
+						$flatHTML += $innerFlatHTML;
+						$innerData = $componentData[$componentDataKey];
+						if ($innerFlatHTML.indexOf('{{') > -1) {
+							var $htmlMatch = $innerFlatHTML.match($bracketRegExp);
+							if ($htmlMatch !== null) {
+								for (var $i2 = $htmlMatch.length - 1; $i2 >= 0; $i2--) {
+									var $replaceValue = stringToRef($innerData, $htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)) || '';
+									$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+								}
+							}
 						}
 					}
-				} else {
-					$flatHTML += $html[$i];
-				}
-			}
-		};
-		return {
-			flatHTML: $flatHTML,
-			onDone: $onDone
-		};
-	};
-	var generateObjHTML = function($data, $keyHTML) {
-		var $returnHTML = '';
-		var $flatKeyHTML = '';
-		for (var $i = 0, $len = $keyHTML.length; $i < $len; $i++) {
-			$flatKeyHTML += $keyHTML[$i];
-		}
-		if ($data !== undefined) {
-			if ($data.length !== undefined) {
-				for (var $i = 0, $len = $data.length; $i < $len; $i++) {
-					var $newKeyHTML = $flatKeyHTML;
-					for (var $key in $data[$i]) {
-						$newKeyHTML = $newKeyHTML.replace(new RegExp('{{' + $key + '}}', 'g'), $data[$i][$key]);
-					}
-					$returnHTML += $newKeyHTML;
 				}
 			} else {
-				var $newKeyHTML = $flatKeyHTML;
-				for (var $key in $data) {
-					$newKeyHTML = $newKeyHTML.replace(new RegExp('{{' + $key + '}}', 'g'), $data[$key]);
+				// Check to see if there are any binding options
+				$flatHTML += $componentHTML[$i];
+				if ($componentHTML[$i].indexOf('{{') > -1) {
+					var $htmlMatch = $componentHTML[$i].match($bracketRegExp);
+					for (var $i2 = $htmlMatch.length - 1; $i2 >= 0; $i2--) {
+						var $replaceValue = $topLevelBinding[$htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)] || '';
+						$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+					}
 				}
-				$returnHTML += $newKeyHTML;
 			}
 		}
-		return $returnHTML;
+
+		return $flatHTML;
+	};
+	var log = function($text) {
+		if (window.console) {
+			console.log($text);
+		}
+	};
+	// As per: http://scott.donnel.ly/javascript-function-to-convert-a-string-in-dot-andor-array-notation-into-a-reference/
+	var stringToRef = function(object, reference) {
+		function arr_deref(o, ref, i) {
+			return !ref ? o : (o[ref.slice(0, i ? -1 : ref.length)]);
+		}
+
+		function dot_deref(o, ref) {
+			return !ref ? o : ref.split('[').reduce(arr_deref, o);
+		}
+		return reference.split('.').reduce(dot_deref, object);
 	};
 
 	// Return
 	return {
 		bind: bind,
 		component: component,
-		componentList: $componentList
+		componentList: $componentList,
+		log: log
 	};
 };

@@ -106,6 +106,11 @@ var web = function() {
 	};
 
 	// DOM
+	var append = function($html, $parent) {
+		var $div = document.createElement('div');
+		$div.innerHTML = $html;
+		document.querySelector($parent || 'body').appendChild($div.firstChild);
+	};
 	var eventAdd = function($elem, $type, $eventHandle) {
 		if ($elem == null || typeof($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
@@ -552,6 +557,7 @@ var web = function() {
 		isTouch: isTouch,
 		crtDBDate: crtDBDate,
 		log: log,
+		append: append,
 		eventAdd: eventAdd,
 		classAdd: classAdd,
 		classClear: classClear,
