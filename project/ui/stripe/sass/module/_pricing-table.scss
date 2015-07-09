@@ -87,7 +87,7 @@
 
 		// Button sign up
 		.btn-signup {
-			@include button-size-large();
+			@include button-size(large);
 			@include spacing-no();
 			@include border-radius(0px);
 			width: 100%;
@@ -110,7 +110,7 @@
 
 			// Button sign up
 			.btn-signup {
-				@include button-size-x-large();
+				@include button-size(x-large);
 				font-size: 0.913em;
 				border-left: 1px solid darken($aqua, 3%);
 			}
@@ -151,5 +151,3 @@
 		}
 	}
 }
-
-

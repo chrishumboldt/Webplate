@@ -1,15 +1,8 @@
 /**
- * SASS File: 		_download-stripe.scss
- * Type: 			molecule
- * Author:        	Chris Humboldt
- * Last Edited:   	19 June 2014
+ * File: _download-stripe.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
-
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Download stripe
-
 
 // Download stripe
 // ---------------------------------------------------------------------------------------
@@ -20,7 +13,7 @@
 		color: $grey;
 	}
 	a {
-		@include button-size-large();
+		@include button-size(large);
 		padding-left: 0px;
 		padding-right: 0px;
 
@@ -41,7 +34,7 @@
 		}
 		a {
 			width: 100%;
-			
+
 			span {
 				font-size: 1.375em;
 			}

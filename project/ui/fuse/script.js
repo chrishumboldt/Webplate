@@ -1,14 +1,8 @@
 /**
  * File: script.js
- * Type: Fuse Javascript file
+ * Type: Javascript ui script
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Snap
-// Prettify
 
 // Prettify
 // ---------------------------------------------------------------------------------------
@@ -86,13 +80,13 @@
 				}
 			}
 			for (var r = {
-				b: 8,
-				t: 9,
-				n: 10,
-				v: 11,
-				f: 12,
-				r: 13
-			}, n = [], k = 0, c = a.length; k < c; ++k) {
+					b: 8,
+					t: 9,
+					n: 10,
+					v: 11,
+					f: 12,
+					r: 13
+				}, n = [], k = 0, c = a.length; k < c; ++k) {
 				i = a[k];
 				if (i.global || i.multiline) throw Error("" + i);
 				n.push("(?:" + s(i) + ")")
@@ -155,7 +149,8 @@
 									break
 								}
 							t || (w = "pln")
-						} if ((f = w.length >= 5 && "lang-" === w.substring(0, 5)) && !(t && typeof t[1] === "string")) f = !1, w = "src";
+						}
+						if ((f = w.length >= 5 && "lang-" === w.substring(0, 5)) && !(t && typeof t[1] === "string")) f = !1, w = "src";
 						f || (r[z] = w)
 					}
 					h = c;
@@ -318,7 +313,7 @@
 							A = j[b + 1],
 							G;
 						if (A.nodeType !== 1 && (G = x.substring(g,
-							t))) {
+								t))) {
 							s && (G = G.replace(d, "\r"));
 							A.nodeValue = G;
 							var L = A.ownerDocument,

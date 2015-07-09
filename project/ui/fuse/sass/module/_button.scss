@@ -24,7 +24,7 @@
 // Banner buttons
 // ---------------------------------------------------------------------------------------
 .btn-banner {
-	@include button-style-line($white);
+	@include button-style(line, $white);
 	@include button-size(x-large);
 	@include margin-horizontal($space-x-small);
 	@include text-weight(100);
@@ -48,7 +48,7 @@
 // Basic buttons
 // ---------------------------------------------------------------------------------------
 .btn-primary {
-	@include button-style-flat($pink);
+	@include button-style(flat, $pink);
 	@include button-size(normal);
 }
 .btn-notice {
@@ -60,7 +60,7 @@
 	@include button-size(small);
 }
 .btn-secondary {
-	@include button-style-flat($blue);
+	@include button-style(flat, $blue);
 	@include button-size(normal);
 }
 .btn-secondary-small {
@@ -68,7 +68,6 @@
 	@include button-size(small);
 }
 .btn-tertiary {
-	@include button-style-flat($aqua);
+	@include button-style(flat, $aqua);
 	@include button-size(small);
 }
-

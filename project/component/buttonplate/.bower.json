@@ -1,5 +1,6 @@
 {
   "name": "Buttonplate",
+  "version": "2.0.0",
   "homepage": "http://getwebplate.com/plugins/buttonplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -27,14 +28,14 @@
     "css/demo.css",
     "sass/demo.scss"
   ],
-  "_release": "056198143c",
+  "_release": "2.0.0",
   "_resolution": {
-    "type": "branch",
-    "branch": "dev-chris",
-    "commit": "056198143cc91ef73944b73a87d858bcee5de2d8"
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "c05b209f9b8f215abe3b343b40e9edaf1577f136"
   },
   "_source": "git://github.com/chrishumboldt/Buttonplate.git",
-  "_target": "dev-chris",
+  "_target": "~2.0.0",
   "_originalSource": "buttonplate",
   "_direct": true
 }

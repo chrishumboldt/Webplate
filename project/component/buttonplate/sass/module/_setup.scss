@@ -1,14 +1,8 @@
 /**
  * File: _setup.scss
- * Type: SASS basic file
+ * Type: SASS module
  * Author: Chris Humboldt
- * Last Edited: 1 May 2015
  */
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Font face
-// Button setup
 
 // Font face
 // ---------------------------------------------------------------------------------------
@@ -37,23 +31,19 @@
 	outline: none;
 	-webkit-appearance: none;
 
-	// Visited state
 	&:visited {
 		@include text-colour(lighten(#000, 40%));
 	}
-	// Hover state
-	.bp-no-touch &:hover { 
+	.buttonplate-no-touch &:hover {
 		@include cursor(pointer);
 		@include background-colour($grey-link-hover);
 	}
-	// Active state
 	&:active {
 		@include drop-shadow-inset(fade-out(#000, 0.85), 5px, 2px, 0px);
 		text-shadow: fade-out($white, 0.75) 0px 1px 0;
 		@include background-colour($grey-link);
 	}
 
-	// Arrow
 	.arrow {
 		@include display(inline-block);
 		@include height(10px);
@@ -73,10 +63,11 @@
 		}
 	}
 
-	// Animations
 	-webkit-transition: border 0.2s ease-out, background 0.2s ease-out;
 	-moz-transition: border 0.2s ease-out, background 0.2s ease-out;
 	-ms-transition: border 0.2s ease-out, background 0.2s ease-out;
 	-o-transition: border 0.2s ease-out, background 0.2s ease-out;
 	transition: border 0.2s ease-out, background 0.2s ease-out;
+
+	@include drop-down();
 }

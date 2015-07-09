@@ -1,8 +1,7 @@
 /**
  * File: _import.scss
- * Type: SASS import file
+ * Type: SASS import
  * Author: Chris Humboldt
- * Last Edited: 24 April 2015
  */
 
 // Table of contents
@@ -11,18 +10,15 @@
 // Import
 
 // Variables
-// ---------------------------------------------------------------------------------------
-$font-face-buttonplate 		: "icon-font-buttonplate" !default;
+$font-face-buttonplate: "icon-font-buttonplate" !default;
 
 // Import
-// ---------------------------------------------------------------------------------------
 @import "../bower_components/blueplate/sass/import";
 
-@import "basic/drop-down";
-@import "basic/setup";
-@import "basic/shape";
-@import "basic/size";
-@import "basic/style";
+@import "module/drop-down";
+@import "module/setup";
+@import "module/shape";
+@import "module/size";
+@import "module/style";
 
 @import "css/execute";
-

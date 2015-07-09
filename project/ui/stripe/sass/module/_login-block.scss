@@ -50,7 +50,7 @@
 		@include row();
 
 		a, button {
-			@include button-size-large();
+			@include button-size(large);
 			@include spacing-no();
 			@include border-radius(0px);
 			font-size: 0.875em;
@@ -61,7 +61,7 @@
 
 			// Respond
 			@include respond-to(large) {
-				@include button-size-x-large();
+				@include button-size(x-large);
 				@include spacing-no();
 				@include span(6);
 				font-size: 0.913em;
@@ -76,5 +76,3 @@
 		}
 	}
 }
-
-

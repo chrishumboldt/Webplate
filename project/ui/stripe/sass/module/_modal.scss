@@ -104,7 +104,7 @@
 		@include level(2);
 
 		a, button {
-			@include button-size-large();
+			@include button-size(large);
 			@include spacing-no();
 			@include border-radius(0px);
 			@include text-size(14px);
@@ -118,7 +118,7 @@
 
 			// Respond
 			@include respond-to(large) {
-				@include button-size-x-large();
+				@include button-size(x-large);
 				@include spacing-no();
 				@include text-size(15px);
 			}
@@ -143,6 +143,3 @@
 		@include padding-vertical($space-base);
 	}
 }
-
-
-

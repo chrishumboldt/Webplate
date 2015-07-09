@@ -1,8 +1,7 @@
 /**
  * File: _drop-down.scss
- * Type: SASS basic file
+ * Type: SASS module
  * Author: Chris Humboldt
- * Last Edited: 1 May 2015
  */
 
 // Table of contents
@@ -15,61 +14,62 @@
 
 // Variables
 // ---------------------------------------------------------------------------------------
-$default-colour 			: $blue;
-$away-from-button			: 4px;
+$default-colour: $blue;
+$away-from-button: 4px;
 
 // Drop-downs
 // ---------------------------------------------------------------------------------------
 @mixin drop-down($colour: $default-colour) {
+	&.buttonplate-drop-down {
+		// List
+		ul {
+			@include position(absolute);
+			@include padding(0px);
+			@include margin-top($away-from-button);
+			@include list-style(none);
+			@include background-colour($white);
+			@include border-radius();
+			@include drop-shadow(fade-out($black, 0.85), 3px, 1px);
+			@include level(2);
+			@include opacity(0);
+			@include visibility(hidden);
+			@include animate(all, 0.2s);
 
-	// List
-	ul {
-		@include position(absolute);
-		@include padding(0px);
-		@include margin-top($away-from-button);
-		@include list-style(none);
-		@include background-colour($white);
-		@include border-radius();
-		@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
-		@include level(2);
-		@include opacity(0);
-		@include visibility(hidden);
-		@include animate(all, 0.2s);
+			li {
+				@include spacing-no();
 
-		li {
-			@include spacing-no();
+				&:first-child a {
+					@include border-radius-top();
+				}
+				&:last-child a {
+					@include border-radius-bottom();
+				}
+				&.line-top {
+					@include set-line(top);
+				}
+				&.line-bottom {
+					@include set-line(bottom);
+				}
 
-			&:first-child a {
-				@include border-radius-top();
-			}
-			&:last-child a {
-				@include border-radius-bottom();
-			}
-			&.line-top {
-				@include set-line(top);
-			}
-			&.line-bottom {
-				@include set-line(bottom);
-			}
-			
-			// Links
-			a {
-				@include display(block);
-				@include text-align(left);
-				@include text-colour($black-base);
-				text-decoration: none;
-				vertical-align: middle;
-				
-				.bp-no-touch &:hover {
-					@include background-colour($grey-link-hover);
+				// Links
+				a {
+					@include display(block);
+					@include text-align(left);
+					@include text-colour($black-base);
+					text-decoration: none;
+					vertical-align: middle;
+
+					.buttonplate-no-touch &:hover {
+						@include background-colour($grey-link-hover);
+					}
 				}
 			}
-		}
 
-		// Show state
-		&.bp-drop-down-open {
-			@include opacity(1);
-			@include visibility(visible);
+			// Show state
+			&.open {
+				@include opacity(1);
+				@include visibility(visible);
+			}
 		}
 	}
 }
@@ -77,7 +77,7 @@ $away-from-button			: 4px;
 // Set line
 // ---------------------------------------------------------------------------------------
 @mixin set-line($position: top) {
-	
+
 	// Determine where the line goes
 	@if $position == top {
 		@include border-top($grey-light);
@@ -97,7 +97,7 @@ $away-from-button			: 4px;
 	}
 
 	// Drop down
-	&.bp-drop-down {
+	&.buttonplate-drop-down {
 		ul {
 			@include margin-left(-$spacing);
 		}
@@ -118,7 +118,7 @@ $away-from-button			: 4px;
 	@if lightness($colour) < 68% {
 		@include text-colour($white);
 	}
-	
+
 	// Check saturations
 	@if saturation($colour) > 0% {
 		@if saturation($colour) > 38% {
@@ -133,5 +133,3 @@ $away-from-button			: 4px;
 	}
 
 }
-
-
