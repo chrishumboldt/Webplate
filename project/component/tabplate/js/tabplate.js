@@ -12,33 +12,8 @@
 // Calls
 
 var tabplate = function($selector, $userOptions) {
-	var $selectorType = $selector.charAt(0).toString();
-
-	if ($selectorType === '.') {
-		var $elements = document.querySelectorAll($selector);
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			new tabplateComponent($elements[$i], $userOptions);
-		};
-	} else if ($selectorType === '#') {
-		new tabplateComponent(document.getElementById($selector.substring(1)), $userOptions);
-	}
-};
-
-var tabplateComponent = function($this, $userOptions) {
-	//Variables
-	var $self = $this;
-	var $tabContent;
-
-	// Options
-	$userOptions = $userOptions || false;
-	$self.options = {
-		animate: $self.getAttribute('data-tabplate-animate') || $userOptions.animate || false,
-		theme: false,
-		tabs: $self.getAttribute('data-tabplate-tabs') || $userOptions.tabs || '.tabplate-tabs'
-	};
-
 	// Tools
-	var tool = function(document, $options) {
+	var tool = function(document) {
 		// Variables
 		var $toolEl = {
 			body: document.getElementsByTagName('body')[0],
@@ -72,7 +47,32 @@ var tabplateComponent = function($this, $userOptions) {
 			classRemove: classRemove,
 			element: $toolEl
 		};
-	}(document, $self.options);
+	}(document);
+
+	// Select element
+	var $selectorType = $selector.charAt(0).toString();
+	if ($selectorType === '.') {
+		var $elements = document.querySelectorAll($selector);
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
+			new tabplateComponent($elements[$i], $userOptions, tool);
+		};
+	} else if ($selectorType === '#') {
+		new tabplateComponent(document.getElementById($selector.substring(1)), $userOptions, tool);
+	}
+};
+
+var tabplateComponent = function($this, $userOptions, tool) {
+	// Variables
+	var $self = $this;
+	var $tabContent;
+
+	// Options
+	$userOptions = $userOptions || false;
+	$self.options = {
+		animate: $self.getAttribute('data-tabplate-animate') || $userOptions.animate || false,
+		theme: false,
+		tabs: $self.getAttribute('data-tabplate-tabs') || $userOptions.tabs || '.tabplate-tabs'
+	};
 
 	// Public functions
 	$self.changeTab = function($index) {
