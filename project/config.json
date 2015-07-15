@@ -1,30 +1,16 @@
 {
+	"build": [{
+		"name": "welcome",
+		"sass": ["welcome.scss"],
+		"js": ["src/scroll-to.js"]
+	}],
 	"project": {
-		"css": ["welcome.css"],
+		"css": ["welcome.css", "test.css"],
 		"js": ["welcome.js"],
-		"body-class": "page-welcome",
-		"icon-font": "icomoon",
 		"ui": "fuse",
-		"page": [{
-			"config-type": "new",
-			"component": ["modalplate", "tabplate"],
-			"url": "project/ui/fuse/example.html",
-			"js": ["../ui/fuse/demo.js"],
-			"ui": "fuse"
-		}, {
-			"config-type": "new",
-			"component": ["modalplate", "tabplate"],
-			"url": "project/ui/stripe/example.html",
-			"ui": "stripe"
-		}, {
-			"config-type": "new",
-			"body-class": "test-page",
-			"icon-font": "icomoon",
-			"url": "test.html",
-			"js": ["test.js"]
-		}]
+		"icon-font": "icomoon"
 	},
-	"option": {
-		"font-family": "'Roboto', 'Helvetic Neue', Helvetica, Arial"
-	}
+	"option": [
+		"font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"
+	]
 }
