@@ -1,1 +1,7 @@
-web.scrollTo(".scroll-to",-88);
+/**
+ * File: 
+ * Type:
+ * Author:
+ */
+
+web.scrollTo(".scroll-to", -88);

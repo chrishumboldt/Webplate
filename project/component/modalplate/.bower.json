@@ -1,6 +1,6 @@
 {
   "name": "Modalplate",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "homepage": "http://getwebplate.com/plugins/modalplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -31,14 +31,14 @@
     "bower_components",
     "sass"
   ],
-  "_release": "2.0.4",
+  "_release": "2.0.5",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.4",
-    "commit": "90fb65cc740d94e2390a81b9d8938f97df86f386"
+    "tag": "v2.0.5",
+    "commit": "ed539631649c2a454d56960070a902c264824d70"
   },
   "_source": "git://github.com/chrishumboldt/Modalplate.git",
-  "_target": "~2.0.4",
+  "_target": "~2.0.5",
   "_originalSource": "modalplate",
   "_direct": true
 }

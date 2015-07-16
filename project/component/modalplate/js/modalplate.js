@@ -124,9 +124,6 @@ var modalplate = function($userOptions) {
 	// Public functions
 	$self.close = function() {
 		tool.classRemove(tool.element.html, 'modalplate-reveal');
-		setTimeout(function() {
-			tool.remove('#modalplate');
-		}, 800);
 	};
 
 	$self.reveal = function() {
@@ -156,6 +153,7 @@ var modalplate = function($userOptions) {
 	};
 
 	function setupModal() {
+		tool.remove('#modalplate');
 		tool.element.body.appendChild(tool.html.modal);
 		$thisModal = document.getElementById('modalplate');
 		if ($self.options.revealLarge !== false) {

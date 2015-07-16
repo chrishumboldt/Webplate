@@ -12,8 +12,8 @@
 
 // Requires
 var gulp = require('gulp');
-var clean = require('gulp-clean');
 var concat = require('gulp-concat');
+var del = require('del');
 var file = require('gulp-file');
 var livereload = require('gulp-livereload');
 var rename = require("gulp-rename");
@@ -32,10 +32,9 @@ gulp.task('default', ['build', 'watch']);
 gulp.task('build', ['clean', 'config', 'engine', 'ui', 'css', 'js']);
 
 gulp.task('clean', function() {
-   gulp.src('./temp/*', {
-         read: false
-      })
-      .pipe(clean());
+   del([
+      './temp/**/*'
+   ]);
 });
 
 gulp.task('config', function() {

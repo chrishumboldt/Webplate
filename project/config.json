@@ -1,14 +1,21 @@
 {
 	"build": [{
 		"name": "welcome",
-		"sass": ["welcome.scss"],
-		"js": ["src/scroll-to.js"]
+		"sass": ["welcome.scss"]
 	}],
 	"project": {
-		"css": ["welcome.css", "test.css"],
+		"component": ["buttonplate"],
+		"css": ["welcome.css"],
 		"js": ["welcome.js"],
 		"ui": "fuse",
-		"icon-font": "icomoon"
+		"icon-font": "icomoon",
+		"page": [{
+			"config-type": "new",
+			"url": "project/ui/fuse/example.html",
+			"ui": "fuse",
+			"component": ["modalplate"],
+			"js": ["../ui/fuse/demo.js"]
+		}]
 	},
 	"option": [
 		"font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"

@@ -11,6 +11,15 @@ setTimeout(function() {
 	web.snap('.snap-large', 700);
 }, 400);
 
-new Modalplate('.modal-basic', {
-	trigger: '.modal-trigger-basic'
-});
+document.querySelector('.modal-basic').onclick = function() {
+	new modalplate({
+		heading: 'Basic Modal',
+		body: 'This is a test'
+	});
+};
+document.querySelector('.modal-form').onclick = function() {
+	new modalplate({
+		heading: 'Form Modal',
+		body: 'Some Cool Stuff'
+	});
+};
