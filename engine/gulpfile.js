@@ -86,10 +86,17 @@ gulp.task('css', function() {
             for (var $i2 = 0, $len2 = $config.build[$i].component.length; $i2 < $len2; $i2++) {
                var $thisComponent = $config.build[$i].component[$i2];
                var $componentBower = require('../project/component/' + $thisComponent + '/.bower.json');
-               for (var $i3 = 0, $len3 = $componentBower.main.length; $i3 < $len3; $i3++) {
-                  if ($componentBower.main[$i3].indexOf('.css') > -1) {
+               if (typeof $componentBower.main == 'object') {
+                  for (var $i3 = 0, $len3 = $componentBower.main.length; $i3 < $len3; $i3++) {
+                     if ($componentBower.main[$i3].indexOf('.css') > -1) {
+                        $concat = true;
+                        $arConcatStyles.push('../project/component/' + $thisComponent + '/' + $componentBower.main[$i3]);
+                     }
+                  }
+               } else {
+                  if ($componentBower.main.indexOf('.css') > -1) {
                      $concat = true;
-                     $arConcatStyles.push('../project/component/' + $thisComponent + '/' + $componentBower.main[$i3]);
+                     $arConcatStyles.push('../project/component/' + $thisComponent + '/' + $componentBower.main);
                   }
                }
             }
@@ -102,7 +109,7 @@ gulp.task('css', function() {
          }
          if ($concat === true) {
             gulp.src($arConcatStyles)
-               .pipe(concat($config.build[$i].name + '.scss'))
+               .pipe(concat($config.build[$i].name + '.min.scss'))
                .pipe(gulp.dest('./temp/'))
                .pipe(sass({
                   outputStyle: 'compressed'
@@ -124,10 +131,17 @@ gulp.task('js', function() {
             for (var $i2 = 0, $len2 = $config.build[$i].component.length; $i2 < $len2; $i2++) {
                var $thisComponent = $config.build[$i].component[$i2];
                var $componentBower = require('../project/component/' + $thisComponent + '/.bower.json');
-               for (var $i3 = 0, $len3 = $componentBower.main.length; $i3 < $len3; $i3++) {
-                  if ($componentBower.main[$i3].indexOf('.js') > -1) {
+               if (typeof $componentBower.main == 'object') {
+                  for (var $i3 = 0, $len3 = $componentBower.main.length; $i3 < $len3; $i3++) {
+                     if ($componentBower.main[$i3].indexOf('.js') > -1) {
+                        $concat = true;
+                        $arConcatJS.push('../project/component/' + $thisComponent + '/' + $componentBower.main[$i3]);
+                     }
+                  }
+               } else {
+                  if ($componentBower.main.indexOf('.js') > -1) {
                      $concat = true;
-                     $arConcatJS.push('../project/component/' + $thisComponent + '/' + $componentBower.main[$i3]);
+                     $arConcatJS.push('../project/component/' + $thisComponent + '/' + $componentBower.main);
                   }
                }
             }
@@ -140,7 +154,7 @@ gulp.task('js', function() {
          }
          if ($concat === true) {
             gulp.src($arConcatJS)
-               .pipe(concat($config.build[$i].name + '.js'))
+               .pipe(concat($config.build[$i].name + '.min.js'))
                .pipe(gulp.dest('./temp/'))
                .pipe(uglify({
                   compress: $compress
