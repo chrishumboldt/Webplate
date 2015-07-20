@@ -2,7 +2,11 @@
  * File: import.scss
  * Type: SASS import file
  * Author: Chris Humboldt
+ * Last Edited: 22 April 2015
  */
+
+// NOTE: Include this file in any custom SASS file you create to gain access to the
+// $page-width variable and Webplate mixins.
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
@@ -27,7 +31,7 @@ $option-font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 // Config
 // ---------------------------------------------------------------------------------------
-@import "../sass/config";
+@import "../../engine/sass/config";
 
 // Map variables
 // ---------------------------------------------------------------------------------------
@@ -45,4 +49,4 @@ $font-family-set: $option-font-family;
 
 // Components
 // ---------------------------------------------------------------------------------------
-@import "../sass/blueplate/import";
+@import "../../engine/sass/blueplate/import";

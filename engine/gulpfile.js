@@ -17,6 +17,7 @@ var del = require('del');
 var file = require('gulp-file');
 var livereload = require('gulp-livereload');
 var rename = require("gulp-rename");
+var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
@@ -101,6 +102,7 @@ gulp.task('css', function() {
                }
             }
          }
+         $arConcatStyles.push('./sass/overwrite.scss');
          if ($config.build[$i].sass) {
             $concat = true;
             for (var $i2 = 0, $len2 = $config.build[$i].sass.length; $i2 < $len2; $i2++) {
@@ -110,11 +112,13 @@ gulp.task('css', function() {
          if ($concat === true) {
             gulp.src($arConcatStyles)
                .pipe(concat($config.build[$i].name + '.min.scss'))
+               .pipe(replace(new RegExp('@import "', 'g'), '@import "../../project/sass/'))
                .pipe(gulp.dest('./temp/'))
                .pipe(sass({
                   outputStyle: 'compressed'
                }).on('error', sass.logError))
-               .pipe(gulp.dest('../project/css'));
+               .pipe(gulp.dest('../project/css'))
+               .pipe(livereload());
          }
       }
    }
@@ -125,7 +129,8 @@ gulp.task('js', function() {
    if ($config.build) {
       for (var $i = 0, $len = $config.build.length; $i < $len; $i++) {
          var $concat = false;
-         var $compress = $config.build[$i].compress || false;
+         var $compress = $config.build[$i].compress || true;
+         var $mangle = $config.build[$i].mangle || true;
          var $arConcatJS = [];
          if ($config.build[$i].component) {
             for (var $i2 = 0, $len2 = $config.build[$i].component.length; $i2 < $len2; $i2++) {
@@ -157,9 +162,11 @@ gulp.task('js', function() {
                .pipe(concat($config.build[$i].name + '.min.js'))
                .pipe(gulp.dest('./temp/'))
                .pipe(uglify({
-                  compress: $compress
+                  compress: $compress,
+                  mangle: $mangle
                }))
-               .pipe(gulp.dest('../project/js'));
+               .pipe(gulp.dest('../project/js'))
+               .pipe(livereload());
          }
       }
    }
@@ -196,13 +203,11 @@ gulp.task('watch', function() {
       '../project/sass/**/*.scss'
    ], ['css']);
    gulp.watch([
-      '../project/css/*.css',
-      '../project/css/**/*.css'
-   ], ['reload']);
-   gulp.watch([
-      '../project/js/*.js',
-      '../project/js/**/*.js'
-   ], ['js', 'reload']);
+      '../project/js/src/*.js',
+      '../project/js/controller/*.js',
+      '../project/js/controller/**/*.js',
+      '../project/js/component/*.js'
+   ], ['js']);
    gulp.watch([
       '../project/ui/**/script.js',
       '../project/ui/**/style.scss'

@@ -1,42 +1,43 @@
 {
-   "name": "webplate",
-   "version": "3.0.0",
-   "description": "An Awesome Front-End Builder",
-   "main": "../start.js",
-   "dependencies": {
-      "del": "^1.2.0",
-      "gulp": "^3.9.0",
-      "gulp-concat": "^2.6.0",
-      "gulp-file": "^0.2.0",
-      "gulp-livereload": "^3.8.0",
-      "gulp-rename": "^1.2.2",
-      "gulp-sass": "^2.0.3",
-      "gulp-sourcemaps": "^1.5.2",
-      "gulp-uglify": "^1.2.0"
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/chrishumboldt/Webplate.git"
-   },
-   "keywords": [
-      "Webplate",
-      "UI",
-      "Framework",
-      "Responsive",
-      "SASS",
-      "Blueplate",
-      "Modernizr",
-      "Buttonplate",
-      "Modalplate",
-      "Formplate",
-      "Flickerplate",
-      "Injectplate",
-      "Messageplate"
-   ],
-   "author": "Chris Humboldt",
-   "license": "Apache-2.0",
-   "bugs": {
-      "url": "https://github.com/chrishumboldt/Webplate/issues"
-   },
-   "homepage": "http://getwebplate.com"
+  "name": "webplate",
+  "version": "3.0.0",
+  "description": "An Awesome Front-End Builder",
+  "main": "../start.js",
+  "dependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-file": "^0.2.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-sass": "^2.0.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishumboldt/Webplate.git"
+  },
+  "keywords": [
+    "Webplate",
+    "UI",
+    "Framework",
+    "Responsive",
+    "SASS",
+    "Blueplate",
+    "Modernizr",
+    "Buttonplate",
+    "Modalplate",
+    "Formplate",
+    "Flickerplate",
+    "Injectplate",
+    "Messageplate"
+  ],
+  "author": "Chris Humboldt",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chrishumboldt/Webplate/issues"
+  },
+  "homepage": "http://getwebplate.com"
 }
