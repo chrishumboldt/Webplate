@@ -1,6 +1,6 @@
 {
   "name": "injectplate",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "homepage": "https://github.com/chrishumboldt/Injectplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -33,14 +33,14 @@
     "bower_components",
     "sass"
   ],
-  "_release": "1.4.2",
+  "_release": "1.5.0",
   "_resolution": {
     "type": "version",
-    "tag": "v1.4.2",
-    "commit": "9aef9564c9e252b609a8c524a2cb63cd6dbbb22e"
+    "tag": "v1.5.0",
+    "commit": "710965587dc213c509945b0b5385d19e8e302edc"
   },
   "_source": "git://github.com/chrishumboldt/Injectplate.git",
-  "_target": "~1.4.2",
+  "_target": "~1.5.0",
   "_originalSource": "injectplate",
   "_direct": true
 }

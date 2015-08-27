@@ -1,7 +1,7 @@
-Injectplate
+Loaderplate
 ==========
 
-A Javascript component injector.
+A simple Javascript loader library.
 
 
 Author
@@ -11,6 +11,8 @@ Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
 Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
+
+User SVG Loaders by SamHerbert - <a href="https://github.com/SamHerbert/SVG-Loaders">github.com/SamHerbert/SVG-Loaders</a><br>
 
 
 Copyright and License

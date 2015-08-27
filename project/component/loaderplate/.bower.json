@@ -1,0 +1,44 @@
+{
+  "name": "loaderplate",
+  "version": "1.0.6",
+  "homepage": "https://github.com/chrishumboldt/Loaderplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A simple Javascript loader library.",
+  "main": [
+    "js/min/loaderplate.js",
+    "css/loaderplate.css"
+  ],
+  "keywords": [
+    "Loader",
+    "Component",
+    "Webplate",
+    "Javascript",
+    "CSS"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gulpfile.js",
+    "package.json",
+    "index.html",
+    "bower.json",
+    "css/demo.css",
+    "sass"
+  ],
+  "_release": "1.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.6",
+    "commit": "599dc0151c9c7416239874873c454934ef4d345c"
+  },
+  "_source": "git://github.com/chrishumboldt/Loaderplate.git",
+  "_target": "~1.0.6",
+  "_originalSource": "loaderplate",
+  "_direct": true
+}

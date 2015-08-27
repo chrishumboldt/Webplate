@@ -9,7 +9,6 @@
 // Components
 
 // Components
-// ---------------------------------------------------------------------------------------
 var injectplate = function() {
 	// HTML
 	var $componentList = {};
@@ -64,6 +63,23 @@ var injectplate = function() {
 			overwrite: $objComponent.overwrite || false
 		};
 	};
+	var conditionObj = function($stringCondition) {
+		log($stringCondition);
+		var $type = ($stringCondition.indexOf('@if') > -1) ? 'if' : false;
+		var $check = ($stringCondition.indexOf('==') > -1) ? '==' : ($stringCondition.indexOf('!=') > -1) ? '!=' : false;
+		var $clean = ($type === 'if') ? $stringCondition.substring(4, $stringCondition.length - 2) : false;
+		var $split = $clean.split(new RegExp($check));
+		var $variable = $split[0].substring(0, $split[0].length - 1);
+		var $against = $split[1].substring(1);
+
+		return {
+			against: $against,
+			check: $check,
+			variable: $variable,
+			type: $type,
+			string: $stringCondition
+		};
+	};
 	var exists = function($element) {
 		if ($element === undefined || $element === null || typeof($element) === undefined) {
 			return false;
@@ -74,6 +90,7 @@ var injectplate = function() {
 	var flattenHTML = function($componentHTML, $bindData) {
 		var $flatHTML = '';
 		var $bracketRegExp = new RegExp('{{([^}]+)}}', 'g');
+		var $conditionRegExp = new RegExp('@([^}]+)@', 'g');
 
 		// Manage data
 		var $topLevelBinding = [];
@@ -96,21 +113,68 @@ var injectplate = function() {
 					// Inner HTML flat
 					var $innerFlatHTML = '';
 					var $arInnerHTML = $componentHTML[$i][$componentHTMLKey];
-					for (var $r = $arInnerHTML.length - 1; $r >= 0; $r--) {
+					for (var $r = 0, $lenr = $arInnerHTML.length; $r < $lenr; $r++) {
 						$innerFlatHTML += $arInnerHTML[$r];
 					}
+					var $componentData = $nestedBinding[$componentHTMLKey];
 
 					// Bind data
-					var $componentData = $nestedBinding[$componentHTMLKey];
-					for (var $componentDataKey in $componentData) {
-						$flatHTML += $innerFlatHTML;
-						$innerData = $componentData[$componentDataKey];
-						if ($innerFlatHTML.indexOf('{{') > -1) {
-							var $htmlMatch = $innerFlatHTML.match($bracketRegExp);
-							if ($htmlMatch !== null) {
-								for (var $i2 = $htmlMatch.length - 1; $i2 >= 0; $i2--) {
-									var $replaceValue = stringToRef($innerData, $htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)) || '';
-									$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+					if ($innerFlatHTML.indexOf('@') > -1) {
+						for (var $componentDataKey in $componentData) {
+							var $innerData = $componentData[$componentDataKey];
+							var $conditionState = true;
+							var $conditionStrings = [];
+							var $conditionMatch = $innerFlatHTML.match($conditionRegExp);
+
+							for (var $i2 = 0, $len2 = $conditionMatch.length; $i2 < $len2; $i2++) {
+								var $conditionObj = conditionObj($conditionMatch[$i2]);
+								$conditionStrings.push($conditionObj.string);
+								if ($innerData[$conditionObj.variable] != undefined) {
+									if ($conditionObj.check == '==') {
+										if ($innerData[$conditionObj.variable].toString() == $conditionObj.against) {
+											$conditionState = true;
+										} else {
+											$conditionState = false;
+										}
+									} else if ($conditionObj.check == '!=') {
+										if ($innerData[$conditionObj.variable].toString() != $conditionObj.against) {
+											$conditionState = true;
+										} else {
+											$conditionState = false;
+										}
+									}
+								} else {
+									$conditionState = false;
+								}
+							}
+
+							if ($conditionState === true) {
+								$flatHTML += $innerFlatHTML;
+								for (var $i3 = $conditionStrings.length - 1; $i3 >= 0; $i3--) {
+									$flatHTML = $flatHTML.replace($conditionStrings[$i3], '');
+								}
+								if ($innerFlatHTML.indexOf('{{') > -1) {
+									var $htmlMatch = $innerFlatHTML.match($bracketRegExp);
+									if ($htmlMatch !== null) {
+										for (var $i2 = 0, $len2 = $htmlMatch.length; $i2 < $len2; $i2++) {
+											var $replaceValue = stringToRef($innerData, $htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)) || '';
+											$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+										}
+									}
+								}
+							}
+						}
+					} else {
+						for (var $componentDataKey in $componentData) {
+							$flatHTML += $innerFlatHTML;
+							$innerData = $componentData[$componentDataKey];
+							if ($innerFlatHTML.indexOf('{{') > -1) {
+								var $htmlMatch = $innerFlatHTML.match($bracketRegExp);
+								if ($htmlMatch !== null) {
+									for (var $i2 = 0, $len2 = $htmlMatch.length; $i2 < $len2; $i2++) {
+										var $replaceValue = stringToRef($innerData, $htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)) || '';
+										$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+									}
 								}
 							}
 						}
@@ -118,12 +182,53 @@ var injectplate = function() {
 				}
 			} else {
 				// Check to see if there are any binding options
-				$flatHTML += $componentHTML[$i];
-				if ($componentHTML[$i].indexOf('{{') > -1) {
-					var $htmlMatch = $componentHTML[$i].match($bracketRegExp);
-					for (var $i2 = $htmlMatch.length - 1; $i2 >= 0; $i2--) {
-						var $replaceValue = $topLevelBinding[$htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)] || '';
-						$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+				if ($componentHTML[$i].indexOf('@') > -1) {
+					// log($componentHTML[$i]);
+					var $conditionState = true;
+					var $conditionStrings = [];
+					var $conditionMatch = $componentHTML[$i].match($conditionRegExp);
+					for (var $i2 = 0, $len2 = $conditionMatch.length; $i2 < $len2; $i2++) {
+						var $conditionObj = conditionObj($conditionMatch[$i2]);
+						$conditionStrings.push($conditionObj.string);
+						if ($topLevelBinding[$conditionObj.variable] != undefined) {
+							if ($conditionObj.check == '==') {
+								if ($topLevelBinding[$conditionObj.variable].toString() == $conditionObj.against) {
+									$conditionState = true;
+								} else {
+									$conditionState = false;
+								}
+							} else if ($conditionObj.check == '!=') {
+								if ($topLevelBinding[$conditionObj.variable].toString() != $conditionObj.against) {
+									$conditionState = true;
+								} else {
+									$conditionState = false;
+								}
+							}
+						} else {
+							$conditionState = false;
+						}
+					}
+					if ($conditionState === true) {
+						$flatHTML += $componentHTML[$i];
+						for (var $i3 = $conditionStrings.length - 1; $i3 >= 0; $i3--) {
+							$flatHTML = $flatHTML.replace($conditionStrings[$i3], '');
+						}
+						if ($componentHTML[$i].indexOf('{{') > -1) {
+							var $htmlMatch = $componentHTML[$i].match($bracketRegExp);
+							for (var $i2 = 0, $len2 = $htmlMatch.length; $i2 < $len2; $i2++) {
+								var $replaceValue = $topLevelBinding[$htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)] || '';
+								$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+							}
+						}
+					}
+				} else {
+					$flatHTML += $componentHTML[$i];
+					if ($componentHTML[$i].indexOf('{{') > -1) {
+						var $htmlMatch = $componentHTML[$i].match($bracketRegExp);
+						for (var $i2 = 0, $len2 = $htmlMatch.length; $i2 < $len2; $i2++) {
+							var $replaceValue = $topLevelBinding[$htmlMatch[$i2].substring(2, $htmlMatch[$i2].length - 2)] || '';
+							$flatHTML = $flatHTML.replace(new RegExp($htmlMatch[$i2], 'g'), $replaceValue);
+						}
 					}
 				}
 			}
