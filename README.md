@@ -34,6 +34,13 @@ All web projects include a combination of CSS and Javascript and Webplate makes 
 
 You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
 
+Lets Go To The Next Level
+========
+
+Before you have even started, Webplate has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
+
+This will get you up and running for most projects but if you want to include Webplate components like Buttons, Forms or Modals or perhaps you want to even start delving into Webplate's automatic Bower, SASS and Grunt intergration then just read over some of the online documentation and become a bonafide pro.
+
 <b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
 
 
