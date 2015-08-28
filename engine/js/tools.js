@@ -368,6 +368,15 @@ var web = function() {
 
 		return $randomString;
 	};
+	var removeFirst = function($string) {
+		return $string.substring(1);
+	};
+	var removeFirstLast = function($string) {
+		return $string.substring(1, $string.length - 1);
+	};
+	var removeLast = function($string) {
+		return $string.substring(0, $string.length - 1);
+	};
 	var ucAll = function($string) {
 		return $string.toUpperCase();
 	};
@@ -612,6 +621,9 @@ var web = function() {
 		getExtension: getExtension,
 		getIntegers: getIntegers,
 		randomString: randomString,
+		removeFirst: removeFirst,
+		removeFirstLast: removeFirstLast,
+		removeLast: removeLast,
 		ucAll: ucAll,
 		ucFirst: ucFirst,
 		getUrl: getUrl,

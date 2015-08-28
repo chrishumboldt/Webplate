@@ -7,23 +7,32 @@ An awesome front-end framework that lets you stay focused on building your site 
 Getting Started
 ========
 
-This is a simple process that requires you dropping a copy of the Webplate directory you just got into your project and including the <b>stack.js</b> file in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.
+Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of webplate is required.
 
 ```
-<head>
-    <script id="webplate-stack" src="[webplate]/stack.js"></script>
-</head>
+<body style="display:none;">
+    /* Your content goes here */
+    <script id="webplate" src="webplate/start.js"></script>
+</body>
+```
+The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
+
+
+Load Your Project Files
+========
+
+All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.
+
+```
+{
+    "project": {
+        "css": ["welcome.css", "theme.css"],
+        "js": ["min/welcome.min.js"],
+    }
+}
 ```
 
-In the above <b>[webplate]</b> is referencing the directory that houses the framework. By default it is often just called webplate and sits in your site root, but can be any name you wish. Just include the correct name in your stack call and all other paths will line up automatically.
-
-The stack will load all the neccessary files required as well as give you the option to load your own "project" specific JS and CSS. To load project files add a data attribute to your "body" like the example below.
-
-```
-<body style="display: none;" data-project-css="welcome.css" data-project-js="welcome.js">
-```
-
-Note that the <b>style="display: none;"</b> attribute is used to prevent style snapping so that the page will only show once the files have been loaded. It is not required but recommended as all files are loaded asynchronously. From here on out you will have access to all Webplate plugins as well as all other third party vendor libraries like <a href="http://jquery.com/">jQuery</a>, <a href="http://modernizr.com/">Modernizr</a>, <a href="http://typeplate.com/">Typeplate</a>, <a href="http://julian.com/research/velocity/">Velocity.js</a>, <a href="http://hammerjs.github.io/">Hammer.js</a> and icon font support to name a few.
+You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
 
 <b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
 
