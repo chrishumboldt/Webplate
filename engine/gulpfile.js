@@ -65,7 +65,7 @@ gulp.task('engine', function() {
          compress: true
       }))
       .pipe(gulp.dest('../'));
-   gulp.src(['./js/modernizr.js', './js/tools.js'])
+   gulp.src(['./js/modernizr.js', './js/velocity.js', './js/tools.js'])
       .pipe(concat('scripts.min.js'))
       .pipe(uglify({
          compress: true
