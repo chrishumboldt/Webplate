@@ -22,6 +22,8 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
+var $reload = true;
+
 // Functions
 var getConfig = function() {
    delete require.cache[require.resolve('../project/config.json')];
@@ -63,7 +65,7 @@ gulp.task('engine', function() {
          compress: true
       }))
       .pipe(gulp.dest('../'));
-   gulp.src(['./js/modernizr.js', './js/velocity.js', './js/tools.js'])
+   gulp.src(['./js/modernizr.js', './js/tools.js'])
       .pipe(concat('scripts.min.js'))
       .pipe(uglify({
          compress: true
@@ -112,13 +114,17 @@ gulp.task('css', function() {
          if ($concat === true) {
             gulp.src($arConcatStyles)
                .pipe(concat($config.build[$i].name + '.min.scss'))
-               .pipe(replace(new RegExp('@import "', 'g'), '@import "../../project/sass/'))
+               .pipe(replace(new RegExp('@import "', 'g'), '@import "../../project/css/'))
                .pipe(gulp.dest('./temp/'))
                .pipe(sass({
                   outputStyle: 'compressed'
                }).on('error', sass.logError))
-               .pipe(gulp.dest('../project/css'))
+               .pipe(gulp.dest('../project/css/'))
                .pipe(livereload());
+            $reload = false;
+            setTimeout(function() {
+               $reload = true;
+            }, 1000);
          }
       }
    }
@@ -173,7 +179,9 @@ gulp.task('js', function() {
 });
 
 gulp.task('reload', function() {
-   gulp.src('').pipe(livereload());
+   if ($reload === true) {
+      gulp.src('').pipe(livereload());
+   }
 });
 
 gulp.task('ui', function() {
@@ -203,10 +211,12 @@ gulp.task('watch', function() {
       '../project/sass/**/*.scss'
    ], ['css']);
    gulp.watch([
+      '../project/css/*.css',
+      '../project/css/**/*.css'
+   ], ['reload']);
+   gulp.watch([
       '../project/js/src/*.js',
-      '../project/js/controller/*.js',
-      '../project/js/controller/**/*.js',
-      '../project/js/component/*.js'
+      '../project/js/src/**/*.js'
    ], ['js']);
    gulp.watch([
       '../project/ui/**/script.js',

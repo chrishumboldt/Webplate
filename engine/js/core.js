@@ -127,11 +127,11 @@
 					}), g(a, j, b, 0, h);
 					else if (Object(a) === a)
 						for (n in m = function() {
-							var b = 0,
-								c;
-							for (c in a) a.hasOwnProperty(c) && b++;
-							return b
-						}(), a) a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
+								var b = 0,
+									c;
+								for (c in a) a.hasOwnProperty(c) && b++;
+								return b
+							}(), a) a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
 							var a = [].slice.call(arguments);
 							k.apply(this, a), l()
 						} : j[n] = function(a) {

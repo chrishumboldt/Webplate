@@ -12,11 +12,9 @@
 // Title bar
 
 // Banner
-// ---------------------------------------------------------------------------------------
 .banner {
 	@include position(relative);
 	@include gradient-animate-angle($blue-dark, $red);
-
 	// Text
 	h1 {
 		@include text-colour($white);
@@ -29,10 +27,8 @@
 }
 
 // Layouts
-// ---------------------------------------------------------------------------------------
 .row.example {
 	@include border(3px, lighten($grey-blue-light, 14%));
-
 	div {
 		@include padding-vertical($space-small);
 		@include text-align(center);
@@ -40,7 +36,6 @@
 		@include text-weight(300);
 		@include background-colour(lighten($grey-blue-light, 10%));
 		@include border(3px, lighten($grey-blue-light, 14%));
-
 		// Adapt
 		@include breakpoint(large) {
 			@include text-size(16px);
@@ -49,13 +44,11 @@
 }
 
 // Text
-// ---------------------------------------------------------------------------------------
 h4 {
 	@include text-colour($pink);
 }
 
 // Title bar
-// ---------------------------------------------------------------------------------------
 .title-bar {
 	.no-touch & ul li a {
 		@include text-weight(300);

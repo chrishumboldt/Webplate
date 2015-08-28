@@ -1,12 +1,13 @@
 {
 	"build": [{
 		"name": "welcome",
-		"sass": ["welcome.scss"]
+		"sass": ["welcome.scss"],
+		"js": ["src/welcome.js"]
 	}],
 	"project": {
 		"component": ["buttonplate"],
-		"css": ["welcome.css"],
-		"js": ["welcome.js"],
+		"css": ["welcome.min.css"],
+		"js": ["welcome.min.js"],
 		"ui": "fuse",
 		"icon-font": "icomoon",
 		"page": [{

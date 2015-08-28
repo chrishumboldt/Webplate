@@ -50,11 +50,7 @@ var web = function() {
 
 	// Basic checks
 	var exists = function($element) {
-		if ($element === null || typeof($element) === undefined) {
-			return false;
-		} else {
-			return true;
-		}
+		return ($element === null || typeof($element) === undefined) ? false : true;
 	};
 	var hasWhiteSpace = function($check) {
 		return /\s/.test($check);
@@ -68,8 +64,9 @@ var web = function() {
 	var isDate = function($date) {
 		return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 	};
-	var isEmail = function($email) {
-		return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test($email);
+	var isEmail = function($email, $regExp) {
+		var $regExp = $regExp || /([\w\.]+)@([\w\.]+)\.(\w+)/i;
+		return $regExp.test($email);
 	};
 	var isExtension = function($file, $arAllowedTypes) {
 		var $allowedTypes = $arAllowedTypes || $webTypes.extensions;
@@ -85,11 +82,20 @@ var web = function() {
 	var isInteger = function($int) {
 		return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
 	};
-	var isPassword = function($password) {
-		return /^[A-Za-z0-9]{6,}$/.test($password);
+	var isPassword = function($password, $regExp) {
+		var $regExp = $regExp || /^(?=.*\d).{6,}$/;
+		return $regExp.test($password);
+	};
+	var isTime = function($time, $regExp) {
+		var $regExp = $regExp || /([01]\d|2[0-3]):([0-5]\d)/;
+		return $regExp.test($time);
 	};
 	var isTouch = function() {
 		return 'ontouchstart' in window || 'onmsgesturechange' in window;
+	};
+	var isURL = function($url, $regExp) {
+		var $regExp = $regExp || /(https?:\/\/[^\s]+)/g;
+		return $regExp.test($url);
 	};
 
 	// Dates
@@ -168,6 +174,28 @@ var web = function() {
 	var idRemove = function($element) {
 		$element.removeAttribute('id');
 	};
+	var inputGet = function($selector) {
+		var $inputElements;
+		var $type = $selector.charAt(0);
+		if ($type === '#' || $type === '.') {
+			$inputElements = document.querySelectorAll($selector);
+		} else {
+			$inputElements = document.getElementsByTagName($selector);
+		}
+		return $inputElements;
+	}
+	var inputDisable = function($selector) {
+		var $inputElements = inputGet($selector);
+		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
+			$inputElements[$i].disabled = true;
+		}
+	}
+	var inputEnable = function($selector) {
+		var $inputElements = inputGet($selector);
+		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
+			$inputElements[$i].disabled = false;
+		}
+	}
 	var getIndex = function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	};
@@ -554,7 +582,9 @@ var web = function() {
 		isImage: isImage,
 		isInteger: isInteger,
 		isPassword: isPassword,
+		isTime: isTime,
 		isTouch: isTouch,
+		isURL: isURL,
 		crtDBDate: crtDBDate,
 		log: log,
 		append: append,
@@ -565,6 +595,8 @@ var web = function() {
 		classReplace: classReplace,
 		idAdd: idAdd,
 		idRemove: idRemove,
+		inputDisable: inputDisable,
+		inputEnable: inputEnable,
 		getIndex: getIndex,
 		remove: remove,
 		snap: snap,
