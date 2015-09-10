@@ -206,6 +206,7 @@ function flickerplateComponent($element, $userOptions, tool) {
                tool.classRemove($element.querySelector('.dot.active'), 'active');
                tool.classAdd(this.querySelector('.dot'), 'active');
                flickerMove();
+               flickerAutoReset();
             };
          };
       }

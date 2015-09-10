@@ -1,44 +1,46 @@
 {
-  "name": "Modalplate",
-  "version": "2.0.5",
+  "name": "modalplate",
+  "version": "2.0.8",
   "homepage": "http://getwebplate.com/plugins/modalplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
-  "description": "A cool little modal plugin.",
+  "description": "A cool modal plugin.",
   "main": [
-    "js/min/modalplate.min.js",
+    "js/min/modalplate.js",
     "css/modalplate.css"
   ],
   "keywords": [
-    "Webplate",
-    "Modalplate",
     "Modal",
-    "jQuery"
+    "Component",
+    "Javascript",
+    "Webplate",
+    "Responsive"
   ],
   "license": "Apache License, Version 2.0",
   "ignore": [
     "**/.*",
     "node_modules",
+    "bower_components",
     "test",
     "tests",
-    "gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "index.html",
     "bower.json",
     "css/demo.css",
-    "sass/demo.scss",
-    "bower_components",
+    "js/demo.js",
+    "js/min/demo.js",
     "sass"
   ],
-  "_release": "2.0.5",
+  "_release": "2.0.8",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.5",
-    "commit": "ed539631649c2a454d56960070a902c264824d70"
+    "tag": "v2.0.8",
+    "commit": "4d196fb3c52927ecbfe917b5c7df3910cc5a9dff"
   },
   "_source": "git://github.com/chrishumboldt/Modalplate.git",
-  "_target": "~2.0.5",
+  "_target": "~2.0.8",
   "_originalSource": "modalplate",
   "_direct": true
 }

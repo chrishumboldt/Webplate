@@ -1,73 +1,76 @@
-Buttonplate
-===========
+# Buttonplate
+A universal button library.
 
-A global button library.
+## Getting Started
+You can either download a copy of the source files or install Buttonplate via Bower.
 
+```
+bower install buttonplate
+```
 
-Getting Started
-=========
-
-This plugin requires jQuery for the drop-down options and is included.
-
-See an example below of a basic include.
+## CSS Implementation
+Start by including the necessary files.
 
 ```
 <head>
-	<!--Required javascript-->
-	<script src="js/min/jquery-v1.10.2.min.js"></script>
-	<script src="js/min/modernizr-custom-v2.8.3.min.js"></script>
-	
-	<!--Buttonplate-->
-	<script src="js/min/buttonplate.min.js"></script>
 	<link href="css/buttonplate.css" rel="stylesheet" type="text/css">
 </head>
 ```
 
-From here on out you can class your link or button elements accordingly with the class <b>button</b> and a colour of your choice or use the mixins to assign to another class name. Call the javascript function below to execute.
-
-Javascript call:
+Now class your button to gain the desired effect. For example:
 
 ```
-$(document).ready(function(){
-  $('.button').buttons();
-});
+<button class="button line-red large">Example Button</button>
 ```
 
-Basic HTML:
+## SASS Implementation
+Instead of including the CSS file above, you can import the SASS file and create your own button styles. See an example below:
 
 ```
-<a href="#" class="button">Button Default</a>
-<a href="#" class="button blue">Blue Button</a>
-<div class="button red">
-  Drop-Down 
-  <ul>
-    <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 2</a></li>
-    <li class="line-top"><a href="#">Link 3</a></li>
-  </ul>
-</div>
+@import "buttonplate/sass/import";
+
+.btn-primary,
+.btn-secondary {
+   @include button-setup();
+   @include button-shape(rounded);
+}
+.btn-primary {
+   @include button-style(line, black);
+   @include button-size(large);
+}
+.btn-secondary {
+   @include button-style(flat, white);
+   @include button-size(normal);
+}
 ```
 
+There are a variety of options for the SASS builds.
 
-Documentation
-=========
+SASS | Default | Options | Description
+---- | ---- | ---- | ----
+button-setup() | | | This is a required function that needs to be made on all buttons.
+button-shape(x) | rounded | pill, rounded, square | Set the shape of the button.
+button-size(x) | normal | small, normal, large, x-large | Set the size of the button.
+button-style(x, y) | flat, white | flat, gradient, line | Set x to the style of button you want and y to the colour.
 
-For a more detailed explanation read the online documentation at http://getwebplate.com/plugins/buttonplate.
+## Javascript call
+If you want to enable button drop downs then you will need to execute the following Javascript.
 
+```
+<script>
+	new buttonplate('.btn-primary');
+	new buttonplate('.btn-secondary');
+</script>
+```
 
-Author
-=========
-
+## Author
 Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
 Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
 
-
-Copyright and License
-=========
-
-Copyright 2014 Savedge Project
+## Copyright and License
+Copyright 2015 Webplate Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

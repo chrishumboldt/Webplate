@@ -1,20 +1,19 @@
 {
   "name": "Flickerplate",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "homepage": "http://getwebplate.com/plugins/flickerplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
-  "description": "A cool jQuery plugin that lets you flick through content.",
+  "description": "A Javascript component that lets you flick through content.",
   "main": [
-    "js/min/flickerplate.min.js",
+    "js/min/flickerplate.js",
     "css/flickerplate.css"
   ],
   "keywords": [
     "Webplate",
-    "Flickerplate",
+    "Flicker",
     "Slider",
-    "jQuery",
     "Javascript"
   ],
   "license": "Apache License, Version 2.0",
@@ -24,24 +23,23 @@
     "bower_components",
     "test",
     "tests",
-    "gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "index.html",
     "bower.json",
-    "img",
-    "sass",
     "css/demo.css",
-    "css/demo.map.css",
-    "css/flickerplate.css.map"
+    "js/demo.js",
+    "js/min/demo.js",
+    "sass"
   ],
-  "_release": "3.0.2",
+  "_release": "3.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.2",
-    "commit": "52815ff1496153469083947bcdda8abe6eca3e03"
+    "tag": "v3.0.3",
+    "commit": "efa3310897085ac2433d2049300f551750518b4a"
   },
   "_source": "git://github.com/chrishumboldt/Flickerplate.git",
-  "_target": "~3.0.2",
+  "_target": "~3.0.3",
   "_originalSource": "flickerplate",
   "_direct": true
 }
