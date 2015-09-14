@@ -1,0 +1,213 @@
+/**
+ * File: demo.scss
+ * Type: SASS demo
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Import
+// Code
+// Demo
+
+// Import
+@import "blueplate";
+
+// Code
+.prettyprint {
+	@include position(relative);
+	@include padding($space-small);
+	@include margin-bottom(1.5em);
+	font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+	@include text-size(12px);
+	@include text-line-height(20px);
+	@include background-colour(lighten($grey-blue-light, 15%));
+	@include overflow(scroll);
+	word-wrap: normal;
+	white-space: pre;
+	@include breakpoint(large) {
+		@include padding($space-base);
+	}
+}
+code {
+	@include text-size(16px);
+}
+.pln,
+.pun,
+.kwd,
+.opn,
+.clo,
+.dec {
+	@include text-colour($grey-blue-dark);
+}
+.str {
+	@include text-colour($red);
+}
+.com {
+	@include text-colour($grey-blue);
+}
+.typ {
+	@include text-colour($blue);
+}
+.lit {
+	@include text-colour($purple-dark);
+}
+.tag {
+	@include text-colour($blue-dark);
+}
+.atn {
+	@include text-colour($aqua);
+}
+.atv {
+	@include text-colour($pink);
+}
+.var {
+	@include text-colour($aqua);
+}
+.fun {
+	@include text-colour($red-dark);
+}
+ol.linenums {
+	@include spacing-no();
+	@include margin-left($space-base);
+}
+
+// Demo styles
+@include global-setup();
+
+html {
+	@include height-min(100%);
+}
+html, body {
+	@include no-spacing();
+	@include text-line-height(24px);
+	@include background-colour($white);
+}
+
+// Text
+h1 { @include text-size(34px); @include text-weight($weight-thin); @include margin-bottom(1.85rem); }
+h2 { @include text-size(30px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); @include text-colour($grey-blue-dark); }
+h3 { @include text-size(26px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
+h4 { @include text-size(22px); @include text-weight($weight-light); @include text-colour($pink); }
+h5 { @include text-size(18px); @include text-weight($weight-base); }
+h6 { @include text-size(16px); @include text-weight($weight-bold); }
+h1, h2, h3 { @include text-line-height(38px); }
+h4, h5, h6 { @include text-line-height(24px); }
+p {
+	@include text-colour($grey-dark);
+	@include text-size(15px);
+	@include text-weight(300);
+
+	// Adapt
+	@include breakpoint(large) {
+		@include text-size(16px);
+	}
+
+	// Note
+	&.note {
+		@include text-colour($grey-medium);
+		@include text-size(14px);
+		@include text-style(italic);
+	}
+}
+h1, h2, h3, h4, h5, h6 {
+	&.line {
+		@include padding-bottom($space-small);
+		@include border-bottom($grey-light);
+	}
+	span {
+		@include padding-right($space-x-small);
+		@include text-colour($pink);
+		font-size: 0.7em;
+	}
+}
+
+// Links
+a.link,
+footer a {
+	@include position(relative);
+	@include display(inline-block);
+	@include text-colour($blue);
+	@include text-decoration(none);
+	@include animate(color);
+	outline: none;
+
+	// States
+	&:hover,
+	&:focus {
+		outline: none;
+	}
+
+	// After
+	&::after {
+		content: ' ';
+		@include position(absolute, top 100% left 0);
+		@include width(100%);
+		@include height(1px);
+		@include background-colour($blue);
+		@include transparency(0);
+		@include animate(all);
+		@include transform-translate-y(-$space-x-small - 2px);
+
+		// States
+		&:hover,
+		&:focus {
+			@include transparency(1);
+			@include transform-translate-y(-2px);
+		}
+	}
+	&:hover::after,
+	&:focus::after {
+		@include transparency(1);
+		@include transform-translate-y(-2px);
+	}
+}
+
+// Heading
+.heading {
+	@include background-colour($grey-blue-x-light);
+}
+
+// Container
+.container {
+	@include limit();
+	@include padding(20px);
+	@include respond-to(large) {
+		@include padding-vertical(60px);
+	}
+}
+
+// Blocks
+.block {
+	@include row();
+}
+
+footer {
+	@include text-colour($grey-blue-dark);
+	@include text-weight(300);
+	@include background-colour($grey-blue-x-light);
+
+	// Layouts
+	.col-double {
+		@include row();
+	}
+	.left,
+	.right {
+		@include span(12);
+		@include text-align(center);
+		@include text-size(13px);
+		@include breakpoint(large) {
+		    @include span-new(6);
+		}
+	}
+
+	// Adapt
+	@include breakpoint(large) {
+		.left {
+			@include text-align(left);
+		}
+		.right {
+			@include text-align(right);
+		}
+	}
+}

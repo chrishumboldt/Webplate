@@ -64,7 +64,6 @@ var injectplate = function() {
 		};
 	};
 	var conditionObj = function($stringCondition) {
-		log($stringCondition);
 		var $type = ($stringCondition.indexOf('@if') > -1) ? 'if' : false;
 		var $check = ($stringCondition.indexOf('==') > -1) ? '==' : ($stringCondition.indexOf('!=') > -1) ? '!=' : false;
 		var $clean = ($type === 'if') ? $stringCondition.substring(4, $stringCondition.length - 2) : false;
@@ -183,7 +182,6 @@ var injectplate = function() {
 			} else {
 				// Check to see if there are any binding options
 				if ($componentHTML[$i].indexOf('@') > -1) {
-					// log($componentHTML[$i]);
 					var $conditionState = true;
 					var $conditionStrings = [];
 					var $conditionMatch = $componentHTML[$i].match($conditionRegExp);

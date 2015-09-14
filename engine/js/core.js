@@ -223,18 +223,21 @@
 				load: $engineFiles,
 				complete: function() {
 					// Touch inclusion
-					if (Modernizr.touch) {
+					if (Modernizr.touchevents) {
 						yepnope({
 							load: $path.engine.jsMin + 'touch.min.js',
 							complete: function() {
-								FastClick.attach(document.body);
+								if ('addEventListener' in document) {
+									document.addEventListener('DOMContentLoaded', function() {
+										FastClick.attach(document.body);
+									}, false);
+								}
 							}
 						});
 					}
 
 					// Call webplate functions
 					web.overlayAdd();
-					web.navigation();
 					web.scrollWatch();
 					web.windowWatch();
 
@@ -252,7 +255,6 @@
 							var $component = $json.project['component'] || [];
 							var $formColour = $json.project['form-colour'] || 'blue';
 							var $iconFont = $json.project['icon-font'] || false;
-							var $navigation = $json.project['navigation'] || false;
 							var $projectCSS = $json.project['css'] || [];
 							var $projectJS = $json.project['js'] || [];
 							var $ui = $json.project['ui'] || false;
@@ -282,7 +284,6 @@
 											$component = $page['component'] || [];
 											$formColour = $page['form-colour'] || 'blue';
 											$iconFont = $page['icon-font'] || false;
-											$navigation = $page['navigation'] || false;
 											$projectCSS = $page['css'] || [];
 											$projectJS = $page['js'] || [];
 											$ui = $page['ui'] || false;
@@ -291,7 +292,6 @@
 											$bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
 											$formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
 											$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
-											$navigation = $page['navigation'] ? $page['navigation'] : $navigation;
 											$ui = $page['ui'] ? $page['ui'] : $ui;
 
 											// Component add
@@ -343,10 +343,6 @@
 							if ($bodyClass !== false) {
 								web.classAdd(web.element.body, $bodyClass.trim());
 							}
-
-							// Set the navigation type
-							$navigation = ($navigation !== false) ? web.prefix.navigation + $navigation : web.prefix.navigation + 'slide-from-left';
-							web.classAdd(web.element.html, $navigation);
 
 							// Form colour
 							if ($responseText.indexOf('formplate') > -1) {

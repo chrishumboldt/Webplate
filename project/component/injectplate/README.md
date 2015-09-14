@@ -1,12 +1,7 @@
-Injectplate
-==========
-
+# Injectplate
 A Javascript component injector.
 
-
-Getting Started
-=========
-
+## Getting Started
 You can either download a fresh copy of the source files or install Injectplate via Bower.
 
 ```
@@ -17,7 +12,7 @@ Simply start by including the required Javascript file.
 
 ```
 <body>
-    <script src="js/min/injectplate.min.js"></script>
+   <script src="js/min/injectplate.min.js"></script>
 </body>
 ```
 
@@ -68,10 +63,7 @@ If you would like to know what components have been created simply call the comp
 
 Components are completely reusable and highly maintainable.
 
-
-Dynamic Data
-=========
-
+## Dynamic Data
 Sometimes you might require elements to be generated dynamically and Injectplate can do this with a JSON based dataset. To do so modify the HTML option of the component, for example:
 
 ```
@@ -113,11 +105,8 @@ Sometimes you might require elements to be generated dynamically and Injectplate
 </script>
 ```
 
-
-Basic Conditional Statement
-=========
-
-Injectplate has begun including conditional statements namely a true / false conditions on data variables. The syntax is to wrap the statement in "@" signs and declare the condition inside. See an example below.
+## Basic Conditional Statement
+Injectplate has begun including conditional statements namely a true / false conditions on data variables. The syntax requires you to wrap the statement in "@" signs and declare the condition inside. See an example below.
 
 ```
 <script>
@@ -136,16 +125,13 @@ Injectplate has begun including conditional statements namely a true / false con
         component: 'article',
         to: '#article',
         data: {
-            content: 'This content will display but the heading will not because it not be provided.',
+            content: 'This content will inject but the heading will not because it has not been provided.',
         }
     });
 </script>
 ```
 
-
-On Done
-=========
-
+## On Done
 Once the component has been injected you might want to execute some code. To do so apply the onDone event to your binding.
 
 ```
@@ -165,9 +151,7 @@ Once the component has been injected you might want to execute some code. To do 
 ```
 
 
-Nesting Components
-=========
-
+## Nesting Components
 Note that you are also be able to bind again with the onDone function and nest components. In this case we want to inject some comments into the article component once it has already been injected itself.
 
 ```
@@ -226,20 +210,14 @@ Note that you are also be able to bind again with the onDone function and nest c
 </script>
 ```
 
-
-Author
-=========
-
+## Author
 Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
 Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
 
-
-Copyright and License
-=========
-
-Copyright 2015 Savedge Project
+## Copyright and License
+Copyright 2015 HG Bolts
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

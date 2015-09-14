@@ -27,7 +27,6 @@ var web = function() {
 	};
 	var $webPrefix = {
 		basic: 'web-',
-		navigation: 'web-nav-',
 		position: 'web-pos-',
 		scroll: 'web-scroll-',
 		state: 'web-state-'
@@ -418,74 +417,6 @@ var web = function() {
 	};
 
 	// Webplate
-	var navHide = function() {
-		var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
-		Velocity($webNavigation, {
-			left: 0
-		}, {
-			duration: 200,
-			easing: 'ease-out',
-			complete: function() {
-				classReplace($webEl.html, $webPrefix.navigation + 'shown', $webPrefix.navigation + 'hidden');
-			}
-		});
-		overlayHide();
-	};
-	var navShow = function() {
-		// Variables
-		var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
-		var $navigationWidth = $webNavigation.offsetWidth;
-
-		Velocity($webNavigation, {
-			left: $navigationWidth
-		}, {
-			duration: 200,
-			easing: 'ease-out',
-			complete: function() {
-				classReplace($webEl.html, $webPrefix.navigation + 'hidden', $webPrefix.navigation + 'shown');
-			}
-		});
-		overlayShow();
-	};
-	var navigation = function() {
-		var $navigation = document.getElementById('navigation');
-		var $navigationTrigger = document.getElementById('navigation-trigger');
-		if (exists($navigation)) {
-			var $navigationClone = $navigation.cloneNode(true);
-
-			$navigationClone.setAttribute('id', $webPrefix.basic + 'navigation');
-			$webEl.body.appendChild($navigationClone);
-
-			// On click
-			if (exists($navigationTrigger)) {
-				$navigationTrigger.onclick = function(event) {
-					event.preventDefault();
-					if (hasClass($webEl.html, $webPrefix.navigation + 'shown')) {
-						navHide();
-					} else {
-						navShow();
-					}
-				};
-			}
-
-			// Close nav again
-			var $webOverlay = document.getElementById($webPrefix.basic + 'overlay');
-			var $webNavigation = document.getElementById($webPrefix.basic + 'navigation');
-			var $webNavigationLinks = $webNavigation.getElementsByTagName('a');
-
-			if (exists($webOverlay)) {
-				$webOverlay.onclick = function() {
-					navHide();
-				};
-			}
-
-			for (var $i = $webNavigationLinks.length - 1; $i >= 0; $i--) {
-				$webNavigationLinks[$i].onclick = function($ev) {
-					navHide();
-				};
-			};
-		}
-	};
 	var overlayAdd = function() {
 		var $webplateOverlay = document.createElement('div');
 		idAdd($webplateOverlay, $webPrefix.basic + 'overlay');
@@ -570,9 +501,6 @@ var web = function() {
 			} else {
 				classAdd($webEl.html, 'web-view-large');
 			}
-			if (hasClass($webEl.html, 'web-nav-shown')) {
-				navHide();
-			}
 		}
 	};
 
@@ -627,9 +555,6 @@ var web = function() {
 		ucAll: ucAll,
 		ucFirst: ucFirst,
 		getUrl: getUrl,
-		navHide: navHide,
-		navShow: navShow,
-		navigation: navigation,
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
 		overlayShow: overlayShow,
