@@ -215,8 +215,7 @@ gulp.task('watch', function() {
       '../project/css/**/*.css'
    ], ['reload']);
    gulp.watch([
-      '../project/js/src/*.js',
-      '../project/js/src/**/*.js'
+      '../project/js/**/*.js'
    ], ['js']);
    gulp.watch([
       '../project/ui/**/script.js',
