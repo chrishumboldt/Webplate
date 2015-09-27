@@ -15,13 +15,12 @@ var injectplate = function() {
 
 	// Functions
 	var append = function($html, $element, $overwrite, $onDone) {
-		// var $container = document.createElement($containerType);
-		// $container.innerHTML = $html;
-		// $element.appendChild($container.firstChild);
 		if ($overwrite === true) {
 			$element.innerHTML = $html;
 		} else {
-			$element.innerHTML += $html;
+			var $container = document.createElement('div');
+			$container.innerHTML = $html;
+			$element.appendChild($container.firstChild);
 		}
 		$element.setAttribute('data-inject', 'true');
 		if ($onDone !== undefined) {

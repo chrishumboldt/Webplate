@@ -242,12 +242,12 @@
 					web.windowWatch();
 
 					// Load config
+					var $urlData = web.getUrl();
 					core.loadJSON($path.config, function() {
 						if (this.readyState == 4 && this.status == 200) {
 							var $responseText = this.responseText;
 							var $json = JSON.parse($responseText);
 							var $pageMatch = false;
-							var $urlData = web.getUrl();
 
 							// Root config
 							var $bodyClass = $json.project['body-class'] || false;
@@ -266,11 +266,11 @@
 
 									// Wildcard check
 									if ($page['url'].indexOf('*') > -1) {
-										if ($urlData.postScriptPath.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
+										if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
 											$pageMatch = true;
 										}
 									} else {
-										if ($urlData.sitePath === $urlData.scriptPath + $page['url']) {
+										if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
 											$pageMatch = true;
 										}
 									}

@@ -5,3 +5,4 @@
  */
 
 web.scrollTo(".scroll-to", -88);
+new buttonplate('.btn-banner');

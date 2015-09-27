@@ -1,21 +1,19 @@
 {
   "name": "injectplate",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "homepage": "https://github.com/chrishumboldt/Injectplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
   "description": "A Javascript component injector.",
   "main": [
-    "js/min/injectplate.min.js"
+    "js/min/injectplate.js"
   ],
   "keywords": [
-    "Javascript",
-    "Components",
-    "Components",
     "Injector",
-    "Webplate",
-    "Javascript"
+    "Component",
+    "Javascript",
+    "Webplate"
   ],
   "license": "Apache License, Version 2.0",
   "ignore": [
@@ -24,23 +22,23 @@
     "bower_components",
     "test",
     "tests",
-    "gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "index.html",
     "bower.json",
     "css/demo.css",
-    "sass/demo.scss",
-    "bower_components",
+    "js/demo.js",
+    "js/min/demo.js",
     "sass"
   ],
-  "_release": "1.5.2",
+  "_release": "1.5.3",
   "_resolution": {
     "type": "version",
-    "tag": "v1.5.2",
-    "commit": "212afcc2e0ca1b92035d506b8a70533e1c12ad25"
+    "tag": "v1.5.3",
+    "commit": "bbf2d2f7ad3f9e6c77787dd5ca1609cf5da70178"
   },
   "_source": "git://github.com/chrishumboldt/Injectplate.git",
-  "_target": "~1.5.2",
+  "_target": "~1.5.3",
   "_originalSource": "injectplate",
   "_direct": true
 }

@@ -23,12 +23,25 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
 var $reload = true;
+var $projectJSPath = '../project/js/';
+var $buildWatchJS = [$projectJSPath + 'src/*.js'];
 
 // Functions
 var getConfig = function() {
    delete require.cache[require.resolve('../project/config.json')];
    return require('../project/config.json');
 };
+
+// Watch setup
+var $config = getConfig();
+if ($config['build-watch']) {
+   if ($config['build-watch']['js']) {
+      $buildWatchJS = [];
+      for (var $i = $config['build-watch']['js'].length - 1; $i >= 0; $i--) {
+         $buildWatchJS.push($projectJSPath + $config['build-watch']['js'][$i]);
+      }
+   }
+}
 
 // Tasks
 gulp.task('default', ['build', 'watch']);
@@ -204,6 +217,7 @@ gulp.task('ui', function() {
       }));
 });
 
+// Watch
 gulp.task('watch', function() {
    livereload.listen();
    gulp.watch([
@@ -214,9 +228,7 @@ gulp.task('watch', function() {
       '../project/css/*.css',
       '../project/css/**/*.css'
    ], ['reload']);
-   gulp.watch([
-      '../project/js/**/*.js'
-   ], ['js']);
+   gulp.watch($buildWatchJS, ['js']);
    gulp.watch([
       '../project/ui/**/script.js',
       '../project/ui/**/style.scss'

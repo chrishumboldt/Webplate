@@ -57,8 +57,15 @@ var web = function() {
 	var hasClass = function($element, $class) {
 		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
 	};
+	var hasExtension = function($file, $arAllowedTypes) {
+		var $allowedTypes = $arAllowedTypes || $webTypes.extensions;
+		return $allowedTypes[$file.split('.').pop().toLowerCase()];
+	};
 	var isColor = function($color) {
 		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
+	};
+	var isColour = function($colour) {
+		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($colour);
 	};
 	var isDate = function($date) {
 		return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
@@ -66,10 +73,6 @@ var web = function() {
 	var isEmail = function($email, $regExp) {
 		var $regExp = $regExp || /([\w\.]+)@([\w\.]+)\.(\w+)/i;
 		return $regExp.test($email);
-	};
-	var isExtension = function($file, $arAllowedTypes) {
-		var $allowedTypes = $arAllowedTypes || $webTypes.extensions;
-		return $allowedTypes[$file.split('.').pop().toLowerCase()];
 	};
 	var isFullInteger = function($int) {
 		return /^[0-9]+$/.test($int);
@@ -116,16 +119,6 @@ var web = function() {
 		$div.innerHTML = $html;
 		document.querySelector($parent || 'body').appendChild($div.firstChild);
 	};
-	var eventAdd = function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
-		if ($elem.addEventListener) {
-			$elem.addEventListener($type, $eventHandle, false);
-		} else if ($elem.attachEvent) {
-			$elem.attachEvent("on" + $type, $eventHandle);
-		} else {
-			$elem["on" + $type] = $eventHandle;
-		}
-	};
 	var classAdd = function($element, $class) {
 		if (typeof $class === 'object') {
 			for (var $i = 0, $len = $class.length; $i < $len; $i++) {
@@ -167,22 +160,25 @@ var web = function() {
 		classAdd($element, $addClass);
 		classRemove($element, $removeClass);
 	};
+	var eventAdd = function($elem, $type, $eventHandle) {
+		if ($elem == null || typeof($elem) == 'undefined') return;
+		if ($elem.addEventListener) {
+			$elem.addEventListener($type, $eventHandle, false);
+		} else if ($elem.attachEvent) {
+			$elem.attachEvent("on" + $type, $eventHandle);
+		} else {
+			$elem["on" + $type] = $eventHandle;
+		}
+	};
+	var getIndex = function($node) {
+		return [].indexOf.call($node.parentNode.children, $node);
+	};
 	var idAdd = function($element, $id) {
 		$element.setAttribute('id', $id);
 	};
 	var idRemove = function($element) {
 		$element.removeAttribute('id');
 	};
-	var inputGet = function($selector) {
-		var $inputElements;
-		var $type = $selector.charAt(0);
-		if ($type === '#' || $type === '.') {
-			$inputElements = document.querySelectorAll($selector);
-		} else {
-			$inputElements = document.getElementsByTagName($selector);
-		}
-		return $inputElements;
-	}
 	var inputDisable = function($selector) {
 		var $inputElements = inputGet($selector);
 		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
@@ -195,9 +191,16 @@ var web = function() {
 			$inputElements[$i].disabled = false;
 		}
 	}
-	var getIndex = function($node) {
-		return [].indexOf.call($node.parentNode.children, $node);
-	};
+	var inputGet = function($selector) {
+		var $inputElements;
+		var $type = $selector.charAt(0);
+		if ($type === '#' || $type === '.') {
+			$inputElements = document.querySelectorAll($selector);
+		} else {
+			$inputElements = document.getElementsByTagName($selector);
+		}
+		return $inputElements;
+	}
 	var remove = function($selector) {
 		if ($selector.charAt(0) === '#') {
 			var $element = document.getElementById($selector.substring(1));
@@ -319,6 +322,14 @@ var web = function() {
 		}
 	};
 
+	// File
+	var fileLoad = function($file, $callback) {
+		var $xmlhttp = new XMLHttpRequest();
+		$xmlhttp.onreadystatechange = $callback;
+		$xmlhttp.open('GET', $file, true);
+		$xmlhttp.send();
+	};
+
 	// Forms
 	var lockSubmit = function($selector) {
 		var $elements = document.querySelectorAll($selector);
@@ -388,30 +399,28 @@ var web = function() {
 		var $crtScriptSrc = $webEl.webplateScript.getAttribute('src').replace('start.js', '');
 		var $crtScriptSrcCount = $crtScriptSrc.split('/').length;
 		var $windowLocation = window.location;
-		var $fullPath = $windowLocation.href;
-		var $arPath = $windowLocation.href.split('/');
-		var $hashSplit = $windowLocation.href.split('#');
-		var $protocol = $arPath[0];
-		var $host = $arPath[2];
-		var $baseUrl = $protocol + '//' + $host;
-		var $hashUrl = $windowLocation.hash.substring(1);
-		var $scriptPath = '';
-		var $sitePath = $hashSplit[0];
-		for (var $i = 0, $len = ($arPath.length - $crtScriptSrcCount); $i < $len; $i++) {
-			if ($arPath[$i] != undefined) {
-				$scriptPath += $arPath[$i] + '/';
+		var $windowLocationSplit = $windowLocation.href.split('/');
+		var $fullUrl = $windowLocation.href;
+
+		var $currentUrl = $fullUrl.split('#')[0];
+		var $hash = $windowLocation.hash.substring(1);
+		var $host = $windowLocationSplit[2];
+		var $protocol = $windowLocationSplit[0] + '//';
+
+		var $baseUrl = '';
+		for (var $i = 0, $len = ($windowLocationSplit.length - $crtScriptSrcCount); $i < $len; $i++) {
+			if ($windowLocationSplit[$i] != undefined) {
+				$baseUrl += $windowLocationSplit[$i] + '/';
 			}
 		}
+
 		var $objReturn = {
 			baseUrl: $baseUrl,
-			fullPath: $fullPath,
-			hash: $hashUrl,
+			currentUrl: $currentUrl,
+			fullUrl: $fullUrl,
+			hash: $hash,
 			host: $host,
-			postScriptPath: $fullPath.replace($scriptPath, ''),
-			postScriptSegments: $fullPath.replace($scriptPath, '').split('/'),
-			scriptPath: $scriptPath,
-			sitePath: $sitePath,
-			segments: $fullPath.replace($sitePath, '').split('/')
+			protocol: $protocol
 		};
 		return $objReturn;
 	};
@@ -446,11 +455,6 @@ var web = function() {
 					if (($offsetLarge !== false) && (window.innerWidth > 700)) {
 						$vOffset = $offsetLarge;
 					}
-					Velocity(document.getElementById(this.getAttribute('data-scroll-to')), "scroll", {
-						duration: 1200,
-						easing: "easeOutCubic",
-						offset: $vOffset
-					});
 				};
 			}($i);
 		}
@@ -511,10 +515,11 @@ var web = function() {
 		exists: exists,
 		hasWhiteSpace: hasWhiteSpace,
 		hasClass: hasClass,
+		hasExtension: hasExtension,
 		isColor: isColor,
+		isColour: isColour,
 		isDate: isDate,
 		isEmail: isEmail,
-		isExtension: isExtension,
 		isFullInteger: isFullInteger,
 		isImage: isImage,
 		isInteger: isInteger,
@@ -544,6 +549,7 @@ var web = function() {
 		wallpaper: wallpaper,
 		wrap: wrap,
 		wrapInner: wrapInner,
+		fileLoad: fileLoad,
 		lockSubmit: lockSubmit,
 		searchObjects: searchObjects,
 		getExtension: getExtension,
