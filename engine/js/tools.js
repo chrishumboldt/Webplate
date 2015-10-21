@@ -202,7 +202,7 @@ var web = function() {
 		return $inputElements;
 	}
 	var remove = function($selector) {
-		if ($selector.charAt(0) === '#') {
+		if ($selector.charAt(0) === '#' && !hasWhiteSpace($selector)) {
 			var $element = document.getElementById($selector.substring(1));
 			if ($element !== null) {
 				$element.parentNode.removeChild($element);
@@ -215,6 +215,15 @@ var web = function() {
 				}
 			}
 		}
+	};
+	var setRatio = function($selector, $multiplier) {
+		var $elements = document.querySelectorAll($selector);
+		if (typeof($multiplier) === 'undefined') {
+			$multiplier = 1;
+		}
+		for (var $i = $elements.length - 1; $i >= 0; $i--) {
+			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
+		};
 	};
 	var snap = function($selector, $breakpoint) {
 		var $breakpoint = $breakpoint || 0;
@@ -251,15 +260,6 @@ var web = function() {
 				});
 			}
 		}
-	};
-	var square = function($selector, $multiplier) {
-		var $elements = document.querySelectorAll($selector);
-		if (typeof($multiplier) === 'undefined') {
-			$multiplier = 1;
-		}
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
-		};
 	};
 	var stateClear = function($element) {
 		var $newWebStates = $webState.list.slice().map(function($newState) {
@@ -345,7 +345,7 @@ var web = function() {
 
 	// Objects
 	// As per Leon Revill
-	// URL: http://www.revillweb.com/tutorials/super-useful-javascript-functions/
+	// http://www.revillweb.com/tutorials/super-useful-javascript-functions/
 	var searchObjects = function($obj, $key, $val) {
 		var $objects = [];
 
@@ -397,20 +397,26 @@ var web = function() {
 	// URL
 	var getUrl = function() {
 		var $crtScriptSrc = $webEl.webplateScript.getAttribute('src').replace('start.js', '');
-		var $crtScriptSrcCount = $crtScriptSrc.split('/').length;
 		var $windowLocation = window.location;
-		var $windowLocationSplit = $windowLocation.href.split('/');
 		var $fullUrl = $windowLocation.href;
 
 		var $currentUrl = $fullUrl.split('#')[0];
 		var $hash = $windowLocation.hash.substring(1);
-		var $host = $windowLocationSplit[2];
-		var $protocol = $windowLocationSplit[0] + '//';
+		var $host = $windowLocation.host;
+		var $protocol = $windowLocation.protocol + '//';
 
 		var $baseUrl = '';
-		for (var $i = 0, $len = ($windowLocationSplit.length - $crtScriptSrcCount); $i < $len; $i++) {
-			if ($windowLocationSplit[$i] != undefined) {
-				$baseUrl += $windowLocationSplit[$i] + '/';
+		if (document.getElementsByTagName('base').length > 0) {
+			$baseUrl = document.getElementsByTagName('base')[0].href;
+		} else {
+			$baseUrl = $protocol + $host;
+		}
+		var $pathname = $windowLocation.pathname;
+		var $segments = [];
+		var $pathnameSplit = $pathname.split('/');
+		for (var $i = 0, $len = $pathnameSplit.length; $i < $len; $i++) {
+			if ($pathnameSplit[$i].indexOf('.') < 0 && $pathnameSplit[$i] != '') {
+				$segments.push($pathnameSplit[$i]);
 			}
 		}
 
@@ -420,7 +426,9 @@ var web = function() {
 			fullUrl: $fullUrl,
 			hash: $hash,
 			host: $host,
-			protocol: $protocol
+			pathname: $pathname,
+			protocol: $protocol,
+			segments: $segments
 		};
 		return $objReturn;
 	};
@@ -541,8 +549,8 @@ var web = function() {
 		inputEnable: inputEnable,
 		getIndex: getIndex,
 		remove: remove,
+		setRatio: setRatio,
 		snap: snap,
-		square: square,
 		stateClear: stateClear,
 		stateSet: stateSet,
 		stateToggle: stateToggle,

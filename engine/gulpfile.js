@@ -127,7 +127,7 @@ gulp.task('css', function() {
          if ($concat === true) {
             gulp.src($arConcatStyles)
                .pipe(concat($config.build[$i].name + '.min.scss'))
-               .pipe(replace(new RegExp('@import "', 'g'), '@import "../../project/css/'))
+               .pipe(replace(new RegExp('@import "', 'g'), '@import "../../project/sass/'))
                .pipe(gulp.dest('./temp/'))
                .pipe(sass({
                   outputStyle: 'compressed'
