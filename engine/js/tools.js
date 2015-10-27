@@ -23,6 +23,7 @@ var web = function() {
 	var $webEl = {
 		body: document.getElementsByTagName('body')[0],
 		html: document.getElementsByTagName('html')[0],
+		title: document.getElementsByTagName('title')[0],
 		webplateScript: document.getElementById('webplate')
 	};
 	var $webPrefix = {
@@ -120,12 +121,14 @@ var web = function() {
 		document.querySelector($parent || 'body').appendChild($div.firstChild);
 	};
 	var classAdd = function($element, $class) {
-		if (typeof $class === 'object') {
-			for (var $i = 0, $len = $class.length; $i < $len; $i++) {
-				classAddExecute($element, $class[$i]);
+		if ($element !== null) {
+			if (typeof $class === 'object') {
+				for (var $i = 0, $len = $class.length; $i < $len; $i++) {
+					classAddExecute($element, $class[$i]);
+				}
+			} else {
+				classAddExecute($element, $class);
 			}
-		} else {
-			classAddExecute($element, $class);
 		}
 	};
 	var classAddExecute = function($element, $class) {
@@ -138,12 +141,14 @@ var web = function() {
 		$element.removeAttribute('class');
 	};
 	var classRemove = function($element, $class) {
-		if (typeof $class === 'object') {
-			for (var $i = $class.length - 1; $i >= 0; $i--) {
-				classRemoveExecute($element, $class[$i]);
+		if ($element !== null) {
+			if (typeof $class === 'object') {
+				for (var $i = $class.length - 1; $i >= 0; $i--) {
+					classRemoveExecute($element, $class[$i]);
+				}
+			} else {
+				classRemoveExecute($element, $class);
 			}
-		} else {
-			classRemoveExecute($element, $class);
 		}
 	};
 	var classRemoveExecute = function($element, $class) {
@@ -395,7 +400,8 @@ var web = function() {
 	};
 
 	// URL
-	var getUrl = function() {
+	var url = function($ret) {
+		var $ret = $ret || 'all';
 		var $crtScriptSrc = $webEl.webplateScript.getAttribute('src').replace('start.js', '');
 		var $windowLocation = window.location;
 		var $fullUrl = $windowLocation.href;
@@ -420,7 +426,7 @@ var web = function() {
 			}
 		}
 
-		var $objReturn = {
+		var $objUrl = {
 			baseUrl: $baseUrl,
 			currentUrl: $currentUrl,
 			fullUrl: $fullUrl,
@@ -430,7 +436,12 @@ var web = function() {
 			protocol: $protocol,
 			segments: $segments
 		};
-		return $objReturn;
+
+		if ($ret === 'all') {
+			return $objUrl;
+		} else {
+			return $objUrl[$ret];
+		}
 	};
 
 	// Webplate
@@ -568,7 +579,7 @@ var web = function() {
 		removeLast: removeLast,
 		ucAll: ucAll,
 		ucFirst: ucFirst,
-		getUrl: getUrl,
+		url: url,
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
 		overlayShow: overlayShow,

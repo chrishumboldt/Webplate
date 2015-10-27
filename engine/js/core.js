@@ -242,7 +242,7 @@
 					web.windowWatch();
 
 					// Load config
-					var $urlData = web.getUrl();
+					var $urlData = web.url();
 					core.loadJSON($path.config, function() {
 						if (this.readyState == 4 && this.status == 200) {
 							var $responseText = this.responseText;

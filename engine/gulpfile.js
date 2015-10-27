@@ -36,7 +36,6 @@ var getConfig = function() {
 var $config = getConfig();
 if ($config['build-watch']) {
    if ($config['build-watch']['js']) {
-      $buildWatchJS = [];
       for (var $i = $config['build-watch']['js'].length - 1; $i >= 0; $i--) {
          $buildWatchJS.push($projectJSPath + $config['build-watch']['js'][$i]);
       }
