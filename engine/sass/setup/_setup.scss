@@ -1,33 +1,19 @@
 /**
- * SASS File: 		_setup.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	24 September 2014
+ * File: engine/sass/setup/_setup.scss
+ * Type: SASS setup file
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Global
 // Large view
 // Fluid view
 // Small view
 
-
 // Global
-// ---------------------------------------------------------------------------------------
-*, *:before, *:after{
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:
-	border-box;
-	box-sizing:border-box
-}
+@include global-setup();
 html {
-	font-family: $font-family-set;
-	color: lighten(#000, 80%);
-	background-color: #fff;
-	-ms-text-size-adjust: 100%;
-	-webkit-texts-size-adjust: 100%;
+	@include text-font($font-family-set);
 }
 div {
   display: block;
@@ -46,8 +32,6 @@ a, a:visited {text-decoration: none;}
 		margin: 0px auto;
 	}
 }
-
-// Overlay
 #web-overlay {
 	@include display(block);
 	@include position(fixed, top 0 right 0 bottom 0 left 0);
@@ -56,48 +40,18 @@ a, a:visited {text-decoration: none;}
 	@include visibility(hidden);
 	@include opacity(0);
 	@include animate(all, 0.4s);
-
-	// Reveal
 	.web-overlay-reveal & {
 		@include visibility(visible);
 		@include opacity(1);
 	}
 }
-// Wallpaper
 .wallpaper {
 	background-position: center;
 	background-size: cover;
 }
-
-
-// Large View
-// ---------------------------------------------------------------------------------------
-@include respond-to(large) {
-	
-	// Navigation
-	nav {
-		ul, ol {
-			list-style: none;
-		}
-	}
-}
-
-
-// Fluid View
-// ---------------------------------------------------------------------------------------
-@include respond-to(fluid) {
+// Adapt
+@include breakpoint(fluid) {
 	html .limit {
 		width: 100%;
-	}
-}
-
-
-// Small View
-// ---------------------------------------------------------------------------------------
-@include respond-to(small) {
-
-	// Navigation
-	nav {
-		display: none;
 	}
 }

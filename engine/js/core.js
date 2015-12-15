@@ -460,6 +460,9 @@
 			for ($i = 0; $i < $js.length; $i++) {
 				var $file = $js[$i].trim();
 				if (web.getExtension($file) === 'js') {
+					if ($i === 0) {
+						$arExtraJS.push($path.engine.js + 'overwrite.js');
+					}
 					$arExtraJS.push($path.project.js + $file);
 				}
 			};

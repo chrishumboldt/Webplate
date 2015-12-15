@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_background.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	1 September 2014
+ * File: css/_background.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Background classes
-
-
-// Background classes
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-background() {
 	.back-pos-l {
 		@include background-position(left);

@@ -1,17 +1,10 @@
 /**
- * File: _interaction.scss
- * Type: SASS basic file
+ * File: basic/_interaction.scss
+ * Type: SASS partial
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
+ 
 // Cursor
-
-// Cursor
-// ---------------------------------------------------------------------------------------
 @mixin cursor($cursor: auto) {
 	cursor: $cursor;
 }
-

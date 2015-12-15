@@ -1,24 +1,10 @@
 /**
- * Title: 			Banners
- * SASS File: 		_banner.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	16 February 2015
+ * File: module/_banner.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Basic banner
-
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Basic banner
-
-
-// Basic banner
-// ---------------------------------------------------------------------------------------
 .banner {
 	@include display(block);
 	@include position(relative);
@@ -27,18 +13,13 @@
 	@include background-colour($grey-x-light);
 	@include text-colour($black-base);
 	@include level(1);
-
-	// Limit
 	.limit {
 		@include padding-horizontal($space-base);
 		@include padding-vertical($space-large + $space-base);
-
-		// Adapt
 		@include breakpoint(large) {
 			@include padding-vertical($space-x2-large + $space-medium);
 		}
 	}
-
 	// Text
 	h1 {
 		@include display(block);
@@ -49,8 +30,6 @@
 		@include text-line-height(40px);
 		@include text-size(30px);
 		@include text-weight(100);
-
-		// Adapt
 		@include breakpoint(large) {
 			@include text-line-height(60px);
 			@include text-size(48px);
@@ -61,29 +40,23 @@
 		@include spacing-no();
 		@include center();
 		@include padding-top($space-base);
+		@include padding-bottom($space-slight);
 		@include text-colour(fade-out($black-base, 0.2));
 		@include text-weight(300);
-
-		// Adapt
 		@include breakpoint(large) {
+			@include padding-top($space-slight);
+			@include padding-bottom($space-medium);
 			@include text-size(medium);
 		}
 	}
-}
-
-
-// Banner fuse
-// ---------------------------------------------------------------------------------------
-.banner.fuse {
-	@include gradient-animate-angle($blue, $red);
-
-	// Text
-	h1 {
-		@include text-colour($white);
-	}
-	p {
-		@include text-colour(fade-out($white, 0.25));
+	&._fuse-animated {
+		@include gradient-animate-angle($blue, $red);
+		// Text
+		h1 {
+			@include text-colour($white);
+		}
+		p {
+			@include text-colour(fade-out($white, 0.25));
+		}
 	}
 }
-
-

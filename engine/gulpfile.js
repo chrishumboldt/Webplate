@@ -171,6 +171,9 @@ gulp.task('js', function() {
          if ($config.build[$i].js) {
             $concat = true;
             for (var $i2 = 0, $len2 = $config.build[$i].js.length; $i2 < $len2; $i2++) {
+               if ($i2 === 0) {
+                  $arConcatJS.push('./js/overwrite.js');
+               }
                $arConcatJS.push('../project/js/' + $config.build[$i].js[$i2]);
             }
          }

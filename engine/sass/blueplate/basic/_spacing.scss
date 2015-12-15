@@ -1,47 +1,39 @@
 /**
- * SASS File: 		_spacing.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	1 September 2013
+ * File: basic/_spacing.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // Margins
 // Padding
 // Spacing
-// Deprecated - will be deleted
-
 
 // Variables
-// ---------------------------------------------------------------------------------------
-$space-base 							: 24px !default;
-$space-x2-small							: $space-base / 6;
-$space-x-small							: $space-base / 4;
-$space-small 							: $space-base / 2;
-$space-minor 							: $space-base / 1.5;
-$space-slight 							: $space-base * 1.5;
-$space-medium 							: $space-base * 2;
-$space-large 							: $space-base * 3;
-$space-x-large 							: $space-base * 5;
-$space-x2-large 						: $space-base * 6;
+$space-base: 24px !default;
+$space-x2-small: $space-base / 6;
+$space-x-small: $space-base / 4;
+$space-small: $space-base / 2;
+$space-minor: $space-base / 1.5;
+$space-slight: $space-base * 1.5;
+$space-medium: $space-base * 2;
+$space-large: $space-base * 3;
+$space-x-large: $space-base * 5;
+$space-x2-large: $space-base * 6;
 
-$space-base-em 							: 1.250em !default;
-$space-x2-small-em						: $space-base-em / 6;
-$space-x-small-em						: $space-base-em / 4;
-$space-small-em 						: $space-base-em / 2;
-$space-minor-em							: $space-base-em / 1.5;
-$space-slight-em 						: $space-base-em * 1.5;
-$space-medium-em 						: $space-base-em * 2;
-$space-large-em 						: $space-base-em * 3;
-$space-x-large-em 						: $space-base-em * 5;
-$space-x2-large-em 						: $space-base-em * 6;
-
+$space-base-em: 1.250em !default;
+$space-x2-small-em: $space-base-em / 6;
+$space-x-small-em: $space-base-em / 4;
+$space-small-em: $space-base-em / 2;
+$space-minor-em: $space-base-em / 1.5;
+$space-slight-em: $space-base-em * 1.5;
+$space-medium-em: $space-base-em * 2;
+$space-large-em: $space-base-em * 3;
+$space-x-large-em: $space-base-em * 5;
+$space-x2-large-em: $space-base-em * 6;
 
 // Margins
-// ---------------------------------------------------------------------------------------
 @mixin margin($spacing) {
 	margin: $spacing;
 }
@@ -69,9 +61,7 @@ $space-x2-large-em 						: $space-base-em * 6;
 	margin: 0px;
 }
 
-
 // Padding
-// ---------------------------------------------------------------------------------------
 @mixin padding($spacing) {
 	padding: $spacing;
 }
@@ -99,23 +89,8 @@ $space-x2-large-em 						: $space-base-em * 6;
 	padding: 0px;
 }
 
-
 // Spacing reset
-// ---------------------------------------------------------------------------------------
 @mixin spacing-no() {
 	padding: 0px;
 	margin: 0px;
 }
-
-
-// Deprecated - will be deleted
-// ---------------------------------------------------------------------------------------
-$space-xx-large 						: $space-x2-large;
-$space-xx-large-em 						: $space-x2-large-em;
-
-@mixin no-spacing() {
-	padding: 0px;
-	margin: 0px;
-}
-
-

@@ -1,18 +1,15 @@
 /**
- * File: _text.scss
- * Type: SASS basic file
+ * File: basic/_text.scss
+ * Type: SASS partial
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // Font
 // Text
 
 // Variables
-// ---------------------------------------------------------------------------------------
 $georgia: Georgia, Cambria, "Times New Roman", Times, serif;
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $impact: Impact, Charcoal, sans-serif;
@@ -44,7 +41,6 @@ $weight-bold: 700;
 $weight-heavy: 900;
 
 // Font
-// ---------------------------------------------------------------------------------------
 @mixin font-family($font: $helvetica) {
 	font-family: $font;
 }
@@ -67,9 +63,7 @@ $weight-heavy: 900;
 }
 
 // Text
-// ---------------------------------------------------------------------------------------
 @mixin text($arguments: false) {
-	// Arguments
 	@include text-arguments($arguments);
 }
 @mixin text-align($align: left) {
@@ -93,10 +87,10 @@ $weight-heavy: 900;
 	@include font-family($font);
 }
 @mixin text-hide() {
-	border:0; 
-	font: 0/0 a; 
-	text-shadow: none; 
-	color: transparent; 
+	border:0;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
 	background-color: transparent;
 }
 @mixin text-hyphen($type: none) {
@@ -115,7 +109,6 @@ $weight-heavy: 900;
 	text-shadow: $angle $distance $blur $colour;
 }
 @mixin text-size($size: $size-base) {
-
 	@if $size == x2-small {
 		@include font-size($size-x2-small);
 	}
@@ -146,8 +139,7 @@ $weight-heavy: 900;
 	@else if $size == x2-large {
 		@include font-size($size-x2-large);
 	}
-	@else
-	{
+	@else {
 		@include font-size($size);
 	}
 }
@@ -155,7 +147,6 @@ $weight-heavy: 900;
 	@include font-style($style);
 }
 @mixin text-weight($weight: normal) {
-
 	@if $weight == thin {
 		@include font-weight($weight-thin);
 	}
@@ -178,11 +169,9 @@ $weight-heavy: 900;
 @mixin text-wrap($wrap: break-word) {
 	overflow-wrap: $wrap;
 	word-wrap: $wrap;
-
 	@if $wrap == break-word {
 		word-break: break-all;
 	} @else {
 		word-break: $wrap;
 	}
 }
-

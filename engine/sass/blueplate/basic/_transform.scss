@@ -1,20 +1,14 @@
 /**
- * SASS File: 		_transform.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	18 August 2014
- * Edited by: 		Chris Humboldt
+ * File: basic/_transform.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Transforms
 // Transform easing
 
-
 // Transforms
-// ---------------------------------------------------------------------------------------
 @mixin transform-rotate($rotate: 0deg) {
 	-webkit-transform: rotate($rotate);
 	-o-transform: rotate($rotate);
@@ -64,9 +58,7 @@
 	transform: translateZ($z);
 }
 
-
 // Transform easing
-// ---------------------------------------------------------------------------------------
 @mixin transform-easing($x: 0px, $y: 0px, $z: 0px, $transition-speed: 0.2s) {
 	@include transform-translate-3d($x, $y, $z);
 	-webkit-transition: -webkit-transform $transition-speed ease-out;
@@ -74,5 +66,3 @@
 	-moz-transition: -moz-transform $transition-speed ease-out;
 	transition: transform $transition-speed ease-out;
 }
-
-

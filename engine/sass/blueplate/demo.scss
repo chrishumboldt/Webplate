@@ -5,7 +5,6 @@
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Import
 // Code
 // Demo
@@ -50,10 +49,10 @@ code {
 	@include text-colour($blue);
 }
 .lit {
-	@include text-colour($purple-dark);
+	@include text-colour(darken($purple, 8%));
 }
 .tag {
-	@include text-colour($blue-dark);
+	@include text-colour(darken($blue, 15%));
 }
 .atn {
 	@include text-colour($aqua);
@@ -65,7 +64,7 @@ code {
 	@include text-colour($aqua);
 }
 .fun {
-	@include text-colour($red-dark);
+	@include text-colour(darken($red, 15%));
 }
 ol.linenums {
 	@include spacing-no();
@@ -79,7 +78,7 @@ html {
 	@include height-min(100%);
 }
 html, body {
-	@include no-spacing();
+	@include spacing-no();
 	@include text-line-height(24px);
 	@include background-colour($white);
 }
@@ -97,15 +96,11 @@ p {
 	@include text-colour($grey-dark);
 	@include text-size(15px);
 	@include text-weight(300);
-
-	// Adapt
 	@include breakpoint(large) {
 		@include text-size(16px);
 	}
-
-	// Note
 	&.note {
-		@include text-colour($grey-medium);
+		@include text-colour($grey);
 		@include text-size(14px);
 		@include text-style(italic);
 	}
@@ -131,14 +126,10 @@ footer a {
 	@include text-decoration(none);
 	@include animate(color);
 	outline: none;
-
-	// States
 	&:hover,
 	&:focus {
 		outline: none;
 	}
-
-	// After
 	&::after {
 		content: ' ';
 		@include position(absolute, top 100% left 0);
@@ -148,8 +139,6 @@ footer a {
 		@include transparency(0);
 		@include animate(all);
 		@include transform-translate-y(-$space-x-small - 2px);
-
-		// States
 		&:hover,
 		&:focus {
 			@include transparency(1);
@@ -172,7 +161,7 @@ footer a {
 .container {
 	@include limit();
 	@include padding(20px);
-	@include respond-to(large) {
+	@include breakpoint(large) {
 		@include padding-vertical(60px);
 	}
 }
@@ -200,7 +189,6 @@ footer {
 		    @include span-new(6);
 		}
 	}
-
 	// Adapt
 	@include breakpoint(large) {
 		.left {

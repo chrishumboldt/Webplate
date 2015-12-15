@@ -1,26 +1,19 @@
 /**
- * SASS File: 		_background.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	1 September 2014
+ * File: basic/_background.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // General
 // Background images
 // Deprecated - will be deleted
 
-
 // Variables
-// ---------------------------------------------------------------------------------------
-$images-root 						: "" !default;
-
+$images-root: "" !default;
 
 // General
-// ---------------------------------------------------------------------------------------
 @mixin background-attachment($attachment: scroll) {
 	background-attachment: $attachment;
 }
@@ -60,9 +53,7 @@ $images-root 						: "" !default;
 	@include background-repeat(no-repeat);
 }
 
-
 // Background images
-// ---------------------------------------------------------------------------------------
 @mixin background-image($image, $position: top left) {
 	background-image: url("#{$images-root}/#{$image}");
 	@include background-position($position);
@@ -86,15 +77,3 @@ $images-root 						: "" !default;
 	@include background-image($image, $position);
 	@include background-repeat(no-repeat);
 }
-
-
-// Deprecated - will be deleted
-// ---------------------------------------------------------------------------------------
-@mixin background-single-image($image, $position: center) {
-	@include background-image-single($image, $position);
-}
-@mixin background-parallax($image) {
-	@include background-image-parallax($image);
-}
-
-

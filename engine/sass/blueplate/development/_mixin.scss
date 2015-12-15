@@ -1,19 +1,10 @@
 /**
- * SASS File: 		_mixins.scss
- * Type: 			development
- * Author:        	Chris Humboldt
- * Last Edited:   	9 August 2014
+ * File: development/_mixin.scss
+ * Type: SASS mixins
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Position argument
-// Text arguments
-
-
-// Position argument
-// ---------------------------------------------------------------------------------------
 @mixin position-arguments($arguments: false) {
 	// As per: Hugo Giraudel
 	// URL: http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
@@ -23,8 +14,8 @@
 		@each $o in $offsets {
 			$i: index($arguments, $o);
 
-			@if $i 
-			and $i + 1 <= length($arguments) 
+			@if $i
+			and $i + 1 <= length($arguments)
 			and type-of( nth($arguments, $i + 1) ) == number {
 				#{$o}: nth($arguments, $i + 1);
 			}
@@ -32,9 +23,7 @@
 	}
 }
 
-
 // Text arguments
-// ---------------------------------------------------------------------------------------
 @mixin text-arguments($arguments: false) {
 	@if $arguments != false {
 		$offsets: text-align color font-family;
@@ -42,12 +31,10 @@
 		@each $o in $offsets {
 			$i: index($arguments, $o);
 
-			@if $i 
+			@if $i
 			and $i + 1 <= length($arguments) {
 				#{$o}: nth($arguments, $i + 1);
 			}
 		}
 	}
 }
-
-

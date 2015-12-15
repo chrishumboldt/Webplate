@@ -1,41 +1,30 @@
 /**
- * SASS File: 		_responsive-layout.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	25 September 2014
+ * File: css/_responsive-layout.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Block based layout
-// Flex based layout
-
 
 // Block based layout
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-responsive-layout() {
-
 	// Containers
 	.row {
 		@include row();
-
 		.row {
 			@include width(auto);
-			width: auto;
 		}
 		[class *= "span-"] {
-			float: left;
-			position: relative;
+			@include position(relative);
+			@include float(left);
 		}
-
 		// Span loop
 		@for $index from 1 through $column-limit {
 			.span-#{$index} {
-				@include make-span($index);
+				@include span-new($index);
 			}
 		}
-
 		// Offset loop
 		@for $index from 1 through ($column-limit - 1) {
 			.offset-#{$index} {
@@ -46,23 +35,19 @@
 			}
 		}
 	}
-
 	// Limit
 	.limit {
 		@include limit();
 	}
-
-	// Respond large
-	@include respond-to(large) {
+	// Large view
+	@include breakpoint(large) {
 		.row {
-
 			// Large span loop
 			@for $index from 1 through $column-limit {
 				.span-large-#{$index} {
-					@include make-span($index);
+					@include span-new($index);
 				}
 			}
-
 			// Offset loop
 			@for $index from 1 through ($column-limit - 1) {
 				.offset-large-#{$index} {
@@ -74,18 +59,15 @@
 			}
 		}
 	}
-
-	// Respond small
-	@include respond-to(small) {
+	// Small view
+	@include breakpoint(small) {
 		.row {
-			
 			// Small span loop
 			@for $index from 1 through $column-limit {
 				.span-small-#{$index} {
-					@include make-span($index);
+					@include span-new($index);
 				}
 			}
-
 			// Offset loop
 			@for $index from 1 through ($column-limit - 1) {
 				.offset-small-#{$index} {
@@ -93,27 +75,6 @@
 				}
 				.offset-small-r-#{$index} {
 					@include offset-r($index);
-				}
-			}
-		}
-	}
-}
-
-
-// Flex based layout
-// ---------------------------------------------------------------------------------------
-@mixin blueplate-flex-layout() {
-
-	.flex-row {
-		@include flex-column();
-
-		@include respond-to(large){
-			@include flex-row();
-
-			// Span loop
-			@for $index from 1 through $column-limit {
-				.flex-#{$index} {
-					@include flex-span($index);
 				}
 			}
 		}

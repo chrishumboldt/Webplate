@@ -1,17 +1,8 @@
 /**
  * File: blueplate.scss
- * Type: SASS import and execute file
+ * Type: SASS execute file
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Imports
-// Call styles
-
-// Import
 @import "import";
-
-// Call styles
 @include blueplate-css();

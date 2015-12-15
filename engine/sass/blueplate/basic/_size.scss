@@ -1,25 +1,16 @@
 /**
- * SASS File: 		_size.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	1 September 2014
+ * File: basic/_size.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Size
-
-
-// Size
-// ---------------------------------------------------------------------------------------
 @mixin size($width: 0px, $height: 0px) {
 	@include width($width);
 	@include height($height);
 }
 @mixin height($height: 0px, $height-max: false, $height-min: false) {
 	height: $height;
-
 	@if $height-max != false {
 		@include height-max($height-max);
 	}
@@ -35,7 +26,6 @@
 }
 @mixin width($width: 0px, $width-max: false, $width-min: false) {
 	width: $width;
-
 	@if $width-max != false {
 		@include width-max($width-max);
 	}
@@ -49,5 +39,3 @@
 @mixin width-min($width: 0px) {
 	min-width: $width;
 }
-
-

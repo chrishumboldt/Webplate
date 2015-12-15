@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_global.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	13 May 2014
+ * File: css/_global.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Global classes
-
-
-// Global classes
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-global() {
 	html.blueplate-model {
 		@include global-model();

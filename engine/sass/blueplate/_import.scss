@@ -1,12 +1,10 @@
 /**
  * File: _import.scss
- * Type: SASS import file
+ * Type: SASS importer
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Development
 // Basic imports
 // Module imports
@@ -15,8 +13,8 @@
 // Call styles
 
 // Development
-@import "development/functions";
-@import "development/mixins";
+@import "development/function";
+@import "development/mixin";
 
 // Basic imports
 @import "basic/animation";
@@ -57,4 +55,3 @@
 
 // Execute import
 @import "css/execute";
-

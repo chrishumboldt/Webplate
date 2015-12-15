@@ -1,19 +1,16 @@
 /**
- * File: _display.scss
- * Type: SASS basic file
+ * File: basic/_display.scss
+ * Type: SASS partial
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Show / hide
 // Opacity
 // Overflow
 // Visibility
 
 // Show / hide
-// ---------------------------------------------------------------------------------------
 @mixin display($type: block) {
 	display: $type;
 }
@@ -35,7 +32,6 @@
 }
 
 // Opacity
-// ---------------------------------------------------------------------------------------
 @mixin opacity($opacity: 0.60) {
 	opacity: $opacity;
 	$opacity-ie: $opacity * 100;
@@ -46,7 +42,6 @@
 }
 
 // Overflow
-// ---------------------------------------------------------------------------------------
 @mixin overflow($overflow: visible, $orientation: false) {
 	@if $orientation == vertical {
 		overflow-y: $overflow;
@@ -60,9 +55,6 @@
 }
 
 // Visibility
-// ---------------------------------------------------------------------------------------
 @mixin visibility($visibility: visible) {
 	visibility: $visibility;
 }
-
-

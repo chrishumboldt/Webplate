@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_drop-shadow.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	29 July 2014
+ * File: basic/_drop-shadow.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Drop shadow
-
-
-// Drop shadow
-// ---------------------------------------------------------------------------------------
 @mixin drop-shadow($color: fade-out(#000, 0.6), $size: 3px, $vertical-offset: 0px, $horizontal-offset: 0px) {
 	box-shadow: $horizontal-offset $vertical-offset $size $color;
 	-webkit-box-shadow: $horizontal-offset $vertical-offset $size $color;

@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_position.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * File: css/_position.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Position mixin
-
-
-// Position mixin
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-position() {
 	.pos-absolute {
 		@include position(absolute);
