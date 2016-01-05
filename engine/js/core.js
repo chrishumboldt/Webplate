@@ -200,7 +200,7 @@
 		project: {
 			css: $pathProject + 'css/',
 			iconFont: {
-				fontAwesome: $pathProject + 'font-awesome/css/font-awesome.min.css',
+				fontAwesome: $pathProject + 'icon-font/font-awesome/css/font-awesome.min.css',
 				icoMoon: $pathProject + 'icon-font/icomoon/style.css'
 			},
 			js: $pathProject + 'js/',
