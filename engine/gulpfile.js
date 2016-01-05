@@ -5,7 +5,6 @@
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Requires
 // Functions
 // Tasks
@@ -209,10 +208,10 @@ gulp.task('ui', function() {
       }));
    gulp.src('../project/ui/**/style.scss')
       .pipe(sass({
-         outputStyle: 'compressed'
+        outputStyle: 'compressed'
       }))
       .pipe(gulp.dest(function($file) {
-         return $file.base;
+        return $file.base;
       }));
 });
 
@@ -230,7 +229,8 @@ gulp.task('watch', function() {
    gulp.watch($buildWatchJS, ['js']);
    gulp.watch([
       '../project/ui/**/script.js',
-      '../project/ui/**/style.scss'
+      '../project/ui/**/style.scss',
+      '../project/ui/**/sass/**/*.scss'
    ], ['ui', 'reload']);
    gulp.watch([
       '../project/config.json'
