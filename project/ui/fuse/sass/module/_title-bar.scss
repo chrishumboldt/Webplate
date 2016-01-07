@@ -1,11 +1,10 @@
 /**
- * File: module/_title-bar.scss
+ * File: ui/fuse/sass/module/_title-bar.scss
  * Type: SASS module
  * Author: Chris Humboldt
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Title bar
 // Title bar modifiers
 
@@ -52,7 +51,7 @@
 		}
 	}
 	// States
-	.no-touch & a.logo:hover {
+	.no-touchevents & a.logo:hover {
 		@include text-colour($blue);
 	}
 	// Links
@@ -87,20 +86,20 @@
 					@include border-top($blue, 2px);
 				}
 				// States
-				.no-touch &:hover {
+				.no-touchevents &:hover {
 					@include border-top($white, 2px);
 					@include text-colour($pink);
 				}
-				.no-touch &.border-blue:hover,
-				.no-touch &.border-pink:hover {
+				.no-touchevents &.border-blue:hover,
+				.no-touchevents &.border-pink:hover {
 					@include text-colour($white);
 				}
-				.no-touch &.border-blue:hover {
+				.no-touchevents &.border-blue:hover {
 					@include background-colour($blue);
 					@include border-top($blue, 2px);
 					@include border-bottom($blue, 2px);
 				}
-				.no-touch &.border-pink:hover {
+				.no-touchevents &.border-pink:hover {
 					@include background-colour($pink);
 					@include border-top($pink, 2px);
 					@include border-bottom($pink, 2px);

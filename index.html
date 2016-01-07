@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Meta setup - Required for apple device-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<!--Favicon-->
-	<link rel="icon" type="image/png" href="project/img/welcome/favicon.png" />
-
-    <!--Title-->
-    <title>Webplate</title>
-
-	<!--Include fonts-->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>Webplate</title>
+   <link rel="icon" type="image/png" href="project/img/welcome/favicon.png" />
+   <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
 
 </head>
-<body style="display: none;">
+<body style="display:none">
 
-	<!-- Title bar -->
+   <!-- Title bar -->
 	<section class="title-bar">
-
 		<ul>
 			<li class="small-hide"><a href="#" data-scroll-to="starting-guide" class="border-pink scroll-to">Getting Started</a></li>
 			<li class="small-hide"><a href="http://paypur.com/#/view/webplate-3">Documentation</a></li>
@@ -27,32 +21,23 @@
 			<li class="small-hide"><a href="http://getwebplate/#/ui-kits">UI Kits</a></li>
 			<li><a href="https://twitter.com/webplatetweets" class="icon-twitter" target="_blank"></a></li>
 		</ul>
-
 		<a href="#" class="logo">
 			<span>Webplate</span>
 			<i class="icon-nfc"></i>
 		</a>
-
 	</section>
 
 	<!-- Banner -->
-	<section class="banner _title-bar-padding _fuse-animated">
-
-		<div class="limit">
-
-			<h1>Make Something Awesome</h1>
-			<p>We are so happy that you have decided to use Webplate. It is really easy to get started and has a ton of cool features so below are a few basic tips to get you going. Happy building!</p>
-			<a class="btn-banner small-hide" href="https://github.com/chrishumboldt/Webplate" target="_blank">Fork Repo</a>
-			<a class="btn-banner btn-bower" href="http://paypur.com/#/view/webplate-3" target="_blank">Read Docs</a>
-
-		</div>
-
-	</section>
+	<section class="banner _title-bar-padding _fuse"><div class="limit">
+      <h1>Make Something Awesome</h1>
+      <p>We are so happy that you have decided to use Webplate. It is really easy to get started and has a ton of cool features so below are a few basic tips to get you going. Happy building!</p>
+      <a class="btn-banner small-hide" href="https://github.com/chrishumboldt/Webplate" target="_blank">Fork Repo</a>
+      <a class="btn-banner btn-bower" href="http://paypur.com/#/view/webplate-3" target="_blank">Read Docs</a>
+	</div></section>
 
 	<!-- Starting guide -->
 	<div id="starting-guide" class="grey-strip">Getting Started</div>
 	<section class="content limit">
-
 		<h4>Include Webplate</h4>
 		<p>Simply drop the Webplate directory into your web project and include the <b>start.js</b> file before your ending body tag. Below is an example of this and note that an id of <b>webplate</b> is required.</p>
 <pre class="prettyprint linenums">
@@ -62,7 +47,6 @@
 &lt;/body&gt;
 </pre>
 		<p class="note">The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.</p>
-
 		<br><br>
 		<h4>Load Your Project Files</h4>
 		<p>All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.</p>
@@ -75,32 +59,27 @@
 }
 </pre>
 		<p class="note">You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages. <a href="http://paypur.com/webplate-3/configuration" target="_blank">Want to know more?</a></p>
-
 		<br><br>
 		<h4>Lets Go To The Next Level</h4>
 		<p>Before you have even started, Webplate has already loaded up <a href="http://modernizr.com/" target="_blank">Modernizr</a>, <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>,  <a href="http://typeplate.com/" target="_blank">Typeplate</a>, <a href="http://julian.com/research/velocity/" target="_blank">Velocity.js</a> and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.</p>
 		<p>This will get you up and running for most projects but if you want to include Webplate components like <a href="http://paypur.com/webplate-3/buttons" target="_blank">Buttons</a>, <a href="http://paypur.com/webplate-3/forms" target="_blank">Forms</a> or <a href="http://paypur.com/webplate-3/modals" target="_blank">Modals</a> or perhaps you want to even start delving into Webplate's automatic <b>Bower, SASS</b> and <b>Grunt</b> intergration then just read over some of the online documentation and become a bonafide pro.</p>
 		<p><b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera</p>
-
 	</section>
 
 	<!-- Footer -->
 	<footer><div class="content limit"><div class="col-double">
-
 		<div class="left">
 			Made by <a href="http://chrishumboldt.com" target="_blank">Chris Humboldt</a>
 		</div>
-
 		<div class="right">
 			<a href="http://paypur.com/#/view/webplate-3" target="_blank">Docs</a>&nbsp;&nbsp;
 			<a href="http://getwebplate.com/legal.html" target="_blank">Legal Stuff</a>&nbsp;&nbsp;
 			Want updates? <a href="http://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>
 		</div>
-
 	</div></div></footer>
 
-    <!--Include Webplate-->
-    <script id="webplate" src="start.js"></script>
+   <!-- Webplate -->
+   <script id="webplate" src="start.js"></script>
 
 </body>
 </html>

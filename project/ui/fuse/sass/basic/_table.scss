@@ -1,19 +1,12 @@
 /**
- * File: _table.scss
+ * File: ui/fuse/sass/basic/_table.scss
  * Type: SASS basic file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Basic table
-
-// Basic table
-// ---------------------------------------------------------------------------------------
 table {
 	@include width(100%);
-
 	th, td {
 		@include padding($space-minor);
 		@include text-align(left);
@@ -33,9 +26,7 @@ table {
 			@include text-colour($grey-dark);
 		}
 	}
-
-	// Respond
-	@include respond-to(small) {
+	@include breakpoint(small) {
 		tr {
 			@include display(block);
 			@include padding-vertical($space-x-small);

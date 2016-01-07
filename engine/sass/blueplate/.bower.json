@@ -1,0 +1,42 @@
+{
+  "name": "blueplate",
+  "version": "1.6.3",
+  "homepage": "http://getwebplate.com/plugins/blueplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A lightweight SASS mixin library and responsive CSS layout engine.",
+  "main": "css/blueplate.css",
+  "keywords": [
+    "Webplate",
+    "Blueplate",
+    "Responsive",
+    "SASS",
+    "Mixins",
+    "CSS"
+  ],
+  "license": "Apache License, Version 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests",
+    "gulpfile.js",
+    "package.json",
+    "index.html",
+    "bower.json",
+    "css/demo.css",
+    "sass/demo.scss",
+    "js"
+  ],
+  "_release": "1.6.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.6.3",
+    "commit": "7aa77cb01d079bea6d9d0ec26e86e3799e688284"
+  },
+  "_source": "git://github.com/chrishumboldt/Blueplate.git",
+  "_target": "~1.6.3",
+  "_originalSource": "blueplate",
+  "_direct": true
+}

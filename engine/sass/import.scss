@@ -1,22 +1,16 @@
 /**
- * File: import.scss
+ * File: engine/sass/import.scss
  * Type: SASS import file
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
-// NOTE: Include this file in any custom SASS file you create to gain access to the
-// $page-width variable and Webplate mixins.
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // Config
 // Map variables
 // Components
 
 // Variables
-// ---------------------------------------------------------------------------------------
 $option-limit-width: 75em !default;
 $option-menu-width: 16.250em !default;
 $option-small-nav-back: #fff !default;
@@ -30,11 +24,9 @@ $option-min-max: false !default;
 $option-font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 // Config
-// ---------------------------------------------------------------------------------------
 @import "../../engine/sass/config";
 
 // Map variables
-// ---------------------------------------------------------------------------------------
 $limit-width: $option-limit-width;
 $menu-width: $option-menu-width;
 $small-nav-back: $option-small-nav-back;
@@ -48,5 +40,4 @@ $min-max: $option-min-max;
 $font-family-set: $option-font-family;
 
 // Components
-// ---------------------------------------------------------------------------------------
 @import "../../engine/sass/blueplate/import";

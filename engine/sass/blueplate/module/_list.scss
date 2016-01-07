@@ -1,25 +1,17 @@
 /**
- * File: _list.scss
+ * File: module/_list.scss
  * Type: SASS module file
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// List
-
-// List
-// ---------------------------------------------------------------------------------------
 @mixin list($type: basic) {
-	@if $type == basic {
-	 	@include margin-left($space-base);
-	}
-	@else if $type == flat {
-		@include list-style(none);
-
-		> li {
-			@include float($left);
-		}
-	}
+   @if $type == basic {
+      @include margin-left($space-base);
+   }
+   @else if $type == flat {
+      @include list-style(none);
+      > li {
+         @include float($left);
+      }
+   }
 }

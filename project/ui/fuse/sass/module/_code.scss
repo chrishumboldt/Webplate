@@ -1,19 +1,10 @@
 /**
- * Title: 			Code styling
- * SASS File: 		_code.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * File: ui/fuse/sass/module/_code.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Prettify
-
-
-// Prettify
-// ---------------------------------------------------------------------------------------
 .prettyprint {
 	@include position(relative);
 	@include padding($space-small);
@@ -24,8 +15,6 @@
 	@include overflow(scroll);
 	word-wrap: normal;
 	white-space: pre;
-
-	// Adapt
 	@include breakpoint(large) {
 		@include padding($space-base);
 	}
@@ -33,7 +22,6 @@
 code {
 	@include text-size(16px);
 }
-
 .pln,
 .pun,
 .kwd,
@@ -45,39 +33,30 @@ code {
 .str {
 	@include text-colour($red);
 }
-
 .com {
 	@include text-colour($grey-blue);
 }
-
 .typ {
 	@include text-colour($blue);
 }
-
 .lit {
 	@include text-colour($purple-dark);
 }
-
 .tag {
 	@include text-colour($blue-dark);
 }
-
 .atn {
 	@include text-colour($aqua);
 }
-
 .atv {
 	@include text-colour($pink);
 }
-
 .var {
 	@include text-colour($aqua);
 }
-
 .fun {
 	@include text-colour($red-dark);
 }
-// Line numbers
 ol.linenums {
 	@include spacing-no();
 	@include margin-left($space-base);

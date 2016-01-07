@@ -1,19 +1,9 @@
 /**
- * Title: 			Grey strip
- * SASS File: 		_grey-strip.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	4 April 2015
+ * File: ui/fuse/sass/module/_grey-strip.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
-
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Grey strip
-
-
-// Grey strip
-// ---------------------------------------------------------------------------------------
+ 
 .grey-strip {
 	@include padding($space-base);
 	@include text-align(center);
@@ -22,13 +12,9 @@
 	@include background-colour($grey-blue-x-light);
 	@include arrow(bottom, $grey-blue-x-light, 10px);
 	@include text-weight(light);
-
-	// Adapt
 	@include breakpoint(large) {
 		@include padding($space-medium);
 		@include text-size(large);
 		@include arrow(bottom, $grey-blue-x-light);
 	}
 }
-
-

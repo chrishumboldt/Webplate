@@ -1,22 +1,11 @@
 /**
- * Title: 			Navigation
- * SASS File: 		_navigation.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	15 February 2015
+ * File: ui/fuse/sass/module/_navigation.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Title bar basic navigation
-
-
-// Title bar basic navigation
-// ---------------------------------------------------------------------------------------
 .title-bar-basic nav.navigation {
 	@include position(absolute, right 0px top 0px);
-
 	li {
 		@include float(left);
 	}
@@ -28,5 +17,3 @@
 		@include text-colour($black-base);
 	}
 }
-
-

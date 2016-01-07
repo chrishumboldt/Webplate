@@ -72,7 +72,7 @@
 @mixin arrow-no($colour: $white) {
 	background: $colour;
 	&:after {
-		@include hide();
+		display: none;;
 		border-width: 0px;
 	}
 }

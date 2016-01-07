@@ -1,18 +1,15 @@
 /**
- * File: _button.scss
+ * File: ui/fuse/sass/basic/_button.scss
  * Type: SASS module file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Buttons setup
 // Banner buttons
 // Basic buttons
 
 // Buttons setup
-// ---------------------------------------------------------------------------------------
 .btn-banner,
 .btn-notice,
 .btn-primary,
@@ -22,31 +19,24 @@
 }
 
 // Banner buttons
-// ---------------------------------------------------------------------------------------
 .btn-banner {
 	@include button-style(line, $white);
 	@include button-size(x-large);
 	@include margin-horizontal($space-x-small);
 	@include text-weight(100);
-
-	// Size
 	@include breakpoint(small) {
 		@include width(auto);
 		@include button-size(large);
-
 		&.small-hide {
 			@include hide();
 		}
 	}
-
-	// States
 	&:visited {
 		@include text-colour($white);
 	}
 }
 
 // Basic buttons
-// ---------------------------------------------------------------------------------------
 .btn-primary {
 	@include button-style(flat, $pink);
 	@include button-size(normal);

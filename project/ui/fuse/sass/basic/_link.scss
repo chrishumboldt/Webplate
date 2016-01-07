@@ -1,19 +1,10 @@
 /**
- * Title: 			Links
- * SASS File: 		_link.scss
- * Type: 			basic
- * Author:        	Chris Humboldt
- * Last Edited:   	2 April 2015
+ * File: ui/fuse/sass/basic/_link.scss
+ * Type: SASS basic
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Basic links
-
-
-// Basic links
-// ---------------------------------------------------------------------------------------
 p a,
 a.link,
 footer a {
@@ -23,14 +14,10 @@ footer a {
 	@include text-decoration(none);
 	@include animate(color);
 	outline: none;
-
-	// States
-	.no-touch &:hover,
-	.no-touch &:focus {
+	.no-touchevents &:hover,
+	.no-touchevents &:focus {
 		outline: none;
 	}
-
-	// After
 	&::after {
 		content: ' ';
 		@include position(absolute, top 100% left 0);
@@ -40,19 +27,15 @@ footer a {
 		@include transparency(0);
 		@include animate(all);
 		@include transform-translate-y(-$space-x-small - 2px);
-
-		// States
-		.no-touch &:hover,
-		.no-touch &:focus {
+		.no-touchevents &:hover,
+		.no-touchevents &:focus {
 			@include transparency(1);
 			@include transform-translate-y(-2px);
 		}
 	}
-	.no-touch &:hover::after,
-	.no-touch &:focus::after {
+	.no-touchevents &:hover::after,
+	.no-touchevents &:focus::after {
 		@include transparency(1);
 		@include transform-translate-y(-2px);
 	}
 }
-
-

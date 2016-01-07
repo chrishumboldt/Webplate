@@ -20,7 +20,6 @@
 			@include padding-vertical($space-x2-large + $space-medium);
 		}
 	}
-	// Text
 	h1 {
 		@include display(block);
 		@include padding-bottom(0px);
@@ -49,9 +48,17 @@
 			@include text-size(medium);
 		}
 	}
+	&._fuse {
+		@include gradient-angle($pink, lighten($yellow, 10%));
+		h1 {
+			@include text-colour($white);
+		}
+		p {
+			@include text-colour(fade-out($white, 0.25));
+		}
+	}
 	&._fuse-animated {
 		@include gradient-animate-angle($blue, $red);
-		// Text
 		h1 {
 			@include text-colour($white);
 		}

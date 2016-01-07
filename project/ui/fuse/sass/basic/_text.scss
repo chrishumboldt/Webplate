@@ -1,17 +1,10 @@
 /**
- * File: _text.scss
+ * File: ui/fuse/sass/basic/_text.scss
  * Type: SASS basic gile
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Global
-// Headings
-
-// Global
-// ---------------------------------------------------------------------------------------
 html, body {
 	@include text-font($roboto);
 	@include text-weight(300);
@@ -19,9 +12,7 @@ html, body {
 label {
 	@include text-font($roboto);
 }
-
 // Headings
-// ---------------------------------------------------------------------------------------
 h1 { @include text-size(34px); @include text-weight($weight-thin); @include margin-bottom(1.85rem); }
 h2 { @include text-size(30px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
 h3 { @include text-size(26px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
@@ -34,13 +25,9 @@ p {
 	@include text-colour($grey-dark);
 	@include text-size(15px);
 	@include text-weight(300);
-
-	// Adapt
 	@include breakpoint(large) {
 		@include text-size(16px);
 	}
-
-	// Note
 	&.note {
 		@include text-colour($grey-medium);
 		@include text-size(14px);
@@ -58,9 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 		font-size: 0.7em;
 	}
 }
-
-// Respond
-@include respond-to($bp-small) {
+@include breakpoint($bp-small) {
 	h1 { @include text-size(50px); }
 	h2 { @include text-size(44px); }
 	h3 { @include text-size(32px); }
@@ -68,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 	h5 { @include text-size(18px); }
 	h6 { @include text-size(16px); }
 }
-@include respond-to($bp-large) {
+@include breakpoint($bp-large) {
 	h1 { @include text-size(60px); }
 	h2 { @include text-size(48px); }
 	h3 { @include text-size(38px); }
@@ -76,5 +61,3 @@ h1, h2, h3, h4, h5, h6 {
 	h5 { @include text-size(20px); }
 	h6 { @include text-size(18px); }
 }
-
-

@@ -5,19 +5,12 @@
  * Last Edited: 22 April 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Blocks
-
-// Blocks
-// ---------------------------------------------------------------------------------------
 @mixin block($width: 100%, $height: 100%, $position: relative, $properties: false, $display: block) {
-	@include display($display);
-	@include size($width, $height);
-	@include position($position);
-
-	@if $properties != false {
-		@include position-set($properties);
-	}
+   @include display($display);
+   @include size($width, $height);
+   @include position($position);
+   @if $properties != false {
+      @include position-set($properties);
+   }
 }
-

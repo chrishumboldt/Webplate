@@ -1,27 +1,14 @@
 /**
- * File: style.scss
+ * File: ui/fuse/style.scss
  * Type: SASS import file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
-// Imports
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
 $font-face-buttonplate: "../../component/buttonplate/css/icon-font-buttonplate";
-// Title bar
 $title-bar-h: 68px;
 $title-bar-h-large: 88px;
 
-
-// Imports
-// ---------------------------------------------------------------------------------------
 @import "../../../engine/sass/import"; // Webplate
 @import "../../component/buttonplate/sass/buttonplate"; // Buttonplate
 

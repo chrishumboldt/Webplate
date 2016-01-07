@@ -1,25 +1,13 @@
 /**
- * Title: 			Footer module
- * SASS File: 		_footer.scss
- * Type: 			module
- * Author:        	Chris Humboldt
- * Last Edited:   	5 April 2015
+ * File: ui/fuse/sass/module/_footer.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Footer
-
-
-// Footer
-// ---------------------------------------------------------------------------------------
 footer {
 	@include text-colour($grey-blue-dark);
 	@include text-weight(300);
 	@include background-colour($grey-blue-x-light);
-
-	// Layouts
 	.left,
 	.middle,
 	.right {
@@ -27,10 +15,7 @@ footer {
 		@include text-align(center);
 		@include text-size(13px);
 	}
-
-	// Adapt
 	@include breakpoint(large) {
-
 		.left,
 		.middle,
 		.right {
@@ -44,5 +29,3 @@ footer {
 		}
 	}
 }
-
-

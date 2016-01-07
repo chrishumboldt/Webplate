@@ -1,59 +1,44 @@
 /**
- * File: _card.scss
+ * File: ui/fuse/module/_card.scss
  * Type: SASS module file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Card basics
-// Card grey
+// Links
 // Card grid
 
 // Card basics
-// ---------------------------------------------------------------------------------------
 .card {
 	@include background-colour($white);
-
-	// Image
 	.image {
 		@include position(relative);
 		@include height-min(100px);
 		@include background-cover();
-
 		.info {
 			@include position(absolute, bottom 0 right 0);
 			@include padding-horizontal($space-small);
 			@include padding-vertical($space-x-small);
 			@include text-colour($white);
 			@include background-colour($pink);
-
 			span {
 				@include text-colour($pink-light);
 				@include text-size($size-small);
 			}
 		}
 	}
-
-	// Details
 	.details {
 		@include padding($space-minor);
 		@include text-size($size-minor);
-
-		// Adapt
 		@include breakpoint(large) {
 			@include padding($space-base);
 		}
-
-		// Headings
 		h6 {
 			@include spacing-no();
 			@include text-colour($black-base);
 			@include text-weight(400);
 		}
-
-		// Sub text
 		.sub-text {
 			@include display(block);
 			@include spacing-no();
@@ -64,10 +49,7 @@
 }
 .card-medium {
 	@extend .card;
-
-	// Details
 	.details {
-		// Adapt
 		@include breakpoint($bp-x-large) {
 			@include padding($space-medium);
 		}
@@ -75,34 +57,26 @@
 }
 .card-grey {
 	@extend .card;
-
 	@include background-colour($grey-x-light);
 }
+
 // Links
-.no-touch a.card {
+.no-touchevents a.card {
 	@include display(block);
 	@include animate(all);
-
 	&:hover {
-		cursor: pointer;
+		@include cursor(pointer);
 		@include drop-shadow(fade-out($black, 0.9), 14px);
 	}
 }
 
 // Card grid
-// ---------------------------------------------------------------------------------------
 .card-grid {
 	@include row();
-
 	ul {
-		list-style: none;
-
-		// Each list item
+		@include list-style(none);
 		> li {
 			@include span(12);
-			// @include padding-bottom($space-minor);
-
-			// Adapt
 			@include breakpoint($bp-small) {
 				@include span-new(6);
 				@include padding-bottom($space-small);
@@ -117,5 +91,3 @@
 		}
 	}
 }
-
-

@@ -1,16 +1,10 @@
 /**
- * File: _background.scss
+ * File: ui/fuse/sass/basic/_background.scss
  * Type: SASS basic file
  * Author: Chris Humboldt
- * Last Edited: 2 May 2015
  */
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
+ 
 // Background colours
-
-// Background colours
-// ---------------------------------------------------------------------------------------
 .back-grey-light {
 	@include background-colour($grey-x-light);
 }
