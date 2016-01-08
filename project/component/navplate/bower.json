@@ -1,20 +1,20 @@
 {
-   "name": "navplate",
-   "version": "1.0.1",
-   "homepage": "https://github.com/chrishumboldt/Navplate",
-   "authors": [
+	"name": "navplate",
+	"version": "1.0.2",
+	"homepage": "https://github.com/chrishumboldt/Navplate",
+	"authors": [
       "Chris Humboldt <chrismodem@gmail.com>"
    ],
-   "description": "A navigation component.",
-   "main": ["js/min/navplate.js", "css/navplate.css"],
-   "keywords": [
+	"description": "A navigation component.",
+	"main": ["js/min/navplate.js", "css/navplate.css"],
+	"keywords": [
       "Navigation",
       "Component",
       "Javascript",
       "Webplate"
    ],
-   "license": "Apache-2.0",
-   "ignore": [
+	"license": "Apache-2.0",
+	"ignore": [
       "**/.*",
       "node_modules",
       "bower_components",

@@ -1,6 +1,6 @@
 {
   "name": "navplate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/chrishumboldt/Navplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -32,14 +32,14 @@
     "js/min/demo.js",
     "sass"
   ],
-  "_release": "1.0.1",
+  "_release": "1.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.1",
-    "commit": "b5b25e7d9a834824f81f1aadf4fd4619bc5f5763"
+    "tag": "v1.0.2",
+    "commit": "a27f5cc4e7744be52e824e77db04ddb525516ee0"
   },
   "_source": "git://github.com/chrishumboldt/Navplate.git",
-  "_target": "~1.0.1",
+  "_target": "~1.0.2",
   "_originalSource": "navplate",
   "_direct": true
 }

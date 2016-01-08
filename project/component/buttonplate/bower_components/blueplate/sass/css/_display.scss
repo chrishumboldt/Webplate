@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_display.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * File: css/_display.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
-
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
+ 
 // Display classes
-
-
-// Display classes
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-display() {
 	.show {
 		@include show();
@@ -40,9 +32,7 @@
 	.transparency-0 {
 		@include transparency(0);
 	}
-
-	// Respond
-	@include respond-to(large) {
+	@include breakpoint(large) {
 		.small-show,
 		.show-small {
 			@include hide();
@@ -56,7 +46,7 @@
 			@include hide();
 		}
 	}
-	@include respond-to(small) {
+	@include breakpoint(small) {
 		.small-show,
 		.show-small {
 			@include show();

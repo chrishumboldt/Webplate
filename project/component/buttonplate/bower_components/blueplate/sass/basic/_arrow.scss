@@ -1,24 +1,18 @@
 /**
- * SASS File: 		_arrow.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	29 July 2014
- * Based on: 		http://cssarrowplease.com/
+ * File: basic/_arrow.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ * Based on: http://cssarrowplease.com/
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Basic arrow
 // Arrow colour
 // No arrow
 
-
 // Basic arrow
-// ---------------------------------------------------------------------------------------
 @mixin arrow($position: bottom, $colour: $red, $size: 20px) {
 	position: relative;
-
 	&:after {
 		border: solid transparent;
 		content: " ";
@@ -51,17 +45,13 @@
 			margin-left: -$size;
 		}
 	}
-
 	// Colour
 	@include arrow-colour($position, $colour);
 }
 
-
 // Arrow colour
-// ---------------------------------------------------------------------------------------
 @mixin arrow-colour($position: bottom, $colour: $white) {
 	background: $colour;
-
 	&:after {
 		@if $position == top {
 			border-bottom-color: $colour;
@@ -78,16 +68,11 @@
 	}
 }
 
-
 // No arrow
-// ---------------------------------------------------------------------------------------
 @mixin arrow-no($colour: $white) {
 	background: $colour;
-	
 	&:after {
-		@include hide();
+		display: none;;
 		border-width: 0px;
 	}
 }
-
-

@@ -40,10 +40,10 @@ code {
 	@include text-colour($blue);
 }
 .lit {
-	@include text-colour($purple-dark);
+	@include text-colour(darken($purple, 15%));
 }
 .tag {
-	@include text-colour($blue-dark);
+	@include text-colour(darken($blue, 15%));
 }
 .atn {
 	@include text-colour($aqua);
@@ -55,7 +55,7 @@ code {
 	@include text-colour($aqua);
 }
 .fun {
-	@include text-colour($red-dark);
+	@include text-colour(darken($red, 15%));
 }
 ol.linenums {
 	@include spacing-no();

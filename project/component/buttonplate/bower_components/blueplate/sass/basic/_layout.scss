@@ -1,13 +1,10 @@
 /**
- * SASS File: 		_layout.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	9 February 2015
+ * File: basic/_layout.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Box sizing
 // Centering
 // Fixes
@@ -17,115 +14,68 @@
 // Square
 // Vertical align
 
-
 // Box sizing
-// ---------------------------------------------------------------------------------------
 @mixin box-sizing($option: content-box) {
-	-webkit-box-sizing: $option;
-	-moz-box-sizing: $option;
-	box-sizing: $option;
+   -webkit-box-sizing: $option;
+   -moz-box-sizing: $option;
+   box-sizing: $option;
 }
-
-
 // Centering
-// ---------------------------------------------------------------------------------------
 @mixin center() {
-	margin: 0px auto;
+   margin: 0 auto;
 }
 @mixin center-vertical() {
-	// As per: Sebastian Ekström
-	// URL: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
-	position: relative;
- 	top: 50%;
-	@include transform-translate-y(-50%);
+   // As per: Sebastian Ekström
+   // URL: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+   position: relative;
+   top: 50%;
+   @include transform-translate-y(-50%);
 }
-
-
 // Fixes
-// ---------------------------------------------------------------------------------------
 @mixin clearfix() {
-	*zoom: 1;
-	&:before, &:after {
-		content: " ";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
+   *zoom: 1;
+   &:before,
+   &:after {
+      content: " ";
+      display: table;
+   }
+   &:after {
+      clear: both;
+   }
 }
-
-
 // Floats
-// ---------------------------------------------------------------------------------------
 @mixin float($float: left) {
-	float: $float;
+   float: $float;
 }
 @mixin float-clear() {
-	clear: both;
-}
-@mixin float-left() {
-	@include float(left);
+   clear: both;
 }
 @mixin float-no() {
-	@include float(none);
+   @include float(none);
 }
-@mixin float-right() {
-	@include float(right);
-}
-
-
 // Index
-// ---------------------------------------------------------------------------------------
 @mixin z-index($index: 1) {
-	z-index: $index;
+   z-index: $index;
 }
 @mixin level($index: 1) {
-	@include z-index($index);
-} 
-
-
+   @include z-index($index);
+}
 // Position
-// ---------------------------------------------------------------------------------------
 @mixin position($position: relative, $arguments: false) {
-	position: $position;
-
-	// Arguments
-	@include position-set($arguments);
+   position: $position;
+   @include position-set($arguments);
 }
 @mixin position-set($arguments: false) {
-	@include position-arguments($arguments);
+   @include position-arguments($arguments);
 }
-@mixin position-absolute($arguments: false) {
-	@include position(absolute, $arguments);
-}
-@mixin position-fixed($arguments: false) {
-	@include position(fixed, $arguments);
-}
-@mixin position-relative($arguments: false) {
-	@include position(relative, $arguments);
-}
-@mixin position-static($arguments: false) {
-	@include position(static, $arguments);
-}
-@mixin position-inherit($arguments: false) {
-	@include position(inherit, $arguments);
-}
-
-
 // Square
-// ---------------------------------------------------------------------------------------
 @mixin square($size) {
-	width: $size;
-	height: $size;
-	line-height: $size;
-	text-align: center;
+   width: $size;
+   height: $size;
+   line-height: $size;
+   text-align: center;
 }
-
-
 // Vertical align
-// ---------------------------------------------------------------------------------------
 @mixin vertical-align($position) {
-	vertical-align: $position;
+   vertical-align: $position;
 }
-
-

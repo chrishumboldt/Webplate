@@ -29,7 +29,7 @@ p {
 		@include text-size(16px);
 	}
 	&.note {
-		@include text-colour($grey-medium);
+		@include text-colour($grey);
 		@include text-size(14px);
 		@include text-style(italic);
 	}

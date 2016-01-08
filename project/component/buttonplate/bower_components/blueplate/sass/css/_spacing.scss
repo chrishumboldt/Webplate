@@ -1,27 +1,16 @@
 /**
- * SASS File: 		_spacing.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2013
+ * File: css/_spacing.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
-// Spacing mixin
-
-
-// Variables
-// ---------------------------------------------------------------------------------------
-$spacing-limit          : 10 !default;
-
+$spacing-limit: 10 !default;
 
 // Spacing mixin
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-spacing() {
 	.spacing-no {
-		@include no-spacing();
+		@include spacing-no();
 	}
 	.pad-no {
 		@include padding(0px);
@@ -29,14 +18,10 @@ $spacing-limit          : 10 !default;
 	.mgn-no {
 		@include margin(0px);
 	}
-
 	// Spacing loop
 	@for $index from 1 through $spacing-limit {
-
-		$multiplication 	: 1px;
-		$class-name     	: ($index * 1);
-
-		// Padding
+		$multiplication: 1px;
+		$class-name: ($index * 1);
 		.pad-#{$class-name} {
 			@include padding($multiplication * $index);
 		}
@@ -52,8 +37,6 @@ $spacing-limit          : 10 !default;
 		.pad-b-#{$class-name} {
 			@include padding-bottom($multiplication * $index);
 		}
-
-		// Margin
 		.mgn-#{$class-name} {
 			@include margin($multiplication * $index);
 		}

@@ -1,18 +1,10 @@
 /**
- * SASS File: 		_sizing.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * File: css/_sizing.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Sizing mixin
-
-
-// Sizing mixin
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-sizing() {
 	.block-h-10 {
 		@include height(10px);

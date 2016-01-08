@@ -4,7 +4,17 @@
  * Author: Chris Humboldt
  */
 
-var buttonplate = function($selector) {
+// Table of contents
+// Defaults
+// Tools
+// Variables
+
+// Defaults
+var $buttonplateDefault = {
+	selector: '.button'
+};
+
+var buttonplate = function($userOptions) {
 	// Tools
 	var tool = function(document) {
 		// Variables
@@ -47,14 +57,15 @@ var buttonplate = function($selector) {
 	}(document);
 
 	// Select elements
+	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $buttonplateDefault.selector;
 	var $selectorType = $selector.charAt(0).toString();
-	if ($selectorType === '.') {
-		var $elements = document.querySelectorAll($selector);
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			new buttonplateComponent($elements[$i], tool);
-		};
-	} else if ($selectorType === '#') {
+	if ($selectorType === '#' && $selector.indexOf('.') < 0) {
 		new buttonplateComponent(document.getElementById($selector.substring(1)), tool);
+	} else {
+		var $elements = document.querySelectorAll($selector);
+		for (var $i = 0; $i < $elements.length; $i++) {
+			new buttonplateComponent($elements[$i], tool);
+		}
 	}
 };
 

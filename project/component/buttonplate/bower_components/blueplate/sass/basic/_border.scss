@@ -1,20 +1,15 @@
 /**
- * SASS File: 		_border.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	6 August 2014
+ * File: basic/_border.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Border lines
 // Border radius
 // Border shades
 
-
 // Border lines
-// ---------------------------------------------------------------------------------------
 @mixin border($colour: $grey, $size: 1px, $type: solid) {
 	border: $size $type $colour;
 }
@@ -42,9 +37,7 @@
 	border: medium none $black;
 }
 
-
 // Border radius
-// ---------------------------------------------------------------------------------------
 @mixin border-radius($radius: 2px) {
 	border-radius: $radius;
 	-o-border-radius: $radius;
@@ -126,9 +119,7 @@
 	background-clip: padding-box;
 }
 
-
 // Border shades
-// ---------------------------------------------------------------------------------------
 @mixin border-light($highlight: 0.8, $colour: #ffffff) {
 	border: 1px solid fade-out($colour, $highlight);
 }
@@ -159,5 +150,3 @@
 @mixin border-dark-right($lowlight: 0.8, $colour: #000000) {
 	border-right: 1px solid fade-out($colour, $lowlight);
 }
-
-

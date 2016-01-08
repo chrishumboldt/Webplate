@@ -17,7 +17,7 @@
 .col-double {
 	@include breakpoint(large) {
 		> .left {
-			@include new-span(6);
+			@include span-new(6);
 			padding-right: $space-small;
 		}
 		> .middle {
@@ -25,7 +25,7 @@
 			padding-right: $space-x-small;
 		}
 		> .right {
-			@include new-span(6);
+			@include span-new(6);
 			padding-left: $space-small;
 		}
 	}
@@ -46,29 +46,29 @@
 	@extend .col-double;
 	@include breakpoint($bp-medium) {
 		> .left {
-			@include new-span(4);
+			@include span-new(4);
 		}
 		> .middle {
-			@include new-span(4);
+			@include span-new(4);
 		}
 		> .right {
-			@include new-span(4);
+			@include span-new(4);
 		}
 	}
 }
 .col-triple-fixed {
 	> .left, > .middle, > .right {
-		@include new-span(4);
+		@include span-new(4);
 	}
 }
 .col-left-bar {
 	@extend .col-double;
 	@include breakpoint(large) {
 		> .left {
-			@include new-span(3);
+			@include span-new(3);
 		}
 		> .right {
-			@include new-span(9);
+			@include span-new(9);
 		}
 	}
 }
@@ -76,10 +76,10 @@
 	@extend .col-double;
 	@include breakpoint(large) {
 		> .left {
-			@include new-span(8);
+			@include span-new(8);
 		}
 		> .right {
-			@include new-span(4);
+			@include span-new(4);
 		}
 	}
 }

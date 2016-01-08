@@ -5,11 +5,18 @@
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
+// Defaults
 // Tools
 // Variables
 
-function formplate($selector) {
+// Defaults
+// Defaults
+var $formplateDefault = {
+	selector: 'body',
+	colour: 'blue'
+};
+
+function formplate($userOptions) {
 	// Tools
 	var tool = function(document) {
 		// Elements
@@ -65,10 +72,16 @@ function formplate($selector) {
 	}(document);
 
 	// Variables
-	var $formColour = tool.element.body.getAttribute('data-formplate-colour');
-	var $formCheckboxes = document.querySelectorAll('.formplate input[type="checkbox"]');
-	var $formRadioButtons = document.querySelectorAll('.formplate input[type="radio"]');
-	var $formSelects = document.querySelectorAll('.formplate select');
+	var $self = this;
+	$self.options = {
+		selector: ($userOptions && $userOptions.selector) ? $userOptions.selector : $formplateDefault.selector,
+		colour: ($userOptions && $userOptions.colour) ? $userOptions.colour : false,
+	}
+
+	var $formColour = $self.options.colour || tool.element.body.getAttribute('data-formplate-colour') || $formplateDefault.colour;
+	var $formCheckboxes = document.querySelectorAll($self.options.selector + ' input[type="checkbox"]');
+	var $formRadioButtons = document.querySelectorAll($self.options.selector + ' input[type="radio"]');
+	var $formSelects = document.querySelectorAll($self.options.selector + ' select');
 	var $formTogglerHTML = document.createElement('span');
 	$formTogglerHTML.className = 'handle';
 
@@ -90,7 +103,7 @@ function formplate($selector) {
 	}
 
 	// Add toggler handle
-	var $formTogglers = document.querySelectorAll('.formplate-toggler');
+	var $formTogglers = document.querySelectorAll($self.options.selector + ' .formplate-toggler');
 	for (var $i = 0; $i < $formTogglers.length; $i++) {
 		$formTogglers[$i].appendChild($formTogglerHTML.cloneNode());
 	}
@@ -112,7 +125,7 @@ function formplate($selector) {
 	}
 
 	// Events
-	var $formCheckboxesNew = document.querySelectorAll('.formplate-checkbox');
+	var $formCheckboxesNew = document.querySelectorAll($self.options.selector + ' .formplate-checkbox');
 	for (var $i = 0; $i < $formCheckboxesNew.length; $i++)(function($i) {
 		$formCheckboxesNew[$i].onclick = function() {
 			if (tool.hasClass($formCheckboxesNew[$i], 'checked')) {
@@ -122,7 +135,7 @@ function formplate($selector) {
 			}
 		};
 	})($i);
-	var $formRadioButtonsNew = document.querySelectorAll('.formplate-radio');
+	var $formRadioButtonsNew = document.querySelectorAll($self.options.selector + ' .formplate-radio');
 	for (var $i = 0; $i < $formRadioButtonsNew.length; $i++)(function($i) {
 		$formRadioButtonsNew[$i].onclick = function() {
 			var $formRadioButtonInputName = $formRadioButtonsNew[$i].getElementsByTagName('input')[0].getAttribute('name');
@@ -135,7 +148,7 @@ function formplate($selector) {
 			tool.classAdd($formRadioButtonsNew[$i], 'checked');
 		};
 	})($i);
-	var $formTogglersNew = document.querySelectorAll('.formplate-toggler');
+	var $formTogglersNew = document.querySelectorAll($self.options.selector + ' .formplate-toggler');
 	for (var $i = 0; $i < $formTogglersNew.length; $i++)(function($i) {
 		$formTogglersNew[$i].onclick = function() {
 			if (tool.hasClass($formTogglersNew[$i], 'checked')) {

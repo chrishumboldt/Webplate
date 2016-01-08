@@ -1,26 +1,19 @@
 /**
- * File: _list
- * Type: SASS basic file
+ * File: basic/_list.scss
+ * Type: SASS partial
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Lists
-
-// Lists
-// ---------------------------------------------------------------------------------------
 @mixin list-style($style: disc outside none) {
-	list-style: $style;
+   list-style: $style;
 }
 @mixin list-style-image($url: none) {
-	list-style-image: $url;
+   list-style-image: $url;
 }
 @mixin list-style-position($position: outside) {
-	list-style-position: $position;
+   list-style-position: $position;
 }
 @mixin list-style-type($type: disc) {
-	list-style-type: $type;
+   list-style-type: $type;
 }
-

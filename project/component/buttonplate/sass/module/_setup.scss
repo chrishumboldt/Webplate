@@ -27,7 +27,7 @@
 	@include text-decoration(none);
 	@include vertical-align(middle);
 	@include border-no();
-	@include background-colour($grey-link);
+	@include background-colour($grey-light);
 	outline: none;
 	-webkit-appearance: none;
 
@@ -36,12 +36,12 @@
 	}
 	.buttonplate-no-touch &:hover {
 		@include cursor(pointer);
-		@include background-colour($grey-link-hover);
+		@include background-colour($grey-x-light);
 	}
 	&:active {
 		@include drop-shadow-inset(fade-out(#000, 0.85), 5px, 2px, 0px);
 		text-shadow: fade-out($white, 0.75) 0px 1px 0;
-		@include background-colour($grey-link);
+		@include background-colour($grey-light);
 	}
 
 	.arrow {

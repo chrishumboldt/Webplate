@@ -1,19 +1,10 @@
 /**
- * SASS File: 		_text.scss
- * Requires: 		_responsive-layout.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * File: css/_text.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Text classes
-
-
-// Text classes
-// ---------------------------------------------------------------------------------------
 @mixin blueplate-text() {
 	.hide-text {
 		@include text-hide();
@@ -28,40 +19,43 @@
 		@include text-align(right);
 	}
 	.txt-size-x2l {
-		@include text-size($size-x2-large);
+		@include text-size(x2-large);
 	}
 	.txt-size-xl {
-		@include text-size($size-x-large);
+		@include text-size(x-large);
 	}
 	.txt-size-l {
-		@include text-size($size-large);
+		@include text-size(large);
 	}
 	.txt-size-m {
-		@include text-size($size-medium);
+		@include text-size(medium);
 	}
 	.txt-size-n {
-		@include text-size($size-base);
+		@include text-size(base);
 	}
 	.txt-size-s {
-		@include text-size($size-small);
+		@include text-size(small);
 	}
 	.txt-size-xs {
-		@include text-size($size-x-small);
+		@include text-size(x-small);
 	}
 	.txt-size-x2s {
-		@include text-size($size-x2-small);
+		@include text-size(x2-small);
 	}
 	.txt-weight-xb {
-		@include text-weight(900);
+		@include text-weight(heavy);
 	}
 	.txt-weight-b, .txt-bold {
-		@include text-weight(700);
+		@include text-weight(bold);
 	}
 	.txt-weight-n {
-		@include text-weight(400);
+		@include text-weight(base);
 	}
 	.txt-weight-l, .txt-light {
-		@include text-weight(300);
+		@include text-weight(light);
+	}
+	.txt-weight-xl, .txt-thin {
+		@include text-weight(thin);
 	}
 	.txt-weight-xl {
 		@include text-weight(100);
@@ -81,50 +75,48 @@
 	.txt-grey {
 		@include text-colour($grey);
 	}
-
-	// Respond
-	@include respond-to(large) {
+	@include breakpoint(large) {
 		.large-txt-size-x2l {
-			@include text-size($size-x2-large);
+			@include text-size(x2-large);
 		}
 		.large-txt-size-xl {
-			@include text-size($size-x-large);
+			@include text-size(x-large);
 		}
 		.large-txt-size-l {
-			@include text-size($size-large);
+			@include text-size(large);
 		}
 		.large-txt-size-m {
-			@include text-size($size-medium);
+			@include text-size(medium);
 		}
 		.large-txt-size-n {
-			@include text-size($size-base);
+			@include text-size(base);
 		}
 		.large-txt-size-s {
-			@include text-size($size-small);
+			@include text-size(small);
 		}
 		.large-txt-size-xs {
-			@include text-size($size-x-small);
+			@include text-size(x-small);
 		}
 		.large-txt-size-x2s {
-			@include text-size($size-x2-small);
+			@include text-size(x2-small);
 		}
 		.large-txt-weight-xb {
-			@include text-weight(900);
+			@include text-weight(heavy);
 		}
 		.large-txt-weight-b, .large-txt-bold {
-			@include text-weight(700);
+			@include text-weight(bold);
 		}
 		.large-txt-weight-n {
-			@include text-weight(400);
+			@include text-weight(base);
 		}
 		.large-txt-weight-l, .large-txt-light {
-			@include text-weight(300);
+			@include text-weight(light);
 		}
 		.large-txt-weight-xl {
-			@include text-weight(100);
+			@include text-weight(thin);
 		}
 		.large-txt-normal {
-			@include text-weight(normal);
+			@include text-weight(base);
 		}
 	}
 }

@@ -18,10 +18,10 @@
 		@include float-no();
 	}
 	.float-l {
-		@include float-left();
+		@include float(left);
 	}
 	.float-r {
-		@include float-right();
+		@include float(right);
 	}
 	.float-clear {
 		@include float-clear();

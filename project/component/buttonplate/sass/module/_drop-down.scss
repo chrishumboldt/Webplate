@@ -33,7 +33,6 @@ $away-from-button: 4px;
 			@include level(2);
 			@include opacity(0);
 			@include visibility(hidden);
-			@include animate(all, 0.2s);
 
 			li {
 				@include spacing-no();
@@ -60,7 +59,7 @@ $away-from-button: 4px;
 					vertical-align: middle;
 
 					.buttonplate-no-touch &:hover {
-						@include background-colour($grey-link-hover);
+						@include background-colour(darken($grey-x-light, 3%));
 					}
 				}
 			}
@@ -69,6 +68,7 @@ $away-from-button: 4px;
 			&.open {
 				@include opacity(1);
 				@include visibility(visible);
+				@include animate(all, 0.4s);
 			}
 		}
 	}

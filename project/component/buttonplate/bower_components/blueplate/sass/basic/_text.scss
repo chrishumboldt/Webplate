@@ -1,18 +1,15 @@
 /**
- * File: _text.scss
- * Type: SASS basic file
+ * File: basic/_text.scss
+ * Type: SASS partial
  * Author: Chris Humboldt
- * Last Edited: 22 April 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // Font
 // Text
 
 // Variables
-// ---------------------------------------------------------------------------------------
 $georgia: Georgia, Cambria, "Times New Roman", Times, serif;
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $impact: Impact, Charcoal, sans-serif;
@@ -44,145 +41,137 @@ $weight-bold: 700;
 $weight-heavy: 900;
 
 // Font
-// ---------------------------------------------------------------------------------------
 @mixin font-family($font: $helvetica) {
-	font-family: $font;
+   font-family: $font;
 }
 @mixin font-size($size: $font-base) {
-	font-size: $size;
-	font-size: calculate-rem-size($size);
+   font-size: $size;
+   font-size: calculate-rem-size($size);
 }
 @mixin font-style($style: normal) {
-	font-style: $style;
+   font-style: $style;
 }
 @mixin font-weight($weight: normal) {
-	font-weight: $weight;
+   font-weight: $weight;
 }
 @mixin line-height($line-height: $font-base) {
-	line-height: $line-height;
-	line-height: calculate-rem-size($line-height);
+   line-height: $line-height;
+   line-height: calculate-rem-size($line-height);
 }
 @mixin letter-spacing($letter-spacing: normal) {
-	letter-spacing: $letter-spacing;
+   letter-spacing: $letter-spacing;
 }
-
 // Text
-// ---------------------------------------------------------------------------------------
 @mixin text($arguments: false) {
-	// Arguments
-	@include text-arguments($arguments);
+   @include text-arguments($arguments);
 }
 @mixin text-align($align: left) {
-	text-align: $align;
+   text-align: $align;
 }
 @mixin text-colour($colour: $white) {
-	color: $colour;
+   color: $colour;
 }
 @mixin text-decoration($decoration: none) {
-	text-decoration: $decoration;
+   text-decoration: $decoration;
 }
 @mixin text-ellipsis($width: 100%) {
-	display: inline-block;
-	max-width: $width;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	word-wrap: normal;
+   display: inline-block;
+   max-width: $width;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   word-wrap: normal;
 }
 @mixin text-font($font: $helvetica) {
-	@include font-family($font);
+   @include font-family($font);
 }
 @mixin text-hide() {
-	border:0; 
-	font: 0/0 a; 
-	text-shadow: none; 
-	color: transparent; 
-	background-color: transparent;
+   border: 0;
+   font: 0/0 a;
+   text-shadow: none;
+   color: transparent;
+   background-color: transparent;
 }
 @mixin text-hyphen($type: none) {
-	-webkit-hyphens: $type;
-	-moz-hyphens: $type;
-	-ms-hyphens: $type;
-	hyphens: $type;
+   -webkit-hyphens: $type;
+   -moz-hyphens: $type;
+   -ms-hyphens: $type;
+   hyphens: $type;
 }
 @mixin text-letter-spacing($letter-spacing: normal) {
-	@include letter-spacing($letter-spacing);
+   @include letter-spacing($letter-spacing);
 }
 @mixin text-line-height($line-height: $size-base) {
-	@include line-height($line-height);
+   @include line-height($line-height);
 }
 @mixin text-shadow($distance: 2px, $blur: 2px, $colour: fade-out(#000, 0.5), $angle: 0px) {
-	text-shadow: $angle $distance $blur $colour;
+   text-shadow: $angle $distance $blur $colour;
 }
 @mixin text-size($size: $size-base) {
-
-	@if $size == x2-small {
-		@include font-size($size-x2-small);
-	}
-	@else if $size == x-small {
-		@include font-size($size-x-small);
-	}
-	@else if $size == small {
-		@include font-size($size-small);
-	}
-	@else if $size == minor {
-		@include font-size($size-minor);
-	}
-	@else if $size == base {
-		@include font-size($size-base);
-	}
-	@else if $size == slight {
-		@include font-size($size-slight);
-	}
-	@else if $size == medium {
-		@include font-size($size-medium);
-	}
-	@else if $size == large {
-		@include font-size($size-large);
-	}
-	@else if $size == x-large {
-		@include font-size($size-x-large);
-	}
-	@else if $size == x2-large {
-		@include font-size($size-x2-large);
-	}
-	@else
-	{
-		@include font-size($size);
-	}
+   @if $size == x2-small {
+      @include font-size($size-x2-small);
+   }
+   @else if $size == x-small {
+      @include font-size($size-x-small);
+   }
+   @else if $size == small {
+      @include font-size($size-small);
+   }
+   @else if $size == minor {
+      @include font-size($size-minor);
+   }
+   @else if $size == base {
+      @include font-size($size-base);
+   }
+   @else if $size == slight {
+      @include font-size($size-slight);
+   }
+   @else if $size == medium {
+      @include font-size($size-medium);
+   }
+   @else if $size == large {
+      @include font-size($size-large);
+   }
+   @else if $size == x-large {
+      @include font-size($size-x-large);
+   }
+   @else if $size == x2-large {
+      @include font-size($size-x2-large);
+   }
+   @else {
+      @include font-size($size);
+   }
 }
 @mixin text-style($style: normal) {
-	@include font-style($style);
+   @include font-style($style);
 }
 @mixin text-weight($weight: normal) {
-
-	@if $weight == thin {
-		@include font-weight($weight-thin);
-	}
-	@else if $weight == light {
-		@include font-weight($weight-light);
-	}
-	@else if $weight == base {
-		@include font-weight($weight-base);
-	}
-	@else if $weight == bold {
-		@include font-weight($weight-bold);
-	}
-	@else if $weight == heavy {
-		@include font-weight($weight-heavy);
-	}
-	@else {
-		@include font-weight($weight);
-	}
+   @if $weight == thin {
+      @include font-weight($weight-thin);
+   }
+   @else if $weight == light {
+      @include font-weight($weight-light);
+   }
+   @else if $weight == base {
+      @include font-weight($weight-base);
+   }
+   @else if $weight == bold {
+      @include font-weight($weight-bold);
+   }
+   @else if $weight == heavy {
+      @include font-weight($weight-heavy);
+   }
+   @else {
+      @include font-weight($weight);
+   }
 }
 @mixin text-wrap($wrap: break-word) {
-	overflow-wrap: $wrap;
-	word-wrap: $wrap;
-
-	@if $wrap == break-word {
-		word-break: break-all;
-	} @else {
-		word-break: $wrap;
-	}
+   overflow-wrap: $wrap;
+   word-wrap: $wrap;
+   @if $wrap == break-word {
+      word-break: break-all;
+   }
+   @else {
+      word-break: $wrap;
+   }
 }
-

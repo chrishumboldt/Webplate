@@ -23,7 +23,7 @@
 			@include text-colour($white);
 			@include background-colour($pink);
 			span {
-				@include text-colour($pink-light);
+				@include text-colour(lighten($pink, 10%));
 				@include text-size($size-small);
 			}
 		}
@@ -42,7 +42,7 @@
 		.sub-text {
 			@include display(block);
 			@include spacing-no();
-			@include text-colour($grey-medium);
+			@include text-colour($grey);
 			@include text-size($size-small);
 		}
 	}

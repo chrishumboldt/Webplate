@@ -58,8 +58,12 @@ If you want to enable button drop downs then you will need to execute the follow
 
 ```
 <script>
-	new buttonplate('.btn-primary');
-	new buttonplate('.btn-secondary');
+new buttonplate({
+   selector: '.btn-primary'
+});
+new buttonplate({
+   selector: '.btn-secondary'
+});
 </script>
 ```
 

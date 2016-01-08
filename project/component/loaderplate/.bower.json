@@ -1,6 +1,6 @@
 {
   "name": "loaderplate",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "homepage": "https://github.com/chrishumboldt/Loaderplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -31,14 +31,14 @@
     "css/demo.css",
     "sass"
   ],
-  "_release": "1.0.6",
+  "_release": "1.0.8",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.6",
-    "commit": "599dc0151c9c7416239874873c454934ef4d345c"
+    "tag": "v1.0.8",
+    "commit": "591e35e9025576c261aac98a8713cdc15620a6d2"
   },
   "_source": "git://github.com/chrishumboldt/Loaderplate.git",
-  "_target": "~1.0.6",
+  "_target": "~1.0.8",
   "_originalSource": "loaderplate",
   "_direct": true
 }

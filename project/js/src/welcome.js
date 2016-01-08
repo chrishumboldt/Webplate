@@ -5,4 +5,6 @@
  */
 
 web.scrollTo(".scroll-to", -88);
-new buttonplate('.btn-banner');
+new buttonplate({
+	selector: '.btn-banner'
+});

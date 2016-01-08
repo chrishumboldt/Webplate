@@ -1,6 +1,6 @@
 {
-	"name": "Formplate",
-	"version": "2.0.2",
+	"name": "formplate",
+	"version": "2.0.4",
 	"homepage": "http://paypur.com/#/view/formplate",
 	"authors": [
 		"Chris Humboldt <chrismodem@gmail.com>"
@@ -20,11 +20,13 @@
 		"bower_components",
 		"test",
 		"tests",
-		"gruntfile.js",
+		"gulpfile.js",
 		"package.json",
 		"index.html",
 		"bower.json",
 		"css/demo.css",
+		"js/demo.js",
+		"js/min/demo.js",
 		"sass"
 	]
 }

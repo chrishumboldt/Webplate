@@ -1,6 +1,6 @@
 {
-  "name": "Formplate",
-  "version": "2.0.2",
+  "name": "formplate",
+  "version": "2.0.4",
   "homepage": "http://paypur.com/#/view/formplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -23,21 +23,23 @@
     "bower_components",
     "test",
     "tests",
-    "gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "index.html",
     "bower.json",
     "css/demo.css",
+    "js/demo.js",
+    "js/min/demo.js",
     "sass"
   ],
-  "_release": "2.0.2",
+  "_release": "2.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.2",
-    "commit": "bb32f646faa0c707ab9d68e2fd1ebd4f747e123a"
+    "tag": "v2.0.4",
+    "commit": "6a6658ca3c3527c2e243666950c4b1a3e9bcd100"
   },
   "_source": "git://github.com/chrishumboldt/Formplate.git",
-  "_target": "~2.0.2",
+  "_target": "~2.0.4",
   "_originalSource": "formplate",
   "_direct": true
 }
