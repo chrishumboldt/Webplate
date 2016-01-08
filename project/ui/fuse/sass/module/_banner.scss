@@ -49,7 +49,7 @@
 		}
 	}
 	&._fuse {
-		@include gradient-angle($pink, lighten($yellow, 10%));
+		@include gradient-angle($pink, lighten($yellow, 20%));
 		h1 {
 			@include text-colour($white);
 		}
@@ -58,7 +58,7 @@
 		}
 	}
 	&._fuse-animated {
-		@include gradient-animate-angle($blue, $red);
+		@include gradient-animate-angle($pink, lighten($yellow, 20%));
 		h1 {
 			@include text-colour($white);
 		}

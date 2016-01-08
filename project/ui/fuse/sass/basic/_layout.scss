@@ -95,7 +95,7 @@
 		@include padding-vertical($space-large);
 	}
 	@include breakpoint($bp-x-large) {
-		@include padding-vertical($space-x-large);
+		@include padding-vertical($space-x-large - 10px);
 	}
 }
 .content-small {
@@ -115,6 +115,6 @@
 		@include padding-vertical($space-large);
 	}
 	@include breakpoint($bp-x-large) {
-		@include padding-vertical($space-x-large);
+		@include padding-vertical($space-x-large - 10px);
 	}
 }
