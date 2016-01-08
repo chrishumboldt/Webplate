@@ -5,13 +5,16 @@
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
-// Variables
-// Options
+// Defaults
 // Tools
-// Calls
 
-var tabplate = function($selector, $userOptions) {
+var $tabplateDefault = {
+	selector: '#tabplate-triggers',
+	animate: false,
+	tabs: '#tabplate-tabs'
+}
+
+var tabplate = function($userOptions) {
 	// Tools
 	var tool = function(document) {
 		// Variables
@@ -40,24 +43,28 @@ var tabplate = function($selector, $userOptions) {
 				}
 			}
 		};
+		var exists = function($element) {
+			return ($element === null || typeof($element) === undefined) ? false : true;
+		};
 
 		// Return
 		return {
 			classAdd: classAdd,
 			classRemove: classRemove,
-			element: $toolEl
+			element: $toolEl,
+			exists: exists
 		};
 	}(document);
 
-	// Select element
+	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $flickerplateDefault.selector;
 	var $selectorType = $selector.charAt(0).toString();
-	if ($selectorType === '.') {
-		var $elements = document.querySelectorAll($selector);
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			new tabplateComponent($elements[$i], $userOptions, tool);
-		};
-	} else if ($selectorType === '#') {
+	if ($selectorType === '#' && $selector.indexOf('.') < 0) {
 		new tabplateComponent(document.getElementById($selector.substring(1)), $userOptions, tool);
+	} else {
+		var $elements = document.querySelectorAll($selector);
+		for (var $i = 0; $i < $elements.length; $i++) {
+			new tabplateComponent($elements[$i], $userOptions, tool);
+		}
 	}
 };
 
@@ -65,13 +72,13 @@ var tabplateComponent = function($this, $userOptions, tool) {
 	// Variables
 	var $self = $this;
 	var $tabContent;
+	var $tabs;
 
 	// Options
 	$userOptions = $userOptions || false;
 	$self.options = {
-		animate: $self.getAttribute('data-tabplate-animate') || $userOptions.animate || false,
-		theme: false,
-		tabs: $self.getAttribute('data-tabplate-tabs') || $userOptions.tabs || '.tabplate-tabs'
+		animate: (typeof $userOptions.animate !== 'undefined') ? $userOptions.animate : $tabplateDefault.animate,
+		tabs: $userOptions.tabs || $tabplateDefault.tabs,
 	};
 
 	// Public functions
@@ -93,16 +100,18 @@ var tabplateComponent = function($this, $userOptions, tool) {
 			$tabs = document.querySelector($self.options.tabs);
 		}
 
-		tool.classAdd($tabs, 'tabplate-tabs');
-		tool.classAdd($tabs.querySelector('li:first-child'), 'active');
+		if (tool.exists($tabs)) {
+			tool.classAdd($tabs, 'tabplate-tabs');
+			tool.classAdd($tabs.querySelector('li:first-child'), 'active');
 
-		if ($self.options.animate.toString() == 'true') {
-			$tabs.style.height = $tabs.querySelector('li.active').clientHeight + 'px';
-		}
+			if ($self.options.animate.toString() == 'true') {
+				$tabs.style.height = $tabs.querySelector('li.active').clientHeight + 'px';
+			}
 
-		// Animiate class
-		if ($self.options.animate.toString() == 'true') {
-			tool.classAdd(tool.element.html, 'tp-animate');
+			// Animiate class
+			if ($self.options.animate.toString() == 'true') {
+				tool.classAdd(tool.element.html, 'tp-animate');
+			}
 		}
 	}
 
