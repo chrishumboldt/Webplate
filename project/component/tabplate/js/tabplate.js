@@ -56,7 +56,7 @@ var tabplate = function($userOptions) {
 		};
 	}(document);
 
-	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $flickerplateDefault.selector;
+	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $tabplateDefault.selector;
 	var $selectorType = $selector.charAt(0).toString();
 	if ($selectorType === '#' && $selector.indexOf('.') < 0) {
 		new tabplateComponent(document.getElementById($selector.substring(1)), $userOptions, tool);
