@@ -1,6 +1,6 @@
 {
   "name": "flickerplate",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "homepage": "http://getwebplate.com/plugins/flickerplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
@@ -32,14 +32,14 @@
     "js/min/demo.js",
     "sass"
   ],
-  "_release": "3.0.6",
+  "_release": "3.0.7",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.6",
-    "commit": "aadfbeb0e65e129d6cd781eb9c65bd38f9b0c3a7"
+    "tag": "v3.0.7",
+    "commit": "827baf1d8bc59e55c54fbb3a2fc78b7c027154fe"
   },
   "_source": "git://github.com/chrishumboldt/Flickerplate.git",
-  "_target": "~3.0.6",
+  "_target": "~3.0.7",
   "_originalSource": "flickerplate",
   "_direct": true
 }

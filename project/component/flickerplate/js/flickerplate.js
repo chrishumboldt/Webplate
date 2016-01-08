@@ -14,7 +14,7 @@
 // Execute
 
 // Defaults
-$flickerplateDefault = {
+var $flickerplateDefault = {
 	selector: '.flickerplate',
 	animation: 'transform-slide',
 	arrows: true,
