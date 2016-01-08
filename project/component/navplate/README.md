@@ -12,10 +12,11 @@ Start by including the necessary files.
 
 ```
 <head>
-   <link href="css/navplate.css" rel="stylesheet" type="text/css">
+	<link href="css/navplate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-   <script src="js/min/navplate.js"></script>
+	/* Your content goes here */
+	<script src="js/min/navplate.js"></script>
 </body>
 ```
 
@@ -69,7 +70,7 @@ new navplate({
 | reveal | left | left, right, top, bottom | Set the direction from which the navigation appears. **NOTE** that the bottom and top option only applies to the fullscreen navigation type. |
 
 #### Defaults
-You can also overwrite the above options by altering the Navplate defaults. To do so reference the **$navplateDefault** object and alter. For example:
+You can also set or overwrite the above options globally by altering the Navplate defaults. To do so reference the **$navplateDefault** object. For example:
 
 ```
 <script>
