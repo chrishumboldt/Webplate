@@ -492,14 +492,18 @@ var web = function() {
                   if ($scrollMove <= 1) {
                      $scrollMove = 1;
                   }
-                  if ($crtScrollTop !== $scrollTopEnd) {
-                     if ($scrollDown === true) {
+                  if ($scrollDown === true) {
+                     if ($crtScrollTop < $scrollTopEnd) {
                         window.scrollTo(0, (scrollTopGet() + $scrollMove));
                      } else {
-                        window.scrollTo(0, (scrollTopGet() - $scrollMove));
+                        clearInterval($scrollToAnimation);
                      }
-                  } else {
-                     clearInterval($scrollToAnimation);
+                  } else if ($scrollDown === false) {
+                     if ($crtScrollTop > $scrollTopEnd) {
+                        window.scrollTo(0, (scrollTopGet() - $scrollMove));
+                     } else {
+                        clearInterval($scrollToAnimation);
+                     }
                   }
                }, 0.000001);
             };
