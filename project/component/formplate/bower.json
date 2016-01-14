@@ -1,12 +1,12 @@
 {
 	"name": "formplate",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"homepage": "http://paypur.com/#/view/formplate",
 	"authors": [
 		"Chris Humboldt <chrismodem@gmail.com>"
 	],
 	"description": "A global form component.",
-	"main": ["css/formplate.css", "js/min/formplate.min.js"],
+	"main": ["css/formplate.css", "js/min/formplate.js"],
 	"keywords": [
 		"Webplate",
 		"Formplate",
