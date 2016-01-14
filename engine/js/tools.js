@@ -475,49 +475,21 @@ var web = function() {
       for (var $i = $elements.length - 1; $i >= 0; $i--) {
          $elements[$i].onclick = function(event) {
             return function(event) {
-               event.preventDefault();
                var $vOffset = $self.options.offset;
                if (($self.options.offsetLarge !== false) && (window.innerWidth > 700)) {
                   $vOffset = $self.options.offsetLarge;
                }
-               var $scrollTopEl = document.getElementById(this.getAttribute('href').substring(1)).getBoundingClientRect();
-               var $scrollTopStart = scrollTopGet();
-               var $scrollTopEnd = $scrollTopStart + $scrollTopEl.top + $vOffset;
-               var $scrollDown = ($scrollTopStart - $scrollTopEnd < 0) ? true : false;
-
-               var $scrollToAnimation = setInterval(function() {
-                  var $crtScrollTop = scrollTopGet();
-                  var $scrollDiff = Math.abs($crtScrollTop - $scrollTopEnd);
-                  var $scrollMove = +($scrollDiff / ($self.options.time / 45)).toFixed(2);
-                  if ($scrollMove <= 1) {
-                     $scrollMove = 1;
-                  }
-                  if ($scrollDown === true) {
-                     if ($crtScrollTop < $scrollTopEnd) {
-                        window.scrollTo(0, (scrollTopGet() + $scrollMove));
-                     } else {
-                        clearInterval($scrollToAnimation);
-                     }
-                  } else if ($scrollDown === false) {
-                     if ($crtScrollTop > $scrollTopEnd) {
-                        window.scrollTo(0, (scrollTopGet() - $scrollMove));
-                     } else {
-                        clearInterval($scrollToAnimation);
-                     }
-                  }
-               }, 0.000001);
+               var $scrollToElement = document.getElementById(this.getAttribute('href').substring(1));
+               if ($scrollToElement != null) {
+                  event.preventDefault();
+                  Velocity($scrollToElement, 'scroll', {
+                     duration: 1500,
+                     easing: 'easeout',
+                     offset: $vOffset
+                  });
+               }
             };
          }($i);
-      }
-   };
-   var scrollTopGet = function() {
-      if (typeof pageYOffset != 'undefined') {
-         return pageYOffset;
-      } else {
-         var $documentQuirk = document.body; //IE 'quirks'
-         var $document = document.documentElement; //IE with doctype
-         $document = ($document.clientHeight) ? $document : $documentQuirk;
-         return $document.scrollTop;
       }
    };
    var scrollWatch = function() {
