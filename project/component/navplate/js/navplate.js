@@ -170,12 +170,12 @@ var navplateComponent = function($this, $option, tool) {
 					}
 					tool.classAdd($navElement, 'nav-display');
 					tool.classAdd(tool.element.html, 'navplate-reveal navplate-type-' + $option.type);
+					document.getElementById('web-overlay').onclick = function() {
+						navClose();
+					};
 				} else {
 					navClose();
 				}
-			};
-			document.getElementById('web-overlay').onclick = function() {
-				navClose();
 			};
 			for (var $i = $navLinks.length - 1; $i >= 0; $i--) {
 				$navLinks[$i].onclick = function() {
