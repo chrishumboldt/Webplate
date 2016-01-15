@@ -34,6 +34,12 @@ p {
 		@include text-style(italic);
 	}
 }
+em {
+	@include margin-bottom(1.5em);
+	@include text-colour($grey-blue);
+	@include text-size(14px);
+	@include text-style(italic);
+}
 h1, h2, h3, h4, h5, h6 {
 	&.line {
 		@include padding-bottom($space-small);
