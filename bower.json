@@ -1,37 +1,43 @@
 {
-  "name": "Webplate",
-  "version": "2.5.9",
-  "homepage": "https://getwebplate.com",
-  "authors": [
-    "Chris Humboldt <chrismodem@gmail.com>"
-  ],
-  "description": "An awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
-  "main": "stack.js",
-  "keywords": [
-    "Webplate",
-    "UI",
-    "Framework",
-    "Responsive",
-    "jQuery",
-    "SASS",
-    "Blueplate",
-    "Modernizr",
-    "Hammer.js",
-    "Velocity.js",
-    "Buttonplate",
-    "Modalplate",
-    "Formplate",
-    "Flickerplate"
-  ],
-  "license": "Apache License, Version 2.0",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    "core/grunt/node_modules",
-    "bower.json",
-    "index.html"
-  ]
+	"name": "webplate",
+	"version": "3.0.0",
+	"homepage": "https://getwebplate.com",
+	"authors": [
+		"Chris Humboldt <chrismodem@gmail.com>"
+	],
+	"description": "An awesome front-end builder.",
+	"main": "stack.js",
+	"keywords": [
+		"Webplate",
+		"UI",
+		"Framework",
+		"Responsive",
+		"jQuery",
+		"SASS",
+		"Blueplate",
+		"Modernizr",
+		"Hammer.js",
+		"Velocity.js",
+		"Buttonplate",
+		"Modalplate",
+		"Formplate",
+		"Flickerplate",
+		"Messageplate"
+	],
+	"license": "Apache License, Version 2.0",
+	"ignore": [
+		"engine/.sass-cache",
+		"engine/node_modules",
+		"node_modules",
+		"test",
+		"tests",
+		"bower.json",
+		"index.html",
+		"README.md",
+		"test.html",
+		"project/sass/test.scss",
+		"project/css/test.css",
+		"project/js/test.js",
+		"project/js/min/test.min.js"
+	]
 }

@@ -1,0 +1,30 @@
+/**
+ * File: core.scss
+ * Type: SASS core file
+ * Author: Chris Humboldt
+ * Last Edited: 11 May 2015
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Imports
+// Overwrites
+// Execute
+
+// Imports
+// ---------------------------------------------------------------------------------------
+@import "import";
+
+@import "setup/normalize";
+@import "setup/typeplate";
+@import "setup/setup";
+
+@import "module/navigation";
+
+// Overwrites
+// ---------------------------------------------------------------------------------------
+$font-base: 16px;
+
+// Execute
+// ---------------------------------------------------------------------------------------
+@include blueplate-css();

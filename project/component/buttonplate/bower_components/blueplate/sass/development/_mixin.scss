@@ -1,0 +1,40 @@
+/**
+ * File: development/_mixin.scss
+ * Type: SASS mixins
+ * Author: Chris Humboldt
+ */
+
+// Position argument
+@mixin position-arguments($arguments: false) {
+	// As per: Hugo Giraudel
+	// URL: http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
+	@if $arguments != false {
+		$offsets: top right bottom left margin-top margin-right margin-bottom margin-left;
+
+		@each $o in $offsets {
+			$i: index($arguments, $o);
+
+			@if $i
+			and $i + 1 <= length($arguments)
+			and type-of( nth($arguments, $i + 1) ) == number {
+				#{$o}: nth($arguments, $i + 1);
+			}
+		}
+	}
+}
+
+// Text arguments
+@mixin text-arguments($arguments: false) {
+	@if $arguments != false {
+		$offsets: text-align color font-family;
+
+		@each $o in $offsets {
+			$i: index($arguments, $o);
+
+			@if $i
+			and $i + 1 <= length($arguments) {
+				#{$o}: nth($arguments, $i + 1);
+			}
+		}
+	}
+}

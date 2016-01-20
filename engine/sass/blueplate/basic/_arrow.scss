@@ -1,0 +1,78 @@
+/**
+ * File: basic/_arrow.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ * Based on: http://cssarrowplease.com/
+ */
+
+// Table of contents
+// Basic arrow
+// Arrow colour
+// No arrow
+
+// Basic arrow
+@mixin arrow($position: bottom, $colour: $red, $size: 20px) {
+	position: relative;
+	&:after {
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(255, 255, 255, 0);
+		border-width: $size;
+		z-index: 1;
+
+		@if $position == top {
+			bottom: 100%;
+			left: 50%;
+			margin-left: -$size;
+		}
+		@else if $position == left {
+			right: 100%;
+			top: 50%;
+			margin-top: -$size;
+		}
+		@else if $position == right {
+			left: 100%;
+			top: 50%;
+			margin-top: -$size;
+		}
+		@else {
+			top: 100%;
+			left: 50%;
+			margin-left: -$size;
+		}
+	}
+	// Colour
+	@include arrow-colour($position, $colour);
+}
+
+// Arrow colour
+@mixin arrow-colour($position: bottom, $colour: $white) {
+	background: $colour;
+	&:after {
+		@if $position == top {
+			border-bottom-color: $colour;
+		}
+		@else if $position == left {
+			border-right-color: $colour;
+		}
+		@else if $position == right {
+			border-left-color: $colour;
+		}
+		@else {
+			border-top-color: $colour;
+		}
+	}
+}
+
+// No arrow
+@mixin arrow-no($colour: $white) {
+	background: $colour;
+	&:after {
+		display: none;;
+		border-width: 0px;
+	}
+}

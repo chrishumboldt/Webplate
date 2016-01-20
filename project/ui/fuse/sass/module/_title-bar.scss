@@ -1,0 +1,131 @@
+/**
+ * File: ui/fuse/sass/module/_title-bar.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Title bar
+// Title bar modifiers
+
+// Title bar
+.title-bar {
+	@include position(fixed, top 0);
+	@include height($title-bar-h);
+	@include width(100%);
+	@include padding-horizontal($space-minor);
+	@include background-colour(fade-out($white, 0.05));
+	@include level(10);
+	@include breakpoint(large) {
+		@include height($title-bar-h-large);
+		@include padding-horizontal($space-slight);
+	}
+	// Logo
+	.logo {
+		@include float(left);
+		@include height($title-bar-h);
+		@include text-colour($pink);
+		@include text-line-height($title-bar-h);
+		@include text-size($size-slight);
+		@include animate(all);
+		@include breakpoint(large) {
+			@include height($title-bar-h-large);
+			@include text-line-height($title-bar-h-large);
+			@include text-size($size-medium);
+		}
+		// Icon
+		i {
+			@include text-line-height(74px);
+			@include text-size(26px);
+			@include breakpoint(large) {
+				@include text-line-height(84px);
+				@include text-size(38px);
+			}
+		}
+		// Text
+		span {
+			@include position(absolute, margin-top 1px margin-left $space-slight);
+			@include breakpoint(large) {
+				@include position-set(margin-left $space-medium);
+			}
+		}
+	}
+	// States
+	.no-touchevents & a.logo:hover {
+		@include text-colour($blue);
+	}
+	// Links
+	ul {
+		@include float(right);
+		@include list-style(none);
+		li {
+			@include float(left);
+			@include margin-left(4px);
+			a {
+				@include display(block);
+				@include height($title-bar-h);
+				@include padding-horizontal($space-small + 2px);
+				@include text-colour($grey-dark);
+				@include text-line-height($title-bar-h);
+				@include text-size($size-minor);
+				@include text-weight(300);
+				@include border-top($white, 2px);
+				@include border-bottom(transparent, 2px);
+				@include animate(all);
+				@include breakpoint(large) {
+					@include height($title-bar-h-large);
+					@include padding-horizontal($space-base - 2px);
+					@include text-line-height($title-bar-h-large);
+					@include text-size($size-base);
+				}
+				// Borders
+				&.border-pink {
+					@include border-top($pink, 2px);
+				}
+				&.border-blue {
+					@include border-top($blue, 2px);
+				}
+				// States
+				.no-touchevents &:hover {
+					@include border-top($white, 2px);
+					@include text-colour($pink);
+				}
+				.no-touchevents &.border-blue:hover,
+				.no-touchevents &.border-pink:hover {
+					@include text-colour($white);
+				}
+				.no-touchevents &.border-blue:hover {
+					@include background-colour($blue);
+					@include border-top($blue, 2px);
+					@include border-bottom($blue, 2px);
+				}
+				.no-touchevents &.border-pink:hover {
+					@include background-colour($pink);
+					@include border-top($pink, 2px);
+					@include border-bottom($pink, 2px);
+				}
+				// Icon only
+				&[class *= "icon-"] {
+					@include text-size(24px);
+					@include breakpoint(large) {
+						@include text-size(30px);
+					}
+				}
+			}
+		}
+	}
+}
+
+// Title bar modifiers
+._title-bar-margin {
+	@include margin-top($title-bar-h);
+	@include breakpoint(large) {
+		@include margin-top($title-bar-h-large);
+	}
+}
+._title-bar-padding {
+	@include padding-top($title-bar-h);
+	@include breakpoint(large) {
+		@include padding-top($title-bar-h-large);
+	}
+}

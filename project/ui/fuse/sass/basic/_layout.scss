@@ -1,0 +1,120 @@
+/**
+ * File: ui/fuse/sass/basic/_layout.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ */
+
+// Columns
+[class *= "col-"] {
+	@include row();
+	> .left,
+	> .middle,
+	> .right,
+	> .full {
+		@include span(12);
+	}
+}
+.col-double {
+	@include breakpoint(large) {
+		> .left {
+			@include span-new(6);
+			padding-right: $space-small;
+		}
+		> .middle {
+			padding-left: $space-x-small;
+			padding-right: $space-x-small;
+		}
+		> .right {
+			@include span-new(6);
+			padding-left: $space-small;
+		}
+	}
+	@include breakpoint($bp-large) {
+		> .left {
+			padding-right: $space-base;
+		}
+		> .middle {
+			padding-left: $space-small;
+			padding-right: $space-small;
+		}
+		> .right {
+			padding-left: $space-base;
+		}
+	}
+}
+.col-triple {
+	@extend .col-double;
+	@include breakpoint($bp-medium) {
+		> .left {
+			@include span-new(4);
+		}
+		> .middle {
+			@include span-new(4);
+		}
+		> .right {
+			@include span-new(4);
+		}
+	}
+}
+.col-triple-fixed {
+	> .left, > .middle, > .right {
+		@include span-new(4);
+	}
+}
+.col-left-bar {
+	@extend .col-double;
+	@include breakpoint(large) {
+		> .left {
+			@include span-new(3);
+		}
+		> .right {
+			@include span-new(9);
+		}
+	}
+}
+.col-right-bar {
+	@extend .col-double;
+	@include breakpoint(large) {
+		> .left {
+			@include span-new(8);
+		}
+		> .right {
+			@include span-new(4);
+		}
+	}
+}
+// Content
+.content {
+	@include padding-horizontal($space-minor);
+	@include padding-vertical($space-medium);
+	@include breakpoint($bp-small) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint(large) {
+		@include padding-horizontal($space-slight);
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large - 10px);
+	}
+}
+.content-small {
+	@include padding($space-minor);
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-medium);
+	}
+}
+.content-tight {
+	@include breakpoint($bp-small) {
+		@include padding($space-base);
+	}
+	@include breakpoint(large) {
+		@include padding-vertical($space-large);
+	}
+	@include breakpoint($bp-x-large) {
+		@include padding-vertical($space-x-large - 10px);
+	}
+}

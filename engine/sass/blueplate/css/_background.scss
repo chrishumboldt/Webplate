@@ -1,0 +1,57 @@
+/**
+ * File: css/_background.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Background classes
+@mixin blueplate-background() {
+	.back-pos-l {
+		@include background-position(left);
+	}
+	.back-pos-r {
+		@include background-position(right);
+	}
+	.back-pos-t {
+		@include background-position(top);
+	}
+	.back-pos-b {
+		@include background-position(bottom);
+	}
+	.back-pos-c {
+		@include background-position(center);
+	}
+	.back-repeat-no {
+		@include background-repeat(no-repeat);
+	}
+	.back-repeat-y {
+		@include background-repeat(repeat-y);
+	}
+	.back-repeat-x {
+		@include background-repeat(repeat-x);
+	}
+	.back-single {
+		@include background-single();
+	}
+	.back-contain {
+		@include background-contain();
+	}
+	.back-cover {
+		@include background-cover();
+	}
+	.back-black {
+		@include background-colour($black);
+	}
+	.back-grey {
+		@include background-colour($grey);
+	}
+	.back-grey-light {
+		@include background-colour($grey-light);
+	}
+	.back-grey-x-light {
+		@include background-colour($grey-x-light);
+	}
+	.back-white {
+		@include background-colour($white);
+	}
+}

@@ -1,0 +1,10 @@
+/**
+ * File: basic/_interaction.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+ 
+// Cursor
+@mixin cursor($cursor: auto) {
+	cursor: $cursor;
+}
