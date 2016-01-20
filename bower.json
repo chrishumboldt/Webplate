@@ -1,11 +1,11 @@
 {
 	"name": "webplate",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"homepage": "https://getwebplate.com",
 	"authors": [
 		"Chris Humboldt <chrismodem@gmail.com>"
 	],
-	"description": "An awesome front-end builder.",
+	"description": "Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
 	"main": "stack.js",
 	"keywords": [
 		"Webplate",
