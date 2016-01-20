@@ -465,32 +465,33 @@ var web = function() {
       $options = $options || false;
       $self.options = {
          selector: $options.selector || '.scroll-to',
+         duration: 1000,
          offset: $options.offset || 0,
-         offsetLarge: $options.offsetLarge || false,
-         time: 1000
+         offsetLarge: $options.offsetLarge || false
       };
 
       var $elements = document.querySelectorAll($self.options.selector);
 
       for (var $i = $elements.length - 1; $i >= 0; $i--) {
-         $elements[$i].onclick = function(event) {
-            return function(event) {
-               var $vOffset = $self.options.offset;
-               if (($self.options.offsetLarge !== false) && (window.innerWidth > 700)) {
-                  $vOffset = $self.options.offsetLarge;
-               }
-               var $scrollToElement = document.getElementById(this.getAttribute('href').substring(1));
-               if ($scrollToElement != null) {
-                  event.preventDefault();
-                  Velocity($scrollToElement, 'scroll', {
-                     duration: 1500,
-                     easing: 'easeout',
-                     offset: $vOffset
-                  });
-               }
-            };
-         }($i);
+         scrollToExecute($elements[$i], $self.options);
       }
+   };
+   var scrollToExecute = function($element, $options) {
+      $element.onclick = function(event) {
+         var $vOffset = $options.offset;
+         if (($options.offsetLarge !== false) && (window.innerWidth > 700)) {
+            $vOffset = $options.offsetLarge;
+         }
+         var $scrollToElement = document.getElementById(this.getAttribute('href').substring(1));
+         if ($scrollToElement != null) {
+            event.preventDefault();
+            Velocity($scrollToElement, 'scroll', {
+               duration: $options.duration,
+               easing: 'easeout',
+               offset: $vOffset
+            });
+         }
+      };
    };
    var scrollWatch = function() {
       var $doc = document.documentElement;
