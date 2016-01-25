@@ -5,7 +5,6 @@
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Yepnope
 // Webplate
 
@@ -499,10 +498,11 @@
 								load: $arExtraJS
 							});
 							setTimeout(function() {
-								web.element.body.removeAttribute('style');
 								if ($webContent !== null) {
+									$webContent.removeAttribute('style');
 									document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-									document.getElementById('webplate-content').removeAttribute('style');
+								} else {
+									web.element.body.removeAttribute('style');
 								}
 							}, 50);
 						}, 50);
@@ -514,19 +514,21 @@
 						load: $arExtraJS
 					});
 					setTimeout(function() {
-						web.element.body.removeAttribute('style');
 						if ($webContent !== null) {
+							$webContent.removeAttribute('style');
 							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-							document.getElementById('webplate-content').removeAttribute('style');
+						} else {
+							web.element.body.removeAttribute('style');
 						}
 					}, 50);
 				}, 50);
 			} else {
 				setTimeout(function() {
-					web.element.body.removeAttribute('style');
 					if ($webContent !== null) {
+						$webContent.removeAttribute('style');
 						document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-						document.getElementById('webplate-content').removeAttribute('style');
+					} else {
+						web.element.body.removeAttribute('style');
 					}
 				}, 50);
 			}
