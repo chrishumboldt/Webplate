@@ -1,4 +1,4 @@
-#### Webplate Framework
+## Webplate Framework
 Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 #### Getting Started
