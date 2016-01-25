@@ -12,7 +12,7 @@ Simply drop the Webplate directory into your web project and include the start.j
 ```
 The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
-#### Simple Page Loader
+##### Simple Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id webplate-content. See an example below.
 ```
 <body>
