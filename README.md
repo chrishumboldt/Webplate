@@ -1,5 +1,5 @@
 #### Webplate Framework
-An awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
+Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 #### Getting Started
 Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of webplate is required.
