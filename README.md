@@ -44,7 +44,7 @@ This will get you up and running for most projects but if you want to include We
 <b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
 
 
-### Documentation
+## Documentation
 Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://localhost/getwebplate.com/#/documentation/what-you-got/).
 
 
