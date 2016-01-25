@@ -1,5 +1,5 @@
 /**
- * File: core.js
+ * File: engine/js/core.js
  * Type: Javascript engine
  * Author: Chris Humboldt
  */
@@ -10,7 +10,6 @@
 // Webplate
 
 // Yepnope - 1.5.x|WTFPL
-// ---------------------------------------------------------------------------------------
 (function(a, b, c) {
 	function d(a) {
 		return "[object Function]" == o.call(a)
@@ -181,11 +180,11 @@
 })(this, document);
 
 // Webplate
-// ---------------------------------------------------------------------------------------
 (function() {
 	'use strict';
 
 	// Variables
+	var $webContent = document.getElementById('webplate-content');
 	var $pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
 	var $pathEngine = $pathRoot + 'engine/';
 	var $pathProject = $pathRoot + 'project/';
@@ -194,8 +193,7 @@
 		config: $pathProject + 'config.json',
 		engine: {
 			css: $pathEngine + 'css/',
-			js: $pathEngine + 'js/',
-			jsMin: $pathEngine + 'js/min/'
+			js: $pathEngine + 'js/'
 		},
 		project: {
 			css: $pathProject + 'css/',
@@ -204,7 +202,6 @@
 				icoMoon: $pathProject + 'icon-font/icomoon/style.css'
 			},
 			js: $pathProject + 'js/',
-			jsMin: $pathProject + 'js/min/',
 			ui: $pathProject + 'ui/'
 		},
 		root: $pathRoot
@@ -214,7 +211,33 @@
 	var $arComponentFiles = [];
 	var $arExtraCSS = [];
 	var $arExtraJS = [];
-	var $engineFiles = [$path.engine.jsMin + 'scripts.min.js', $path.engine.css + 'styles.css'];
+	var $engineFiles = [$path.engine.js + 'scripts.min.js', $path.engine.css + 'styles.css'];
+
+	// Attach loader
+	if ($webContent !== null) {
+		var $loaderDiv = document.createElement('div');
+		var $loaderText = 'Loading';
+		var $i = 0;
+
+		$webContent.style.display = 'none';
+
+		$loaderDiv.id = 'web-page-loader';
+		$loaderDiv.style.width = '140px';
+		$loaderDiv.style.margin = '0px auto';
+		$loaderDiv.style.paddingLeft = '38px';
+		$loaderDiv.style.paddingTop = '150px';
+		$loaderDiv.style.color = '#ccd1d9';
+		$loaderDiv.style.fontSize = '20px';
+		document.getElementsByTagName('body')[0].appendChild($loaderDiv);
+		var $pageLoaderTimer = setInterval(function() {
+			$i++;
+			if (document.getElementById('web-page-loader') !== null) {
+				document.getElementById('web-page-loader').innerHTML = $loaderText + new Array($i % 5).join('.');
+			} else {
+				clearInterval($pageLoaderTimer);
+			}
+		}, 500);
+	}
 
 	// Core
 	var core = {
@@ -225,7 +248,7 @@
 					// Touch inclusion
 					if (Modernizr.touchevents) {
 						yepnope({
-							load: $path.engine.jsMin + 'touch.min.js',
+							load: $path.engine.js + 'touch.min.js',
 							complete: function() {
 								if ('addEventListener' in document) {
 									document.addEventListener('DOMContentLoaded', function() {
@@ -461,7 +484,7 @@
 				var $file = $js[$i].trim();
 				if (web.getExtension($file) === 'js') {
 					if ($i === 0) {
-						$arExtraJS.push($path.engine.js + 'overwrite.js');
+						$arExtraJS.push($path.engine.js + 'overwrite.min.js');
 					}
 					$arExtraJS.push($path.project.js + $file);
 				}
@@ -476,6 +499,10 @@
 							});
 							setTimeout(function() {
 								web.element.body.removeAttribute('style');
+								if ($webContent !== null) {
+									document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+									document.getElementById('webplate-content').removeAttribute('style');
+								}
 							}, 50);
 						}, 50);
 					}
@@ -487,11 +514,19 @@
 					});
 					setTimeout(function() {
 						web.element.body.removeAttribute('style');
+						if ($webContent !== null) {
+							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+							document.getElementById('webplate-content').removeAttribute('style');
+						}
 					}, 50);
 				}, 50);
 			} else {
 				setTimeout(function() {
 					web.element.body.removeAttribute('style');
+					if ($webContent !== null) {
+						document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+						document.getElementById('webplate-content').removeAttribute('style');
+					}
 				}, 50);
 			}
 		}
