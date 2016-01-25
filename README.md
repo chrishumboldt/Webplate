@@ -2,7 +2,7 @@
 Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 ## Getting Started
-Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of webplate is required.
+Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **webplate** is required.
 ```
 <body style="display:none;">
     /* Your content goes here */
@@ -12,7 +12,7 @@ Simply drop the Webplate directory into your web project and include the start.j
 The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
 #### Simple Page Loader
-If you would like a page loader to display while your project files load, simply wrap your content in a div with id webplate-content. See an example below.
+If you would like a page loader to display while your project files load, simply wrap your content in a div with id **webplate-content**. See an example below.
 ```
 <body>
     <div id="webplate-content" style="display:none;">
