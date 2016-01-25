@@ -228,6 +228,7 @@
 		$loaderDiv.style.paddingTop = '150px';
 		$loaderDiv.style.color = '#ccd1d9';
 		$loaderDiv.style.fontSize = '20px';
+		$loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
 		document.getElementsByTagName('body')[0].appendChild($loaderDiv);
 		var $pageLoaderTimer = setInterval(function() {
 			$i++;
