@@ -493,44 +493,38 @@
 				yepnope({
 					load: $arExtraCSS,
 					complete: function() {
-						setTimeout(function() {
-							yepnope({
-								load: $arExtraJS
-							});
-							setTimeout(function() {
-								if ($webContent !== null) {
-									$webContent.removeAttribute('style');
-									document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-								} else {
-									web.element.body.removeAttribute('style');
-								}
-							}, 50);
-						}, 50);
-					}
-				});
-			} else if ($arExtraJS.length > 0) {
-				setTimeout(function() {
-					yepnope({
-						load: $arExtraJS
-					});
-					setTimeout(function() {
 						if ($webContent !== null) {
 							$webContent.removeAttribute('style');
 							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
 						} else {
 							web.element.body.removeAttribute('style');
 						}
-					}, 50);
+						setTimeout(function() {
+							yepnope({
+								load: $arExtraJS
+							});
+						}, 50);
+					}
+				});
+			} else if ($arExtraJS.length > 0) {
+				if ($webContent !== null) {
+					$webContent.removeAttribute('style');
+					document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+				} else {
+					web.element.body.removeAttribute('style');
+				}
+				setTimeout(function() {
+					yepnope({
+						load: $arExtraJS
+					});
 				}, 50);
 			} else {
-				setTimeout(function() {
-					if ($webContent !== null) {
-						$webContent.removeAttribute('style');
-						document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-					} else {
-						web.element.body.removeAttribute('style');
-					}
-				}, 50);
+				if ($webContent !== null) {
+					$webContent.removeAttribute('style');
+					document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+				} else {
+					web.element.body.removeAttribute('style');
+				}
 			}
 		}
 	};
