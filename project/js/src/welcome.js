@@ -5,9 +5,9 @@
  */
 
 web.scrollTo({
-   offset: -68,
-   offsetLarge: -88
+	offset: -68,
+	offsetLarge: -88
 });
 new buttonplate({
-   selector: '.btn-banner'
+	selector: '.btn-banner'
 });

@@ -15,11 +15,6 @@
    -webkit-box-shadow: inset $horizontal-offset $vertical-offset $size $color;
    -moz-box-shadow: inset $horizontal-offset $vertical-offset $size $color;
 }
-@mixin no-drop-shadow() {
-   box-shadow: none;
-   -webkit-box-shadow: none;
-   -moz-box-shadow: none;
-}
 @mixin drop-shadow-no() {
    box-shadow: none;
    -webkit-box-shadow: none;
