@@ -174,6 +174,16 @@ var web = function() {
 			$elem["on" + $type] = $eventHandle;
 		}
 	};
+	var eventRemove = function($elem, $type, $eventHandle) {
+		if ($elem == null || typeof($elem) == 'undefined') return;
+		if ($elem.removeEventListener) {
+			$elem.removeEventListener($type, $eventHandle, false);
+		} else if ($elem.detachEvent) {
+			$elem.detachEvent("on" + $type, $eventHandle);
+		} else {
+			$elem["on" + $type] = $eventHandle;
+		}
+	};
 	var getIndex = function($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	};
@@ -218,6 +228,20 @@ var web = function() {
 					$elements[$i].parentNode.removeChild($element);
 				}
 			}
+		}
+	};
+	var select = function($selector) {
+		if ($selector.indexOf('.') > -1) {
+			var $returnElements = document.querySelectorAll($selector);
+			if ($returnElements.length === 1) {
+				return $returnElements[0];
+			} else {
+				return $returnElements;
+			}
+		} else if ($selector.indexOf('#') > -1) {
+			return document.getElementById($selector.substring(1));
+		} else {
+			return document.getElementsByTagName($selector);
 		}
 	};
 	var setRatio = function($selector, $multiplier) {
@@ -568,6 +592,7 @@ var web = function() {
 		log: log,
 		append: append,
 		eventAdd: eventAdd,
+		eventRemove: eventRemove,
 		classAdd: classAdd,
 		classClear: classClear,
 		classRemove: classRemove,
@@ -578,6 +603,7 @@ var web = function() {
 		inputEnable: inputEnable,
 		getIndex: getIndex,
 		remove: remove,
+		select: select,
 		setRatio: setRatio,
 		snap: snap,
 		stateClear: stateClear,

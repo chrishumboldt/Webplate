@@ -53,11 +53,9 @@ $min-max: false !default;
 }
 // Layout
 @mixin limit() {
-   width: $limit-width;
+   width: 100%;
+	max-width: $limit-width;
    margin: 0 auto;
-   @media screen and (max-width: $limit-width) {
-      width: 100%;
-   }
 }
 // Breakpoint
 @mixin breakpoint($breakpoint, $breakpoint-type: false, $orientation: false) {
