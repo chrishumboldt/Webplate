@@ -225,7 +225,7 @@ var web = function() {
 			var $elements = document.querySelectorAll($selector);
 			for (var $i = $elements.length - 1; $i >= 0; $i--) {
 				if ($elements[$i] !== null) {
-					$elements[$i].parentNode.removeChild($element);
+					$elements[$i].parentNode.removeChild($elements[$i]);
 				}
 			}
 		}
@@ -241,7 +241,12 @@ var web = function() {
 		} else if ($selector.indexOf('#') > -1) {
 			return document.getElementById($selector.substring(1));
 		} else {
-			return document.getElementsByTagName($selector);
+			var $returnElements = document.getElementsByTagName($selector);
+			if ($returnElements.length === 1) {
+				return $returnElements[0];
+			} else {
+				return $returnElements;
+			}
 		}
 	};
 	var setRatio = function($selector, $multiplier) {
