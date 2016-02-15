@@ -30,6 +30,10 @@ var getConfig = function() {
 	delete require.cache[require.resolve('../project/config.json')];
 	return require('../project/config.json');
 };
+var onError = function($error) {
+	console.log($error);
+	this.emit('end');
+}
 
 // Watch setup
 var $config = getConfig();
@@ -135,7 +139,7 @@ gulp.task('css', function() {
 					.pipe(gulp.dest('./temp/'))
 					.pipe(sass({
 						outputStyle: 'compressed'
-					}).on('error', sass.logError))
+					}).on('error', onError))
 					.pipe(gulp.dest('../project/css/'))
 					.pipe(livereload());
 				$reload = false;
@@ -190,7 +194,7 @@ gulp.task('js', function() {
 					.pipe(uglify({
 						compress: $compress,
 						mangle: $mangle
-					}))
+					}).on('error', onError))
 					.pipe(gulp.dest('../project/js'))
 					.pipe(livereload());
 			}

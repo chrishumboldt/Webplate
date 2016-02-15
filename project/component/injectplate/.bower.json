@@ -1,11 +1,11 @@
 {
   "name": "injectplate",
-  "version": "1.5.4",
+  "version": "2.0.0",
   "homepage": "https://github.com/chrishumboldt/Injectplate",
   "authors": [
     "Chris Humboldt <chrismodem@gmail.com>"
   ],
-  "description": "A Javascript component injector.",
+  "description": "A declare once Javascript component injector.",
   "main": [
     "js/min/injectplate.js"
   ],
@@ -31,14 +31,14 @@
     "js/min/demo.js",
     "sass"
   ],
-  "_release": "1.5.4",
+  "_release": "2.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "v1.5.4",
-    "commit": "077e560a66fa521265f58945d64c80c2fe8c2074"
+    "tag": "v2.0.0",
+    "commit": "25abcf456f642dd05810ef3e380d184e144a5da5"
   },
   "_source": "git://github.com/chrishumboldt/Injectplate.git",
-  "_target": "~1.5.4",
+  "_target": "~2.0.0",
   "_originalSource": "injectplate",
   "_direct": true
 }
