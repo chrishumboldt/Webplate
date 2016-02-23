@@ -399,16 +399,22 @@ var web = function() {
 	var getIntegers = function($string) {
 		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
 	};
+	var lcAll = function($string) {
+		return $string.toLowerCase();
+	};
+	var randomInteger = function($max, $min) {
+		var $max = $max || 10;
+		var $min = $min || 1;
+		return Math.floor(Math.random() * ($max - $min + 1)) + $min;
+	};
 	var randomString = function($stringLength) {
-		var $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		var $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 		var $len = $stringLength || 5;
 		var $randomString = '';
-
 		for (var $i = 0; $i < $len; $i++) {
 			$rNum = Math.floor(Math.random() * $chars.length);
 			$randomString += $chars[$rNum];
 		}
-
 		return $randomString;
 	};
 	var removeFirst = function($string) {
@@ -622,6 +628,8 @@ var web = function() {
 		searchObjects: searchObjects,
 		getExtension: getExtension,
 		getIntegers: getIntegers,
+		lcAll: lcAll,
+		randomInteger: randomInteger,
 		randomString: randomString,
 		removeFirst: removeFirst,
 		removeFirstLast: removeFirstLast,
