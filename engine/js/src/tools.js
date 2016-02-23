@@ -399,7 +399,7 @@ var web = function() {
 	var getIntegers = function($string) {
 		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
 	};
-	var lcAll = function($string) {
+	var lowercaseAll = function($string) {
 		return $string.toLowerCase();
 	};
 	var randomInteger = function($max, $min) {
@@ -429,10 +429,10 @@ var web = function() {
 	var removeWhiteSpace = function($string) {
 		return $string.replace(/ /g, '');
 	};
-	var ucAll = function($string) {
+	var uppercaseAll = function($string) {
 		return $string.toUpperCase();
 	};
-	var ucFirst = function($string) {
+	var uppercaseFirst = function($string) {
 		return $string.charAt(0).toUpperCase() + $string.slice(1);
 	};
 
@@ -628,15 +628,15 @@ var web = function() {
 		searchObjects: searchObjects,
 		getExtension: getExtension,
 		getIntegers: getIntegers,
-		lcAll: lcAll,
+		lowercaseAll: lowercaseAll,
 		randomInteger: randomInteger,
 		randomString: randomString,
 		removeFirst: removeFirst,
 		removeFirstLast: removeFirstLast,
 		removeLast: removeLast,
 		removeWhiteSpace: removeWhiteSpace,
-		ucAll: ucAll,
-		ucFirst: ucFirst,
+		uppercaseAll: uppercaseAll,
+		uppercaseFirst: uppercaseFirst,
 		url: url,
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
