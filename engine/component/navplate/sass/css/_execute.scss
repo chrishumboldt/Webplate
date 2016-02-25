@@ -1,0 +1,13 @@
+/**
+ * File: css/_execte.scss
+ * Type: SASS execute
+ * Author: Chris Humboldt
+ */
+
+// Naplate CSS
+@mixin navplate-css {
+   @include navplate-active();
+   @include navplate-overlay();
+   @include navplate-type-fullscreen();
+   @include navplate-type-slide();
+}

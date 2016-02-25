@@ -1,0 +1,19 @@
+/**
+ * File: basic/_list.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Lists
+@mixin list-style($style: disc outside none) {
+   list-style: $style;
+}
+@mixin list-style-image($url: none) {
+   list-style-image: $url;
+}
+@mixin list-style-position($position: outside) {
+   list-style-position: $position;
+}
+@mixin list-style-type($type: disc) {
+   list-style-type: $type;
+}

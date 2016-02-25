@@ -1,0 +1,58 @@
+/**
+ * File: _tab.scss
+ * Type: SASS basic
+ * Author: Chris Humboldt
+ */
+
+// Content
+@mixin tabplate-tabs() {
+	ul.tabplate-tabs {
+		@include list-style(none);
+		@include spacing-no();
+		@include overflow(auto);
+
+		> li {
+			@include hide();
+			@include row();
+
+			&.active {
+				@include show();
+			}
+		}
+
+		.tp-animate & {
+			@include animate(all);
+
+			> li.active {
+				-webkit-animation: cd-fade-in 0.5s;
+				-moz-animation: cd-fade-in 0.5s;
+				animation: cd-fade-in 0.5s;
+			}
+		}
+	}
+
+	@-webkit-keyframes cd-fade-in {
+		0% {
+			@include opacity(0);
+		}
+		100% {
+			@include opacity(1);
+		}
+	}
+	@-moz-keyframes cd-fade-in {
+		0% {
+			@include opacity(0);
+		}
+		100% {
+			@include opacity(1);
+		}
+	}
+	@keyframes cd-fade-in {
+		0% {
+			@include opacity(0);
+		}
+		100% {
+			@include opacity(1);
+		}
+	}
+}

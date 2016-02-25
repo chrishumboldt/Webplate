@@ -1,0 +1,69 @@
+/**
+ * File: _flicker.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Variables
+$limit-width: 68.750em !default;
+
+// Flicker
+@mixin fp-flicker($height: 600px, $back-colour: lighten(#000,90%)) {
+	@include position(relative);
+	@include size(100%, $height);
+	@include background-colour($back-colour);
+	@include overflow(hidden);
+}
+
+// Flicks
+@mixin fp-flicks($width: 10000%) {
+	@include size($width, 100%);
+	@include padding-no();
+	@include margin-no();
+	@include list-style(none);
+}
+@mixin fp-flick($width: 1%) {
+	@include display(table);
+	@include float(left);
+	@include size($width, 100%);
+	@include background-cover();
+
+	.flick-inner {
+		@include display(table-cell);
+		@include height(100%);
+		@include padding(10px);
+		@include text-colour($white);
+		vertical-align: middle;
+
+		.flick-content {
+			@include width-max($limit-width);
+			@include margin-horizontal(auto);
+		}
+	}
+}
+@mixin fp-flick-content() {
+	.flick-title {
+		@include padding-no();
+		@include text-align(center);
+		@include text-line-height(56px);
+		@include font-size(28px);
+
+		@include breakpoint(large){
+			@include text-line-height(75px);
+			@include text-size(44px);
+		}
+	}
+	.flick-sub-text {
+		@include padding(5px);
+		@include text-align(center);
+		@include text-colour(fade-out($white, 0.2));
+		@include text-line-height(42px);
+		@include text-size(16px);
+		@include text-weight(300);
+	}
+	.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+		@include padding-horizontal(18px);
+		@include padding-vertical(12px);
+		@include background-colour(fade-out($black, 0.4));
+	}
+}

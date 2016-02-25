@@ -1,0 +1,79 @@
+/**
+ * File: sass/_textarea.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Textarea
+// Textarea colour states
+
+// Textarea
+@mixin form-textarea() {
+	.fp-text {
+		textarea {
+			@include size(100%, 114px);
+			@include padding(12px);
+			@include margin(0px);
+			@include margin-bottom(1.5em);
+			@include text-font($font-family);
+			@include text-size(13px);
+			@include background-colour($white);
+			@include border-no();
+			@include level(1);
+			outline: none;
+			-webkit-appearance: none;
+			&:focus {
+				@include level(2);
+			}
+			@include breakpoint(large) {
+				@include text-size(14px);
+			}
+		}
+		// Styles
+		&._s-line textarea {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+		&._s-flat textarea {
+			@include padding-vertical(14px);
+			@include background-colour($grey-x2-light);
+			&:focus {
+				@include background-colour($grey-x-light);
+			}
+		}
+		&._s-raised textarea {
+			@include border-radius();
+			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+			&:focus {
+				@include drop-shadow(fade-out($black, 0.6), 4px, 1px);
+			}
+		}
+	}
+}
+
+// Textarea colour states
+@mixin form-textarea-states() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-text._s-line._c-#{$colour-name} textarea {
+			&:active,
+			&:focus {
+				@include border($colour);
+			}
+		}
+		.fp-text._s-flat._c-#{$colour-name} textarea {
+			&:active,
+			&:focus {
+				@include background-colour(fade-out($colour, 0.95));
+			}
+		}
+		.fp-text._s-raised._c-#{$colour-name} {
+			textarea:focus {
+				@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+			}
+		}
+	}
+}

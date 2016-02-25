@@ -1,0 +1,82 @@
+/**
+ * File: css/_responsive-layout.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Block based layout
+
+// Block based layout
+@mixin blueplate-responsive-layout() {
+	// Containers
+	.row {
+		@include row();
+		.row {
+			@include width(auto);
+		}
+		[class *= "span-"] {
+			@include position(relative);
+			@include float(left);
+		}
+		// Span loop
+		@for $index from 1 through $column-limit {
+			.span-#{$index} {
+				@include span-new($index);
+			}
+		}
+		// Offset loop
+		@for $index from 1 through ($column-limit - 1) {
+			.offset-#{$index} {
+				@include offset($index);
+			}
+			.offset-r-#{$index} {
+				@include offset-r($index);
+			}
+		}
+	}
+	// Limit
+	.limit {
+		@include limit();
+	}
+	// Large view
+	@include breakpoint(large) {
+		.row {
+			// Large span loop
+			@for $index from 1 through $column-limit {
+				.span-large-#{$index} {
+					@include span-new($index);
+				}
+			}
+			// Offset loop
+			@for $index from 1 through ($column-limit - 1) {
+				.offset-large-#{$index} {
+					@include offset($index);
+				}
+				.offset-large-r-#{$index} {
+					@include offset-r($index);
+				}
+			}
+		}
+	}
+	// Small view
+	@include breakpoint(small) {
+		.row {
+			// Small span loop
+			@for $index from 1 through $column-limit {
+				.span-small-#{$index} {
+					@include span-new($index);
+				}
+			}
+			// Offset loop
+			@for $index from 1 through ($column-limit - 1) {
+				.offset-small-#{$index} {
+					@include offset($index);
+				}
+				.offset-small-r-#{$index} {
+					@include offset-r($index);
+				}
+			}
+		}
+	}
+}

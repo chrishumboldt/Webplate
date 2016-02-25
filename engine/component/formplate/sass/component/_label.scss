@@ -1,0 +1,21 @@
+/**
+ * File: sass/_label.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+ */
+@mixin form-label() {
+	label {
+		@include display(inline-block);
+		@include spacing-no();
+		@include margin-bottom(6px);
+		@include text-colour($black-base);
+		@include text-font($font-family);
+		@include text-size(14px);
+		@include text-weight(normal);
+
+		// Hover
+		.formplate-no-touch &:hover {
+			@include cursor(pointer);
+		}
+	}
+}

@@ -1,0 +1,27 @@
+/**
+ * File: _overlay.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Overlay
+@mixin navplate-overlay() {
+	#web-overlay {
+		@include display(block);
+		@include position(fixed, top 0 right 0 bottom 0 left 0);
+		@include background-colour(fade-out($black-base, 0.4));
+		@include level(1000);
+		@include visibility(hidden);
+		@include opacity(0);
+		@include animate(all, 0.3s);
+		// Reveal
+		.navplate-reveal & {
+			@include visibility(visible);
+			@include opacity(1);
+		}
+		// Types
+		.navplate-type-fullscreen & {
+			@include background-colour(fade-out($black, 0.175));
+		}
+	}
+}

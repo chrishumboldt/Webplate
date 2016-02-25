@@ -1,0 +1,30 @@
+/**
+ * File: _overlay.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Overlay
+// Reveal overlay
+
+// Overlay
+// ---------------------------------------------------------------------------------------
+@mixin modal-overlay() {
+	#web-overlay {
+		@include display(block);
+		@include position(fixed, top 0 right 0 bottom 0 left 0);
+		@include background-colour(fade-out($black-base, 0.4));
+		@include level(1000);
+		@include visibility(hidden);
+		@include opacity(0);
+		@include animate(all, 0.4s);
+
+		// Reveal
+		.modalplate-reveal & {
+			@include visibility(visible);
+			@include opacity(1);
+		}
+	}
+}

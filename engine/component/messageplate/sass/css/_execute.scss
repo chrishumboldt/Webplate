@@ -1,0 +1,18 @@
+/**
+ * File: _execute.scss
+ * Type: SASS execute file
+ * Author: Chris Humboldt
+ * Last Edited: 19 May 2015
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Messageplate CSS
+
+// Messageplate CSS
+// ---------------------------------------------------------------------------------------
+@mixin messageplate-css() {
+	@include messageplate-message();
+	@include messageplate-overlay();
+	@include messageplate-buttons()
+}

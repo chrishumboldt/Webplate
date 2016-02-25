@@ -1,0 +1,17 @@
+/**
+ * File: module/_list.scss
+ * Type: SASS module file
+ * Author: Chris Humboldt
+ */
+
+@mixin list($type: basic) {
+   @if $type == basic {
+      @include margin-left($space-base);
+   }
+   @else if $type == flat {
+      @include list-style(none);
+      > li {
+         @include float($left);
+      }
+   }
+}

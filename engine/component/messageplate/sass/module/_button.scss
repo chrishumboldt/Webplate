@@ -1,0 +1,47 @@
+/**
+ * File: _button.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Buttons
+
+// Buttons
+// ---------------------------------------------------------------------------------------
+@mixin messageplate-buttons() {
+	.btn-col-1,
+	.btn-col-2 { 
+		@include row();
+		@include margin-top($space-minor);
+
+		@include breakpoint(large) {
+			@include margin-top($space-base);
+		}
+
+		.btn-false,
+		.btn-true {
+			@include button-setup();
+			@include button-size(normal);
+			@include button-style(line, lighten($grey-blue, 6%));
+			@include button-shape(rounded);
+			@include width(100%);
+		}
+		.btn-true {
+			@include button-style(line, $blue);
+		}
+	}
+	.btn-col-2 { 
+		> .left,
+		> .right {
+			@include span(6);
+		}
+		> .left {
+			@include padding-right(4px);
+		}
+		> .right {
+			@include padding-left(4px);
+		}
+	}
+}

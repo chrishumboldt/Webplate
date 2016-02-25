@@ -1,0 +1,41 @@
+/**
+ * SASS File: 		_layout.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	23 September 2014
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Layout classes
+
+
+// Layout classes
+// ---------------------------------------------------------------------------------------
+@mixin blueplate-layout() {
+	.float-no {
+		@include float-no();
+	}
+	.float-l {
+		@include float(left);
+	}
+	.float-r {
+		@include float(right);
+	}
+	.float-clear {
+		@include float-clear();
+	}
+	.center {
+		@include center();
+	}
+	.valign-t {
+		@include vertical-align(top);
+	}
+	.valign-m {
+		@include vertical-align(middle);
+	}
+	.valign-b {
+		@include vertical-align(bottom);
+	}
+}

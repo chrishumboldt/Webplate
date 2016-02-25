@@ -1,0 +1,162 @@
+/**
+ * File: sass/_input.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Input
+// Input colour states
+// Input groups
+// Input icon
+
+// Input
+@mixin form-input() {
+	.fp-inp {
+		input {
+			@include width(100%);
+			@include padding(14px);
+			@include margin(0px);
+			@include margin-bottom(1.5em);
+			@include text-font($font-family);
+			@include text-size(13px);
+			@include background-colour($white);
+			@include border-no();
+			@include level(1);
+			outline: none;
+			-webkit-appearance: none;
+			@include animate(all);
+			&:focus {
+				@include level(2);
+			}
+			@include breakpoint(large) {
+				@include text-size(14px);
+			}
+		}
+		// Styles
+		&._s-line input {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+		&._s-flat input {
+			@include background-colour($grey-x2-light);
+			&:focus {
+				@include background-colour($grey-x-light);
+			}
+		}
+		&._s-raised {
+			input {
+				@include border-radius();
+				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+				&:focus {
+					@include drop-shadow(fade-out($black, 0.6), 4px, 1px);
+				}
+			}
+		}
+	}
+}
+
+// Input colour states
+@mixin form-input-hover() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.fp-inp._s-line._c-#{$colour-name} input {
+			&:active,
+			&:focus {
+				@include border($colour);
+			}
+		}
+		.fp-inp._s-flat._c-#{$colour-name} input {
+			&:active,
+			&:focus {
+				@include background-colour(fade-out($colour, 0.95));
+			}
+		}
+		.fp-inp._s-raised._c-#{$colour-name} {
+			&._focused .input-group {
+				@include drop-shadow-no();
+			}
+			input:focus {
+				@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+			}
+		}
+	}
+}
+
+// Input groups
+.fp-inp .input-group {
+	@include row();
+	input {
+		@include margin-left(-1px);
+	}
+	input:first-child {
+		@include margin-left(0px);
+	}
+	.input-icon {
+		input {
+			@include width(100%);
+		}
+		&:first-child input {
+			@include margin-left(0px);
+		}
+	}
+}
+.fp-inp._s-line .input-group {
+	input {
+		@include border-radius(0px);
+	}
+	input:first-child {
+		@include border-radius-left(2px);
+	}
+	input:last-child {
+		@include border-radius-right(2px);
+	}
+	.input-icon {
+		&:first-child input {
+			@include border-radius-left(2px);
+		}
+		&:last-child input {
+			@include border-radius-right(2px);
+		}
+	}
+}
+.fp-inp._s-raised .input-group {
+	@include margin-bottom(1.5em);
+	@include animate(all);
+	@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+	input {
+		@include margin-no();
+		@include drop-shadow-no();
+	}
+}
+.fp-inp .input-group-two {
+	@extend .input-group;
+	input,
+	.input-icon {
+		@include span(6);
+	}
+}
+.fp-inp .input-group-three {
+	@extend .input-group;
+	input,
+	.input-icon {
+		@include span(4);
+	}
+}
+
+// Input icon
+.fp-inp .input-icon {
+	@include position(relative);
+	// Icons
+	i {
+		@include position(absolute, margin-top ($space-small + 5px) right $space-small);
+		@include font-size($size-base);
+		@include level(4);
+	}
+	// Input
+	input {
+		@include padding-right($space-slight);
+	}
+}

@@ -1,0 +1,13 @@
+/**
+ * File: _trigger.scss
+ * Type: SASS basic
+ * Author: Chris Humboldt
+ */
+
+// Triggers
+@mixin tabplate-trigger() {
+	ul.tabplate-triggers {
+		@include list-style(none);
+		@include spacing-no();
+	}
+}

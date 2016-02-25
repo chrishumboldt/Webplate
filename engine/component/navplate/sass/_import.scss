@@ -1,0 +1,20 @@
+/**
+ * File: _import.scss
+ * Type: SASS import
+ * Author: Chris Humboldt
+ */
+
+// Bower components
+@import "../bower_components/blueplate/sass/import";
+
+// Core
+@import "variable";
+
+// Modules
+@import "module/active";
+@import "module/overlay";
+@import "module/type-fullscreen";
+@import "module/type-slide";
+
+// CSS
+@import "css/execute";

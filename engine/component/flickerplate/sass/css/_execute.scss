@@ -1,0 +1,23 @@
+/**
+ * File: _execute.scss
+ * Type: SASS CSS
+ * Author: Chris Humboldt
+ */
+
+// Execute
+@mixin flickerplate-css() {
+	.flickerplate {
+		@include fp-flicker();
+		ul.flicks {
+			@include fp-flicks();
+			& > li {
+				@include fp-flick();
+				@include fp-flick-content();
+			}
+		}
+		@include fp-arrow-navigation();
+		@include fp-dot-navigation();
+	}
+	@include fp-dark-theme(".flickerplate");
+	@include fp-animations(".flickerplate");
+}
