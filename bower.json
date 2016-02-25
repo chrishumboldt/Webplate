@@ -1,43 +1,43 @@
 {
-	"name": "webplate",
-	"version": "3.2.4",
-	"homepage": "https://getwebplate.com",
-	"authors": [
-		"Chris Humboldt <chrismodem@gmail.com>"
-	],
-	"description": "Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
-	"main": "stack.js",
-	"keywords": [
-		"Webplate",
-		"UI",
-		"Framework",
-		"Responsive",
-		"jQuery",
-		"SASS",
-		"Blueplate",
-		"Modernizr",
-		"Hammer.js",
-		"Velocity.js",
-		"Buttonplate",
-		"Modalplate",
-		"Formplate",
-		"Flickerplate",
-		"Messageplate"
-	],
-	"license": "Apache License, Version 2.0",
-	"ignore": [
-		"engine/.sass-cache",
-		"engine/node_modules",
-		"node_modules",
-		"test",
-		"tests",
-		"bower.json",
-		"index.html",
-		"README.md",
-		"test.html",
-		"project/sass/test.scss",
-		"project/css/test.css",
-		"project/js/test.js",
-		"project/js/min/test.min.js"
-	]
+   "name": "webplate",
+   "version": "3.4.0",
+   "homepage": "https://getwebplate.com",
+   "authors": [
+      "Chris Humboldt <chrismodem@gmail.com>"
+   ],
+   "description": "Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
+   "main": "stack.js",
+   "keywords": [
+      "Webplate",
+      "UI",
+      "Framework",
+      "Responsive",
+      "jQuery",
+      "SASS",
+      "Blueplate",
+      "Modernizr",
+      "Hammer.js",
+      "Velocity.js",
+      "Buttonplate",
+      "Modalplate",
+      "Formplate",
+      "Flickerplate",
+      "Messageplate"
+   ],
+   "license": "Apache License, Version 2.0",
+   "ignore": [
+      "engine/.sass-cache",
+      "engine/node_modules",
+      "node_modules",
+      "test",
+      "tests",
+      "bower.json",
+      "index.html",
+      "README.md",
+      "test.html",
+      "project/sass/test.scss",
+      "project/css/test.css",
+      "project/js/test.js",
+      "project/js/min/test.min.js"
+   ]
 }

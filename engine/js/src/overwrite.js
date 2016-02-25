@@ -5,5 +5,5 @@
  */
 
 if (typeof $loaderplateDefault !== 'undefined') {
-	$loaderplateDefault.path = web.url('baseUrl') + '/webplate/project/component/loaderplate/loaders/';
+   $loaderplateDefault.path = web.url('baseUrl') + '/webplate/project/component/loaderplate/loaders/';
 }

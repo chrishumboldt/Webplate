@@ -5,18 +5,6 @@
  */
 
 // Banner
-// .banner {
-// 	@include position(relative);
-// 	// Text
-// 	h1 {
-// 		@include text-colour($white);
-// 		@include text-weight(400);
-// 	}
-// 	p {
-// 		@include padding-bottom($space-medium);
-// 		@include text-colour(fade-out($white, 0.3));
-// 	}
-// }
 .row.example {
 	@include border(3px, lighten($grey-blue-light, 14%));
 	div {

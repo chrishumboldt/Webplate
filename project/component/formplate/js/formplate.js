@@ -12,150 +12,162 @@
 // Defaults
 // Defaults
 var $formplateDefault = {
-	selector: 'body',
-	colour: 'blue'
+   selector: '.formplate',
+   colour: 'blue',
+   style: 'line'
 };
 
 function formplate($userOptions) {
-	// Tools
-	var tool = function(document) {
-		// Elements
-		var $toolEl = {
-			body: document.getElementsByTagName('body')[0],
-			html: document.getElementsByTagName('html')[0]
-		};
+   // Tools
+   var tool = function(document) {
+      // Elements
+      var $toolEl = {
+         body: document.getElementsByTagName('body')[0],
+         html: document.getElementsByTagName('html')[0]
+      };
 
-		// Functions
-		var classAdd = function($element, $class) {
-			var $crtClass = $element.className;
-			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-			}
-		};
-		var classClear = function($element) {
-			$element.removeAttribute('class');
-		};
-		var classRemove = function($element, $class) {
-			if ($element.className.indexOf($class) > -1) {
-				$element.className = $element.className.split(' ').filter(function($val) {
-					return $val != $class;
-				}).toString().replace(/,/g, ' ');
-				if ($element.className === '') {
-					classClear($element);
-				}
-			}
-		};
-		var hasClass = function($element, $class) {
-			return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-		};
-		var isTouch = function() {
-			return 'ontouchstart' in window || 'onmsgesturechange' in window;
-		};
-		var wrap = function($element, $tag, $className) {
-			var $wrapper = document.createElement($tag);
-			var $tempElement = $element.cloneNode(true);
-			$wrapper.className = $className;
+      // Functions
+      var classAdd = function($element, $class) {
+         var $crtClass = $element.className;
+         if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
+            $element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
+         }
+      };
+      var classClear = function($element) {
+         $element.removeAttribute('class');
+      };
+      var classRemove = function($element, $class) {
+         if ($element.className.indexOf($class) > -1) {
+            $element.className = $element.className.split(' ').filter(function($val) {
+               return $val != $class;
+            }).toString().replace(/,/g, ' ');
+            if ($element.className === '') {
+               classClear($element);
+            }
+         }
+      };
+      var eventAdd = function($elem, $type, $eventHandle) {
+         if ($elem == null || typeof($elem) == 'undefined') return;
+         if ($elem.addEventListener) {
+            $elem.addEventListener($type, $eventHandle, false);
+         } else if ($elem.attachEvent) {
+            $elem.attachEvent("on" + $type, $eventHandle);
+         } else {
+            $elem["on" + $type] = $eventHandle;
+         }
+      };
+      var hasClass = function($element, $class) {
+         return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
+      };
+      var isTouch = function() {
+         return 'ontouchstart' in window || 'onmsgesturechange' in window;
+      };
 
-			$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
-			$element.parentNode.removeChild($element);
-		};
+      return {
+         classAdd: classAdd,
+         classClear: classClear,
+         classRemove: classRemove,
+         element: $toolEl,
+         eventAdd: eventAdd,
+         hasClass: hasClass,
+         isTouch: isTouch
+      }
+   }(document);
 
-		return {
-			classAdd: classAdd,
-			classClear: classClear,
-			classRemove: classRemove,
-			element: $toolEl,
-			hasClass: hasClass,
-			isTouch: isTouch,
-			wrap: wrap
-		}
-	}(document);
+   // Variables
+   var $self = this;
+   $self.options = {
+      selector: ($userOptions && $userOptions.selector) ? $userOptions.selector : $formplateDefault.selector,
+      colour: ($userOptions && $userOptions.colour) ? $userOptions.colour : $formplateDefault.colour,
+      style: ($userOptions && $userOptions.style) ? $userOptions.style : $formplateDefault.style
+   }
 
-	// Variables
-	var $self = this;
-	$self.options = {
-		selector: ($userOptions && $userOptions.selector) ? $userOptions.selector : $formplateDefault.selector,
-		colour: ($userOptions && $userOptions.colour) ? $userOptions.colour : false,
-	}
+   var $formplateEls = document.querySelectorAll($self.options.selector);
 
-	var $formColour = $self.options.colour || tool.element.body.getAttribute('data-formplate-colour') || $formplateDefault.colour;
-	var $formCheckboxes = document.querySelectorAll($self.options.selector + ' input[type="checkbox"]');
-	var $formRadioButtons = document.querySelectorAll($self.options.selector + ' input[type="radio"]');
-	var $formSelects = document.querySelectorAll($self.options.selector + ' select');
-	var $formTogglerHTML = document.createElement('span');
-	$formTogglerHTML.className = 'handle';
+   if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'formplate-no-touch')) {
+      tool.classAdd(tool.element.html, 'formplate-no-touch');
+   }
 
-	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'formplate-no-touch')) {
-		tool.classAdd(tool.element.html, 'formplate-no-touch');
-	}
+   // Functions
+   var checkToggle = function($element) {
+      $element.onchange = function() {
+         if (tool.hasClass($element.parentNode, '_checked')) {
+            tool.classRemove($element.parentNode, '_checked');
+         } else {
+            tool.classAdd($element.parentNode, '_checked');
+         }
+      };
+   };
+   var inputFocus = function($thisFormEl) {
+      var $inputs = $thisFormEl.querySelectorAll('input');
+      for (var $i = 0, $len = $inputs.length; $i < $len; $i++) {
+         var $thisInput = $inputs[$i];
+         $thisInput.onfocus = function() {
+            var $parent = ($thisInput.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode : ($thisInput.parentNode.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode.parentNode : $thisInput.parentNode.parentNode.parentNode;
+            tool.classAdd($parent, '_focused');
+         };
+         $thisInput.onblur = function() {
+            var $parent = ($thisInput.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode : ($thisInput.parentNode.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode.parentNode : $thisInput.parentNode.parentNode.parentNode;
+            tool.classRemove($parent, '_focused');
+         };
+      }
+   };
+   var radioToggle = function($element) {
+      $element.onclick = function() {
+         var $inputRadioGroup = document.getElementsByName($element.getAttribute('name'));
+         for (var $i = 0, $len = $inputRadioGroup.length; $i < $len; $i++) {
+            tool.classRemove($inputRadioGroup[$i].parentNode, '_checked');
+         }
+         tool.classAdd($element.parentNode, '_checked');
+      };
+   };
+   var textareaFocus = function($textarea) {
+      $textarea.onfocus = function() {
+         tool.classAdd($textarea.parentNode, '_focused');
+      };
+      $textarea.onblur = function() {
+         tool.classRemove($textarea.parentNode, '_focused');
+      };
+   };
 
-	// Set the colour
-	tool.classAdd(tool.element.body, 'formplate-colour-' + $formColour);
+   // Loop over all elements and apply
+   for (var $i = 0, $len = $formplateEls.length; $i < $len; $i++) {
+      var $thisFormEl = $formplateEls[$i];
+      var $baseClasses = ' _c-' + $self.options.colour + ' _s-' + $self.options.style;
 
-	// Checkboxes
-	for (var $i = 0; $i < $formCheckboxes.length; $i++) {
-		var $classes = (tool.hasClass($formCheckboxes[$i], 'toggler') === true) ? 'formplate-toggler' : 'formplate-checkbox';
-		$classes += ($formCheckboxes[$i].getAttribute('checked') === 'checked') ? ' checked' : '';
+      // Set the input classes
+      if ($thisFormEl.querySelector('input')) {
+         var $input = $thisFormEl.querySelector('input');
+         var $inputType = $input.getAttribute('type');
 
-		if (!tool.hasClass($formCheckboxes[$i].parentNode, 'formplate-toggler') && !tool.hasClass($formCheckboxes[$i].parentNode, 'formplate-checkbox')) {
-			tool.wrap($formCheckboxes[$i], 'span', $classes);
-		}
-	}
-
-	// Add toggler handle
-	var $formTogglers = document.querySelectorAll($self.options.selector + ' .formplate-toggler');
-	for (var $i = 0; $i < $formTogglers.length; $i++) {
-		$formTogglers[$i].appendChild($formTogglerHTML.cloneNode());
-	}
-
-	// Radio buttons
-	for (var $i = 0; $i < $formRadioButtons.length; $i++) {
-		var $classes = ($formRadioButtons[$i].getAttribute('checked') === 'checked') ? 'formplate-radio checked' : 'formplate-radio';
-
-		if (!tool.hasClass($formRadioButtons[$i].parentNode, 'formplate-radio')) {
-			tool.wrap($formRadioButtons[$i], 'span', $classes);
-		}
-	}
-
-	// Selects
-	for (var $i = 0; $i < $formSelects.length; $i++) {
-		if (!tool.hasClass($formSelects[$i].parentNode, 'formplate-select')) {
-			tool.wrap($formSelects[$i], 'span', 'formplate-select');
-		}
-	}
-
-	// Events
-	var $formCheckboxesNew = document.querySelectorAll($self.options.selector + ' .formplate-checkbox');
-	for (var $i = 0; $i < $formCheckboxesNew.length; $i++)(function($i) {
-		$formCheckboxesNew[$i].onclick = function() {
-			if (tool.hasClass($formCheckboxesNew[$i], 'checked')) {
-				tool.classRemove($formCheckboxesNew[$i], 'checked');
-			} else {
-				tool.classAdd($formCheckboxesNew[$i], 'checked');
-			}
-		};
-	})($i);
-	var $formRadioButtonsNew = document.querySelectorAll($self.options.selector + ' .formplate-radio');
-	for (var $i = 0; $i < $formRadioButtonsNew.length; $i++)(function($i) {
-		$formRadioButtonsNew[$i].onclick = function() {
-			var $formRadioButtonInputName = $formRadioButtonsNew[$i].getElementsByTagName('input')[0].getAttribute('name');
-			var $formRadioButtonsByName = document.querySelectorAll('input[name="' + $formRadioButtonInputName + '"]');
-
-			for (var $i2 = 0; $i2 < $formRadioButtonsByName.length; $i2++) {
-				tool.classRemove($formRadioButtonsByName[$i2].parentNode, 'checked');
-			}
-
-			tool.classAdd($formRadioButtonsNew[$i], 'checked');
-		};
-	})($i);
-	var $formTogglersNew = document.querySelectorAll($self.options.selector + ' .formplate-toggler');
-	for (var $i = 0; $i < $formTogglersNew.length; $i++)(function($i) {
-		$formTogglersNew[$i].onclick = function() {
-			if (tool.hasClass($formTogglersNew[$i], 'checked')) {
-				tool.classRemove($formTogglersNew[$i], 'checked');
-			} else {
-				tool.classAdd($formTogglersNew[$i], 'checked');
-			}
-		};
-	})($i);
+         if ($inputType === 'checkbox') {
+            $baseClasses += ($input.getAttribute('checked') === 'checked') ? ' _checked' : '';
+            if (tool.hasClass($input, 'toggler')) {
+               tool.classAdd($thisFormEl, 'fp-tog' + $baseClasses);
+            } else {
+               tool.classAdd($thisFormEl, 'fp-check' + $baseClasses);
+            }
+            checkToggle($input);
+         } else if ($inputType === 'radio') {
+            $baseClasses += ($input.getAttribute('checked') === 'checked') ? ' _checked' : '';
+            tool.classAdd($thisFormEl, 'fp-check _t-radio' + $baseClasses);
+            radioToggle($input);
+         } else if ($inputType === 'password') {
+            tool.classAdd($thisFormEl, 'fp-inp _t-password' + $baseClasses);
+            inputFocus($thisFormEl);
+         } else {
+            tool.classAdd($thisFormEl, 'fp-inp' + $baseClasses);
+            inputFocus($thisFormEl);
+         }
+      } else if ($thisFormEl.querySelector('textarea')) {
+         var $textarea = $thisFormEl.querySelector('textarea');
+         tool.classAdd($thisFormEl, 'fp-text' + $baseClasses);
+         textareaFocus($textarea);
+      } else if ($thisFormEl.querySelector('select')) {
+         var $select = $thisFormEl.querySelector('select');
+         if ($select != null) {
+            tool.classAdd($thisFormEl, 'fp-sel' + $baseClasses);
+         }
+      }
+   }
 };
