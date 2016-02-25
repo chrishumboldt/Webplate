@@ -40,4 +40,12 @@ $min-max: $option-min-max;
 $font-family-set: $option-font-family;
 
 // Components
-@import "../../engine/sass/blueplate/import";
+@import "../../engine/component/blueplate/sass/import";
+@import "../../engine/component/buttonplate/sass/import";
+@import "../../engine/component/flickerplate/sass/import";
+@import "../../engine/component/formplate/sass/import";
+@import "../../engine/component/loaderplate/sass/import";
+@import "../../engine/component/messageplate/sass/import";
+@import "../../engine/component/modalplate/sass/import";
+@import "../../engine/component/navplate/sass/import";
+@import "../../engine/component/tabplate/sass/import";

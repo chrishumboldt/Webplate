@@ -1,0 +1,11 @@
+/**
+ * File: engine/sass/component/_form.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+ */
+
+@include formplate-css(flat);
+
+label {
+   @include text-font($font-family-set);
+}

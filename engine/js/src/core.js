@@ -210,7 +210,7 @@
    var $arComponentFiles = [];
    var $arExtraCSS = [];
    var $arExtraJS = [];
-   var $engineFiles = [$path.engine.js + 'scripts.min.js', $path.engine.css + 'styles.css'];
+   var $engineFiles = [$path.engine.js + 'scripts.min.js', $path.engine.css + 'styles.min.css'];
 
    // Attach loader
    if ($webContent !== null) {
@@ -273,129 +273,138 @@
                      var $pageMatch = false;
 
                      // Root config
-                     var $bodyClass = $json.project['body-class'] || false;
-                     var $componentFirst = $json.project['component-first'] || [];
-                     var $component = $json.project['component'] || [];
-                     var $formColour = $json.project['form-colour'] || 'blue';
-                     var $iconFont = $json.project['icon-font'] || false;
-                     var $projectCSS = $json.project['css'] || [];
-                     var $projectJS = $json.project['js'] || [];
-                     var $ui = $json.project['ui'] || false;
+                     if ($json.project) {
+                        var $bodyClass = $json.project['body-class'] || false;
+                        var $componentFirst = $json.project['component-first'] || [];
+                        var $component = $json.project['component'] || [];
+                        var $formColour = $json.project['form-colour'] || 'blue';
+                        var $iconFont = $json.project['icon-font'] || false;
+                        var $projectCSS = $json.project['css'] || [];
+                        var $projectJS = $json.project['js'] || [];
+                        var $ui = $json.project['ui'] || false;
 
-                     // Page check
-                     if ($json.project.page) {
-                        for (var $i = $json.project.page.length - 1; $i >= 0; $i--) {
-                           var $page = $json.project.page[$i];
+                        // Page check
+                        if ($json.project.page) {
+                           for (var $i = $json.project.page.length - 1; $i >= 0; $i--) {
+                              var $page = $json.project.page[$i];
 
-                           // Wildcard check
-                           if ($page['url'].indexOf('*') > -1) {
-                              if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
-                                 $pageMatch = true;
-                              }
-                           } else {
-                              if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
-                                 $pageMatch = true;
-                              }
-                           }
-                           if ($pageMatch === true) {
-                              // Page overwrite
-                              var $configType = $page['config-type'] || 'merge';
-
-                              if ($configType == 'new') {
-                                 $bodyClass = $page['body-class'] || false;
-                                 $componentFirst = $page['component-first'] || [];
-                                 $component = $page['component'] || [];
-                                 $formColour = $page['form-colour'] || 'blue';
-                                 $iconFont = $page['icon-font'] || false;
-                                 $projectCSS = $page['css'] || [];
-                                 $projectJS = $page['js'] || [];
-                                 $ui = $page['ui'] || false;
+                              // Wildcard check
+                              if ($page['url'].indexOf('*') > -1) {
+                                 if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
+                                    $pageMatch = true;
+                                 }
                               } else {
-                                 // Basic additions (some have to be overwritten by design)
-                                 $bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
-                                 $formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
-                                 $iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
-                                 $ui = $page['ui'] ? $page['ui'] : $ui;
-
-                                 // Component add
-                                 if ($page['component-first']) {
-                                    for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
-                                       var $addComponentFirst = $page['component-first'][$i];
-
-                                       if ($componentFirst.indexOf($addComponentFirst) == -1) {
-                                          $componentFirst.push($addComponentFirst);
-                                       }
-                                    };
-                                 }
-                                 if ($page['component']) {
-                                    for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
-                                       var $addComponent = $page['component'][$i];
-
-                                       if ($component.indexOf($addComponent) == -1) {
-                                          $component.push($addComponent);
-                                       }
-                                    };
-                                 }
-
-                                 // Project CSS
-                                 if ($page['css']) {
-                                    for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
-                                       var $addProjectCSS = $page['css'][$i];
-                                       if ($projectCSS.indexOf($addProjectCSS) === -1) {
-                                          $projectCSS.push($addProjectCSS);
-                                       }
-                                    };
-                                 }
-
-                                 // Project JS
-                                 if ($page['js']) {
-                                    for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
-                                       var $addProjectJS = $page['js'][$i];
-                                       if ($projectJS.indexOf($addProjectJS) === -1) {
-                                          $projectJS.push($addProjectJS);
-                                       }
-                                    };
+                                 if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
+                                    $pageMatch = true;
                                  }
                               }
-                              break;
-                           }
-                        };
-                     }
+                              if ($pageMatch === true) {
+                                 // Page overwrite
+                                 var $configType = $page['config-type'] || 'merge';
 
-                     // Set the body class
-                     if ($bodyClass !== false) {
-                        web.classAdd(web.element.body, $bodyClass.trim());
-                     }
+                                 if ($configType == 'new') {
+                                    $bodyClass = $page['body-class'] || false;
+                                    $componentFirst = $page['component-first'] || [];
+                                    $component = $page['component'] || [];
+                                    $formColour = $page['form-colour'] || 'blue';
+                                    $iconFont = $page['icon-font'] || false;
+                                    $projectCSS = $page['css'] || [];
+                                    $projectJS = $page['js'] || [];
+                                    $ui = $page['ui'] || false;
+                                 } else {
+                                    // Basic additions (some have to be overwritten by design)
+                                    $bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
+                                    $formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
+                                    $iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
+                                    $ui = $page['ui'] ? $page['ui'] : $ui;
 
-                     // Form colour
-                     if ($responseText.indexOf('formplate') > -1) {
-                        web.element.body.setAttribute('data-formplate-colour', $formColour);
-                     }
+                                    // Component add
+                                    if ($page['component-first']) {
+                                       for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
+                                          var $addComponentFirst = $page['component-first'][$i];
 
-                     // Icon fonts
-                     if ($iconFont == 'icomoon') {
-                        yepnope({
-                           load: $path.project.iconFont.icoMoon
-                        });
-                     } else if ($iconFont == 'font-awesome') {
-                        yepnope({
-                           load: $path.project.iconFont.fontAwesome
-                        });
-                     }
+                                          if ($componentFirst.indexOf($addComponentFirst) == -1) {
+                                             $componentFirst.push($addComponentFirst);
+                                          }
+                                       };
+                                    }
+                                    if ($page['component']) {
+                                       for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
+                                          var $addComponent = $page['component'][$i];
 
-                     // Load UI
-                     if ($ui != false) {
-                        $arExtraCSS.push($path.project.ui + $ui + '/style.css');
-                        $arExtraJS.push($path.project.ui + $ui + '/script.min.js');
-                     }
+                                          if ($component.indexOf($addComponent) == -1) {
+                                             $component.push($addComponent);
+                                          }
+                                       };
+                                    }
 
-                     // Load the components & project files
-                     if ($componentFirst.length > 0) {
-                        core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
-                     } else if ($component.length > 0) {
-                        core.loadComponents($component, $projectCSS, $projectJS);
+                                    // Project CSS
+                                    if ($page['css']) {
+                                       for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
+                                          var $addProjectCSS = $page['css'][$i];
+                                          if ($projectCSS.indexOf($addProjectCSS) === -1) {
+                                             $projectCSS.push($addProjectCSS);
+                                          }
+                                       };
+                                    }
+
+                                    // Project JS
+                                    if ($page['js']) {
+                                       for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
+                                          var $addProjectJS = $page['js'][$i];
+                                          if ($projectJS.indexOf($addProjectJS) === -1) {
+                                             $projectJS.push($addProjectJS);
+                                          }
+                                       };
+                                    }
+                                 }
+                                 break;
+                              }
+                           };
+                        }
+
+                        // Set the body class
+                        if ($bodyClass !== false) {
+                           web.classAdd(web.element.body, $bodyClass.trim());
+                        }
+
+                        // Form colour
+                        if ($responseText.indexOf('formplate') > -1) {
+                           web.element.body.setAttribute('data-formplate-colour', $formColour);
+                        }
+
+                        // Icon fonts
+                        if ($iconFont == 'icomoon') {
+                           yepnope({
+                              load: $path.project.iconFont.icoMoon
+                           });
+                        } else if ($iconFont == 'font-awesome') {
+                           yepnope({
+                              load: $path.project.iconFont.fontAwesome
+                           });
+                        }
+
+                        // Load UI
+                        if ($ui != false) {
+                           $arExtraCSS.push($path.project.ui + $ui + '/style.css');
+                           $arExtraJS.push($path.project.ui + $ui + '/script.min.js');
+                        }
+
+                        // Load the components & project files
+                        if ($componentFirst.length > 0) {
+                           core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
+                        } else if ($component.length > 0) {
+                           core.loadComponents($component, $projectCSS, $projectJS);
+                        } else {
+                           core.loadProjectFiles($projectCSS, $projectJS);
+                        }
                      } else {
-                        core.loadProjectFiles($projectCSS, $projectJS);
+                        if ($webContent !== null) {
+                           $webContent.removeAttribute('style');
+                           document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+                        } else {
+                           web.element.body.removeAttribute('style');
+                        }
                      }
                   };
                });
@@ -483,9 +492,6 @@
          for ($i = 0; $i < $js.length; $i++) {
             var $file = $js[$i].trim();
             if (web.getExtension($file) === 'js') {
-               if ($i === 0) {
-                  $arExtraJS.push($path.engine.js + 'overwrite.min.js');
-               }
                $arExtraJS.push($path.project.js + $file);
             }
          };
@@ -499,6 +505,7 @@
                   } else {
                      web.element.body.removeAttribute('style');
                   }
+                  new formplate();
                   setTimeout(function() {
                      yepnope({
                         load: $arExtraJS
@@ -513,6 +520,7 @@
             } else {
                web.element.body.removeAttribute('style');
             }
+            new formplate();
             setTimeout(function() {
                yepnope({
                   load: $arExtraJS
@@ -525,6 +533,7 @@
             } else {
                web.element.body.removeAttribute('style');
             }
+            new formplate();
          }
       }
    };

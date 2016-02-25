@@ -5,9 +5,10 @@
  */
 
 web.scrollTo({
-	offset: -68,
-	offsetLarge: -88
+   offset: -68,
+   offsetLarge: -88
 });
-new buttonplate({
-	selector: '.btn-banner'
+
+new loaderplate({
+   selector: '.limit'
 });

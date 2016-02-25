@@ -1,30 +1,23 @@
 /**
- * File: core.scss
- * Type: SASS core file
+ * File: engine/sass/style.scss
+ * Type: SASS main file
  * Author: Chris Humboldt
- * Last Edited: 11 May 2015
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Imports
-// Overwrites
-// Execute
+// Components
 
 // Imports
-// ---------------------------------------------------------------------------------------
 @import "import";
 
 @import "setup/normalize";
 @import "setup/typeplate";
 @import "setup/setup";
 
-@import "module/navigation";
-
-// Overwrites
-// ---------------------------------------------------------------------------------------
-$font-base: 16px;
-
-// Execute
-// ---------------------------------------------------------------------------------------
-@include blueplate-css();
+// Components
+@import "component/button";
+@import "component/flicker";
+@import "component/form";
+@import "component/layout";
+@import "component/message";

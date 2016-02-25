@@ -70,6 +70,7 @@ gulp.task('config', function() {
 
 gulp.task('engine', function() {
    gulp.src('./sass/styles.scss')
+      .pipe(concat('styles.min.css'))
       .pipe(sass({
          outputStyle: 'compressed'
       }))
@@ -80,7 +81,21 @@ gulp.task('engine', function() {
          compress: true
       }))
       .pipe(gulp.dest('../'));
-   gulp.src(['./js/src/modernizr.js', './js/src/velocity.js', './js/src/tools.js'])
+   gulp.src([
+         './js/src/modernizr.js',
+         './js/src/velocity.js',
+         './component/buttonplate/js/buttonplate.js',
+         './component/flickerplate/js/flickerplate.js',
+         './component/formplate/js/formplate.js',
+         './component/injectplate/js/injectplate.js',
+         './component/loaderplate/js/loaderplate.js',
+         './component/messageplate/js/messageplate.js',
+         './component/modalplate/js/modalplate.js',
+         './component/navplate/js/navplate.js',
+         './component/tabplate/js/tabplate.js',
+         './js/src/tools.js',
+         './js/src/overwrite.js'
+      ])
       .pipe(concat('scripts.min.js'))
       .pipe(uglify({
          compress: true
@@ -88,12 +103,6 @@ gulp.task('engine', function() {
       .pipe(gulp.dest('./js'));
    gulp.src('js/src/fastclick.js')
       .pipe(concat('touch.min.js'))
-      .pipe(uglify({
-         compress: true
-      }))
-      .pipe(gulp.dest('./js'));
-   gulp.src('js/src/overwrite.js')
-      .pipe(concat('overwrite.min.js'))
       .pipe(uglify({
          compress: true
       }))
@@ -125,7 +134,6 @@ gulp.task('css', function() {
                }
             }
          }
-         $arConcatStyles.push('./sass/overwrite.scss');
          if ($config.build[$i].sass) {
             $concat = true;
             for (var $i2 = 0, $len2 = $config.build[$i].sass.length; $i2 < $len2; $i2++) {

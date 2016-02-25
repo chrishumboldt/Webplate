@@ -22,16 +22,8 @@ div {
 body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, select {
   color: lighten(#000, 20%);
 }
-ul, ol {margin:0; padding:0px;}
-a, a:visited {text-decoration: none;}
 
 // Webplate
-#webplate {
-	.limit {
-		width: $limit-width;
-		margin: 0px auto;
-	}
-}
 #web-overlay {
 	@include display(block);
 	@include position(fixed, top 0 right 0 bottom 0 left 0);
@@ -48,10 +40,4 @@ a, a:visited {text-decoration: none;}
 .wallpaper {
 	background-position: center;
 	background-size: cover;
-}
-// Adapt
-@include breakpoint(fluid) {
-	html .limit {
-		width: 100%;
-	}
 }
