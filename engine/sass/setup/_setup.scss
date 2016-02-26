@@ -12,8 +12,9 @@
 
 // Global
 @include global-setup();
-html {
+html, body {
 	@include text-font($font-family-set);
+	@include text-weight(300);
 }
 div {
   display: block;

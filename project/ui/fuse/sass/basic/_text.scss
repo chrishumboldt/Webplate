@@ -4,66 +4,14 @@
  * Author: Chris Humboldt
  */
 
-// Global
-html, body {
-	@include text-font($roboto);
-	@include text-weight(300);
-}
-label {
-	@include text-font($roboto);
-}
-// Headings
-h1 { @include text-size(34px); @include text-weight($weight-thin); @include margin-bottom(1.85rem); }
-h2 { @include text-size(30px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
-h3 { @include text-size(26px); @include text-weight($weight-thin); @include margin-bottom(1.5rem); }
-h4 { @include text-size(22px); @include text-weight($weight-light); }
-h5 { @include text-size(18px); @include text-weight($weight-base); }
-h6 { @include text-size(16px); @include text-weight($weight-bold); }
-h1, h2, h3 { @include text-line-height(38px); }
-h4, h5, h6 { @include text-line-height(24px); }
-p {
-	@include text-colour($grey-dark);
-	@include text-size(15px);
-	@include text-weight(300);
-	@include breakpoint(large) {
-		@include text-size(16px);
-	}
-	&.note {
-		@include text-colour($grey);
-		@include text-size(14px);
-		@include text-style(italic);
-	}
-}
 em {
-	@include margin-bottom(1.5em);
 	@include text-colour($grey-blue);
-	@include text-size(14px);
-	@include text-style(italic);
 }
 h1, h2, h3, h4, h5, h6 {
-	&.line {
-		@include padding-bottom($space-small);
-		@include border-bottom($grey-light);
-	}
 	span {
-		@include padding-right($space-x-small);
 		@include text-colour($pink);
-		font-size: 0.7em;
 	}
 }
-@include breakpoint($bp-small) {
-	h1 { @include text-size(50px); }
-	h2 { @include text-size(44px); }
-	h3 { @include text-size(32px); }
-	h4 { @include text-size(24px); }
-	h5 { @include text-size(18px); }
-	h6 { @include text-size(16px); }
-}
-@include breakpoint($bp-large) {
-	h1 { @include text-size(60px); }
-	h2 { @include text-size(48px); }
-	h3 { @include text-size(38px); }
-	h4 { @include text-size(24px); }
-	h5 { @include text-size(20px); }
-	h6 { @include text-size(18px); }
+h6 {
+	@include text-colour($pink);
 }

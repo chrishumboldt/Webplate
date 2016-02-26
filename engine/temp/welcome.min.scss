@@ -52,30 +52,115 @@ $font-family-set: $option-font-family;
 
 /**
  * File: welcome.scss
- * Type: SASS
+ * Type: SASS file
  * Author: Chris Humboldt
  */
 
+// Layout
+#container {
+	@include position(relative);
+	@include size(100vw, 100vh);
+	@include overflow(hidden);
+}
+// Fulll page
+._full-page {
+	@include position(absolute);
+	@include flex-display();
+	@include align-items(center);
+	@include justify-content(center);
+	@include size(100vw, 100vh);
+	@include level(2);
+}
 // Banner
-// .row.example {
-// 	@include border(3px, lighten($grey-blue-light, 14%));
-// 	div {
-// 		@include padding-vertical($space-small);
-// 		@include text-align(center);
-// 		@include text-size(14px);
-// 		@include text-weight(300);
-// 		@include background-colour(lighten($grey-blue-light, 10%));
-// 		@include border(3px, lighten($grey-blue-light, 14%));
-// 		@include breakpoint(large) {
-// 			@include text-size(16px);
-// 		}
-// 	}
-// }
-// h4 {
-// 	@include text-colour($pink);
-// }
-// .title-bar {
-// 	.no-touch & ul li a {
-// 		@include text-weight(300);
-// 	}
-// }
+#banner {
+	@include text-align(center);
+	@include gradient-angle($pink, lighten($yellow, 12%));
+	@include animate(all, 0.4s);
+	h1 {
+		@include text-colour($white);
+		@include text-font('Yellowtail');
+	}
+	h5 {
+		@include text-colour($white);
+	}
+	h6 {
+		@include text-colour(fade-out($white, 0.4));
+		@include text-colour(lighten($yellow, 34%));
+	}
+	.inner {
+		@include content(medium);
+		@include limit(32em);
+		@include transform-scale(0.75, 0.75);
+		@include opacity(0);
+		@include animate(all, 0.4s);
+		._active & {
+			@include transform-scale(1, 1);
+			@include opacity(1);
+		}
+	}
+	._getting-started-active & {
+		@include transform-scale(0.9, 0.9);
+	}
+}
+ul#page-nav {
+	@include list-style(none);
+	@include spacing-no();
+	@include width(100%);
+	@include position(absolute, bottom $space-base);
+	@include flex-display();
+	@include align-items(center);
+	@include justify-content(center);
+	@include level(5);
+	@include opacity(0);
+	@include animate(all, 0.6s, 0.6s);
+	@include breakpoint-vertical(35em) {
+		@include position(absolute, bottom $space-large);
+	}
+	a {
+		@include show();
+		@include margin-horizontal($space-small);
+		@include text-colour($white);
+		@include text-decoration(none);
+		&.icon-twitter {
+			@include text-size(24px);
+		}
+		&:after {
+			@include background-colour($white);
+		}
+	}
+	._active & {
+		@include opacity(1);
+	}
+	._getting-started-active & {
+		@include opacity(0);
+		@include animate(all, 0.6s, 0s);
+	}
+}
+// Getting started
+#getting-started {
+	@include position-set(top 100vh);
+	@include background-colour($white);
+	.inner {
+		@include content(medium);
+		@include limit(50em);
+		@include height-max(100vh);
+		@include overflow(scroll);
+	}
+	a#link-getting-started-close {
+		@include position(absolute, top 0 right 0);
+		@include square(60px);
+		@include text-colour($grey-blue-light);
+		@include text-decoration(none);
+		@include text-size(20px);
+		@include animate(all);
+		@include background-colour(fade-out($white, 0.25));
+		@include level(2);
+		@include breakpoint(large) {
+			@include square(100px);
+			@include text-size(28px);
+		}
+		.no-touchevents &:hover {
+			@include text-colour($pink);
+		}
+	}
+}

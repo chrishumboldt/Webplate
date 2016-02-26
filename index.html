@@ -5,51 +5,46 @@
    <meta charset="utf-8">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-   <title>Webplate</title>
+   <title>Webplate - A configuration based framework</title>
    <link rel="icon" type="image/png" href="project/img/welcome/favicon.png" />
    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body style="display:none;">
 
-	<div id="webplate-content" style="display:none;">
-	   <!-- Title bar -->
-		<section class="title-bar">
-			<ul>
-				<li class="small-hide"><a href="#starting-guide" class="border-pink scroll-to">Getting Started</a></li>
-				<li class="small-hide"><a href="http://getwebplate.com/#/documentation/what-you-got/"target="_blank">Documentation</a></li>
-				<li class="small-show"><a href="http://getwebplate.com/#/documentation/what-you-got/"target="_blank">Docs</a></li>
-				<li><a href="https://twitter.com/webplatetweets" class="icon-twitter" target="_blank"></a></li>
-			</ul>
-			<a href="http://getwebplate.com" target="_blank" class="logo">
-				<span>Webplate</span>
-				<i class="icon-nfc"></i>
-			</a>
-		</section>
+   <!-- Content -->
+   <div id="container">
 
-		<!-- Banner -->
-		<section class="banner _title-bar-padding _fuse"><div class="limit">
-	      <h1>Make Something Awesome</h1>
-	      <p>We are so happy that you have decided to use Webplate. It is really easy to get started and has a ton of cool features so below are a few basic tips to get you going. Happy building!</p>
-	      <a class="btn-banner small-hide" href="https://github.com/chrishumboldt/Webplate" target="_blank">Fork Repo</a>
-	      <a class="btn-banner btn-bower" href="http://getwebplate.com/#/documentation/what-you-got/" target="_blank">Read Docs</a>
-		</div></section>
+        <ul id="page-nav">
+            <li><a id="link-getting-started" href class="link">Getting Started</a></li>
+            <li class="_show-small"><a href="http://getwebplate.com/#/documentation/what-you-got/" class="link" target="_blank">Docs</a></li>
+            <li class="_show-large"><a href="http://getwebplate.com/#/documentation/what-you-got/" class="link" target="_blank">Documentation</a></li>
+            <li><a href="https://twitter.com/webplatetweets" class="icon-twitter" target="_blank"></a></li>
+        </ul>
 
-		<!-- Starting guide -->
-		<div id="starting-guide" class="grey-strip">Getting Started</div>
-		<section class="content limit">
-		<h4>Include Webplate</h4>
-		<p>Simply drop the Webplate directory into your web project and include the <b>start.js</b> file before your ending body tag. Below is an example of this and note that an id of <b>webplate</b> is required.</p>
+        <section id="banner" class="_full-page">
+            <div class="inner">
+                <h1>Webplate</h1>
+                <h6>We're happy that you are giving this framework a try and hope you enjoy all the cool features.</h6>
+                <h5>Happy Building!</h5>
+            </div>
+        </section>
+
+        <section id="getting-started" class="_full-page">
+            <a id="link-getting-started-close" class="icon-cross" href></a>
+            <div class="inner">
+                <h6>Getting Started</h6>
+                <p>Include the <b>start.js</b> file with an id of <b>webplate</b> before your closing body tag.</p>
 <pre class="prettyprint linenums">
 &lt;body style=&quot;display:none;&quot;&gt;
     /* Your content goes here */
     &lt;script id=&quot;webplate&quot; src=&quot;webplate/start.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 </pre>
-		<p class="note">The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.</p>
-		<br><br>
-		<h4>Load Your Project Files</h4>
-		<p>All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.</p>
+                <br>
+                <h6>Load Your Project Files</h6>
+                <p>CSS and Javascript is included via a configuration file found at <b>webplate/project/config.json</b>.</p>
 <pre class="prettyprint linenums">
 {
     "project": {
@@ -58,27 +53,11 @@
     }
 }
 </pre>
-			<p class="note">You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages. <a href="http://getwebplate.com/#/documentation/configuration/" target="_blank">Want to know more?</a></p>
-			<br><br>
-			<h4>Lets Go To The Next Level</h4>
-			<p>Before you have even started, Webplate has already loaded up <a href="http://modernizr.com/" target="_blank">Modernizr</a>, <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>,  <a href="http://typeplate.com/" target="_blank">Typeplate</a>, <a href="http://julian.com/research/velocity/" target="_blank">Velocity.js</a> and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.</p>
-			<p>This will get you up and running for most projects but if you want to include Webplate components like <a href="http://getwebplate.com/#/documentation/buttons/" target="_blank">Buttons</a>, <a href="http://getwebplate.com/#/documentation/forms/" target="_blank">Forms</a> or <a href="http://getwebplate.com/#/documentation/modals/" target="_blank">Modals</a> or perhaps you want to even start delving into Webplate's automatic <b>Bower, SASS</b> and <b>Grunt</b> intergration then just read over some of the online documentation and become a bonafide pro.</p>
-			<p><b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera</p>
-		</section>
+                <p class="note">A comma delimited list allows you to load more than one file at a time. The full path is not required and is automatically maped to the project directory. You can also load different files on different pages. <a href="http://getwebplate.com/#/documentation/configuration/" target="_blank">Want to know more?</a></p>
+            </div>
+        </section>
 
-		<!-- Footer -->
-		<footer><div class="content limit"><div class="col-double">
-			<div class="left">
-				Made by <a href="http://chrishumboldt.com" target="_blank">Chris Humboldt</a>
-			</div>
-			<div class="right">
-				<a href="http://getwebplate.com/#/documentation/what-you-got/" target="_blank">Docs</a>&nbsp;&nbsp;
-				<a href="http://getwebplate.com/#/legal/" target="_blank">Legal Stuff</a>&nbsp;&nbsp;
-				Want updates? <a href="http://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>
-			</div>
-		</div></div></footer>
-
-	</div>
+    </div>
 
    <!-- Webplate -->
    <script id="webplate" src="start.js"></script>

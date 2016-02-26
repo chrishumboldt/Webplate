@@ -6,7 +6,9 @@
     }],
     "project": {
         "css": ["welcome.min.css"],
-        "js": ["welcome.min.js"]
+        "js": ["welcome.min.js"],
+        "ui": "fuse",
+        "icon-font": "icomoon"
     },
     "option": [
         "font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"
