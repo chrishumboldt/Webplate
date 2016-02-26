@@ -1,6 +1,6 @@
 /**
- * File: css/_spacing.scss
- * Type: SASS partial
+ * File: sass/css/_spacing.scss
+ * Type: SASS CSS file
  * Author: Chris Humboldt
  */
 
@@ -9,47 +9,47 @@ $spacing-limit: 10 !default;
 
 // Spacing mixin
 @mixin blueplate-spacing() {
-	.spacing-no {
+	._spacing-no {
 		@include spacing-no();
 	}
-	.pad-no {
+	._pad-no {
 		@include padding(0px);
 	}
-	.mgn-no {
+	._mgn-no {
 		@include margin(0px);
 	}
 	// Spacing loop
 	@for $index from 1 through $spacing-limit {
 		$multiplication: 1px;
 		$class-name: ($index * 1);
-		.pad-#{$class-name} {
+		._pad-#{$class-name} {
 			@include padding($multiplication * $index);
 		}
-		.pad-r-#{$class-name} {
+		._pad-r-#{$class-name} {
 			@include padding-right($multiplication * $index);
 		}
-		.pad-l-#{$class-name} {
+		._pad-l-#{$class-name} {
 			@include padding-left($multiplication * $index);
 		}
-		.pad-t-#{$class-name} {
+		._pad-t-#{$class-name} {
 			@include padding-top($multiplication * $index);
 		}
-		.pad-b-#{$class-name} {
+		._pad-b-#{$class-name} {
 			@include padding-bottom($multiplication * $index);
 		}
-		.mgn-#{$class-name} {
+		._mgn-#{$class-name} {
 			@include margin($multiplication * $index);
 		}
-		.mgn-r-#{$class-name} {
+		._mgn-r-#{$class-name} {
 			@include margin-right($multiplication * $index);
 		}
-		.mgn-l-#{$class-name} {
+		._mgn-l-#{$class-name} {
 			@include margin-left($multiplication * $index);
 		}
-		.mgn-t-#{$class-name} {
+		._mgn-t-#{$class-name} {
 			@include margin-top($multiplication * $index);
 		}
-		.mgn-b-#{$class-name} {
+		._mgn-b-#{$class-name} {
 			@include margin-bottom($multiplication * $index);
 		}
 	}

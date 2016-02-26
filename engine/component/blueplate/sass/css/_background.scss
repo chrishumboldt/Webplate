@@ -1,57 +1,57 @@
 /**
- * File: css/_background.scss
- * Type: SASS partial
+ * File: sass/css/_background.scss
+ * Type: SASS CSS file
  * Author: Chris Humboldt
  */
 
 // Background classes
 @mixin blueplate-background() {
-	.back-pos-l {
+	._back-pos-l {
 		@include background-position(left);
 	}
-	.back-pos-r {
+	._back-pos-r {
 		@include background-position(right);
 	}
-	.back-pos-t {
+	._back-pos-t {
 		@include background-position(top);
 	}
-	.back-pos-b {
+	._back-pos-b {
 		@include background-position(bottom);
 	}
-	.back-pos-c {
+	._back-pos-c {
 		@include background-position(center);
 	}
-	.back-repeat-no {
+	._back-repeat-no {
 		@include background-repeat(no-repeat);
 	}
-	.back-repeat-y {
+	._back-repeat-y {
 		@include background-repeat(repeat-y);
 	}
-	.back-repeat-x {
+	._back-repeat-x {
 		@include background-repeat(repeat-x);
 	}
-	.back-single {
+	._back-single {
 		@include background-single();
 	}
-	.back-contain {
+	._back-contain {
 		@include background-contain();
 	}
-	.back-cover {
+	._back-cover {
 		@include background-cover();
 	}
-	.back-black {
+	._back-black {
 		@include background-colour($black);
 	}
-	.back-grey {
+	._back-grey {
 		@include background-colour($grey);
 	}
-	.back-grey-light {
+	._back-grey-light {
 		@include background-colour($grey-light);
 	}
-	.back-grey-x-light {
+	._back-grey-x-light {
 		@include background-colour($grey-x-light);
 	}
-	.back-white {
+	._back-white {
 		@include background-colour($white);
 	}
 }

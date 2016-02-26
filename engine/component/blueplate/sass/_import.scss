@@ -1,22 +1,21 @@
 /**
- * File: _import.scss
+ * File: sass/_import.scss
  * Type: SASS importer
  * Author: Chris Humboldt
  */
 
 // Table of contents
 // Development
-// Basic imports
-// Module imports
-// CSS imports
-// Execute import
-// Call styles
+// Basic
+// Module
+// CSS
+// Execute
 
 // Development
 @import "development/function";
 @import "development/mixin";
 
-// Basic imports
+// Basic
 @import "basic/animation";
 @import "basic/arrow";
 @import "basic/background";
@@ -38,11 +37,13 @@
 @import "basic/text";
 @import "basic/transform";
 
-// Module imports
-@import "module/element";
-@import "module/list";
+// Components
+@import "component/content";
+@import "component/element";
+@import "component/layout";
+@import "component/list";
 
-// CSS imports
+// CSS
 @import "css/background";
 @import "css/display";
 @import "css/global";
@@ -53,5 +54,5 @@
 @import "css/spacing";
 @import "css/text";
 
-// Execute import
+// Execute
 @import "css/execute";

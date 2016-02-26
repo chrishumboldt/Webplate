@@ -1,121 +1,121 @@
 /**
- * File: css/_text.scss
- * Type: SASS partial
+ * File: sass/css/_text.scss
+ * Type: SASS CSS file
  * Author: Chris Humboldt
  */
 
 // Text classes
 @mixin blueplate-text() {
-	.hide-text {
+	._text-hide {
 		@include text-hide();
 	}
-	.txt-l {
+	._txt-l {
 		@include text-align(left);
 	}
-	.txt-c {
+	._txt-c {
 		@include text-align(center);
 	}
-	.txt-r {
+	._txt-r {
 		@include text-align(right);
 	}
-	.txt-size-x2l {
+	._txt-size-x2l {
 		@include text-size(x2-large);
 	}
-	.txt-size-xl {
+	._txt-size-xl {
 		@include text-size(x-large);
 	}
-	.txt-size-l {
+	._txt-size-l {
 		@include text-size(large);
 	}
-	.txt-size-m {
+	._txt-size-m {
 		@include text-size(medium);
 	}
-	.txt-size-n {
+	._txt-size-n {
 		@include text-size(base);
 	}
-	.txt-size-s {
+	._txt-size-s {
 		@include text-size(small);
 	}
-	.txt-size-xs {
+	._txt-size-xs {
 		@include text-size(x-small);
 	}
-	.txt-size-x2s {
+	._txt-size-x2s {
 		@include text-size(x2-small);
 	}
-	.txt-weight-xb {
+	._txt-weight-xb {
 		@include text-weight(heavy);
 	}
-	.txt-weight-b, .txt-bold {
+	._txt-weight-b, ._txt-bold {
 		@include text-weight(bold);
 	}
-	.txt-weight-n {
+	._txt-weight-n {
 		@include text-weight(base);
 	}
-	.txt-weight-l, .txt-light {
+	._txt-weight-l, ._txt-light {
 		@include text-weight(light);
 	}
-	.txt-weight-xl, .txt-thin {
+	._txt-weight-xl, ._txt-thin {
 		@include text-weight(thin);
 	}
-	.txt-weight-xl {
+	._txt-weight-xl {
 		@include text-weight(100);
 	}
-	.txt-normal {
+	._txt-normal {
 		@include text-weight(normal);
 	}
-	.txt-italics {
+	._txt-italics {
 		@include text-style(italic);
 	}
-	.txt-oblique {
+	._txt-oblique {
 		@include text-style(oblique);
 	}
-	.txt-white {
+	._txt-white {
 		@include text-colour($white);
 	}
-	.txt-grey {
+	._txt-grey {
 		@include text-colour($grey);
 	}
 	@include breakpoint(large) {
-		.large-txt-size-x2l {
+		._txt-size-x2l-large {
 			@include text-size(x2-large);
 		}
-		.large-txt-size-xl {
+		._txt-size-xl-large {
 			@include text-size(x-large);
 		}
-		.large-txt-size-l {
+		._txt-size-l-large {
 			@include text-size(large);
 		}
-		.large-txt-size-m {
+		._txt-size-m-large {
 			@include text-size(medium);
 		}
-		.large-txt-size-n {
+		._txt-size-n-large {
 			@include text-size(base);
 		}
-		.large-txt-size-s {
+		._txt-size-s-large {
 			@include text-size(small);
 		}
-		.large-txt-size-xs {
+		._txt-size-xs-large {
 			@include text-size(x-small);
 		}
-		.large-txt-size-x2s {
+		._txt-size-x2s-large {
 			@include text-size(x2-small);
 		}
-		.large-txt-weight-xb {
+		._txt-weight-xb-large {
 			@include text-weight(heavy);
 		}
-		.large-txt-weight-b, .large-txt-bold {
+		._txt-weight-b-large, ._txt-bold-large {
 			@include text-weight(bold);
 		}
-		.large-txt-weight-n {
+		._txt-weight-n-large {
 			@include text-weight(base);
 		}
-		.large-txt-weight-l, .large-txt-light {
+		._txt-weight-l-large, ._txt-light-large {
 			@include text-weight(light);
 		}
-		.large-txt-weight-xl {
+		._txt-weight-xl-large {
 			@include text-weight(thin);
 		}
-		.large-txt-normal {
+		._txt-normal-large {
 			@include text-weight(base);
 		}
 	}
