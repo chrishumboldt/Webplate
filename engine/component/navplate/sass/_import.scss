@@ -4,17 +4,13 @@
  * Author: Chris Humboldt
  */
 
-// Bower components
 @import "../../blueplate/sass/import";
 
-// Core
 @import "variable";
 
-// Modules
-@import "module/active";
-@import "module/overlay";
-@import "module/type-fullscreen";
-@import "module/type-slide";
+@import "component/overlay";
+@import "component/type-contextual";
+@import "component/type-fullscreen";
+@import "component/type-slide";
 
-// CSS
 @import "css/execute";

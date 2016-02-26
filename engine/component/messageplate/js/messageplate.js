@@ -1,11 +1,10 @@
 /**
- * File: messageplate.js
+ * File: js/essageplate.js
  * Type: Javascript component
  * Author: Chris Humboldt
  */
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Variables
 // Options
 // Tools
@@ -43,11 +42,11 @@ var messageplate = function($userOptions) {
 		// HTML
 		var $messageBox = document.createElement('div');
 		var $messageBoxHTML = '';
-		$messageBoxHTML += '<a class="messageplate-close"></a>';
-		$messageBoxHTML += '<div class="messageplate-type"></div>';
-		$messageBoxHTML += '<div class="messageplate-heading"></div>';
-		$messageBoxHTML += '<div class="messageplate-body"></div>';
-		$messageBoxHTML += '<div class="messageplate-buttons"></div>';
+		$messageBoxHTML += '<a class="mp-close"></a>';
+		$messageBoxHTML += '<div class="mp-type"></div>';
+		$messageBoxHTML += '<div class="mp-heading"></div>';
+		$messageBoxHTML += '<div class="mp-body"></div>';
+		$messageBoxHTML += '<div class="mp-buttons"></div>';
 		$messageBox.id = 'messageplate';
 		$messageBox.innerHTML = $messageBoxHTML;
 
@@ -147,7 +146,7 @@ var messageplate = function($userOptions) {
 
 	// Public functions
 	$self.close = function() {
-		tool.classRemove(tool.element.html, 'messageplate-reveal');
+		tool.classRemove(tool.element.html, 'mp-reveal');
 		setTimeout(function() {
 			tool.remove('#messageplate');
 		}, 300);
@@ -155,14 +154,14 @@ var messageplate = function($userOptions) {
 
 	$self.reveal = function() {
 		setTimeout(function() {
-			tool.classAdd(tool.element.html, 'messageplate-reveal');
+			tool.classAdd(tool.element.html, 'mp-reveal');
 		}, 50);
 	};
 
 	// Internal functions
 	function basicSetup() {
 		if (!tool.isTouch()) {
-			tool.classAdd(tool.element.html, 'messageplate-no-touch');
+			tool.classAdd(tool.element.html, 'mp-no-touch');
 		}
 		tool.remove('#messageplate');
 		tool.element.body.appendChild(tool.html.messageBox);
@@ -173,17 +172,17 @@ var messageplate = function($userOptions) {
 		$messageBoxEl = document.getElementById('messageplate');
 		$overlayEl = document.getElementById('web-overlay');
 
-		$messageBoxEl.querySelector('.messageplate-close').innerHTML = ($self.options.close !== false) ? $self.options.close : '';
-		$messageBoxEl.querySelector('.messageplate-type').innerHTML = ($self.options.type === false || $self.options.type === 'none') ? '' : '<div class="type-' + $self.options.type + '"><div class="line-one"></div><div class="line-two"></div></div>';
-		$messageBoxEl.querySelector('.messageplate-heading').innerHTML = $self.options.heading !== false ? '<h6>' + $self.options.heading + '</h6>' : '';
-		$messageBoxEl.querySelector('.messageplate-body').innerHTML = $self.options.body !== false ? $self.options.body : '';
+		$messageBoxEl.querySelector('.mp-close').innerHTML = ($self.options.close !== false) ? $self.options.close : '';
+		$messageBoxEl.querySelector('.mp-type').innerHTML = ($self.options.type === false || $self.options.type === 'none') ? '' : '<div class="t-' + $self.options.type + '"><div class="l-1"></div><div class="l-2"></div></div>';
+		$messageBoxEl.querySelector('.mp-heading').innerHTML = $self.options.heading !== false ? '<h6>' + $self.options.heading + '</h6>' : '';
+		$messageBoxEl.querySelector('.mp-body').innerHTML = $self.options.body !== false ? $self.options.body : '';
 
 		if ($self.options.buttonFalse !== false && $self.options.buttonTrue !== false) {
-			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonsBoth);
+			$messageBoxEl.querySelector('.mp-buttons').appendChild(tool.html.buttonsBoth);
 		} else if ($self.options.buttonTrue) {
-			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonTrue);
+			$messageBoxEl.querySelector('.mp-buttons').appendChild(tool.html.buttonTrue);
 		} else if ($self.options.buttonFalse) {
-			$messageBoxEl.querySelector('.messageplate-buttons').appendChild(tool.html.buttonFalse);
+			$messageBoxEl.querySelector('.mp-buttons').appendChild(tool.html.buttonFalse);
 		}
 	};
 
@@ -201,7 +200,7 @@ var messageplate = function($userOptions) {
 				$self.close();
 			};
 		}
-		$messageBoxEl.querySelector('.messageplate-close').onclick = function() {
+		$messageBoxEl.querySelector('.mp-close').onclick = function() {
 			$self.close();
 		};
 		$overlayEl.onclick = function() {

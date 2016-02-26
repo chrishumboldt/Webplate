@@ -14,7 +14,7 @@
 		@include text-weight(normal);
 
 		// Hover
-		.formplate-no-touch &:hover {
+		.fp-no-touch &:hover {
 			@include cursor(pointer);
 		}
 	}

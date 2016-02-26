@@ -4,13 +4,8 @@
  * Author: Chris Humboldt
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
 // Overlay
-
-// Overlay
-// ---------------------------------------------------------------------------------------
-@mixin messageplate-overlay() {
+@mixin navplate-overlay() {
 	#web-overlay {
 		@include display(block);
 		@include position(fixed, top 0 right 0 bottom 0 left 0);
@@ -18,12 +13,15 @@
 		@include level(1000);
 		@include visibility(hidden);
 		@include opacity(0);
-		@include animate(all, 0.4s);
-
+		@include animate(all, 0.3s);
 		// Reveal
-		.messageplate-reveal & {
+		html.np-reveal & {
 			@include visibility(visible);
 			@include opacity(1);
+		}
+		// Types
+		.np-t-fullscreen & {
+			@include background-colour(fade-out($black, 0.175));
 		}
 	}
 }

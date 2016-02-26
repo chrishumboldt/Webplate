@@ -11,37 +11,27 @@
 // Variables
 $navplate-fs-time: 0.25s;
 $navplate-fs-delay: 0.075s;
+
 // Mixins
 @mixin navplate-type-fullscreen() {
-   .navplate.type-fullscreen {
-      @include navplate-type-fullscreen-styles-reveal();
-   }
-   .navplate.type-fullscreen.active-always {
-      @include navplate-type-fullscreen-styles();
-   }
-   .navplate.type-fullscreen.active-small {
-      @include breakpoint(small) {
-         @include navplate-type-fullscreen-styles();
-      }
-   }
-   .navplate.type-fullscreen.active-large {
-      @include breakpoint(large) {
-         @include navplate-type-fullscreen-styles();
-      }
-   }
-   a.navplate-close {
-      @include hide();
-      .navplate-reveal & {
-         @include show(block);
-      }
-   }
+	.np._t-fullscreen {
+		@include navplate-type-fullscreen-styles();
+		@include navplate-type-fullscreen-styles-reveal();
+	   a.np-close {
+	      @include hide();
+	      .np-reveal & {
+	         @include show(block);
+	      }
+	   }
+	}
 }
+
 @mixin navplate-type-fullscreen-styles() {
    @include show(block);
    @include position(fixed, top 0 right 0 bottom 0 left 0);
    @include level(1001);
    @include visibility(hidden);
-   a.navplate-close {
+   a.np-close {
       @include position(absolute, top 0 right 0);
       @include size(50px, 50px);
       @include text-line-height(50px);
@@ -90,7 +80,7 @@ $navplate-fs-delay: 0.075s;
                @include text-colour($white);
                @include animate(all, 0.2s);
             }
-            .navplate-no-touch & {
+            .np-no-touch & {
                @include text-colour(darken($grey-light, 10%));
                &:hover {
                   @include text-colour($white);
@@ -101,38 +91,38 @@ $navplate-fs-delay: 0.075s;
       }
    }
    // State
-   &.nav-display {
+   &.np-display {
       @include visibility(visible);
    }
 }
 @mixin navplate-type-fullscreen-styles-reveal() {
    // Directions
-   &.reveal-left {
+   &._r-left {
       li {
          @include transparency(0);
          @include transform-translate-3d(-250px, 0px, 0px);
       }
    }
-   &.reveal-top {
+   &._r-top {
       li {
          @include transparency(0);
          @include transform-translate-3d(0px, -250px, 0px);
       }
    }
-   &.reveal-right {
+   &._r-right {
       li {
          @include transparency(0);
          @include transform-translate-3d(250px, 0px, 0px);
       }
    }
-   &.reveal-bottom {
+   &._r-bottom {
       li {
          @include transparency(0);
          @include transform-translate-3d(0px, 250px, 0px);
       }
    }
    // State
-   &.nav-display {
+   &.np-display {
       li {
          @include transparency(1);
          @include transform-translate-3d(0px, 0px, 0px);

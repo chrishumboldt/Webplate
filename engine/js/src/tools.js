@@ -531,6 +531,9 @@ var web = function() {
 	var modal = function($options) {
 		return new modalplate($options);
 	};
+	var tab = function($options) {
+		return new tabplate($options);
+	};
 
 	// Return
 	return {
@@ -600,6 +603,7 @@ var web = function() {
 		loader: loader,
 		menu: menu,
 		message: message,
-		modal: modal
+		modal: modal,
+		tab: tab
 	};
 }();

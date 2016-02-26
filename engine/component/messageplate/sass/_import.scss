@@ -1,20 +1,13 @@
 /**
- * File: _import.scss
+ * File: sass/_import.scss
  * Type: SASS import
  * Author: Chris Humboldt
  */
 
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Imports
-
-// Imports
-// ---------------------------------------------------------------------------------------
-@import "../../buttonplate/sass/import";
 @import "../../blueplate/sass/import";
 
-@import "module/button";
-@import "module/message";
-@import "module/overlay";
+@import "component/button";
+@import "component/message";
+@import "component/overlay";
 
 @import "css/execute";

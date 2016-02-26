@@ -5,7 +5,8 @@
 		"js": ["src/welcome.js"]
    }],
 	"project": {
-		"js": ["src/welcome.js"]
+		"css": ["welcome.min.css"],
+		"js": ["welcome.min.js"]
 	},
 	"option": [
       "font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"

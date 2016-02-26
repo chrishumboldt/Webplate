@@ -275,10 +275,8 @@
 
 							// Root config
 							if ($json.project) {
-								var $bodyClass = $json.project['body-class'] || false;
 								var $componentFirst = $json.project['component-first'] || [];
 								var $component = $json.project['component'] || [];
-								var $formColour = $json.project['form-colour'] || 'blue';
 								var $iconFont = $json.project['icon-font'] || false;
 								var $projectCSS = $json.project['css'] || [];
 								var $projectJS = $json.project['js'] || [];
@@ -304,18 +302,14 @@
 											var $configType = $page['config-type'] || 'merge';
 
 											if ($configType == 'new') {
-												$bodyClass = $page['body-class'] || false;
 												$componentFirst = $page['component-first'] || [];
 												$component = $page['component'] || [];
-												$formColour = $page['form-colour'] || 'blue';
 												$iconFont = $page['icon-font'] || false;
 												$projectCSS = $page['css'] || [];
 												$projectJS = $page['js'] || [];
 												$ui = $page['ui'] || false;
 											} else {
 												// Basic additions (some have to be overwritten by design)
-												$bodyClass = $page['body-class'] ? $page['body-class'] : $bodyClass;
-												$formColour = $page['form-colour'] ? $page['form-colour'] : $formColour;
 												$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
 												$ui = $page['ui'] ? $page['ui'] : $ui;
 
@@ -364,16 +358,6 @@
 									};
 								}
 
-								// Set the body class
-								if ($bodyClass !== false) {
-									web.classAdd(web.element.body, $bodyClass.trim());
-								}
-
-								// Form colour
-								if ($responseText.indexOf('formplate') > -1) {
-									web.element.body.setAttribute('data-formplate-colour', $formColour);
-								}
-
 								// Icon fonts
 								if ($iconFont == 'icomoon') {
 									yepnope({
@@ -387,7 +371,7 @@
 
 								// Load UI
 								if ($ui != false) {
-									$arExtraCSS.push($path.project.ui + $ui + '/style.css');
+									$arExtraCSS.push($path.project.ui + $ui + '/style.min.css');
 									$arExtraJS.push($path.project.ui + $ui + '/script.min.js');
 								}
 
@@ -400,12 +384,7 @@
 									core.loadProjectFiles($projectCSS, $projectJS);
 								}
 							} else {
-								if ($webContent !== null) {
-									$webContent.removeAttribute('style');
-									document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-								} else {
-									web.element.body.removeAttribute('style');
-								}
+								core.showPage();
 							}
 						};
 					});
@@ -500,13 +479,7 @@
 				yepnope({
 					load: $arExtraCSS,
 					complete: function() {
-						if ($webContent !== null) {
-							$webContent.removeAttribute('style');
-							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-						} else {
-							web.element.body.removeAttribute('style');
-						}
-						new formplate();
+						core.showPage();
 						setTimeout(function() {
 							yepnope({
 								load: $arExtraJS
@@ -515,27 +488,24 @@
 					}
 				});
 			} else if ($arExtraJS.length > 0) {
-				if ($webContent !== null) {
-					$webContent.removeAttribute('style');
-					document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-				} else {
-					web.element.body.removeAttribute('style');
-				}
-				new formplate();
+				core.showPage();
 				setTimeout(function() {
 					yepnope({
 						load: $arExtraJS
 					});
 				}, 50);
 			} else {
-				if ($webContent !== null) {
-					$webContent.removeAttribute('style');
-					document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-				} else {
-					web.element.body.removeAttribute('style');
-				}
-				new formplate();
+				core.showPage();
 			}
+		},
+		showPage: function() {
+			if ($webContent !== null) {
+				$webContent.removeAttribute('style');
+				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+			} else {
+				web.element.body.removeAttribute('style');
+			}
+			new formplate();
 		}
 	};
 

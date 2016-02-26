@@ -29,7 +29,7 @@ $toggler-handle-dim: $toggler-h - 2px;
 			@include size(50px, 30px);
 			@include opacity(0);
 			@include level(1);
-			.formplate-no-touch &:hover {
+			.fp-no-touch &:hover {
 				cursor: pointer;
 			}
 		}
@@ -66,7 +66,7 @@ $toggler-handle-dim: $toggler-h - 2px;
 				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
 			}
 		}
-		.formplate-no-touch &:hover {
+		.fp-no-touch &:hover {
 			cursor: pointer;
 		}
 	}

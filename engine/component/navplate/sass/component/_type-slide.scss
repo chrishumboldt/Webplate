@@ -5,22 +5,10 @@
 */
 // Mixins
 @mixin navplate-type-slide() {
-   .navplate.type-slide.active-always {
-      @include navplate-type-slide-styles();
-   }
-   .navplate.type-slide.active-small {
-      @include breakpoint(small) {
-         @include navplate-type-slide-styles();
-      }
-   }
-   .navplate.type-slide.active-large {
-      @include breakpoint(large) {
-         @include navplate-type-slide-styles();
-      }
-   }
-   .navplate.type-slide {
-      @include navplate-type-slide-styles-reveal();
-   }
+	.np._t-slide {
+	   @include navplate-type-slide-styles();
+	   @include navplate-type-slide-styles-reveal();
+	}
 }
 @mixin navplate-type-slide-styles() {
    @include block($menu-width, 100%);
@@ -29,7 +17,7 @@
    @include list-style(none);
    @include level(-100);
    @include visibility(hidden);
-   &.navplate-ready {
+   &.np-ready {
       @include level(1001);
       @include visibility(visible);
    }
@@ -65,7 +53,7 @@
             @include text-colour($grey);
             @include text-size($size-base);
          }
-         .no-touch &:hover {
+         .np-no-touch &:hover {
             @include text-colour($red);
          }
       }
@@ -74,28 +62,28 @@
 @mixin navplate-type-slide-styles-reveal() {
    @include animate(all, 0.3s);
    // Directions
-   &.reveal-left {
+   &._r-left {
       @include position(fixed, top 0 left 0);
       @include transform-translate-3d(-$menu-width, 0px, 0px);
       @include breakpoint(large) {
          @include transform-translate-3d(-$menu-width-large, 0px, 0px);
       }
    }
-   &.reveal-top {
+   &._r-top {
       @include position(fixed, top 0 left 0);
       @include transform-translate-3d(-$menu-width, 0px, 0px);
       @include breakpoint(large) {
          @include transform-translate-3d(-$menu-width-large, 0px, 0px);
       }
    }
-   &.reveal-right {
+   &._r-right {
       @include position(fixed, top 0 right 0);
       @include transform-translate-3d($menu-width, 0px, 0px);
       @include breakpoint(large) {
          @include transform-translate-3d($menu-width-large, 0px, 0px);
       }
    }
-   &.reveal-bottom {
+   &._r-bottom {
       @include position(fixed, top 0 left 0);
       @include transform-translate-3d(-$menu-width, 0px, 0px);
       @include breakpoint(large) {
@@ -103,7 +91,7 @@
       }
    }
    // Reveal
-   &.nav-display {
+   &.np-display {
       @include transform-translate-3d(0px, 0px, 0px);
    }
 }

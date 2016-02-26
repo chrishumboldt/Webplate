@@ -84,8 +84,8 @@ function formplate($userOptions) {
 
 	var $formplateEls = document.querySelectorAll($self.options.selector);
 
-	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'formplate-no-touch')) {
-		tool.classAdd(tool.element.html, 'formplate-no-touch');
+	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'fp-no-touch')) {
+		tool.classAdd(tool.element.html, 'fp-no-touch');
 	}
 
 	// Functions

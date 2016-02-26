@@ -30,13 +30,14 @@ $tick-scale-large: 1.4;
 			@include margin-bottom(2px);
 			@include size(25px, 25px);
 			@include vertical-align(middle);
+			@include border($white);
 			@include background-clip();
 			@include level(1);
 			@include animate(all);
 		}
 		&:after {
 			content: "";
-			@include position(absolute, left 7px top 2px);
+			@include position(absolute, left 7px top 1px);
 			@include height(25px);
 			@include text-colour($white);
 			@include text-line-height(25px);
@@ -64,7 +65,7 @@ $tick-scale-large: 1.4;
 		}
 	}
 	@include form-checkbox-styles($type);
-	@include form-checkbox-hover($type);
+	@include form-checkbox-hover();
 	@include form-checkbox-radio();
 	@include form-checkbox-fixes();
 }
@@ -81,17 +82,15 @@ $tick-scale-large: 1.4;
 	} @else if $type == flat {
 		.fp-check._s-flat {
 			&:before {
-				@include background-colour($grey-x2-light);
+				@include background-colour($grey-x-light);
+				@include border($grey-x-light);
 			}
 		}
 	} @else if $type == raised {
 		.fp-check._s-raised {
-			&:hover:before {
-				@include drop-shadow(fade-out($black, 0.65), 4px, 1px);
-			}
 			&:before {
 				@include border-radius();
-				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+				@include drop-shadow(fade-out($black, 0.85), 4px, 1px);
 			}
 		}
 	} @else {
@@ -103,76 +102,30 @@ $tick-scale-large: 1.4;
 		}
 		.fp-check._s-flat {
 			&:before {
-				@include background-colour($grey-x2-light);
+				@include background-colour($grey-x-light);
+				@include border($grey-x-light);
 			}
 		}
 		.fp-check._s-raised {
-			&:hover:before {
-				@include drop-shadow(fade-out($black, 0.65), 4px, 1px);
-			}
 			&:before {
 				@include border-radius();
-				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+				@include drop-shadow(fade-out($black, 0.85), 4px, 1px);
 			}
 		}
 	}
 }
 
 // Checkbox / radio colour states
-@mixin form-checkbox-hover($type: all) {
+@mixin form-checkbox-hover() {
 	@each $colour-name, $colour in $ar-colours-form {
 		.fp-check._c-#{$colour-name} {
-			&._checked:before {
+			&._checked:before,
+			.fp-no-touch &._checked:hover:before  {
 				@include background-color($colour);
+				@include border($colour);
 			}
-			@if $type == line {
-				&._s-line {
-					&:hover:before {
-						@include border($colour);
-					}
-					&._checked:before {
-						@include border($colour);
-						@include background-color($colour);
-					}
-				}
-			} @else if $type == flat {
-				&._s-flat {
-					&:hover:before {
-						@include background-colour(fade-out($colour, 0.92));
-					}
-					&._checked:before {
-						@include background-color($colour);
-					}
-				}
-			} @else if $type == raised {
-				&._s-raised {
-					&._checked:before {
-						@include drop-shadow(fade-out($colour, 0.4), 4px, 1px);
-					}
-				}
-			} @else {
-				&._s-line {
-					&:hover:before {
-						@include border($colour);
-					}
-					&._checked:before {
-						@include border($colour);
-						@include background-color($colour);
-					}
-				}
-				&._s-flat {
-					&:hover:before {
-						@include background-colour(fade-out($colour, 0.92));
-					}
-					&._checked:before {
-						@include background-color($colour);
-					}
-				}
-				&._s-raised {
-					&._checked:before {
-						@include drop-shadow(fade-out($colour, 0.4), 4px, 1px);
-					}
-				}
+			.fp-no-touch &:hover:before {
+				@include border($colour);
 			}
 		}
 	}
