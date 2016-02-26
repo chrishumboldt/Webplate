@@ -1,42 +1,14 @@
 /**
- * SASS File: 		_execute.scss
- * Type: 			partial
- * Author:        	Chris Humboldt
- * Last Edited:   	23 September 2014
+ * File: sass/css/_execute.scss
+ * Type: SASS execute file
+ * Author: Chris Humboldt
  */
 
-
-// Table of contents
-// ---------------------------------------------------------------------------------------
-// Formplate CSS
-
-
-// Formplate CSS
-// ---------------------------------------------------------------------------------------
-@mixin formplate-css() {
-
-	// Checks
-	@include form-checkbox-all();
-	@include form-checkbox-hover();
-	@include form-checkbox-radio();
-	@include form-checkbox-fixes();
-
-	// Inputs
-	@include form-input();
-	@include form-input-hover();
-
-	// Labels
+@mixin formplate-css($type: all) {
+	@include form-checkbox($type);
+	@include form-input($type);
 	@include form-label();
-
-	// Selects
-	@include form-select();
-	@include form-select-hover();
-	@include form-select-fixes();
-
-	// Textareas
-	@include form-textarea();
-	@include form-textarea-states();
-
-	// Toggler
-	@include form-toggler();
+	@include form-select($type);
+	@include form-textarea($type);
+	@include form-toggler($type);
 }

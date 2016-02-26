@@ -15,6 +15,7 @@
 // Strings
 // URL
 // Webplate
+// Component facades
 
 var web = function() {
 
@@ -114,13 +115,23 @@ var web = function() {
 	};
 
 	// DOM
-	var append = function($html, $parent) {
-		var $div = document.createElement('div');
-		$div.innerHTML = $html;
-		document.querySelector($parent || 'body').appendChild($div.firstChild);
+	var append = function($element, $html) {
+		if (exists($element)) {
+			if ($element.length > 0) {
+				for (var $i = 0, $len = $element.length; $i < $len; $i++) {
+					var $div = document.createElement('div');
+					$div.innerHTML = $html;
+					$element[$i].appendChild($div.firstChild);
+				}
+			} else {
+				var $div = document.createElement('div');
+				$div.innerHTML = $html;
+				$element.appendChild($div.firstChild);
+			}
+		}
 	};
 	var classAdd = function($element, $class) {
-		if ($element !== null) {
+		if (exists($element)) {
 			if (typeof $class === 'object') {
 				for (var $i = 0, $len = $class.length; $i < $len; $i++) {
 					classAddExecute($element, $class[$i]);
@@ -137,10 +148,12 @@ var web = function() {
 		}
 	};
 	var classClear = function($element) {
-		$element.removeAttribute('class');
+		if (exists($element)) {
+			$element.removeAttribute('class');
+		}
 	};
 	var classRemove = function($element, $class) {
-		if ($element !== null) {
+		if (exists($element)) {
 			if (typeof $class === 'object') {
 				for (var $i = $class.length - 1; $i >= 0; $i--) {
 					classRemoveExecute($element, $class[$i]);
@@ -161,8 +174,19 @@ var web = function() {
 		}
 	};
 	var classReplace = function($element, $removeClass, $addClass) {
-		classAdd($element, $addClass);
-		classRemove($element, $removeClass);
+		if (exists($element)) {
+			classAdd($element, $addClass);
+			classRemove($element, $removeClass);
+		}
+	};
+	var classToggle = function($element, $class) {
+		if (exists($element)) {
+			if (!hasClass($element, $class)) {
+				classAdd($element, $class);
+			} else {
+				classRemove($element, $class);
+			}
+		}
 	};
 	var eventAdd = function($elem, $type, $eventHandle) {
 		if ($elem == null || typeof($elem) == 'undefined') return;
@@ -188,44 +212,39 @@ var web = function() {
 		return [].indexOf.call($node.parentNode.children, $node);
 	};
 	var idAdd = function($element, $id) {
-		$element.setAttribute('id', $id);
+		if (exists($element)) {
+			$element.setAttribute('id', $id);
+		}
 	};
 	var idRemove = function($element) {
-		$element.removeAttribute('id');
+		if (exists($element)) {
+			$element.removeAttribute('id');
+		}
 	};
 	var inputDisable = function($selector) {
-		var $inputElements = inputGet($selector);
+		var $inputElements = select($selector);
 		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
 			$inputElements[$i].disabled = true;
 		}
 	}
 	var inputEnable = function($selector) {
-		var $inputElements = inputGet($selector);
+		var $inputElements = select($selector);
 		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
 			$inputElements[$i].disabled = false;
 		}
 	}
-	var inputGet = function($selector) {
-		var $inputElements;
-		var $type = $selector.charAt(0);
-		if ($type === '#' || $type === '.') {
-			$inputElements = document.querySelectorAll($selector);
-		} else {
-			$inputElements = document.getElementsByTagName($selector);
-		}
-		return $inputElements;
-	}
 	var remove = function($selector) {
-		if ($selector.charAt(0) === '#' && !hasWhiteSpace($selector)) {
-			var $element = document.getElementById($selector.substring(1));
-			if ($element !== null) {
-				$element.parentNode.removeChild($element);
-			}
-		} else if ($selector.charAt(0) === '.') {
-			var $elements = document.querySelectorAll($selector);
-			for (var $i = $elements.length - 1; $i >= 0; $i--) {
-				if ($elements[$i] !== null) {
-					$elements[$i].parentNode.removeChild($elements[$i]);
+		var $element = select($selector);
+		if ($element !== null) {
+			if ($element.length > 1) {
+				for (var $i = $elements.length - 1; $i >= 0; $i--) {
+					if ($elements[$i] !== null) {
+						$elements[$i].parentNode.removeChild($elements[$i]);
+					}
+				}
+			} else {
+				if ($element !== null) {
+					$element.parentNode.removeChild($element);
 				}
 			}
 		}
@@ -258,69 +277,39 @@ var web = function() {
 			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
 		};
 	};
-	var snap = function($selector, $breakpoint) {
-		var $breakpoint = $breakpoint || 0;
-		var $doc = document.documentElement;
-		var $elements = document.querySelectorAll($selector);
-		var $scrollTop = 0;
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			var $snapElement = $elements[$i];
-			var $elementPositionTop = $snapElement.getBoundingClientRect().top;
-			eventAdd(window, 'scroll', function() {
-				$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
-
-				if ($scrollTop >= $elementPositionTop) {
-					if (window.innerWidth >= $breakpoint) {
-						classAdd($snapElement, 'pos-fixed');
-						$snapElement.style.top = 0;
-					}
-				} else {
-					classRemove($snapElement, 'pos-fixed');
-					$snapElement.style.top = 'auto';
-				}
+	var stateClear = function($element) {
+		if (exists($element)) {
+			var $newWebStates = $webState.list.slice().map(function($newState) {
+				return $webPrefix.state + $newState;
 			});
-			if ($breakpoint > 0) {
-				eventAdd(window, 'resize', function() {
-					if (window.innerWidth < $breakpoint) {
-						classRemove($snapElement, 'pos-fixed');
-						$snapElement.style.top = 'auto';
-					} else {
-						if ($scrollTop >= $elementPositionTop) {
-							classAdd($snapElement, 'pos-fixed');
-							$snapElement.style.top = 0;
-						}
-					}
-				});
-			}
+			classRemove($element, $newWebStates);
 		}
 	};
-	var stateClear = function($element) {
-		var $newWebStates = $webState.list.slice().map(function($newState) {
-			return $webPrefix.state + $newState;
-		});
-		classRemove($element, $newWebStates);
-	};
 	var stateSet = function($element, $state) {
-		var $newWebStates = $webState.list.slice().map(function($newState) {
-			return $webPrefix.state + $newState;
-		});
-		var $stateClass = $newWebStates.splice($newWebStates.indexOf($webPrefix.state + $state), 1);
-		classReplace($element, $newWebStates, $stateClass);
+		if (exists($element)) {
+			var $newWebStates = $webState.list.slice().map(function($newState) {
+				return $webPrefix.state + $newState;
+			});
+			var $stateClass = $newWebStates.splice($newWebStates.indexOf($webPrefix.state + $state), 1);
+			classReplace($element, $newWebStates, $stateClass);
+		}
 	};
 	var stateToggle = function($element, $state, $clear) {
-		if ($webState.list.indexOf($state) > 1) {
-			var $altState = $webState.alts[$state] || false;
-			var $clear = $clear || false;
-			var $stateClass = $webPrefix.state + $state;
+		if (exists($element)) {
+			if ($webState.list.indexOf($state) > 1) {
+				var $altState = $webState.alts[$state] || false;
+				var $clear = $clear || false;
+				var $stateClass = $webPrefix.state + $state;
 
-			if (hasClass($element, $stateClass)) {
-				if ($clear || $altState === false) {
-					stateClear($element);
+				if (hasClass($element, $stateClass)) {
+					if ($clear || $altState === false) {
+						stateClear($element);
+					} else {
+						stateSet($element, $altState);
+					}
 				} else {
-					stateSet($element, $altState);
+					stateSet($element, $state);
 				}
-			} else {
-				stateSet($element, $state);
 			}
 		}
 	};
@@ -334,24 +323,28 @@ var web = function() {
 		}
 	};
 	var wrap = function($element, $tag, $className) {
-		var $wrapper = document.createElement($tag);
-		var $tempElement = $element.cloneNode(true);
-		$wrapper.className = $className;
+		if (exists($element)) {
+			var $wrapper = document.createElement($tag);
+			var $tempElement = $element.cloneNode(true);
+			$wrapper.className = $className;
 
-		$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
-		$element.parentNode.removeChild($element);
+			$element.parentNode.insertBefore($wrapper, $element).appendChild($tempElement);
+			$element.parentNode.removeChild($element);
+		}
 	};
 	var wrapInner = function($element, $tag, $className) {
-		if (typeof $tag === 'string') {
-			$tag = document.createElement($tag);
-		}
-		if ($className !== undefined) {
-			var $div = $element.appendChild($tag).setAttribute('class', $className);
-		} else {
-			var $div = $element.appendChild($tag);
-		}
-		while ($element.firstChild !== $tag) {
-			$tag.appendChild($element.firstChild);
+		if (exists($element)) {
+			if (typeof $tag === 'string') {
+				$tag = document.createElement($tag);
+			}
+			if ($className !== undefined) {
+				var $div = $element.appendChild($tag).setAttribute('class', $className);
+			} else {
+				var $div = $element.appendChild($tag);
+			}
+			while ($element.firstChild !== $tag) {
+				$tag.appendChild($element.firstChild);
+			}
 		}
 	};
 
@@ -361,35 +354,6 @@ var web = function() {
 		$xmlhttp.onreadystatechange = $callback;
 		$xmlhttp.open('GET', $file, true);
 		$xmlhttp.send();
-	};
-
-	// Forms
-	var lockSubmit = function($selector) {
-		var $elements = document.querySelectorAll($selector);
-
-		for ($i = 0; $i < $elements.length; $i++) {
-			$elements[$i].onclick = function($ev) {
-				if ($ev.keyCode == 13) {
-					return false;
-				}
-			};
-		}
-	};
-
-	// Objects
-	// As per Leon Revill
-	// http://www.revillweb.com/tutorials/super-useful-javascript-functions/
-	var searchObjects = function($obj, $key, $val) {
-		var $objects = [];
-
-		for (var $i in $obj) {
-			if (typeof $obj[$i] == 'object') {
-				$objects = $objects.concat(searchObjects($obj[$i], $key, $val));
-			} else if ($i == $key && $obj[$key] == $val) {
-				$objects.push($obj);
-			}
-		}
-		return $objects;
 	};
 
 	// Strings
@@ -541,53 +505,31 @@ var web = function() {
 			}
 		};
 	};
-	var scrollWatch = function() {
-		var $doc = document.documentElement;
-		var $lastScroll = 0;
-		var $scrollTop;
 
-		classAdd($webEl.html, $webPrefix.scroll + 'none');
-		eventAdd(window, 'scroll', function() {
-			if (hasClass($webEl.html, $webPrefix.scroll + 'none')) {
-				classRemove($webEl.html, $webPrefix.scroll + 'none');
-			}
-			$scrollTop = (window.pageYOffset || $doc.scrollTop) - ($doc.clientTop || 0);
-			if ($scrollTop > $lastScroll) {
-				if (!hasClass($webEl.html, $webPrefix.scroll + 'down')) {
-					classRemove($webEl.html, $webPrefix.scroll + 'up');
-					classAdd($webEl.html, $webPrefix.scroll + 'down');
-				}
-			} else {
-				if (hasClass($webEl.html, $webPrefix.scroll + 'down')) {
-					classRemove($webEl.html, $webPrefix.scroll + 'down');
-					classAdd($webEl.html, $webPrefix.scroll + 'up');
-				}
-			}
-			$lastScroll = $scrollTop;
-		});
+	// Component facades
+	var button = function($options) {
+		return new buttonplate($options);
 	};
-	var windowWatch = function() {
-		windowTypeExecute();
-		eventAdd(window, 'resize', function() {
-			windowTypeExecute();
-		});
+	var flicker = function($options) {
+		return new flickerplate($options);
 	};
-	var windowTypeExecute = function() {
-		if (window.innerWidth <= 700) {
-			if (hasClass($webEl.html, 'web-view-large')) {
-				classRemove($webEl.html, 'web-view-large');
-				classAdd($webEl.html, 'web-view-small');
-			} else {
-				classAdd($webEl.html, 'web-view-small');
-			}
-		} else {
-			if (hasClass($webEl.html, 'web-view-small')) {
-				classRemove($webEl.html, 'web-view-small');
-				classAdd($webEl.html, 'web-view-large');
-			} else {
-				classAdd($webEl.html, 'web-view-large');
-			}
-		}
+	var form = function($options) {
+		return new formplate($options);
+	};
+	var injectplateExecute = function() {
+		return new injectplate();
+	};
+	var loader = function($options) {
+		return new loaderplate($options);
+	};
+	var menu = function($options) {
+		return new navplate($options);
+	};
+	var message = function($options) {
+		return new messageplate($options);
+	};
+	var modal = function($options) {
+		return new modalplate($options);
 	};
 
 	// Return
@@ -618,15 +560,15 @@ var web = function() {
 		classClear: classClear,
 		classRemove: classRemove,
 		classReplace: classReplace,
+		classToggle: classToggle,
+		getIndex: getIndex,
 		idAdd: idAdd,
 		idRemove: idRemove,
 		inputDisable: inputDisable,
 		inputEnable: inputEnable,
-		getIndex: getIndex,
 		remove: remove,
 		select: select,
 		setRatio: setRatio,
-		snap: snap,
 		stateClear: stateClear,
 		stateSet: stateSet,
 		stateToggle: stateToggle,
@@ -634,8 +576,6 @@ var web = function() {
 		wrap: wrap,
 		wrapInner: wrapInner,
 		fileLoad: fileLoad,
-		lockSubmit: lockSubmit,
-		searchObjects: searchObjects,
 		formatBytes: formatBytes,
 		getExtension: getExtension,
 		getIntegers: getIntegers,
@@ -652,9 +592,14 @@ var web = function() {
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
 		overlayShow: overlayShow,
-		scrollWatch: scrollWatch,
 		scrollTo: scrollTo,
-		windowWatch: windowWatch,
-		windowTypeExecute: windowTypeExecute
+		button: button,
+		flicker: flicker,
+		form: form,
+		injectplateExecute: injectplateExecute,
+		loader: loader,
+		menu: menu,
+		message: message,
+		modal: modal
 	};
 }();

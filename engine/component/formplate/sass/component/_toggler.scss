@@ -14,7 +14,7 @@ $toggler-w: 50px;
 $toggler-handle-dim: $toggler-h - 2px;
 
 // Toggler
-@mixin form-toggler() {
+@mixin form-toggler($type: all) {
 	.fp-tog {
 		@include position(relative);
 		@include display(inline-block);
@@ -48,12 +48,23 @@ $toggler-handle-dim: $toggler-h - 2px;
 				@include transform-translate-x(20px);
 			}
 		}
-		&._s-line {
-			@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
-		}
-		&._s-raised {
-			@include background-colour(lighten($grey, 25%));
-			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+		@if $type == line {
+			&._s-line {
+				@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
+			}
+		} @else if $type == raised {
+			&._s-raised {
+				@include background-colour(lighten($grey, 25%));
+				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+			}
+		} @else {
+			&._s-line {
+				@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
+			}
+			&._s-raised {
+				@include background-colour(lighten($grey, 25%));
+				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+			}
 		}
 		.formplate-no-touch &:hover {
 			cursor: pointer;

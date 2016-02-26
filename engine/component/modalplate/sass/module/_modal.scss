@@ -143,11 +143,9 @@
 		visibility: visible;
 
 		// Respond
-		@include respond-to(large) {
+		@include breakpoint(large) {
 			left: 50%;
 			margin-left: -(40.625em / 2);
 		}
 	}
 }
-
-

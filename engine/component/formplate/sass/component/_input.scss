@@ -6,12 +6,13 @@
 
 // Table of contents
 // Input
+// Styles
 // Input colour states
 // Input groups
 // Input icon
 
 // Input
-@mixin form-input() {
+@mixin form-input($type: all) {
 	.fp-inp {
 		input {
 			@include width(100%);
@@ -33,21 +34,53 @@
 				@include text-size(14px);
 			}
 		}
-		// Styles
-		&._s-line input {
+	}
+	@include form-input-styles($type);
+	@include form-input-hover($type);
+}
+
+// Styles
+@mixin form-input-styles($type: all) {
+	@if $type == line {
+		.fp-inp._s-line input {
 			@include border($grey-form);
 			@include border-radius(2px);
 			&:focus {
 				@include border($grey-dark);
 			}
 		}
-		&._s-flat input {
+	} @else if $type == flat {
+		.fp-inp._s-flat input {
 			@include background-colour($grey-x2-light);
 			&:focus {
 				@include background-colour($grey-x-light);
 			}
 		}
-		&._s-raised {
+	} @else if $type == raised {
+		.fp-inp._s-raised {
+			input {
+				@include border-radius();
+				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+				&:focus {
+					@include drop-shadow(fade-out($black, 0.6), 4px, 1px);
+				}
+			}
+		}
+	} @else {
+		.fp-inp._s-line input {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+		.fp-inp._s-flat input {
+			@include background-colour($grey-x2-light);
+			&:focus {
+				@include background-colour($grey-x-light);
+			}
+		}
+		.fp-inp._s-raised {
 			input {
 				@include border-radius();
 				@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
@@ -60,26 +93,51 @@
 }
 
 // Input colour states
-@mixin form-input-hover() {
+@mixin form-input-hover($type: all) {
 	@each $colour-name, $colour in $ar-colours-form {
-		.fp-inp._s-line._c-#{$colour-name} input {
-			&:active,
-			&:focus {
-				@include border($colour);
+		@if $type == line {
+			.fp-inp._s-line._c-#{$colour-name} input {
+				&:active,
+				&:focus {
+					@include border($colour);
+				}
 			}
-		}
-		.fp-inp._s-flat._c-#{$colour-name} input {
-			&:active,
-			&:focus {
-				@include background-colour(fade-out($colour, 0.95));
+		} @else if $type == flat {
+			.fp-inp._s-flat._c-#{$colour-name} input {
+				&:active,
+				&:focus {
+					@include background-colour(fade-out($colour, 0.95));
+				}
 			}
-		}
-		.fp-inp._s-raised._c-#{$colour-name} {
-			&._focused .input-group {
-				@include drop-shadow-no();
+		} @else if $type == raised {
+			.fp-inp._s-raised._c-#{$colour-name} {
+				&._focused .input-group {
+					@include drop-shadow-no();
+				}
+				input:focus {
+					@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+				}
 			}
-			input:focus {
-				@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+		} @else {
+			.fp-inp._s-line._c-#{$colour-name} input {
+				&:active,
+				&:focus {
+					@include border($colour);
+				}
+			}
+			.fp-inp._s-flat._c-#{$colour-name} input {
+				&:active,
+				&:focus {
+					@include background-colour(fade-out($colour, 0.95));
+				}
+			}
+			.fp-inp._s-raised._c-#{$colour-name} {
+				&._focused .input-group {
+					@include drop-shadow-no();
+				}
+				input:focus {
+					@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+				}
 			}
 		}
 	}

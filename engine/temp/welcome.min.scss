@@ -1,0 +1,81 @@
+/**
+ * File: engine/sass/import.scss
+ * Type: SASS import file
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Variables
+// Config
+// Map variables
+// Components
+
+// Variables
+$option-limit-width: 75em !default;
+$option-menu-width: 16.250em !default;
+$option-small-nav-back: #fff !default;
+$option-images-root: "../img" !default;
+$option-column-limit: 12 !default;
+$option-spacing-limit: 10 !default;
+$option-default-flex: 1 !default;
+$option-default-flex-percent-option: false !default;
+$option-break-main: 43.813em !default;
+$option-min-max: false !default;
+$option-font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
+
+// Config
+@import "../../project/sass/../../engine/sass/config";
+
+// Map variables
+$limit-width: $option-limit-width;
+$menu-width: $option-menu-width;
+$small-nav-back: $option-small-nav-back;
+$images-root: $option-images-root;
+$column-limit: $option-column-limit;
+$spacing-limit: $option-spacing-limit;
+$default-flex: $option-default-flex;
+$default-flex-percent-option: $option-default-flex-percent-option;
+$break-main: $option-break-main;
+$min-max: $option-min-max;
+$font-family-set: $option-font-family;
+
+// Components
+@import "../../project/sass/../../engine/component/blueplate/sass/import";
+@import "../../project/sass/../../engine/component/buttonplate/sass/import";
+@import "../../project/sass/../../engine/component/flickerplate/sass/import";
+@import "../../project/sass/../../engine/component/formplate/sass/import";
+@import "../../project/sass/../../engine/component/loaderplate/sass/import";
+@import "../../project/sass/../../engine/component/messageplate/sass/import";
+@import "../../project/sass/../../engine/component/modalplate/sass/import";
+@import "../../project/sass/../../engine/component/navplate/sass/import";
+@import "../../project/sass/../../engine/component/tabplate/sass/import";
+
+/**
+ * File: welcome.scss
+ * Type: SASS
+ * Author: Chris Humboldt
+ */
+
+// Banner
+.row.example {
+	@include border(3px, lighten($grey-blue-light, 14%));
+	div {
+		@include padding-vertical($space-small);
+		@include text-align(center);
+		@include text-size(14px);
+		@include text-weight(300);
+		@include background-colour(lighten($grey-blue-light, 10%));
+		@include border(3px, lighten($grey-blue-light, 14%));
+		@include breakpoint(large) {
+			@include text-size(16px);
+		}
+	}
+}
+h4 {
+	@include text-colour($pink);
+}
+.title-bar {
+	.no-touch & ul li a {
+		@include text-weight(300);
+	}
+}

@@ -65,7 +65,7 @@
 	-o-transition: border 0.2s ease-out, background 0.2s ease-out;
 	transition: border 0.2s ease-out, background 0.2s ease-out;
 
-	@if $drop-down == ocean {
+	@if $drop-down == true {
 		@include drop-down();
 	}
 }

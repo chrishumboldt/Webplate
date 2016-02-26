@@ -6,11 +6,12 @@
 
 // Table of contents
 // Select
+// Styles
 // Select colour states
 // Fixes
 
 // Select
-@mixin form-select() {
+@mixin form-select($type: all) {
 	.fp-sel {
 		@include display(inline-block);
 		@include position(relative);
@@ -60,21 +61,52 @@
 		&:hover:before {
 			@include text-colour($grey-dark);
 		}
-		// Styles
-		&._s-line {
+	}
+	@include form-select-styles($type);
+	@include form-select-hover($type);
+	@include form-select-fixes();
+}
+
+// Styles
+@mixin form-select-styles($type: all) {
+	@if $type == line {
+		.fp-sel._s-line {
 			@include border($grey-form);
 			@include border-radius();
 			&:hover {
 				@include border($grey-dark);
 			}
 		}
-		&._s-flat {
+	} @else if $type == flat {
+		.fp-sel._s-flat {
 			@include background-colour($grey-x2-light);
 			&:hover {
 				@include background-colour($grey-x-light);
 			}
 		}
-		&._s-raised {
+	} @else if $type == raised {
+		.fp-sel._s-raised {
+			@include border-radius();
+			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+			&:hover {
+				@include drop-shadow(fade-out($black, 0.6), 4px, 1px);
+			}
+		}
+	} @else {
+		.fp-sel._s-line {
+			@include border($grey-form);
+			@include border-radius();
+			&:hover {
+				@include border($grey-dark);
+			}
+		}
+		.fp-sel._s-flat {
+			@include background-colour($grey-x2-light);
+			&:hover {
+				@include background-colour($grey-x-light);
+			}
+		}
+		.fp-sel._s-raised {
 			@include border-radius();
 			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
 			&:hover {
@@ -85,24 +117,44 @@
 }
 
 // Select colour states
-@mixin form-select-hover() {
+@mixin form-select-hover($type: all) {
 	@each $colour-name, $colour in $ar-colours-form {
 		.fp-sel._c-#{$colour-name}:hover:before {
 			@include text-colour($colour);
 		}
-		.fp-sel._s-line._c-#{$colour-name} {
-			&:hover {
-				@include border($colour);
+		@if $type == line {
+			.fp-sel._s-line._c-#{$colour-name} {
+				&:hover {
+					@include border($colour);
+				}
 			}
-		}
-		.fp-sel._s-flat._c-#{$colour-name} {
-			&:hover {
-				@include background-colour(fade-out($colour, 0.95));
+		} @else if $type == flat {
+			.fp-sel._s-flat._c-#{$colour-name} {
+				&:hover {
+					@include background-colour(fade-out($colour, 0.95));
+				}
 			}
-		}
-		.fp-sel._s-raised._c-#{$colour-name} {
-			&:hover {
-				@include drop-shadow(fade-out($colour, 0.4), 4px, 1px);
+		} @else if $type == raised {
+			.fp-sel._s-raised._c-#{$colour-name} {
+				&:hover {
+					@include drop-shadow(fade-out($colour, 0.4), 4px, 1px);
+				}
+			}
+		} @else {
+			.fp-sel._s-line._c-#{$colour-name} {
+				&:hover {
+					@include border($colour);
+				}
+			}
+			.fp-sel._s-flat._c-#{$colour-name} {
+				&:hover {
+					@include background-colour(fade-out($colour, 0.95));
+				}
+			}
+			.fp-sel._s-raised._c-#{$colour-name} {
+				&:hover {
+					@include drop-shadow(fade-out($colour, 0.4), 4px, 1px);
+				}
 			}
 		}
 	}

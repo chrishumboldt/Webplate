@@ -16,6 +16,7 @@ $message-w-small: 320px;
 $message-w-medium: 360px;
 $message-icon-s: 80px;
 $message-border-w: 4px;
+$green-dark: darken($green, 6%);
 
 // Message
 // ---------------------------------------------------------------------------------------
@@ -170,7 +171,7 @@ $message-border-w: 4px;
 					@include size(40px, $message-border-w);
 					@include background-colour($red);
 					@include border-radius(2px);
-				}	
+				}
 				.line-one {
 					-webkit-transform: rotate(225deg) scale(0);
 					-moz-transform: rotate(225deg) scale(0);

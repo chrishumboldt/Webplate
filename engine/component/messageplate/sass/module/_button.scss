@@ -12,7 +12,7 @@
 // ---------------------------------------------------------------------------------------
 @mixin messageplate-buttons() {
 	.btn-col-1,
-	.btn-col-2 { 
+	.btn-col-2 {
 		@include row();
 		@include margin-top($space-minor);
 
@@ -22,7 +22,7 @@
 
 		.btn-false,
 		.btn-true {
-			@include button-setup();
+			@include button-setup(false);
 			@include button-size(normal);
 			@include button-style(line, lighten($grey-blue, 6%));
 			@include button-shape(rounded);
@@ -32,7 +32,7 @@
 			@include button-style(line, $blue);
 		}
 	}
-	.btn-col-2 { 
+	.btn-col-2 {
 		> .left,
 		> .right {
 			@include span(6);

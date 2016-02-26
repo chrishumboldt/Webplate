@@ -6,10 +6,11 @@
 
 // Table of contents
 // Textarea
+// Styles
 // Textarea colour states
 
 // Textarea
-@mixin form-textarea() {
+@mixin form-textarea($type: all) {
 	.fp-text {
 		textarea {
 			@include size(100%, 114px);
@@ -30,22 +31,53 @@
 				@include text-size(14px);
 			}
 		}
-		// Styles
-		&._s-line textarea {
+	}
+	@include form-textarea-styles($type);
+	@include form-textarea-states($type);
+}
+
+// Styles
+@mixin form-textarea-styles($type: all) {
+	@if $type == line {
+		.fp-text._s-line textarea {
 			@include border($grey-form);
 			@include border-radius(2px);
 			&:focus {
 				@include border($grey-dark);
 			}
 		}
-		&._s-flat textarea {
+	} @else if $type == flat {
+		.fp-text._s-flat textarea {
 			@include padding-vertical(14px);
 			@include background-colour($grey-x2-light);
 			&:focus {
 				@include background-colour($grey-x-light);
 			}
 		}
-		&._s-raised textarea {
+	} @else if $type == raised {
+		.fp-text._s-raised textarea {
+			@include border-radius();
+			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+			&:focus {
+				@include drop-shadow(fade-out($black, 0.6), 4px, 1px);
+			}
+		}
+	} @else {
+		.fp-text._s-line textarea {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+		.fp-text._s-flat textarea {
+			@include padding-vertical(14px);
+			@include background-colour($grey-x2-light);
+			&:focus {
+				@include background-colour($grey-x-light);
+			}
+		}
+		.fp-text._s-raised textarea {
 			@include border-radius();
 			@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
 			&:focus {
@@ -56,23 +88,45 @@
 }
 
 // Textarea colour states
-@mixin form-textarea-states() {
+@mixin form-textarea-states($type: all) {
 	@each $colour-name, $colour in $ar-colours-form {
-		.fp-text._s-line._c-#{$colour-name} textarea {
-			&:active,
-			&:focus {
-				@include border($colour);
+		@if $type == line {
+			.fp-text._s-line._c-#{$colour-name} textarea {
+				&:active,
+				&:focus {
+					@include border($colour);
+				}
 			}
-		}
-		.fp-text._s-flat._c-#{$colour-name} textarea {
-			&:active,
-			&:focus {
-				@include background-colour(fade-out($colour, 0.95));
+		} @else if $type == flat {
+			.fp-text._s-flat._c-#{$colour-name} textarea {
+				&:active,
+				&:focus {
+					@include background-colour(fade-out($colour, 0.95));
+				}
 			}
-		}
-		.fp-text._s-raised._c-#{$colour-name} {
-			textarea:focus {
-				@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+		} @else if $type == raised {
+			.fp-text._s-raised._c-#{$colour-name} {
+				textarea:focus {
+					@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+				}
+			}
+		} @else {
+			.fp-text._s-line._c-#{$colour-name} textarea {
+				&:active,
+				&:focus {
+					@include border($colour);
+				}
+			}
+			.fp-text._s-flat._c-#{$colour-name} textarea {
+				&:active,
+				&:focus {
+					@include background-colour(fade-out($colour, 0.95));
+				}
+			}
+			.fp-text._s-raised._c-#{$colour-name} {
+				textarea:focus {
+					@include drop-shadow(fade-out($colour, 0.5), 4px, 1px);
+				}
 			}
 		}
 	}
