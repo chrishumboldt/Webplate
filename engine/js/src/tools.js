@@ -233,19 +233,25 @@ var web = function() {
 			$inputElements[$i].disabled = false;
 		}
 	}
-	var remove = function($selector) {
-		var $element = select($selector);
-		if ($element !== null) {
-			if ($element.length > 1) {
-				for (var $i = $elements.length - 1; $i >= 0; $i--) {
-					if ($elements[$i] !== null) {
-						$elements[$i].parentNode.removeChild($elements[$i]);
+	var remove = function($selElm) {
+		if ($selElm.nodeType == undefined) {
+			var $element = select($selElm);
+			if ($element !== null) {
+				if ($element.length > 1) {
+					for (var $i = $elements.length - 1; $i >= 0; $i--) {
+						if ($elements[$i] !== null) {
+							$elements[$i].parentNode.removeChild($elements[$i]);
+						}
+					}
+				} else {
+					if ($element !== null) {
+						$element.parentNode.removeChild($element);
 					}
 				}
-			} else {
-				if ($element !== null) {
-					$element.parentNode.removeChild($element);
-				}
+			}
+		} else {
+			if ($selElm !== null) {
+				$selElm.parentNode.removeChild($selElm);
 			}
 		}
 	};
@@ -258,7 +264,16 @@ var web = function() {
 				return $returnElements;
 			}
 		} else if ($selector.indexOf('#') > -1) {
-			return document.getElementById($selector.substring(1));
+			if (hasWhiteSpace($selector)) {
+				var $returnElements = document.querySelectorAll($selector);
+				if ($returnElements.length === 1) {
+					return $returnElements[0];
+				} else {
+					return $returnElements;
+				}
+			} else {
+				return document.getElementById($selector.substring(1));
+			}
 		} else {
 			var $returnElements = document.getElementsByTagName($selector);
 			if ($returnElements.length === 1) {
