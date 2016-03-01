@@ -5,6 +5,7 @@
  */
 
 @mixin formplate-css($type: all) {
+	@include form-setup();
 	@include form-checkbox($type);
 	@include form-input($type);
 	@include form-label();
