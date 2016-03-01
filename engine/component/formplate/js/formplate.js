@@ -92,8 +92,10 @@ function formplate($userOptions) {
 	var checkToggle = function($element) {
 		$element.onclick = function() {
 			if (tool.hasClass($element.parentNode, '_checked')) {
+				$element.checked = false;
 				tool.classRemove($element.parentNode, '_checked');
 			} else {
+				$element.checked = true;
 				tool.classAdd($element.parentNode, '_checked');
 			}
 		};
@@ -116,8 +118,10 @@ function formplate($userOptions) {
 		$element.onclick = function() {
 			var $inputRadioGroup = document.getElementsByName($element.getAttribute('name'));
 			for (var $i = 0, $len = $inputRadioGroup.length; $i < $len; $i++) {
+				$inputRadioGroup[$i].checked = false;
 				tool.classRemove($inputRadioGroup[$i].parentNode, '_checked');
 			}
+			$element.checked = true;
 			tool.classAdd($element.parentNode, '_checked');
 		};
 	};
@@ -141,7 +145,7 @@ function formplate($userOptions) {
 			var $inputType = $input.getAttribute('type');
 
 			if ($inputType === 'checkbox') {
-				$baseClasses += ($input.getAttribute('checked') === 'checked') ? ' _checked' : '';
+				$baseClasses += ($input.checked === true) ? ' _checked' : '';
 				if (tool.hasClass($input, 'toggler')) {
 					tool.classAdd($thisFormEl, 'fp-tog' + $baseClasses);
 				} else {
@@ -149,7 +153,7 @@ function formplate($userOptions) {
 				}
 				checkToggle($input);
 			} else if ($inputType === 'radio') {
-				$baseClasses += ($input.getAttribute('checked') === 'checked') ? ' _checked' : '';
+				$baseClasses += ($input.checked === true) ? ' _checked' : '';
 				tool.classAdd($thisFormEl, 'fp-check _t-radio' + $baseClasses);
 				radioToggle($input);
 			} else if ($inputType === 'password') {
