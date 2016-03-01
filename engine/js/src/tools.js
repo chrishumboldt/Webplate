@@ -223,30 +223,36 @@ var web = function() {
 	};
 	var inputDisable = function($selector) {
 		var $inputElements = select($selector);
-		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
-			$inputElements[$i].disabled = true;
+		if ($inputElements.nodeType == undefined) {
+			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
+				$inputElements[$i].disabled = true;
+			}
+		} else {
+			$inputElements.disabled = true;
 		}
 	}
 	var inputEnable = function($selector) {
 		var $inputElements = select($selector);
-		for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
-			$inputElements[$i].disabled = false;
+		if ($inputElements.nodeType == undefined) {
+			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
+				$inputElements[$i].disabled = false;
+			}
+		} else {
+			$inputElements.disabled = false;
 		}
 	}
 	var remove = function($selElm) {
 		if ($selElm.nodeType == undefined) {
-			var $element = select($selElm);
-			if ($element !== null) {
-				if ($element.length > 1) {
+			var $elements = select($selElm);
+			if ($elements !== null) {
+				if ($elements.nodeType == undefined) {
 					for (var $i = $elements.length - 1; $i >= 0; $i--) {
 						if ($elements[$i] !== null) {
 							$elements[$i].parentNode.removeChild($elements[$i]);
 						}
 					}
 				} else {
-					if ($element !== null) {
-						$element.parentNode.removeChild($element);
-					}
+					$elements.parentNode.removeChild($element);
 				}
 			}
 		} else {
@@ -256,30 +262,23 @@ var web = function() {
 		}
 	};
 	var select = function($selector) {
-		if ($selector.indexOf('.') > -1) {
+		if ($selector.indexOf('.') > -1 || hasWhiteSpace($selector)) {
 			var $returnElements = document.querySelectorAll($selector);
 			if ($returnElements.length === 1) {
 				return $returnElements[0];
 			} else {
 				return $returnElements;
 			}
-		} else if ($selector.indexOf('#') > -1) {
-			if (hasWhiteSpace($selector)) {
-				var $returnElements = document.querySelectorAll($selector);
+		} else {
+			if ($selector.indexOf('#') > -1) {
+				return document.getElementById($selector.substring(1));
+			} else {
+				var $returnElements = document.getElementsByTagName($selector);
 				if ($returnElements.length === 1) {
 					return $returnElements[0];
 				} else {
 					return $returnElements;
 				}
-			} else {
-				return document.getElementById($selector.substring(1));
-			}
-		} else {
-			var $returnElements = document.getElementsByTagName($selector);
-			if ($returnElements.length === 1) {
-				return $returnElements[0];
-			} else {
-				return $returnElements;
 			}
 		}
 	};
