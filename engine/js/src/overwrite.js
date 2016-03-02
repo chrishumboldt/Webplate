@@ -18,7 +18,7 @@ if (typeof $formplateDefault !== 'undefined') {
 
 // Loaderplate
 if (typeof $loaderplateDefault !== 'undefined') {
-	$loaderplateDefault.path = web.url('currentUrl') + '/webplate/engine/component/loaderplate/loaders/';
+	$loaderplateDefault.path = web.url('currentUrl') + 'webplate/engine/component/loaderplate/loaders/';
 }
 
 // Navplate
