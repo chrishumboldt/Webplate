@@ -1,6 +1,6 @@
 /**
- * File: module/_type-fullscreen.scss
- * Type: SASS module
+ * File: sass/component/_type-fullscreen.scss
+ * Type: SASS component
  * Author: Chris Humboldt
  */
 
@@ -9,29 +9,29 @@
 // Mixins
 
 // Variables
-$navplate-fs-time: 0.25s;
-$navplate-fs-delay: 0.075s;
+$menuplate-fs-time: 0.25s;
+$menuplate-fs-delay: 0.075s;
 
 // Mixins
-@mixin navplate-type-fullscreen() {
-	.np._t-fullscreen {
-		@include navplate-type-fullscreen-styles();
-		@include navplate-type-fullscreen-styles-reveal();
-	   a.np-close {
+@mixin menuplate-type-fullscreen() {
+	.mnp._t-fullscreen {
+		@include menuplate-type-fullscreen-styles();
+		@include menuplate-type-fullscreen-styles-reveal();
+	   a.mnp-close {
 	      @include hide();
-	      .np-reveal & {
+	      .mnp-reveal & {
 	         @include show(block);
 	      }
 	   }
 	}
 }
 
-@mixin navplate-type-fullscreen-styles() {
+@mixin menuplate-type-fullscreen-styles() {
    @include show(block);
    @include position(fixed, top 0 right 0 bottom 0 left 0);
    @include level(1001);
    @include visibility(hidden);
-   a.np-close {
+   a.mnp-close {
       @include position(absolute, top 0 right 0);
       @include size(50px, 50px);
       @include text-line-height(50px);
@@ -80,7 +80,7 @@ $navplate-fs-delay: 0.075s;
                @include text-colour($white);
                @include animate(all, 0.2s);
             }
-            .np-no-touch & {
+            .mnp-no-touch & {
                @include text-colour(darken($grey-light, 10%));
                &:hover {
                   @include text-colour($white);
@@ -91,11 +91,11 @@ $navplate-fs-delay: 0.075s;
       }
    }
    // State
-   &.np-display {
+   &.mnp-display {
       @include visibility(visible);
    }
 }
-@mixin navplate-type-fullscreen-styles-reveal() {
+@mixin menuplate-type-fullscreen-styles-reveal() {
    // Directions
    &._r-left {
       li {
@@ -122,55 +122,55 @@ $navplate-fs-delay: 0.075s;
       }
    }
    // State
-   &.np-display {
+   &.mnp-display {
       li {
          @include transparency(1);
          @include transform-translate-3d(0px, 0px, 0px);
       }
       li:nth-child(1) {
-         @include animate(all, $navplate-fs-time);
+         @include animate(all, $menuplate-fs-time);
       }
       li:nth-child(2) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 1));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 1));
       }
       li:nth-child(3) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 2));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 2));
       }
       li:nth-child(4) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 3));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 3));
       }
       li:nth-child(5) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 4));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 4));
       }
       li:nth-child(6) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 5));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 5));
       }
       li:nth-child(7) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 6));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 6));
       }
       li:nth-child(8) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 7));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 7));
       }
       li:nth-child(9) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 8));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 8));
       }
       li:nth-child(10) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 9));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 9));
       }
       li:nth-child(11) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 10));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 10));
       }
       li:nth-child(12) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 11));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 11));
       }
       li:nth-child(13) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 12));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 12));
       }
       li:nth-child(14) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 13));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 13));
       }
       li:nth-child(15) {
-         @include animate(all, $navplate-fs-time, ($navplate-fs-delay * 14));
+         @include animate(all, $menuplate-fs-time, ($menuplate-fs-delay * 14));
       }
    }
 }

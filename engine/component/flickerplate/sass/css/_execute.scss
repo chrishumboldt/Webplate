@@ -6,6 +6,7 @@
 
 // Execute
 @mixin flickerplate-css() {
+	@include fp-setup();
 	.flickerplate {
 		@include fp-flicker();
 		ul.flicks {

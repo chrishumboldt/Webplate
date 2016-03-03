@@ -261,8 +261,6 @@
 
 					// Call webplate functions
 					web.overlayAdd();
-
-					// Create injector
 					web.inject = web.injectplateExecute();
 
 					// Load config
@@ -310,14 +308,13 @@
 												$ui = $page['ui'] || false;
 											} else {
 												// Basic additions (some have to be overwritten by design)
-												$iconFont = $page['form-colour'] ? $page['icon-font'] : $iconFont;
+												$iconFont = $page['icon-font'] ? $page['icon-font'] : $iconFont;
 												$ui = $page['ui'] ? $page['ui'] : $ui;
 
 												// Component add
 												if ($page['component-first']) {
 													for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
 														var $addComponentFirst = $page['component-first'][$i];
-
 														if ($componentFirst.indexOf($addComponentFirst) == -1) {
 															$componentFirst.push($addComponentFirst);
 														}
@@ -326,13 +323,11 @@
 												if ($page['component']) {
 													for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
 														var $addComponent = $page['component'][$i];
-
 														if ($component.indexOf($addComponent) == -1) {
 															$component.push($addComponent);
 														}
 													};
 												}
-
 												// Project CSS
 												if ($page['css']) {
 													for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
@@ -342,7 +337,6 @@
 														}
 													};
 												}
-
 												// Project JS
 												if ($page['js']) {
 													for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {

@@ -1,6 +1,6 @@
 /**
- * File: tools.js
- * Type: Javascript engine
+ * File: engine/js/src/tools.js
+ * Type: Javascript tools
  * Author: Chris Humboldt
  */
 
@@ -537,7 +537,7 @@ var web = function() {
 		return new loaderplate($options);
 	};
 	var menu = function($options) {
-		return new navplate($options);
+		return new menuplate($options);
 	};
 	var message = function($options) {
 		return new messageplate($options);

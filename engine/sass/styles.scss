@@ -4,24 +4,18 @@
  * Author: Chris Humboldt
  */
 
-// Table of contents
-// Imports
-// Components
-
-// Imports
 @import "import";
 
 @import "setup/normalize";
 @import "setup/typeplate";
 @import "setup/setup";
 
-// Components
 @import "component/button";
 @import "component/flicker";
 @import "component/form";
 @import "component/layout";
+@import "component/menu";
 @import "component/message";
 @import "component/modal";
-@import "component/nav";
 @import "component/tab";
 @import "component/text";

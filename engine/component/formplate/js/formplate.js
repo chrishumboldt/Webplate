@@ -18,62 +18,6 @@ var $formplateDefault = {
 };
 
 function formplate($userOptions) {
-	// Tools
-	var tool = function(document) {
-		// Elements
-		var $toolEl = {
-			body: document.getElementsByTagName('body')[0],
-			html: document.getElementsByTagName('html')[0]
-		};
-
-		// Functions
-		var classAdd = function($element, $class) {
-			var $crtClass = $element.className;
-			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-			}
-		};
-		var classClear = function($element) {
-			$element.removeAttribute('class');
-		};
-		var classRemove = function($element, $class) {
-			if ($element.className.indexOf($class) > -1) {
-				$element.className = $element.className.split(' ').filter(function($val) {
-					return $val != $class;
-				}).toString().replace(/,/g, ' ');
-				if ($element.className === '') {
-					classClear($element);
-				}
-			}
-		};
-		var eventAdd = function($elem, $type, $eventHandle) {
-			if ($elem == null || typeof($elem) == 'undefined') return;
-			if ($elem.addEventListener) {
-				$elem.addEventListener($type, $eventHandle, false);
-			} else if ($elem.attachEvent) {
-				$elem.attachEvent("on" + $type, $eventHandle);
-			} else {
-				$elem["on" + $type] = $eventHandle;
-			}
-		};
-		var hasClass = function($element, $class) {
-			return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-		};
-		var isTouch = function() {
-			return 'ontouchstart' in window || 'onmsgesturechange' in window;
-		};
-
-		return {
-			classAdd: classAdd,
-			classClear: classClear,
-			classRemove: classRemove,
-			element: $toolEl,
-			eventAdd: eventAdd,
-			hasClass: hasClass,
-			isTouch: isTouch
-		}
-	}(document);
-
 	// Variables
 	var $self = this;
 	$self.options = {
@@ -84,19 +28,19 @@ function formplate($userOptions) {
 
 	var $formplateEls = document.querySelectorAll($self.options.selector);
 
-	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'fp-no-touch')) {
-		tool.classAdd(tool.element.html, 'fp-no-touch');
+	if (!web.isTouch() && !web.hasClass(web.element.html, 'fp-no-touch')) {
+		web.classAdd(web.element.html, 'fp-no-touch');
 	}
 
 	// Functions
 	var checkToggle = function($element) {
 		$element.onclick = function() {
-			if (tool.hasClass($element.parentNode, '_checked')) {
+			if (web.hasClass($element.parentNode, '_checked')) {
 				$element.checked = false;
-				tool.classRemove($element.parentNode, '_checked');
+				web.classRemove($element.parentNode, '_checked');
 			} else {
 				$element.checked = true;
-				tool.classAdd($element.parentNode, '_checked');
+				web.classAdd($element.parentNode, '_checked');
 			}
 		};
 	};
@@ -106,11 +50,11 @@ function formplate($userOptions) {
 			var $thisInput = $inputs[$i];
 			$thisInput.onfocus = function() {
 				var $parent = ($thisInput.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode : ($thisInput.parentNode.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode.parentNode : $thisInput.parentNode.parentNode.parentNode;
-				tool.classAdd($parent, '_focused');
+				web.classAdd($parent, '_focused');
 			};
 			$thisInput.onblur = function() {
 				var $parent = ($thisInput.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode : ($thisInput.parentNode.parentNode.getAttribute('class').indexOf('fp-') > -1) ? $thisInput.parentNode.parentNode : $thisInput.parentNode.parentNode.parentNode;
-				tool.classRemove($parent, '_focused');
+				web.classRemove($parent, '_focused');
 			};
 		}
 	};
@@ -119,18 +63,18 @@ function formplate($userOptions) {
 			var $inputRadioGroup = document.getElementsByName($element.getAttribute('name'));
 			for (var $i = 0, $len = $inputRadioGroup.length; $i < $len; $i++) {
 				$inputRadioGroup[$i].checked = false;
-				tool.classRemove($inputRadioGroup[$i].parentNode, '_checked');
+				web.classRemove($inputRadioGroup[$i].parentNode, '_checked');
 			}
 			$element.checked = true;
-			tool.classAdd($element.parentNode, '_checked');
+			web.classAdd($element.parentNode, '_checked');
 		};
 	};
 	var textareaFocus = function($textarea) {
 		$textarea.onfocus = function() {
-			tool.classAdd($textarea.parentNode, '_focused');
+			web.classAdd($textarea.parentNode, '_focused');
 		};
 		$textarea.onblur = function() {
-			tool.classRemove($textarea.parentNode, '_focused');
+			web.classRemove($textarea.parentNode, '_focused');
 		};
 	};
 
@@ -146,31 +90,31 @@ function formplate($userOptions) {
 
 			if ($inputType === 'checkbox') {
 				$baseClasses += ($input.checked === true) ? ' _checked' : '';
-				if (tool.hasClass($input, 'toggler')) {
-					tool.classAdd($thisFormEl, 'fp-tog' + $baseClasses);
+				if (web.hasClass($input, 'toggler')) {
+					web.classAdd($thisFormEl, 'fp-tog' + $baseClasses);
 				} else {
-					tool.classAdd($thisFormEl, 'fp-check' + $baseClasses);
+					web.classAdd($thisFormEl, 'fp-check' + $baseClasses);
 				}
 				checkToggle($input);
 			} else if ($inputType === 'radio') {
 				$baseClasses += ($input.checked === true) ? ' _checked' : '';
-				tool.classAdd($thisFormEl, 'fp-check _t-radio' + $baseClasses);
+				web.classAdd($thisFormEl, 'fp-check _t-radio' + $baseClasses);
 				radioToggle($input);
 			} else if ($inputType === 'password') {
-				tool.classAdd($thisFormEl, 'fp-inp _t-password' + $baseClasses);
+				web.classAdd($thisFormEl, 'fp-inp _t-password' + $baseClasses);
 				inputFocus($thisFormEl);
 			} else {
-				tool.classAdd($thisFormEl, 'fp-inp' + $baseClasses);
+				web.classAdd($thisFormEl, 'fp-inp' + $baseClasses);
 				inputFocus($thisFormEl);
 			}
 		} else if ($thisFormEl.querySelector('textarea')) {
 			var $textarea = $thisFormEl.querySelector('textarea');
-			tool.classAdd($thisFormEl, 'fp-text' + $baseClasses);
+			web.classAdd($thisFormEl, 'fp-text' + $baseClasses);
 			textareaFocus($textarea);
 		} else if ($thisFormEl.querySelector('select')) {
 			var $select = $thisFormEl.querySelector('select');
 			if ($select != null) {
-				tool.classAdd($thisFormEl, 'fp-sel' + $baseClasses);
+				web.classAdd($thisFormEl, 'fp-sel' + $baseClasses);
 			}
 		}
 	}

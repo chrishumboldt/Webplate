@@ -4,25 +4,25 @@
  * Author: Chris Humboldt
  */
 
-@mixin navplate-type-contextual() {
-	.np._t-contextual {
+@mixin menuplate-type-contextual() {
+	.mnp._t-contextual {
 		@include animate(bottom, 0.4s);
 		@include breakpoint(large) {
 			@include animate(opacity);
 		}
-		@include navplate-type-contextual-reveal();
-		@include navplate-type-contextual-styles();
+		@include menuplate-type-contextual-reveal();
+		@include menuplate-type-contextual-styles();
 	}
-	html.np-reveal.np-t-contextual #web-overlay {
+	html.mnp-reveal.mnp-t-contextual #web-overlay {
 		@include breakpoint(large) {
 			@include visibility(show);
 			@include opacity(0);
 		}
 	}
 }
-@mixin navplate-type-contextual-reveal() {
+@mixin menuplate-type-contextual-reveal() {
 	@include breakpoint(small) {
-		&.np-display {
+		&.mnp-display {
 			@include position-set(bottom 0);
 			ul.close-list {
 				@include transform-translate-3d(0px, 0px, 0px);
@@ -30,13 +30,13 @@
 		}
 	}
 }
-@mixin navplate-type-contextual-styles() {
+@mixin menuplate-type-contextual-styles() {
 	@include padding($space-minor);
 	@include padding-bottom(0px);
 	@include width(100%);
    @include level(-100);
    @include visibility(hidden);
-   &.np-ready {
+   &.mnp-ready {
       @include level(1001);
    }
 	ul {
@@ -84,7 +84,7 @@
 	@include breakpoint(small) {
 		@include position(fixed, bottom -500px left 0);
 		// Reveal
-		html.np-reveal.np-t-contextual &.np-display {
+		html.mnp-reveal.mnp-t-contextual &.mnp-display {
 			@include visibility(visible);
 		}
 		ul {
@@ -107,7 +107,7 @@
 		@include visibility(hidden);
 		@include opacity(0);
 		// Reveal
-		html.np-reveal.np-t-contextual &.np-display {
+		html.mnp-reveal.mnp-t-contextual &.mnp-display {
 			@include visibility(visible);
 			@include opacity(1);
 		}
@@ -125,7 +125,7 @@
 		}
 	}
 }
-.np-contextual-container {
+.mnp-contextual-container {
 	@include position(relative);
 	@include show(inline-block);
 }

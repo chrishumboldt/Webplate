@@ -53,83 +53,26 @@ var modalplate = function($userOptions) {
 		var $modalOverlay = document.createElement('div');
 		$modalOverlay.id = 'web-overlay';
 
-		// Elements
-		var $toolEl = {
-			body: document.getElementsByTagName('body')[0],
-			html: document.getElementsByTagName('html')[0]
-		};
 		// HTML
 		var $toolHtml = {
 			modal: $modal,
 			modalOverlay: $modalOverlay
 		};
-		// Functions
-		var classAdd = function($element, $class) {
-			var $crtClass = $element.className;
-			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-			}
-		};
-		var classClear = function($element) {
-			$element.removeAttribute('class');
-		};
-		var classRemove = function($element, $class) {
-			if ($element.className.indexOf($class) > -1) {
-				$element.className = $element.className.split(' ').filter(function($val) {
-					return $val != $class;
-				}).toString().replace(/,/g, ' ');
-				if ($element.className === '') {
-					classClear($element);
-				}
-			}
-		};
-		var exists = function($element) {
-			if ($element === null || typeof($element) === undefined) {
-				return false;
-			} else {
-				return true;
-			}
-		};
-		var isTouch = function() {
-			return 'ontouchstart' in window || 'onmsgesturechange' in window;
-		};
-		var remove = function($selector) {
-			if ($selector.charAt(0) === '#') {
-				var $element = document.getElementById($selector.substring(1));
-				if ($element !== null) {
-					$element.parentNode.removeChild($element);
-				}
-			} else if ($selector.charAt(0) === '.') {
-				var $elements = document.querySelectorAll($selector);
-				for (var $i = $elements.length - 1; $i >= 0; $i--) {
-					if ($elements[$i] !== null) {
-						$elements[$i].parentNode.removeChild($element);
-					}
-				}
-			}
-		};
 
 		return {
-			classAdd: classAdd,
-			classClear: classClear,
-			classRemove: classRemove,
-			element: $toolEl,
-			exists: exists,
-			html: $toolHtml,
-			isTouch: isTouch,
-			remove: remove
+			html: $toolHtml
 		}
 	}(document, $self.options);
 
 	// Public functions
 	$self.close = function() {
-		tool.classRemove(tool.element.html, 'modalplate-reveal');
+		web.classRemove(web.element.html, 'modalplate-reveal');
 	};
 
 	$self.reveal = function() {
 		setTimeout(function() {
-			tool.classAdd(tool.element.html, 'modalplate-reveal');
-			tool.classAdd($thisModal, 'reveal');
+			web.classAdd(web.element.html, 'modalplate-reveal');
+			web.classAdd($thisModal, 'reveal');
 		}, 50);
 	};
 
@@ -143,27 +86,27 @@ var modalplate = function($userOptions) {
 	};
 
 	function basicSetup() {
-		if (!tool.isTouch()) {
-			tool.classAdd(tool.element.html, 'modalplate-no-touch');
+		if (!web.isTouch()) {
+			web.classAdd(web.element.html, 'modalplate-no-touch');
 		}
-		tool.remove('#modalplate');
-		if ($self.options.overlay === true && !tool.exists(document.getElementById('web-overlay'))) {
-			tool.element.body.appendChild(tool.html.modalOverlay);
+		web.remove('#modalplate');
+		if ($self.options.overlay === true && !web.exists(document.getElementById('web-overlay'))) {
+			web.element.body.appendChild(tool.html.modalOverlay);
 		}
 	};
 
 	function setupModal() {
-		tool.remove('#modalplate');
-		tool.element.body.appendChild(tool.html.modal);
+		web.remove('#modalplate');
+		web.element.body.appendChild(tool.html.modal);
 		$thisModal = document.getElementById('modalplate');
 		if ($self.options.revealLarge !== false) {
 			if (window.innerWidth < $self.options.breakpoint) {
-				tool.classAdd($thisModal, $self.options.reveal);
+				web.classAdd($thisModal, $self.options.reveal);
 			} else {
-				tool.classAdd($thisModal, $self.options.revealLarge);
+				web.classAdd($thisModal, $self.options.revealLarge);
 			}
 		} else {
-			tool.classAdd($thisModal, $self.options.reveal);
+			web.classAdd($thisModal, $self.options.reveal);
 		};
 
 		$closeTriggers = document.querySelectorAll('#modalplate .modalplate-close, #web-overlay');

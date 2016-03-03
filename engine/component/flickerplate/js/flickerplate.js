@@ -28,114 +28,22 @@ var $flickerplateDefault = {
 };
 
 function flickerplate($userOptions) {
-	// Tools
-	var tool = function(document) {
-		// Elements
-		var $toolEl = {
-			body: document.getElementsByTagName('body')[0],
-			html: document.getElementsByTagName('html')[0]
-		};
-		// HTML
-		var $toolHtml = {
-			test: false
-		};
-
-		// Functions
-		var classAdd = function($element, $class) {
-			var $crtClass = $element.className;
-			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-			}
-		};
-		var classClear = function($element) {
-			$element.removeAttribute('class');
-		};
-		var classRemove = function($element, $class) {
-			if ($element.className.indexOf($class) > -1) {
-				$element.className = $element.className.split(' ').filter(function($val) {
-					return $val != $class;
-				}).toString().replace(/,/g, ' ');
-				if ($element.className === '') {
-					classClear($element);
-				}
-			}
-		};
-		var exists = function($element) {
-			if ($element === null || typeof($element) === undefined) {
-				return false;
-			} else {
-				return true;
-			}
-		};
-		var getIndex = function($node) {
-			return [].indexOf.call($node.parentNode.children, $node);
-		};
-		var hasClass = function($element, $class) {
-			return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
-		};
-		var isTouch = function() {
-			return 'ontouchstart' in window || 'onmsgesturechange' in window;
-		};
-		var remove = function($selector) {
-			if ($selector.charAt(0) === '#') {
-				var $element = document.getElementById($selector.substring(1));
-				if ($element !== null) {
-					$element.parentNode.removeChild($element);
-				}
-			} else if ($selector.charAt(0) === '.') {
-				var $elements = document.querySelectorAll($selector);
-				for (var $i = $elements.length - 1; $i >= 0; $i--) {
-					if ($elements[$i] !== null) {
-						$elements[$i].parentNode.removeChild($element);
-					}
-				}
-			}
-		};
-		var wrapInner = function($element, $tag, $className) {
-			if (typeof $tag === 'string') {
-				$tag = document.createElement($tag);
-			}
-			if ($className !== undefined) {
-				var $div = $element.appendChild($tag).setAttribute('class', $className);
-			} else {
-				var $div = $element.appendChild($tag);
-			}
-			while ($element.firstChild !== $tag) {
-				$tag.appendChild($element.firstChild);
-			}
-		};
-
-		return {
-			classAdd: classAdd,
-			classClear: classClear,
-			classRemove: classRemove,
-			element: $toolEl,
-			exists: exists,
-			getIndex: getIndex,
-			hasClass: hasClass,
-			html: $toolHtml,
-			isTouch: isTouch,
-			remove: remove,
-			wrapInner: wrapInner
-		}
-	}(document);
-
 	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $flickerplateDefault.selector;
 	var $selectorType = $selector.charAt(0).toString();
-	if ($selectorType === '#' && $selector.indexOf('.') < 0) {
-		new flickerplateComponent(document.getElementById($selector.substring(1)), $userOptions, tool);
+	if ($selectorType === '#' && !web.hasWhiteSpace($self.options.selector)) {
+		new flickerplateComponent(document.getElementById($selector.substring(1)), $userOptions);
 	} else {
 		var $elements = document.querySelectorAll($selector);
 		for (var $i = 0; $i < $elements.length; $i++) {
-			new flickerplateComponent($elements[$i], $userOptions, tool);
+			new flickerplateComponent($elements[$i], $userOptions);
 		}
 	}
 };
 
-function flickerplateComponent($element, $userOptions, tool) {
+function flickerplateComponent($element, $userOptions) {
 	// Touch check
-	if (!tool.isTouch() && !tool.hasClass(tool.element.html, 'flickerplate-no-touch')) {
-		tool.classAdd(tool.element.html, 'flickerplate-no-touch');
+	if (!web.isTouch() && !web.hasClass(web.element.html, 'flickerplate-no-touch')) {
+		web.classAdd(web.element.html, 'flickerplate-no-touch');
 	}
 
 	// Variables
@@ -218,9 +126,9 @@ function flickerplateComponent($element, $userOptions, tool) {
 			var $dotElements = $element.querySelectorAll('.dot-navigation li');
 			for (var $i = $dotElements.length - 1; $i >= 0; $i--) {
 				$dotElements[$i].onclick = function() {
-					$self.options.position = tool.getIndex(this) + 1;
-					tool.classRemove($element.querySelector('.dot.active'), 'active');
-					tool.classAdd(this.querySelector('.dot'), 'active');
+					$self.options.position = web.getIndex(this) + 1;
+					web.classRemove($element.querySelector('.dot.active'), 'active');
+					web.classAdd(this.querySelector('.dot'), 'active');
 					flickerMove();
 					flickerAutoReset();
 				};
@@ -267,9 +175,9 @@ function flickerplateComponent($element, $userOptions, tool) {
 			case 'transition-fade':
 				var $allFlicks = $element.querySelectorAll('li');
 				for (var $i = $allFlicks.length - 1; $i >= 0; $i--)(function($i) {
-					tool.classRemove($allFlicks[$i], 'active');
+					web.classRemove($allFlicks[$i], 'active');
 				})($i);
-				tool.classAdd($flicks.querySelector('li:nth-child(' + $self.options.position + ')'), 'active');
+				web.classAdd($flicks.querySelector('li:nth-child(' + $self.options.position + ')'), 'active');
 				break;
 			case 'transition-slide':
 				$flicks.style.left = '-' + $movePosition + '00%';
@@ -278,8 +186,8 @@ function flickerplateComponent($element, $userOptions, tool) {
 		}
 
 		if ($self.options.dots === true && $firstCheck === false) {
-			tool.classRemove($element.querySelector('.dot.active'), 'active');
-			tool.classAdd($element.querySelector('.dot-navigation li:nth-child(' + $self.options.position + ') .dot'), 'active');
+			web.classRemove($element.querySelector('.dot.active'), 'active');
+			web.classAdd($element.querySelector('.dot-navigation li:nth-child(' + $self.options.position + ') .dot'), 'active');
 		}
 	};
 
@@ -307,11 +215,11 @@ function flickerplateComponent($element, $userOptions, tool) {
 		flickerAutoStop();
 		var $flickerWidth = $element.clientWidth;
 		var $flicks = $element.querySelector('ul.flicks');
-		tool.classRemove($element, 'animate-' + $self.options.animation);
+		web.classRemove($element, 'animate-' + $self.options.animation);
 
 		switch ($self.options.animation) {
 			case 'transform-slide':
-				if (tool.isTouch()) {
+				if (web.isTouch()) {
 					$posX = (Math.round((event.deltaX / $flickerWidth) * 1000) / 1000) + $lastPosXPercent;
 				} else {
 					$posX = (Math.round((event.deltaX / $flickerWidth) * 10) / 10) + $lastPosXPercent;
@@ -346,7 +254,7 @@ function flickerplateComponent($element, $userOptions, tool) {
 
 	function flickerPanEnd(event) {
 		var $endPosX = event.deltaX;
-		tool.classAdd($element, 'animate-' + $self.options.animation);
+		web.classAdd($element, 'animate-' + $self.options.animation);
 
 		if (($endPosX < -$panThreshold) && ($self.options.position < $flickCount)) {
 			$self.options.position++;
@@ -361,8 +269,8 @@ function flickerplateComponent($element, $userOptions, tool) {
 	};
 
 	function flickerSetup() {
-		tool.classAdd($element, 'flickerplate theme-' + $self.options.theme + ' animate-' + $self.options.animation);
-		tool.classAdd($element.getElementsByTagName('ul')[0], 'flicks');
+		web.classAdd($element, 'flickerplate theme-' + $self.options.theme + ' animate-' + $self.options.animation);
+		web.classAdd($element.getElementsByTagName('ul')[0], 'flicks');
 		$element.setAttribute('data-flickerplate-position', $self.options.position);
 
 		flickerMove(true);
@@ -371,8 +279,8 @@ function flickerplateComponent($element, $userOptions, tool) {
 		var $flicks = $element.querySelectorAll('ul.flicks > li');
 		for (var $i = $flicks.length - 1; $i >= 0; $i--) {
 			$flickCount++;
-			tool.wrapInner($flicks[$i], 'div', 'flick-inner');
-			tool.wrapInner($flicks[$i].querySelectorAll('.flick-inner')[0], 'div', 'flick-content');
+			web.wrapInner($flicks[$i], 'div', 'flick-inner');
+			web.wrapInner($flicks[$i].querySelectorAll('.flick-inner')[0], 'div', 'flick-content');
 
 			var $background = $flicks[$i].getAttribute('data-background') || false;
 			if ($background !== false) {
@@ -407,7 +315,7 @@ function flickerplateComponent($element, $userOptions, tool) {
 	flickerAttachArrows();
 	flickerAttachDots();
 	flickerAutoStart();
-	if (tool.isTouch()) {
+	if (web.isTouch()) {
 		flickerHammer();
 	}
 }

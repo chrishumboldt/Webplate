@@ -72,11 +72,6 @@ var messageplate = function($userOptions) {
 		$buttonFalse.className = 'btn-col-1';
 		$buttonFalse.innerHTML = $buttonFalseHtml;
 
-		// Elements
-		var $toolEl = {
-			body: document.getElementsByTagName('body')[0],
-			html: document.getElementsByTagName('html')[0]
-		};
 		// HTML
 		var $toolHtml = {
 			buttonFalse: $buttonFalse,
@@ -86,87 +81,34 @@ var messageplate = function($userOptions) {
 			messageOverlay: $messageOverlay
 		};
 
-		// Functions
-		var classAdd = function($element, $class) {
-			var $crtClass = $element.className;
-			if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-				$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-			}
-		};
-		var classClear = function($element) {
-			$element.removeAttribute('class');
-		};
-		var classRemove = function($element, $class) {
-			if ($element.className.indexOf($class) > -1) {
-				$element.className = $element.className.split(' ').filter(function($val) {
-					return $val != $class;
-				}).toString().replace(/,/g, ' ');
-				if ($element.className === '') {
-					classClear($element);
-				}
-			}
-		};
-		var exists = function($element) {
-			if ($element === null || typeof($element) === undefined) {
-				return false;
-			} else {
-				return true;
-			}
-		};
-		var isTouch = function() {
-			return 'ontouchstart' in window || 'onmsgesturechange' in window;
-		};
-		var remove = function($selector) {
-			if ($selector.charAt(0) === '#') {
-				var $element = document.getElementById($selector.substring(1));
-				if ($element !== null) {
-					$element.parentNode.removeChild($element);
-				}
-			} else if ($selector.charAt(0) === '.') {
-				var $elements = document.querySelectorAll($selector);
-				for (var $i = $elements.length - 1; $i >= 0; $i--) {
-					if ($elements[$i] !== null) {
-						$elements[$i].parentNode.removeChild($element);
-					}
-				}
-			}
-		};
-
 		return {
-			classAdd: classAdd,
-			classClear: classClear,
-			classRemove: classRemove,
-			element: $toolEl,
-			exists: exists,
-			html: $toolHtml,
-			isTouch: isTouch,
-			remove: remove
+			html: $toolHtml
 		}
 	}(document, $self.options);
 
 	// Public functions
 	$self.close = function() {
-		tool.classRemove(tool.element.html, 'mp-reveal');
+		web.classRemove(web.element.html, 'mp-reveal');
 		setTimeout(function() {
-			tool.remove('#messageplate');
+			web.remove('#messageplate');
 		}, 300);
 	};
 
 	$self.reveal = function() {
 		setTimeout(function() {
-			tool.classAdd(tool.element.html, 'mp-reveal');
+			web.classAdd(web.element.html, 'mp-reveal');
 		}, 50);
 	};
 
 	// Internal functions
 	function basicSetup() {
-		if (!tool.isTouch()) {
-			tool.classAdd(tool.element.html, 'mp-no-touch');
+		if (!web.isTouch()) {
+			web.classAdd(web.element.html, 'mp-no-touch');
 		}
-		tool.remove('#messageplate');
-		tool.element.body.appendChild(tool.html.messageBox);
-		if ($self.options.overlay === true && !tool.exists(document.getElementById('web-overlay'))) {
-			tool.element.body.appendChild(tool.html.messageOverlay);
+		web.remove('#messageplate');
+		web.element.body.appendChild(tool.html.messageBox);
+		if ($self.options.overlay === true && !web.exists(document.getElementById('web-overlay'))) {
+			web.element.body.appendChild(tool.html.messageOverlay);
 		}
 
 		$messageBoxEl = document.getElementById('messageplate');
