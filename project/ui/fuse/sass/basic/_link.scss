@@ -27,14 +27,16 @@ footer a {
 		@include transparency(0);
 		@include animate(all);
 		@include transform-translate-y(-$space-x-small - 2px);
-		.no-touchevents &:hover,
-		.no-touchevents &:focus {
+		// .no-touchevents &:hover,
+		// .no-touchevents &:focus {
+		.no-touchevents &:hover {
 			@include transparency(1);
 			@include transform-translate-y(-2px);
 		}
 	}
-	.no-touchevents &:hover::after,
-	.no-touchevents &:focus::after {
+	// .no-touchevents &:hover::after,
+	// .no-touchevents &:focus::after {
+	.no-touchevents &:hover::after {
 		@include transparency(1);
 		@include transform-translate-y(-2px);
 	}
