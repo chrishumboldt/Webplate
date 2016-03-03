@@ -3,14 +3,14 @@
 		"name": "welcome",
 		"sass": ["welcome.scss"],
 		"js": ["src/welcome.js"]
-    }],
+	}],
 	"project": {
 		"css": ["welcome.min.css"],
-		"js": ["src/welcome.js"],
+		"js": ["welcome.min.js"],
 		"ui": "fuse",
 		"icon-font": "icomoon"
 	},
 	"option": [
-        "font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"
-    ]
+		"font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"
+	]
 }

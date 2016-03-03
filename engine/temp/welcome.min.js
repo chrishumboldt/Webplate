@@ -1,6 +1,6 @@
 /**
- * File: welcome.js
- * Type: Javascipt
+ * File: project/js/src/welcome.js
+ * Type: Javascipt file
  * Author: Chris Humboldt
  */
 
