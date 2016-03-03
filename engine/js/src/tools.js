@@ -252,7 +252,7 @@ var web = function() {
 						}
 					}
 				} else {
-					$elements.parentNode.removeChild($element);
+					$elements.parentNode.removeChild($elements);
 				}
 			}
 		} else {
