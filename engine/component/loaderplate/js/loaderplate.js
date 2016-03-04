@@ -66,8 +66,8 @@ var loaderplate = function($userOptions) {
 	};
 	$self.remove = function() {
 		web.classAdd($element, 'loaderplate-element-show');
-		if (web.exists($loader.parentNode)) {
-			$loader.parentNode.removeChild($loader);
+		if (web.exists($loaderHTML.parentNode)) {
+			$loader.parentNode.removeChild($loaderHTML);
 			web.classRemove($element, 'loaderplate-element-hide');
 		} else {
 			clearTimeout($loaderTimeout);
