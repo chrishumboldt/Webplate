@@ -136,6 +136,11 @@ var web = function() {
 				for (var $i = 0, $len = $class.length; $i < $len; $i++) {
 					classAddExecute($element, $class[$i]);
 				}
+			} else if (hasWhiteSpace($class)) {
+				var $classes = $class.split(' ');
+				for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
+					classAddExecute($element, $classes[$i]);
+				}
 			} else {
 				classAddExecute($element, $class);
 			}
@@ -157,6 +162,11 @@ var web = function() {
 			if (typeof $class === 'object') {
 				for (var $i = $class.length - 1; $i >= 0; $i--) {
 					classRemoveExecute($element, $class[$i]);
+				}
+			} else if (hasWhiteSpace($class)) {
+				var $classes = $class.split(' ');
+				for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
+					classRemoveExecute($element, $classes[$i]);
 				}
 			} else {
 				classRemoveExecute($element, $class);
