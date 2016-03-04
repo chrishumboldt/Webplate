@@ -55,19 +55,20 @@ var loaderplate = function($userOptions) {
 	$self.add = function() {
 		if ($self.options.selector !== false) {
 			$element = document.querySelector($self.options.selector);
+			$loader = $loaderHTML;
 			if (web.exists($element)) {
 				$loaderTimeout = setTimeout(function() {
 					web.classRemove($element, 'loaderplate-element-show');
 					web.classAdd($element, 'loaderplate-element-hide');
-					$element.parentNode.insertBefore($loaderHTML, $element);
+					$element.parentNode.insertBefore($loader, $element);
 				}, $self.options.delay);
 			}
 		}
 	};
 	$self.remove = function() {
 		web.classAdd($element, 'loaderplate-element-show');
-		if (web.exists($loaderHTML.parentNode)) {
-			$loader.parentNode.removeChild($loaderHTML);
+		if (web.exists($loader.parentNode)) {
+			$loader.parentNode.removeChild($loader);
 			web.classRemove($element, 'loaderplate-element-hide');
 		} else {
 			clearTimeout($loaderTimeout);
