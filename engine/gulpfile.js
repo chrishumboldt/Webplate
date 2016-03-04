@@ -22,7 +22,10 @@ var uglify = require('gulp-uglify');
 
 var $reload = true;
 var $projectJSPath = '../project/js/';
-var $buildWatchJS = [$projectJSPath + 'src/*.js'];
+var $buildWatchJS = [
+	$projectJSPath + 'src/*.js',
+	$projectJSPath + 'src/**/*.js'
+];
 
 // Functions
 var getConfig = function() {
