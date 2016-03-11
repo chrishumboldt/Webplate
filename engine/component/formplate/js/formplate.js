@@ -81,40 +81,57 @@ function formplate($userOptions) {
 	// Loop over all elements and apply
 	for (var $i = 0, $len = $formplateEls.length; $i < $len; $i++) {
 		var $thisFormEl = $formplateEls[$i];
-		var $baseClasses = ' _c-' + $self.options.colour + ' _s-' + $self.options.style;
+		var $classes = ['_c-' + $self.options.colour, '_s-' + $self.options.style];
 
 		// Set the input classes
 		if ($thisFormEl.querySelector('input')) {
 			var $input = $thisFormEl.querySelector('input');
 			var $inputType = $input.getAttribute('type');
 
-			if ($inputType === 'checkbox') {
-				$baseClasses += ($input.checked === true) ? ' _checked' : '';
-				if (web.hasClass($input, 'toggler')) {
-					web.classAdd($thisFormEl, 'fp-tog' + $baseClasses);
+			if ($inputType === 'checkbox' || $inputType === 'radio') {
+				// Removed _checked if need be
+				if ($input.checked === true) {
+					$classes.push('_checked');
 				} else {
-					web.classAdd($thisFormEl, 'fp-check' + $baseClasses);
+					if (web.hasClass($thisFormEl, '_checked')) {
+						web.classRemove($thisFormEl, '_checked');
+					}
 				}
-				checkToggle($input);
-			} else if ($inputType === 'radio') {
-				$baseClasses += ($input.checked === true) ? ' _checked' : '';
-				web.classAdd($thisFormEl, 'fp-check _t-radio' + $baseClasses);
-				radioToggle($input);
+				// Checkbox type
+				if (web.hasClass($input, 'toggler')) {
+					$classes.push('fp-tog');
+				} else {
+					$classes.push('fp-check');
+					if ($inputType === 'radio') {
+						$classes.push('_t-radio');
+					}
+				}
+				web.classAdd($thisFormEl, $classes);
+				// Add events
+				if ($inputType === 'checkbox') {
+					checkToggle($input);
+				} else if ($inputType === 'radio') {
+					radioToggle($input);
+				}
 			} else if ($inputType === 'password') {
-				web.classAdd($thisFormEl, 'fp-inp _t-password' + $baseClasses);
+				$classes.push('fp-inp', '_t-password');
+				web.classAdd($thisFormEl, $classes);
 				inputFocus($thisFormEl);
 			} else {
-				web.classAdd($thisFormEl, 'fp-inp' + $baseClasses);
+				$classes.push('fp-inp');
+				web.classAdd($thisFormEl, $classes);
 				inputFocus($thisFormEl);
 			}
 		} else if ($thisFormEl.querySelector('textarea')) {
 			var $textarea = $thisFormEl.querySelector('textarea');
-			web.classAdd($thisFormEl, 'fp-text' + $baseClasses);
+			$classes.push('fp-text');
+			web.classAdd($thisFormEl, $classes);
 			textareaFocus($textarea);
 		} else if ($thisFormEl.querySelector('select')) {
 			var $select = $thisFormEl.querySelector('select');
 			if ($select != null) {
-				web.classAdd($thisFormEl, 'fp-sel' + $baseClasses);
+				$classes.push('fp-sel');
+				web.classAdd($thisFormEl, $classes);
 			}
 		}
 	}
