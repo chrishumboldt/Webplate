@@ -320,7 +320,7 @@ var web = function() {
 	};
 	var stateToggle = function($element, $state, $clear) {
 		if (exists($element)) {
-			if ($webState.list.indexOf($state) > 1) {
+			if ($webState.list.indexOf($state) > -1) {
 				var $altState = $webState.alts[$state] || false;
 				var $clear = $clear || false;
 				var $stateClass = $webPrefix.state + $state;
