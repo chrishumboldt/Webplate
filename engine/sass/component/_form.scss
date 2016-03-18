@@ -9,3 +9,6 @@
 label {
    @include text-font($font-family-set);
 }
+.fp-check:after {
+	@include position-set(top 2px);
+}

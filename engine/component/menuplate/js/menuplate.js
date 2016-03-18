@@ -145,7 +145,9 @@ var menuplateComponent = function($this, $option) {
 
 		function menuClose() {
 			web.eventRemove(window, 'resize', menuClose);
-			web.classRemove(document.querySelector('.mnp.mnp-display'), 'mnp-display');
+			if (web.exists(document.querySelector('.mnp.mnp-display'))) {
+				web.classRemove(document.querySelector('.mnp.mnp-display'), 'mnp-display');
+			}
 			web.classRemove(web.element.html, 'mnp-reveal');
 			$menuElement.removeAttribute('style');
 			menuRemoveHTMLOptionClasses();

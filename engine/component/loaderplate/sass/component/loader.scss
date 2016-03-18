@@ -1,0 +1,84 @@
+/**
+ * File: sass/component/loader.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+ */
+
+@mixin loaderplate-css() {
+	.loaderplate-element-hide {
+	   @include hide();
+	}
+	.loaderplate {
+	   @include show(block);
+	   @include text-align(center);
+	   img {
+	      @include width-max(60px);
+	   }
+	   > div {
+	      @include padding-top($space-small);
+	      @include text-weight(light);
+	   }
+	   // Colours
+	   &.aqua {
+	      @include text-colour($aqua);
+	   }
+	   &.black {
+	      @include text-colour($black);
+	   }
+	   &.blue {
+	      @include text-colour($blue);
+	   }
+	   &.green {
+	      @include text-colour($green);
+	   }
+	   &.grey-blue {
+	      @include text-colour($grey-blue);
+	   }
+	   &.grey-blue-dark {
+	      @include text-colour($grey-blue-dark);
+	   }
+	   &.orange {
+	      @include text-colour($orange);
+	   }
+	   &.pink {
+	      @include text-colour($pink);
+	   }
+	   &.purple {
+	      @include text-colour($purple);
+	   }
+	   &.red {
+	      @include text-colour($red);
+	   }
+	   &.white {
+	      @include text-colour($white);
+	   }
+	   &.yellow {
+	      @include text-colour($yellow);
+	   }
+	   // Size
+	   &.x-small {
+	      @include padding-vertical($space-x-small);
+	   }
+	   &.small {
+	      @include padding-vertical($space-small);
+	   }
+	   &.minor {
+	      @include padding-vertical($space-minor);
+	   }
+	   &.normal {
+	      @include padding-vertical($space-base);
+	   }
+	   &.slight {
+	      @include padding-vertical($space-slight);
+	   }
+	   &.medium {
+	      @include padding-vertical($space-medium);
+	   }
+	   &.large {
+	      @include padding-vertical($space-large);
+	   }
+	   &.x-large {
+	      @include padding-vertical($space-x-large);
+	   }
+	}
+}
