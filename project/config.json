@@ -1,11 +1,6 @@
 {
-    "build": [{
-        "name": "app",
-        "sass": ["app.scss"],
-        "js": ["app.js"]
-    }],
     "project": {
-        "css": ["app.min.css"],
-        "js": ["app.min.js"]
+        "css": ["app.css"],
+        "js": ["app.js"]
     }
 }
