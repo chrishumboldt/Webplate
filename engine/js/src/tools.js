@@ -28,52 +28,52 @@ var web = function() {
     };
     var $webMonths = [{
         number: '01',
-        name: 'January',
-        nameShort: 'Jan'
+        name: 'january',
+        nameShort: 'jan'
     }, {
         number: '02',
-        name: 'February',
-        nameShort: 'Feb'
+        name: 'february',
+        nameShort: 'feb'
     }, {
         number: '03',
-        name: 'March',
-        nameShort: 'Mar'
+        name: 'march',
+        nameShort: 'mar'
     }, {
         number: '04',
-        name: 'April',
-        nameShort: 'Apr'
+        name: 'april',
+        nameShort: 'apr'
     }, {
         number: '05',
-        name: 'May',
-        nameShort: 'May'
+        name: 'may',
+        nameShort: 'may'
     }, {
         number: '06',
-        name: 'June',
-        nameShort: 'Jun'
+        name: 'june',
+        nameShort: 'jun'
     }, {
         number: '07',
-        name: 'July',
-        nameShort: 'Jul'
+        name: 'july',
+        nameShort: 'jul'
     }, {
         number: '08',
-        name: 'August',
-        nameShort: 'Aug'
+        name: 'august',
+        nameShort: 'aug'
     }, {
         number: '09',
-        name: 'September',
-        nameShort: 'Sep'
+        name: 'september',
+        nameShort: 'sep'
     }, {
         number: '10',
-        name: 'October',
-        nameShort: 'Oct'
+        name: 'october',
+        nameShort: 'oct'
     }, {
         number: '11',
-        name: 'November',
-        nameShort: 'Nov'
+        name: 'november',
+        nameShort: 'nov'
     }, {
         number: '12',
-        name: 'December',
-        nameShort: 'Dec'
+        name: 'december',
+        nameShort: 'dec'
     }];
     var $webPrefix = {
         basic: 'web-',
@@ -154,6 +154,38 @@ var web = function() {
     var crtDBDate = function() {
         var $now = new Date();
         return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
+    };
+    var dateToISO = function($date, $fullDate) {
+        var $fullDate = (typeof $fullDate !== 'undefined') ? $fullDate : true;
+        // Spaced dates
+        if ($date.indexOf(' ') > -1) {
+            var $year, $month, $day, $time, $returnDate;
+            var $dateSplit = $date.split(' ');
+            for (var $i = 0, $len = $dateSplit.length; $i < $len; $i++) {
+                if (isFullInteger($dateSplit[$i])) {
+                    if ($dateSplit[$i].length === 2) {
+                        $day = $dateSplit[$i];
+                    } else if ($dateSplit[$i].length === 4) {
+                        $year = $dateSplit[$i];
+                    }
+                } else if ($dateSplit[$i].indexOf(':') === 2 && $fullDate === true) {
+                    $time = $dateSplit[$i];
+                } else {
+                    var $lowerDateSplit = lowercaseAll($dateSplit[$i]);
+                    for (var $i2 = 0, $len2 = $webMonths.length; $i2 < $len2; $i2++) {
+                        if ($lowerDateSplit === $webMonths[$i2].name || $lowerDateSplit === $webMonths[$i2].nameShort) {
+                            $month = $webMonths[$i2].number;
+                            break;
+                        }
+                    }
+                }
+            }
+            $returnDate = $year + '-' + $month + '-' + $day;
+            if ($fullDate === true && $time !== undefined) {
+                $returnDate += 'T' + $time;
+            }
+            return $returnDate;
+        }
     };
 
     // Development
@@ -626,6 +658,7 @@ var web = function() {
         isTouch: isTouch,
         isURL: isURL,
         crtDBDate: crtDBDate,
+        dateToISO: dateToISO,
         log: log,
         append: append,
         eventAdd: eventAdd,
