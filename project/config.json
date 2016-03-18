@@ -1,16 +1,6 @@
 {
-	"build": [{
-		"name": "welcome",
-		"sass": ["welcome.scss"],
-		"js": ["src/welcome.js"]
-	}],
-	"project": {
-		"css": ["welcome.min.css"],
-		"js": ["welcome.min.js"],
-		"ui": "fuse",
-		"icon-font": "icomoon"
-	},
-	"option": [
-		"font-family: 'Roboto', 'Helvetic Neue', Helvetica, Arial"
-	]
+    "project": {
+        "css": [],
+        "js": []
+    }
 }
