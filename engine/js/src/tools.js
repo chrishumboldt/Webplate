@@ -162,8 +162,6 @@ var web = function() {
             console.log($text);
         }
     };
-
-<<<<<<< HEAD
     // DOM
     var append = function($element, $html) {
         if (exists($element)) {
@@ -186,6 +184,11 @@ var web = function() {
                 for (var $i = 0, $len = $class.length; $i < $len; $i++) {
                     classAddExecute($element, $class[$i]);
                 }
+            } else if (hasWhiteSpace($class)) {
+                var $classes = $class.split(' ');
+                for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
+                    classAddExecute($element, $classes[$i]);
+                }
             } else {
                 classAddExecute($element, $class);
             }
@@ -207,6 +210,11 @@ var web = function() {
             if (typeof $class === 'object') {
                 for (var $i = $class.length - 1; $i >= 0; $i--) {
                     classRemoveExecute($element, $class[$i]);
+                }
+            } else if (hasWhiteSpace($class)) {
+                var $classes = $class.split(' ');
+                for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
+                    classRemoveExecute($element, $classes[$i]);
                 }
             } else {
                 classRemoveExecute($element, $class);
@@ -360,223 +368,10 @@ var web = function() {
     };
     var stateToggle = function($element, $state, $clear) {
         if (exists($element)) {
-            if ($webState.list.indexOf($state) > 1) {
+            if ($webState.list.indexOf($state) > -1) {
                 var $altState = $webState.alts[$state] || false;
                 var $clear = $clear || false;
                 var $stateClass = $webPrefix.state + $state;
-=======
-	// DOM
-	var append = function($element, $html) {
-		if (exists($element)) {
-			if ($element.length > 0) {
-				for (var $i = 0, $len = $element.length; $i < $len; $i++) {
-					var $div = document.createElement('div');
-					$div.innerHTML = $html;
-					$element[$i].appendChild($div.firstChild);
-				}
-			} else {
-				var $div = document.createElement('div');
-				$div.innerHTML = $html;
-				$element.appendChild($div.firstChild);
-			}
-		}
-	};
-	var classAdd = function($element, $class) {
-		if (exists($element)) {
-			if (typeof $class === 'object') {
-				for (var $i = 0, $len = $class.length; $i < $len; $i++) {
-					classAddExecute($element, $class[$i]);
-				}
-			} else if (hasWhiteSpace($class)) {
-				var $classes = $class.split(' ');
-				for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
-					classAddExecute($element, $classes[$i]);
-				}
-			} else {
-				classAddExecute($element, $class);
-			}
-		}
-	};
-	var classAddExecute = function($element, $class) {
-		var $crtClass = $element.className;
-		if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
-			$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
-		}
-	};
-	var classClear = function($element) {
-		if (exists($element)) {
-			$element.removeAttribute('class');
-		}
-	};
-	var classRemove = function($element, $class) {
-		if (exists($element)) {
-			if (typeof $class === 'object') {
-				for (var $i = $class.length - 1; $i >= 0; $i--) {
-					classRemoveExecute($element, $class[$i]);
-				}
-			} else if (hasWhiteSpace($class)) {
-				var $classes = $class.split(' ');
-				for (var $i = 0, $len = $classes.length; $i < $len; $i++) {
-					classRemoveExecute($element, $classes[$i]);
-				}
-			} else {
-				classRemoveExecute($element, $class);
-			}
-		}
-	};
-	var classRemoveExecute = function($element, $class) {
-		if ($element.className.indexOf($class) > -1) {
-			$element.className = $element.className.split(' ').filter(function($val) {
-				return $val != $class;
-			}).toString().replace(/,/g, ' ');
-			if ($element.className === '') {
-				classClear($element);
-			}
-		}
-	};
-	var classReplace = function($element, $removeClass, $addClass) {
-		if (exists($element)) {
-			classAdd($element, $addClass);
-			classRemove($element, $removeClass);
-		}
-	};
-	var classToggle = function($element, $class) {
-		if (exists($element)) {
-			if (!hasClass($element, $class)) {
-				classAdd($element, $class);
-			} else {
-				classRemove($element, $class);
-			}
-		}
-	};
-	var eventAdd = function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
-		if ($elem.addEventListener) {
-			$elem.addEventListener($type, $eventHandle, false);
-		} else if ($elem.attachEvent) {
-			$elem.attachEvent("on" + $type, $eventHandle);
-		} else {
-			$elem["on" + $type] = $eventHandle;
-		}
-	};
-	var eventRemove = function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
-		if ($elem.removeEventListener) {
-			$elem.removeEventListener($type, $eventHandle, false);
-		} else if ($elem.detachEvent) {
-			$elem.detachEvent("on" + $type, $eventHandle);
-		} else {
-			$elem["on" + $type] = $eventHandle;
-		}
-	};
-	var getIndex = function($node) {
-		return [].indexOf.call($node.parentNode.children, $node);
-	};
-	var idAdd = function($element, $id) {
-		if (exists($element)) {
-			$element.setAttribute('id', $id);
-		}
-	};
-	var idRemove = function($element) {
-		if (exists($element)) {
-			$element.removeAttribute('id');
-		}
-	};
-	var inputDisable = function($selector) {
-		var $inputElements = select($selector);
-		if ($inputElements.nodeType == undefined) {
-			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
-				$inputElements[$i].disabled = true;
-			}
-		} else {
-			$inputElements.disabled = true;
-		}
-	}
-	var inputEnable = function($selector) {
-		var $inputElements = select($selector);
-		if ($inputElements.nodeType == undefined) {
-			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
-				$inputElements[$i].disabled = false;
-			}
-		} else {
-			$inputElements.disabled = false;
-		}
-	}
-	var remove = function($selElm) {
-		if ($selElm.nodeType == undefined) {
-			var $elements = select($selElm);
-			if ($elements !== null) {
-				if ($elements.nodeType == undefined) {
-					for (var $i = $elements.length - 1; $i >= 0; $i--) {
-						if ($elements[$i] !== null) {
-							$elements[$i].parentNode.removeChild($elements[$i]);
-						}
-					}
-				} else {
-					$elements.parentNode.removeChild($elements);
-				}
-			}
-		} else {
-			if ($selElm !== null) {
-				$selElm.parentNode.removeChild($selElm);
-			}
-		}
-	};
-	var select = function($selector) {
-		if ($selector.indexOf('.') > -1 || hasWhiteSpace($selector)) {
-			var $returnElements = document.querySelectorAll($selector);
-			if ($returnElements.length === 1) {
-				return $returnElements[0];
-			} else {
-				return $returnElements;
-			}
-		} else {
-			if ($selector.indexOf('#') > -1) {
-				return document.getElementById($selector.substring(1));
-			} else {
-				var $returnElements = document.getElementsByTagName($selector);
-				if ($returnElements.length === 1) {
-					return $returnElements[0];
-				} else {
-					return $returnElements;
-				}
-			}
-		}
-	};
-	var setRatio = function($selector, $multiplier) {
-		var $elements = document.querySelectorAll($selector);
-		if (typeof($multiplier) === 'undefined') {
-			$multiplier = 1;
-		}
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
-		};
-	};
-	var stateClear = function($element) {
-		if (exists($element)) {
-			var $newWebStates = $webState.list.slice().map(function($newState) {
-				return $webPrefix.state + $newState;
-			});
-			classRemove($element, $newWebStates);
-		}
-	};
-	var stateSet = function($element, $state) {
-		if (exists($element)) {
-			var $newWebStates = $webState.list.slice().map(function($newState) {
-				return $webPrefix.state + $newState;
-			});
-			var $stateClass = $newWebStates.splice($newWebStates.indexOf($webPrefix.state + $state), 1);
-			classReplace($element, $newWebStates, $stateClass);
-		}
-	};
-	var stateToggle = function($element, $state, $clear) {
-		if (exists($element)) {
-			if ($webState.list.indexOf($state) > -1) {
-				var $altState = $webState.alts[$state] || false;
-				var $clear = $clear || false;
-				var $stateClass = $webPrefix.state + $state;
->>>>>>> origin/dev-chris-component-intergration
-
                 if (hasClass($element, $stateClass)) {
                     if ($clear || $altState === false) {
                         stateClear($element);
