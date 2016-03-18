@@ -8,6 +8,7 @@
 	@include form-setup();
 	@include form-checkbox($type);
 	@include form-input($type);
+	@include form-input-groups();
 	@include form-label();
 	@include form-select($type);
 	@include form-textarea($type);

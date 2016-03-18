@@ -43,7 +43,7 @@ engine/.sass-cache
 
 # Temporary ignore
 test.html
-project/sass/test.scss
-project/css/test.css
-project/js/test.js
-project/js/min/test.min.js
+project/build/sass/test.scss
+project/css/test.min.css
+project/build/js/test.js
+project/js/test.min.js

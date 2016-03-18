@@ -19,6 +19,7 @@
 			@include opacity(0);
 		}
 	}
+	@include menuplate-type-contextual-container();
 }
 @mixin menuplate-type-contextual-reveal() {
 	@include breakpoint(small) {
@@ -125,7 +126,9 @@
 		}
 	}
 }
-.mnp-contextual-container {
-	@include position(relative);
-	@include show(inline-block);
+@mixin menuplate-type-contextual-container() {
+	.mnp-contextual-container {
+		@include position(relative);
+		@include show(inline-block);
+	}
 }

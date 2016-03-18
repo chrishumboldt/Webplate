@@ -8,9 +8,6 @@
 $font-face-formplate: "icon-font-formplate" !default;
 $grey-form: lighten(#000, 85%);
 
-// Imports
-@import "../../blueplate/sass/import";
-
 @import "component/setup";
 
 @import "component/check";

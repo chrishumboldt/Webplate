@@ -5,8 +5,8 @@
  */
 
 @mixin menuplate-css {
-   @include menuplate-overlay();
-	@include menuplate-type-contextual();
-   @include menuplate-type-fullscreen();
-   @include menuplate-type-slide();
+    @include menuplate-overlay();
+    @include menuplate-type-contextual();
+    @include menuplate-type-fullscreen();
+    @include menuplate-type-slide();
 }

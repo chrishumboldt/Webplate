@@ -68,6 +68,7 @@ $tick-scale-large: 1.4;
 	@include form-checkbox-hover();
 	@include form-checkbox-radio();
 	@include form-checkbox-fixes();
+	@include form-checkbox-animation();
 }
 
 // Styles
@@ -156,29 +157,31 @@ $tick-scale-large: 1.4;
 }
 
 // Tick animation
-@-webkit-keyframes form-checkbox-animate-tick {
-	0% {
-		@include opacity(0);
-		@include transform-scale-3d(0,0,0);
+@mixin form-checkbox-animation() {
+	@-webkit-keyframes form-checkbox-animate-tick {
+		0% {
+			@include opacity(0);
+			@include transform-scale-3d(0,0,0);
+		}
+		50% {
+			@include opacity(1);
+			@include transform-scale-3d($tick-scale-large,$tick-scale-large,$tick-scale-large);
+		}
+		100% {
+			@include transform-scale-3d(1,1,1);
+		}
 	}
-	50% {
-		@include opacity(1);
-		@include transform-scale-3d($tick-scale-large,$tick-scale-large,$tick-scale-large);
-	}
-	100% {
-		@include transform-scale-3d(1,1,1);
-	}
-}
-@keyframes form-checkbox-animate-tick {
-	0% {
-		@include opacity(0);
-		@include transform-scale-3d(0,0,0);
-	}
-	50% {
-		@include opacity(1);
-		@include transform-scale-3d($tick-scale-large,$tick-scale-large,$tick-scale-large);
-	}
-	100% {
-		@include transform-scale-3d(1,1,1);
+	@keyframes form-checkbox-animate-tick {
+		0% {
+			@include opacity(0);
+			@include transform-scale-3d(0,0,0);
+		}
+		50% {
+			@include opacity(1);
+			@include transform-scale-3d($tick-scale-large,$tick-scale-large,$tick-scale-large);
+		}
+		100% {
+			@include transform-scale-3d(1,1,1);
+		}
 	}
 }
