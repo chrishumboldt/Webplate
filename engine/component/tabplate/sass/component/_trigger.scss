@@ -1,12 +1,12 @@
 /**
  * File: _trigger.scss
- * Type: SASS basic
+ * Type: SASS component
  * Author: Chris Humboldt
  */
 
 // Triggers
 @mixin tabplate-trigger() {
-	ul.tabplate-triggers {
+	ul.tp-triggers {
 		@include list-style(none);
 		@include spacing-no();
 	}
