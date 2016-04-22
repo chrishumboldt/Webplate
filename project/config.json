@@ -1,6 +1,10 @@
 {
-    "project": {
-        "css": ["app.css"],
-        "js": ["app.js"]
-    }
+	"project": {
+		"css": [
+			"app.css"
+		],
+		"js": [
+			"app.js"
+		]
+	}
 }
