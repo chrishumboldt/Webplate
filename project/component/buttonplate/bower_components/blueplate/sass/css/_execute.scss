@@ -1,0 +1,18 @@
+/**
+ * File: css/_execute.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Execute
+@mixin blueplate-css() {
+	@include blueplate-layout();
+	@include blueplate-responsive-layout();
+	@include blueplate-display();
+	@include blueplate-global();
+	@include blueplate-position();
+	@include blueplate-text();
+	@include blueplate-background();
+	@include blueplate-sizing();
+	@include blueplate-spacing();
+}

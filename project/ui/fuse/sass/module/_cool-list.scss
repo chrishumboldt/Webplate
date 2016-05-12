@@ -1,0 +1,68 @@
+/**
+ * File: ui/fuse/sass/module/_cool-list.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+ul.cool-list {
+	@include row();
+	@include list-style(none);
+	> li {
+		@include span(12);
+		@include display(block);
+		@include position(relative);
+		@include height-min(50px);
+		@include breakpoint($bp-small) {
+			@include span(6);
+		}
+		@include breakpoint(large) {
+			@include span(4);
+		}
+		// Doubles
+		&:nth-child(1),
+		&:nth-child(6),
+		&:nth-child(11),
+		&:nth-child(16),
+		&:nth-child(21),
+		&:nth-child(26),
+		&:nth-child(31),
+		&:nth-child(36),
+		&:nth-child(41),
+		&:nth-child(46) {
+			@include breakpoint($bp-small) {
+				@include span-new(12);
+			}
+			@include breakpoint(large) {
+				@include span-new(8);
+			}
+		}
+		&:nth-child(6),
+		&:nth-child(16),
+		&:nth-child(26),
+		&:nth-child(36),
+		&:nth-child(46),
+		&:nth-child(56) {
+			@include breakpoint(large) {
+				@include float(right);
+			}
+		}
+		// Image hover
+		a.image-hover {
+			@include height(200px);
+			@include breakpoint(large) {
+				@include height(240px);
+			}
+			@include breakpoint($bp-x-large) {
+				@include height(300px);
+			}
+		}
+	}
+	// Modifiers
+	&._padded {
+		> li {
+			@include breakpoint($bp-small) {
+				@include padding($space-x-small);
+			}
+		}
+	}
+}

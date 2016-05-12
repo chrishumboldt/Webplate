@@ -1,0 +1,92 @@
+/**
+ * File: basic/_spacing.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Variables
+// Margins
+// Padding
+// Spacing
+
+// Variables
+$space-base: 24px !default;
+$space-x2-small: $space-base / 6;
+$space-x-small: $space-base / 4;
+$space-small: $space-base / 2;
+$space-minor: $space-base / 1.5;
+$space-slight: $space-base * 1.5;
+$space-medium: $space-base * 2;
+$space-large: $space-base * 3;
+$space-x-large: $space-base * 5;
+$space-x2-large: $space-base * 6;
+$space-base-em: 1.250em !default;
+$space-x2-small-em: $space-base-em / 6;
+$space-x-small-em: $space-base-em / 4;
+$space-small-em: $space-base-em / 2;
+$space-minor-em: $space-base-em / 1.5;
+$space-slight-em: $space-base-em * 1.5;
+$space-medium-em: $space-base-em * 2;
+$space-large-em: $space-base-em * 3;
+$space-x-large-em: $space-base-em * 5;
+$space-x2-large-em: $space-base-em * 6;
+// Margins
+@mixin margin($spacing) {
+   margin: $spacing;
+}
+@mixin margin-top($spacing: $space-base) {
+   margin-top: $spacing;
+}
+@mixin margin-bottom($spacing: $space-base) {
+   margin-bottom: $spacing;
+}
+@mixin margin-left($spacing: $space-base) {
+   margin-left: $spacing;
+}
+@mixin margin-right($spacing: $space-base) {
+   margin-right: $spacing;
+}
+@mixin margin-vertical($spacing: $space-base) {
+   @include margin-top($spacing);
+   @include margin-bottom($spacing);
+}
+@mixin margin-horizontal($spacing: $space-base) {
+   @include margin-left($spacing);
+   @include margin-right($spacing);
+}
+@mixin margin-no() {
+   margin: 0;
+}
+// Padding
+@mixin padding($spacing) {
+   padding: $spacing;
+}
+@mixin padding-top($spacing: $space-base) {
+   padding-top: $spacing;
+}
+@mixin padding-bottom($spacing: $space-base) {
+   padding-bottom: $spacing;
+}
+@mixin padding-left($spacing: $space-base) {
+   padding-left: $spacing;
+}
+@mixin padding-right($spacing: $space-base) {
+   padding-right: $spacing;
+}
+@mixin padding-vertical($spacing: $space-base) {
+   @include padding-top($spacing);
+   @include padding-bottom($spacing);
+}
+@mixin padding-horizontal($spacing: $space-base) {
+   @include padding-left($spacing);
+   @include padding-right($spacing);
+}
+@mixin padding-no() {
+   padding: 0;
+}
+// Spacing reset
+@mixin spacing-no() {
+   padding: 0;
+   margin: 0;
+}

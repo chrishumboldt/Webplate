@@ -1,0 +1,221 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?-60lira');
+	src:url('fonts/icomoon.eot?#iefix-60lira') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-60lira') format('woff'),
+		url('fonts/icomoon.ttf?-60lira') format('truetype'),
+		url('fonts/icomoon.svg?-60lira#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-nfc:before {
+	content: "\e60b";
+}
+
+.icon-wrap-text:before {
+	content: "\e618";
+}
+
+.icon-cog:before {
+	content: "\e023";
+}
+
+.icon-search:before {
+	content: "\e036";
+}
+
+.icon-circle-plus:before {
+	content: "\e040";
+}
+
+.icon-circle-minus:before {
+	content: "\e041";
+}
+
+.icon-location:before {
+	content: "\e071";
+}
+
+.icon-head:before {
+	content: "\e074";
+}
+
+.icon-arrow-left:before {
+	content: "\e094";
+}
+
+.icon-arrow-right:before {
+	content: "\e095";
+}
+
+.icon-arrow-up:before {
+	content: "\e096";
+}
+
+.icon-arrow-down:before {
+	content: "\e097";
+}
+
+.icon-plus:before {
+	content: "\e114";
+}
+
+.icon-minus:before {
+	content: "\e115";
+}
+
+.icon-check:before {
+	content: "\e116";
+}
+
+.icon-cross:before {
+	content: "\e117";
+}
+
+.icon-menu:before {
+	content: "\e120";
+}
+
+.icon-inbox:before {
+	content: "\e122";
+}
+
+.icon-envelope:before {
+	content: "\e616";
+}
+
+.icon-search2:before {
+	content: "\e600";
+}
+
+.icon-star:before {
+	content: "\e601";
+}
+
+.icon-star-empty:before {
+	content: "\e602";
+}
+
+.icon-check2:before {
+	content: "\e603";
+}
+
+.icon-times:before {
+	content: "\e604";
+}
+
+.icon-gear:before {
+	content: "\e605";
+}
+
+.icon-picture-o:before {
+	content: "\e606";
+}
+
+.icon-calendar:before {
+	content: "\e607";
+}
+
+.icon-chevron-down:before {
+	content: "\e608";
+}
+
+.icon-twitter:before {
+	content: "\e609";
+}
+
+.icon-facebook:before {
+	content: "\e60a";
+}
+
+.icon-google-plus:before {
+	content: "\e60c";
+}
+
+.icon-angle-left:before {
+	content: "\e60d";
+}
+
+.icon-angle-right:before {
+	content: "\e60e";
+}
+
+.icon-angle-up:before {
+	content: "\e60f";
+}
+
+.icon-angle-down:before {
+	content: "\e610";
+}
+
+.icon-github:before {
+	content: "\e611";
+}
+
+.icon-code:before {
+	content: "\e612";
+}
+
+.icon-star-half-empty:before {
+	content: "\e613";
+}
+
+.icon-ellipsis-h:before {
+	content: "\e614";
+}
+
+.icon-ellipsis-v:before {
+	content: "\e615";
+}
+
+.icon-menu-bold:before {
+	content: "\e6b8";
+}
+
+.icon-cloud-download:before {
+	content: "\e617";
+}
+
+.icon-share:before {
+	content: "\e75e";
+}
+
+.icon-feed:before {
+	content: "\e770";
+}
+
+.icon-youtube:before {
+	content: "\e773";
+}
+
+.icon-vimeo:before {
+	content: "\e775";
+}
+
+.icon-flickr:before {
+	content: "\e779";
+}
+
+.icon-dribbble:before {
+	content: "\e77f";
+}
+
+.icon-github-logo:before {
+	content: "\e78a";
+}
+

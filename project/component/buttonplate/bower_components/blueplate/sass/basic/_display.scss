@@ -1,0 +1,57 @@
+/**
+ * File: basic/_display.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Show / hide
+// Opacity
+// Overflow
+// Visibility
+
+// Show / hide
+@mixin display($type: block) {
+   display: $type;
+}
+@mixin hide() {
+   display: none;
+}
+@mixin hide-visually() {
+   margin: -1px;
+   padding: 0;
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
+   clip: rect(0 0 0 0);
+   clip: rect(0, 0, 0, 0);
+   position: absolute;
+}
+@mixin show($type: block) {
+   @include display($type);
+}
+// Opacity
+@mixin opacity($opacity: 0.60) {
+   opacity: $opacity;
+   $opacity-ie: $opacity * 100;
+   filter:alpha(opacity=$opacity-ie); //IE8
+}
+@mixin transparency($transparency: 0.60) {
+   @include opacity($transparency);
+}
+// Overflow
+@mixin overflow($overflow: visible, $orientation: false) {
+   @if $orientation == vertical {
+      overflow-y: $overflow;
+   }
+   @else if $orientation == horizontal {
+      overflow-x: $overflow;
+   }
+   @else {
+      overflow: $overflow;
+   }
+}
+// Visibility
+@mixin visibility($visibility: visible) {
+   visibility: $visibility;
+}

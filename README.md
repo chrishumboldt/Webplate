@@ -1,41 +1,67 @@
-Webplate Framework
-========
+# Webplate Framework
+Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
-An awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
+## Getting Started
+Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **webplate** is required.
+```
+<body style="display:none;">
+    /* Your content goes here */
+    <script id="webplate" src="webplate/start.js"></script>
+</body>
+```
+The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
+#### Simple Page Loader
+If you would like a page loader to display while your project files load, simply wrap your content in a div with id **webplate-content**. See an example below.
+```
+<body>
+    <div id="webplate-content" style="display:none;">
+        /* Your content goes here */
+    </div>
+    <script id="webplate" src="webplate/start.js"></script>
+</body>
+```
 
-Getting Started
-========
-
-This is a simple process that requires you dropping a copy of the Webplate directory into your project and including the <b>webplate/stack.js</b> file in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.
+## Load Your Project Files
+All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.
 
 ```
-<head>
-    <script id="webplate-stack" src="webplate/stack.js" type="text/javascript"></script>
-</head>
+{
+    "project": {
+        "css": ["welcome.css", "theme.css"],
+        "js": ["min/welcome.min.js"],
+    }
+}
 ```
 
-This will load all the neccessary files required as well as give you the option to load your own "project" specific JS or CSS files. To load project files add a data attribute to your "body" like the example below.
+You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
 
-```
-<body style="display: none;" data-project-css="welcome.css" data-project-js="welcome.js">
-```
+## Lets Go To The Next Level
+Before you have even started, Webplate has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
 
-Note that the <b>style="display: none;"</b> attribute is used to prevent style snapping so that the page will only show once the files have been loaded. It is not required but recommended.
+This will get you up and running for most projects but if you want to include Webplate components like Buttons, Forms or Modals or perhaps you want to even start delving into Webplate's automatic Bower, SASS and Grunt intergration then just read over some of the online documentation and become a bonafide pro.
 
-All files are loaded asynchronously. From here on out you have access to all Webplate plugins, including the <a href="http://getwebplate.com/plugins/blueplate">Blueplate</a> responsive CSS layout engine, the <a href="http://getwebplate.com/plugins/flickerplate">Flickerplate</a> plugin and all other libraries like, <a href="http://jquery.com/">jQuery</a>, <a href="http://modernizr.com/">Modernizr</a>, <a href="http://typeplate.com/">Typeplate</a>, <a href="http://icomoon.io/">IcoMoon</a> and <a href="http://ngryman.sh/jquery.finger/">jQuery.Finger</a>.
-
-
-Documentation
-========
-
-Webplate has many aspects to it so for more information view the comprehensive online documentation at http://getwebplate.com/documentation.
+<b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
 
 
-Copyright and License
-========
+## Documentation
+Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://localhost/getwebplate.com/#/documentation/what-you-got/).
 
-Copyright 2014 Savedge Project
+
+## Author
+Created and maintained by Chris Humboldt<br>
+Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
+Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
+GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
+
+
+## Contributors
+<a href="https://github.com/simeydotme">Simon Goellner</a><br>
+<a href="https://github.com/V1RTUOZ">Oleg Kalandarashvili</a><br>
+<a href="https://github.com/digiltd">digiltd</a>
+
+## Copyright and License
+Copyright 2016 Webplate Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

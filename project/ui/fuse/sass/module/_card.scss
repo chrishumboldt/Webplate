@@ -1,0 +1,93 @@
+/**
+ * File: ui/fuse/module/_card.scss
+ * Type: SASS module file
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Card basics
+// Links
+// Card grid
+
+// Card basics
+.card {
+	@include background-colour($white);
+	.image {
+		@include position(relative);
+		@include height-min(100px);
+		@include background-cover();
+		.info {
+			@include position(absolute, bottom 0 right 0);
+			@include padding-horizontal($space-small);
+			@include padding-vertical($space-x-small);
+			@include text-colour($white);
+			@include background-colour($pink);
+			span {
+				@include text-colour(lighten($pink, 10%));
+				@include text-size($size-small);
+			}
+		}
+	}
+	.details {
+		@include padding($space-minor);
+		@include text-size($size-minor);
+		@include breakpoint(large) {
+			@include padding($space-base);
+		}
+		h6 {
+			@include spacing-no();
+			@include text-colour($black-base);
+			@include text-weight(400);
+		}
+		.sub-text {
+			@include display(block);
+			@include spacing-no();
+			@include text-colour($grey);
+			@include text-size($size-small);
+		}
+	}
+}
+.card-medium {
+	@extend .card;
+	.details {
+		@include breakpoint($bp-x-large) {
+			@include padding($space-medium);
+		}
+	}
+}
+.card-grey {
+	@extend .card;
+	@include background-colour($grey-x-light);
+}
+
+// Links
+.no-touchevents a.card {
+	@include display(block);
+	@include animate(all);
+	&:hover {
+		@include cursor(pointer);
+		@include drop-shadow(fade-out($black, 0.9), 14px);
+	}
+}
+
+// Card grid
+.card-grid {
+	@include row();
+	ul {
+		@include list-style(none);
+		> li {
+			@include span(12);
+			@include breakpoint($bp-small) {
+				@include span-new(6);
+				@include padding-bottom($space-small);
+				@include padding-horizontal($space-x-small);
+			}
+			@include breakpoint($bp-large) {
+				@include span-new(4);
+			}
+			@include breakpoint($bp-x-large) {
+				@include span-new(3);
+			}
+		}
+	}
+}

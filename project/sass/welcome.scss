@@ -1,0 +1,41 @@
+/**
+ * File: welcome.scss
+ * Type: SASS
+ * Author: Chris Humboldt
+ */
+
+// Banner
+// .banner {
+// 	@include position(relative);
+// 	// Text
+// 	h1 {
+// 		@include text-colour($white);
+// 		@include text-weight(400);
+// 	}
+// 	p {
+// 		@include padding-bottom($space-medium);
+// 		@include text-colour(fade-out($white, 0.3));
+// 	}
+// }
+.row.example {
+	@include border(3px, lighten($grey-blue-light, 14%));
+	div {
+		@include padding-vertical($space-small);
+		@include text-align(center);
+		@include text-size(14px);
+		@include text-weight(300);
+		@include background-colour(lighten($grey-blue-light, 10%));
+		@include border(3px, lighten($grey-blue-light, 14%));
+		@include breakpoint(large) {
+			@include text-size(16px);
+		}
+	}
+}
+h4 {
+	@include text-colour($pink);
+}
+.title-bar {
+	.no-touch & ul li a {
+		@include text-weight(300);
+	}
+}

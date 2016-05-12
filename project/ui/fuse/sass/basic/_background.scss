@@ -1,0 +1,13 @@
+/**
+ * File: ui/fuse/sass/basic/_background.scss
+ * Type: SASS basic file
+ * Author: Chris Humboldt
+ */
+ 
+// Background colours
+.back-grey-light {
+	@include background-colour($grey-x-light);
+}
+.back-white {
+	@include background-colour($white);
+}

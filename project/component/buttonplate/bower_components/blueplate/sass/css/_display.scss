@@ -1,0 +1,63 @@
+/**
+ * File: css/_display.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+ 
+// Display classes
+@mixin blueplate-display() {
+	.show {
+		@include show();
+	}
+	.hide {
+		@include hide();
+	}
+	.opacity-100,
+	.transparency-100 {
+		@include transparency(1);
+	}
+	.opacity-75,
+	.transparency-75 {
+		@include transparency(0.75);
+	}
+	.opacity-50,
+	.transparency-50 {
+		@include transparency(0.5);
+	}
+	.opacity-25,
+	.transparency-25 {
+		@include transparency(0.25);
+	}
+	.opacity-0,
+	.transparency-0 {
+		@include transparency(0);
+	}
+	@include breakpoint(large) {
+		.small-show,
+		.show-small {
+			@include hide();
+		}
+		.large-show,
+		.show-large {
+			@include show();
+		}
+		.large-hide,
+		.hide-large {
+			@include hide();
+		}
+	}
+	@include breakpoint(small) {
+		.small-show,
+		.show-small {
+			@include show();
+		}
+		.small-hide,
+		.hide-small {
+			@include hide();
+		}
+		.large-show,
+		.show-large {
+			@include hide();
+		}
+	}
+}

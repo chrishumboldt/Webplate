@@ -1,0 +1,41 @@
+/**
+ * File: basic/_size.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Size
+@mixin size($width: 0px, $height: 0px) {
+   @include width($width);
+   @include height($height);
+}
+@mixin height($height: 0px, $height-max: false, $height-min: false) {
+   height: $height;
+   @if $height-max != false {
+      @include height-max($height-max);
+   }
+   @if $height-min != false {
+      @include height-min($height-min);
+   }
+}
+@mixin height-max($height: 0px) {
+   max-height: $height;
+}
+@mixin height-min($height: 0px) {
+   min-height: $height;
+}
+@mixin width($width: 0px, $width-max: false, $width-min: false) {
+   width: $width;
+   @if $width-max != false {
+      @include width-max($width-max);
+   }
+   @if $width-min != false {
+      @include width-min($width-min);
+   }
+}
+@mixin width-max($width: 0px) {
+   max-width: $width;
+}
+@mixin width-min($width: 0px) {
+   min-width: $width;
+}

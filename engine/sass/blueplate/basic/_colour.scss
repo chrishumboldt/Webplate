@@ -1,0 +1,124 @@
+/**
+ * File: basic/_colour.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+
+// Table of contents
+// Mono
+// Primary
+// Secondary
+// Lists
+
+// Mono
+$white: #fff;
+$black: #000;
+$black-base: lighten($black, 22%);
+$grey-x2-light: lighten($black, 98%);
+$grey-x-light: lighten($black, 96%);
+$grey-light: lighten($black, 90%);
+$grey: lighten($black, 50%);
+$grey-dark: lighten($black, 40%);
+$grey-x-dark: lighten($black, 35%);
+$grey-x2-dark: lighten($black, 30%);
+
+// Primary
+$aqua: #1abc9c;
+$blue: #3498db;
+$green: #2ecc71;
+$orange: #f39c12;
+$pink: #eb5367;
+$purple: #9b59b6;
+$red: #e74c3c;
+$yellow: #f1c40f;
+
+// Secondary
+$asbestos: #7f8c8d;
+$asphalt: #34495e;
+$bondi-blue: #008D9C;
+$cloud: #ecf0f1;
+$concrete: #95a5a6;
+$grey-blue-x-light: #f8f9fA;
+$grey-blue-light: #ccd1d9;
+$grey-blue: #aab2bd;
+$grey-blue-dark: #656d78;
+$grey-blue-x-dark: #434a54;
+$midnight: #2c3e50;
+$off-white: #f5f7fa;
+$off-white-dark: #e6e9ed;
+$river-bed: #434d5a;
+$silver: #bdc3c7;
+
+// Lists
+$ar-colours-mono: (
+	"white": $white,
+	"black": $black,
+	"black-base": $black-base,
+	"grey-x2-light": $grey-x2-light,
+	"grey-x-light": $grey-x-light,
+	"grey-light": $grey-light,
+	"grey": $grey,
+	"grey-dark": $grey-dark,
+	"grey-x-dark": $grey-x-dark,
+	"grey-x2-dark": $grey-x2-dark
+);
+$ar-colours-primary: (
+	"grey": $grey,
+	"black": $black-base,
+	"white": $white,
+	"aqua": $aqua,
+	"blue": $blue,
+	"green": $green,
+	"orange": $orange,
+	"pink": $pink,
+	"purple": $purple,
+	"red": $red,
+	"yellow": $yellow
+);
+$ar-colours-secondary: (
+	"asbestos": $asbestos,
+	"asphalt": $asphalt,
+	"bondi-blue": $bondi-blue,
+	"cloud": $cloud,
+	"concrete": $concrete,
+	"grey-blue-light": $grey-blue-light,
+	"grey-blue": $grey-blue,
+	"grey-blue-dark": $grey-blue-dark,
+	"grey-blue-x-dark": $grey-blue-x-dark,
+	"midnight": $midnight,
+	"off-white": $off-white,
+	"off-white-dark": $off-white-dark,
+	"river-bed": $river-bed,
+	"silver": $silver
+);
+$ar-colours-buttons: (
+	"grey": $grey-light,
+	"black": $black-base,
+	"white": $white,
+	"aqua": $aqua,
+	"blue": $blue,
+	"green": $green,
+	"orange": $orange,
+	"pink": $pink,
+	"purple": $purple,
+	"red": $red,
+	"yellow": $yellow
+);
+$ar-colours-form: (
+	"grey": $grey-light,
+	"black": $black-base,
+	"white": $white,
+	"aqua": $aqua,
+	"blue": $blue,
+	"green": $green,
+	"orange": $orange,
+	"pink": $pink,
+	"purple": $purple,
+	"red": $red,
+	"yellow": $yellow,
+	"asbestos": $asbestos,
+	"asphalt": $asphalt,
+	"bondi-blue": $bondi-blue,
+	"grey-blue": $grey-blue,
+	"silver": $silver
+);
