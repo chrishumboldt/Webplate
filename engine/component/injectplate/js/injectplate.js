@@ -14,7 +14,7 @@
  * http://github.com/janl/mustache.js
  */
 /*global define: false Mustache: true*/
-(function defineMustache(global, factory) {
+(function defineMustache (global, factory) {
 	if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
 		factory(exports); // CommonJS
 	} else if (typeof define === 'function' && define.amd) {
@@ -23,14 +23,13 @@
 		global.Mustache = {};
 		factory(global.Mustache); // script, wsh, asp
 	}
-}(this, function mustacheFactory(mustache) {
-
+}(this, function mustacheFactory (mustache) {
 	var objectToString = Object.prototype.toString;
-	var isArray = Array.isArray || function isArrayPolyfill(object) {
+	var isArray = Array.isArray || function isArrayPolyfill (object) {
 		return objectToString.call(object) === '[object Array]';
 	};
 
-	function isFunction(object) {
+	function isFunction (object) {
 		return typeof object === 'function';
 	}
 
@@ -38,11 +37,11 @@
 	 * More correct typeof string handling array
 	 * which normally returns typeof 'object'
 	 */
-	function typeStr(obj) {
+	function typeStr (obj) {
 		return isArray(obj) ? 'array' : typeof obj;
 	}
 
-	function escapeRegExp(string) {
+	function escapeRegExp (string) {
 		return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
 	}
 
@@ -50,7 +49,7 @@
 	 * Null safe way of checking whether or not an object,
 	 * including its prototype, has a given property
 	 */
-	function hasProperty(obj, propName) {
+	function hasProperty (obj, propName) {
 		return obj != null && typeof obj === 'object' && (propName in obj);
 	}
 
@@ -58,13 +57,13 @@
 	// See https://github.com/janl/mustache.js/issues/189
 	var regExpTest = RegExp.prototype.test;
 
-	function testRegExp(re, string) {
+	function testRegExp (re, string) {
 		return regExpTest.call(re, string);
 	}
 
 	var nonSpaceRe = /\S/;
 
-	function isWhitespace(string) {
+	function isWhitespace (string) {
 		return !testRegExp(nonSpaceRe, string);
 	}
 
@@ -79,8 +78,8 @@
 		'=': '&#x3D;'
 	};
 
-	function escapeHtml(string) {
-		return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap(s) {
+	function escapeHtml (string) {
+		return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap (s) {
 			return entityMap[s];
 		});
 	}
@@ -113,22 +112,22 @@
 	 * array of tokens in the subtree and 2) the index in the original template at
 	 * which the closing tag for that section begins.
 	 */
-	function parseTemplate(template, tags) {
+	function parseTemplate (template, tags) {
 		if (!template)
 			return [];
 
-		var sections = []; // Stack to hold section tokens
-		var tokens = []; // Buffer to hold the tokens
-		var spaces = []; // Indices of whitespace tokens on the current line
-		var hasTag = false; // Is there a {{tag}} on the current line?
-		var nonSpace = false; // Is there a non-space char on the current line?
+		var sections = [];// Stack to hold section tokens
+		var tokens = [];// Buffer to hold the tokens
+		var spaces = [];// Indices of whitespace tokens on the current line
+		var hasTag = false;// Is there a {{tag}} on the current line?
+		var nonSpace = false;// Is there a non-space char on the current line?
 
 		// Strips all whitespace tokens array for the current line
 		// if there was a {{#tag}} on it and otherwise only space.
-		function stripSpace() {
+		function stripSpace () {
 			if (hasTag && !nonSpace) {
 				while (spaces.length)
-					delete tokens[spaces.pop()];
+				delete tokens[spaces.pop()];
 			} else {
 				spaces = [];
 			}
@@ -139,7 +138,7 @@
 
 		var openingTagRe, closingTagRe, closingCurlyRe;
 
-		function compileTags(tagsToCompile) {
+		function compileTags (tagsToCompile) {
 			if (typeof tagsToCompile === 'string')
 				tagsToCompile = tagsToCompile.split(spaceRe, 2);
 
@@ -244,7 +243,7 @@
 	 * Combines the values of consecutive text tokens in the given `tokens` array
 	 * to a single token.
 	 */
-	function squashTokens(tokens) {
+	function squashTokens (tokens) {
 		var squashedTokens = [];
 
 		var token, lastToken;
@@ -271,7 +270,7 @@
 	 * all tokens that appear in that section and 2) the index in the original
 	 * template that represents the end of that section.
 	 */
-	function nestTokens(tokens) {
+	function nestTokens (tokens) {
 		var nestedTokens = [];
 		var collector = nestedTokens;
 		var sections = [];
@@ -290,7 +289,7 @@
 				case '/':
 					section = sections.pop();
 					section[5] = token[2];
-					collector = sections.length > 0 ? sections[sections.length - 1][4] : nestedTokens;
+					collector = sections.length > 0 ? sections[sections.length - 1][4]: nestedTokens;
 					break;
 				default:
 					collector.push(token);
@@ -304,7 +303,7 @@
 	 * A simple string scanner that is used by the template parser to find
 	 * tokens in template strings.
 	 */
-	function Scanner(string) {
+	function Scanner (string) {
 		this.string = string;
 		this.tail = string;
 		this.pos = 0;
@@ -313,7 +312,7 @@
 	/**
 	 * Returns `true` if the tail is empty (end of string).
 	 */
-	Scanner.prototype.eos = function eos() {
+	Scanner.prototype.eos = function eos () {
 		return this.tail === '';
 	};
 
@@ -321,7 +320,7 @@
 	 * Tries to match the given regular expression at the current position.
 	 * Returns the matched text if it can match, the empty string otherwise.
 	 */
-	Scanner.prototype.scan = function scan(re) {
+	Scanner.prototype.scan = function scan (re) {
 		var match = this.tail.match(re);
 
 		if (!match || match.index !== 0)
@@ -339,7 +338,7 @@
 	 * Skips all text until the given regular expression can be matched. Returns
 	 * the skipped string, which is the entire tail if no match can be made.
 	 */
-	Scanner.prototype.scanUntil = function scanUntil(re) {
+	Scanner.prototype.scanUntil = function scanUntil (re) {
 		var index = this.tail.search(re),
 			match;
 
@@ -365,7 +364,7 @@
 	 * Represents a rendering context by wrapping a view object and
 	 * maintaining a reference to the parent context.
 	 */
-	function Context(view, parentContext) {
+	function Context (view, parentContext) {
 		this.view = view;
 		this.cache = {
 			'.': this.view
@@ -377,7 +376,7 @@
 	 * Creates a new context using the given view with this context
 	 * as the parent.
 	 */
-	Context.prototype.push = function push(view) {
+	Context.prototype.push = function push (view) {
 		return new Context(view, this);
 	};
 
@@ -385,7 +384,7 @@
 	 * Returns the value of the given name in this context, traversing
 	 * up the context hierarchy if the value is absent in this context's view.
 	 */
-	Context.prototype.lookup = function lookup(name) {
+	Context.prototype.lookup = function lookup (name) {
 		var cache = this.cache;
 
 		var value;
@@ -443,14 +442,14 @@
 	 * string, given a context. It also maintains a cache of templates to
 	 * avoid the need to parse the same template twice.
 	 */
-	function Writer() {
+	function Writer () {
 		this.cache = {};
 	}
 
 	/**
 	 * Clears all cached templates in this writer.
 	 */
-	Writer.prototype.clearCache = function clearCache() {
+	Writer.prototype.clearCache = function clearCache () {
 		this.cache = {};
 	};
 
@@ -458,7 +457,7 @@
 	 * Parses and caches the given `template` and returns the array of tokens
 	 * that is generated from the parse.
 	 */
-	Writer.prototype.parse = function parse(template, tags) {
+	Writer.prototype.parse = function parse (template, tags) {
 		var cache = this.cache;
 		var tokens = cache[template];
 
@@ -477,7 +476,7 @@
 	 * also be a function that is used to load partial templates on the fly
 	 * that takes a single argument: the name of the partial.
 	 */
-	Writer.prototype.render = function render(template, view, partials) {
+	Writer.prototype.render = function render (template, view, partials) {
 		var tokens = this.parse(template);
 		var context = (view instanceof Context) ? view : new Context(view);
 		return this.renderTokens(tokens, context, partials, template);
@@ -492,7 +491,7 @@
 	 * If the template doesn't use higher-order sections, this argument may
 	 * be omitted.
 	 */
-	Writer.prototype.renderTokens = function renderTokens(tokens, context, partials, originalTemplate) {
+	Writer.prototype.renderTokens = function renderTokens (tokens, context, partials, originalTemplate) {
 		var buffer = '';
 
 		var token, symbol, value;
@@ -515,14 +514,14 @@
 		return buffer;
 	};
 
-	Writer.prototype.renderSection = function renderSection(token, context, partials, originalTemplate) {
+	Writer.prototype.renderSection = function renderSection (token, context, partials, originalTemplate) {
 		var self = this;
 		var buffer = '';
 		var value = context.lookup(token[1]);
 
 		// This function is used to render an arbitrary template
 		// in the current context by higher-order sections.
-		function subRender(template) {
+		function subRender (template) {
 			return self.render(template, context, partials);
 		}
 
@@ -549,7 +548,7 @@
 		return buffer;
 	};
 
-	Writer.prototype.renderInverted = function renderInverted(token, context, partials, originalTemplate) {
+	Writer.prototype.renderInverted = function renderInverted (token, context, partials, originalTemplate) {
 		var value = context.lookup(token[1]);
 
 		// Use JavaScript's definition of falsy. Include empty arrays.
@@ -558,7 +557,7 @@
 			return this.renderTokens(token[4], context, partials, originalTemplate);
 	};
 
-	Writer.prototype.renderPartial = function renderPartial(token, context, partials) {
+	Writer.prototype.renderPartial = function renderPartial (token, context, partials) {
 		if (!partials) return;
 
 		var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
@@ -566,19 +565,19 @@
 			return this.renderTokens(this.parse(value), context, partials, value);
 	};
 
-	Writer.prototype.unescapedValue = function unescapedValue(token, context) {
+	Writer.prototype.unescapedValue = function unescapedValue (token, context) {
 		var value = context.lookup(token[1]);
 		if (value != null)
 			return value;
 	};
 
-	Writer.prototype.escapedValue = function escapedValue(token, context) {
+	Writer.prototype.escapedValue = function escapedValue (token, context) {
 		var value = context.lookup(token[1]);
 		if (value != null)
 			return mustache.escape(value);
 	};
 
-	Writer.prototype.rawValue = function rawValue(token) {
+	Writer.prototype.rawValue = function rawValue (token) {
 		return token[1];
 	};
 
@@ -592,7 +591,7 @@
 	/**
 	 * Clears all cached templates in the default writer.
 	 */
-	mustache.clearCache = function clearCache() {
+	mustache.clearCache = function clearCache () {
 		return defaultWriter.clearCache();
 	};
 
@@ -601,7 +600,7 @@
 	 * array of tokens it contains. Doing this ahead of time avoids the need to
 	 * parse templates on the fly as they are rendered.
 	 */
-	mustache.parse = function parse(template, tags) {
+	mustache.parse = function parse (template, tags) {
 		return defaultWriter.parse(template, tags);
 	};
 
@@ -609,7 +608,7 @@
 	 * Renders the `template` with the given `view` and `partials` using the
 	 * default writer.
 	 */
-	mustache.render = function render(template, view, partials) {
+	mustache.render = function render (template, view, partials) {
 		if (typeof template !== 'string') {
 			throw new TypeError('Invalid template! Template should be a "string" ' +
 				'but "' + typeStr(template) + '" was given as the first ' +
@@ -621,7 +620,7 @@
 
 	// This is here for backwards compatibility with 0.4.x.,
 	/*eslint-disable */ // eslint wants camel cased function name
-	mustache.to_html = function to_html(template, view, partials, send) {
+	mustache.to_html = function to_html (template, view, partials, send) {
 		/*eslint-enable*/
 
 		var result = mustache.render(template, view, partials);
@@ -645,12 +644,12 @@
 }));
 
 // Injectplate
-var injectplate = function() {
+var injectplate = function () {
 	// Variables
 	var $componentList = {};
 
 	// Bind
-	var bind = function($objBind) {
+	var bind = function ($objBind) {
 		var $objBind = $objBind || false;
 		if ($objBind !== false && $objBind.component) {
 			var $bindTo;
@@ -663,15 +662,16 @@ var injectplate = function() {
 					if ($objBind.overwrite === true) {
 						$bindTo[$i].innerHTML = Mustache.render($componentList[$objBind.component]['html'], $data);
 					} else {
-						var $container = document.createElement('div');
-						$container.innerHTML = Mustache.render($componentList[$objBind.component]['html'], $data);
-						$bindTo[$i].appendChild($container);
+						$bindTo[$i].insertAdjacentHTML('beforeend', Mustache.render($componentList[$objBind.component]['html'], $data));
 					}
 					$bindTo[$i].setAttribute('data-inject', 'true');
-					if ($componentList[$objBind.component]['className'] !== false) {
+					if ($componentList[$objBind.component]['id']) {
+						$bindTo[$i].id = $componentList[$objBind.component]['id'];
+					}
+					if ($componentList[$objBind.component]['className']) {
 						classAdd($bindTo[$i], $componentList[$objBind.component]['className']);
 					}
-					if ($componentList[$objBind.component]['onDone'] !== false) {
+					if ($componentList[$objBind.component]['onDone']) {
 						$callback = $componentList[$objBind.component]['onDone']($bindTo[$i]);
 					}
 					if ($objBind.onDone !== undefined) {
@@ -683,7 +683,7 @@ var injectplate = function() {
 	};
 
 	// Class add
-	var classAdd = function($element, $class) {
+	var classAdd = function ($element, $class) {
 		var $crtClass = $element.className;
 		if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
 			$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
@@ -691,16 +691,15 @@ var injectplate = function() {
 	};
 
 	// Show component list
-	var componentList = function() {
-		if (window.console) {
-			console.log($componentList);
-		}
+	var componentList = function () {
+		console.log($componentList);
 	};
 
 	// Register component
-	var component = function($objComponent) {
+	var component = function ($objComponent) {
 		$componentList[$objComponent.name] = {
 			className: $objComponent.className || false,
+			id: $objComponent.id || false,
 			html: flattenTemplate($objComponent.html),
 			onDone: $objComponent.onDone || false,
 			overwrite: $objComponent.overwrite || false
@@ -708,7 +707,7 @@ var injectplate = function() {
 	};
 
 	// Flatten template
-	var flattenTemplate = function($templateInp) {
+	var flattenTemplate = function ($templateInp) {
 		if (typeof $templateInp === 'object') {
 			var $template = '';
 			for (var $i = 0, $len = $templateInp.length; $i < $len; $i++) {
@@ -716,12 +715,28 @@ var injectplate = function() {
 			}
 			return $template;
 		} else if (typeof $templateInp === 'string') {
-			return $templateInp;
+			var $template = '';
+			var $templateInpSplit = $templateInp.split(/(?:\r\n|\n|\r)/);
+			for (var $i = 0, $len = $templateInpSplit.length; $i < $len; $i++) {
+				$template += $templateInpSplit[$i].trim();
+			}
+			return $template;
+		}
+	};
+
+	// Generate
+	var generate = function ($objGenerate) {
+		var $objGenerate = $objGenerate || false;
+		if ($objGenerate !== false && $objGenerate.component) {
+			var $data = $objGenerate.data || '';
+			if ($objGenerate.onDone !== undefined) {
+				$objGenerate.onDone(Mustache.render($componentList[$objGenerate.component]['html'], $data));
+			}
 		}
 	};
 
 	// Select
-	var select = function($selector) {
+	var select = function ($selector) {
 		if ($selector.indexOf('.') > -1) {
 			return document.querySelectorAll($selector);
 		} else if ($selector.indexOf('#') > -1) {
@@ -735,6 +750,7 @@ var injectplate = function() {
 	return {
 		bind: bind,
 		component: component,
-		componentList: componentList
+		componentList: componentList,
+		generate: generate
 	};
 };
