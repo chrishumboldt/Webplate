@@ -9,53 +9,47 @@
 // Transform easing
 
 // Transforms
+@mixin transform($anything) {
+	-webkit-transform: $anything;
+   -o-transform: $anything;
+   -moz-transform: $anything;
+   transform: $anything;
+}
+@mixin transform-origin($x: 50%, $y: 50%, $z: 0) {
+   -webkit-transform-origin: $x $y $z;
+   -o-transform-origin: $x $y $z;
+   -moz-transform-origin: $x $y $z;
+   transform-origin: $x $y $z;
+};
 @mixin transform-rotate($rotate: 0deg) {
-   -webkit-transform: rotate($rotate);
-   -o-transform: rotate($rotate);
-   -moz-transform: rotate($rotate);
-   transform: rotate($rotate);
+	@include transform(rotate($rotate));
+}
+@mixin transform-rotate-x($rotate: 0deg) {
+	@include transform(rotateX($rotate));
+}
+@mixin transform-rotate-y($rotate: 0deg) {
+	@include transform(rotateY($rotate));
 }
 @mixin transform-rotate-z($rotate: 0deg) {
-   -webkit-transform: rotateZ($rotate);
-   -o-transform: rotateZ($rotate);
-   -moz-transform: rotateZ($rotate);
-   transform: rotateZ($rotate);
+	@include transform(rotateZ($rotate));
 }
 @mixin transform-scale($x: 1, $y: 1) {
-   -webkit-transform: scale($x, $y);
-   -o-transform: scale($x, $y);
-   -moz-transform: scale($x, $y);
-   transform: scale($x, $y);
+	@include transform(scale($x, $y));
 }
 @mixin transform-scale-3d($x: 1, $y: 1, $z: 1) {
-   -webkit-transform: scale3d($x, $y, $z);
-   -o-transform: scale3d($x, $y, $z);
-   -moz-transform: scale3d($x, $y, $z);
-   transform: scale3d($x, $y, $z);
+	@include transform(scale3d($x, $y, $z));
 }
 @mixin transform-translate-3d($x: 0px, $y: 0px, $z: 0px) {
-   -webkit-transform: translate3d($x, $y, $z);
-   -o-transform: translate3d($x, $y, $z);
-   -moz-transform: translate3d($x, $y, $z);
-   transform: translate3d($x, $y, $z);
+	@include transform(translate3d($x, $y, $z));
 }
 @mixin transform-translate-x($x: 0px) {
-   -webkit-transform: translateX($x);
-   -o-transform: translateX($x);
-   -moz-transform: translateX($x);
-   transform: translateX($x);
+	@include transform(translateX($x));
 }
 @mixin transform-translate-y($y: 0px) {
-   -webkit-transform: translateY($y);
-   -o-transform: translateY($y);
-   -moz-transform: translateY($y);
-   transform: translateY($y);
+	@include transform(translateY($y));
 }
 @mixin transform-translate-z($z: 0px) {
-   -webkit-transform: translateZ($z);
-   -o-transform: translateZ($z);
-   -moz-transform: translateZ($z);
-   transform: translateZ($z);
+	@include transform(translateZ($z));
 }
 
 // Transform easing

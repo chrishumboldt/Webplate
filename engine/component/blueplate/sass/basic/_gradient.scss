@@ -10,7 +10,7 @@
 
 // Animated gradients
 @mixin gradient-animate-angle($top-left-colour, $bottom-right-colour) {
-   @include gradient-animate(135deg, $top-left-colour, $bottom-right-colour);
+   @include gradient-animate($top-left-colour, $bottom-right-colour, 135deg);
 }
 @mixin gradient-animate-horizontal($left-colour, $right-colour) {
    @include gradient-animate(left, $left-colour, $right-colour);
@@ -18,7 +18,7 @@
 @mixin gradient-animate-vertical($top-colour, $bottom-colour) {
    @include gradient-animate(top, $left-colour, $right-colour);
 }
-@mixin gradient-animate($angle, $colour-1, $colour-2) {
+@mixin gradient-animate($colour-1, $colour-2, $angle) {
    @if $angle != top {
       background: linear-gradient($angle, $colour-1, $colour-2);
    }

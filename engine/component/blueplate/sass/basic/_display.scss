@@ -8,6 +8,7 @@
 // Show / hide
 // Opacity
 // Overflow
+// Perspective
 // Visibility
 
 // Show / hide
@@ -50,6 +51,12 @@
    @else {
       overflow: $overflow;
    }
+}
+// Perspective
+@mixin perspective($perspective: 0px) {
+	-webkit-perspective: $perspective;
+	-moz-perspective: $perspective;
+	perspective: $perspective;
 }
 // Visibility
 @mixin visibility($visibility: visible) {

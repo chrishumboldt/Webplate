@@ -55,7 +55,10 @@
  	   }
  	} @else if $size == medium {
  		@include padding-horizontal($space-minor);
- 	   @include padding-vertical($space-slight);
+ 	   @include padding-vertical($space-base);
+ 		@include breakpoint($bp-small) {
+ 			@include padding-vertical($space-slight);
+ 	   }
  	   @include breakpoint($bp-medium) {
  			@include padding-horizontal($space-base);
  	   }
@@ -68,7 +71,10 @@
  	   }
  	} @else if $size == large {
  		@include padding-horizontal($space-minor);
- 	   @include padding-vertical($space-slight);
+ 	   @include padding-vertical($space-base);
+ 		@include breakpoint($bp-small) {
+ 			@include padding-vertical($space-slight);
+ 	   }
  	   @include breakpoint($bp-medium) {
  			@include padding-horizontal($space-slight);
  			@include padding-vertical($space-medium);
