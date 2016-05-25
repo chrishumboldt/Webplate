@@ -9,7 +9,7 @@
 // Keyframes
 
 // Animate
-@mixin animate($attribute, $transition-speed: 0.2s, $delay: 0s, $easing: ease-out) {
+@mixin transition($attribute, $transition-speed: 0.2s, $delay: 0s, $easing: ease-out) {
 	@if $attribute == transform {
 		-webkit-transition: -webkit-#{$attribute} $transition-speed $easing $delay;
 		-moz-transition: -moz-#{$attribute} $transition-speed $easing $delay;
@@ -22,11 +22,26 @@
 		transition: $attribute $transition-speed $easing $delay;
 	}
 }
-@mixin animate-no() {
+@mixin transition-no() {
 	-webkit-transition: none !important;
 	-moz-transition: none !important;
 	-ms-transition: none !important;
 	transition: none !important;
+}
+@mixin transition-timing-function($timing) {
+	-webkit-transition-timing-function: $timing;
+   -moz-transition-timing-function: $timing;
+	-ms-transition-timing-function: $timing;
+   transition-timing-function: $timing;
+}
+@mixin animate($attribute, $transition-speed: 0.2s, $delay: 0s, $easing: ease-out) {
+	@include transition($attribute, $transition-speed, $delay, $easing);
+}
+@mixin animate-no() {
+	@include transition-no();
+}
+@mixin animate-timing-function($timing) {
+	@include transition-timing-function($timing);
 }
 // Animation
 @mixin animation-delay($delay) {

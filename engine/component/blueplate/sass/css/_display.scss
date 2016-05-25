@@ -12,6 +12,9 @@
 	._hide {
 		@include hide();
 	}
+	._hide-visually {
+		@include hide-visually();
+	}
 	._opacity-100 {
 		@include opacity(1);
 	}

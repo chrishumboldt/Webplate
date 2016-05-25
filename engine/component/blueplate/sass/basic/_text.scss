@@ -145,6 +145,9 @@ $weight-heavy: 900;
 @mixin text-style($style: normal) {
    @include font-style($style);
 }
+@mixin text-transform($transform: none) {
+	text-transform: $transform;
+}
 @mixin text-weight($weight: normal) {
    @if $weight == thin {
       @include font-weight($weight-thin);
