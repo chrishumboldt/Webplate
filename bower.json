@@ -5,7 +5,7 @@
    "authors": [
       "Chris Humboldt <chrismodem@gmail.com>"
    ],
-   "description": "Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.",
+   "description": "Webplate is an awesome front-end framework.",
    "main": "stack.js",
    "keywords": [
       "Webplate",
