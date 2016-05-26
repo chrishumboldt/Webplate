@@ -98,8 +98,8 @@ var web = function() {
 	};
 
 	// Basic checks
-	var exists = function($element) {
-		return ($element === null || typeof($element) === undefined) ? false : true;
+	var exists = function($check) {
+		return ($check === null || typeof($check) === undefined || $check === false) ? false : true;
 	};
 	var has = function($string, $check) {
 		return $string.indexOf($check) > -1;
