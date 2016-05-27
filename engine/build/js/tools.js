@@ -99,7 +99,7 @@ var web = function() {
 
 	// Basic checks
 	var exists = function($check) {
-		return ($check === null || typeof($check) === undefined || $check === false) ? false : true;
+		return ($check === null || $check === false || typeof($check) == 'undefined') ? false : true;
 	};
 	var has = function($string, $check) {
 		return $string.indexOf($check) > -1;
