@@ -17,8 +17,7 @@
 // Webplate
 // Component facades
 
-var web = function() {
-
+var web = function () {
 	// Variables
 	var $webEl = {
 		body: document.getElementsByTagName('body')[0],
@@ -30,51 +29,51 @@ var web = function() {
 		number: '01',
 		name: 'january',
 		nameShort: 'jan'
-    }, {
+	}, {
 		number: '02',
 		name: 'february',
 		nameShort: 'feb'
-    }, {
+	}, {
 		number: '03',
 		name: 'march',
 		nameShort: 'mar'
-    }, {
+	}, {
 		number: '04',
 		name: 'april',
 		nameShort: 'apr'
-    }, {
+	}, {
 		number: '05',
 		name: 'may',
 		nameShort: 'may'
-    }, {
+	}, {
 		number: '06',
 		name: 'june',
 		nameShort: 'jun'
-    }, {
+	}, {
 		number: '07',
 		name: 'july',
 		nameShort: 'jul'
-    }, {
+	}, {
 		number: '08',
 		name: 'august',
 		nameShort: 'aug'
-    }, {
+	}, {
 		number: '09',
 		name: 'september',
 		nameShort: 'sep'
-    }, {
+	}, {
 		number: '10',
 		name: 'october',
 		nameShort: 'oct'
-    }, {
+	}, {
 		number: '11',
 		name: 'november',
 		nameShort: 'nov'
-    }, {
+	}, {
 		number: '12',
 		name: 'december',
 		nameShort: 'dec'
-    }];
+	}];
 	var $webPrefix = {
 		basic: 'web-',
 		position: 'web-pos-',
@@ -98,67 +97,77 @@ var web = function() {
 	};
 
 	// Basic checks
-	var exists = function($check) {
-		return ($check === null || $check === false || typeof($check) == 'undefined') ? false : true;
+	var exists = function ($check) {
+		return ($check === null || $check === false || typeof ($check) == 'undefined') ? false : true;
 	};
-	var has = function($string, $check) {
+	var has = function ($string, $check) {
 		return $string.indexOf($check) > -1;
 	};
-	var hasWhiteSpace = function($check) {
+	var hasWhiteSpace = function ($check) {
 		return /\s/.test($check);
 	};
-	var hasClass = function($element, $class) {
+	var hasClass = function ($element, $class) {
 		return (' ' + $element.className + ' ').indexOf(' ' + $class + ' ') > -1;
 	};
-	var hasExtension = function($file, $arAllowedTypes) {
+	var hasExtension = function ($file, $arAllowedTypes) {
 		var $allowedTypes = $arAllowedTypes || $webTypes.extensions;
 		return $allowedTypes[$file.split('.').pop().toLowerCase()];
 	};
-	var isColor = function($color) {
+	var isColor = function ($color) {
 		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($color);
 	};
-	var isColour = function($colour) {
+	var isColour = function ($colour) {
 		return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test($colour);
 	};
-	var isDate = function($date) {
+	var isDate = function ($date) {
 		return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 	};
-	var isEmail = function($email, $regExp) {
+	var isEmail = function ($email, $regExp) {
 		var $regExp = $regExp || /([\w\.]+)@([\w\.]+)\.(\w+)/i;
 		return $regExp.test($email);
 	};
-	var isFullInteger = function($int) {
+	var isFullInteger = function ($int) {
 		return /^[0-9]+$/.test($int);
 	};
-	var isImage = function($file, $arAllowedTypes) {
+	var isImage = function ($file, $arAllowedTypes) {
 		var $allowedTypes = $arAllowedTypes || $webTypes.images;
 		return $allowedTypes[$file.split('.').pop().toLowerCase()];
 	};
-	var isInteger = function($int) {
+	var isInteger = function ($int) {
 		return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test($int);
 	};
-	var isPassword = function($password, $regExp) {
+	var isJSON = function ($json) {
+		if (typeof $json !== 'object') {
+			try {
+				JSON.parse($json);
+			} catch (e) {
+				return false;
+			}
+		}
+		return true;
+	};
+	var isPassword = function ($password, $regExp) {
 		var $regExp = $regExp || /^(?=.*\d).{6,}$/;
 		return $regExp.test($password);
 	};
-	var isTime = function($time, $regExp) {
+	var isTime = function ($time, $regExp) {
 		var $regExp = $regExp || /([01]\d|2[0-3]):([0-5]\d)/;
 		return $regExp.test($time);
 	};
-	var isTouch = function() {
+	var isTouch = function () {
 		return 'ontouchstart' in window || 'onmsgesturechange' in window;
 	};
-	var isURL = function($url, $regExp) {
+	var isURL = function ($url, $regExp) {
 		var $regExp = $regExp || /(https?:\/\/[^\s]+)/g;
 		return $regExp.test($url);
 	};
 
 	// Dates
-	var crtDBDate = function() {
+	var crtDBDate = function () {
 		var $now = new Date();
 		return $now.getFullYear() + '-' + ('0' + ($now.getMonth() + 1)).slice(-2) + '-' + ('0' + $now.getDate()).slice(-2);
 	};
-	var dateToISO = function($date, $fullDate) {
+	var dateToISO = function ($date, $fullDate) {
 		var $fullDate = (typeof $fullDate !== 'undefined') ? $fullDate : true;
 		// Spaced dates
 		if ($date.indexOf(' ') > -1) {
@@ -192,13 +201,13 @@ var web = function() {
 	};
 
 	// Development
-	var log = function($text) {
+	var log = function ($text) {
 		if (window.console) {
 			console.log($text);
 		}
 	};
 	// DOM
-	var append = function($element, $html) {
+	var append = function ($element, $html) {
 		if (exists($element)) {
 			if ($element.length > 0) {
 				for (var $i = 0, $len = $element.length; $i < $len; $i++) {
@@ -213,7 +222,7 @@ var web = function() {
 			}
 		}
 	};
-	var classAdd = function($element, $class) {
+	var classAdd = function ($element, $class) {
 		if (exists($element)) {
 			if (typeof $class === 'object') {
 				for (var $i = 0, $len = $class.length; $i < $len; $i++) {
@@ -229,18 +238,18 @@ var web = function() {
 			}
 		}
 	};
-	var classAddExecute = function($element, $class) {
+	var classAddExecute = function ($element, $class) {
 		var $crtClass = $element.className;
 		if ($crtClass.match(new RegExp('\\b' + $class + '\\b', 'g')) === null) {
 			$element.className = $crtClass === '' ? $class : $crtClass + ' ' + $class;
 		}
 	};
-	var classClear = function($element) {
+	var classClear = function ($element) {
 		if (exists($element)) {
 			$element.removeAttribute('class');
 		}
 	};
-	var classRemove = function($element, $class) {
+	var classRemove = function ($element, $class) {
 		if (exists($element)) {
 			if (typeof $class === 'object') {
 				for (var $i = $class.length - 1; $i >= 0; $i--) {
@@ -256,9 +265,9 @@ var web = function() {
 			}
 		}
 	};
-	var classRemoveExecute = function($element, $class) {
+	var classRemoveExecute = function ($element, $class) {
 		if ($element.className.indexOf($class) > -1) {
-			$element.className = $element.className.split(' ').filter(function($val) {
+			$element.className = $element.className.split(' ').filter(function ($val) {
 				return $val != $class;
 			}).toString().replace(/,/g, ' ');
 			if ($element.className === '') {
@@ -266,13 +275,13 @@ var web = function() {
 			}
 		}
 	};
-	var classReplace = function($element, $removeClass, $addClass) {
+	var classReplace = function ($element, $removeClass, $addClass) {
 		if (exists($element)) {
 			classAdd($element, $addClass);
 			classRemove($element, $removeClass);
 		}
 	};
-	var classToggle = function($element, $class) {
+	var classToggle = function ($element, $class) {
 		if (exists($element)) {
 			if (!hasClass($element, $class)) {
 				classAdd($element, $class);
@@ -281,40 +290,40 @@ var web = function() {
 			}
 		}
 	};
-	var eventAdd = function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
+	var eventAdd = function ($elem, $type, $eventHandle) {
+		if ($elem == null || typeof ($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
 			$elem.addEventListener($type, $eventHandle, false);
 		} else if ($elem.attachEvent) {
-			$elem.attachEvent("on" + $type, $eventHandle);
+			$elem.attachEvent('on' + $type, $eventHandle);
 		} else {
-			$elem["on" + $type] = $eventHandle;
+			$elem['on' + $type] = $eventHandle;
 		}
 	};
-	var eventRemove = function($elem, $type, $eventHandle) {
-		if ($elem == null || typeof($elem) == 'undefined') return;
+	var eventRemove = function ($elem, $type, $eventHandle) {
+		if ($elem == null || typeof ($elem) == 'undefined') return;
 		if ($elem.removeEventListener) {
 			$elem.removeEventListener($type, $eventHandle, false);
 		} else if ($elem.detachEvent) {
-			$elem.detachEvent("on" + $type, $eventHandle);
+			$elem.detachEvent('on' + $type, $eventHandle);
 		} else {
-			$elem["on" + $type] = $eventHandle;
+			$elem['on' + $type] = $eventHandle;
 		}
 	};
-	var getIndex = function($node) {
+	var getIndex = function ($node) {
 		return [].indexOf.call($node.parentNode.children, $node);
 	};
-	var idAdd = function($element, $id) {
+	var idAdd = function ($element, $id) {
 		if (exists($element)) {
 			$element.setAttribute('id', $id);
 		}
 	};
-	var idRemove = function($element) {
+	var idRemove = function ($element) {
 		if (exists($element)) {
 			$element.removeAttribute('id');
 		}
 	};
-	var inputDisable = function($selector) {
+	var inputDisable = function ($selector) {
 		var $inputElements = select($selector);
 		if ($inputElements.nodeType == undefined) {
 			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
@@ -323,8 +332,8 @@ var web = function() {
 		} else {
 			$inputElements.disabled = true;
 		}
-	}
-	var inputEnable = function($selector) {
+	};
+	var inputEnable = function ($selector) {
 		var $inputElements = select($selector);
 		if ($inputElements.nodeType == undefined) {
 			for (var $i = $inputElements.length - 1; $i >= 0; $i--) {
@@ -333,8 +342,8 @@ var web = function() {
 		} else {
 			$inputElements.disabled = false;
 		}
-	}
-	var remove = function($selElm) {
+	};
+	var remove = function ($selElm) {
 		if ($selElm.nodeType == undefined) {
 			var $elements = select($selElm);
 			if ($elements !== null) {
@@ -354,7 +363,7 @@ var web = function() {
 			}
 		}
 	};
-	var select = function($selector) {
+	var select = function ($selector) {
 		if ($selector.indexOf('.') > -1 || hasWhiteSpace($selector)) {
 			var $returnElements = document.querySelectorAll($selector);
 			if ($returnElements.length === 1) {
@@ -379,33 +388,33 @@ var web = function() {
 			}
 		}
 	};
-	var setRatio = function($selector, $multiplier) {
+	var setRatio = function ($selector, $multiplier) {
 		var $elements = document.querySelectorAll($selector);
-		if (typeof($multiplier) === 'undefined') {
+		if (typeof ($multiplier) === 'undefined') {
 			$multiplier = 1;
 		}
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			$elements[$i].style.height = Math.floor($elements[$i].offsetWidth * $multiplier) + 'px';
-		};
+		}
 	};
-	var stateClear = function($element) {
+	var stateClear = function ($element) {
 		if (exists($element)) {
-			var $newWebStates = $webState.list.slice().map(function($newState) {
+			var $newWebStates = $webState.list.slice().map(function ($newState) {
 				return $webPrefix.state + $newState;
 			});
 			classRemove($element, $newWebStates);
 		}
 	};
-	var stateSet = function($element, $state) {
+	var stateSet = function ($element, $state) {
 		if (exists($element)) {
-			var $newWebStates = $webState.list.slice().map(function($newState) {
+			var $newWebStates = $webState.list.slice().map(function ($newState) {
 				return $webPrefix.state + $newState;
 			});
 			var $stateClass = $newWebStates.splice($newWebStates.indexOf($webPrefix.state + $state), 1);
 			classReplace($element, $newWebStates, $stateClass);
 		}
 	};
-	var stateToggle = function($element, $state, $clear) {
+	var stateToggle = function ($element, $state, $clear) {
 		if (exists($element)) {
 			if ($webState.list.indexOf($state) > -1) {
 				var $altState = $webState.alts[$state] || false;
@@ -423,7 +432,7 @@ var web = function() {
 			}
 		}
 	};
-	var wallpaper = function($selector) {
+	var wallpaper = function ($selector) {
 		var $elements = document.querySelectorAll($selector);
 		for (var $i = $elements.length - 1; $i >= 0; $i--) {
 			var $thisWallpaper = $elements[$i].getAttribute('data-wallpaper');
@@ -432,7 +441,7 @@ var web = function() {
 			}
 		}
 	};
-	var wrap = function($element, $tag, $className) {
+	var wrap = function ($element, $tag, $className) {
 		if (exists($element)) {
 			var $wrapper = document.createElement($tag);
 			var $tempElement = $element.cloneNode(true);
@@ -442,7 +451,7 @@ var web = function() {
 			$element.parentNode.removeChild($element);
 		}
 	};
-	var wrapInner = function($element, $tag, $className) {
+	var wrapInner = function ($element, $tag, $className) {
 		if (exists($element)) {
 			if (typeof $tag === 'string') {
 				$tag = document.createElement($tag);
@@ -458,40 +467,180 @@ var web = function() {
 		}
 	};
 
-	// File
-	var fileLoad = function($file, $callback) {
-		var $xmlhttp = new XMLHttpRequest();
-		$xmlhttp.onreadystatechange = $callback;
-		$xmlhttp.open('GET', $file, true);
-		$xmlhttp.send();
+	// Request
+	var parseJSON = function ($json) {
+		if (isJSON($json)) {
+			return JSON.parse($json);
+		}
+		return $json;
 	};
+	var request = function () {
+		var run = function ($userOptions) {
+			if (!exists($userOptions) || !exists($userOptions.url)) {
+				return false;
+			}
+
+			var $options = {
+				url: $userOptions.url,
+				async: (typeof $userOptions.async === 'string') ? $userOptions.async : true,
+				data: (exists($userOptions.data)) ? $userOptions.data : true,
+				dataType: (exists($userOptions.dataType)) ? $userOptions.dataType : 'json',
+				headers: (typeof $userOptions.headers === 'object') ? $userOptions.headers : false,
+				onStart: (typeof $userOptions.onStart === 'function') ? $userOptions.onStart : false,
+				onLoading: (typeof $userOptions.onLoading === 'function') ? $userOptions.onLoading : false,
+				onSuccess: (typeof $userOptions.onSuccess === 'function') ? $userOptions.onSuccess : false,
+				onError: (typeof $userOptions.onError === 'function') ? $userOptions.onError : false,
+				onEnd: (typeof $userOptions.onEnd === 'function') ? $userOptions.onEnd : false,
+				timeout: (typeof $userOptions.timeout === 'number') ? time.seconds($userOptions.timeout) : false,
+				type: (exists($userOptions.type)) ? uppercaseAll($userOptions.type) : false
+			};
+			var $xhr = new XMLHttpRequest();
+
+			if ($options.timeout) {
+				$xhr.timeout = $options.timeout;
+			}
+
+			$xhr.onreadystatechange = function () {
+				switch (this.readyState) {
+					case 1:
+						if ($options.onStart) {
+							$options.onStart();
+						}
+						break;
+
+					case 3:
+						if ($options.onLoading) {
+							$options.onLoading();
+						}
+						break;
+
+					case 4:
+						if ($options.onEnd) {
+							$options.onEnd(this);
+						}
+						if (this.status >= 200 && this.status < 300) {
+							if ($options.onSuccess) {
+								$options.onSuccess(parseJSON(this.responseText), this.status);
+							}
+						} else {
+							if ($options.onError) {
+								$options.onError(parseJSON(this.responseText), this.status);
+							}
+						}
+						break;
+				}
+			};
+
+			// Make the request
+			if ($options.data && $options.type === 'GET') {
+				var $queryString = '';
+				for (var $key in $options.data) {
+					if ($options.data.hasOwnProperty($key)) {
+						$queryString += '&' + encodeURIComponent($key) + '=' + encodeURIComponent($options.data[$key]);
+					}
+				}
+				$options.url = $options.url + '?' + removeFirst($queryString);
+			}
+			$xhr.open($options.type, $options.url, $options.async);
+			// Set headers
+			if ($options.headers) {
+				for (var $key in $options.headers) {
+					if ($options.headers.hasOwnProperty($key)) {
+						$xhr.setRequestHeader($key, $options.headers[$key]);
+					}
+				}
+			}
+
+			// Send (with data if need be)
+			if ($options.data && $options.type === 'POST') {
+				if (isJSON($options.data)) {
+					var $send;
+					switch (web.lowercaseAll($options.dataType)) {
+						case 'form':
+							$xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+							var $formQuery = '';
+							for (var $key in $options.data) {
+								if ($options.data.hasOwnProperty($key)) {
+									$formQuery + '&' + $key + '=' + $options.data[$key];
+								}
+							}
+							$send = removeFirst($formQuery);
+							break;
+
+						case 'formdata':
+							$send = new FormData();
+							for (var $key in $options.data) {
+								if ($options.data.hasOwnProperty($key)) {
+									$send.append($key, $options.data[$key]);
+								}
+							}
+							break;
+
+						default:
+							$xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+							$send = JSON.stringify($options.data);
+							break;
+					}
+					$xhr.send($send);
+				} else {
+					$xhr.send();
+				}
+			} else {
+				$xhr.send();
+			}
+		};
+		var runDelete = function ($userOptions) {
+			$userOptions.type = 'DELETE';
+			run($userOptions);
+		};
+		var runGet = function ($userOptions) {
+			$userOptions.type = 'GET';
+			run($userOptions);
+		};
+		var runPost = function ($userOptions) {
+			$userOptions.type = 'POST';
+			run($userOptions);
+		};
+		var runPut = function ($userOptions) {
+			$userOptions.type = 'PUT';
+			run($userOptions);
+		};
+
+		return {
+			delete: runDelete,
+			get: runGet,
+			post: runPost,
+			put: runPut,
+			run: run
+		};
+	}();
 
 	// Strings
 	// As per Aliceljm
 	// http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
-	var formatBytes = function($bytes, $decimals) {
+	var formatBytes = function ($bytes, $decimals) {
 		if ($bytes == 0) return '0 Byte';
 		var $k = 1000;
 		var $dm = $decimals + 1 || 3;
 		var $sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 		var $i = Math.floor(Math.log($bytes) / Math.log($k));
 		return parseFloat(($bytes / Math.pow($k, $i)).toFixed($dm)) + ' ' + $sizes[$i];
-	}
-	var getExtension = function($file) {
+	};
+	var getExtension = function ($file) {
 		return $file.split('.').pop().toLowerCase();
 	};
-	var getIntegers = function($string) {
+	var getIntegers = function ($string) {
 		return $string.replace(/^\D+ /g, '').replace(/ /g, '');
 	};
-	var lowercaseAll = function($string) {
+	var lowercaseAll = function ($string) {
 		return $string.toLowerCase();
 	};
-	var randomInteger = function($max, $min) {
+	var randomInteger = function ($max, $min) {
 		var $max = $max || 10;
 		var $min = $min || 1;
 		return Math.floor(Math.random() * ($max - $min + 1)) + $min;
 	};
-	var randomString = function($stringLength) {
+	var randomString = function ($stringLength) {
 		var $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 		var $len = $stringLength || 5;
 		var $randomString = '';
@@ -501,27 +650,34 @@ var web = function() {
 		}
 		return $randomString;
 	};
-	var removeFirst = function($string) {
+	var removeFirst = function ($string) {
 		return $string.substring(1);
 	};
-	var removeFirstLast = function($string) {
+	var removeFirstLast = function ($string) {
 		return $string.substring(1, $string.length - 1);
 	};
-	var removeLast = function($string) {
+	var removeLast = function ($string) {
 		return $string.substring(0, $string.length - 1);
 	};
-	var removeWhiteSpace = function($string) {
+	var removeWhiteSpace = function ($string) {
 		return $string.replace(/ /g, '');
 	};
-	var uppercaseAll = function($string) {
+	var uppercaseAll = function ($string) {
 		return $string.toUpperCase();
 	};
-	var uppercaseFirst = function($string) {
+	var uppercaseFirst = function ($string) {
 		return $string.charAt(0).toUpperCase() + $string.slice(1);
 	};
 
+	// Time
+	var time = {
+		seconds: function ($seconds) {
+			return $seconds * 1000;
+		}
+	};
+
 	// URL
-	var url = function($ret) {
+	var url = function ($ret) {
 		var $ret = $ret || 'all';
 		var $crtScriptSrc = $webEl.webplateScript.getAttribute('src').replace('start.js', '');
 		var $windowLocation = window.location;
@@ -566,22 +722,22 @@ var web = function() {
 	};
 
 	// Webplate
-	var overlayAdd = function() {
+	var overlayAdd = function () {
 		var $webplateOverlay = document.createElement('div');
 		idAdd($webplateOverlay, $webPrefix.basic + 'overlay');
 		if (!exists(document.getElementById($webPrefix.basic + 'overlay'))) {
 			$webEl.body.appendChild($webplateOverlay);
 		}
 	};
-	var overlayHide = function() {
+	var overlayHide = function () {
 		classRemove($webEl.html, 'web-overlay-reveal');
 	};
-	var overlayShow = function() {
-		setTimeout(function() {
+	var overlayShow = function () {
+		setTimeout(function () {
 			classAdd($webEl.html, 'web-overlay-reveal');
 		}, 50);
 	};
-	var scrollTo = function($options) {
+	var scrollTo = function ($options) {
 		var $self = this;
 
 		$options = $options || false;
@@ -598,8 +754,8 @@ var web = function() {
 			scrollToExecute($elements[$i], $self.options);
 		}
 	};
-	var scrollToExecute = function($element, $options) {
-		$element.onclick = function(event) {
+	var scrollToExecute = function ($element, $options) {
+		$element.onclick = function (event) {
 			var $vOffset = $options.offset;
 			if (($options.offsetLarge !== false) && (window.innerWidth > 700)) {
 				$vOffset = $options.offsetLarge;
@@ -617,31 +773,31 @@ var web = function() {
 	};
 
 	// Component facades
-	var button = function($options) {
+	var button = function ($options) {
 		return new buttonplate($options);
 	};
-	var flicker = function($options) {
+	var flicker = function ($options) {
 		return new flickerplate($options);
 	};
-	var form = function($options) {
+	var form = function ($options) {
 		return new formplate($options);
 	};
-	var injectplateExecute = function() {
+	var injectplateExecute = function () {
 		return new injectplate();
 	};
-	var loader = function($options) {
+	var loader = function ($options) {
 		return new loaderplate($options);
 	};
-	var menu = function($options) {
+	var menu = function ($options) {
 		return new menuplate($options);
 	};
-	var message = function($options) {
+	var message = function ($options) {
 		return new messageplate($options);
 	};
-	var modal = function($options) {
+	var modal = function ($options) {
 		return new modalplate($options);
 	};
-	var tab = function($options) {
+	var tab = function ($options) {
 		return new tabplate($options);
 	};
 
@@ -661,6 +817,7 @@ var web = function() {
 		isFullInteger: isFullInteger,
 		isImage: isImage,
 		isInteger: isInteger,
+		isJSON: isJSON,
 		isPassword: isPassword,
 		isTime: isTime,
 		isTouch: isTouch,
@@ -690,7 +847,8 @@ var web = function() {
 		wallpaper: wallpaper,
 		wrap: wrap,
 		wrapInner: wrapInner,
-		fileLoad: fileLoad,
+		parseJSON: parseJSON,
+		request: request,
 		formatBytes: formatBytes,
 		getExtension: getExtension,
 		getIntegers: getIntegers,
@@ -703,6 +861,7 @@ var web = function() {
 		removeWhiteSpace: removeWhiteSpace,
 		uppercaseAll: uppercaseAll,
 		uppercaseFirst: uppercaseFirst,
+		time: time,
 		url: url,
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
