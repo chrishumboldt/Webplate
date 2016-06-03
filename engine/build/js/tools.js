@@ -76,9 +76,7 @@ var web = function () {
 	}];
 	var $webPrefix = {
 		basic: 'web-',
-		position: 'web-pos-',
-		scroll: 'web-scroll-',
-		state: 'web-state-'
+		state: '_state-'
 	};
 	var $webState = {
 		alts: {
@@ -99,9 +97,6 @@ var web = function () {
 	// Basic checks
 	var exists = function ($check) {
 		return ($check === null || $check === false || typeof ($check) == 'undefined') ? false : true;
-	};
-	var has = function ($string, $check) {
-		return $string.indexOf($check) > -1;
 	};
 	var hasWhiteSpace = function ($check) {
 		return /\s/.test($check);
@@ -202,26 +197,11 @@ var web = function () {
 
 	// Development
 	var log = function ($text) {
-		if (window.console) {
+		if (window && window.console) {
 			console.log($text);
 		}
 	};
 	// DOM
-	var append = function ($element, $html) {
-		if (exists($element)) {
-			if ($element.length > 0) {
-				for (var $i = 0, $len = $element.length; $i < $len; $i++) {
-					var $div = document.createElement('div');
-					$div.innerHTML = $html;
-					$element[$i].appendChild($div.firstChild);
-				}
-			} else {
-				var $div = document.createElement('div');
-				$div.innerHTML = $html;
-				$element.appendChild($div.firstChild);
-			}
-		}
-	};
 	var classAdd = function ($element, $class) {
 		if (exists($element)) {
 			if (typeof $class === 'object') {
@@ -366,9 +346,7 @@ var web = function () {
 	var select = function ($selector) {
 		if ($selector.indexOf('.') > -1 || hasWhiteSpace($selector)) {
 			var $returnElements = document.querySelectorAll($selector);
-			if ($returnElements.length === 1) {
-				return $returnElements[0];
-			} else if ($returnElements.length > 1) {
+			if ($returnElements.length > 1) {
 				return $returnElements;
 			} else {
 				return false;
@@ -378,9 +356,7 @@ var web = function () {
 				return document.getElementById($selector.substring(1));
 			} else {
 				var $returnElements = document.getElementsByTagName($selector);
-				if ($returnElements.length === 1) {
-					return $returnElements[0];
-				} else if ($returnElements.length > 1) {
+				if ($returnElements.length > 1) {
 					return $returnElements;
 				} else {
 					return false;
@@ -583,7 +559,7 @@ var web = function () {
 					}
 					$xhr.send($send);
 				} else {
-					$xhr.send();
+					$xhr.send($options.data);
 				}
 			} else {
 				$xhr.send();
@@ -640,10 +616,14 @@ var web = function () {
 		var $min = $min || 1;
 		return Math.floor(Math.random() * ($max - $min + 1)) + $min;
 	};
-	var randomString = function ($stringLength) {
-		var $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+	var randomString = function ($stringLength, $textOnly) {
+		var $textOnly = (typeof $textOnly === 'boolean') ? $textOnly : false;
+		var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 		var $len = $stringLength || 5;
 		var $randomString = '';
+		if (!$textOnly) {
+			$chars += '0123456789';
+		}
 		for (var $i = 0; $i < $len; $i++) {
 			$rNum = Math.floor(Math.random() * $chars.length);
 			$randomString += $chars[$rNum];
@@ -671,6 +651,12 @@ var web = function () {
 
 	// Time
 	var time = {
+		hours: function ($hours) {
+			return $hours * 60 * 60 * 1000;
+		},
+		minutes: function ($minutes) {
+			return $minutes * 60 * 1000;
+		},
 		seconds: function ($seconds) {
 			return $seconds * 1000;
 		}
@@ -737,40 +723,6 @@ var web = function () {
 			classAdd($webEl.html, 'web-overlay-reveal');
 		}, 50);
 	};
-	var scrollTo = function ($options) {
-		var $self = this;
-
-		$options = $options || false;
-		$self.options = {
-			selector: $options.selector || '.scroll-to',
-			duration: 1000,
-			offset: $options.offset || 0,
-			offsetLarge: $options.offsetLarge || false
-		};
-
-		var $elements = document.querySelectorAll($self.options.selector);
-
-		for (var $i = $elements.length - 1; $i >= 0; $i--) {
-			scrollToExecute($elements[$i], $self.options);
-		}
-	};
-	var scrollToExecute = function ($element, $options) {
-		$element.onclick = function (event) {
-			var $vOffset = $options.offset;
-			if (($options.offsetLarge !== false) && (window.innerWidth > 700)) {
-				$vOffset = $options.offsetLarge;
-			}
-			var $scrollToElement = document.getElementById(this.getAttribute('href').substring(1));
-			if ($scrollToElement != null) {
-				event.preventDefault();
-				Velocity($scrollToElement, 'scroll', {
-					duration: $options.duration,
-					easing: 'easeout',
-					offset: $vOffset
-				});
-			}
-		};
-	};
 
 	// Component facades
 	var button = function ($options) {
@@ -806,7 +758,6 @@ var web = function () {
 		element: $webEl,
 		prefix: $webPrefix,
 		exists: exists,
-		has: has,
 		hasWhiteSpace: hasWhiteSpace,
 		hasClass: hasClass,
 		hasExtension: hasExtension,
@@ -825,7 +776,6 @@ var web = function () {
 		crtDBDate: crtDBDate,
 		dateToISO: dateToISO,
 		log: log,
-		append: append,
 		eventAdd: eventAdd,
 		eventRemove: eventRemove,
 		classAdd: classAdd,
@@ -866,7 +816,6 @@ var web = function () {
 		overlayAdd: overlayAdd,
 		overlayHide: overlayHide,
 		overlayShow: overlayShow,
-		scrollTo: scrollTo,
 		button: button,
 		flicker: flicker,
 		form: form,
