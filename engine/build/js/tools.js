@@ -348,9 +348,8 @@ var web = function () {
 			var $returnElements = document.querySelectorAll($selector);
 			if ($returnElements.length > 1) {
 				return $returnElements;
-			} else {
-				return false;
 			}
+			return false;
 		} else {
 			if ($selector.indexOf('#') > -1) {
 				return document.getElementById($selector.substring(1));
@@ -358,9 +357,8 @@ var web = function () {
 				var $returnElements = document.getElementsByTagName($selector);
 				if ($returnElements.length > 1) {
 					return $returnElements;
-				} else {
-					return false;
 				}
+				return false;
 			}
 		}
 	};

@@ -1,5 +1,4 @@
-;
-(function() {
+;(function () {
 	'use strict';
 
 	/**
@@ -109,9 +108,7 @@
 
 		// Some old versions of Android don't have Function.prototype.bind
 		function bind(method, context) {
-			return function() {
-				return method.apply(context, arguments);
-			};
+			return function() { return method.apply(context, arguments); };
 		}
 
 
@@ -177,10 +174,10 @@
 	}
 
 	/**
-	 * Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
-	 *
-	 * @type boolean
-	 */
+	* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+	*
+	* @type boolean
+	*/
 	var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
 
 	/**
@@ -230,27 +227,27 @@
 	FastClick.prototype.needsClick = function(target) {
 		switch (target.nodeName.toLowerCase()) {
 
-			// Don't send a synthetic click to disabled inputs (issue #62)
-			case 'button':
-			case 'select':
-			case 'textarea':
-				if (target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'input':
-
-				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
-				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'label':
-			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
-			case 'video':
+		// Don't send a synthetic click to disabled inputs (issue #62)
+		case 'button':
+		case 'select':
+		case 'textarea':
+			if (target.disabled) {
 				return true;
+			}
+
+			break;
+		case 'input':
+
+			// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+			if ((deviceIsIOS && target.type === 'file') || target.disabled) {
+				return true;
+			}
+
+			break;
+		case 'label':
+		case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
+		case 'video':
+			return true;
 		}
 
 		return (/\bneedsclick\b/).test(target.className);
@@ -265,25 +262,25 @@
 	 */
 	FastClick.prototype.needsFocus = function(target) {
 		switch (target.nodeName.toLowerCase()) {
-			case 'textarea':
-				return true;
-			case 'select':
-				return !deviceIsAndroid;
-			case 'input':
-				switch (target.type) {
-					case 'button':
-					case 'checkbox':
-					case 'file':
-					case 'image':
-					case 'radio':
-					case 'submit':
-						return false;
-				}
+		case 'textarea':
+			return true;
+		case 'select':
+			return !deviceIsAndroid;
+		case 'input':
+			switch (target.type) {
+			case 'button':
+			case 'checkbox':
+			case 'file':
+			case 'image':
+			case 'radio':
+			case 'submit':
+				return false;
+			}
 
-				// No point in attempting to focus disabled inputs
-				return !target.disabled && !target.readOnly;
-			default:
-				return (/\bneedsfocus\b/).test(target.className);
+			// No point in attempting to focus disabled inputs
+			return !target.disabled && !target.readOnly;
+		default:
+			return (/\bneedsfocus\b/).test(target.className);
 		}
 	};
 
@@ -460,8 +457,7 @@
 	 * @returns {boolean}
 	 */
 	FastClick.prototype.touchHasMoved = function(event) {
-		var touch = event.changedTouches[0],
-			boundary = this.touchBoundary;
+		var touch = event.changedTouches[0], boundary = this.touchBoundary;
 
 		if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
 			return true;
@@ -747,7 +743,7 @@
 		}
 
 		// Chrome version - zero for other browsers
-		chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [, 0])[1];
+		chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
 
 		if (chromeVersion) {
 
@@ -765,7 +761,7 @@
 					}
 				}
 
-				// Chrome desktop doesn't need FastClick (issue #15)
+			// Chrome desktop doesn't need FastClick (issue #15)
 			} else {
 				return true;
 			}
@@ -798,7 +794,7 @@
 		}
 
 		// Firefox version - zero for other browsers
-		firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [, 0])[1];
+		firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
 
 		if (firefoxVersion >= 27) {
 			// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896

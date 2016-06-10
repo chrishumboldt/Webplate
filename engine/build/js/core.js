@@ -253,7 +253,7 @@
 							load: $path.engine.js + 'touch.min.js',
 							complete: function () {
 								if ('addEventListener' in document) {
-									document.addEventListener('DOMContentLoaded', function () {
+									document.addEventListener('DOMContentLoaded', function() {
 										FastClick.attach(document.body);
 									}, false);
 								}
@@ -267,118 +267,9 @@
 
 					// Load config
 					var $urlData = web.url();
-					core.loadJSON($path.config, function () {
-						if (this.readyState == 4 && this.status == 200) {
-							var $responseText = this.responseText;
-							var $pageMatch = false;
-							$webConfig = JSON.parse($responseText);
-
-							// Query string
-							if ($webConfig.cache && $webConfig.cache.bust) {
-								$queryString = '?ts=' + $webConfig.cache.bust;
-							}
-
-							// Root config
-							if ($webConfig.project) {
-								var $componentFirst = $webConfig.project['component-first'] || [];
-								var $component = $webConfig.project['component'] || [];
-								var $iconFont = $webConfig.project['icon-font'] || false;
-								var $projectCSS = $webConfig.project['css'] || [];
-								var $projectJS = $webConfig.project['js'] || [];
-
-								// Page check
-								if ($webConfig.project.page) {
-									for (var $i = $webConfig.project.page.length - 1; $i >= 0; $i--) {
-										var $page = $webConfig.project.page[$i];
-
-										// Wildcard check
-										if ($page['url'].indexOf('*') > -1) {
-											if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
-												$pageMatch = true;
-											}
-										} else {
-											if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
-												$pageMatch = true;
-											}
-										}
-										if ($pageMatch === true) {
-											// Page overwrite
-											var $configType = $page['config-type'] || 'merge';
-
-											if ($configType == 'new') {
-												$componentFirst = $page['component-first'] || [];
-												$component = $page['component'] || [];
-												$iconFont = $page['icon-font'] || false;
-												$projectCSS = $page['css'] || [];
-												$projectJS = $page['js'] || [];
-											} else {
-												// Basic additions (some have to be overwritten by design)
-												$iconFont = $page['icon-font']? $page['icon-font']: $iconFont;
-
-												// Component add
-												if ($page['component-first']) {
-													for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
-														var $addComponentFirst = $page['component-first'][$i];
-														if ($componentFirst.indexOf($addComponentFirst) == -1) {
-															$componentFirst.push($addComponentFirst);
-														}
-													}
-												}
-												if ($page['component']) {
-													for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
-														var $addComponent = $page['component'][$i];
-														if ($component.indexOf($addComponent) == -1) {
-															$component.push($addComponent);
-														}
-													}
-												}
-												// Project CSS
-												if ($page['css']) {
-													for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
-														var $addProjectCSS = $page['css'][$i];
-														if ($projectCSS.indexOf($addProjectCSS) === -1) {
-															$projectCSS.push($addProjectCSS);
-														}
-													}
-												}
-												// Project JS
-												if ($page['js']) {
-													for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
-														var $addProjectJS = $page['js'][$i];
-														if ($projectJS.indexOf($addProjectJS) === -1) {
-															$projectJS.push($addProjectJS);
-														}
-													}
-												}
-											}
-											break;
-										}
-									}
-								}
-
-								// Icon fonts
-								if ($iconFont == 'icomoon') {
-									yepnope({
-										load: $path.project.iconFont.icoMoon
-									});
-								} else if ($iconFont == 'font-awesome') {
-									yepnope({
-										load: $path.project.iconFont.fontAwesome
-									});
-								}
-
-								// Load the components & project files
-								if ($componentFirst.length > 0) {
-									core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
-								} else if ($component.length > 0) {
-									core.loadComponents($component, $projectCSS, $projectJS);
-								} else {
-									core.loadProjectFiles($projectCSS, $projectJS);
-								}
-							} else {
-								core.showPage();
-							}
-						}
+					web.request.get({
+						url: $path.config,
+						onSuccess: core.loadProject
 					});
 				}
 			}]);
@@ -448,11 +339,114 @@
 				}($r));
 			}
 		},
-		loadJSON: function ($file, $callback) {
-			var $xmlhttp = new XMLHttpRequest();
-			$xmlhttp.onreadystatechange = $callback;
-			$xmlhttp.open('GET', $file, true);
-			$xmlhttp.send();
+		loadProject: function ($webConfig) {
+			var $pageMatch = false;
+
+			// Query string
+			if ($webConfig.cache && $webConfig.cache.bust) {
+				$queryString = '?ts=' + $webConfig.cache.bust;
+			}
+
+			// Root config
+			if ($webConfig.project) {
+				var $componentFirst = $webConfig.project['component-first'] || [];
+				var $component = $webConfig.project['component'] || [];
+				var $iconFont = $webConfig.project['icon-font'] || false;
+				var $projectCSS = $webConfig.project['css'] || [];
+				var $projectJS = $webConfig.project['js'] || [];
+
+				// Page check
+				if ($webConfig.project.page) {
+					for (var $i = $webConfig.project.page.length - 1; $i >= 0; $i--) {
+						var $page = $webConfig.project.page[$i];
+
+						// Wildcard check
+						if ($page['url'].indexOf('*') > -1) {
+							if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
+								$pageMatch = true;
+							}
+						} else {
+							if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
+								$pageMatch = true;
+							}
+						}
+						if ($pageMatch === true) {
+							// Page overwrite
+							var $configType = $page['config-type'] || 'merge';
+
+							if ($configType == 'new') {
+								$componentFirst = $page['component-first'] || [];
+								$component = $page['component'] || [];
+								$iconFont = $page['icon-font'] || false;
+								$projectCSS = $page['css'] || [];
+								$projectJS = $page['js'] || [];
+							} else {
+								// Basic additions (some have to be overwritten by design)
+								$iconFont = $page['icon-font']? $page['icon-font']: $iconFont;
+
+								// Component add
+								if ($page['component-first']) {
+									for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
+										var $addComponentFirst = $page['component-first'][$i];
+										if ($componentFirst.indexOf($addComponentFirst) == -1) {
+											$componentFirst.push($addComponentFirst);
+										}
+									}
+								}
+								if ($page['component']) {
+									for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
+										var $addComponent = $page['component'][$i];
+										if ($component.indexOf($addComponent) == -1) {
+											$component.push($addComponent);
+										}
+									}
+								}
+								// Project CSS
+								if ($page['css']) {
+									for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
+										var $addProjectCSS = $page['css'][$i];
+										if ($projectCSS.indexOf($addProjectCSS) === -1) {
+											$projectCSS.push($addProjectCSS);
+										}
+									}
+								}
+								// Project JS
+								if ($page['js']) {
+									for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
+										var $addProjectJS = $page['js'][$i];
+										if ($projectJS.indexOf($addProjectJS) === -1) {
+											$projectJS.push($addProjectJS);
+										}
+									}
+								}
+							}
+							break;
+						}
+					}
+				}
+
+				// Icon fonts
+				if ($iconFont == 'icomoon') {
+					yepnope({
+						load: $path.project.iconFont.icoMoon
+					});
+				} else if ($iconFont == 'font-awesome') {
+					yepnope({
+						load: $path.project.iconFont.fontAwesome
+					});
+				}
+
+				// Load the components & project files
+				if ($componentFirst.length > 0) {
+					core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
+				} else if ($component.length > 0) {
+					core.loadComponents($component, $projectCSS, $projectJS);
+				} else {
+					core.loadProjectFiles($projectCSS, $projectJS);
+				}
+			} else {
+				core.showPage();
+			}
 		},
 		loadProjectFiles: function ($css, $js) {
 			for (var $i = 0, $len = $css.length; $i < $len; $i++) {
