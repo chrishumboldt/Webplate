@@ -589,6 +589,100 @@ var web = function () {
 		};
 	}();
 
+	// Storage
+	var storage = {
+		engine: {
+			name: 'web-store',
+			type: 'session'
+		},
+		clear: function () {
+			localStorage.removeItem(this.engine.name);
+			sessionStorage.removeItem(this.engine.name);
+		},
+		get: function ($name) {
+			if (!web.exists($name)) {
+				return false;
+			}
+			var $thisEngine = this.engine;
+			var $storage = false;
+			switch ($thisEngine.type) {
+				case 'local':
+					$storage = localStorage.getItem($thisEngine.name);
+					break;
+
+				case 'session':
+					$storage = sessionStorage.getItem($thisEngine.name);
+					break;
+			}
+			if ($storage) {
+				$storage = JSON.parse($storage);
+				return $storage[$name];
+			} else {
+				return false;
+			}
+		},
+		remove: function ($name) {
+			if (!web.exists($name)) {
+				return false;
+			}
+			var $thisEngine = this.engine;
+			var $storage = false;
+			switch ($thisEngine.type) {
+				case 'local':
+					$storage = localStorage.getItem($thisEngine.name);
+					break;
+
+				case 'session':
+					$storage = sessionStorage.getItem($thisEngine.name);
+					break;
+			}
+			if ($storage) {
+				$storage = JSON.parse($synappStorage);
+				delete $storage[$name];
+				switch ($thisEngine.type) {
+					case 'local':
+						localStorage.setItem($thisEngine.name, JSON.stringify($storage));
+						break;
+
+					case 'session':
+						sessionStorage.setItem($thisEngine.name, JSON.stringify($storage));
+						break;
+				}
+			}
+		},
+		set: function ($name, $value) {
+			if (!web.exists($name) || !web.exists($value)) {
+				return false;
+			}
+			var $thisEngine = this.engine;
+			var $storage = false;
+			switch ($thisEngine.type) {
+				case 'local':
+					$storage = localStorage.getItem($thisEngine.name);
+					break;
+
+				case 'session':
+					$storage = sessionStorage.getItem($thisEngine.name);
+					break;
+			}
+			if ($storage) {
+				$storage = JSON.parse($storage);
+			} else {
+				$storage = {};
+			}
+			$storage[$name] = $value;
+			switch ($thisEngine.type) {
+				case 'local':
+					localStorage.setItem($thisEngine.name, JSON.stringify($storage));
+					break;
+
+				case 'session':
+					sessionStorage.setItem($thisEngine.name, JSON.stringify($storage));
+					break;
+			}
+		}
+	};
+
 	// Strings
 	// As per Aliceljm
 	// http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
@@ -797,6 +891,7 @@ var web = function () {
 		wrapInner: wrapInner,
 		parseJSON: parseJSON,
 		request: request,
+		storage: storage,
 		formatBytes: formatBytes,
 		getExtension: getExtension,
 		getIntegers: getIntegers,
