@@ -14,15 +14,19 @@
       "Responsive",
       "jQuery",
       "SASS",
-      "Blueplate",
       "Modernizr",
       "Hammer.js",
       "Velocity.js",
+      "Blueplate",
       "Buttonplate",
-      "Modalplate",
-      "Formplate",
       "Flickerplate",
-      "Messageplate"
+      "Formplate",
+		"Injectplate",
+		"Loaderplate",
+		"Menuplate",
+      "Messageplate",
+      "Modalplate",
+		"Tabplate"
    ],
    "license": "Apache License, Version 2.0",
    "ignore": [
@@ -37,7 +41,6 @@
       "test.html",
       "project/sass/test.scss",
       "project/css/test.css",
-      "project/js/test.js",
-      "project/js/min/test.min.js"
+      "project/js/test.js"
    ]
 }
