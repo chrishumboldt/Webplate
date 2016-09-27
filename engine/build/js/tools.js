@@ -201,6 +201,7 @@ var web = function () {
 			console.log($text);
 		}
 	};
+
 	// DOM
 	var classAdd = function ($element, $class) {
 		if (exists($element)) {
@@ -358,7 +359,7 @@ var web = function () {
 	var select = function ($selector) {
 		if ($selector.indexOf('.') > -1 || hasWhiteSpace($selector)) {
 			var $returnElements = document.querySelectorAll($selector);
-			if ($returnElements.length > 1) {
+			if ($returnElements.length > 0) {
 				return $returnElements;
 			}
 			return false;
@@ -367,7 +368,7 @@ var web = function () {
 				return document.getElementById($selector.substring(1));
 			} else {
 				var $returnElements = document.getElementsByTagName($selector);
-				if ($returnElements.length > 1) {
+				if ($returnElements.length > 0) {
 					return $returnElements;
 				}
 				return false;
