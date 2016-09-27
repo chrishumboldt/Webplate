@@ -2,13 +2,12 @@
  * File: sass/css/_execute.scss
  * Type: SASS execute file
  * Author: Chris Humboldt
- */
+**/
 
 @mixin formplate-css($type: all) {
 	@include form-setup();
 	@include form-checkbox($type);
 	@include form-input($type);
-	@include form-input-groups();
 	@include form-label();
 	@include form-select($type);
 	@include form-textarea($type);

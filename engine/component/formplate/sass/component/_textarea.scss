@@ -2,7 +2,7 @@
  * File: sass/_textarea.scss
  * Type: SASS component
  * Author: Chris Humboldt
- */
+**/
 
 // Table of contents
 // Textarea
@@ -12,9 +12,10 @@
 // Textarea
 @mixin form-textarea($type: all) {
 	.fp-text {
+		@include position(relative);
 		textarea {
 			@include size(100%, 114px);
-			@include padding(12px);
+			@include padding(14px);
 			@include margin(0px);
 			@include margin-bottom(1.5em);
 			@include text-font($font-family);
@@ -23,6 +24,7 @@
 			@include border($white);
 			@include level(1);
 			@include animate(all);
+			line-height: normal;
 			outline: none;
 			-webkit-appearance: none;
 			&:focus {

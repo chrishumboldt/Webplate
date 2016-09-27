@@ -2,7 +2,7 @@
  * File: sass/_input.scss
  * Type: SASS component
  * Author: Chris Humboldt
- */
+**/
 
 // Table of contents
 // Input
@@ -14,6 +14,7 @@
 // Input
 @mixin form-input($type: all) {
 	.fp-inp {
+		@include position(relative);
 		input {
 			@include width(100%);
 			@include padding(14px);
@@ -108,79 +109,77 @@
 }
 
 // Input groups
-@mixin form-input-groups() {
-	.fp-inp .input-group {
-		@include row();
+.fp-inp .input-group {
+	@include row();
+	input {
+		@include margin-left(-1px);
+	}
+	input:first-child {
+		@include margin-left(0px);
+	}
+	.input-icon {
 		input {
-			@include margin-left(-1px);
+			@include width(100%);
 		}
-		input:first-child {
+		&:first-child input {
 			@include margin-left(0px);
 		}
-		.input-icon {
-			input {
-				@include width(100%);
-			}
-			&:first-child input {
-				@include margin-left(0px);
-			}
-		}
 	}
-	.fp-inp._s-line .input-group {
-		input {
-			@include border-radius(0px);
-		}
-		input:first-child {
+}
+.fp-inp._s-line .input-group {
+	input {
+		@include border-radius(0px);
+	}
+	input:first-child {
+		@include border-radius-left(2px);
+	}
+	input:last-child {
+		@include border-radius-right(2px);
+	}
+	.input-icon {
+		&:first-child input {
 			@include border-radius-left(2px);
 		}
-		input:last-child {
+		&:last-child input {
 			@include border-radius-right(2px);
 		}
-		.input-icon {
-			&:first-child input {
-				@include border-radius-left(2px);
-			}
-			&:last-child input {
-				@include border-radius-right(2px);
-			}
-		}
 	}
-	.fp-inp._s-raised .input-group {
-		@include margin-bottom(1.5em);
-		@include animate(all);
-		@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
-		input {
-			@include margin-no();
-			@include drop-shadow-no();
-		}
+}
+.fp-inp._s-raised .input-group {
+	@include margin-bottom(1.5em);
+	@include animate(all);
+	@include drop-shadow(fade-out($black, 0.8), 4px, 1px);
+	input {
+		@include margin-no();
+		@include drop-shadow-no();
 	}
-	.fp-inp .input-group-two {
-		@extend .input-group;
-		input,
-		.input-icon {
-			@include span(6);
-		}
+}
+.fp-inp .input-group-two {
+	@extend .input-group;
+	input,
+	.input-icon {
+		@include span(6);
 	}
-	.fp-inp .input-group-three {
-		@extend .input-group;
-		input,
-		.input-icon {
-			@include span(4);
-		}
+}
+.fp-inp .input-group-three {
+	@extend .input-group;
+	input,
+	.input-icon {
+		@include span(4);
 	}
+}
 
-	// Input icon
-	.fp-inp .input-icon {
-		@include position(relative);
-		// Icons
-		i {
-			@include position(absolute, margin-top ($space-small + 5px) right $space-small);
-			@include font-size($size-base);
-			@include level(4);
-		}
-		// Input
-		input {
-			@include padding-right($space-slight);
-		}
+// Input icon
+.fp-inp .input-icon {
+	@include position(relative);
+	// Icons
+	i {
+		@include position(absolute, margin-top ($space-small + 5px) right $space-small);
+		@include font-size($size-base);
+		@include level(4);
+	}
+	// Input
+	input {
+		@include padding-right($space-slight);
 	}
 }

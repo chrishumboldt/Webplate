@@ -8,7 +8,6 @@
 // Defaults
 // Variables
 // Options
-// Tools
 // Check
 
 // Defaults
@@ -30,7 +29,7 @@ var loaderplate = function($userOptions) {
 	// Options
 	$userOptions = $userOptions || false;
 	$self.options = {
-		body: $userOptions.body || $loaderplateDefault.body,
+		body: (typeof $userOptions.body !== 'undefined') ? $userOptions.body : $loaderplateDefault.body,
 		colour: $userOptions.colour || $loaderplateDefault.colour,
 		delay: ($userOptions.delay >= 0) ? $userOptions.delay : $loaderplateDefault.delay,
 		path: $userOptions.path || $loaderplateDefault.path,
@@ -39,28 +38,42 @@ var loaderplate = function($userOptions) {
 		type: $userOptions.type || $loaderplateDefault.type
 	}
 
-	// Make the loader
-	var $loaderHTML = document.createElement('div');
-	var $loaderImg = document.createElement('img');
-	$loaderHTML.className = 'loaderplate ' + $self.options.colour + ' ' + $self.options.size;
-	$loaderImg.setAttribute('src', $self.options.path + 'svg-loaders-' + $self.options.colour + '/' + $self.options.type + '.svg');
-	$loaderHTML.appendChild($loaderImg);
-	if ($self.options.body !== false) {
-		var $loaderBody = document.createElement('div');
-		$loaderBody.innerHTML = $self.options.body;
-		$loaderHTML.appendChild($loaderBody);
-	}
+	// Tools
+	var tool = function(document, $options) {
+		// HTML
+		var $loaderHTML = document.createElement('div');
+		var $loaderImg = document.createElement('img');
+		$loaderHTML.className = 'loaderplate ' + $options.colour + ' ' + $options.size;
+		$loaderImg.setAttribute('src', $options.path + 'svg-loaders-' + $options.colour + '/' + $options.type + '.svg');
+		$loaderHTML.appendChild($loaderImg);
+		if ($options.body !== false) {
+			var $loaderBody = document.createElement('div');
+			$loaderBody.innerHTML = $options.body;
+			$loaderHTML.appendChild($loaderBody);
+		}
+
+		var $toolHtml = {
+			loader: $loaderHTML
+		};
+
+		// Return
+		return {
+			html: $toolHtml
+		}
+	}(document, $self.options);
 
 	// Public functions
 	$self.add = function() {
 		if ($self.options.selector !== false) {
 			$element = document.querySelector($self.options.selector);
-			$loader = $loaderHTML;
+			$loader = tool.html.loader;
 			if (web.exists($element)) {
 				$loaderTimeout = setTimeout(function() {
 					web.classRemove($element, 'loaderplate-element-show');
 					web.classAdd($element, 'loaderplate-element-hide');
-					$element.parentNode.insertBefore($loader, $element);
+					if (!web.exists($element.parentNode.querySelector('.loaderplate'))) {
+						$element.parentNode.insertBefore($loader, $element);
+					}
 				}, $self.options.delay);
 			}
 		}
@@ -68,7 +81,9 @@ var loaderplate = function($userOptions) {
 	$self.remove = function() {
 		web.classAdd($element, 'loaderplate-element-show');
 		if (web.exists($loader.parentNode)) {
-			$loader.parentNode.removeChild($loader);
+			if (web.exists($loader)) {
+				$loader.parentNode.removeChild($loader);
+			}
 			web.classRemove($element, 'loaderplate-element-hide');
 		} else {
 			clearTimeout($loaderTimeout);
