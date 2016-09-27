@@ -547,7 +547,7 @@ var web = function () {
 							var $formQuery = '';
 							for (var $key in $options.data) {
 								if ($options.data.hasOwnProperty($key)) {
-									$formQuery + '&' + $key + '=' + $options.data[$key];
+									$formQuery += '&' + $key + '=' + $options.data[$key];
 								}
 							}
 							$send = removeFirst($formQuery);
