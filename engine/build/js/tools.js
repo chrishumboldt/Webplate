@@ -270,6 +270,18 @@ var web = function () {
 			}
 		}
 	};
+	var clone = function ($elm) {
+		switch(typeof $elm) {
+			case 'object':
+				if ($elm instanceof Array) {
+					return JSON.parse(JSON.stringify($elm));
+				}
+				break;
+			default:
+				return false;
+				break;
+		}
+	};
 	var eventAdd = function ($elem, $type, $eventHandle) {
 		if ($elem == null || typeof ($elem) == 'undefined') return;
 		if ($elem.addEventListener) {
@@ -875,6 +887,7 @@ var web = function () {
 		classRemove: classRemove,
 		classReplace: classReplace,
 		classToggle: classToggle,
+		clone: clone,
 		getIndex: getIndex,
 		idAdd: idAdd,
 		idRemove: idRemove,
