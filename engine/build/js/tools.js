@@ -118,7 +118,7 @@ var web = function () {
 		return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test($date);
 	};
 	var isEmail = function ($email, $regExp) {
-		var $regExp = $regExp || /([\w\.]+)@([\w\.]+)\.(\w+)/i;
+		var $regExp = $regExp || /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i;
 		return $regExp.test($email);
 	};
 	var isFullInteger = function ($int) {
