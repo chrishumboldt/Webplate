@@ -1,77 +1,73 @@
 /**
- * File: buttonplate.js
- * Type: Javascript component
+ * File: build/js/buttonplate.js
+ * Type: Javascript component file
  * Author: Chris Humboldt
- */
+**/
 
-// Table of contents
-// Defaults
-// Tools
-// Variables
-
-// Defaults
-var $buttonplateDefault = {
-	selector: '.button'
-};
-
-var buttonplate = function($userOptions) {
-	// Select elements
-	var $selector = ($userOptions && $userOptions.selector) ? $userOptions.selector : $buttonplateDefault.selector;
-	var $selectorType = $selector.charAt(0).toString();
-	if ($selectorType === '#' && !web.hasWhiteSpace($self.options.selector)) {
-		new buttonplateComponent(document.getElementById($selector.substring(1)));
-	} else {
-		var $elements = document.querySelectorAll($selector);
-		for (var $i = 0; $i < $elements.length; $i++) {
-			new buttonplateComponent($elements[$i]);
-		}
-	}
-};
-
-var buttonplateComponent = function($this) {
+// Component
+var Buttonplate = function () {
 	// Variables
-	var $self = $this;
-	var $buttonDropDown = $self.getElementsByTagName('ul')[0];
-
-	// Internal functions
-	function basicSetup() {
+	var buttonDropClassName = 'buttonplate-drop-down';
+	var defaults = {
+		selector: '.button'
+	};
+	var documentOnClick = false;
+	// Functions
+	var applyButtonDrop = function (options) {
+		var buttonDrops = document.querySelectorAll(options.selector + ' ul');
+		if (buttonDrops.length > 0) {
+			for (var i = 0, len = buttonDrops.length; i < len; i++) {
+				web.classAdd(buttonDrops[i].parentNode, buttonDropClassName);
+				applyButtonDropEvent(buttonDrops[i].parentNode, buttonDrops[i]);
+			}
+		}
+	};
+	var applyButtonDropEvent = function (button, dropDown) {
+		button.onclick = function () {
+			closeAllOpenButtonDrops();
+			dropDown.style.width = button.clientWidth + 'px';
+			setTimeout(function () {
+				web.classAdd(dropDown, '_open');
+			}, 50);
+		};
+	};
+	var applyDocumentOnClick = function () {
+		documentOnClick = true;
+		document.onclick = function() {
+			closeAllOpenButtonDrops();
+		};
+	};
+	var closeAllOpenButtonDrops = function () {
+		var openDropDowns = document.querySelectorAll('.' + buttonDropClassName + ' ul._open');
+		for (var i = 0, len = openDropDowns.length; i < len; i++) {
+			web.classRemove(openDropDowns[i], '_open');
+		}
+	};
+	var touchCheck = function () {
 		if (!web.isTouch()) {
 			web.classAdd(web.element.html, 'buttonplate-no-touch');
 		}
 	};
+	// Initialiser
+	var init = function (userOptions) {
+		var userOptions = userOptions || false;
+		var options = {
+			selector: userOptions.selector || defaults.selector
+		};
 
-	function buttonDropDownSetup() {
-		if ($buttonDropDown !== undefined) {
-			web.classAdd($self, 'buttonplate-drop-down');
-			buttonDropDownTrigger();
+		// Execute
+		applyButtonDrop(options);
+		if (!documentOnClick) {
+			applyDocumentOnClick();
 		}
 	};
+	// Return
+	return {
+		defaults: defaults,
+		init: init,
+		touchCheck: touchCheck
+	};
+}();
 
-	function buttonDropDownTrigger() {
-		// Hide existing
-		document.onclick = function() {
-			var $openDropDowns = document.querySelectorAll('.buttonplate-drop-down .open');
-			for (var $i = $openDropDowns.length - 1; $i >= 0; $i--) {
-				web.classRemove($openDropDowns[$i], 'open');
-			};
-		};
-		$buttonDropDown.onclick = function() {
-			setTimeout(function() {
-				web.classRemove($buttonDropDown, 'open');
-			}, 15);
-		};
-
-		// Show
-		$self.onclick = function() {
-			setTimeout(function() {
-				var $buttonW = $self.clientWidth;
-				$buttonDropDown.style.width = $buttonW + 'px';
-				web.classAdd($buttonDropDown, 'open');
-			});
-		};
-	}
-
-	// Calls
-	basicSetup();
-	buttonDropDownSetup();
-};
+// Execute
+Buttonplate.touchCheck();

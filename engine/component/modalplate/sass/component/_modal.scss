@@ -1,28 +1,25 @@
 /**
- * File: _modal.scss
- * Type: SASS basic file
+ * File: build/sass/component/_modal.scss
+ * Type: SASS component file
  * Author: Chris Humboldt
- * Last Edited: 23 April 2015
- */
+**/
 
 // Table of contents
-// ---------------------------------------------------------------------------------------
 // Modal
 // Reveal animations
 // Show modal
 
-
 // Modal
-// ---------------------------------------------------------------------------------------
 @mixin modal() {
-	#modalplate {
+	.modalplate {
 		@include display(block);
-		@include position(fixed, top -120% left 0 margin-left -0px);
+		@include position(fixed, left 0 margin-left -0px);
 		@include size(100%, 100%);
 		@include background-colour($white);
 		@include overflow(scroll, vertical);
 		@include level(1001);
 		@include visibility(hidden);
+		@include opacity(0);
 		@include animate(all, 0.4s);
 		@include drop-shadow(fade-out($black, 0.95), 6px, 1px);
 		@include breakpoint(large) {
@@ -80,65 +77,61 @@
 			}
 		}
 	}
-
-	// Reveals
 	@include modal-reveal-animations();
-
-	// Modal reveal
 	@include modal-reveal();
 }
 
-
 // Reveal animations
-// ---------------------------------------------------------------------------------------
 @mixin modal-reveal-animations() {
 	// Appear
-	#modalplate.appear,
-	#modalplate.appear-scale {
+	.modalplate._appear,
+	.modalplate._appear-scale {
 		top: 0;
 		@include opacity(0);
 	}
-	#modalplate.appear-scale {
+	.modalplate._appear-scale {
 		@include animate(all, 0.2s);
 		@include transform-scale-3d(0, 0);
 	}
 	// Sliding
-	#modalplate.slide-from-bottom {
+	.modalplate._slide-from-top {
+		top: -120%;
+	}
+	.modalplate._slide-from-bottom {
 		top: 120%;
 	}
-	#modalplate.slide-from-left,
-	#modalplate.slide-from-right {
+	.modalplate._slide-from-left,
+	.modalplate._slide-from-right {
 		top: 0;
 		left: -120%;
 		margin-left: 0;
 		@include animate(all);
 	}
-	#modalplate.slide-from-right {
+	.modalplate._slide-from-right {
 		left: 120%;
 	}
 }
 
-
 // Reveal modal
-// ---------------------------------------------------------------------------------------
 @mixin modal-reveal() {
-	.modalplate-reveal #modalplate.reveal {
+	.modalplate-reveal .modalplate._reveal {
 		top: 0;
-		visibility: visible;
-	}
-	// Appear
-	.modalplate-reveal #modalplate.reveal.appear,
-	.modalplate-reveal #modalplate.reveal.appear-scale {
 		visibility: visible;
 		@include opacity(1);
 	}
-	.modalplate-reveal #modalplate.reveal.appear-scale {
+	// Appear
+	.modalplate-reveal .modalplate._reveal._appear,
+	.modalplate-reveal .modalplate._reveal._appear-scale {
+		visibility: visible;
+		@include opacity(1);
+	}
+	.modalplate-reveal .modalplate._reveal._appear-scale {
 		visibility: visible;
 		@include transform-scale-3d(1, 1);
 	}
 	// Sliding
-	.modalplate-reveal #modalplate.reveal.slide-from-left,
-	.modalplate-reveal #modalplate.reveal.slide-from-right {
+	.modalplate-reveal .modalplate._reveal._slide-from-left,
+	.modalplate-reveal .modalplate._reveal._slide-from-right {
 		left: 0;
 		visibility: visible;
 

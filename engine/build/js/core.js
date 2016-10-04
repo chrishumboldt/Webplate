@@ -2,7 +2,7 @@
  * File: engine/js/core.js
  * Type: Javascript engine
  * Author: Chris Humboldt
- */
+**/
 
 // Table of contents
 // Yepnope
@@ -184,59 +184,59 @@
 	'use strict';
 
 	// Variables
-	var $webContent = document.getElementById('webplate-content');
-	var $pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
+	var webContent = document.getElementById('webplate-content');
+	var pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
 
-	var $pathEngine = $pathRoot + 'engine/';
-	var $pathProject = $pathRoot + 'project/';
-	var $path = {
-		component: $pathProject + 'component/',
-		config: $pathProject + 'config.json',
+	var pathEngine = pathRoot + 'engine/';
+	var pathProject = pathRoot + 'project/';
+	var path = {
+		component: pathProject + 'component/',
+		config: pathProject + 'config.json',
 		engine: {
-			css: $pathEngine + 'css/',
-			js: $pathEngine + 'js/'
+			css: pathEngine + 'css/',
+			js: pathEngine + 'js/'
 		},
 		project: {
-			css: $pathProject + 'css/',
+			css: pathProject + 'css/',
 			iconFont: {
-				fontAwesome: $pathProject + 'font-awesome/css/font-awesome.min.css',
-				icoMoon: $pathProject + 'icomoon/style.css'
+				fontAwesome: pathProject + 'font-awesome/css/font-awesome.min.css',
+				icoMoon: pathProject + 'icomoon/style.css'
 			},
-			js: $pathProject + 'js/'
+			js: pathProject + 'js/'
 		},
-		root: $pathRoot
+		root: pathRoot
 	};
-	var $queryString = '';
-	var $webConfig = false;
+	var queryString = '';
+	var webConfig = false;
 
-	var $arComponentFirstFiles = [];
-	var $arComponentFiles = [];
-	var $arExtraCSS = [];
-	var $arExtraJS = [];
-	var $engineFiles = [$path.engine.js + 'scripts.min.js', $path.engine.css + 'styles.min.css'];
+	var arComponentFirstFiles = [];
+	var arComponentFiles = [];
+	var arExtraCSS = [];
+	var arExtraJS = [];
+	var engineFiles = [path.engine.js + 'scripts.min.js', path.engine.css + 'styles.min.css'];
 
 	// Attach loader
-	if ($webContent !== null) {
-		var $loaderDiv = document.createElement('div');
-		var $loaderText = 'Loading';
-		var $i = 0;
+	if (webContent !== null) {
+		var loaderDiv = document.createElement('div');
+		var loaderText = 'Loading';
+		var i = 0;
 
-		$webContent.style.display = 'none';
+		webContent.style.display = 'none';
 
-		$loaderDiv.id = 'web-page-loader';
-		$loaderDiv.style.margin = '0px auto';
-		$loaderDiv.style.paddingTop = '150px';
-		$loaderDiv.style.color = '#ccd1d9';
-		$loaderDiv.style.fontSize = '20px';
-		$loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
-		$loaderDiv.style.textAlign = 'center';
-		document.getElementsByTagName('body')[0].appendChild($loaderDiv);
-		var $pageLoaderTimer = setInterval(function () {
-			$i++;
+		loaderDiv.id = 'web-page-loader';
+		loaderDiv.style.margin = '0px auto';
+		loaderDiv.style.paddingTop = '150px';
+		loaderDiv.style.color = '#ccd1d9';
+		loaderDiv.style.fontSize = '20px';
+		loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
+		loaderDiv.style.textAlign = 'center';
+		document.getElementsByTagName('body')[0].appendChild(loaderDiv);
+		var pageLoaderTimer = setInterval(function () {
+			i++;
 			if (document.getElementById('web-page-loader') !== null) {
-				document.getElementById('web-page-loader').innerHTML = $loaderText + new Array($i % 5).join('.');
+				document.getElementById('web-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
 			} else {
-				clearInterval($pageLoaderTimer);
+				clearInterval(pageLoaderTimer);
 			}
 		}, 300);
 	}
@@ -245,12 +245,12 @@
 	var core = {
 		init: function () {
 			yepnope([{
-				load: $engineFiles,
+				load: engineFiles,
 				complete: function () {
 					// Touch inclusion
 					if (Modernizr.touchevents) {
 						yepnope({
-							load: $path.engine.js + 'touch.min.js',
+							load: path.engine.js + 'touch.min.js',
 							complete: function () {
 								if ('addEventListener' in document) {
 									document.addEventListener('DOMContentLoaded', function() {
@@ -266,156 +266,156 @@
 					web.inject = web.injectplateExecute();
 
 					// Load config
-					var $urlData = web.url();
+					var urlData = web.url();
 					web.request.get({
-						url: $path.config,
+						url: path.config,
 						onSuccess: core.loadProject
 					});
 				}
 			}]);
 		},
-		loadComponents: function ($component, $projectCSS, $projectJS) {
-			for (var $i = 0, $len = $component.length; $i < $len; $i++) {
-				(function ($i2) {
-					var $val = $component[$i2++];
+		loadComponents: function (component, projectCSS, projectJS) {
+			for (var i = 0, len = component.length; i < len; i++) {
+				(function (i2) {
+					var val = component[i2++];
 
-					core.loadJSON($path.component + $val + '/.bower.json', function () {
+					core.loadJSON(path.component + val + '/.bower.json', function () {
 						if (this.readyState == 4 && this.status == 200) {
-							var $webConfig = JSON.parse(this.responseText);
+							var webConfig = JSON.parse(this.responseText);
 
-							if (typeof $webConfig.main == 'object') {
-								for ($i = 0; $i < $webConfig.main.length; $i++) {
-									$arComponentFiles.push($path.component + $val + '/' + $webConfig.main[$i]);
+							if (typeof webConfig.main == 'object') {
+								for (i = 0; i < webConfig.main.length; i++) {
+									arComponentFiles.push(path.component + val + '/' + webConfig.main[i]);
 								}
 							} else {
-								$arComponentFiles.push($path.component + $val + '/' + $webConfig.main);
+								arComponentFiles.push(path.component + val + '/' + webConfig.main);
 							}
 
 							// Load the project file
-							if ($i2 == $component.length) {
+							if (i2 == component.length) {
 								yepnope({
-									load: $arComponentFiles,
+									load: arComponentFiles,
 									complete: function () {
-										core.loadProjectFiles($projectCSS, $projectJS);
+										core.loadProjectFiles(projectCSS, projectJS);
 									}
 								});
 							}
 						}
 					});
-				}($i));
+				}(i));
 			}
 		},
-		loadComponentsFirst: function ($componentFirst, $component, $projectCSS, $projectJS) {
-			for (var $r = 0, $len = $componentFirst.length; $r < $len; $r++) {
-				(function ($r2) {
-					var $val = $componentFirst[$r2++];
+		loadComponentsFirst: function (componentFirst, component, projectCSS, projectJS) {
+			for (var r = 0, len = componentFirst.length; r < len; r++) {
+				(function (r2) {
+					var val = componentFirst[r2++];
 
-					core.loadJSON($path.component + $val + '/.bower.json', function () {
+					core.loadJSON(path.component + val + '/.bower.json', function () {
 						if (this.readyState == 4 && this.status == 200) {
-							var $webConfig = JSON.parse(this.responseText);
+							var webConfig = JSON.parse(this.responseText);
 
-							if (typeof $webConfig.main == 'object') {
-								for (var $r = 0, $len = $webConfig.main.length; $r < $len; $r++) {
-									$arComponentFirstFiles.push($path.component + $val + '/' + $webConfig.main[$r]);
+							if (typeof webConfig.main == 'object') {
+								for (var r = 0, len = webConfig.main.length; r < len; r++) {
+									arComponentFirstFiles.push(path.component + val + '/' + webConfig.main[r]);
 								}
 							} else {
-								$arComponentFirstFiles.push($path.component + $val + '/' + $webConfig.main);
+								arComponentFirstFiles.push(path.component + val + '/' + webConfig.main);
 							}
 
-							if ($r2 == $componentFirst.length) {
+							if (r2 == componentFirst.length) {
 								yepnope({
-									load: $arComponentFirstFiles,
+									load: arComponentFirstFiles,
 									complete: function () {
-										if ($component.length > 0) {
-											core.loadComponents($component, $projectCSS, $projectJS);
+										if (component.length > 0) {
+											core.loadComponents(component, projectCSS, projectJS);
 										} else {
-											core.loadProjectFiles($projectCSS, $projectJS);
+											core.loadProjectFiles(projectCSS, projectJS);
 										}
 									}
 								});
 							}
 						}
 					});
-				}($r));
+				}(r));
 			}
 		},
-		loadProject: function ($webConfig) {
-			var $pageMatch = false;
+		loadProject: function (webConfig) {
+			var pageMatch = false;
 
 			// Query string
-			if ($webConfig.cache && $webConfig.cache.bust) {
-				$queryString = '?ts=' + $webConfig.cache.bust;
+			if (webConfig.cache && webConfig.cache.bust) {
+				queryString = '?ts=' + webConfig.cache.bust;
 			}
 
 			// Root config
-			if ($webConfig.project) {
-				var $componentFirst = $webConfig.project['component-first'] || [];
-				var $component = $webConfig.project['component'] || [];
-				var $iconFont = $webConfig.project['icon-font'] || false;
-				var $projectCSS = $webConfig.project['css'] || [];
-				var $projectJS = $webConfig.project['js'] || [];
+			if (webConfig.project) {
+				var componentFirst = webConfig.project['component-first'] || [];
+				var component = webConfig.project['component'] || [];
+				var iconFont = webConfig.project['icon-font'] || false;
+				var projectCSS = webConfig.project['css'] || [];
+				var projectJS = webConfig.project['js'] || [];
 
 				// Page check
-				if ($webConfig.project.page) {
-					for (var $i = $webConfig.project.page.length - 1; $i >= 0; $i--) {
-						var $page = $webConfig.project.page[$i];
+				if (webConfig.project.page) {
+					for (var i = webConfig.project.page.length - 1; i >= 0; i--) {
+						var page = webConfig.project.page[i];
 
 						// Wildcard check
-						if ($page['url'].indexOf('*') > -1) {
-							if ($urlData.currentUrl.indexOf($page['url'].substring(0, $page['url'].length - 1)) > -1) {
-								$pageMatch = true;
+						if (page['url'].indexOf('*') > -1) {
+							if (urlData.currentUrl.indexOf(page['url'].substring(0, page['url'].length - 1)) > -1) {
+								pageMatch = true;
 							}
 						} else {
-							if ($urlData.currentUrl === $urlData.baseUrl + $page['url']) {
-								$pageMatch = true;
+							if (urlData.currentUrl === urlData.baseUrl + page['url']) {
+								pageMatch = true;
 							}
 						}
-						if ($pageMatch === true) {
+						if (pageMatch === true) {
 							// Page overwrite
-							var $configType = $page['config-type'] || 'merge';
+							var configType = page['config-type'] || 'merge';
 
-							if ($configType == 'new') {
-								$componentFirst = $page['component-first'] || [];
-								$component = $page['component'] || [];
-								$iconFont = $page['icon-font'] || false;
-								$projectCSS = $page['css'] || [];
-								$projectJS = $page['js'] || [];
+							if (configType == 'new') {
+								componentFirst = page['component-first'] || [];
+								component = page['component'] || [];
+								iconFont = page['icon-font'] || false;
+								projectCSS = page['css'] || [];
+								projectJS = page['js'] || [];
 							} else {
 								// Basic additions (some have to be overwritten by design)
-								$iconFont = $page['icon-font']? $page['icon-font']: $iconFont;
+								iconFont = page['icon-font']? page['icon-font']: iconFont;
 
 								// Component add
-								if ($page['component-first']) {
-									for (var $i = 0, $len = $page['component-first'].length; $i < $len; $i++) {
-										var $addComponentFirst = $page['component-first'][$i];
-										if ($componentFirst.indexOf($addComponentFirst) == -1) {
-											$componentFirst.push($addComponentFirst);
+								if (page['component-first']) {
+									for (var i = 0, len = page['component-first'].length; i < len; i++) {
+										var addComponentFirst = page['component-first'][i];
+										if (componentFirst.indexOf(addComponentFirst) == -1) {
+											componentFirst.push(addComponentFirst);
 										}
 									}
 								}
-								if ($page['component']) {
-									for (var $i = 0, $len = $page['component'].length; $i < $len; $i++) {
-										var $addComponent = $page['component'][$i];
-										if ($component.indexOf($addComponent) == -1) {
-											$component.push($addComponent);
+								if (page['component']) {
+									for (var i = 0, len = page['component'].length; i < len; i++) {
+										var addComponent = page['component'][i];
+										if (component.indexOf(addComponent) == -1) {
+											component.push(addComponent);
 										}
 									}
 								}
 								// Project CSS
-								if ($page['css']) {
-									for (var $i = 0, $len = $page['css'].length; $i < $len; $i++) {
-										var $addProjectCSS = $page['css'][$i];
-										if ($projectCSS.indexOf($addProjectCSS) === -1) {
-											$projectCSS.push($addProjectCSS);
+								if (page['css']) {
+									for (var i = 0, len = page['css'].length; i < len; i++) {
+										var addProjectCSS = page['css'][i];
+										if (projectCSS.indexOf(addProjectCSS) === -1) {
+											projectCSS.push(addProjectCSS);
 										}
 									}
 								}
 								// Project JS
-								if ($page['js']) {
-									for (var $i = 0, $len = $page['js'].length; $i < $len; $i++) {
-										var $addProjectJS = $page['js'][$i];
-										if ($projectJS.indexOf($addProjectJS) === -1) {
-											$projectJS.push($addProjectJS);
+								if (page['js']) {
+									for (var i = 0, len = page['js'].length; i < len; i++) {
+										var addProjectJS = page['js'][i];
+										if (projectJS.indexOf(addProjectJS) === -1) {
+											projectJS.push(addProjectJS);
 										}
 									}
 								}
@@ -426,58 +426,58 @@
 				}
 
 				// Icon fonts
-				if ($iconFont == 'icomoon') {
+				if (iconFont == 'icomoon') {
 					yepnope({
-						load: $path.project.iconFont.icoMoon
+						load: path.project.iconFont.icoMoon
 					});
-				} else if ($iconFont == 'font-awesome') {
+				} else if (iconFont == 'font-awesome') {
 					yepnope({
-						load: $path.project.iconFont.fontAwesome
+						load: path.project.iconFont.fontAwesome
 					});
 				}
 
 				// Load the components & project files
-				if ($componentFirst.length > 0) {
-					core.loadComponentsFirst($componentFirst, $component, $projectCSS, $projectJS);
-				} else if ($component.length > 0) {
-					core.loadComponents($component, $projectCSS, $projectJS);
+				if (componentFirst.length > 0) {
+					core.loadComponentsFirst(componentFirst, component, projectCSS, projectJS);
+				} else if (component.length > 0) {
+					core.loadComponents(component, projectCSS, projectJS);
 				} else {
-					core.loadProjectFiles($projectCSS, $projectJS);
+					core.loadProjectFiles(projectCSS, projectJS);
 				}
 			} else {
 				core.showPage();
 			}
 		},
-		loadProjectFiles: function ($css, $js) {
-			for (var $i = 0, $len = $css.length; $i < $len; $i++) {
-				var $file = $css[$i].trim();
-				if (web.getExtension($file) === 'css') {
-					$arExtraCSS.push($path.project.css + $file + $queryString);
+		loadProjectFiles: function (css, js) {
+			for (var i = 0, len = css.length; i < len; i++) {
+				var file = css[i].trim();
+				if (web.getExtension(file) === 'css') {
+					arExtraCSS.push(path.project.css + file + queryString);
 				}
 			}
-			for ($i = 0; $i < $js.length; $i++) {
-				var $file = $js[$i].trim();
-				if (web.getExtension($file) === 'js') {
-					$arExtraJS.push($path.project.js + $file + $queryString);
+			for (i = 0; i < js.length; i++) {
+				var file = js[i].trim();
+				if (web.getExtension(file) === 'js') {
+					arExtraJS.push(path.project.js + file + queryString);
 				}
 			}
-			if ($arExtraCSS.length > 0) {
+			if (arExtraCSS.length > 0) {
 				yepnope({
-					load: $arExtraCSS,
+					load: arExtraCSS,
 					complete: function () {
 						core.showPage();
 						setTimeout(function () {
 							yepnope({
-								load: $arExtraJS
+								load: arExtraJS
 							});
 						}, 50);
 					}
 				});
-			} else if ($arExtraJS.length > 0) {
+			} else if (arExtraJS.length > 0) {
 				core.showPage();
 				setTimeout(function () {
 					yepnope({
-						load: $arExtraJS
+						load: arExtraJS
 					});
 				}, 50);
 			} else {
@@ -485,8 +485,8 @@
 			}
 		},
 		showPage: function () {
-			if ($webContent !== null) {
-				$webContent.removeAttribute('style');
+			if (webContent !== null) {
+				webContent.removeAttribute('style');
 				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
 			} else {
 				web.element.body.removeAttribute('style');

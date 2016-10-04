@@ -1,10 +1,9 @@
 /**
- * File: _imports.scss
- * Type: SASS import
+ * File: build/sass/_import.scss
+ * Type: SASS Component File
  * Author: Chris Humboldt
- */
+**/
 
-@import "module/modal";
-@import "module/overlay";
-
+@import "component/modal";
+@import "component/overlay";
 @import "css/execute";

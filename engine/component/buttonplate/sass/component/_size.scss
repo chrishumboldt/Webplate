@@ -1,10 +1,11 @@
 /**
  * File: _size.scss
- * Type: SASS component
+ * Type: SASS module
  * Author: Chris Humboldt
  */
 
 // Variables
+// ---------------------------------------------------------------------------------------
 $btn-size-s: 30px;
 $btn-size-n: 44px;
 $btn-size-l: 54px;
@@ -21,6 +22,7 @@ $drp-height: 34px;
 $drp-height-xl: 40px;
 
 // Button size
+// ---------------------------------------------------------------------------------------
 @mixin button-size-custom($height: $btn-size-n, $padding: $btn-padding-n, $font-size: $btn-text-n) {
 	@include padding-horizontal($padding);
 	@include padding-vertical(0px);

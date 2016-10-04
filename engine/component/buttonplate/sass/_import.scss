@@ -1,9 +1,10 @@
 /**
- * File: sass/_import.scss
- * Type: SASS importer
+ * File: _import.scss
+ * Type: SASS import
  * Author: Chris Humboldt
- */
+**/
 
+// Variables
 $font-face-buttonplate: "icon-font-buttonplate" !default;
 
 @import "component/drop-down";

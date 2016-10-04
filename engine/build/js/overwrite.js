@@ -2,7 +2,7 @@
  * File: engine/js/src/overwrite.js
  * Type: Javascript Component Overwrite
  * Author: Chris Humboldt
- */
+**/
 
 if (typeof $flickerplateDefault !== 'undefined') {
 	$flickerplateDefault.selector = '.web-flicker';
