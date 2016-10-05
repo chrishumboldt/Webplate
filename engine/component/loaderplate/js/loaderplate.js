@@ -80,11 +80,11 @@ var loaderplate = function($userOptions) {
 	};
 	$self.remove = function() {
 		web.classAdd($element, 'loaderplate-element-show');
+		web.classRemove($element, 'loaderplate-element-hide');
 		if (web.exists($loader.parentNode)) {
 			if (web.exists($loader)) {
 				$loader.parentNode.removeChild($loader);
 			}
-			web.classRemove($element, 'loaderplate-element-hide');
 		} else {
 			clearTimeout($loaderTimeout);
 		}
