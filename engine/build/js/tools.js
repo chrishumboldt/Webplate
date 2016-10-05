@@ -650,7 +650,7 @@ var web = function () {
 					break;
 			}
 			if (storage) {
-				storage = JSON.parse(synappStorage);
+				storage = JSON.parse(storage);
 				delete storage[name];
 				switch (thisEngine.type) {
 					case 'local':
