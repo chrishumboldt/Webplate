@@ -462,6 +462,20 @@ var web = function () {
 		return json;
 	};
 	var request = function () {
+		var defaults = {
+			async: true,
+			data: false,
+			dataType: 'json',
+			headers: false,
+			onStart: false,
+			onLoading: false,
+			onSuccess: false,
+			onError: false,
+			onEnd: false,
+			timeout: false,
+			type: false,
+			withCredentials: false
+		};
 		var run = function (userOptions) {
 			if (!exists(userOptions) || !exists(userOptions.url)) {
 				return false;
@@ -469,18 +483,18 @@ var web = function () {
 
 			var options = {
 				url: userOptions.url,
-				async: (typeof userOptions.async === 'string') ? userOptions.async : true,
-				data: (exists(userOptions.data)) ? userOptions.data : true,
-				dataType: (exists(userOptions.dataType)) ? userOptions.dataType : 'json',
-				headers: (typeof userOptions.headers === 'object') ? userOptions.headers : false,
-				onStart: (typeof userOptions.onStart === 'function') ? userOptions.onStart : false,
-				onLoading: (typeof userOptions.onLoading === 'function') ? userOptions.onLoading : false,
-				onSuccess: (typeof userOptions.onSuccess === 'function') ? userOptions.onSuccess : false,
-				onError: (typeof userOptions.onError === 'function') ? userOptions.onError : false,
-				onEnd: (typeof userOptions.onEnd === 'function') ? userOptions.onEnd : false,
-				timeout: (typeof userOptions.timeout === 'number') ? time.seconds(userOptions.timeout) : false,
-				type: (exists(userOptions.type)) ? uppercaseAll(userOptions.type) : false,
-				withCredentials: (typeof userOptions.withCredentials === 'boolean') ? userOptions.withCredentials : false
+				async: (typeof userOptions.async === 'string') ? userOptions.async : defaults.async,
+				data: (exists(userOptions.data)) ? userOptions.data : defaults.data,
+				dataType: (exists(userOptions.dataType)) ? userOptions.dataType : defaults.dataType,
+				headers: (typeof userOptions.headers === 'object') ? userOptions.headers : defaults.headers,
+				onStart: (typeof userOptions.onStart === 'function') ? userOptions.onStart : defaults.onStart,
+				onLoading: (typeof userOptions.onLoading === 'function') ? userOptions.onLoading : defaults.onLoading,
+				onSuccess: (typeof userOptions.onSuccess === 'function') ? userOptions.onSuccess : defaults.onSuccess,
+				onError: (typeof userOptions.onError === 'function') ? userOptions.onError : defaults.onError,
+				onEnd: (typeof userOptions.onEnd === 'function') ? userOptions.onEnd : defaults.onEnd,
+				timeout: (typeof userOptions.timeout === 'number') ? time.seconds(userOptions.timeout) : defaults.timeout,
+				type: (exists(userOptions.type)) ? uppercaseAll(userOptions.type) : defaults.type,
+				withCredentials: (typeof userOptions.withCredentials === 'boolean') ? userOptions.withCredentials : defaults.withCredentials
 			};
 			var xhr = new XMLHttpRequest();
 			xhr.withCredentials = options.withCredentials;
@@ -596,6 +610,7 @@ var web = function () {
 		};
 
 		return {
+			defaults: defaults,
 			delete: runDelete,
 			get: runGet,
 			post: runPost,
@@ -772,7 +787,6 @@ var web = function () {
 	// URL
 	var url = function (ret) {
 		var ret = ret || 'all';
-		var crtScriptSrc = webEl.webplateScript.getAttribute('src').replace('start.js', '');
 		var windowLocation = window.location;
 		var fullUrl = windowLocation.href;
 
@@ -842,7 +856,7 @@ var web = function () {
 		return new formplate(options);
 	};
 	var injectplateExecute = function () {
-		return new injectplate();
+		return Injectplate.init();
 	};
 	var loader = function (options) {
 		return new loaderplate(options);
