@@ -101,8 +101,8 @@ var web = function () {
 	var hasWhiteSpace = function (check) {
 		return /\s/.test(check);
 	};
-	var hasClass = function (element, class) {
-		return (' ' + element.className + ' ').indexOf(' ' + class + ' ') > -1;
+	var hasClass = function (element, className) {
+		return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
 	};
 	var hasExtension = function (file, arAllowedTypes) {
 		var allowedTypes = arAllowedTypes || webTypes.extensions;
@@ -203,26 +203,26 @@ var web = function () {
 	};
 
 	// DOM
-	var classAdd = function (element, class) {
+	var classAdd = function (element, className) {
 		if (exists(element)) {
-			if (typeof class === 'object') {
-				for (var i = 0, len = class.length; i < len; i++) {
-					classAddExecute(element, class[i]);
+			if (typeof className === 'object') {
+				for (var i = 0, len = className.length; i < len; i++) {
+					classAddExecute(element, className[i]);
 				}
-			} else if (hasWhiteSpace(class)) {
-				var classes = class.split(' ');
+			} else if (hasWhiteSpace(className)) {
+				var classes = className.split(' ');
 				for (var i = 0, len = classes.length; i < len; i++) {
 					classAddExecute(element, classes[i]);
 				}
 			} else {
-				classAddExecute(element, class);
+				classAddExecute(element, className);
 			}
 		}
 	};
-	var classAddExecute = function (element, class) {
+	var classAddExecute = function (element, className) {
 		var crtClass = element.className;
-		if (crtClass.match(new RegExp('\\b' + class + '\\b', 'g')) === null) {
-			element.className = crtClass === '' ? class : crtClass + ' ' + class;
+		if (crtClass.match(new RegExp('\\b' + className + '\\b', 'g')) === null) {
+			element.className = crtClass === '' ? className : crtClass + ' ' + className;
 		}
 	};
 	var classClear = function (element) {
@@ -230,26 +230,26 @@ var web = function () {
 			element.removeAttribute('class');
 		}
 	};
-	var classRemove = function (element, class) {
+	var classRemove = function (element, className) {
 		if (exists(element)) {
-			if (typeof class === 'object') {
-				for (var i = class.length - 1; i >= 0; i--) {
-					classRemoveExecute(element, class[i]);
+			if (typeof className === 'object') {
+				for (var i = className.length - 1; i >= 0; i--) {
+					classRemoveExecute(element, className[i]);
 				}
-			} else if (hasWhiteSpace(class)) {
-				var classes = class.split(' ');
+			} else if (hasWhiteSpace(className)) {
+				var classes = className.split(' ');
 				for (var i = 0, len = classes.length; i < len; i++) {
 					classRemoveExecute(element, classes[i]);
 				}
 			} else {
-				classRemoveExecute(element, class);
+				classRemoveExecute(element, className);
 			}
 		}
 	};
-	var classRemoveExecute = function (element, class) {
-		if (element.className.indexOf(class) > -1) {
+	var classRemoveExecute = function (element, className) {
+		if (element.className.indexOf(className) > -1) {
 			element.className = element.className.split(' ').filter(function (val) {
-				return val != class;
+				return val != className;
 			}).toString().replace(/,/g, ' ');
 			if (element.className === '') {
 				classClear(element);
@@ -262,12 +262,12 @@ var web = function () {
 			classRemove(element, removeClass);
 		}
 	};
-	var classToggle = function (element, class) {
+	var classToggle = function (element, className) {
 		if (exists(element)) {
-			if (!hasClass(element, class)) {
-				classAdd(element, class);
+			if (!hasClass(element, className)) {
+				classAdd(element, className);
 			} else {
-				classRemove(element, class);
+				classRemove(element, className);
 			}
 		}
 	};
