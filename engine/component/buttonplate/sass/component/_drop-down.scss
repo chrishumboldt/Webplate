@@ -52,7 +52,7 @@ $away-from-button: 4px;
 					@include text-colour($black-base);
 					text-decoration: none;
 					vertical-align: middle;
-					.buttonplate-no-touch &:hover {
+					.bp-no-touch &:hover {
 						@include background-colour(darken($grey-x-light, 3%));
 					}
 				}

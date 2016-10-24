@@ -39,4 +39,8 @@
    &._x-large {
       @include button-size(x-large);
    }
+   // Drop downs
+   > ul {
+      @include opacity(0);
+   }
 }

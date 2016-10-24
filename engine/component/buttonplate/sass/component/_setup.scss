@@ -32,7 +32,7 @@
 	&:visited {
 		@include text-colour(lighten(#000, 40%));
 	}
-	.buttonplate-no-touch &:hover {
+	.bp-no-touch &:hover {
 		@include cursor(pointer);
 		@include background-colour($grey-x-light);
 	}
@@ -64,6 +64,6 @@
 	-ms-transition: border 0.2s ease-out, background 0.2s ease-out;
 	-o-transition: border 0.2s ease-out, background 0.2s ease-out;
 	transition: border 0.2s ease-out, background 0.2s ease-out;
-	
+
 	@include drop-down();
 }
