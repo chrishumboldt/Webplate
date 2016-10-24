@@ -12,7 +12,7 @@ if (typeof $formplateDefault !== 'undefined') {
 	$formplateDefault.style = 'flat';
 }
 if (typeof $loaderplateDefault !== 'undefined') {
-	$loaderplateDefault.path = web.url('baseUrl') + '/webplate/engine/component/loaderplate/loaders/';
+	$loaderplateDefault.path = Web.url('baseUrl') + '/webplate/engine/component/loaderplate/loaders/';
 }
 if (typeof $menuplateDefault !== 'undefined') {
 	$menuplateDefault.selector = '.web-menu-trigger';

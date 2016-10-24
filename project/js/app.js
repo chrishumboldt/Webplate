@@ -6,4 +6,4 @@
  * js directory is included in the GIT repo.
 **/
 
-web.log('The app file has loaded successfully...');
+Web.log('The app file has loaded successfully...');

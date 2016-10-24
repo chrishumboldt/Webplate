@@ -262,12 +262,12 @@
 					}
 
 					// Call webplate functions
-					web.overlayAdd();
-					web.inject = web.injectplateExecute();
+					Web.overlay.add();
+					Web.inject = Web.injectplateExecute();
 
 					// Load config
-					var urlData = web.url();
-					web.request.get({
+					var urlData = Web.url();
+					Web.request.get({
 						url: path.config,
 						onSuccess: core.loadProject
 					});
@@ -451,13 +451,13 @@
 		loadProjectFiles: function (css, js) {
 			for (var i = 0, len = css.length; i < len; i++) {
 				var file = css[i].trim();
-				if (web.getExtension(file) === 'css') {
+				if (Web.get.extension(file) === 'css') {
 					arExtraCSS.push(path.project.css + file + queryString);
 				}
 			}
 			for (i = 0; i < js.length; i++) {
 				var file = js[i].trim();
-				if (web.getExtension(file) === 'js') {
+				if (Web.get.extension(file) === 'js') {
 					arExtraJS.push(path.project.js + file + queryString);
 				}
 			}
@@ -489,9 +489,9 @@
 				webContent.removeAttribute('style');
 				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
 			} else {
-				web.element.body.removeAttribute('style');
+				Web.element.body.removeAttribute('style');
 			}
-			web.form();
+			Web.form();
 		}
 	};
 
