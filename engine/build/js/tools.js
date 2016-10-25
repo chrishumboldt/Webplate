@@ -1033,30 +1033,57 @@ var Web = (function () {
 
 	// Component facades
 	var button = function (options) {
+		if (typeof Buttonplate !== 'function') {
+			return false;
+		}
 		return Buttonplate.init(options);
 	};
 	var flicker = function (options) {
+		if (typeof flickerplate !== 'function') {
+			return false;
+		}
 		return new flickerplate(options);
 	};
 	var form = function (options) {
+		if (typeof formplate !== 'function') {
+			return false;
+		}
 		return new formplate(options);
 	};
 	var injectplateExecute = function () {
+		if (typeof Injectplate !== 'function') {
+			return false;
+		}
 		return Injectplate.init();
 	};
 	var loader = function (options) {
+		if (typeof loaderplate !== 'function') {
+			return false;
+		}
 		return new loaderplate(options);
 	};
 	var menu = function (options) {
+		if (typeof menuplate !== 'function') {
+			return false;
+		}
 		return new menuplate(options);
 	};
 	var message = function (options) {
+		if (typeof messageplate !== 'function') {
+			return false;
+		}
 		return new messageplate(options);
 	};
 	var modal = function (options) {
+		if (typeof Modalplate !== 'function') {
+			return false;
+		}
 		return Modalplate.init(options);
 	};
 	var tab = function (options) {
+		if (typeof tabplate !== 'function') {
+			return false;
+		}
 		return new tabplate(options);
 	};
 

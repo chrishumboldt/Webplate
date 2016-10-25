@@ -4,43 +4,4 @@
  * Author: Chris Humboldt
  */
 
-// Setup
-.button {
-   @include button-setup(false);
-   @include button-shape(rounded);
-   @include button-size(normal);
-   @include button-style(flat, $grey);
-   // Colours
-   &._primary {
-      @include button-style(flat, $blue);
-   }
-   &._secondary {
-      @include button-style(flat, $pink);
-   }
-   &._tertiary {
-      @include button-style(flat, $aqua);
-   }
-   &._success {
-      @include button-style(flat, $green);
-   }
-   &._warning {
-      @include button-style(flat, $orange);
-   }
-   &._error {
-      @include button-style(flat, $red);
-   }
-   // Size
-   &._small {
-      @include button-size(small);
-   }
-   &._large {
-      @include button-size(large);
-   }
-   &._x-large {
-      @include button-size(x-large);
-   }
-   // Drop downs
-   > ul {
-      @include opacity(0);
-   }
-}
+@include buttonplate-css();

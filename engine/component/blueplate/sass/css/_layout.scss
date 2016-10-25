@@ -48,65 +48,6 @@
 	._content-large {
 		@include content(large);
 	}
-	// Layout
-	._col-double {
-		@include layout-column(double);
-		&._fixed {
-			> ._left,
-			> ._right {
-				@include span-new(6);
-			}
-		}
-		&._break-early {
-			> ._left,
-			> ._right {
-				@include breakpoint($bp-small) {
-	            @include span-new(6);
-	         }
-			}
-		}
-	}
-	._col-triple {
-		@include layout-column(triple);
-		&._fixed {
-			> ._left,
-			> ._middle,
-			> ._right {
-				@include span-new(4);
-			}
-		}
-		&._break-early {
-			> ._left,
-			> ._middle,
-			> ._right {
-				@include breakpoint($bp-medium) {
-	            @include span-new(4);
-	         }
-			}
-		}
-	}
-	._col-left-bar {
-		@include layout-column(left-bar);
-		&._fixed {
-			> ._left {
-            @include span-new(5);
-         }
-         > ._right {
-            @include span-new(7);
-         }
-		}
-	}
-	._col-right-bar {
-		@include layout-column(right-bar);
-		&._fixed {
-			> ._left {
-            @include span-new(7);
-         }
-         > ._right {
-            @include span-new(5);
-         }
-		}
-	}
 	// Limit
 	._limit,
 	._limit-x2-small,

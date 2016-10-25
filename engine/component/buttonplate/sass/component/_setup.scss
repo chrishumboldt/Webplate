@@ -65,5 +65,8 @@
 	-o-transition: border 0.2s ease-out, background 0.2s ease-out;
 	transition: border 0.2s ease-out, background 0.2s ease-out;
 
+	> ul {
+		@include opacity(0);
+	}
 	@include drop-down();
 }

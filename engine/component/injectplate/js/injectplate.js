@@ -651,4 +651,114 @@ var Injectplate = function () {
 		}
 	}
 }();
-var InjectplateComponent = function () {};
+var InjectplateComponent = function () {
+	// Variables
+	var componentList = {};
+
+	// Bind
+	var bind = function (objBind) {
+		var objBind = objBind || false;
+		if (objBind !== false && objBind.component) {
+			var bindTo;
+			var data = objBind.data || '';
+
+			bindTo = (objBind.to !== undefined) ? select(objBind.to) : select('#' + objBind.component);
+
+			if (bindTo) {
+				for (var i = 0, len = bindTo.length; i < len; i++) {
+					var componentEl = Mustache.render(componentList[objBind.component]['html'], data);
+					if (objBind.overwrite === true) {
+						bindTo[i].innerHTML = componentEl;
+					} else {
+						bindTo[i].insertAdjacentHTML('beforeend', componentEl);
+					}
+					bindTo[i].setAttribute('data-inject', 'true');
+					if (componentList[objBind.component]['id']) {
+						bindTo[i].id = componentList[objBind.component]['id'];
+					}
+					if (componentList[objBind.component]['className']) {
+						classAdd(bindTo[i], componentList[objBind.component]['className']);
+					}
+					if (componentList[objBind.component]['onDone']) {
+						callback = componentList[objBind.component]['onDone'](bindTo[i]);
+					}
+					if (objBind.onDone !== undefined) {
+						callback = objBind.onDone(bindTo[i]);
+					}
+				}
+			}
+		}
+	};
+
+	// Class add
+	var classAdd = function (element, class) {
+		var crtClass = element.className;
+		if (crtClass.match(new RegExp('\\b' + class + '\\b', 'g')) === null) {
+			element.className = crtClass === '' ? class : crtClass + ' ' + class;
+		}
+	};
+
+	// Show component list
+	var componentList = function () {
+		console.log(componentList);
+	};
+
+	// Register component
+	var component = function (objComponent) {
+		componentList[objComponent.name] = {
+			className: objComponent.className || false,
+			id: objComponent.id || false,
+			html: flattenTemplate(objComponent.html),
+			onDone: objComponent.onDone || false,
+			overwrite: objComponent.overwrite || false
+		};
+	};
+
+	// Flatten template
+	var flattenTemplate = function (templateInp) {
+		if (typeof templateInp === 'object') {
+			var template = '';
+			for (var i = 0, len = templateInp.length; i < len; i++) {
+				template += templateInp[i];
+			}
+			return template;
+		} else if (typeof templateInp === 'string') {
+			var template = '';
+			var templateInpSplit = templateInp.split(/(?:\r\n|\n|\r)/);
+			for (var i = 0, len = templateInpSplit.length; i < len; i++) {
+				template += templateInpSplit[i].trim();
+			}
+			return template;
+		}
+	};
+
+	// Generate
+	var generate = function (objGenerate) {
+		var objGenerate = objGenerate || false;
+		if (objGenerate !== false && objGenerate.component) {
+			var data = objGenerate.data || '';
+			if (objGenerate.onDone !== undefined) {
+				objGenerate.onDone(Mustache.render(componentList[objGenerate.component]['html'], data));
+			}
+		}
+	};
+
+	// Select
+	var select = function (selector) {
+		if (selector.indexOf('.') > -1) {
+			return document.querySelectorAll(selector);
+		} else if (selector.indexOf('#') > -1) {
+			return [document.getElementById(selector.substring(1))];
+		} else {
+			return document.getElementsByTagName(selector);
+		}
+	};
+
+	// Return
+	return {
+		bind: bind,
+		component: component,
+		componentList: componentList,
+		generate: generate
+	};
+};

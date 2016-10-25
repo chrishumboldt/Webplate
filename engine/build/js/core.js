@@ -213,7 +213,8 @@
 	var arComponentFiles = [];
 	var arExtraCSS = [];
 	var arExtraJS = [];
-	var engineFiles = [path.engine.js + 'scripts.min.js', path.engine.css + 'styles.min.css'];
+	var engineFiles = [path.engine.js + 'main.min.js', path.engine.css + 'main.min.css'];
+	var engineComponentFiles = [path.engine.js + 'components.min.js', path.engine.css + 'components.min.css'];
 
 	// Attach loader
 	if (webContent !== null) {
@@ -263,13 +264,13 @@
 
 					// Call webplate functions
 					Web.overlay.add();
-					Web.inject = Web.injectplateExecute();
+					Web.inject = false;
 
 					// Load config
 					var urlData = Web.url();
 					Web.request.get({
 						url: path.config,
-						onSuccess: core.loadProject
+						onSuccess: core.loadEngineComponents
 					});
 				}
 			}]);
@@ -337,6 +338,41 @@
 						}
 					});
 				}(r));
+			}
+		},
+		loadEngineComponents: function (webConfig) {
+			if (webConfig.engine && webConfig.engine.components && typeof webConfig.engine.components === 'string') {
+				var loadFiles = engineComponentFiles;
+				switch (webConfig.engine.components) {
+					case 'none':
+						loadFiles = false;
+						break;
+					case 'js':
+						loadFiles = engineComponentFiles[0];
+						break;
+					case 'css':
+						loadFiles = engineComponentFiles[1];
+						break;
+				}
+				if (loadFiles) {
+					yepnope({
+						load: loadFiles,
+						complete: function () {
+							Web.inject = Web.injectplateExecute();
+							core.loadProject(webConfig);
+						}
+					});
+				} else {
+					core.loadProject(webConfig);
+				}
+			} else {
+				yepnope({
+					load: engineComponentFiles,
+					complete: function () {
+						Web.inject = Web.injectplateExecute();
+						core.loadProject(webConfig);
+					}
+				});
 			}
 		},
 		loadProject: function (webConfig) {
