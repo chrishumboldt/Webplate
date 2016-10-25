@@ -96,7 +96,7 @@ var Web = (function () {
 
 	// Basic checks
 	var exists = function (check) {
-		return (check === null || check === false || typeof (check) == 'undefined') ? false : true;
+		return (typeof check == 'undefined' || check === null || check === false) ? false : true;
 	};
 	var has = {
 		spaces: function (check) {
@@ -1033,58 +1033,37 @@ var Web = (function () {
 
 	// Component facades
 	var button = function (options) {
-		if (typeof Buttonplate !== 'function') {
-			return false;
+		if (typeof Buttonplate != 'undefined') {
+			return Buttonplate.init(options);
 		}
-		return Buttonplate.init(options);
+		return false;
 	};
 	var flicker = function (options) {
-		if (typeof flickerplate !== 'function') {
-			return false;
-		}
-		return new flickerplate(options);
+		return false;
 	};
 	var form = function (options) {
-		if (typeof formplate !== 'function') {
-			return false;
-		}
-		return new formplate(options);
+		return false;
 	};
 	var injectplateExecute = function () {
-		if (typeof Injectplate !== 'function') {
-			return false;
+		if (typeof Buttonplate != 'undefined') {
+			return Injectplate.init();
 		}
-		return Injectplate.init();
+		return false;
 	};
 	var loader = function (options) {
-		if (typeof loaderplate !== 'function') {
-			return false;
-		}
-		return new loaderplate(options);
+		return false;
 	};
 	var menu = function (options) {
-		if (typeof menuplate !== 'function') {
-			return false;
-		}
-		return new menuplate(options);
+		return false;
 	};
 	var message = function (options) {
-		if (typeof messageplate !== 'function') {
-			return false;
-		}
-		return new messageplate(options);
+		return false;
 	};
 	var modal = function (options) {
-		if (typeof Modalplate !== 'function') {
-			return false;
-		}
-		return Modalplate.init(options);
+		return false;
 	};
 	var tab = function (options) {
-		if (typeof tabplate !== 'function') {
-			return false;
-		}
-		return new tabplate(options);
+		return false;
 	};
 
 	// Return
