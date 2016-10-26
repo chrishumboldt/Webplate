@@ -5,9 +5,9 @@ Webplate is an configuration based front-end framework that lets you stay focuse
    * [Simple Page Loader](#simple-page-loader)
 * [Load Project Files](#load-project-files)
 * [Go To The Next Level](go-to-the-next-level)
-* [Documentation](Documentation)
+* [Documentation](documentation)
 * [Command-line Tool](command-line-tool)
-* [Migration](Migration)
+* [Migration](migration)
 
 ## Getting Started
 Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **webplate** is required.
