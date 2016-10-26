@@ -46,6 +46,11 @@ This will get you up and running for most projects but if you want to delve into
 ## Documentation
 Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://localhost/getwebplate.com/#/documentation/what-you-got/).
 
+## Migration
+While version 4 has many of the same core features as version 3, it is not recommended that you try and migrate. Version 4 has had many philosophical and technical changes to it, from the the altered Web namespace to the different build tools. Version 3 will be branched and maintained for bug fixes.
+
+If you wish to attempt a migration do so for smaller projects as for larger projects it would be not be wise albeit possible.
+
 ## Author
 Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
