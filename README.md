@@ -30,6 +30,8 @@ If you would like a page loader to display while your project files load, simply
 </body>
 ```
 
+**Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
+
 ## Load Project Files
 All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.
 
@@ -43,8 +45,6 @@ All web projects include a combination of CSS and Javascript and Webplate makes 
 ```
 
 You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
-
-**Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
 
 ## Go To The Next Level
 Before you have even started, Webplate has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
