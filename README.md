@@ -60,9 +60,9 @@ One of the best features of Webplate is the command-line tool. It will make buil
 https://github.com/chrishumboldt/Webplate-Command
 
 ## Migration
-While version 4 has many of the same core features as version 3, it is not recommended that you try and migrate. Version 4 has many philosophical and technical differences, from the the altered Web namespace to the different build tools. Version 3 will be branched and maintained for bug fixes.
+While version 4 has many of the same core features as version 3, it is not recommended that you try and migrate. Version 4 has many philosophical and developmental differences, from the the altered Web namespace to the build tools. Version 3 will however be branched and maintained for bug fixes.
 
-If you wish to attempt a migration do so for smaller projects as for larger projects it would be not be wise albeit possible.
+If you wish to attempt a migration do so only for smaller projects as for larger projects it would be not be wise, even though it is technically possible.
 
 ## Author
 Created and maintained by Chris Humboldt<br>
