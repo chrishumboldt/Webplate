@@ -13,6 +13,25 @@ var Buttonplate = (function () {
 	var buttonDropClassName = 'buttonplate-drop-down';
 	var documentOnClick = false;
 
+	// Functions
+	var closeAll = function () {
+		var openDropDowns = document.querySelectorAll('.' + buttonDropClassName + ' ul._open');
+		for (var i = 0, len = openDropDowns.length; i < len; i++) {
+			Web.class.remove(openDropDowns[i], '_open');
+		}
+	};
+	var setup = function () {
+		if (!Web.is.touch()) {
+			Web.class.add(Web.dom.html, 'bp-no-touch');
+		}
+		if (!documentOnClick) {
+			documentOnClick = true;
+			Web.event.add(document, 'click', function () {
+				closeAll();
+			});
+		}
+	};
+
 	// Inner component
 	var component = function (button) {
 		// Variables
@@ -45,25 +64,6 @@ var Buttonplate = (function () {
 			close: buttonClose,
 			open: buttonOpen
 		};
-	};
-
-	// Functions
-	var closeAll = function () {
-		var openDropDowns = document.querySelectorAll('.' + buttonDropClassName + ' ul._open');
-		for (var i = 0, len = openDropDowns.length; i < len; i++) {
-			Web.class.remove(openDropDowns[i], '_open');
-		}
-	};
-	var setup = function () {
-		if (!Web.is.touch()) {
-			Web.class.add(Web.element.html, 'bp-no-touch');
-		}
-		if (!documentOnClick) {
-			documentOnClick = true;
-			Web.event.add(document, 'click', function () {
-				closeAll();
-			});
-		}
 	};
 
 	// Initialiser

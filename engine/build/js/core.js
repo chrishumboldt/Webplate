@@ -184,353 +184,291 @@
 	'use strict';
 
 	// Variables
-	var webContent = document.getElementById('webplate-content');
+	var config = false;
 	var pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
-
-	var pathEngine = pathRoot + 'engine/';
-	var pathProject = pathRoot + 'project/';
+	var webContent = document.getElementById('webplate-content');
+	// Paths
 	var path = {
-		component: pathProject + 'component/',
-		config: pathProject + 'config.json',
 		engine: {
-			css: pathEngine + 'css/',
-			js: pathEngine + 'js/'
+			css: pathRoot + 'engine/css/',
+			js: pathRoot + 'engine/js/'
 		},
 		project: {
-			css: pathProject + 'css/',
+			component: pathRoot + 'project/component/',
+			config: pathRoot + 'project/config.json',
+			css: pathRoot + 'project/css/',
 			iconFont: {
-				fontAwesome: pathProject + 'font-awesome/css/font-awesome.min.css',
-				icoMoon: pathProject + 'icomoon/style.css'
+				fontAwesome: pathRoot + 'project/font-awesome/css/font-awesome.min.css',
+				icoMoon: pathRoot + 'project/icomoon/style.css'
 			},
-			js: pathProject + 'js/'
+			js: pathRoot + 'project/js/'
 		},
 		root: pathRoot
 	};
-	var queryString = '';
-	var webConfig = false;
-
-	var arComponentFirstFiles = [];
-	var arComponentFiles = [];
-	var arExtraCSS = [];
-	var arExtraJS = [];
-	var engineFiles = [path.engine.js + 'main.min.js', path.engine.css + 'main.min.css'];
-	var engineComponentFiles = [path.engine.js + 'components.min.js', path.engine.css + 'components.min.css'];
-
-	// Attach loader
-	if (webContent !== null) {
-		var loaderDiv = document.createElement('div');
-		var loaderText = 'Loading';
-		var i = 0;
-
-		webContent.style.display = 'none';
-
-		loaderDiv.id = 'web-page-loader';
-		loaderDiv.style.margin = '0px auto';
-		loaderDiv.style.paddingTop = '150px';
-		loaderDiv.style.color = '#ccd1d9';
-		loaderDiv.style.fontSize = '20px';
-		loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
-		loaderDiv.style.textAlign = 'center';
-		document.getElementsByTagName('body')[0].appendChild(loaderDiv);
-		var pageLoaderTimer = setInterval(function () {
-			i++;
-			if (document.getElementById('web-page-loader') !== null) {
-				document.getElementById('web-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
-			} else {
-				clearInterval(pageLoaderTimer);
-			}
-		}, 300);
-	}
-
-	// Core
-	var core = {
-		init: function () {
-			yepnope([{
-				load: engineFiles,
-				complete: function () {
-					// Touch inclusion
-					if (Modernizr.touchevents) {
-						yepnope({
-							load: path.engine.js + 'touch.min.js',
-							complete: function () {
-								if ('addEventListener' in document) {
-									document.addEventListener('DOMContentLoaded', function() {
-										FastClick.attach(document.body);
-									}, false);
-								}
-							}
-						});
-					}
-
-					// Call webplate functions
-					Web.overlay.add();
-					Web.inject = false;
-
-					// Load config
-					var urlData = Web.url();
-					Web.request.get({
-						url: path.config,
-						onSuccess: core.loadEngineComponents
-					});
-				}
-			}]);
+	// Load
+	var load = {
+		engine: {
+			files: [path.engine.css + 'styles.min.css', path.engine.js + 'scripts.min.js'],
+			filesLight: [path.engine.css + 'styles-light.min.css', path.engine.js + 'scripts-light.min.js']
 		},
-		loadComponents: function (component, projectCSS, projectJS) {
-			for (var i = 0, len = component.length; i < len; i++) {
-				(function (i2) {
-					var val = component[i2++];
-
-					core.loadJSON(path.component + val + '/.bower.json', function () {
-						if (this.readyState == 4 && this.status == 200) {
-							var webConfig = JSON.parse(this.responseText);
-
-							if (typeof webConfig.main == 'object') {
-								for (i = 0; i < webConfig.main.length; i++) {
-									arComponentFiles.push(path.component + val + '/' + webConfig.main[i]);
-								}
-							} else {
-								arComponentFiles.push(path.component + val + '/' + webConfig.main);
-							}
-
-							// Load the project file
-							if (i2 == component.length) {
-								yepnope({
-									load: arComponentFiles,
-									complete: function () {
-										core.loadProjectFiles(projectCSS, projectJS);
-									}
-								});
-							}
-						}
-					});
-				}(i));
-			}
-		},
-		loadComponentsFirst: function (componentFirst, component, projectCSS, projectJS) {
-			for (var r = 0, len = componentFirst.length; r < len; r++) {
-				(function (r2) {
-					var val = componentFirst[r2++];
-
-					core.loadJSON(path.component + val + '/.bower.json', function () {
-						if (this.readyState == 4 && this.status == 200) {
-							var webConfig = JSON.parse(this.responseText);
-
-							if (typeof webConfig.main == 'object') {
-								for (var r = 0, len = webConfig.main.length; r < len; r++) {
-									arComponentFirstFiles.push(path.component + val + '/' + webConfig.main[r]);
-								}
-							} else {
-								arComponentFirstFiles.push(path.component + val + '/' + webConfig.main);
-							}
-
-							if (r2 == componentFirst.length) {
-								yepnope({
-									load: arComponentFirstFiles,
-									complete: function () {
-										if (component.length > 0) {
-											core.loadComponents(component, projectCSS, projectJS);
-										} else {
-											core.loadProjectFiles(projectCSS, projectJS);
-										}
-									}
-								});
-							}
-						}
-					});
-				}(r));
-			}
-		},
-		loadEngineComponents: function (webConfig) {
-			if (webConfig.engine && webConfig.engine.components && typeof webConfig.engine.components === 'string') {
-				var loadFiles = engineComponentFiles;
-				switch (webConfig.engine.components) {
-					case 'none':
-						loadFiles = false;
-						break;
-					case 'js':
-						loadFiles = engineComponentFiles[0];
-						break;
-					case 'css':
-						loadFiles = engineComponentFiles[1];
-						break;
-				}
-				if (loadFiles) {
-					yepnope({
-						load: loadFiles,
-						complete: function () {
-							Web.inject = Web.injectplateExecute();
-							core.loadProject(webConfig);
-						}
-					});
-				} else {
-					core.loadProject(webConfig);
-				}
-			} else {
-				yepnope({
-					load: engineComponentFiles,
-					complete: function () {
-						Web.inject = Web.injectplateExecute();
-						core.loadProject(webConfig);
-					}
-				});
-			}
-		},
-		loadProject: function (webConfig) {
-			var pageMatch = false;
-
-			// Query string
-			if (webConfig.cache && webConfig.cache.bust) {
-				queryString = '?ts=' + webConfig.cache.bust;
-			}
-
-			// Root config
-			if (webConfig.project) {
-				var componentFirst = webConfig.project['component-first'] || [];
-				var component = webConfig.project['component'] || [];
-				var iconFont = webConfig.project['icon-font'] || false;
-				var projectCSS = webConfig.project['css'] || [];
-				var projectJS = webConfig.project['js'] || [];
-
-				// Page check
-				if (webConfig.project.page) {
-					for (var i = webConfig.project.page.length - 1; i >= 0; i--) {
-						var page = webConfig.project.page[i];
-
-						// Wildcard check
-						if (page['url'].indexOf('*') > -1) {
-							if (urlData.currentUrl.indexOf(page['url'].substring(0, page['url'].length - 1)) > -1) {
-								pageMatch = true;
-							}
-						} else {
-							if (urlData.currentUrl === urlData.baseUrl + page['url']) {
-								pageMatch = true;
-							}
-						}
-						if (pageMatch === true) {
-							// Page overwrite
-							var configType = page['config-type'] || 'merge';
-
-							if (configType == 'new') {
-								componentFirst = page['component-first'] || [];
-								component = page['component'] || [];
-								iconFont = page['icon-font'] || false;
-								projectCSS = page['css'] || [];
-								projectJS = page['js'] || [];
-							} else {
-								// Basic additions (some have to be overwritten by design)
-								iconFont = page['icon-font']? page['icon-font']: iconFont;
-
-								// Component add
-								if (page['component-first']) {
-									for (var i = 0, len = page['component-first'].length; i < len; i++) {
-										var addComponentFirst = page['component-first'][i];
-										if (componentFirst.indexOf(addComponentFirst) == -1) {
-											componentFirst.push(addComponentFirst);
-										}
-									}
-								}
-								if (page['component']) {
-									for (var i = 0, len = page['component'].length; i < len; i++) {
-										var addComponent = page['component'][i];
-										if (component.indexOf(addComponent) == -1) {
-											component.push(addComponent);
-										}
-									}
-								}
-								// Project CSS
-								if (page['css']) {
-									for (var i = 0, len = page['css'].length; i < len; i++) {
-										var addProjectCSS = page['css'][i];
-										if (projectCSS.indexOf(addProjectCSS) === -1) {
-											projectCSS.push(addProjectCSS);
-										}
-									}
-								}
-								// Project JS
-								if (page['js']) {
-									for (var i = 0, len = page['js'].length; i < len; i++) {
-										var addProjectJS = page['js'][i];
-										if (projectJS.indexOf(addProjectJS) === -1) {
-											projectJS.push(addProjectJS);
-										}
-									}
-								}
-							}
-							break;
-						}
-					}
-				}
-
-				// Icon fonts
-				if (iconFont == 'icomoon') {
-					yepnope({
-						load: path.project.iconFont.icoMoon
-					});
-				} else if (iconFont == 'font-awesome') {
-					yepnope({
-						load: path.project.iconFont.fontAwesome
-					});
-				}
-
-				// Load the components & project files
-				if (componentFirst.length > 0) {
-					core.loadComponentsFirst(componentFirst, component, projectCSS, projectJS);
-				} else if (component.length > 0) {
-					core.loadComponents(component, projectCSS, projectJS);
-				} else {
-					core.loadProjectFiles(projectCSS, projectJS);
-				}
-			} else {
-				core.showPage();
-			}
-		},
-		loadProjectFiles: function (css, js) {
-			for (var i = 0, len = css.length; i < len; i++) {
-				var file = css[i].trim();
-				if (Web.get.extension(file) === 'css') {
-					arExtraCSS.push(path.project.css + file + queryString);
-				}
-			}
-			for (i = 0; i < js.length; i++) {
-				var file = js[i].trim();
-				if (Web.get.extension(file) === 'js') {
-					arExtraJS.push(path.project.js + file + queryString);
-				}
-			}
-			if (arExtraCSS.length > 0) {
-				yepnope({
-					load: arExtraCSS,
-					complete: function () {
-						core.showPage();
-						setTimeout(function () {
-							yepnope({
-								load: arExtraJS
-							});
-						}, 50);
-					}
-				});
-			} else if (arExtraJS.length > 0) {
-				core.showPage();
-				setTimeout(function () {
-					yepnope({
-						load: arExtraJS
-					});
-				}, 50);
-			} else {
-				core.showPage();
-			}
-		},
-		showPage: function () {
-			if (webContent !== null) {
-				webContent.removeAttribute('style');
-				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-			} else {
-				Web.element.body.removeAttribute('style');
-			}
-			Web.form();
+		project: {
+			componentsFirst: [],
+			components: [],
+			css: [],
+			js: [],
+			iconFont: false
 		}
 	};
 
-	// Initialize core
+	// Core
+	var core = {
+		log: function (text) {
+			if (!window || !window.console || !config) {
+				return false;
+			}
+			if (config.engine && typeof config.engine.log === 'boolean' && config.engine.log) {
+				console.log(text);
+			}
+		},
+		getEngineFiles: function () {
+			if (config.engine && typeof config.engine.light === 'boolean' && config.engine.light) {
+				return load.engine.filesLight;
+			}
+			return load.engine.files;
+		},
+		getJSON: function (url, callback) {
+			var xhr = new XMLHttpRequest;
+			xhr.onreadystatechange = function () {
+				if (this.readyState === 4) {
+					if (this.status === 0 || (this.status >= 200 && this.status < 300)) {
+						return callback(false, JSON.parse(this.responseText));
+					} else {
+						return callback(true);
+					}
+				}
+			};
+			xhr.open('GET', url);
+			xhr.send();
+		},
+		loadEngine: function (callback) {
+			yepnope({
+				load: core.getEngineFiles(),
+				complete: function () {
+					core.log('Webplate: Engine files load...successful');
+					return callback();
+				}
+			});
+		},
+		loadProject: function (callback) {
+			core.loadProjectComponentsFirst(function (check) {
+				if (check) {
+					core.log('Webplate: Components first load...successful');
+				}
+				core.loadProjectComponents(function (check) {
+					if (check) {
+						core.log('Webplate: Components load...successful');
+					}
+					core.loadProjectCSSJS(function () {
+						return callback();
+					});
+				});
+			});
+		},
+		loadProjectComponent: function (component, callback) {
+			core.getJSON(path.project.component + component + '/.bower.json', function (error, json) {
+				// Catch
+				if (error) {
+					return callback(false);
+				}
+				// Load
+				var loadFiles = [];
+				if (typeof json.main === 'object') {
+					for (var i = 0, len = json.main.length; i < len; i++) {
+					   loadFiles.push(path.project.component + component + '/' + json.main[i]);
+					}
+				} else {
+					loadFiles.push(path.project.component + component + '/' + json.main);
+				}
+				// Anther catch
+				if (loadFiles.length < 1) {
+					return callback(false);
+				}
+				yepnope({
+					load: loadFiles,
+					complete: function () {
+						callback(true);
+					}
+				});
+			});
+		},
+		loadProjectComponents: function (callback) {
+			var loadCheck = load.project.components.length;
+			// Catch
+			if (loadCheck < 1) {
+				return callback(false);
+			}
+			// Load
+			for (var i = 0, len = load.project.components.length; i < len; i++) {
+			   core.loadProjectComponent(load.project.components[i], function () {
+					loadCheck--;
+					if (loadCheck === 0) {
+						return callback(true);
+					}
+				});
+			}
+		},
+		loadProjectComponentsFirst: function (callback) {
+			var loadCheck = load.project.componentsFirst.length;
+			// Catch
+			if (loadCheck < 1) {
+				return callback(false);
+			}
+			// Load
+			for (var i = 0, len = load.project.componentsFirst.length; i < len; i++) {
+			   core.loadProjectComponent(load.project.componentsFirst[i], function () {
+					loadCheck--;
+					if (loadCheck === 0) {
+						return callback(true);
+					}
+				});
+			}
+		},
+		loadProjectCSSJS: function (callback) {
+			var cssLength = load.project.css.length;
+			var jsLength = load.project.js.length;
+			// Catch
+			if (cssLength < 1 && jsLength < 1) {
+				return callback(false);
+			}
+			// CSS
+			if (cssLength > 0) {
+				yepnope({
+					load: load.project.css,
+					complete: function () {
+						cssLength = 0;
+						core.log('Webplate: Project CSS load...successful');
+						if (jsLength === 0) {
+							return callback(true);
+						}
+					}
+				});
+			}
+			// JS
+			if (jsLength > 0) {
+				yepnope({
+					load: load.project.js,
+					complete: function () {
+						jsLength = 0;
+						core.log('Webplate: Project JS load...successful');
+						if (cssLength === 0) {
+							return callback(true);
+						}
+					}
+				});
+			}
+		},
+		setProjectFileLoads: function () {
+			if (!config.project) {
+				return false;
+			}
+
+			// Variables
+			var pageMatch = false;
+			var queryString = '';
+			var urlData = Web.url();
+
+			// Root config
+			load.project.componentsFirst = Web.helper.setDefault(config.project.componentsFirst, []);
+			load.project.components = Web.helper.setDefault(config.project.components, []);
+			load.project.css = Web.helper.setDefault(config.project.css, []);
+			load.project.js = Web.helper.setDefault(config.project.js, []);
+			load.project.iconFont = Web.helper.setDefault(config.project.iconFont);
+
+			// Page options
+			if (config.project.page) {
+				for (var i = 0, len = config.project.page.length; i < len; i++) {
+				   var page = config.project.page[i];
+
+					// Page match
+					if (page.url.indexOf('*') > -1) {
+						if (urlData.currentUrl.indexOf(page.url.substring(0, page.url.length - 1)) > -1) {
+							pageMatch = true;
+						}
+					} else {
+						if (urlData.currentUrl === urlData.baseUrl + page.url) {
+							pageMatch = true;
+						}
+					}
+					if (pageMatch) {
+						load.project.iconFont = Web.helper.setDefault(page.iconFont, load.project.iconFont);
+						if (page.overwrite === true) {
+							// Overwrite
+							load.project.componentsFirst = Web.helper.setDefault(page.componentsFirst, []);
+							load.project.components = Web.helper.setDefault(page.components, []);
+							load.project.css = Web.helper.setDefault(page.css, []);
+							load.project.js = Web.helper.setDefault(page.js, []);
+						} else {
+							// Merge
+							if (Array.isArray(page.componentsFirst)) {
+								load.project.componentsFirst = load.project.componentsFirst.concat(page.componentsFirst);
+							}
+							if (Array.isArray(page.components)) {
+								load.project.components = load.project.components.concat(page.components);
+							}
+							if (Array.isArray(page.css)) {
+								load.project.css = load.project.css.concat(page.css);
+							}
+							if (Array.isArray(page.js)) {
+								load.project.js = load.project.js.concat(page.js);
+							}
+						}
+						break;
+					}
+				}
+			}
+
+			// Set the query string & paths
+			if (config.cache && config.cache.bust) {
+				queryString = '?ts=' + config.cache.bust;
+			}
+			if (load.project.css.length > 0) {
+				for (var i = 0, len = load.project.css.length; i < len; i++) {
+					load.project.css[i] = path.project.css + load.project.css[i] + queryString;
+				}
+			}
+			if (load.project.js.length > 0) {
+				for (var i = 0, len = load.project.js.length; i < len; i++) {
+					load.project.js[i] = path.project.js + load.project.js[i] + queryString;
+				}
+			}
+			return true;
+		},
+		init: function () {
+			core.getJSON(path.project.config, function (error, json) {
+				// Error catch
+				if (error) {
+					core.log('Webplate: Not initialised because the project config file was not found.');
+					return false;
+				}
+				// Set the config variable
+				config = json;
+				// Load engine first
+				core.loadEngine(function () {
+					// Load the project files
+					core.setProjectFileLoads();
+					core.loadProject(function () {
+						if (webContent !== null) {
+							webContent.removeAttribute('style');
+							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+						} else {
+							Web.dom.body.removeAttribute('style');
+						}
+					});
+				});
+			});
+		}
+	};
+
+	// Execute
 	core.init();
 })();

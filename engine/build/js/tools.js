@@ -7,24 +7,29 @@
 // Table of contents
 // Variables
 // Basic checks
+// Classes
+// Clone
+// Component facades
 // Dates
 // Development
 // DOM
-// Forms
-// Objects
+// Events
+// Gets
+// Helpers
+// ID's
+// Inputs
+// Overlay
+// Random
+// Request
+// State
+// Storage
 // Strings
+// Time
 // URL
-// Webplate
-// Component facades
+// Return
 
 var Web = (function () {
 	// Variables
-	var webEl = {
-		body: document.getElementsByTagName('body')[0],
-		html: document.getElementsByTagName('html')[0],
-		title: document.getElementsByTagName('title')[0],
-		webplateScript: document.getElementById('webplate')
-	};
 	var webMonths = [{
 		number: '01',
 		name: 'january',
@@ -159,6 +164,128 @@ var Web = (function () {
 			var regExp = regExp || /(https?:\/\/[^\s]+)/g;
 			return regExp.test(url);
 		}
+	};
+
+	// Classes
+	var classMethods = {
+		add: function (element, className) {
+			if (exists(element)) {
+				if (typeof className === 'object') {
+					for (var i = 0, len = className.length; i < len; i++) {
+						classMethods.addExecute(element, className[i]);
+					}
+				} else if (has.spaces(className)) {
+					var classes = className.split(' ');
+					for (var i = 0, len = classes.length; i < len; i++) {
+						classMethods.addExecute(element, classes[i]);
+					}
+				} else {
+					classMethods.addExecute(element, className);
+				}
+			}
+		},
+		addExecute: function (element, className) {
+			var crtClass = element.className;
+			if (crtClass.match(new RegExp('\\b' + className + '\\b', 'g')) === null) {
+				element.className = crtClass === '' ? className : crtClass + ' ' + className;
+			}
+		},
+		clear: function (element) {
+			if (exists(element)) {
+				element.removeAttribute('class');
+			}
+		},
+		remove: function (element, className) {
+			if (exists(element)) {
+				if (typeof className === 'object') {
+					for (var i = className.length - 1; i >= 0; i--) {
+						classMethods.removeExecute(element, className[i]);
+					}
+				} else if (has.spaces(className)) {
+					var classes = className.split(' ');
+					for (var i = 0, len = classes.length; i < len; i++) {
+						classMethods.removeExecute(element, classes[i]);
+					}
+				} else {
+					classMethods.removeExecute(element, className);
+				}
+			}
+		},
+		removeExecute: function (element, className) {
+			if (element.className.indexOf(className) > -1) {
+				element.className = element.className.split(' ').filter(function (val) {
+					return val != className;
+				}).toString().replace(/,/g, ' ');
+				if (element.className === '') {
+					classMethods.clear(element);
+				}
+			}
+		},
+		replace: function (element, removeClass, addClass) {
+			if (exists(element)) {
+				classMethods.add(element, addClass);
+				classMethods.remove(element, removeClass);
+			}
+		},
+		toggle: function (element, className) {
+			if (exists(element)) {
+				if (!has.class(element, className)) {
+					classMethods.add(element, className);
+				} else {
+					classMethods.remove(element, className);
+				}
+			}
+		}
+	};
+
+	// Clone
+	// Incomplete. Needs a ton more work.
+	var clone = function (elm) {
+		switch(typeof elm) {
+			case 'object':
+				if (elm instanceof Array) {
+					return JSON.parse(JSON.stringify(elm));
+				}
+				break;
+			default:
+				return false;
+				break;
+		}
+	};
+
+	// Component facades
+	var button = function (options) {
+		if (typeof Buttonplate != 'undefined') {
+			return Buttonplate.init(options);
+		}
+		return false;
+	};
+	var flicker = function (options) {
+		return false;
+	};
+	var form = function (options) {
+		return false;
+	};
+	var injectplateExecute = function () {
+		if (typeof Injectplate != 'undefined') {
+			return Injectplate.init();
+		}
+		return false;
+	};
+	var loader = function (options) {
+		return false;
+	};
+	var menu = function (options) {
+		return false;
+	};
+	var message = function (options) {
+		return false;
+	};
+	var modal = function (options) {
+		return false;
+	};
+	var tab = function (options) {
+		return false;
 	};
 
 	// Dates
@@ -344,91 +471,71 @@ var Web = (function () {
 		}
 	};
 
-	// Classes
-	var classMethods = {
-		add: function (element, className) {
-			if (exists(element)) {
-				if (typeof className === 'object') {
-					for (var i = 0, len = className.length; i < len; i++) {
-						classMethods.addExecute(element, className[i]);
-					}
-				} else if (has.spaces(className)) {
-					var classes = className.split(' ');
-					for (var i = 0, len = classes.length; i < len; i++) {
-						classMethods.addExecute(element, classes[i]);
-					}
-				} else {
-					classMethods.addExecute(element, className);
-				}
+	// DOM
+	var dom = {
+		body: document.getElementsByTagName('body')[0],
+		html: document.getElementsByTagName('html')[0],
+		ratio: function (selector, multiplier) {
+			var elements = document.querySelectorAll(selector);
+			if (typeof (multiplier) === 'undefined') {
+				multiplier = 1;
+			}
+			for (var i = elements.length - 1; i >= 0; i--) {
+				elements[i].style.height = Math.floor(elements[i].offsetWidth * multiplier) + 'px';
 			}
 		},
-		addExecute: function (element, className) {
-			var crtClass = element.className;
-			if (crtClass.match(new RegExp('\\b' + className + '\\b', 'g')) === null) {
-				element.className = crtClass === '' ? className : crtClass + ' ' + className;
-			}
-		},
-		clear: function (element) {
-			if (exists(element)) {
-				element.removeAttribute('class');
-			}
-		},
-		remove: function (element, className) {
-			if (exists(element)) {
-				if (typeof className === 'object') {
-					for (var i = className.length - 1; i >= 0; i--) {
-						classMethods.removeExecute(element, className[i]);
-					}
-				} else if (has.spaces(className)) {
-					var classes = className.split(' ');
-					for (var i = 0, len = classes.length; i < len; i++) {
-						classMethods.removeExecute(element, classes[i]);
+		remove: function (selElm) {
+			if (exists(selElm)) {
+				if (selElm.nodeType == undefined) {
+					var elements = dom.select(selElm);
+					if (elements !== null) {
+						if (elements.nodeType == undefined) {
+							for (var i = elements.length - 1; i >= 0; i--) {
+								if (elements[i] !== null) {
+									elements[i].parentNode.removeChild(elements[i]);
+								}
+							}
+						} else {
+							elements.parentNode.removeChild(elements);
+						}
 					}
 				} else {
-					classMethods.removeExecute(element, className);
+					if (selElm !== null) {
+						selElm.parentNode.removeChild(selElm);
+					}
 				}
 			}
 		},
-		removeExecute: function (element, className) {
-			if (element.className.indexOf(className) > -1) {
-				element.className = element.className.split(' ').filter(function (val) {
-					return val != className;
-				}).toString().replace(/,/g, ' ');
-				if (element.className === '') {
-					classMethods.clear(element);
+		select: function (selector) {
+			if (selector.indexOf('.') > -1 || has.spaces(selector)) {
+				var returnElements = document.querySelectorAll(selector);
+				if (returnElements.length > 0) {
+					return returnElements;
 				}
-			}
-		},
-		replace: function (element, removeClass, addClass) {
-			if (exists(element)) {
-				classMethods.add(element, addClass);
-				classMethods.remove(element, removeClass);
-			}
-		},
-		toggle: function (element, className) {
-			if (exists(element)) {
-				if (!has.class(element, className)) {
-					classMethods.add(element, className);
-				} else {
-					classMethods.remove(element, className);
-				}
-			}
-		}
-	};
-
-	// Clone
-	// Incomplete. Needs a ton more work.
-	var clone = function (elm) {
-		switch(typeof elm) {
-			case 'object':
-				if (elm instanceof Array) {
-					return JSON.parse(JSON.stringify(elm));
-				}
-				break;
-			default:
 				return false;
-				break;
-		}
+			} else {
+				if (selector.indexOf('#') > -1) {
+					return [document.getElementById(selector.substring(1))];
+				} else {
+					var returnElements = document.getElementsByTagName(selector);
+					if (returnElements.length > 0) {
+						return returnElements;
+					}
+					return false;
+				}
+			}
+		},
+		title: document.getElementsByTagName('title')[0],
+		wallpaper: function (selector) {
+			var elements = dom.select(selector);
+			for (var i = elements.length - 1; i >= 0; i--) {
+				var thisWallpaper = elements[i].getAttribute('data-wallpaper');
+				if (thisWallpaper !== null) {
+					elements[i].style.backgroundImage = 'url("' + thisWallpaper + '")';
+				}
+			}
+		},
+		webplateScript: document.getElementById('webplate')
 	};
 
 	// Events
@@ -457,14 +564,29 @@ var Web = (function () {
 
 	// Gets
 	var get = {
-		index: function (node) {
-			return [].indexOf.call(node.parentNode.children, node);
-		},
 		extension: function (file) {
 			return file.split('.').pop().toLowerCase();
 		},
+		index: function (node) {
+			return [].indexOf.call(node.parentNode.children, node);
+		},
 		integers: function (string) {
 			return string.replace(/^\D+ /g, '').replace(/ /g, '');
+		}
+	};
+
+	// Helpers
+	var helper = {
+		setDefault: function (setValue, defaultValue) {
+			if (typeof setValue == 'undefined' && typeof defaultValue == 'undefined') {
+				return false;
+			} else if (typeof setValue != 'undefined' && typeof defaultValue == 'undefined') {
+				return setValue;
+			} else if (typeof setValue === typeof defaultValue) {
+				return setValue;
+			} else {
+				return defaultValue;
+			}
 		}
 	};
 
@@ -485,7 +607,7 @@ var Web = (function () {
 	// Inputs
 	var input = {
 		disable: function (selector) {
-			var inputElements = select(selector);
+			var inputElements = dom.select(selector);
 			if (inputElements.nodeType == undefined) {
 				for (var i = inputElements.length - 1; i >= 0; i--) {
 					inputElements[i].disabled = true;
@@ -495,7 +617,7 @@ var Web = (function () {
 			}
 		},
 		enable: function (selector) {
-			var inputElements = select(selector);
+			var inputElements = dom.select(selector);
 			if (inputElements.nodeType == undefined) {
 				for (var i = inputElements.length - 1; i >= 0; i--) {
 					inputElements[i].disabled = false;
@@ -506,114 +628,45 @@ var Web = (function () {
 		}
 	};
 
-	// Remove
-	var remove = function (selElm) {
-		if (exists(selElm)) {
-			if (selElm.nodeType == undefined) {
-				var elements = select(selElm);
-				if (elements !== null) {
-					if (elements.nodeType == undefined) {
-						for (var i = elements.length - 1; i >= 0; i--) {
-							if (elements[i] !== null) {
-								elements[i].parentNode.removeChild(elements[i]);
-							}
-						}
-					} else {
-						elements.parentNode.removeChild(elements);
-					}
-				}
-			} else {
-				if (selElm !== null) {
-					selElm.parentNode.removeChild(selElm);
-				}
+	// Overlay
+	var overlay = {
+		add: function () {
+			var webplateOverlay = document.createElement('div');
+			id.add(webplateOverlay, webPrefix.basic + 'overlay');
+			if (!exists(document.getElementById(webPrefix.basic + 'overlay'))) {
+				dom.body.appendChild(webplateOverlay);
 			}
-		}
-	};
-
-	// Select
-	var select = function (selector) {
-		if (selector.indexOf('.') > -1 || has.spaces(selector)) {
-			var returnElements = document.querySelectorAll(selector);
-			if (returnElements.length > 0) {
-				return returnElements;
-			}
-			return false;
-		} else {
-			if (selector.indexOf('#') > -1) {
-				return [document.getElementById(selector.substring(1))];
-			} else {
-				var returnElements = document.getElementsByTagName(selector);
-				if (returnElements.length > 0) {
-					return returnElements;
-				}
-				return false;
-			}
-		}
-	};
-
-	// Modifiers
-	var modify = {
-		ratio: function (selector, multiplier) {
-			var elements = document.querySelectorAll(selector);
-			if (typeof (multiplier) === 'undefined') {
-				multiplier = 1;
-			}
-			for (var i = elements.length - 1; i >= 0; i--) {
-				elements[i].style.height = Math.floor(elements[i].offsetWidth * multiplier) + 'px';
-			}
-		}
-	};
-
-	// State
-	var state = {
-		add: function (element, state) {
-			if (!exists(element)) {
-				return false;
-			}
-			var newWebStates = webState.list.slice().map(function (newState) {
-				return webPrefix.state + newState;
-			});
-			var stateClass = newWebStates.splice(newWebStates.indexOf(webPrefix.state + state), 1);
-			classMethods.replace(element, newWebStates, stateClass);
 		},
-		clear: function (element) {
-			if (!exists(element)) {
-				return false;
-			}
-			var newWebStates = webState.list.slice().map(function (newState) {
-				return webPrefix.state + newState;
-			});
-			classMethods.remove(element, newWebStates);
+		hide: function () {
+			classMethods.remove(dom.html, 'web-overlay-reveal');
 		},
-		toggle: function (element, state, clear) {
-			if (!exists(element)) {
-				return false;
-			}
-			if (webState.list.indexOf(state) > -1) {
-				var altState = webState.alts[state] || false;
-				var clear = (typeof clear === 'boolean') ? clear : false;
-				var stateClass = webPrefix.state + state;
-				if (has.class(element, stateClass)) {
-					if (clear || altState === false) {
-						this.clear(element);
-					} else {
-						this.add(element, altState);
-					}
-				} else {
-					this.add(element, state);
-				}
-			}
+		show: function () {
+			setTimeout(function () {
+				classMethods.add(dom.html, 'web-overlay-reveal');
+			}, 50);
 		}
 	};
 
-	// Wallpaper
-	var wallpaper = function (selector) {
-		var elements = document.querySelectorAll(selector);
-		for (var i = elements.length - 1; i >= 0; i--) {
-			var thisWallpaper = elements[i].getAttribute('data-wallpaper');
-			if (thisWallpaper !== null) {
-				elements[i].style.backgroundImage = 'url("' + thisWallpaper + '")';
+	// Random
+	var random = {
+		integer: function (max, min) {
+			var max = (typeof max === 'number') ? max : 10;
+			var min = (typeof min === 'number') ? min : 1;
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		},
+		string: function (stringLength, textOnly) {
+			var textOnly = (typeof textOnly === 'boolean') ? textOnly : false;
+			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+			var len = (typeof stringLength === 'number') ? stringLength : 5;
+			var randomString = '';
+			if (!textOnly) {
+				chars += '0123456789';
 			}
+			for (var i = 0; i < len; i++) {
+				rNum = Math.floor(Math.random() * chars.length);
+				randomString += chars[rNum];
+			}
+			return randomString;
 		}
 	};
 
@@ -784,6 +837,48 @@ var Web = (function () {
 		};
 	})();
 
+	// State
+	var state = {
+		add: function (element, state) {
+			if (!exists(element)) {
+				return false;
+			}
+			var newWebStates = webState.list.slice().map(function (newState) {
+				return webPrefix.state + newState;
+			});
+			var stateClass = newWebStates.splice(newWebStates.indexOf(webPrefix.state + state), 1);
+			classMethods.replace(element, newWebStates, stateClass);
+		},
+		clear: function (element) {
+			if (!exists(element)) {
+				return false;
+			}
+			var newWebStates = webState.list.slice().map(function (newState) {
+				return webPrefix.state + newState;
+			});
+			classMethods.remove(element, newWebStates);
+		},
+		toggle: function (element, state, clear) {
+			if (!exists(element)) {
+				return false;
+			}
+			if (webState.list.indexOf(state) > -1) {
+				var altState = webState.alts[state] || false;
+				var clear = (typeof clear === 'boolean') ? clear : false;
+				var stateClass = webPrefix.state + state;
+				if (has.class(element, stateClass)) {
+					if (clear || altState === false) {
+						this.clear(element);
+					} else {
+						this.add(element, altState);
+					}
+				} else {
+					this.add(element, state);
+				}
+			}
+		}
+	};
+
 	// Storage
 	var storage = {
 		engine: {
@@ -932,29 +1027,6 @@ var Web = (function () {
 		}
 	};
 
-	// Random
-	var random = {
-		integer: function (max, min) {
-			var max = (typeof max === 'number') ? max : 10;
-			var min = (typeof min === 'number') ? min : 1;
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		},
-		string: function (stringLength, textOnly) {
-			var textOnly = (typeof textOnly === 'boolean') ? textOnly : false;
-			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-			var len = (typeof stringLength === 'number') ? stringLength : 5;
-			var randomString = '';
-			if (!textOnly) {
-				chars += '0123456789';
-			}
-			for (var i = 0; i < len; i++) {
-				rNum = Math.floor(Math.random() * chars.length);
-				randomString += chars[rNum];
-			}
-			return randomString;
-		}
-	};
-
 	// Time
 	var time = {
 		hours: function (hours) {
@@ -1012,63 +1084,8 @@ var Web = (function () {
 		}
 	};
 
-	// Webplate
-	var overlay = {
-		add: function () {
-			var webplateOverlay = document.createElement('div');
-			id.add(webplateOverlay, webPrefix.basic + 'overlay');
-			if (!exists(document.getElementById(webPrefix.basic + 'overlay'))) {
-				webEl.body.appendChild(webplateOverlay);
-			}
-		},
-		hide: function () {
-			classMethods.remove(webEl.html, 'web-overlay-reveal');
-		},
-		show: function () {
-			setTimeout(function () {
-				classMethods.add(webEl.html, 'web-overlay-reveal');
-			}, 50);
-		}
-	};
-
-	// Component facades
-	var button = function (options) {
-		if (typeof Buttonplate != 'undefined') {
-			return Buttonplate.init(options);
-		}
-		return false;
-	};
-	var flicker = function (options) {
-		return false;
-	};
-	var form = function (options) {
-		return false;
-	};
-	var injectplateExecute = function () {
-		if (typeof Buttonplate != 'undefined') {
-			return Injectplate.init();
-		}
-		return false;
-	};
-	var loader = function (options) {
-		return false;
-	};
-	var menu = function (options) {
-		return false;
-	};
-	var message = function (options) {
-		return false;
-	};
-	var modal = function (options) {
-		return false;
-	};
-	var tab = function (options) {
-		return false;
-	};
-
 	// Return
 	return  {
-		element: webEl,
 		exists: exists,
 		has: has,
 		is: is,
@@ -1082,15 +1099,13 @@ var Web = (function () {
 			toggle: classMethods.toggle
 		},
 		clone: clone,
+		dom: dom,
 		event: eventMethods,
 		get: get,
+		helper: helper,
 		id: id,
 		input: input,
-		remove: remove,
-		select: select,
-		modify: modify,
 		state: state,
-		wallpaper: wallpaper,
 		parse: parse,
 		request: request,
 		storage: storage,
