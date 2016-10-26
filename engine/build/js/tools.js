@@ -466,7 +466,7 @@ var Web = (function () {
 
 	// Development
 	var log = function (text) {
-		if (window && window.console) {
+		if (window && window.console && webGlobal.log) {
 			console.log(text);
 		}
 	};

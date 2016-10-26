@@ -1,5 +1,5 @@
 # Webplate Framework
-Webplate is an awesome front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
+Webplate is an configuration based front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 ## Getting Started
 Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **webplate** is required.
@@ -39,21 +39,18 @@ You will notice that a comma delimited list allows you to load more than one fil
 ## Lets Go To The Next Level
 Before you have even started, Webplate has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
 
-This will get you up and running for most projects but if you want to include Webplate components like Buttons, Forms or Modals or perhaps you want to even start delving into Webplate's automatic Bower, SASS and Grunt intergration then just read over some of the online documentation and become a bonafide pro.
+This will get you up and running for most projects but if you want to delve into Webplate's automatic Bower and SASS integration then just read over some of the online documentation and become a bonafide pro.
 
-<b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera
-
+**Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
 
 ## Documentation
 Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://localhost/getwebplate.com/#/documentation/what-you-got/).
-
 
 ## Author
 Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
 Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
-
 
 ## Contributors
 <a href="https://github.com/simeydotme">Simon Goellner</a><br>

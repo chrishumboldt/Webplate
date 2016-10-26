@@ -6,6 +6,7 @@
 
 // Table of contents
 // Yepnope
+// Global variables
 // Webplate
 
 // Yepnope - 1.5.x|WTFPL
@@ -179,6 +180,11 @@
 	};
 })(this, document);
 
+// Global variables
+var webGlobal = {
+	log: true
+};
+
 // Webplate
 (function () {
 	'use strict';
@@ -259,20 +265,35 @@
 				}
 			});
 		},
-		loadProject: function (callback) {
-			core.loadProjectComponentsFirst(function (check) {
-				if (check) {
-					core.log('Webplate: Components first load...successful');
-				}
-				core.loadProjectComponents(function (check) {
-					if (check) {
-						core.log('Webplate: Components load...successful');
-					}
-					core.loadProjectCSSJS(function () {
-						return callback();
+		loadIconFont: function () {
+			if (load.project.iconFont) {
+				if (load.project.iconFont == 'icomoon') {
+					yepnope({
+						load: path.project.iconFont.icoMoon,
+						complete: function () {
+							core.log('Webplate: IcoMoon load...successful');
+						}
 					});
-				});
-			});
+				} else if (load.project.iconFont == 'font-awesome') {
+					yepnope({
+						load: path.project.iconFont.fontAwesome,
+						complete: function () {
+							core.log('Webplate: Font awesome load...successful');
+						}
+					});
+				}
+			}
+		},
+		loadProject: function () {
+			core.setProjectFileLoads();
+			core.loadIconFont();
+			if (load.project.componentsFirst.length > 0) {
+				core.loadProjectComponentsFirst();
+			} else if (load.project.components.length > 0) {
+				core.loadProjectComponents();
+			} else {
+				core.loadProjectFiles();
+			}
 		},
 		loadProjectComponent: function (component, callback) {
 			core.getJSON(path.project.component + component + '/.bower.json', function (error, json) {
@@ -301,44 +322,38 @@
 				});
 			});
 		},
-		loadProjectComponents: function (callback) {
-			var loadCheck = load.project.components.length;
-			// Catch
-			if (loadCheck < 1) {
-				return callback(false);
-			}
-			// Load
+		loadProjectComponents: function () {
 			for (var i = 0, len = load.project.components.length; i < len; i++) {
 			   core.loadProjectComponent(load.project.components[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
-						return callback(true);
+						core.log('Webplate: Components load...successful');
+						core.loadProjectFiles();
 					}
 				});
 			}
 		},
-		loadProjectComponentsFirst: function (callback) {
-			var loadCheck = load.project.componentsFirst.length;
-			// Catch
-			if (loadCheck < 1) {
-				return callback(false);
-			}
-			// Load
+		loadProjectComponentsFirst: function () {
 			for (var i = 0, len = load.project.componentsFirst.length; i < len; i++) {
 			   core.loadProjectComponent(load.project.componentsFirst[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
-						return callback(true);
+						core.log('Webplate: Components first load...successful');
+						if (load.project.components.length > 0) {
+							core.loadProjectComponents();
+						} else {
+							core.loadProjectFiles();
+						}
 					}
 				});
 			}
 		},
-		loadProjectCSSJS: function (callback) {
+		loadProjectFiles: function (callback) {
 			var cssLength = load.project.css.length;
 			var jsLength = load.project.js.length;
 			// Catch
 			if (cssLength < 1 && jsLength < 1) {
-				return callback(false);
+				core.showPage();
 			}
 			// CSS
 			if (cssLength > 0) {
@@ -348,7 +363,7 @@
 						cssLength = 0;
 						core.log('Webplate: Project CSS load...successful');
 						if (jsLength === 0) {
-							return callback(true);
+							core.showPage();
 						}
 					}
 				});
@@ -361,10 +376,37 @@
 						jsLength = 0;
 						core.log('Webplate: Project JS load...successful');
 						if (cssLength === 0) {
-							return callback(true);
+							core.showPage();
 						}
 					}
 				});
+			}
+		},
+		pageLoader: function () {
+			if (webContent !== null) {
+				var loaderDiv = document.createElement('div');
+				var loaderText = 'Loading';
+				var i = 0;
+
+				webContent.style.display = 'none';
+
+				loaderDiv.id = 'web-page-loader';
+				loaderDiv.style.margin = '0px auto';
+				loaderDiv.style.paddingTop = '150px';
+				loaderDiv.style.color = '#ccd1d9';
+				loaderDiv.style.fontSize = '20px';
+				loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
+				loaderDiv.style.textAlign = 'center';
+				document.getElementsByTagName('body')[0].appendChild(loaderDiv);
+				var pageLoaderTimer = setInterval(function () {
+					i++;
+					if (document.getElementById('web-page-loader') !== null) {
+						document.getElementById('web-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
+					} else {
+						// core.log('woot');
+						clearInterval(pageLoaderTimer);
+					}
+				}, 300);
 			}
 		},
 		setProjectFileLoads: function () {
@@ -443,7 +485,17 @@
 			}
 			return true;
 		},
+		showPage: function () {
+			if (webContent !== null) {
+				webContent.removeAttribute('style');
+				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+			} else {
+				Web.dom.body.removeAttribute('style');
+			}
+			core.log('Webplate: Page show...successful');
+		},
 		init: function () {
+			core.pageLoader();
 			core.getJSON(path.project.config, function (error, json) {
 				// Error catch
 				if (error) {
@@ -452,18 +504,14 @@
 				}
 				// Set the config variable
 				config = json;
+				// Set some globals
+				if (config.project && typeof config.project.log === 'boolean') {
+					webGlobal.log = config.project.log;
+				};
 				// Load engine first
 				core.loadEngine(function () {
 					// Load the project files
-					core.setProjectFileLoads();
-					core.loadProject(function () {
-						if (webContent !== null) {
-							webContent.removeAttribute('style');
-							document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-						} else {
-							Web.dom.body.removeAttribute('style');
-						}
-					});
+					core.loadProject();
 				});
 			});
 		}

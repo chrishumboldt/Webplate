@@ -1,10 +1,6 @@
 {
-	"engine": {
-		"log": true
-	},
 	"project": {
 		"css": ["app.css"],
-		"js": ["app.js"],
-		"iconFont": "icomoon"
+		"js": ["app.js"]
 	}
 }
