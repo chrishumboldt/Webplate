@@ -1,8 +1,8 @@
 /**
- * File: js/injectplate.js
- * Type: Javascript component
+ * File: build/js/injectplate.js
+ * Type: Javascript component file
  * Author: Chris Humboldt
- */
+**/
 
 // Table of contents
 // Mustache.js
@@ -644,121 +644,130 @@
 }));
 
 // Injectplate
-var Injectplate = function () {
-	return {
-		init: function () {
-			return new InjectplateComponent();
-		}
-	}
-}();
-var InjectplateComponent = function () {
-	// Variables
-	var componentList = {};
+var Injectplate = (function () {
+	// Defaults
+	var defaults = {
+		errors: true
+	};
 
-	// Bind
-	var bind = function (objBind) {
-		var objBind = objBind || false;
-		if (objBind !== false && objBind.component) {
-			var bindTo;
-			var data = objBind.data || '';
+	// Inner component
+	var component = function () {
+		// Variables
+		var components = {};
 
-			bindTo = (objBind.to !== undefined) ? select(objBind.to) : select('#' + objBind.component);
+		// Functions
+		var bindComponent = function (obj) {
+			// Catch
+			if (typeof obj !== 'object' || obj.component == undefined) {
+				return false;
+			}
+			/*
+			Determine what the component needs to bind to in the DOM. If nothing in
+			the DOM is found then kill the binding here and don't execute anuthing else
+			unnecessarily so.
+			*/
+			var bindTo = (typeof obj.to != undefined) ? Web.dom.select(obj.to) : Web.dom.select('#' + obj.component);
+			if (!bindTo || bindTo.length < 1) {
+				return false;
+			}
 
-			if (bindTo) {
-				for (var i = 0, len = bindTo.length; i < len; i++) {
-					var componentEl = Mustache.render(componentList[objBind.component]['html'], data);
-					if (objBind.overwrite === true) {
-						bindTo[i].innerHTML = componentEl;
-					} else {
-						bindTo[i].insertAdjacentHTML('beforeend', componentEl);
-					}
-					bindTo[i].setAttribute('data-inject', 'true');
-					if (componentList[objBind.component]['id']) {
-						bindTo[i].id = componentList[objBind.component]['id'];
-					}
-					if (componentList[objBind.component]['className']) {
-						classAdd(bindTo[i], componentList[objBind.component]['className']);
-					}
-					if (componentList[objBind.component]['onDone']) {
-						callback = componentList[objBind.component]['onDone'](bindTo[i]);
-					}
-					if (objBind.onDone !== undefined) {
-						callback = objBind.onDone(bindTo[i]);
-					}
+			var html = Mustache.render(components[obj.component].html, (typeof obj.data) ? obj.data : '');
+			for (var i = 0, len = bindTo.length; i < len; i++) {
+			   // Overwrite or append
+				if (obj.overwrite === true) {
+					bindTo[i].innerHTML = html;
+				} else {
+					bindTo[i].insertAdjacentHTML('beforeend', html);
+				}
+				bindTo[i].setAttribute('data-inject', 'true');
+				// Set an id on the container (bindTo element)
+				if (typeof components[obj.component].id === 'string') {
+					bindTo[i].id = components[obj.components].id;
+				}
+				// Set a class on the container (bindTo element)
+				if (typeof components[obj.component].className === 'string') {
+					Web.class.add(bindTo[i], components[obj.component].className);
+				}
+				// Component onDone function
+				if (typeof components[obj.component].onDone === 'function') {
+					components[obj.component].onDone(bindTo[i]);
+				}
+				// Binding onDone function
+				if (typeof obj.onDone === 'function') {
+					obj.onDone(bindTo[i]);
 				}
 			}
 		}
-	};
-
-	// Class add
-	var classAdd = function (element, class) {
-		var crtClass = element.className;
-		if (crtClass.match(new RegExp('\\b' + class + '\\b', 'g')) === null) {
-			element.className = crtClass === '' ? class : crtClass + ' ' + class;
+		var flattenHTML = function (html, name) {
+			if (typeof html === 'object') {
+				var htmlFlat = '';
+				for (var i = 0, len = html.length; i < len; i++) {
+					htmlFlat += html[i];
+				}
+				return htmlFlat;
+			} else if (typeof html === 'string') {
+				var htmlFlat = '';
+				var htmlFlatSplit = html.split(/(?:\r\n|\n|\r)/);
+				for (var i = 0, len = htmlFlatSplit.length; i < len; i++) {
+					htmlFlat += htmlFlatSplit[i].trim();
+				}
+				return htmlFlat;
+			} else {
+				if (defaults.errors) {
+					throw new Error('Injectplate: The HTML provided to create the component "' + name + '" is not valid.');
+					return false;
+				} else {
+					return '';
+				}
+			}
 		}
-	};
+		var generateComponent = function (obj) {
+			// Catch
+			if (typeof obj !== 'object' || obj.component == undefined) {
+				return false;
+			}
+			var html = Mustache.render(components[obj.component].html, (typeof obj.data) ? obj.data : '');
+			if (typeof obj.onDone === 'function') {
+				obj.onDone(html);
+			}
+			return html;
+		}
+		var registerComponent = function (obj) {
+			// Catch
+			if (typeof obj !== 'object' || obj.name == undefined) {
+				if (defaults.errors) {
+					throw new Error('Injectplate: Please provide a valid component name.');
+				}
+				return false;
+			}
+			// Register the new component
+			components[obj.name] = {
+				className: (typeof obj.className === 'string') ? obj.className : false,
+				id: (typeof obj.id === 'string') ? obj.id : false,
+				html: flattenHTML(obj.html, obj.name),
+				onDone: (typeof obj.onDone === 'function') ? obj.onDone : false,
+				overwrite: (typeof obj.overwrite === 'boolean') ? obj.overwrite : false
+			};
+		}
 
-	// Show component list
-	var componentList = function () {
-		console.log(componentList);
-	};
-
-	// Register component
-	var component = function (objComponent) {
-		componentList[objComponent.name] = {
-			className: objComponent.className || false,
-			id: objComponent.id || false,
-			html: flattenTemplate(objComponent.html),
-			onDone: objComponent.onDone || false,
-			overwrite: objComponent.overwrite || false
+		// Return
+		return {
+			bind: bindComponent,
+			component: registerComponent,
+			flatten: flattenHTML,
+			generate: generateComponent,
+			list: components
 		};
 	};
 
-	// Flatten template
-	var flattenTemplate = function (templateInp) {
-		if (typeof templateInp === 'object') {
-			var template = '';
-			for (var i = 0, len = templateInp.length; i < len; i++) {
-				template += templateInp[i];
-			}
-			return template;
-		} else if (typeof templateInp === 'string') {
-			var template = '';
-			var templateInpSplit = templateInp.split(/(?:\r\n|\n|\r)/);
-			for (var i = 0, len = templateInpSplit.length; i < len; i++) {
-				template += templateInpSplit[i].trim();
-			}
-			return template;
-		}
-	};
-
-	// Generate
-	var generate = function (objGenerate) {
-		var objGenerate = objGenerate || false;
-		if (objGenerate !== false && objGenerate.component) {
-			var data = objGenerate.data || '';
-			if (objGenerate.onDone !== undefined) {
-				objGenerate.onDone(Mustache.render(componentList[objGenerate.component]['html'], data));
-			}
-		}
-	};
-
-	// Select
-	var select = function (selector) {
-		if (selector.indexOf('.') > -1) {
-			return document.querySelectorAll(selector);
-		} else if (selector.indexOf('#') > -1) {
-			return [document.getElementById(selector.substring(1))];
-		} else {
-			return document.getElementsByTagName(selector);
-		}
+	// Initiliser
+	var init = function () {
+		return new component();
 	};
 
 	// Return
 	return {
-		bind: bind,
-		component: component,
-		componentList: componentList,
-		generate: generate
+		defaults: defaults,
+		init: init
 	};
-};
+})();

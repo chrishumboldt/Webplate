@@ -4,6 +4,11 @@
  * Author: Chris Humboldt
 **/
 
+// Buttons
+if (typeof Buttonplate != 'undefined') {
+	Buttonplate.defaults.selector = '.web-button';
+}
+
 // if (typeof $flickerplateDefault !== 'undefined') {
 // 	$flickerplateDefault.selector = '.web-flicker';
 // }

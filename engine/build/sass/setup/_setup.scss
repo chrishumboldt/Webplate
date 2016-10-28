@@ -13,7 +13,7 @@
 // Global
 @include global-setup();
 html, body {
-	@include text-font($font-family-set);
+	@include text-font($font-family);
 	@include text-weight(300);
 }
 div {

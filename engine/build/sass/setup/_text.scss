@@ -5,7 +5,7 @@
 **/
 
 label {
-	@include text-font($font-family-set);
+	@include text-font($font-family);
 }
 // Headings
 h1 {

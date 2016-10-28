@@ -7,7 +7,7 @@
 @include formplate-css(flat);
 
 label {
-   @include text-font($font-family-set);
+   @include text-font($font-family);
 }
 .fp-check:after {
 	@include position-set(top 2px);

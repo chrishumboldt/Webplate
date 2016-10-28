@@ -17,7 +17,7 @@
 }
 
 // Button setup
-@mixin button-setup($font: true) {
+@mixin button-setup() {
 	@include position(relative);
 	@include display(inline-block);
 	@include text-align(center);

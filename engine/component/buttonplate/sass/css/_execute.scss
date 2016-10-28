@@ -5,9 +5,9 @@
 **/
 
 // Buttonplate CSS
-@mixin buttonplate-css($font: true) {
-	.button {
-		@include button-setup($font);
+@mixin buttonplate-css($selector: '.button') {
+	#{$selector} {
+		@include button-setup();
 		// Sizes
 		@include button-size(normal); // Default
 		&._small {

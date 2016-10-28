@@ -228,6 +228,15 @@ var webGlobal = {
 
 	// Core
 	var core = {
+		activatePage: function () {
+			if (webContent !== null) {
+				webContent.removeAttribute('style');
+				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+			} else {
+				Web.dom.body.removeAttribute('style');
+			}
+			core.log('Webplate: Page show...successful');
+		},
 		log: function (text) {
 			if (!window || !window.console || !config) {
 				return false;
@@ -261,6 +270,10 @@ var webGlobal = {
 				load: core.getEngineFiles(),
 				complete: function () {
 					core.log('Webplate: Engine files load...successful');
+					// Initialise injector
+					Web.inject = Web.injectplateExecute();
+					core.log('Webplate: Injectplate initialise...successful');
+
 					return callback();
 				}
 			});
@@ -348,12 +361,13 @@ var webGlobal = {
 				});
 			}
 		},
-		loadProjectFiles: function (callback) {
+		loadProjectFiles: function () {
+			// Variables
 			var cssLength = load.project.css.length;
 			var jsLength = load.project.js.length;
 			// Catch
 			if (cssLength < 1 && jsLength < 1) {
-				core.showPage();
+				core.activatePage();
 			}
 			// CSS
 			if (cssLength > 0) {
@@ -363,7 +377,7 @@ var webGlobal = {
 						cssLength = 0;
 						core.log('Webplate: Project CSS load...successful');
 						if (jsLength === 0) {
-							core.showPage();
+							core.activatePage();
 						}
 					}
 				});
@@ -376,7 +390,7 @@ var webGlobal = {
 						jsLength = 0;
 						core.log('Webplate: Project JS load...successful');
 						if (cssLength === 0) {
-							core.showPage();
+							core.activatePage();
 						}
 					}
 				});
@@ -484,15 +498,6 @@ var webGlobal = {
 				}
 			}
 			return true;
-		},
-		showPage: function () {
-			if (webContent !== null) {
-				webContent.removeAttribute('style');
-				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
-			} else {
-				Web.dom.body.removeAttribute('style');
-			}
-			core.log('Webplate: Page show...successful');
 		},
 		init: function () {
 			core.pageLoader();

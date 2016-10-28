@@ -10,7 +10,7 @@ var Buttonplate = (function () {
 	var defaults = {
 		selector: '.button'
 	};
-	var buttonDropClassName = 'buttonplate-drop-down';
+	var buttonDropClassName = 'bp-drop-down';
 	var documentOnClick = false;
 
 	// Functions

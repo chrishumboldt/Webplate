@@ -17,7 +17,7 @@ $away-from-button: 4px;
 
 // Drop-downs
 @mixin drop-down($colour: $default-colour) {
-	&.buttonplate-drop-down {
+	&.bp-drop-down {
 		// List
 		ul {
 			@include position(absolute);
@@ -83,7 +83,7 @@ $away-from-button: 4px;
 	.arrow {
 		@include margin-left($spacing / 2);
 	}
-	&.buttonplate-drop-down {
+	&.bp-drop-down {
 		ul {
 			@include margin-left(-$spacing);
 		}
