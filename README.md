@@ -5,9 +5,9 @@ Webplate is an configuration based front-end framework that lets you stay focuse
    * [Load Project Files](#load-project-files)
    * [Simple Page Loader](#simple-page-loader)
 * [Go To The Next Level](#go-to-the-next-level)
-* [Documentation](#documentation)
 * [Command-line Tool](#command-line-tool)
 * [Migration](#migration)
+* [Documentation](#documentation)
 
 ## Getting Started
 Simply drop the Webplate directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **webplate** is required.
@@ -54,9 +54,6 @@ Before you have even started, Webplate has already loaded up Modernizr, Normaliz
 
 This will get you up and running for most projects but if you want to delve into Webplate's automatic Bower and SASS integration then just read over some of the [online documentation](http://getwebplate.com/documentation) and become a bonafide pro.
 
-## Documentation
-Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://getwebplate.com/documentation).
-
 ## Command-line Tool
 One of the best features of Webplate is the command-line tool. It will make building your project so much easier and helps with SASS building, Javascript minification and component development. While it is an advanced feature it has tons of uses like watching for file changes and updating your browser automatically.
 
@@ -66,6 +63,9 @@ https://github.com/chrishumboldt/Webplate-Command
 While version 4 has many of the same core features as version 3, it is not recommended that you try and migrate. Version 4 has many philosophical and developmental differences, from the the altered Web namespace to the build tools. Version 3 will however be branched and maintained for bug fixes.
 
 If you wish to attempt a migration do so only for smaller projects as for larger projects it would be not be wise, even though it is technically possible.
+
+## Documentation
+Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://getwebplate.com/documentation).
 
 ## Author
 Created and maintained by Chris Humboldt<br>
