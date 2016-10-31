@@ -42,7 +42,7 @@ All web projects include a combination of CSS and Javascript and Webplate makes 
 {
     "project": {
         "css": ["welcome.css", "theme.css"],
-        "js": ["min/welcome.min.js"],
+        "js": ["welcome.js"],
     }
 }
 ```
