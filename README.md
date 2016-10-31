@@ -2,8 +2,8 @@
 Webplate is an configuration based front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
 
 * [Getting Started](#getting-started)
+   * [Load Project Files](#load-project-files)
    * [Simple Page Loader](#simple-page-loader)
-* [Load Project Files](#load-project-files)
 * [Go To The Next Level](#go-to-the-next-level)
 * [Documentation](#documentation)
 * [Command-line Tool](#command-line-tool)
@@ -21,6 +21,18 @@ Simply drop the Webplate directory into your web project and include the start.j
 
 The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
+#### Load Project Files
+All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.
+
+```json
+{
+    "project": {
+        "css": ["welcome.css", "theme.css"],
+        "js": ["welcome.js"],
+    }
+}
+```
+
 #### Simple Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id **webplate-content**. See an example below.
 
@@ -34,18 +46,6 @@ If you would like a page loader to display while your project files load, simply
 ```
 
 **Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
-
-## Load Project Files
-All web projects include a combination of CSS and Javascript and Webplate makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>webplate/project/config.json</b>. Below is an example of what you might typically see.
-
-```json
-{
-    "project": {
-        "css": ["welcome.css", "theme.css"],
-        "js": ["welcome.js"],
-    }
-}
-```
 
 You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
 
