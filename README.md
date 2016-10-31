@@ -33,6 +33,8 @@ All web projects include a combination of CSS and Javascript and Webplate makes 
 }
 ```
 
+You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
+
 #### Simple Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id **webplate-content**. See an example below.
 
@@ -46,8 +48,6 @@ If you would like a page loader to display while your project files load, simply
 ```
 
 **Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
-
-You will notice that a comma delimited list allows you to load more than one file and that the Webplate path is not required. This is because Webplate automatically knows where to look inside the project directory. You can also load different files on different pages.
 
 ## Go To The Next Level
 Before you have even started, Webplate has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
