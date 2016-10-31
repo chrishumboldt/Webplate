@@ -15,9 +15,8 @@ $transition-fade-duration: 0.8s;
 $transition-fade-easing: linear;
 
 // Animations
-@mixin fp-animations($identifier: ".flickerplate") {
-
-	#{$identifier}.animate-transform-slide {
+@mixin flicker-animations() {
+	.flickerplate._a-transform-slide {
 		// Flicks
 		ul.flicks {
 			-webkit-perspective: 1000;
@@ -37,7 +36,7 @@ $transition-fade-easing: linear;
 			}
 		}
 	}
-	#{$identifier}.animate-transition-slide {
+	.flickerplate._a-transition-slide {
 		ul.flicks {
 			@include position(relative, left 0%);
 			@include animate(left, $transition-slide-duration);
@@ -47,48 +46,31 @@ $transition-fade-easing: linear;
 			}
 		}
 	}
-	#{$identifier}.animate-jquery-slide {
-		ul.flicks {
-			@include position(relative, left 0%);
-		}
-	}
-	#{$identifier}.animate-scroller-slide {
+	.flickerplate._a-scroller-slide {
 		@include padding-bottom(0px);
 		@include overflow(auto);
-
 		ul.flicks {
 			@include position(auto);
 		}
 	}
-	#{$identifier}.animate-transition-fade {
+	.flickerplate._a-transition-fade {
 		ul.flicks {
 			@include position(relative);
-
 			li {
 				@include float(none);
-				@include position(absolute, top 0 left 0);
+				@include position(absolute, top 0 left 0 bottom 0 right 0);
 				@include transparency(0);
-
-				&.active {
+				@include level(1);
+				&._active {
 					@include transparency(1);
 					@include animate(opacity, $transition-fade-duration);
+					@include level(2);
 				}
 			}
 		}
 		&.fade-initiated {
 			ul.flicks li {
 				@include animate(opacity, $transition-fade-duration);
-			}
-		}
-	}
-	#{$identifier}.animate-jquery-fade {
-		ul.flicks {
-			@include position(relative);
-
-			li {
-				@include float(none);
-				@include position(absolute, top 0 left 0);
-				@include transparency(0);
 			}
 		}
 	}

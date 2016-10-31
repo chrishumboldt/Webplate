@@ -5,8 +5,12 @@
 **/
 
 // Buttons
-if (typeof Buttonplate != 'undefined') {
+if (typeof Buttonplate !== undefined) {
 	Buttonplate.defaults.selector = '.web-button';
+}
+// Flickers
+if (typeof Flickerplate !== undefined) {
+	Flickerplate.defaults.selector = '.web-flicker';
 }
 
 // if (typeof $flickerplateDefault !== 'undefined') {
