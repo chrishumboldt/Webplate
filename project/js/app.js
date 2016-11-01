@@ -7,6 +7,3 @@
 **/
 
 Web.log('The app file has been loaded successfully.');
-
-Web.log(Web.button());
-Web.log(Web.inject);

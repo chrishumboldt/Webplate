@@ -1,21 +1,4 @@
 {
-	"engine": {
-		"log": true,
-		"light": true
-	},
-	"build": [{
-		"name": "tester",
-		"components": [
-			"buttonplate"
-		],
-		"sass": ["app.scss"]
-	}, {
-		"name": "tester2",
-		"components": [
-			"flickerplate"
-		],
-		"sass": ["app.scss"]
-	}],
 	"project": {
 		"css": ["app.css"],
 		"js": ["app.js"]
