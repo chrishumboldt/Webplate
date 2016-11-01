@@ -218,6 +218,7 @@ var webGlobal = {
 			filesLight: [path.engine.css + 'styles-light.min.css', path.engine.js + 'scripts-light.min.js']
 		},
 		project: {
+			allowedFileTypes: ['css', 'js'],
 			componentsFirst: [],
 			components: [],
 			css: [],
@@ -236,6 +237,12 @@ var webGlobal = {
 				Web.dom.body.removeAttribute('style');
 			}
 			core.log('Webplate: Page show...successful');
+		},
+		checkProjectExtension: function (file) {
+			if (load.project.allowedFileTypes.indexOf(Web.string.lowercase.all(Web.get.extension(file))) > -1) {
+				return true;
+			}
+			return false;
 		},
 		log: function (text) {
 			if (!window || !window.console || !config) {
@@ -309,21 +316,25 @@ var webGlobal = {
 			}
 		},
 		loadProjectComponent: function (component, callback) {
-			core.getJSON(path.project.component + component + '/.bower.json', function (error, json) {
+			core.getJSON(path.project.component + component + '/webplate.json', function (error, json) {
 				// Catch
 				if (error) {
 					return callback(false);
 				}
 				// Load
 				var loadFiles = [];
-				if (typeof json.main === 'object') {
-					for (var i = 0, len = json.main.length; i < len; i++) {
-					   loadFiles.push(path.project.component + component + '/' + json.main[i]);
+				if (typeof json.files === 'object') {
+					for (var i = 0, len = json.files.length; i < len; i++) {
+						if (core.checkProjectExtension(json.files[i])) {
+						   loadFiles.push(path.project.component + component + '/' + json.files[i]);
+						}
 					}
 				} else {
-					loadFiles.push(path.project.component + component + '/' + json.main);
+					if (core.checkProjectExtension(json.files)) {
+						loadFiles.push(path.project.component + component + '/' + json.files);
+					}
 				}
-				// Anther catch
+				// Another catch
 				if (loadFiles.length < 1) {
 					return callback(false);
 				}
@@ -336,6 +347,7 @@ var webGlobal = {
 			});
 		},
 		loadProjectComponents: function () {
+			var loadCheck = load.project.components.length;
 			for (var i = 0, len = load.project.components.length; i < len; i++) {
 			   core.loadProjectComponent(load.project.components[i], function () {
 					loadCheck--;
@@ -347,6 +359,7 @@ var webGlobal = {
 			}
 		},
 		loadProjectComponentsFirst: function () {
+			var loadCheck = load.project.componentsFirst.length;
 			for (var i = 0, len = load.project.componentsFirst.length; i < len; i++) {
 			   core.loadProjectComponent(load.project.componentsFirst[i], function () {
 					loadCheck--;
@@ -417,7 +430,6 @@ var webGlobal = {
 					if (document.getElementById('web-page-loader') !== null) {
 						document.getElementById('web-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
 					} else {
-						// core.log('woot');
 						clearInterval(pageLoaderTimer);
 					}
 				}, 300);
