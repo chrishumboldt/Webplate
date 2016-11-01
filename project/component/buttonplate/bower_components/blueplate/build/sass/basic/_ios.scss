@@ -1,0 +1,11 @@
+/**
+ * File: basic/_ios.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+ */
+ 
+// Global
+@mixin ios-render() {
+	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
+}

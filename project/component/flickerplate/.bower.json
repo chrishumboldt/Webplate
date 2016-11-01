@@ -1,0 +1,40 @@
+{
+  "name": "flickerplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A Javascript component that lets you flick through content.",
+  "main": [
+    "build/js/flickerplate.js",
+    "build/sass/flickerplate.scss"
+  ],
+  "keywords": [
+    "Webplate",
+    "Component",
+    "Flicker",
+    "Slider",
+    "Javascript"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "index.html"
+  ],
+  "devDependencies": {
+    "blueplate": "^2.0.0",
+    "webplate-demo": "^1.0.0"
+  },
+  "homepage": "https://github.com/chrishumboldt/Flickerplate",
+  "version": "3.1.2",
+  "_release": "3.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.2",
+    "commit": "1f406623c775875ea07472ddf1dc5abb9f4537e4"
+  },
+  "_source": "https://github.com/chrishumboldt/Flickerplate.git",
+  "_target": "^3.1.2",
+  "_originalSource": "flickerplate",
+  "_direct": true
+}

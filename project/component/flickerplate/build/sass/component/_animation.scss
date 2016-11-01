@@ -1,0 +1,77 @@
+/**
+ * File: _animation.scss
+ * Type: SASS module
+ * Author: Chris Humboldt
+ */
+
+// Animation variables
+$transform-slide-duration: 0.2s;
+$transform-slide-duration-large: 0.6s;
+$transform-slide-easing: ease-out;
+$transition-slide-duration: 0.2s;
+$transition-slide-duration-large: 0.6s;
+$transition-slide-easing: ease-in-out;
+$transition-fade-duration: 0.8s;
+$transition-fade-easing: linear;
+
+// Animations
+@mixin flicker-animations() {
+	.flickerplate._a-transform-slide {
+		// Flicks
+		ul.flicks {
+			-webkit-perspective: 1000;
+			-webkit-backface-visibility: hidden;
+			transform: translate3d(0%, 0px, 0px);
+			-webkit-transform: translate3d(0%, 0px, 0px);
+			-webkit-transition: -webkit-transform $transform-slide-duration $transform-slide-easing;
+			-o-transition: -o-transform $transform-slide-duration $transform-slide-easing;
+			-moz-transition: -moz-transform $transform-slide-duration $transform-slide-easing;
+			transition: transform $transform-slide-duration $transform-slide-easing;
+
+			@include breakpoint(large) {
+				-webkit-transition: -webkit-transform $transform-slide-duration-large $transform-slide-easing;
+				-o-transition: -o-transform $transform-slide-duration-large $transform-slide-easing;
+				-moz-transition: -moz-transform $transform-slide-duration-large $transform-slide-easing;
+				transition: transform $transform-slide-duration-large $transform-slide-easing;
+			}
+		}
+	}
+	.flickerplate._a-transition-slide {
+		ul.flicks {
+			@include position(relative, left 0%);
+			@include animate(left, $transition-slide-duration);
+
+			@include breakpoint(large) {
+				@include animate(left, $transition-slide-duration-large);
+			}
+		}
+	}
+	.flickerplate._a-scroller-slide {
+		@include padding-bottom(0px);
+		@include overflow(auto);
+		ul.flicks {
+			@include position(auto);
+		}
+	}
+	.flickerplate._a-transition-fade {
+		ul.flicks {
+			@include position(relative);
+			li {
+				@include float(none);
+				@include position(absolute, top 0 left 0 bottom 0 right 0);
+				@include transparency(0);
+				@include level(1);
+				&._active {
+					@include transparency(1);
+					@include animate(opacity, $transition-fade-duration);
+					@include level(2);
+				}
+			}
+		}
+		&.fade-initiated {
+			ul.flicks li {
+				@include animate(opacity, $transition-fade-duration);
+			}
+		}
+	}
+}

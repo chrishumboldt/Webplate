@@ -1,0 +1,61 @@
+/**
+ * File: build/sass/component/_arrow.scss
+ * Type: SASS component file
+ * Author: Chris Humboldt
+**/
+
+// Arrow navigation
+@mixin flicker-arrows() {
+	.flickerplate-arrow {
+		@include display(block);
+		@include position(absolute, top 10%);
+		@include size($space-medium, 80%);
+		@include level(100);
+		@include overflow(hidden);
+		@include text-font('flickerplate');
+		@include vertical-align(middle);
+		@include breakpoint(large) {
+			@include width(100px);
+		}
+		// Arrow
+		&:before {
+			@include position(absolute, top 50% left 50%);
+			@include margin-left(-25px);
+			@include margin-top(-25px);
+			@include square(50px);
+			@include transparency(0);
+			@include text-align(center);
+			@include text-colour($white);
+			@include text-size($size-x2-large);
+			@include animate(opacity);
+		}
+		// Hover state
+		.fp-no-touch &:hover {
+			@include cursor(pointer);
+			&._left:before,
+			&._right:before {
+				@include transparency(1);
+			}
+		}
+		.fp-no-touch &:active {
+			&._left:before,
+			&._right:before {
+				@include margin-top(-23px);
+			}
+		}
+		// Left arrow
+		&._left {
+			@include position-set(left 0%);
+			&:before {
+				content: "\f104";
+			}
+		}
+		// Right arrow
+		&._right {
+			@include position-set(right 0%);
+			&:before {
+				content: "\f105";
+			}
+		}
+	}
+}

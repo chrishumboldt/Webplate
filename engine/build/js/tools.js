@@ -255,13 +255,13 @@ var Web = (function () {
 
 	// Component facades
 	var button = function (options) {
-		if (typeof Buttonplate !== undefined) {
+		if (typeof Buttonplate != 'undefined') {
 			return Buttonplate.init(options);
 		}
 		return false;
 	};
 	var flicker = function (options) {
-		if (typeof Flickerplate !== undefined) {
+		if (typeof Flickerplate != 'undefined') {
 			return Flickerplate.init(options);
 		}
 		return false;
@@ -270,7 +270,7 @@ var Web = (function () {
 		return false;
 	};
 	var injectplateExecute = function () {
-		if (typeof Injectplate !== undefined) {
+		if (typeof Injectplate != 'undefined') {
 			return Injectplate.init();
 		}
 		return false;
@@ -686,6 +686,7 @@ var Web = (function () {
 		var defaults = {
 			async: true,
 			data: false,
+			dataForce: false,
 			dataType: 'json',
 			headers: false,
 			onStart: false,
@@ -697,25 +698,26 @@ var Web = (function () {
 			type: false,
 			withCredentials: false
 		};
-		var run = function (userOptions) {
-			if (!exists(userOptions) || !exists(userOptions.url)) {
+		var run = function (uOptions) {
+			if (!exists(uOptions) || !exists(uOptions.url)) {
 				return false;
 			}
 
 			var options = {
-				url: userOptions.url,
-				async: (typeof userOptions.async === 'string') ? userOptions.async : defaults.async,
-				data: (exists(userOptions.data)) ? userOptions.data : defaults.data,
-				dataType: (exists(userOptions.dataType)) ? userOptions.dataType : defaults.dataType,
-				headers: (typeof userOptions.headers === 'object') ? userOptions.headers : defaults.headers,
-				onStart: (typeof userOptions.onStart === 'function') ? userOptions.onStart : defaults.onStart,
-				onLoading: (typeof userOptions.onLoading === 'function') ? userOptions.onLoading : defaults.onLoading,
-				onSuccess: (typeof userOptions.onSuccess === 'function') ? userOptions.onSuccess : defaults.onSuccess,
-				onError: (typeof userOptions.onError === 'function') ? userOptions.onError : defaults.onError,
-				onEnd: (typeof userOptions.onEnd === 'function') ? userOptions.onEnd : defaults.onEnd,
-				timeout: (typeof userOptions.timeout === 'number') ? time.seconds(userOptions.timeout) : defaults.timeout,
-				type: (exists(userOptions.type)) ? string.uppercase.all(userOptions.type) : defaults.type,
-				withCredentials: (typeof userOptions.withCredentials === 'boolean') ? userOptions.withCredentials : defaults.withCredentials
+				url: uOptions.url,
+				async: (typeof uOptions.async === 'string') ? uOptions.async : defaults.async,
+				data: (exists(uOptions.data)) ? uOptions.data : defaults.data,
+				dataForce: (typeof uOptions.dataForce === 'string') ? uOptions.dataForce : defaults.dataForce,
+				dataType: (exists(uOptions.dataType)) ? uOptions.dataType : defaults.dataType,
+				headers: (typeof uOptions.headers === 'object') ? uOptions.headers : defaults.headers,
+				onStart: (typeof uOptions.onStart === 'function') ? uOptions.onStart : defaults.onStart,
+				onLoading: (typeof uOptions.onLoading === 'function') ? uOptions.onLoading : defaults.onLoading,
+				onSuccess: (typeof uOptions.onSuccess === 'function') ? uOptions.onSuccess : defaults.onSuccess,
+				onError: (typeof uOptions.onError === 'function') ? uOptions.onError : defaults.onError,
+				onEnd: (typeof uOptions.onEnd === 'function') ? uOptions.onEnd : defaults.onEnd,
+				timeout: (typeof uOptions.timeout === 'number') ? time.seconds(uOptions.timeout) : defaults.timeout,
+				type: (exists(uOptions.type)) ? string.uppercase.all(uOptions.type) : defaults.type,
+				withCredentials: (typeof uOptions.withCredentials === 'boolean') ? uOptions.withCredentials : defaults.withCredentials
 			};
 			var xhr = new XMLHttpRequest();
 			xhr.withCredentials = options.withCredentials;
@@ -756,7 +758,7 @@ var Web = (function () {
 			};
 
 			// Make the request
-			if (options.data && options.type === 'GET') {
+			if (options.data && options.dataForce !== 'body' && (options.type === 'GET' || options.dataForce === 'queryString')) {
 				var queryString = '';
 				for (var key in options.data) {
 					if (options.data.hasOwnProperty(key)) {
@@ -776,7 +778,7 @@ var Web = (function () {
 			}
 
 			// Send (with data if need be)
-			if (options.data && options.type === 'POST') {
+			if (options.data && options.dataForce !== 'queryString' && (options.type === 'POST' || options.dataForce === 'body')) {
 				if (is.json(options.data)) {
 					var send;
 					switch (string.lowercase.all(options.dataType)) {
@@ -813,21 +815,21 @@ var Web = (function () {
 				xhr.send();
 			}
 		};
-		var runDelete = function (userOptions) {
-			userOptions.type = 'DELETE';
-			run(userOptions);
+		var runDelete = function (uOptions) {
+			uOptions.type = 'DELETE';
+			run(uOptions);
 		};
-		var runGet = function (userOptions) {
-			userOptions.type = 'GET';
-			run(userOptions);
+		var runGet = function (uOptions) {
+			uOptions.type = 'GET';
+			run(uOptions);
 		};
-		var runPost = function (userOptions) {
-			userOptions.type = 'POST';
-			run(userOptions);
+		var runPost = function (uOptions) {
+			uOptions.type = 'POST';
+			run(uOptions);
 		};
-		var runPut = function (userOptions) {
-			userOptions.type = 'PUT';
-			run(userOptions);
+		var runPut = function (uOptions) {
+			uOptions.type = 'PUT';
+			run(uOptions);
 		};
 
 		return {

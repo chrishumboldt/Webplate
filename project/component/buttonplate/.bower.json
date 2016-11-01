@@ -1,0 +1,41 @@
+{
+  "name": "buttonplate",
+  "authors": [
+    "Chris Humboldt <chrismodem@gmail.com>"
+  ],
+  "description": "A global button library.",
+  "main": [
+    "build/sass/buttonplate.scss",
+    "build/js/buttonplate.js"
+  ],
+  "keywords": [
+    "Webplate",
+    "Component",
+    "Button",
+    "Responsive",
+    "Javascript",
+    "SASS"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "index.html"
+  ],
+  "devDependencies": {
+    "blueplate": "^2.0.0",
+    "webplate-demo": "^1.0.0"
+  },
+  "homepage": "https://github.com/chrishumboldt/Buttonplate",
+  "version": "3.1.6",
+  "_release": "3.1.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.6",
+    "commit": "93e73d872f8cdee80e8942e322faa8ccb44f0a72"
+  },
+  "_source": "https://github.com/chrishumboldt/Buttonplate.git",
+  "_target": "^3.1.6",
+  "_originalSource": "buttonplate",
+  "_direct": true
+}
