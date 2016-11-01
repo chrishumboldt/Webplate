@@ -1,0 +1,64 @@
+/**
+ * File: build/sass/component/_flicker.scss
+ * Type: SASS component file
+ * Author: Chris Humboldt
+**/
+
+$back-colour: lighten(#000,90%);
+
+@mixin flicker() {
+	.flickerplate {
+		@include position(relative, left 0);
+		@include overflow(hidden);
+		@include background-colour($back-colour);
+		ul.flicks {
+			@include position(relative);
+			@include spacing-no();
+			@include flex-display();
+			@include size(100%, 600px);
+			@include list-style(none);
+			@include align-items(center);
+			transform: translate3d(0%, 0px, 0px);
+			-webkit-transform: translate3d(0%, 0px, 0px);
+			> li {
+				@include flex(1, 0, 100%);
+				@include align-items(center);
+				@include justify-content(center);
+				@include padding($space-medium);
+				@include height(100%);
+				@include flex-display();
+				@include flex-direction(column);
+				@include breakpoint(large) {
+					@include padding-horizontal(100px);
+				}
+			}
+		}
+		.flick-title,
+		.flick-sub-text {
+			@include text-align(center);
+		}
+		.flick-title {
+			@include padding-no();
+			@include text-align(center);
+			@include text-line-height(40px);
+			@include font-size(28px);
+			@include breakpoint(large){
+				@include text-line-height(60px);
+				@include text-size(44px);
+			}
+		}
+		.flick-sub-text {
+			@include padding(5px);
+			@include text-align(center);
+			@include text-colour(fade-out($white, 0.2));
+			@include text-line-height(24px);
+			@include text-size(16px);
+			@include text-weight(300);
+		}
+		.flick-title span.flick-block-text, .flick-sub-text span.flick-block-text {
+			@include padding-horizontal(18px);
+			@include padding-vertical(12px);
+			@include background-colour(fade-out($black, 0.4));
+		}
+	}
+}

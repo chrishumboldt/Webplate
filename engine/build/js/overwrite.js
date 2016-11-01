@@ -5,20 +5,10 @@
 **/
 
 // Buttons
-if (typeof Buttonplate != 'undefined') {
+if (typeof Buttonplate !== undefined) {
 	Buttonplate.defaults.selector = '.web-button';
 }
-
-// if (typeof $flickerplateDefault !== 'undefined') {
-// 	$flickerplateDefault.selector = '.web-flicker';
-// }
-// if (typeof $formplateDefault !== 'undefined') {
-// 	$formplateDefault.selector = '.web-form';
-// 	$formplateDefault.style = 'flat';
-// }
-// if (typeof $loaderplateDefault !== 'undefined') {
-// 	$loaderplateDefault.path = Web.url('baseUrl') + '/webplate/engine/component/loaderplate/loaders/';
-// }
-// if (typeof $menuplateDefault !== 'undefined') {
-// 	$menuplateDefault.selector = '.web-menu-trigger';
-// }
+// Flickers
+if (typeof Flickerplate !== undefined) {
+	Flickerplate.defaults.selector = '.web-flicker';
+}

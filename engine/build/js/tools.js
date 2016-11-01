@@ -255,19 +255,22 @@ var Web = (function () {
 
 	// Component facades
 	var button = function (options) {
-		if (typeof Buttonplate != 'undefined') {
+		if (typeof Buttonplate !== undefined) {
 			return Buttonplate.init(options);
 		}
 		return false;
 	};
 	var flicker = function (options) {
+		if (typeof Flickerplate !== undefined) {
+			return Flickerplate.init(options);
+		}
 		return false;
 	};
 	var form = function (options) {
 		return false;
 	};
 	var injectplateExecute = function () {
-		if (typeof Injectplate != 'undefined') {
+		if (typeof Injectplate !== undefined) {
 			return Injectplate.init();
 		}
 		return false;

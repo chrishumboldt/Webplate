@@ -1,15 +1,13 @@
 /**
- * File: _dot-navigation.scss
- * Type: SASS module
+ * File: build/sass/component/_dot.scss
+ * Type: SASS component file
  * Author: Chris Humboldt
- */
+**/
 
-// Variables
 $dot-size: 14px !default;
 
-// Dot navigation
-@mixin fp-dot-navigation() {
-	.dot-navigation {
+@mixin flicker-dots() {
+	.flickerplate-dots {
 		@include position(absolute, bottom 15px);
 		@include width(100%);
 		@include text-align(center);
@@ -18,7 +16,7 @@ $dot-size: 14px !default;
 		ul {
 			@include text-align(center);
 			@include list-style(none);
-			@include padding-horizontal(15px);
+			@include padding-horizontal(30px);
 			@include padding-vertical(0px);
 		}
 		ul li {
@@ -32,18 +30,18 @@ $dot-size: 14px !default;
 			@include border-radius(50%);
 			@include animate(background-color);
 		}
-		.dot:hover {
+		.fp-no-touch & .dot:hover {
 			@include cursor(pointer);
 			@include background-colour(fade-out($white, 0.4));
 		}
-		.dot.active {
+		.dot._active {
 			@include background-colour($white);
 		}
 	}
-	.dot-navigation.left, .dot-navigation.left ul {
+	.flickerplate-dots._left, .flickerplate-dots._left ul {
 		@include text-align(left);
 	}
-	.dot-navigation.right, .dot-navigation.right ul {
+	.flickerplate-dots._right, .flickerplate-dots._right ul {
 		@include text-align(right);
 	}
 }
