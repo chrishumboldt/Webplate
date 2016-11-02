@@ -30,6 +30,11 @@
 
 var Web = (function () {
 	// Variables
+	if (typeof webGlobal !== 'object') {
+		var webGlobal = {
+			log: true
+		}
+	}
 	var webMonths = [{
 		number: '01',
 		name: 'january',
@@ -101,7 +106,7 @@ var Web = (function () {
 
 	// Basic checks
 	var exists = function (check) {
-		return (typeof check == 'undefined' || check === null || check === false) ? false : true;
+		return (typeof check === 'undefined' || check === null || check === false) ? false : true;
 	};
 	var has = {
 		spaces: function (check) {
@@ -293,19 +298,30 @@ var Web = (function () {
 
 	// Dates
 	var date = {
-		basic: function (thisDate) {
+		basic: function (thisDate, withTime) {
 			var thisDate = date.transform(thisDate);
+			var withTime = (typeof withTime === 'boolean') ? withTime : false;
+			var returnValue = '';
+
 			if (!thisDate) {
 				return false;
 			}
 			var day = date.day(thisDate.getDate());
 			var month = date.month(thisDate.getMonth() + 1);
 			var year = date.year(thisDate.getFullYear());
-			return day + ' ' + month + ' ' + year;
+
+			returnValue += day + ' ' + month + ' ' + year;
+			if (withTime) {
+				returnValue += ' ' + time.basic(thisDate);
+			}
+			return returnValue;
 		},
-		crtDB: function () {
-			var now = new Date();
-			return now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+		crtDB: function (thisDate) {
+			var thisDate = (thisDate) ? date.transform(thisDate) : new Date();
+			if (!thisDate) {
+				return false;
+			}
+			return thisDate.getFullYear() + '-' + ('0' + (thisDate.getMonth() + 1)).slice(-2) + '-' + ('0' + thisDate.getDate()).slice(-2);
 		},
 		day: function (thisDayVal, type) {
 			var thisDay;
@@ -1034,6 +1050,18 @@ var Web = (function () {
 
 	// Time
 	var time = {
+		basic: function (thisTime) {
+			var thisTime = date.transform(thisTime);
+			return thisTime.getHours() + ':' + thisTime.getMinutes();
+		},
+		exact: function (thisTime) {
+			var thisTime = date.transform(thisTime);
+			return thisTime.getHours() + ':' + thisTime.getMinutes() + ':' + thisTime.getSeconds() + ':' + thisTime.getMilliseconds();
+		},
+		full: function (thisTime) {
+			var thisTime = date.transform(thisTime);
+			return thisTime.getHours() + ':' + thisTime.getMinutes() + ':' + thisTime.getSeconds();
+		},
 		hours: function (hours) {
 			return hours * 60 * 60 * 1000;
 		},
