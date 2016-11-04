@@ -112,8 +112,8 @@ var Web = (function () {
 		spaces: function (check) {
 			return /\s/.test(check);
 		},
-		class: function (element, className) {
-			return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+		class: function (element, thisClass) {
+			return (' ' + element.className + ' ').indexOf(' ' + thisClass + ' ') > -1;
 		},
 		extension: function (file, arAllowedTypes) {
 			var allowedTypes = arAllowedTypes || webTypes.extensions;
@@ -121,6 +121,9 @@ var Web = (function () {
 		}
 	};
 	var is = {
+		array: function (array) {
+			return (typeof array === 'object' && array instanceof Array) ? true : false;
+		},
 		color: function (color) {
 			is.colour(color);
 		},
@@ -129,6 +132,9 @@ var Web = (function () {
 		},
 		date: function (date) {
 			return /^[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(date);
+		},
+		element: function (element) {
+			return (element.nodeType && element.nodeType === 1) ? true : false;
 		},
 		email: function (email, regExp) {
 			var regExp = regExp || /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i;
@@ -173,71 +179,87 @@ var Web = (function () {
 
 	// Classes
 	var classMethods = {
-		add: function (element, className) {
-			if (exists(element)) {
-				if (typeof className === 'object') {
-					for (var i = 0, len = className.length; i < len; i++) {
-						classMethods.addExecute(element, className[i]);
-					}
-				} else if (has.spaces(className)) {
-					var classes = className.split(' ');
-					for (var i = 0, len = classes.length; i < len; i++) {
-						classMethods.addExecute(element, classes[i]);
-					}
-				} else {
-					classMethods.addExecute(element, className);
-				}
-			}
-		},
-		addExecute: function (element, className) {
-			var crtClass = element.className;
-			if (crtClass.match(new RegExp('\\b' + className + '\\b', 'g')) === null) {
-				element.className = crtClass === '' ? className : crtClass + ' ' + className;
-			}
+		add: function (elements, classNames) {
+			classMethods.executeClasses(elements, classNames, false);
 		},
 		clear: function (element) {
 			if (exists(element)) {
 				element.removeAttribute('class');
 			}
 		},
-		remove: function (element, className) {
-			if (exists(element)) {
-				if (typeof className === 'object') {
-					for (var i = className.length - 1; i >= 0; i--) {
-						classMethods.removeExecute(element, className[i]);
-					}
-				} else if (has.spaces(className)) {
-					var classes = className.split(' ');
-					for (var i = 0, len = classes.length; i < len; i++) {
-						classMethods.removeExecute(element, classes[i]);
-					}
-				} else {
-					classMethods.removeExecute(element, className);
+		executeAdd: function (element, classes) {
+			element.className = element.className.split(' ').concat(classes).filter(function (val, i, ar) {
+				return (ar.indexOf(val) === i) && (val !== '');
+			}).toString().replace(/,/g, ' ');
+		},
+		executeClasses: function (elements, classesAdd, classesRemove) {
+			// Catch
+			if (!exists(elements)) {
+				return false;
+			}
+			// Create elements array
+			var arElements = [];
+			if (is.element(elements)) {
+				arElements.push(elements);
+			} else if (is.array(elements)) {
+				arElements = elements;
+			}
+			// Catch
+			if (arElements.length < 1) {
+				return false;
+			}
+			// Create classes array
+			var arClassesAdd = helper.makeArray(classesAdd, true);
+			var arClassesRemove = helper.makeArray(classesRemove, true);
+			var actionAdd = (arClassesAdd.length > 0) ? true : false;
+			var actionRemvoe = (arClassesRemove.length > 0) ? true : false;
+
+			// Execute
+			for (var i = 0, len = arElements.length; i < len; i++) {
+			   if (actionAdd) {
+					classMethods.executeAdd(arElements[i], arClassesAdd)
+				}
+				if (actionRemvoe) {
+					classMethods.executeRemove(arElements[i], arClassesRemove)
 				}
 			}
 		},
-		removeExecute: function (element, className) {
-			if (element.className.indexOf(className) > -1) {
-				element.className = element.className.split(' ').filter(function (val) {
-					return val != className;
-				}).toString().replace(/,/g, ' ');
-				if (element.className === '') {
-					classMethods.clear(element);
-				}
+		executeRemove: function (element, classes) {
+			element.className = element.className.split(' ').filter(function (val) {
+				return classes.indexOf(val) < 0;
+			}).toString().replace(/,/g, ' ');
+			if (element.className === '') {
+				classMethods.clear(element);
 			}
 		},
-		replace: function (element, removeClass, addClass) {
-			if (exists(element)) {
-				classMethods.add(element, addClass);
-				classMethods.remove(element, removeClass);
-			}
+		remove: function (elements, classNames) {
+			classMethods.executeClasses(elements, false, classNames);
 		},
-		toggle: function (element, className) {
-			if (exists(element)) {
-				if (!has.class(element, className)) {
-					classMethods.add(element, className);
+		replace: function (elements, classesRemove, classesAdd) {
+			classMethods.executeClasses(elements, classesAdd, classesRemove);
+		},
+		toggle: function (elements, className) {
+			// Catch
+			if (!exists(elements) || typeof className !== 'string' || has.spaces(className)) {
+				return false;
+			}
+			// Create elements array
+			var arElements = [];
+			if (is.element(elements)) {
+				arElements.push(elements);
+			} else if (is.array(elements)) {
+				arElements = elements;
+			}
+			// Catch
+			if (arElements.length < 1) {
+				return false;
+			}
+			// Execute
+			for (var i = 0, len = elements.length; i < len; i++) {
+				if (!has.class(elements[i], className)) {
+					classMethods.executeAdd(elements[i], [className]);
 				} else {
-					classMethods.remove(element, className);
+					classMethods.executeRemove(elements[i], [className]);
 				}
 			}
 		}
@@ -596,6 +618,43 @@ var Web = (function () {
 
 	// Helpers
 	var helper = {
+		makeArray: function (arValue, unique) {
+			var returnArray = [];
+			// Catch
+			if (!arValue) {
+				return returnArray;
+			}
+			// Continue
+			var unique = (typeof unique === 'boolean') ? unique : false;
+			if (is.array(arValue)) {
+				// Already an array
+				if (unique) {
+					returnArray = arValue.filter(function (val) {
+						return returnArray.indexOf(val) < 0;
+					});
+				} else {
+					returnArray = arValue;
+				}
+			} else if (is.element(arValue)) {
+				// Element
+				returnArray.push(arValue);
+			} else if (typeof arValue === 'string') {
+				// String
+				if (has.spaces(arValue)) {
+					if (unique) {
+						returnArray = arValue.split(' ').filter(function (val) {
+							return returnArray.indexOf(val) < 0;
+						});
+					} else {
+						returnArray = arValue.split(' ');
+					}
+				} else {
+					returnArray.push(arValue);
+				}
+			}
+
+			return returnArray;
+		},
 		setDefault: function (setValue, defaultValue) {
 			if (typeof setValue == 'undefined' && typeof defaultValue == 'undefined') {
 				return false;
