@@ -1,21 +1,19 @@
 {
-   "name": "webplate",
-   "version": "4.0.0",
-   "homepage": "https://getwebplate.com",
+   "name": "rocket-framework",
+   "version": "1.0.0",
+   "homepage": "https://getrocket.io",
    "authors": [
       "Chris Humboldt <chrismodem@gmail.com>"
    ],
-   "description": "Webplate is an awesome front-end framework.",
-   "main": "stack.js",
+   "description": "Rocket is an awesome front-end framework.",
+   "main": "start.js",
    "keywords": [
-      "Webplate",
-      "UI",
+      "Rocket",
       "Framework",
       "Responsive",
-      "jQuery",
       "SASS",
       "Modernizr",
-      "Hammer.js",
+      "Rocket Tools"
       "Velocity.js",
       "Blueplate",
       "Buttonplate",
@@ -31,7 +29,6 @@
    "license": "Apache License, Version 2.0",
    "ignore": [
       "engine/.sass-cache",
-      "engine/node_modules",
       "node_modules",
       "test",
       "tests",
@@ -39,8 +36,11 @@
       "index.html",
       "README.md",
       "test.html",
-      "project/sass/test.scss",
+      "project/build/sass/test.scss",
       "project/css/test.css",
-      "project/js/test.js"
+      "project/css/test.min.css",
+      "project/build/js/test.js"
+      "project/js/test.js",
+      "project/js/test.min.js"
    ]
 }

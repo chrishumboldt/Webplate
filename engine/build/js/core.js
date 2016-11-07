@@ -7,7 +7,7 @@
 // Table of contents
 // Yepnope
 // Global variables
-// Webplate
+// Rocket
 
 // Yepnope - 1.5.x|WTFPL
 (function (a, b, c) {
@@ -180,28 +180,23 @@
 	};
 })(this, document);
 
-// Global variables
-var webGlobal = {
-	log: true
-};
-
-// Webplate
+// Rocket
 (function () {
 	'use strict';
 
 	// Variables
 	var config = false;
-	var pathRoot = document.getElementById('webplate').getAttribute('src').replace('start.js', '');
-	var webContent = document.getElementById('webplate-content');
+	var pathRoot = document.getElementById('rocket').getAttribute('src').replace('start.js', '');
+	var rocketContent = document.getElementById('rocket-content');
 	// Paths
 	var path = {
+		config: pathRoot + 'cockpit.json',
 		engine: {
 			css: pathRoot + 'engine/css/',
 			js: pathRoot + 'engine/js/'
 		},
 		project: {
 			component: pathRoot + 'project/component/',
-			config: pathRoot + 'project/config.json',
 			css: pathRoot + 'project/css/',
 			iconFont: {
 				fontAwesome: pathRoot + 'project/font-awesome/css/font-awesome.min.css',
@@ -230,16 +225,16 @@ var webGlobal = {
 	// Core
 	var core = {
 		activatePage: function () {
-			if (webContent !== null) {
-				webContent.removeAttribute('style');
-				document.getElementById('web-page-loader').parentNode.removeChild(document.getElementById('web-page-loader'));
+			if (rocketContent !== null) {
+				rocketContent.removeAttribute('style');
+				document.getElementById('rocket-page-loader').parentNode.removeChild(document.getElementById('rocket-page-loader'));
 			} else {
-				Web.dom.body.removeAttribute('style');
+				Rocket.dom.body.removeAttribute('style');
 			}
-			core.log('Webplate: Page show...successful');
+			core.log('Rocket: Page show...successful');
 		},
 		checkProjectExtension: function (file) {
-			if (load.project.allowedFileTypes.indexOf(Web.string.lowercase.all(Web.get.extension(file))) > -1) {
+			if (load.project.allowedFileTypes.indexOf(Rocket.string.lowercase.all(Rocket.get.extension(file))) > -1) {
 				return true;
 			}
 			return false;
@@ -276,10 +271,10 @@ var webGlobal = {
 			yepnope({
 				load: core.getEngineFiles(),
 				complete: function () {
-					core.log('Webplate: Engine files load...successful');
+					core.log('Rocket: Engine files load...successful');
 					// Initialise injector
-					Web.inject = Web.injectplateExecute();
-					core.log('Webplate: Injectplate initialise...successful');
+					// Rocket.inject = Rocket.injectplateExecute();
+					// core.log('Rocket: Injectplate initialise...successful');
 
 					return callback();
 				}
@@ -291,14 +286,14 @@ var webGlobal = {
 					yepnope({
 						load: path.project.iconFont.icoMoon,
 						complete: function () {
-							core.log('Webplate: IcoMoon load...successful');
+							core.log('Rocket: IcoMoon load...successful');
 						}
 					});
 				} else if (load.project.iconFont == 'font-awesome') {
 					yepnope({
 						load: path.project.iconFont.fontAwesome,
 						complete: function () {
-							core.log('Webplate: Font awesome load...successful');
+							core.log('Rocket: Font awesome load...successful');
 						}
 					});
 				}
@@ -316,7 +311,7 @@ var webGlobal = {
 			}
 		},
 		loadProjectComponent: function (component, callback) {
-			core.getJSON(path.project.component + component + '/webplate.json', function (error, json) {
+			core.getJSON(path.project.component + component + '/rocket.json', function (error, json) {
 				// Catch
 				if (error) {
 					return callback(false);
@@ -352,7 +347,7 @@ var webGlobal = {
 			   core.loadProjectComponent(load.project.components[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
-						core.log('Webplate: Components load...successful');
+						core.log('Rocket: Components load...successful');
 						core.loadProjectFiles();
 					}
 				});
@@ -364,7 +359,7 @@ var webGlobal = {
 			   core.loadProjectComponent(load.project.componentsFirst[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
-						core.log('Webplate: Components first load...successful');
+						core.log('Rocket: Components first load...successful');
 						if (load.project.components.length > 0) {
 							core.loadProjectComponents();
 						} else {
@@ -388,7 +383,7 @@ var webGlobal = {
 					load: load.project.css,
 					complete: function () {
 						cssLength = 0;
-						core.log('Webplate: Project CSS load...successful');
+						core.log('Rocket: Project CSS load...successful');
 						if (jsLength === 0) {
 							core.activatePage();
 						}
@@ -401,7 +396,7 @@ var webGlobal = {
 					load: load.project.js,
 					complete: function () {
 						jsLength = 0;
-						core.log('Webplate: Project JS load...successful');
+						core.log('Rocket: Project JS load...successful');
 						if (cssLength === 0) {
 							core.activatePage();
 						}
@@ -410,14 +405,14 @@ var webGlobal = {
 			}
 		},
 		pageLoader: function () {
-			if (webContent !== null) {
+			if (rocketContent !== null) {
 				var loaderDiv = document.createElement('div');
 				var loaderText = 'Loading';
 				var i = 0;
 
-				webContent.style.display = 'none';
+				rocketContent.style.display = 'none';
 
-				loaderDiv.id = 'web-page-loader';
+				loaderDiv.id = 'rocket-page-loader';
 				loaderDiv.style.margin = '0px auto';
 				loaderDiv.style.paddingTop = '150px';
 				loaderDiv.style.color = '#ccd1d9';
@@ -427,8 +422,8 @@ var webGlobal = {
 				document.getElementsByTagName('body')[0].appendChild(loaderDiv);
 				var pageLoaderTimer = setInterval(function () {
 					i++;
-					if (document.getElementById('web-page-loader') !== null) {
-						document.getElementById('web-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
+					if (document.getElementById('rocket-page-loader') !== null) {
+						document.getElementById('rocket-page-loader').innerHTML = loaderText + new Array(i % 5).join('.');
 					} else {
 						clearInterval(pageLoaderTimer);
 					}
@@ -443,14 +438,14 @@ var webGlobal = {
 			// Variables
 			var pageMatch = false;
 			var queryString = '';
-			var urlData = Web.url();
+			var urlData = Rocket.url.all();
 
 			// Root config
-			load.project.componentsFirst = Web.helper.setDefault(config.project.componentsFirst, []);
-			load.project.components = Web.helper.setDefault(config.project.components, []);
-			load.project.css = Web.helper.setDefault(config.project.css, []);
-			load.project.js = Web.helper.setDefault(config.project.js, []);
-			load.project.iconFont = Web.helper.setDefault(config.project.iconFont);
+			load.project.componentsFirst = Rocket.helper.setDefault(config.project.componentsFirst, []);
+			load.project.components = Rocket.helper.setDefault(config.project.components, []);
+			load.project.css = Rocket.helper.setDefault(config.project.css, []);
+			load.project.js = Rocket.helper.setDefault(config.project.js, []);
+			load.project.iconFont = Rocket.helper.setDefault(config.project.iconFont);
 
 			// Page options
 			if (config.project.page) {
@@ -459,22 +454,22 @@ var webGlobal = {
 
 					// Page match
 					if (page.url.indexOf('*') > -1) {
-						if (urlData.currentUrl.indexOf(page.url.substring(0, page.url.length - 1)) > -1) {
+						if (urlData.current.indexOf(page.url.substring(0, page.url.length - 1)) > -1) {
 							pageMatch = true;
 						}
 					} else {
-						if (urlData.currentUrl === urlData.baseUrl + page.url) {
+						if (urlData.current === urlData.base + page.url) {
 							pageMatch = true;
 						}
 					}
 					if (pageMatch) {
-						load.project.iconFont = Web.helper.setDefault(page.iconFont, load.project.iconFont);
+						load.project.iconFont = Rocket.helper.setDefault(page.iconFont, load.project.iconFont);
 						if (page.overwrite === true) {
 							// Overwrite
-							load.project.componentsFirst = Web.helper.setDefault(page.componentsFirst, []);
-							load.project.components = Web.helper.setDefault(page.components, []);
-							load.project.css = Web.helper.setDefault(page.css, []);
-							load.project.js = Web.helper.setDefault(page.js, []);
+							load.project.componentsFirst = Rocket.helper.setDefault(page.componentsFirst, []);
+							load.project.components = Rocket.helper.setDefault(page.components, []);
+							load.project.css = Rocket.helper.setDefault(page.css, []);
+							load.project.js = Rocket.helper.setDefault(page.js, []);
 						} else {
 							// Merge
 							if (Array.isArray(page.componentsFirst)) {
@@ -513,18 +508,14 @@ var webGlobal = {
 		},
 		init: function () {
 			core.pageLoader();
-			core.getJSON(path.project.config, function (error, json) {
+			core.getJSON(path.config, function (error, json) {
 				// Error catch
 				if (error) {
-					core.log('Webplate: Not initialised because the project config file was not found.');
+					core.log('Rocket: Not initialised because the cockpit.json file was not found.');
 					return false;
 				}
 				// Set the config variable
 				config = json;
-				// Set some globals
-				if (config.project && typeof config.project.log === 'boolean') {
-					webGlobal.log = config.project.log;
-				};
 				// Load engine first
 				core.loadEngine(function () {
 					// Load the project files

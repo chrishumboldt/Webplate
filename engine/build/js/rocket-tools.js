@@ -1,15 +1,15 @@
 /**
- * File: engine/js/src/tools.js
+ * File: build/js/rocket-tools.js
  * Type: Javascript tools
  * Author: Chris Humboldt
 **/
 
 // Table of contents
+// Defaults
 // Variables
 // Basic checks
 // Classes
 // Clone
-// Component facades
 // Dates
 // Development
 // DOM
@@ -28,14 +28,46 @@
 // URL
 // Return
 
-var Web = (function () {
-	// Variables
-	if (typeof webGlobal !== 'object') {
-		var webGlobal = {
-			log: true
+var Rocket = (function () {
+	// Defaults
+	var defaults = {
+		extensions: {
+			all: ['png', 'jpg', 'jpeg', 'json', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'],
+			images: ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png']
+		},
+		log: true,
+		regexp: {
+			colour: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/,
+			date: /^[0-9]{4}-[0-9]{2}-[0-9]{2}/,
+			email: /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i,
+			float: /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/,
+			integer: /^[0-9]+/,
+			password: /^(?=.*\d).{6,}/,
+			time: /([01]\d|2[0-3]):([0-5]\d)/,
+			url: /(https?:\/\/[^\s]+)/g
+		},
+		request: {
+			async: true,
+			data: false,
+			dataForce: false,
+			dataType: 'json',
+			headers: false,
+			onStart: false,
+			onLoading: false,
+			onSuccess: false,
+			onError: false,
+			onComplete: false,
+			timeout: false,
+			type: false,
+			withCredentials: false
+		},
+		storage: {
+			name: false,
+			type: 'session'
 		}
 	}
-	var webMonths = [{
+	// Variables
+	var rocketMonths = [{
 		number: '01',
 		name: 'january',
 		nameShort: 'jan'
@@ -84,11 +116,11 @@ var Web = (function () {
 		name: 'december',
 		nameShort: 'dec'
 	}];
-	var webPrefix = {
-		basic: 'web-',
+	var rocketPrefix = {
+		basic: 'rocket-',
 		state: '_state-'
 	};
-	var webState = {
+	var rocketState = {
 		alts: {
 			active: 'inactive',
 			closed: 'open',
@@ -98,10 +130,6 @@ var Web = (function () {
 			visible: 'hidden'
 		},
 		list: ['active', 'closed', 'hidden', 'inactive', 'open', 'selected', 'toggled', 'visible']
-	};
-	var webTypes = {
-		extensions: ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'],
-		images: ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png']
 	};
 
 	// Basic checks
@@ -116,8 +144,8 @@ var Web = (function () {
 			return (' ' + element.className + ' ').indexOf(' ' + thisClass + ' ') > -1;
 		},
 		extension: function (file, arAllowedTypes) {
-			var allowedTypes = arAllowedTypes || webTypes.extensions;
-			return allowedTypes[file.split('.').pop().toLowerCase()];
+			var allowedTypes = (is.array(arAllowedTypes)) ? arAllowedTypes : defaults.extensions.all;
+			return (allowedTypes.indexOf(file.split('.').pop().toLowerCase()) > -1) ? true : false;
 		}
 	};
 	var is = {
@@ -128,26 +156,27 @@ var Web = (function () {
 			is.colour(color);
 		},
 		colour: function (colour) {
-			return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/.test(colour);
+			return defaults.regexp.colour.test(colour);
 		},
-		date: function (date) {
-			return /^[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(date);
+		date: function (date, regExp) {
+			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.date;
+			return regExp.test(date);
 		},
 		element: function (element) {
 			return (element.nodeType && element.nodeType === 1) ? true : false;
 		},
 		email: function (email, regExp) {
-			var regExp = regExp || /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i;
+			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.email;
 			return regExp.test(email);
 		},
 		float: function (int) {
-			return /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/.test(int);
+			return defaults.regexp.float.test(int);
 		},
 		integer: function (int) {
-			return /^[0-9]+/.test(int);
+			return defaults.regexp.integer.test(int);
 		},
 		image: function (file, arAllowedTypes) {
-			var allowedTypes = arAllowedTypes || webTypes.images;
+			var allowedTypes = (is.array(arAllowedTypes)) ? arAllowedTypes : defaults.extensions.images;
 			return allowedTypes[file.split('.').pop().toLowerCase()];
 		},
 		json: function (json) {
@@ -161,18 +190,18 @@ var Web = (function () {
 			return true;
 		},
 		password: function (password, regExp) {
-			var regExp = regExp || /^(?=.*\d).{6,}/;
+			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.password;
 			return regExp.test(password);
 		},
 		time: function (time, regExp) {
-			var regExp = regExp || /([01]\d|2[0-3]):([0-5]\d)/;
+			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.time;
 			return regExp.test(time);
 		},
 		touch: function () {
 			return 'ontouchstart' in window || 'onmsgesturechange' in window;
 		},
 		url: function (url, regExp) {
-			var regExp = regExp || /(https?:\/\/[^\s]+)/g;
+			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.url;
 			return regExp.test(url);
 		}
 	};
@@ -212,14 +241,14 @@ var Web = (function () {
 			var arClassesAdd = helper.makeArray(classesAdd, true);
 			var arClassesRemove = helper.makeArray(classesRemove, true);
 			var actionAdd = (arClassesAdd.length > 0) ? true : false;
-			var actionRemvoe = (arClassesRemove.length > 0) ? true : false;
+			var actionRemove = (arClassesRemove.length > 0) ? true : false;
 
 			// Execute
 			for (var i = 0, len = arElements.length; i < len; i++) {
-			   if (actionAdd) {
+				if (actionAdd) {
 					classMethods.executeAdd(arElements[i], arClassesAdd)
 				}
-				if (actionRemvoe) {
+				if (actionRemove) {
 					classMethods.executeRemove(arElements[i], arClassesRemove)
 				}
 			}
@@ -271,51 +300,13 @@ var Web = (function () {
 		switch(typeof elm) {
 			case 'object':
 				if (elm instanceof Array) {
-					return JSON.parse(JSON.stringify(elm));
+					return helper.parse.json(JSON.stringify(elm));
 				}
 				break;
 			default:
 				return false;
 				break;
 		}
-	};
-
-	// Component facades
-	var button = function (options) {
-		if (typeof Buttonplate != 'undefined') {
-			return Buttonplate.init(options);
-		}
-		return false;
-	};
-	var flicker = function (options) {
-		if (typeof Flickerplate != 'undefined') {
-			return Flickerplate.init(options);
-		}
-		return false;
-	};
-	var form = function (options) {
-		return false;
-	};
-	var injectplateExecute = function () {
-		if (typeof Injectplate != 'undefined') {
-			return Injectplate.init();
-		}
-		return false;
-	};
-	var loader = function (options) {
-		return false;
-	};
-	var menu = function (options) {
-		return false;
-	};
-	var message = function (options) {
-		return false;
-	};
-	var modal = function (options) {
-		return false;
-	};
-	var tab = function (options) {
-		return false;
 	};
 
 	// Dates
@@ -334,7 +325,7 @@ var Web = (function () {
 
 			returnValue += day + ' ' + month + ' ' + year;
 			if (withTime) {
-				returnValue += ' ' + time.basic(thisDate);
+				returnValue += ', ' + time.basic(thisDate);
 			}
 			return returnValue;
 		},
@@ -396,9 +387,9 @@ var Web = (function () {
 			switch (type) {
 				case 'long':
 					thisMonth = (thisMonth.length === 1) ? '0' + thisMonth : thisMonth;
-					for (var i = 0, len = webMonths.length; i < len; i++) {
-					   if (webMonths[i].number == thisMonth) {
-							thisMonth = string.uppercase.first(webMonths[i].name);
+					for (var i = 0, len = rocketMonths.length; i < len; i++) {
+					   if (rocketMonths[i].number == thisMonth) {
+							thisMonth = string.uppercase.first(rocketMonths[i].name);
 							break;
 						}
 					}
@@ -408,9 +399,9 @@ var Web = (function () {
 					break;
 				default:
 					thisMonth = (thisMonth.length === 1) ? '0' + thisMonth : thisMonth;
-					for (var i = 0, len = webMonths.length; i < len; i++) {
-					   if (webMonths[i].number == thisMonth) {
-							thisMonth = string.uppercase.first(webMonths[i].nameShort);
+					for (var i = 0, len = rocketMonths.length; i < len; i++) {
+					   if (rocketMonths[i].number == thisMonth) {
+							thisMonth = string.uppercase.first(rocketMonths[i].nameShort);
 							break;
 						}
 					}
@@ -434,9 +425,9 @@ var Web = (function () {
 						time = dateSplit[i];
 					} else {
 						var lowerDateSplit = string.lowercase(dateSplit[i]);
-						for (var i2 = 0, len2 = webMonths.length; i2 < len2; i2++) {
-							if (lowerDateSplit === webMonths[i2].name || lowerDateSplit === webMonths[i2].nameShort) {
-								month = webMonths[i2].number;
+						for (var i2 = 0, len2 = rocketMonths.length; i2 < len2; i2++) {
+							if (lowerDateSplit === rocketMonths[i2].name || lowerDateSplit === rocketMonths[i2].nameShort) {
+								month = rocketMonths[i2].number;
 								break;
 							}
 						}
@@ -506,16 +497,22 @@ var Web = (function () {
 	};
 
 	// Development
-	var log = function (text) {
-		if (window && window.console && webGlobal.log) {
-			console.log(text);
+	var log = function (text, error) {
+		if (window && window.console && defaults.log) {
+			var error = (typeof error === 'boolean') ? error : false;
+
+			if (error) {
+				throw new Error(text);
+			} else {
+				console.log(text);
+			}
 		}
 	};
 
 	// DOM
 	var dom = {
-		body: document.getElementsByTagName('body')[0],
-		html: document.getElementsByTagName('html')[0],
+		body: (typeof document !== 'undefined') ? document.getElementsByTagName('body')[0] : false,
+		html: (typeof document !== 'undefined') ? document.getElementsByTagName('html')[0] : false,
 		ratio: function (selector, multiplier) {
 			var elements = document.querySelectorAll(selector);
 			if (typeof (multiplier) === 'undefined') {
@@ -527,22 +524,16 @@ var Web = (function () {
 		},
 		remove: function (selElm) {
 			if (exists(selElm)) {
-				if (selElm.nodeType == undefined) {
+				if (is.element(selElm)) {
+					selElm.parentNode.removeChild(selElm);
+				} else if (typeof selElm === 'string') {
 					var elements = dom.select(selElm);
-					if (elements !== null) {
-						if (elements.nodeType == undefined) {
-							for (var i = elements.length - 1; i >= 0; i--) {
-								if (elements[i] !== null) {
-									elements[i].parentNode.removeChild(elements[i]);
-								}
+					if (elements.length > 0) {
+						for (var i = elements.length - 1; i >= 0; i--) {
+							if (is.element(elements[i])) {
+								elements[i].parentNode.removeChild(elements[i]);
 							}
-						} else {
-							elements.parentNode.removeChild(elements);
 						}
-					}
-				} else {
-					if (selElm !== null) {
-						selElm.parentNode.removeChild(selElm);
 					}
 				}
 			}
@@ -566,7 +557,7 @@ var Web = (function () {
 				}
 			}
 		},
-		title: document.getElementsByTagName('title')[0],
+		title: (typeof document !== 'undefined') ? document.getElementsByTagName('title')[0] : false,
 		wallpaper: function (selector) {
 			var elements = dom.select(selector);
 			for (var i = elements.length - 1; i >= 0; i--) {
@@ -576,7 +567,7 @@ var Web = (function () {
 				}
 			}
 		},
-		webplateScript: document.getElementById('webplate')
+		webplateScript: (typeof document !== 'undefined') ? document.getElementById('webplate') : false
 	};
 
 	// Events
@@ -610,9 +601,6 @@ var Web = (function () {
 		},
 		index: function (node) {
 			return [].indexOf.call(node.parentNode.children, node);
-		},
-		integers: function (string) {
-			return string.replace(/^\D+ /g, '').replace(/ /g, '');
 		}
 	};
 
@@ -654,6 +642,14 @@ var Web = (function () {
 			}
 
 			return returnArray;
+		},
+		parse: {
+			json: function (json) {
+				if (is.json(json)) {
+					return JSON.parse(json);
+				}
+				return json;
+			}
 		},
 		setDefault: function (setValue, defaultValue) {
 			if (typeof setValue == 'undefined' && typeof defaultValue == 'undefined') {
@@ -709,18 +705,18 @@ var Web = (function () {
 	// Overlay
 	var overlay = {
 		add: function () {
-			var webplateOverlay = document.createElement('div');
-			id.add(webplateOverlay, webPrefix.basic + 'overlay');
-			if (!exists(document.getElementById(webPrefix.basic + 'overlay'))) {
-				dom.body.appendChild(webplateOverlay);
+			var rocketOverlay = document.createElement('div');
+			id.add(rocketOverlay, rocketPrefix.basic + 'overlay');
+			if (!exists(document.getElementById(rocketPrefix.basic + 'overlay'))) {
+				dom.body.appendChild(rocketOverlay);
 			}
 		},
 		hide: function () {
-			classMethods.remove(dom.html, 'web-overlay-reveal');
+			classMethods.remove(dom.html, 'rocket-overlay-reveal');
 		},
 		show: function () {
 			setTimeout(function () {
-				classMethods.add(dom.html, 'web-overlay-reveal');
+				classMethods.add(dom.html, 'rocket-overlay-reveal');
 			}, 50);
 		}
 	};
@@ -749,50 +745,26 @@ var Web = (function () {
 	};
 
 	// Request
-	var parse = {
-		json: function (json) {
-			if (is.json(json)) {
-				return JSON.parse(json);
-			}
-			return json;
-		}
-	};
-	var request = (function () {
-		var defaults = {
-			async: true,
-			data: false,
-			dataForce: false,
-			dataType: 'json',
-			headers: false,
-			onStart: false,
-			onLoading: false,
-			onSuccess: false,
-			onError: false,
-			onEnd: false,
-			timeout: false,
-			type: false,
-			withCredentials: false
-		};
-		var run = function (uOptions) {
+	var request = {
+		run: function (uOptions) {
 			if (!exists(uOptions) || !exists(uOptions.url)) {
 				return false;
 			}
-
 			var options = {
 				url: uOptions.url,
-				async: (typeof uOptions.async === 'string') ? uOptions.async : defaults.async,
-				data: (exists(uOptions.data)) ? uOptions.data : defaults.data,
-				dataForce: (typeof uOptions.dataForce === 'string') ? uOptions.dataForce : defaults.dataForce,
-				dataType: (exists(uOptions.dataType)) ? uOptions.dataType : defaults.dataType,
-				headers: (typeof uOptions.headers === 'object') ? uOptions.headers : defaults.headers,
-				onStart: (typeof uOptions.onStart === 'function') ? uOptions.onStart : defaults.onStart,
-				onLoading: (typeof uOptions.onLoading === 'function') ? uOptions.onLoading : defaults.onLoading,
-				onSuccess: (typeof uOptions.onSuccess === 'function') ? uOptions.onSuccess : defaults.onSuccess,
-				onError: (typeof uOptions.onError === 'function') ? uOptions.onError : defaults.onError,
-				onEnd: (typeof uOptions.onEnd === 'function') ? uOptions.onEnd : defaults.onEnd,
-				timeout: (typeof uOptions.timeout === 'number') ? time.seconds(uOptions.timeout) : defaults.timeout,
-				type: (exists(uOptions.type)) ? string.uppercase.all(uOptions.type) : defaults.type,
-				withCredentials: (typeof uOptions.withCredentials === 'boolean') ? uOptions.withCredentials : defaults.withCredentials
+				async: (typeof uOptions.async === 'string') ? uOptions.async : defaults.request.async,
+				data: (exists(uOptions.data)) ? uOptions.data : defaults.request.data,
+				dataForce: (typeof uOptions.dataForce === 'string') ? uOptions.dataForce : defaults.request.dataForce,
+				dataType: (exists(uOptions.dataType)) ? uOptions.dataType : defaults.request.dataType,
+				headers: (typeof uOptions.headers === 'object') ? uOptions.headers : defaults.request.headers,
+				onStart: (typeof uOptions.onStart === 'function') ? uOptions.onStart : defaults.request.onStart,
+				onLoading: (typeof uOptions.onLoading === 'function') ? uOptions.onLoading : defaults.request.onLoading,
+				onSuccess: (typeof uOptions.onSuccess === 'function') ? uOptions.onSuccess : defaults.request.onSuccess,
+				onError: (typeof uOptions.onError === 'function') ? uOptions.onError : defaults.request.onError,
+				onComplete: (typeof uOptions.onComplete === 'function') ? uOptions.onComplete : defaults.request.onComplete,
+				timeout: (typeof uOptions.timeout === 'number') ? time.seconds(uOptions.timeout) : defaults.request.timeout,
+				type: (exists(uOptions.type)) ? string.uppercase.all(uOptions.type) : defaults.request.type,
+				withCredentials: (typeof uOptions.withCredentials === 'boolean') ? uOptions.withCredentials : defaults.request.withCredentials
 			};
 			var xhr = new XMLHttpRequest();
 			xhr.withCredentials = options.withCredentials;
@@ -816,16 +788,16 @@ var Web = (function () {
 						break;
 
 					case 4:
-						if (options.onEnd) {
-							options.onEnd(this);
+						if (options.onComplete) {
+							options.onComplete(this);
 						}
 						if (this.status >= 200 && this.status < 300) {
 							if (options.onSuccess) {
-								options.onSuccess(parse.json(this.responseText), this.status, xhr.getAllResponseHeaders());
+								options.onSuccess(helper.parse.json(this.responseText), this.status, xhr.getAllResponseHeaders());
 							}
 						} else {
 							if (options.onError) {
-								options.onError(parse.json(this.responseText), this.status, xhr.getAllResponseHeaders());
+								options.onError(helper.parse.json(this.responseText), this.status, xhr.getAllResponseHeaders());
 							}
 						}
 						break;
@@ -889,33 +861,24 @@ var Web = (function () {
 			} else {
 				xhr.send();
 			}
-		};
-		var runDelete = function (uOptions) {
+		},
+		runDelete: function (uOptions) {
 			uOptions.type = 'DELETE';
-			run(uOptions);
-		};
-		var runGet = function (uOptions) {
+			this.run(uOptions);
+		},
+		runGet: function (uOptions) {
 			uOptions.type = 'GET';
-			run(uOptions);
-		};
-		var runPost = function (uOptions) {
+			this.run(uOptions);
+		},
+		runPost: function (uOptions) {
 			uOptions.type = 'POST';
-			run(uOptions);
-		};
-		var runPut = function (uOptions) {
+			this.run(uOptions);
+		},
+		runPut: function (uOptions) {
 			uOptions.type = 'PUT';
-			run(uOptions);
-		};
-
-		return {
-			defaults: defaults,
-			delete: runDelete,
-			get: runGet,
-			post: runPost,
-			put: runPut,
-			run: run
-		};
-	})();
+			this.run(uOptions);
+		}
+	};
 
 	// State
 	var state = {
@@ -923,29 +886,29 @@ var Web = (function () {
 			if (!exists(element)) {
 				return false;
 			}
-			var newWebStates = webState.list.slice().map(function (newState) {
-				return webPrefix.state + newState;
+			var newRocketStates = rocketState.list.slice().map(function (newState) {
+				return rocketPrefix.state + newState;
 			});
-			var stateClass = newWebStates.splice(newWebStates.indexOf(webPrefix.state + state), 1);
-			classMethods.replace(element, newWebStates, stateClass);
+			var stateClass = newrocketStates.splice(newrocketStates.indexOf(rocketPrefix.state + state), 1);
+			classMethods.replace(element, newRocketStates, stateClass);
 		},
 		clear: function (element) {
 			if (!exists(element)) {
 				return false;
 			}
-			var newWebStates = webState.list.slice().map(function (newState) {
-				return webPrefix.state + newState;
+			var newRocketStates = rocketState.list.slice().map(function (newState) {
+				return rocketPrefix.state + newState;
 			});
-			classMethods.remove(element, newWebStates);
+			classMethods.remove(element, newRocketStates);
 		},
 		toggle: function (element, state, clear) {
 			if (!exists(element)) {
 				return false;
 			}
-			if (webState.list.indexOf(state) > -1) {
-				var altState = webState.alts[state] || false;
+			if (rocketState.list.indexOf(state) > -1) {
+				var altState = rocketState.alts[state] || false;
 				var clear = (typeof clear === 'boolean') ? clear : false;
-				var stateClass = webPrefix.state + state;
+				var stateClass = rocketPrefix.state + state;
 				if (has.class(element, stateClass)) {
 					if (clear || altState === false) {
 						this.clear(element);
@@ -961,94 +924,83 @@ var Web = (function () {
 
 	// Storage
 	var storage = {
-		engine: {
-			name: 'web-store',
-			type: 'session'
-		},
 		add: function (name, value) {
 			if (!exists(name) || !exists(value)) {
 				return false;
 			}
-			var thisEngine = this.engine;
-			var storage = false;
-			switch (thisEngine.type) {
+			var store = storage.getStorageEngine();
+
+			store[name] = value;
+			switch (defaults.storage.type) {
 				case 'local':
-					storage = localStorage.getItem(thisEngine.name);
+					localStorage.setItem(defaults.storage.name, JSON.stringify(store));
 					break;
 
 				case 'session':
-					storage = sessionStorage.getItem(thisEngine.name);
-					break;
-			}
-			if (storage) {
-				storage = JSON.parse(storage);
-			} else {
-				storage = {};
-			}
-			storage[name] = value;
-			switch (thisEngine.type) {
-				case 'local':
-					localStorage.setItem(thisEngine.name, JSON.stringify(storage));
-					break;
-
-				case 'session':
-					sessionStorage.setItem(thisEngine.name, JSON.stringify(storage));
+					sessionStorage.setItem(defaults.storage.name, JSON.stringify(store));
 					break;
 			}
 		},
 		clear: function () {
-			localStorage.removeItem(this.engine.name);
-			sessionStorage.removeItem(this.engine.name);
+			if (defaults.storage.name !== false) {
+				localStorage.removeItem(defaults.storage.name);
+				sessionStorage.removeItem(defaults.storage.name);
+			}
 		},
-		get: function (name) {
-			if (!exists(name)) {
+		get: function (key) {
+			if (!exists(key)) {
 				return false;
 			}
-			var thisEngine = this.engine;
-			var storage = false;
-			switch (thisEngine.type) {
+			var store = storage.getStorageEngine();
+			// Catch
+			if (!exists(store[key])) {
+				return false;
+			}
+			// Continue
+			return store[key];
+		},
+		getStorageEngine: function () {
+			// Catch
+			if (!defaults.storage.name) {
+				log('ROCKET: You have not set the storage name. Provide a name for [Rocket].defaults.storage.name.', true);
+				return false;
+			}
+			// Continue
+			var store;
+			switch (defaults.storage.type) {
 				case 'local':
-					storage = localStorage.getItem(thisEngine.name);
+					store = localStorage.getItem(defaults.storage.name);
 					break;
 
 				case 'session':
-					storage = sessionStorage.getItem(thisEngine.name);
+					store = sessionStorage.getItem(defaults.storage.name);
 					break;
 			}
-			if (storage) {
-				storage = JSON.parse(storage);
-				return storage[name];
-			} else {
-				return false;
+			// Return
+			if (store) {
+				return helper.parse.json(store);
 			}
+			return {};
 		},
-		remove: function (name) {
-			if (!exists(name)) {
+		remove: function (key) {
+			if (!exists(key)) {
 				return false;
 			}
-			var thisEngine = this.engine;
-			var storage = false;
-			switch (thisEngine.type) {
+			var store = storage.getStorageEngine();
+			// Catch
+			if (!exists(store[key])) {
+				return false;
+			}
+			// Continue
+			delete store[key];
+			switch (defaults.storage.type) {
 				case 'local':
-					storage = localStorage.getItem(thisEngine.name);
+					localStorage.setItem(defaults.storage.name, JSON.stringify(store));
 					break;
 
 				case 'session':
-					storage = sessionStorage.getItem(thisEngine.name);
+					sessionStorage.setItem(defaults.storage.name, JSON.stringify(store));
 					break;
-			}
-			if (storage) {
-				storage = JSON.parse(storage);
-				delete storage[name];
-				switch (thisEngine.type) {
-					case 'local':
-						localStorage.setItem(thisEngine.name, JSON.stringify(storage));
-						break;
-
-					case 'session':
-						sessionStorage.setItem(thisEngine.name, JSON.stringify(storage));
-						break;
-				}
 			}
 		}
 	};
@@ -1111,18 +1063,32 @@ var Web = (function () {
 	var time = {
 		basic: function (thisTime) {
 			var thisTime = date.transform(thisTime);
-			return thisTime.getHours() + ':' + thisTime.getMinutes();
+			var hours = time.leadingZero(thisTime.getHours());
+			var minutes = time.leadingZero(thisTime.getMinutes());
+			return hours + ':' + minutes;
 		},
 		exact: function (thisTime) {
 			var thisTime = date.transform(thisTime);
-			return thisTime.getHours() + ':' + thisTime.getMinutes() + ':' + thisTime.getSeconds() + ':' + thisTime.getMilliseconds();
+			var hours =  time.leadingZero(thisTime.getHours());
+			var minutes =  time.leadingZero(thisTime.getMinutes());
+			var seconds =  time.leadingZero(thisTime.getSeconds());
+			var milliseconds =  time.leadingZero(thisTime.getMilliseconds());
+
+			return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
 		},
 		full: function (thisTime) {
 			var thisTime = date.transform(thisTime);
-			return thisTime.getHours() + ':' + thisTime.getMinutes() + ':' + thisTime.getSeconds();
+			var hours = time.leadingZero(thisTime.getHours());
+			var minutes = time.leadingZero(thisTime.getMinutes());
+			var seconds = time.leadingZero(thisTime.getSeconds());
+
+			return hours + ':' + minutes + ':' + seconds;
 		},
 		hours: function (hours) {
 			return hours * 60 * 60 * 1000;
+		},
+		leadingZero: function (int) {
+			return ((int < 10) ? '0' : '') + int;
 		},
 		minutes: function (minutes) {
 			return minutes * 60 * 1000;
@@ -1133,56 +1099,74 @@ var Web = (function () {
 	};
 
 	// URL
-	var url = function (ret) {
-		var ret = (typeof ret === 'string') ? ret : 'all';
-		var windowLocation = window.location;
-		var fullUrl = windowLocation.href;
+	var url = {
+		all: function () {
+			var windowLocation = window.location;
+			var fullUrl = windowLocation.href;
 
-		var currentUrl = fullUrl.split('#')[0];
-		var hash = windowLocation.hash.substring(1);
-		var host = windowLocation.host;
-		var protocol = windowLocation.protocol + '//';
+			var currentUrl = fullUrl.split('#')[0];
+			var hash = windowLocation.hash.substring(1);
+			var host = windowLocation.host;
+			var protocol = windowLocation.protocol + '//';
 
-		var baseUrl = '';
-		if (document.getElementsByTagName('base').length > 0) {
-			baseUrl = document.getElementsByTagName('base')[0].href;
-		} else {
-			baseUrl = protocol + host;
-		}
-		var pathname = windowLocation.pathname;
-		var segments = [];
-		var pathnameSplit = pathname.split('/');
-		for (var i = 0, len = pathnameSplit.length; i < len; i++) {
-			if (pathnameSplit[i].indexOf('.') < 0 && pathnameSplit[i] != '') {
-				segments.push(pathnameSplit[i]);
+			var baseUrl = '';
+			if (document.getElementsByTagName('base').length > 0) {
+				baseUrl = document.getElementsByTagName('base')[0].href;
+			} else {
+				baseUrl = protocol + host;
 			}
-		}
+			var pathname = windowLocation.pathname;
+			var segments = [];
+			var pathnameSplit = pathname.split('/');
+			for (var i = 0, len = pathnameSplit.length; i < len; i++) {
+				if (pathnameSplit[i].indexOf('.') < 0 && pathnameSplit[i] != '') {
+					segments.push(pathnameSplit[i]);
+				}
+			}
 
-		var objUrl = {
-			baseUrl: baseUrl,
-			currentUrl: currentUrl,
-			fullUrl: fullUrl,
-			hash: hash,
-			host: host,
-			pathname: pathname,
-			protocol: protocol,
-			segments: segments
-		};
-
-		if (ret === 'all') {
-			return objUrl;
-		} else {
-			return objUrl[ret];
+			return {
+				base: baseUrl,
+				current: currentUrl,
+				full: fullUrl,
+				hash: hash,
+				host: host,
+				pathname: pathname,
+				protocol: protocol,
+				segments: segments
+			};
+		},
+		base: function () {
+			return url.all().base;
+		},
+		current: function () {
+			return url.all().current;
+		},
+		full: function () {
+			return url.all().full;
+		},
+		hash: function () {
+			return url.all().hash;
+		},
+		host: function () {
+			return url.all().host;
+		},
+		pathname: function () {
+			return url.all().pathname;
+		},
+		protocol: function () {
+			return url.all().protocol;
+		},
+		segments: function () {
+			return url.all().segments;
 		}
 	};
 
 	// Return
 	return  {
+		defaults: defaults,
 		exists: exists,
 		has: has,
 		is: is,
-		date: date,
-		log: log,
 		class: {
 			add: classMethods.add,
 			clear: classMethods.clear,
@@ -1191,29 +1175,32 @@ var Web = (function () {
 			toggle: classMethods.toggle
 		},
 		clone: clone,
+		date: date,
 		dom: dom,
 		event: eventMethods,
+		log: log,
 		get: get,
 		helper: helper,
 		id: id,
 		input: input,
 		state: state,
-		parse: parse,
-		request: request,
-		storage: storage,
+		request: {
+			run: request.run,
+			delete: request.runDelete,
+			get: request.runGet,
+			post: request.runPost,
+			put: request.runPut
+		},
+		storage: {
+			add: storage.add,
+			clear: storage.clear,
+			get: storage.get,
+			remove: storage.remove
+		},
 		string: string,
 		random: random,
 		time: time,
 		url: url,
-		overlay: overlay,
-		button: button,
-		flicker: flicker,
-		form: form,
-		injectplateExecute: injectplateExecute,
-		loader: loader,
-		menu: menu,
-		message: message,
-		modal: modal,
-		tab: tab
+		overlay: overlay
 	};
 })();
