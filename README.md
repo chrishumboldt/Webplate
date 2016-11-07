@@ -22,7 +22,7 @@ Simply drop the Rocket directory into your project and include the start.js file
 The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
 #### Cockpit File Loading
-All web projects include a combination of CSS and Javascript and Rocket makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>rocket/cockpit.json</b>. Below is an example of what you might typically see.
+All projects include a combination of CSS and Javascript and Rocket makes it super easy to load these using a simple configuration file. You can find this file at <b>rocket/cockpit.json</b>. Below is a basic example.
 
 ```json
 {
