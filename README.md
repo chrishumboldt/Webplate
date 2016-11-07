@@ -6,7 +6,7 @@ Rocket is an configuration based front-end framework that lets you stay focused 
    * [Page Loader](#page-loader)
 * [Go Into Orbit](#go-into-orbit)
 * [Command-line Tool](#command-line-tool)
-* [Migration](#migration)
+* [Webplate Migration](#webplate-migration)
 * [Documentation](#documentation)
 
 ## Launching
@@ -59,8 +59,8 @@ One of the best features of Rocket is the command-line tool. It will make buildi
 
 https://github.com/chrishumboldt/Rocket-Command
 
-## Migration
-While version 4 has many of the same core features as version 3, it is not recommended that you try and migrate. Version 4 has many philosophical and developmental differences, from the the altered Web namespace to the build tools. Version 3 will however be branched and maintained for bug fixes.
+## Webplate Migration
+While Webplate has many of the same core features as Rocket, it is not recommended that you try and migrate. Rocket has many philosophical and developmental differences, from the the altered Rocket namespace to the build tools. Webplate will however be branched and maintained for bug fixes.
 
 If you wish to attempt a migration do so only for smaller projects as for larger projects it would be not be wise, even though it is technically possible.
 
