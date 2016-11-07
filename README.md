@@ -1,5 +1,5 @@
 # Rocket Framework
-Rocket is an configuration based front-end framework that lets you stay focused on building your site or app all the while remaining really easy to use.
+Rocket is an configuration based front-end framework that lets you stay focused on building.
 
 * [Getting Started](#getting-started)
    * [Load Project Files](#load-project-files)
@@ -10,7 +10,7 @@ Rocket is an configuration based front-end framework that lets you stay focused 
 * [Documentation](#documentation)
 
 ## Getting Started
-Simply drop the Rocket directory into your web project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
+Simply drop the Rocket directory into your project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
 
 ```html
 <body style="display:none;">
