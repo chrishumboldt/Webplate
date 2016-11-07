@@ -1,15 +1,15 @@
 # Rocket Framework
 Rocket is an configuration based front-end framework that lets you stay focused on building.
 
-* [Getting Started](#getting-started)
-   * [Load Project Files](#load-project-files)
-   * [Simple Page Loader](#simple-page-loader)
-* [Go To The Next Level](#go-to-the-next-level)
+* [Launching](#launching)
+   * [Cockpit File Loading](#cockpit-file-loading)
+   * [Page Loader](#page-loader)
+* [Go Into Orbit](#go-into-orbit)
 * [Command-line Tool](#command-line-tool)
 * [Migration](#migration)
 * [Documentation](#documentation)
 
-## Getting Started
+## Launching
 Simply drop the Rocket directory into your project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
 
 ```html
@@ -21,7 +21,7 @@ Simply drop the Rocket directory into your project and include the start.js file
 
 The body tag style attribute is used to prevent CSS style snapping on load and is highly recommended.
 
-#### Load Project Files
+#### Cockpit File Loading
 All web projects include a combination of CSS and Javascript and Rocket makes it incredibly easy to load these using a simple configuration file. You can find this file at <b>rocket/cockpit.json</b>. Below is an example of what you might typically see.
 
 ```json
@@ -35,7 +35,7 @@ All web projects include a combination of CSS and Javascript and Rocket makes it
 
 You will notice that a comma delimited list allows you to load more than one file and that the Rocket path is not required. This is because Rocket automatically knows where to look inside the project directory. You can also load different files on different pages.
 
-#### Simple Page Loader
+#### Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id **rocket-content**. See an example below.
 
 ```html
@@ -49,7 +49,7 @@ If you would like a page loader to display while your project files load, simply
 
 **Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
 
-## Go To The Next Level
+## Go Into Orbit
 Before you have even started, Rocket has already loaded up Modernizr, Normalize.css, Typeplate, Velocity.js and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
 
 This will get you up and running for most projects but if you want to delve into Rocket's automatic Bower and SASS integration then just read over some of the [online documentation](http://getrocket.com/documentation) and become a bonafide pro.
