@@ -23,9 +23,9 @@ $min-max: false !default;
 $font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 // Components
-@import "../../node_modules/rocket-propel/build/sass/import";
-@import "../../node_modules/rocket-button/build/sass/import";
-@import "../../node_modules/rocket-flicker/build/sass/import";
+@import "../../component/rocket-propel/build/sass/import";
+@import "../../component/rocket-button/build/sass/import";
+@import "../../component/rocket-flicker/build/sass/import";
 
 // Overwrites
 @import "overwrite";
