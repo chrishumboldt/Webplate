@@ -6,12 +6,26 @@
  * Author: Chris Humboldt
 **/
 
-var Rocket = (function () {
+var RocketTools = (function () {
 	// Defaults
 	var defaults = {
+		button: {
+			selector: '.button'
+		},
 		extensions: {
 			all: ['png', 'jpg', 'jpeg', 'json', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'],
 			images: ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png']
+		},
+		flicker: {
+			selector: '.flicker',
+			animation: 'transform-slide',
+			arrows: true,
+			arrowsConstraint: false,
+			autoFlick: true,
+			autoFlickDelay: 10,
+			dotAlignment: 'center',
+			dots: true,
+			position: 1,
 		},
 		log: true,
 		regexp: {
@@ -520,7 +534,7 @@ var Rocket = (function () {
 
 	// Development
 	var log = function (text, error) {
-		if (window && window.console && defaults.log) {
+		if (defaults.log) {
 			var error = (typeof error === 'boolean') ? error : false;
 
 			if (error) {

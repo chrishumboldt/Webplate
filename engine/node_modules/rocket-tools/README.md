@@ -30,10 +30,10 @@ The Rocket Tools library is a lightweight (16 KB) set of Javascript methods for 
 	* [URL](#url)
 
 ## Getting Started
-You can either download a copy of the source files or install Rocket Tools via Bower.
+You can either download a copy of the [source files](https://github.com/chrishumboldt/Rocket-Tools/archive/master.zip) or install Rocket Tools via NPM.
 
 ```
-bower install rocket-tools
+npm install rocket-tools
 ```
 
 Next include the required Javascript file.
@@ -46,7 +46,7 @@ Next include the required Javascript file.
 ```
 
 ## Getting Started With NPM
-If you instead wish to use Rocket Tools as a Node module simply install using the following command.
+If you instead wish to use Rocket Tools as a Node module then just require as show below.
 
 ```
 npm install rocket-tools

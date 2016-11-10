@@ -190,13 +190,13 @@
 	var rocketContent = document.getElementById('rocket-content');
 	// Paths
 	var path = {
+		component: pathRoot + 'node_modules/',
 		config: pathRoot + 'cockpit.json',
 		engine: {
 			css: pathRoot + 'engine/css/',
 			js: pathRoot + 'engine/js/'
 		},
 		project: {
-			component: pathRoot + 'project/component/',
 			css: pathRoot + 'project/css/',
 			iconFont: {
 				fontAwesome: pathRoot + 'project/font-awesome/css/font-awesome.min.css',
@@ -214,8 +214,8 @@
 		},
 		project: {
 			allowedFileTypes: ['css', 'js'],
-			componentsFirst: [],
-			components: [],
+			componentFirst: [],
+			component: [],
 			css: [],
 			js: [],
 			iconFont: false
@@ -302,31 +302,31 @@
 		loadProject: function () {
 			core.setProjectFileLoads();
 			core.loadIconFont();
-			if (load.project.componentsFirst.length > 0) {
+			if (load.project.componentFirst.length > 0) {
 				core.loadProjectComponentsFirst();
-			} else if (load.project.components.length > 0) {
+			} else if (load.project.component.length > 0) {
 				core.loadProjectComponents();
 			} else {
 				core.loadProjectFiles();
 			}
 		},
 		loadProjectComponent: function (component, callback) {
-			core.getJSON(path.project.component + component + '/rocket.json', function (error, json) {
+			core.getJSON(path.component + component + '/package.json', function (error, json) {
 				// Catch
-				if (error) {
+				if (error || typeof json.rocket !== 'object') {
 					return callback(false);
 				}
 				// Load
 				var loadFiles = [];
-				if (typeof json.files === 'object') {
-					for (var i = 0, len = json.files.length; i < len; i++) {
-						if (core.checkProjectExtension(json.files[i])) {
-						   loadFiles.push(path.project.component + component + '/' + json.files[i]);
+				if (typeof json.rocket.production === 'object') {
+					for (var i = 0, len = json.rocket.production.length; i < len; i++) {
+						if (core.checkProjectExtension(json.rocket.production[i])) {
+						   loadFiles.push(path.component + component + '/' + json.rocket.production[i]);
 						}
 					}
 				} else {
-					if (core.checkProjectExtension(json.files)) {
-						loadFiles.push(path.project.component + component + '/' + json.files);
+					if (core.checkProjectExtension(json.rocket.production)) {
+						loadFiles.push(path.component + component + '/' + json.rocket.production);
 					}
 				}
 				// Another catch
@@ -342,9 +342,9 @@
 			});
 		},
 		loadProjectComponents: function () {
-			var loadCheck = load.project.components.length;
-			for (var i = 0, len = load.project.components.length; i < len; i++) {
-			   core.loadProjectComponent(load.project.components[i], function () {
+			var loadCheck = load.project.component.length;
+			for (var i = 0, len = load.project.component.length; i < len; i++) {
+			   core.loadProjectComponent(load.project.component[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
 						core.log('Rocket: Components load...successful');
@@ -354,13 +354,13 @@
 			}
 		},
 		loadProjectComponentsFirst: function () {
-			var loadCheck = load.project.componentsFirst.length;
-			for (var i = 0, len = load.project.componentsFirst.length; i < len; i++) {
-			   core.loadProjectComponent(load.project.componentsFirst[i], function () {
+			var loadCheck = load.project.componentFirst.length;
+			for (var i = 0, len = load.project.componentFirst.length; i < len; i++) {
+			   core.loadProjectComponent(load.project.componentFirst[i], function () {
 					loadCheck--;
 					if (loadCheck === 0) {
 						core.log('Rocket: Components first load...successful');
-						if (load.project.components.length > 0) {
+						if (load.project.component.length > 0) {
 							core.loadProjectComponents();
 						} else {
 							core.loadProjectFiles();
@@ -441,8 +441,8 @@
 			var urlData = Rocket.url.all();
 
 			// Root config
-			load.project.componentsFirst = Rocket.helper.setDefault(config.project.componentsFirst, []);
-			load.project.components = Rocket.helper.setDefault(config.project.components, []);
+			load.project.componentFirst = Rocket.helper.setDefault(config.project.componentFirst, []);
+			load.project.component = Rocket.helper.setDefault(config.project.component, []);
 			load.project.css = Rocket.helper.setDefault(config.project.css, []);
 			load.project.js = Rocket.helper.setDefault(config.project.js, []);
 			load.project.iconFont = Rocket.helper.setDefault(config.project.iconFont);
@@ -466,17 +466,17 @@
 						load.project.iconFont = Rocket.helper.setDefault(page.iconFont, load.project.iconFont);
 						if (page.overwrite === true) {
 							// Overwrite
-							load.project.componentsFirst = Rocket.helper.setDefault(page.componentsFirst, []);
-							load.project.components = Rocket.helper.setDefault(page.components, []);
+							load.project.componentFirst = Rocket.helper.setDefault(page.componentFirst, []);
+							load.project.component = Rocket.helper.setDefault(page.component, []);
 							load.project.css = Rocket.helper.setDefault(page.css, []);
 							load.project.js = Rocket.helper.setDefault(page.js, []);
 						} else {
 							// Merge
-							if (Array.isArray(page.componentsFirst)) {
-								load.project.componentsFirst = load.project.componentsFirst.concat(page.componentsFirst);
+							if (Array.isArray(page.componentFirst)) {
+								load.project.componentFirst = load.project.componentFirst.concat(page.componentFirst);
 							}
-							if (Array.isArray(page.components)) {
-								load.project.components = load.project.components.concat(page.components);
+							if (Array.isArray(page.component)) {
+								load.project.component = load.project.component.concat(page.component);
 							}
 							if (Array.isArray(page.css)) {
 								load.project.css = load.project.css.concat(page.css);
