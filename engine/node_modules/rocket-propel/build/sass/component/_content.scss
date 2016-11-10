@@ -1,0 +1,89 @@
+/**
+ * File: build/sass/component/_content.scss
+ * Type: SASS component file
+ * Author: Chris Humboldt
+**/
+
+ @mixin content($size: base) {
+ 	@if $size == base {
+ 		@include padding-horizontal($space-minor);
+ 	   @include padding-vertical($space-base);
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding-horizontal($space-base);
+ 			@include padding-vertical($space-slight);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-horizontal($space-slight);
+ 	      @include padding-vertical($space-medium);
+ 	   }
+ 	} @else if $size == flush {
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding($space-base);
+ 	   }
+ 	   @include breakpoint(large) {
+ 	      @include padding-vertical($space-slight);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-horizontal($space-slight);
+ 	      @include padding-vertical($space-medium);
+ 	   }
+ 	} @else if $size == small {
+ 		@include padding-horizontal($space-x-small);
+ 	   @include padding-vertical($space-small);
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding-horizontal($space-small);
+ 	   }
+ 	   @include breakpoint(large) {
+ 	      @include padding-vertical($space-minor);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-horizontal($space-minor);
+ 	      @include padding-vertical($space-base);
+ 	   }
+ 	} @else if $size == minor {
+ 		@include padding-horizontal($space-small);
+ 	   @include padding-vertical($space-minor);
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding-horizontal($space-minor);
+ 	   }
+ 	   @include breakpoint(large) {
+ 	      @include padding-vertical($space-base);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-horizontal($space-base);
+ 	      @include padding-vertical($space-slight);
+ 	   }
+ 	} @else if $size == medium {
+ 		@include padding-horizontal($space-minor);
+ 	   @include padding-vertical($space-base);
+ 		@include breakpoint($bp-small) {
+ 			@include padding-vertical($space-slight);
+ 	   }
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding-horizontal($space-base);
+ 	   }
+ 	   @include breakpoint(large) {
+ 	      @include padding-vertical($space-medium);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-horizontal($space-slight);
+ 	      @include padding-vertical($space-large);
+ 	   }
+ 	} @else if $size == large {
+ 		@include padding-horizontal($space-minor);
+ 	   @include padding-vertical($space-base);
+ 		@include breakpoint($bp-small) {
+ 			@include padding-vertical($space-slight);
+ 	   }
+ 	   @include breakpoint($bp-medium) {
+ 			@include padding-horizontal($space-slight);
+ 			@include padding-vertical($space-medium);
+ 	   }
+ 	   @include breakpoint(large) {
+ 	      @include padding-vertical($space-large);
+ 	   }
+ 	   @include breakpoint($bp-x-large) {
+ 	      @include padding-vertical($space-x-large);
+ 	   }
+ 	}
+ }

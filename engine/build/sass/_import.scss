@@ -6,8 +6,8 @@
 
 // Table of contents
 // Variables
-// Map variables
 // Components
+// Overwrites
 
 // Variables
 $limit-width: 75em !default;
@@ -23,13 +23,15 @@ $min-max: false !default;
 $font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
 // Components
-@import "../../component/blueplate/sass/import";
+// @import "../../component/blueplate/sass/import";
+// @import "../../component/buttonplate/sass/import";
+// @import "../../component/flickerplate/sass/import";
+// @import "../../component/formplate/sass/import";
+// @import "../../component/loaderplate/sass/import";
+// @import "../../component/menuplate/sass/import";
+// @import "../../component/messageplate/sass/import";
+// @import "../../component/modalplate/sass/import";
+// @import "../../component/tabplate/sass/import";
 
-@import "../../component/buttonplate/sass/import";
-@import "../../component/flickerplate/sass/import";
-@import "../../component/formplate/sass/import";
-@import "../../component/loaderplate/sass/import";
-@import "../../component/menuplate/sass/import";
-@import "../../component/messageplate/sass/import";
-@import "../../component/modalplate/sass/import";
-@import "../../component/tabplate/sass/import";
+// Overwrites
+@import "overwrite";

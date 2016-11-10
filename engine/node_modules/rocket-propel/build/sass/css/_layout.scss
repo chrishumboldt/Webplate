@@ -1,0 +1,82 @@
+/**
+ * File: build/sass/css/_layout.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+@mixin propel-layout() {
+	._float-no {
+		@include float-no();
+	}
+	._float-l {
+		@include float(left);
+	}
+	._float-r {
+		@include float(right);
+	}
+	._float-clear {
+		@include float-clear();
+	}
+	._center {
+		@include center();
+	}
+	._center-v {
+		@include center-v();
+	}
+	._valign-t {
+		@include vertical-align(top);
+	}
+	._valign-m {
+		@include vertical-align(middle);
+	}
+	._valign-b {
+		@include vertical-align(bottom);
+	}
+	// Content
+	._content {
+		@include content();
+	}
+	._content-flush {
+		@include content(flush);
+	}
+	._content-small {
+		@include content(small);
+	}
+	._content-minor {
+		@include content(minor);
+	}
+	._content-medium {
+		@include content(medium);
+	}
+	._content-large {
+		@include content(large);
+	}
+	// Limit
+	._limit,
+	._limit-x2-small,
+	._limit-x-small,
+	._limit-small,
+	._limit-minor,
+	._limit-medium,
+	._limit-large {
+		@include limit();
+	}
+	._limit-x2-small {
+		@include width-max(25em);
+	}
+	._limit-x-small {
+		@include width-max(40em);
+	}
+	._limit-small {
+		@include width-max(54em);
+	}
+	._limit-minor {
+		@include width-max(60em);
+	}
+	._limit-medium {
+		@include width-max(80em);
+	}
+	._limit-large {
+		@include width-max(90em);
+	}
+}

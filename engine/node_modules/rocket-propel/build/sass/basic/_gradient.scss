@@ -1,0 +1,134 @@
+/**
+ * File: build/sass/basic/_gradient.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+**/
+
+// Table of contents
+// Animated gradients
+// Gradients
+
+// Animated gradients
+@mixin gradient-animate-angle($top-left-colour, $bottom-right-colour) {
+   @include gradient-animate($top-left-colour, $bottom-right-colour, 135deg);
+}
+@mixin gradient-animate-h($left-colour, $right-colour) {
+   @include gradient-animate(left, $left-colour, $right-colour);
+}
+@mixin gradient-animate-v($top-colour, $bottom-colour) {
+   @include gradient-animate(top, $left-colour, $right-colour);
+}
+// Will be deprecated soon!
+@mixin gradient-animate-horizontal($left-colour, $right-colour) {
+   @include gradient-animate(left, $left-colour, $right-colour);
+}
+@mixin gradient-animate-vertical($top-colour, $bottom-colour) {
+   @include gradient-animate(top, $left-colour, $right-colour);
+}
+// End
+@mixin gradient-animate($colour-1, $colour-2, $angle) {
+   @if $angle != top {
+      background: linear-gradient($angle, $colour-1, $colour-2);
+   }
+   @else {
+      background: linear-gradient($colour-1, $colour-2);
+   }
+   background-size: 400% 400%;
+   -webkit-animation: GradientAnimation 30s ease infinite;
+   -moz-animation: GradientAnimation 30s ease infinite;
+   animation: GradientAnimation 30s ease infinite;
+   @-webkit-keyframes GradientAnimation {
+      0% {
+         background-position: 0 91%;
+      }
+      50% {
+         background-position: 100% 10%;
+      }
+      100% {
+         background-position: 0 91%;
+      }
+   }
+   @-moz-keyframes GradientAnimation {
+      0% {
+         background-position: 0 91%;
+      }
+      50% {
+         background-position: 100% 10%;
+      }
+      100% {
+         background-position: 0 91%;
+      }
+   }
+   @keyframes GradientAnimation {
+      0% {
+         background-position: 0 91%;
+      }
+      50% {
+         background-position: 100% 10%;
+      }
+      100% {
+         background-position: 0 91%;
+      }
+   }
+}
+@mixin gradient-animate-no() {
+   background: none !important;
+   background-size: auto;
+   -webkit-animation: none;
+   -moz-animation: none;
+   animation: none;
+}
+// Gradients
+@mixin gradient-angle($left-colour, $right-colour, $angle: -45deg) {
+   background: $left-colour;
+   /* Fallback solid color for old browsers */
+   background: linear-gradient($angle, $left-colour 0%, $right-colour 100%);
+   /* W3C */
+   background: -moz-linear-gradient($angle, $left-colour 0%, $right-colour 100%);
+   /* FF 3.6+ */
+   background: -ms-linear-gradient($angle, $left-colour 0%, $right-colour 100%);
+   /* IE 10+ */
+   background: -o-linear-gradient($angle, $left-colour 0%, $right-colour 100%);
+   /* Opera 11.10+ */
+   background: -webkit-linear-gradient($angle, $left-colour 0%, $right-colour 100%);
+   /* Chrome 10+, Safari 5.1+ */
+}
+@mixin gradient-h($left-colour, $right-colour) {
+   background: $left-colour;
+   /* Fallback solid color for old browsers */
+   background: linear-gradient(top right, $left-colour 0%, $right-colour 100%);
+   /* W3C */
+   background: -moz-linear-gradient(left, $left-colour 0%, $right-colour 100%);
+   /* FF 3.6+ */
+   background: -ms-linear-gradient(left, $left-colour 0%, $right-colour 100%);
+   /* IE 10+ */
+   background: -o-linear-gradient(left, $left-colour 0%, $right-colour 100%);
+   /* Opera 11.10+ */
+   background: -webkit-linear-gradient(left, $left-colour 0%, $right-colour 100%);
+   /* Chrome 10+, Safari 5.1+ */
+}
+@mixin gradient-v($top-colour, $bottom-colour) {
+   background: $top-colour;
+   /* Fallback solid color for old browsers */
+   background: linear-gradient(to bottom, $top-colour 0%, $bottom-colour 100%);
+   /* W3C */
+   background: -moz-linear-gradient(top, $top-colour 0%, $bottom-colour 100%);
+   /* FF 3.6+ */
+   background: -ms-linear-gradient(top, $top-colour 0%, $bottom-colour 100%);
+   /* IE 10+ */
+   background: -o-linear-gradient(top, $top-colour 0%, $bottom-colour 100%);
+   /* Opera 11.10+ */
+   background: -webkit-linear-gradient(top, $top-colour 0%, $bottom-colour 100%);
+   /* Chrome 10+, Safari 5.1+ */
+}
+@mixin gradient-no() {
+   background: none !important;
+}
+// Will be deprecated soon!
+@mixin gradient-horizontal($left-colour, $right-colour) {
+	@include gradient-h($left-colour, $right-colour);
+}
+@mixin gradient-vertical($top-colour, $bottom-colour) {
+	@include gradient-v($top-colour, $bottom-colour);
+}
+// End

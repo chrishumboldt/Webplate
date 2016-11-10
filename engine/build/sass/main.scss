@@ -5,18 +5,10 @@
 **/
 
 @import "import";
-
+// Setup
 @import "setup/normalize";
 @import "setup/typeplate";
 @import "setup/setup";
 @import "setup/text";
-
-@import "component/button";
-@import "component/flicker";
-@import "component/form";
-@import "component/layout";
-@import "component/loader";
-@import "component/menu";
-@import "component/message";
-@import "component/modal";
-@import "component/tab";
+// Component CSS
+// @import "component-css";

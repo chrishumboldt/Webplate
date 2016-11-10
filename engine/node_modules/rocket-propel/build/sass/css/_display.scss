@@ -1,0 +1,55 @@
+/**
+ * File: build/sass/css/_display.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+// Display classes
+@mixin propel-display() {
+	._show {
+		@include show();
+	}
+	._hide {
+		@include hide();
+	}
+	._hide-visually {
+		@include hide-visually();
+	}
+	._opacity-100 {
+		@include opacity(1);
+	}
+	._opacity-75 {
+		@include opacity(0.75);
+	}
+	._opacity-50 {
+		@include opacity(0.5);
+	}
+	._opacity-25 {
+		@include opacity(0.25);
+	}
+	._opacity-0 {
+		@include opacity(0);
+	}
+	@include breakpoint(large) {
+		._show-small {
+			@include hide();
+		}
+		._show-large {
+			@include show();
+		}
+		._hide-large {
+			@include hide();
+		}
+	}
+	@include breakpoint(small) {
+		._show-small {
+			@include show();
+		}
+		._hide-small {
+			@include hide();
+		}
+		._show-large {
+			@include hide();
+		}
+	}
+}
