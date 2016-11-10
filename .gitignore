@@ -42,7 +42,7 @@ engine/.sass-cache
 
 # Files to ignore
 test.html
-project/build/sass/test.scss
-project/css/test.min.css
-project/build/js/test.js
-project/js/test.min.js
+build/sass/test.scss
+css/test.min.css
+build/js/test.js
+js/test.min.js

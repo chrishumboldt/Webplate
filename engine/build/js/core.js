@@ -186,7 +186,7 @@
 
 	// Variables
 	var config = false;
-	var pathRoot = document.getElementById('rocket').getAttribute('src').replace('start.js', '');
+	var pathRoot = document.getElementById('rocket').getAttribute('src').replace('launch.js', '');
 	var rocketContent = document.getElementById('rocket-content');
 	// Paths
 	var path = {
@@ -511,7 +511,7 @@
 			core.getJSON(path.config, function (error, json) {
 				// Error catch
 				if (error) {
-					core.log('Rocket: Not initialised because the cockpit.json file was not found.');
+					throw new Error('Rocket: Not initialised because the cockpit.json file was not found.');
 					return false;
 				}
 				// Set the config variable

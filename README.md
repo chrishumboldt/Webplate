@@ -10,12 +10,12 @@ Rocket is an configuration based front-end framework that lets you stay focused 
 * [Documentation](#documentation)
 
 ## Launching
-Simply drop the Rocket directory into your project and include the start.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
+Simply drop the Rocket directory into your project and include the launch.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
 
 ```html
 <body style="display:none;">
     /* Your content goes here */
-    <script id="rocket" src="rocket/start.js"></script>
+    <script id="rocket" src="rocket/launch.js"></script>
 </body>
 ```
 
@@ -43,7 +43,7 @@ If you would like a page loader to display while your project files load, simply
     <div id="rocket-content" style="display:none;">
         /* Your content goes here */
     </div>
-    <script id="rocket" src="rocket/start.js"></script>
+    <script id="rocket" src="rocket/launch.js"></script>
 </body>
 ```
 
