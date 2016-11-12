@@ -1,0 +1,107 @@
+/**
+ * File: build/sass/component/_textarea.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+**/
+
+// Table of contents
+// Textarea
+// Styles
+// Textarea colour states
+
+// Textarea
+@mixin rocket-form-textarea($type: all) {
+	.rf-text {
+		@include position(relative);
+		textarea {
+			@include size(100%, 114px);
+			@include padding(14px);
+			@include margin(0px);
+			@include margin-bottom(1.5em);
+			@include text-font($font-family);
+			@include text-size(13px);
+			@include background-colour($white);
+			@include border($white);
+			@include level(1);
+			@include animate(all);
+			line-height: normal;
+			outline: none;
+			-webkit-appearance: none;
+			&:focus {
+				@include level(2);
+			}
+			@include breakpoint(large) {
+				@include text-size(14px);
+			}
+		}
+	}
+	@include form-textarea-styles($type);
+	@include form-textarea-states();
+}
+
+// Styles
+@mixin form-textarea-styles($type: all) {
+	@if $type == line {
+		.rf-text._s-line textarea {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+	} @else if $type == flat {
+		.rf-text._s-flat textarea {
+			@include background-colour($grey-x-light);
+			@include border($grey-x-light);
+			&:focus {
+				@include border($grey-light);
+			}
+		}
+	} @else if $type == raised {
+		.rf-text._s-raised {
+			textarea {
+				@include border-radius();
+				@include rocket-form-shadow();
+				&:focus {
+					@include border($grey);
+				}
+			}
+		}
+	} @else {
+		.rf-text._s-line textarea {
+			@include border($grey-form);
+			@include border-radius(2px);
+			&:focus {
+				@include border($grey-dark);
+			}
+		}
+		.rf-text._s-flat textarea {
+			@include background-colour($grey-x-light);
+			@include border($grey-x-light);
+			&:focus {
+				@include border($grey-light);
+			}
+		}
+		.rf-text._s-raised {
+			textarea {
+				@include border-radius();
+				@include rocket-form-shadow();
+				&:focus {
+					@include border($grey);
+				}
+			}
+		}
+	}
+}
+
+// Textarea colour states
+@mixin form-textarea-states() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.rf-text._c-#{$colour-name} textarea {
+			&:active,
+			&:focus {
+				@include border($colour);
+			}
+		}
+	}
+}

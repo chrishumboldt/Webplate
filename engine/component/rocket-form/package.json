@@ -1,0 +1,108 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "rocket-form",
+        "scope": null,
+        "escapedName": "rocket-form",
+        "name": "rocket-form",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/HC/Development/Sites/rocket"
+    ]
+  ],
+  "_from": "rocket-form@latest",
+  "_id": "rocket-form@3.0.2",
+  "_inCache": true,
+  "_location": "/rocket-form",
+  "_nodeVersion": "5.8.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/rocket-form-3.0.2.tgz_1478975839124_0.5046014352701604"
+  },
+  "_npmUser": {
+    "name": "chrishumboldt",
+    "email": "chrismodem@gmail.com"
+  },
+  "_npmVersion": "3.10.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "rocket-form",
+    "scope": null,
+    "escapedName": "rocket-form",
+    "name": "rocket-form",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/rocket-form/-/rocket-form-3.0.2.tgz",
+  "_shasum": "ab06cfd30baa5c4f4dacab32a8107a370d20d189",
+  "_shrinkwrap": null,
+  "_spec": "rocket-form",
+  "_where": "/Users/HC/Development/Sites/rocket",
+  "author": {
+    "name": "Chris Humboldt",
+    "email": "chrismodem@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/chrishumboldt/Rocket-Form/issues"
+  },
+  "dependencies": {
+    "rocket-propel": "^3.0.0"
+  },
+  "description": "A universal form component.",
+  "devDependencies": {
+    "font-awesome": "^4.6.3",
+    "rocket-demo": "^2.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "ab06cfd30baa5c4f4dacab32a8107a370d20d189",
+    "tarball": "https://registry.npmjs.org/rocket-form/-/rocket-form-3.0.2.tgz"
+  },
+  "engines": {
+    "npm": "^3.0.0"
+  },
+  "gitHead": "bba9919ee5df262ed1ce4689c7067d236ad5fe12",
+  "homepage": "https://github.com/chrishumboldt/Rocket-Form#readme",
+  "keywords": [
+    "Rocket",
+    "Part",
+    "Component",
+    "Form",
+    "Javascript",
+    "CSS"
+  ],
+  "license": "Apache-2.0",
+  "main": "js/form.min.js",
+  "maintainers": [
+    {
+      "name": "chrishumboldt",
+      "email": "chrismodem@gmail.com"
+    }
+  ],
+  "name": "rocket-form",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishumboldt/Rocket-Form.git"
+  },
+  "rocket": {
+    "build": [
+      "build/js/form.js",
+      "build/sass/_import.scss"
+    ],
+    "production": [
+      "css/form.min.css",
+      "js/form.min.js"
+    ]
+  },
+  "scripts": {},
+  "version": "3.0.2"
+}

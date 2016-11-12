@@ -1,0 +1,15 @@
+/**
+ * File: build/sass/css/_execute.scss
+ * Type: SASS execute file
+ * Author: Chris Humboldt
+**/
+
+@mixin rocket-form-css($type: all) {
+	@include rocket-form-setup();
+	@include rocket-form-checkbox($type);
+	@include rocket-form-input($type);
+	@include rocket-form-label();
+	@include rocket-form-select($type);
+	@include rocket-form-textarea($type);
+	@include rocket-form-toggler($type);
+}

@@ -6,4 +6,13 @@
 
 @include rocket-button-css('.button');
 @include rocket-flicker-css();
+@include rocket-form-css();
 @include propel-css();
+
+// Forms
+label {
+   @include text-font($font-family);
+}
+.rf-check:after {
+   @include position-set(top 2px);
+}

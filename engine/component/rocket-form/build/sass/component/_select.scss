@@ -1,0 +1,155 @@
+/**
+ * File: build/sass/component/_select.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+**/
+
+// Table of contents
+// Select
+// Styles
+// Select colour states
+// Fixes
+
+// Select
+@mixin rocket-form-select($type: all) {
+	.rf-sel {
+		@include display(inline-block);
+		@include position(relative);
+		@include width(auto);
+		@include text-font('rocket-form');
+		@include background-colour($white);
+		@include border($white);
+		@include overflow(hidden);
+		@include level(1);
+		@include animate(all);
+		// Icon
+		&:before {
+			@include position(absolute, right ($space-x-small + 1px));
+			@include height(45px);
+			content: "\e601";
+			font-size: 20px;
+			@include text-line-height(46px);
+			@include text-colour($grey-form);
+			@include level(1);
+			@include animate(color);
+		}
+		select {
+			@include position(relative);
+			@include height(45px);
+			@include width(110%);
+			@include margin(0px);
+			@include padding-left($space-small);
+			@include padding-right($space-medium);
+			@include border-no();
+			@include text-font($font-family);
+			@include text-letter-spacing(normal);
+			@include text-size(14px);
+			text-transform: none;
+			word-spacing: normal;
+			word-wrap: normal;
+			outline: none;
+			-webkit-user-select: text;
+			-webkit-font-smoothing: antialiased;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			@include background-colour(transparent);
+			@include level(2);
+			&::-ms-expand {
+				@include hide();
+			}
+		}
+		.rocket-no-touch &:hover:before {
+			@include text-colour($grey-dark);
+		}
+	}
+	@include form-select-styles($type);
+	@include form-select-hover();
+	@include form-select-fixes();
+}
+
+// Styles
+@mixin form-select-styles($type: all) {
+	@if $type == line {
+		.rf-sel._s-line {
+			@include border($grey-form);
+			@include border-radius();
+			.rocket-no-touch &:hover {
+				@include border($grey-dark);
+			}
+		}
+	} @else if $type == flat {
+		.rf-sel._s-flat {
+			@include background-colour($grey-x-light);
+			@include border($grey-x-light);
+			.rocket-no-touch &:hover {
+				@include border($grey);
+			}
+		}
+	} @else if $type == raised {
+		.rf-sel._s-raised {
+			@include border-radius();
+			@include rocket-form-shadow();
+			.rocket-no-touch &:hover {
+				@include border($grey);
+			}
+		}
+	} @else {
+		.rf-sel._s-line {
+			@include border($grey-form);
+			@include border-radius();
+			.rocket-no-touch &:hover {
+				@include border($grey-dark);
+			}
+		}
+		.rf-sel._s-flat {
+			@include background-colour($grey-x-light);
+			@include border($grey-x-light);
+			.rocket-no-touch &:hover {
+				@include border($grey);
+			}
+		}
+		.rf-sel._s-raised {
+			@include border-radius();
+			@include rocket-form-shadow();
+			.rocket-no-touch &:hover {
+				@include border($grey);
+			}
+		}
+	}
+}
+
+// Select colour states
+@mixin form-select-hover() {
+	@each $colour-name, $colour in $ar-colours-form {
+		.rocket-no-touch .rf-sel._c-#{$colour-name}:hover {
+			@include border($colour);
+			&:before {
+				@include text-colour($colour);
+			}
+		}
+	}
+}
+
+// Fixes
+@mixin form-select-fixes() {
+	@-moz-document url-prefix() {
+		.rf-sel select {
+			@include padding-top($space-small - 2px);
+			@include padding-bottom($space-small - 4px);
+		}
+	}
+	.no-cssanimations .rf-sel {
+		&:after {
+			@include hide();
+			content: "";
+		}
+		select {
+			@include width(100%);
+			@include padding-top(7px);
+			@include padding-right($space-small);
+			@include padding-bottom(9px);
+			@include padding-left($space-small);
+		}
+	}
+}

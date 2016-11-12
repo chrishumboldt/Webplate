@@ -1,0 +1,81 @@
+/**
+ * File: build/sass/component/_toggler.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+**/
+
+// Table of contents
+// Variables
+// Toggler
+
+// Variables
+$toggler-h: 30px;
+$toggler-w: 50px;
+$toggler-handle-dim: $toggler-h - 2px;
+
+// Toggler
+@mixin rocket-form-toggler($type: all) {
+	.rf-tog {
+		@include position(relative);
+		@include display(inline-block);
+		@include size($toggler-w, $toggler-h);
+		@include background-colour($grey-x-light);
+		@include border-radius($toggler-h / 2);
+		@include animate(background-color);
+		// Hide the input
+		> input {
+			@include spacing-no();
+			@include position(absolute);
+			@include size(50px, 30px);
+			@include opacity(0);
+			@include level(1);
+			.rocket-no-touch &:hover {
+				@include cursor(pointer);
+			}
+		}
+		.handle {
+			@include display(block);
+			@include position(absolute, top 1px left 1px);
+			@include size($toggler-handle-dim, $toggler-handle-dim);
+			@include background-colour($white);
+			@include border-radius(50%);
+			@include drop-shadow(fade-out($black, 0.9), 2px, 1px);
+			@include animate(all);
+		}
+		&._checked {
+			@include background-colour($grey-dark);
+			.handle {
+				@include transform-translate-x(20px);
+			}
+		}
+		@if $type == line {
+			&._s-line {
+				@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
+			}
+		} @else if $type == raised {
+			&._s-raised {
+				@include background-colour(lighten($grey, 28%));
+				@include rocket-form-shadow();
+			}
+		} @else {
+			&._s-line {
+				@include drop-shadow-inset(fade-out($black, 0.85), 2px, 1px);
+			}
+			&._s-raised {
+				@include background-colour(lighten($grey, 28%));
+				@include rocket-form-shadow();
+			}
+		}
+		.rocket-no-touch &:hover {
+			@include cursor(pointer);
+		}
+	}
+	// Hover / checked
+	@each $colour-name, $colour in $ar-colours-form {
+		.rf-tog._c-#{$colour-name} {
+			&._checked {
+				@include background-color($colour);
+			}
+		}
+	}
+}
