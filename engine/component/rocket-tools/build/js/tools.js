@@ -50,6 +50,13 @@ var Rocket = (function () {
 			dots: true,
 			position: 1,
 		},
+		form: {
+			selector: '.form',
+			colour: 'blue',
+			label: 'normal',
+			size: 'normal',
+			style: 'line'
+		},
 		log: true,
 		regexp: {
 			colour: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/,
