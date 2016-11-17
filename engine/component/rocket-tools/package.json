@@ -10,17 +10,17 @@
         "spec": "latest",
         "type": "tag"
       },
-      "/Users/HC/Development/Sites/rocket"
+      "/Users/user/Development/Sites/rocket"
     ]
   ],
   "_from": "rocket-tools@latest",
-  "_id": "rocket-tools@1.3.3",
+  "_id": "rocket-tools@1.6.0",
   "_inCache": true,
   "_location": "/rocket-tools",
-  "_nodeVersion": "5.8.0",
+  "_nodeVersion": "4.4.0",
   "_npmOperationalInternal": {
     "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/rocket-tools-1.3.3.tgz_1478977633588_0.9224375509656966"
+    "tmp": "tmp/rocket-tools-1.6.0.tgz_1479387644846_0.1298355886247009"
   },
   "_npmUser": {
     "name": "chrishumboldt",
@@ -40,11 +40,11 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.3.3.tgz",
-  "_shasum": "fa84fc4af731acff3e1a1bbed62e4d672c768219",
+  "_resolved": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.0.tgz",
+  "_shasum": "2e592b236973a8f8b315143cee846afde2f190f8",
   "_shrinkwrap": null,
   "_spec": "rocket-tools",
-  "_where": "/Users/HC/Development/Sites/rocket",
+  "_where": "/Users/user/Development/Sites/rocket",
   "author": {
     "name": "Chris Humboldt"
   },
@@ -56,13 +56,13 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "fa84fc4af731acff3e1a1bbed62e4d672c768219",
-    "tarball": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.3.3.tgz"
+    "shasum": "2e592b236973a8f8b315143cee846afde2f190f8",
+    "tarball": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.0.tgz"
   },
   "engines": {
     "npm": "^3.0.0"
   },
-  "gitHead": "07e5ede2a3039d34fc241ee4b040a97a1c7fe523",
+  "gitHead": "205e6085e9365376c4fcfe579930ba2fc2e533ad",
   "homepage": "https://github.com/chrishumboldt/Webplate-Tools#readme",
   "keywords": [
     "Rocket",
@@ -94,5 +94,5 @@
     ]
   },
   "scripts": {},
-  "version": "1.3.3"
+  "version": "1.6.0"
 }

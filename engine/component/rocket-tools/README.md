@@ -87,8 +87,6 @@ Property | Default
 `defaults.regexp.colour` | `/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/`
 `defaults.regexp.date` | `/^[0-9]{4}-[0-9]{2}-[0-9]{2}/`
 `defaults.regexp.email` | `/([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i`
-`defaults.regexp.float` | `/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/`
-`defaults.regexp.integer` | `/^[0-9]+/`
 `defaults.regexp.password` | `/^(?=.*\d).{6,}/`
 `defaults.regexp.time` | `/([01]\d|2[0-3]):([0-5]\d)/`
 `defaults.regexp.url` | `/(https?:\/\/[^\s]+)/g`
@@ -131,18 +129,19 @@ Below is a list of the all the methods with a description.
 #### Arrays
 Method | Defaults | Description
 ---- | ---- | ----
+`array.clean(ar)` | | Remove any `null` values from array `ar`.
 `array.make(val, unique)` | unique: `true` `false` | Will **attempt** to return an array based on `val`.<br>`unique` will return only unique array values.<br>`unique` defaults to `false`.
-`array.unique(ar)` | | Return only unique array values.
+`array.unique(ar)` | | Return only unique array values from array `ar`.
 
 ```javascript
-var myElement = document.getElementById('#element');
+var myElement = document.getElementById('element');
 var myNumbers = [1,1,2,3,4,5,5,5,5];
 var myString = 'This is a string';
 
 Rocket.array.make(myElement); // Returns [element]
 Rocket.array.make(myNumbers); // Returns [1,1,2,3,4,5,5,5,5]
-Rocket.array.make(myNumbers, true) // Returns [1,2,3,4,5]
-Rocket.array.make(myString) // Returns ['This', 'is', 'a', 'string']
+Rocket.array.make(myNumbers, true); // Returns [1,2,3,4,5]
+Rocket.array.make(myString); // Returns ['This', 'is', 'a', 'string']
 ```
 
 #### Basic Checks
@@ -153,15 +152,19 @@ Method | Description
 `has.class(elm, class)` | Check if element `elm` has the class name `class`.
 `has.extension(str, ext)` | Check if string `str` has an extension in array `ext`.<br>`ext` checks against the all extensions array and is optional.
 `is.array(ar)` | Check if `ar` is an array.
+`is.boolean(x)` | Check if `x` is a boolean value.
 `is.colour(hex)` | Check if `hex` is a hexadecimal colour code.
 `is.date(date, regExp)` | Check if string `date` is in a date format (`regExp` optional).
 `is.element(elm)` | Check if `elm` is a DOM element.
 `is.email(email, regExp)` | Check if string `email` is a valid email address (`regExp` optional).
-`is.float(int)` | Check if `int` is a floating point number.
-`is.integer(int)` | Check if `int` is a whole number.
+`is.function(x)` | Check if `x` is a valid function.
 `is.image(str, ext)` | Check if string `str` has an extension in array `ext`.<br>`ext` checks against the images extensions array and is optional.
+`is.integer(num)` | Check if `num` is a valid whole number.
 `is.json(json)` | Check if `json` is valid JSON.
+`is.number(num)` | Check if `num` is a valid number.
+`is.object(obj)` | Check if `obj` is a valid object.
 `is.password(str, regExp)` | Check if string `str` is a password (`regExp` optional).
+`is.string(str)` | Check if `str` is a valid string type.
 `is.time(str, regExp)` | Check if string `str` is a valid time value (`regExp` optional).
 `is.touch()` | A very basic touchscreen check on the current window.
 `is.url(str, regExp)` | Check if string `str` is a valid url (`regExp` optional).
@@ -176,7 +179,7 @@ Rocket.has.spaces('This is a test'); // true
 Rocket.has.class(elm, 'example'); // true
 Rocket.has.extension(filename, ['jpg', 'png']); // false
 
-Rocket.is.integer(filename); // false
+Rocket.is.number(filename); // false
 Rocket.is.time(time); // true
 ```
 
@@ -434,6 +437,7 @@ Method | Description
 `string.remove.firstAndLast(str)` | Remove the first and last characters of `str`.
 `string.remove.last(str)` | Remove the last character of `str`.
 `string.remove.spaces(str)` | Remove all space characters of `str`.
+`string.trim(str)` | Remove the white space from before and after `str`.
 `string.uppercase.all(str)` | Uppercase all characters of `str`.
 `string.uppercase.first(str)` | Uppercase the first character of `str`.
 `string.uppercase.last(str)` | Uppercase the last character of `str`.

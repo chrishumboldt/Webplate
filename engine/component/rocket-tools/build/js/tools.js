@@ -4,6 +4,8 @@
  * Author: Chris Humboldt
 **/
 
+'use strict';
+
 // Table of contents
 // Defaults
 // Variables
@@ -62,9 +64,11 @@ var Rocket = (function () {
 			colour: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/,
 			date: /^[0-9]{4}-[0-9]{2}-[0-9]{2}/,
 			email: /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i,
-			float: /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/,
-			integer: /^[0-9]+/,
 			password: /^(?=.*\d).{6,}/,
+			selector: {
+				attribute: /([a-z])+\[([a-z])+(=)+([a-z"=]+)\]/,
+				tag: /^[a-zA-Z]+$/
+			},
 			time: /([01]\d|2[0-3]):([0-5]\d)/,
 			url: /(https?:\/\/[^\s]+)/g
 		},
@@ -156,6 +160,16 @@ var Rocket = (function () {
 
 	// Arrays
 	var array = {
+		clean: function (thisArray) {
+			// Catch
+			if (!is.array(thisArray)) {
+				return false;
+			};
+			// Continue
+			return thisArray.filter(function (value) {
+				return (value !== null);
+			});
+		},
 		make: function (arValue, unique) {
 			var returnArray = [];
 			// Catch
@@ -163,35 +177,29 @@ var Rocket = (function () {
 				return returnArray;
 			}
 			// Continue
-			var unique = (typeof unique === 'boolean') ? unique : false;
-			if (is.array(arValue)) {
-				// Already an array
-				if (unique) {
-					returnArray = array.unique(arValue);
-				} else {
-					returnArray = arValue;
-				}
+			var unique = helper.setDefault(unique, false);
+			if (is.array(arValue) && arValue.length > 0) {
+				returnArray = arValue;
 			} else if (is.element(arValue)) {
-				// Element
 				returnArray.push(arValue);
-			} else if (typeof arValue === 'string') {
-				// String
-				if (has.spaces(arValue)) {
-					if (unique) {
-						returnArray = arValue.split(' ').filter(function (val) {
-							return returnArray.indexOf(val) < 0;
-						});
-					} else {
-						returnArray = arValue.split(' ');
-					}
-				} else {
-					returnArray.push(arValue);
+			} else if (is.string(arValue)) {
+				returnArray = arValue.split(' ');
+			} else if (is.object(arValue)) {
+				// Try and catch HTMLCollection and NodeList
+				arValue = Array.prototype.slice.call(arValue);
+				if (is.array(arValue) && arValue.length > 0) {
+					returnArray = arValue;
 				}
 			}
 
-			return returnArray;
+			return (unique) ? array.unique(returnArray) : returnArray;
 		},
 		unique: function (thisArray) {
+			// Catch
+			if (!is.array(thisArray)) {
+				return false;
+			};
+			// Continue
 			return thisArray.filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			});
@@ -215,11 +223,14 @@ var Rocket = (function () {
 		}
 	};
 	var is = {
-		array: function (array) {
-			return (typeof array === 'object' && array instanceof Array) ? true : false;
+		array: function (check) {
+			return (typeof check === 'object' && check instanceof Array) ? true : false;
+		},
+		boolean: function (check) {
+			return (typeof check === 'boolean');
 		},
 		color: function (color) {
-			is.colour(color);
+			return is.colour(color);
 		},
 		colour: function (colour) {
 			return defaults.regexp.colour.test(colour);
@@ -235,15 +246,15 @@ var Rocket = (function () {
 			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.email;
 			return regExp.test(email);
 		},
-		float: function (int) {
-			return defaults.regexp.float.test(int);
-		},
-		integer: function (int) {
-			return defaults.regexp.integer.test(int);
+		function: function (check) {
+			return (typeof check === 'function');
 		},
 		image: function (file, arAllowedTypes) {
 			var allowedTypes = (is.array(arAllowedTypes)) ? arAllowedTypes : defaults.extensions.images;
 			return allowedTypes[file.split('.').pop().toLowerCase()];
+		},
+		integer: function (check) {
+			return (is.number(check) && (parseFloat(check) === parseInt(check)));
 		},
 		json: function (json) {
 			if (typeof json !== 'object') {
@@ -255,9 +266,18 @@ var Rocket = (function () {
 			}
 			return true;
 		},
+		number: function (check) {
+			return (typeof check === 'number');
+		},
+		object: function (check) {
+			return (typeof check === 'object');
+		},
 		password: function (password, regExp) {
 			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.password;
 			return regExp.test(password);
+		},
+		string: function (str) {
+			return (typeof str === 'string');
 		},
 		time: function (time, regExp) {
 			var regExp = (regExp instanceof RegExp) ? regExp : defaults.regexp.time;
@@ -592,41 +612,49 @@ var Rocket = (function () {
 			if (exists(selElm)) {
 				if (is.element(selElm)) {
 					selElm.parentNode.removeChild(selElm);
-				} else if (typeof selElm === 'string') {
+				} else if (is.string(selElm)) {
 					var elements = dom.select(selElm);
-					if (elements.length > 0) {
-						for (var i = elements.length - 1; i >= 0; i--) {
-							if (is.element(elements[i])) {
-								elements[i].parentNode.removeChild(elements[i]);
-							}
+					for (var i = 0, len = elements.length; i < len; i++) {
+						if (is.element(elements[i])) {
+							elements[i].parentNode.removeChild(elements[i]);
 						}
 					}
 				}
 			}
 		},
-		select: function (selector) {
-			if (selector.indexOf('.') > -1 || has.spaces(selector)) {
-				var returnElements = document.querySelectorAll(selector);
-				if (returnElements.length > 0) {
-					return returnElements;
-				}
-				return false;
-			} else {
-				if (selector.indexOf('#') > -1) {
-					return [document.getElementById(selector.substring(1))];
-				} else {
-					var returnElements = document.getElementsByTagName(selector);
-					if (returnElements.length > 0) {
-						return returnElements;
+		select: function (selectors) {
+			var returnElms = [];
+			// Catch
+			if (!exists(selectors)) {
+				return returnElms;
+			}
+			// Continue
+			var selectorSplit = selectors.split(',').map(string.trim).filter(function (selector) {
+				return selector.length > 0;
+			});
+			if (selectorSplit.length > 0) {
+				for (var i = 0, len = selectorSplit.length; i < len; i++) {
+					// Select the elements
+					switch (get.selector.type(selectorSplit[i])) {
+						case 'gebi':
+							returnElms = returnElms.concat(document.getElementById(selectorSplit[i].substring(1)));
+							break;
+						case 'gebtn':
+							returnElms = returnElms.concat(Array.prototype.slice.call(document.getElementsByTagName(selectorSplit[i])));
+							break;
+						case 'qsa':
+							returnElms = returnElms.concat(Array.prototype.slice.call(document.querySelectorAll(selectorSplit[i])));
+							break;
 					}
-					return false;
 				}
 			}
+			// Return
+			return array.clean(array.unique(returnElms));
 		},
 		title: (typeof document !== 'undefined') ? document.getElementsByTagName('title')[0] : false,
 		wallpaper: function (selector) {
 			var elements = dom.select(selector);
-			for (var i = elements.length - 1; i >= 0; i--) {
+			for (var i = 0, len = elements.length; i < len; i++) {
 				var thisWallpaper = elements[i].getAttribute('data-wallpaper');
 				if (thisWallpaper !== null) {
 					elements[i].style.backgroundImage = 'url("' + thisWallpaper + '")';
@@ -667,6 +695,19 @@ var Rocket = (function () {
 		},
 		index: function (node) {
 			return [].indexOf.call(node.parentNode.children, node);
+		},
+		selector: {
+			type: function (selector) {
+				var selectType = false;
+				if (selector.indexOf('.') > -1 || has.spaces(selector) || defaults.regexp.selector.attribute.test(selector)) {
+					selectType = 'qsa';
+				} else if (selector.indexOf('#') > -1) {
+					selectType = 'gebi';
+				} else if (defaults.regexp.selector.tag.test(selector)) {
+					selectType = 'gebtn';
+				}
+				return selectType;
+			}
 		}
 	};
 
@@ -710,23 +751,15 @@ var Rocket = (function () {
 	// Inputs
 	var input = {
 		disable: function (selector) {
-			var inputElements = dom.select(selector);
-			if (inputElements.nodeType == undefined) {
-				for (var i = inputElements.length - 1; i >= 0; i--) {
-					inputElements[i].disabled = true;
-				}
-			} else {
-				inputElements.disabled = true;
+			var elements = dom.select(selector);
+			for (var i = 0, len = elements.length; i < len; i++) {
+			   elements[i].disabled = true;
 			}
 		},
 		enable: function (selector) {
-			var inputElements = dom.select(selector);
-			if (inputElements.nodeType == undefined) {
-				for (var i = inputElements.length - 1; i >= 0; i--) {
-					inputElements[i].disabled = false;
-				}
-			} else {
-				inputElements.disabled = false;
+			var elements = dom.select(selector);
+			for (var i = 0, len = elements.length; i < len; i++) {
+			   elements[i].disabled = false;
 			}
 		}
 	};
@@ -1074,6 +1107,9 @@ var Rocket = (function () {
 			spaces: function (string) {
 				return string.replace(/ /g, '');
 			}
+		},
+		trim: function (string) {
+			return string.replace(/^ /, '').replace(/ +$/, '');
 		},
 		uppercase: {
 			all: function (string) {

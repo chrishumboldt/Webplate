@@ -4,28 +4,22 @@
  * Author: Chris Humboldt
  */
 
-// Table of contents
-// Global
-// Large view
-// Fluid view
-// Small view
-
 // Global
 @include global-setup();
 html, body {
 	@include text-font($font-family);
-	@include text-weight(300);
+	@include text-weight(400);
 }
 div {
   display: block;
   direction: ltr;
 }
 body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, select {
-  color: lighten(#000, 20%);
+  @include text-colour(#333);
 }
 
-// Webplate
-#web-overlay {
+// Overlay
+#rocket-overlay {
 	@include display(block);
 	@include position(fixed, top 0 right 0 bottom 0 left 0);
 	@include background-colour(fade-out($black-base, 0.4));
@@ -38,7 +32,8 @@ body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, s
 		@include opacity(1);
 	}
 }
+
+// Wallpaper
 .wallpaper {
-	background-position: center;
-	background-size: cover;
+	@include background-cover();
 }
