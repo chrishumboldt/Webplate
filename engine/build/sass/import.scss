@@ -4,11 +4,6 @@
  * Author: Chris Humboldt
  */
 
-// Table of contents
-// Variables
-// Components
-// Overwrites
-
 // Variables
 $limit-width: 75em !default;
 $menu-width: 16.250em !default;
@@ -22,11 +17,11 @@ $break-main: 43.813em !default;
 $min-max: false !default;
 $font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
 
-// Components
-@import "../../component/rocket-propel/build/sass/import";
-@import "../../component/rocket-button/build/sass/import";
-@import "../../component/rocket-flicker/build/sass/import";
-@import "../../component/rocket-form/build/sass/import";
+// Modules
+@import "../../module/rocket-propel/build/sass/import";
+@import "../../module/rocket-button/build/sass/import";
+@import "../../module/rocket-flicker/build/sass/import";
+@import "../../module/rocket-form/build/sass/import";
 
 // Overwrites
 @import "overwrite";

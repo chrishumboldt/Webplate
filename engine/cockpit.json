@@ -1,0 +1,49 @@
+{
+   "build": [{
+      "name": "launch",
+      "outputPath": {
+         "js": "../"
+      },
+      "subExtension": "",
+      "js": [
+         "../../module/requirejs/require.js",
+         "core.js"
+      ]
+   },{
+      "name": "burner",
+      "js": [
+         "../../module/modernizr/modernizr-custom.js",
+         "../../module/animejs/anime.js",
+         "../../module/rocket-tools/build/js/tools.js",
+         "../../module/rocket-button/build/js/button.js",
+         "../../module/rocket-flicker/build/js/flicker.js",
+         "../../module/rocket-form/build/js/form.js",
+         "overwrite.js"
+      ],
+      "sass": [
+         "import.scss",
+         "../../module/normalize.css/normalize.scss",
+         "setup/typeplate.scss",
+         "setup/setup.scss",
+         "setup/text.scss",
+         "module-css.scss",
+         "overwrite.scss"
+      ]
+   }, {
+      "name": "burner-light",
+      "js": [
+         "../../module/modernizr/modernizr-custom.js",
+         "../../module/rocket-tools/build/js/tools.js"
+      ],
+      "sass": [
+         "import.scss",
+         "../../module/normalize.css/normalize.scss",
+         "setup/typeplate.scss",
+         "setup/setup.scss",
+         "setup/text.scss"
+      ]
+   }, {
+      "name": "touch",
+      "js": ["../../module/fastclick/lib/fastclick.js"]
+   }]
+}

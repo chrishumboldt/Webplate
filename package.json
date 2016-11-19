@@ -2,7 +2,7 @@
    "name": "rocket-framework",
    "version": "4.0.1",
    "description": "Rocket is an awesome front-end framework and builder.",
-   "main": "start.js",
+   "main": "launch.js",
    "repository": {
       "type": "git",
       "url": "git+https://github.com/chrishumboldt/Webplate.git"
