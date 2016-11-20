@@ -1,0 +1,78 @@
+/**
+ * File: build/sass/css/_responsive-layout.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+@mixin propel-responsive-layout() {
+	// Containers
+	._row {
+		@include row();
+		._row {
+			@include width(auto);
+		}
+		[class *= "_span-"] {
+			@include position(relative);
+			@include float(left);
+		}
+		// Span loop
+		@for $index from 1 through $column-limit {
+			._span-#{$index} {
+				@include span-new($index);
+			}
+		}
+		// Offset loop
+		@for $index from 1 through ($column-limit - 1) {
+			._offset-#{$index} {
+				@include offset($index);
+			}
+			._offset-r-#{$index} {
+				@include offset-r($index);
+			}
+		}
+	}
+	// Limit
+	._limit {
+		@include limit();
+	}
+	// Large view
+	@include breakpoint(large) {
+		._row {
+			// Large span loop
+			@for $index from 1 through $column-limit {
+				._span-large-#{$index} {
+					@include span-new($index);
+				}
+			}
+			// Offset loop
+			@for $index from 1 through ($column-limit - 1) {
+				._offset-large-#{$index} {
+					@include offset($index);
+				}
+				._offset-large-r-#{$index} {
+					@include offset-r($index);
+				}
+			}
+		}
+	}
+	// Small view
+	@include breakpoint(small) {
+		._row {
+			// Small span loop
+			@for $index from 1 through $column-limit {
+				._span-small-#{$index} {
+					@include span-new($index);
+				}
+			}
+			// Offset loop
+			@for $index from 1 through ($column-limit - 1) {
+				._offset-small-#{$index} {
+					@include offset($index);
+				}
+				._offset-small-r-#{$index} {
+					@include offset-r($index);
+				}
+			}
+		}
+	}
+}

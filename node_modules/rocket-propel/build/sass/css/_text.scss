@@ -1,0 +1,122 @@
+/**
+ * File: build/sass/css/_text.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+// Text classes
+@mixin propel-text() {
+	._text-hide {
+		@include text-hide();
+	}
+	._txt-l {
+		@include text-align(left);
+	}
+	._txt-c {
+		@include text-align(center);
+	}
+	._txt-r {
+		@include text-align(right);
+	}
+	._txt-size-x2l {
+		@include text-size(x2-large);
+	}
+	._txt-size-xl {
+		@include text-size(x-large);
+	}
+	._txt-size-l {
+		@include text-size(large);
+	}
+	._txt-size-m {
+		@include text-size(medium);
+	}
+	._txt-size-n {
+		@include text-size(base);
+	}
+	._txt-size-s {
+		@include text-size(small);
+	}
+	._txt-size-xs {
+		@include text-size(x-small);
+	}
+	._txt-size-x2s {
+		@include text-size(x2-small);
+	}
+	._txt-weight-xb {
+		@include text-weight(heavy);
+	}
+	._txt-weight-b, ._txt-bold {
+		@include text-weight(bold);
+	}
+	._txt-weight-n {
+		@include text-weight(base);
+	}
+	._txt-weight-l, ._txt-light {
+		@include text-weight(light);
+	}
+	._txt-weight-xl, ._txt-thin {
+		@include text-weight(thin);
+	}
+	._txt-weight-xl {
+		@include text-weight(100);
+	}
+	._txt-normal {
+		@include text-weight(normal);
+	}
+	._txt-italics {
+		@include text-style(italic);
+	}
+	._txt-oblique {
+		@include text-style(oblique);
+	}
+	._txt-white {
+		@include text-colour($white);
+	}
+	._txt-grey {
+		@include text-colour($grey);
+	}
+	@include breakpoint(large) {
+		._txt-size-x2l-large {
+			@include text-size(x2-large);
+		}
+		._txt-size-xl-large {
+			@include text-size(x-large);
+		}
+		._txt-size-l-large {
+			@include text-size(large);
+		}
+		._txt-size-m-large {
+			@include text-size(medium);
+		}
+		._txt-size-n-large {
+			@include text-size(base);
+		}
+		._txt-size-s-large {
+			@include text-size(small);
+		}
+		._txt-size-xs-large {
+			@include text-size(x-small);
+		}
+		._txt-size-x2s-large {
+			@include text-size(x2-small);
+		}
+		._txt-weight-xb-large {
+			@include text-weight(heavy);
+		}
+		._txt-weight-b-large, ._txt-bold-large {
+			@include text-weight(bold);
+		}
+		._txt-weight-n-large {
+			@include text-weight(base);
+		}
+		._txt-weight-l-large, ._txt-light-large {
+			@include text-weight(light);
+		}
+		._txt-weight-xl-large {
+			@include text-weight(thin);
+		}
+		._txt-normal-large {
+			@include text-weight(base);
+		}
+	}
+}

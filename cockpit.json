@@ -1,6 +1,16 @@
 {
-	"project": {
-		"css": ["app.css"],
-		"js": ["app.js"]
-	}
+	"modulesAutoLoad": true,
+	"modules": {
+		"angular": {
+			"js": "node_modules/angular/angular.min.js"
+		},
+		"jquery": {
+			"js": "node_modules/jquery/dist/jquery.min.js"
+		},
+		"propel": {
+			"css": "node_modules/rocket-propel/css/propel.min.css"
+		}
+	},
+	"css": ["app.css"],
+	"js": ["app.js"]
 }

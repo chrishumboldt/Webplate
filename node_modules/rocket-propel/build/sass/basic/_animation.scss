@@ -1,0 +1,113 @@
+/**
+ * File: build/sass/basic/_animation.scss
+ * Type: SASS partial
+ * Author: Chris Humboldt
+**/
+
+// Animate
+// Animation
+// Keyframes
+
+// Animate
+@mixin transition($attribute, $transition-speed: 0.2s, $delay: 0s, $easing: ease-out) {
+	@if $attribute == transform {
+		-webkit-transition: -webkit-#{$attribute} $transition-speed $easing $delay;
+		-moz-transition: -moz-#{$attribute} $transition-speed $easing $delay;
+		-ms-transition: -ms-#{$attribute} $transition-speed $easing $delay;
+		transition: $attribute $transition-speed $easing $delay;
+	} @else {
+		-webkit-transition: $attribute $transition-speed $easing $delay;
+		-moz-transition: $attribute $transition-speed $easing $delay;
+		-ms-transition: $attribute $transition-speed $easing $delay;
+		transition: $attribute $transition-speed $easing $delay;
+	}
+}
+@mixin transition-no() {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-ms-transition: none !important;
+	transition: none !important;
+}
+@mixin transition-timing-function($timing) {
+	-webkit-transition-timing-function: $timing;
+   -moz-transition-timing-function: $timing;
+	-ms-transition-timing-function: $timing;
+   transition-timing-function: $timing;
+}
+@mixin animate($attribute, $transition-speed: 0.2s, $delay: 0s, $easing: ease-out) {
+	@include transition($attribute, $transition-speed, $delay, $easing);
+}
+@mixin animate-no() {
+	@include transition-no();
+}
+@mixin animate-timing-function($timing) {
+	@include transition-timing-function($timing);
+}
+// Animation
+@mixin animation-delay($delay) {
+	-webkit-animation-delay: $delay;
+	-moz-animation-delay: $delay;
+	-ms-animation-delay: $delay;
+	animation-delay: $delay;
+}
+@mixin animation-direction($direction: normal) {
+	-webkit-animation-direction: $direction;
+	-moz-animation-direction: $direction;
+	-ms-animation-direction: $direction;
+	animation-direction: $direction;
+}
+@mixin animation-duration($duration) {
+	-webkit-animation-duration: $duration;
+	-moz-animation-duration: $duration;
+	-ms-animation-duration: $duration;
+	animation-duration: $duration;
+}
+@mixin animation-fill-mode($fill: forwards) {
+	-webkit-animation-fill-mode: $fill;
+	-moz-animation-fill-mode: $fill;
+	-ms-animation-fill-mode: $fill;
+	animation-fill-mode: $fill;
+}
+@mixin animation-iteration($iteration) {
+	-webkit-animation-iteration-count: $iteration;
+	-moz-animation-iteration-count: $iteration;
+	-ms-animation-iteration-count: $iteration;
+	animation-iteration-count: $iteration;
+}
+@mixin animation-name($name) {
+	-webkit-animation-name: $name;
+	-moz-animation-name: $name;
+	-ms-animation-name: $name;
+	animation-name: $name;
+}
+@mixin animation-timing-function($timing: ease-out) {
+	-webkit-animation-timing-function: $timing;
+	-moz-animation-timing-function: $timing;
+	-ms-animation-timing-function: $timing;
+	animation-timing-function: $timing;
+}
+@mixin animation($name, $duration: 0.4s, $iteration: false, $direction: false, $fill-mode: false) {
+	@include animation-name($name);
+	@include animation-duration($duration);
+	@if $iteration != false {
+		@include animation-iteration($iteration);
+	}
+	@if $direction != false {
+		@include animation-direction($direction);
+	}
+	@if $fill-mode != false {
+		@include animation-fill-mode($fill-mode);
+	}
+}
+// Keyframes
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}

@@ -1,0 +1,119 @@
+/**
+ * File: build/sass/component/_layout.scss
+ * Type: SASS component
+ * Author: Chris Humboldt
+**/
+
+@mixin layout-column($type: double, $break: normal) {
+   @include row();
+   @if $type == triple {
+      > ._left,
+      > ._middle,
+      > ._right {
+         @include span(12);
+         @if $break == fixed {
+            @include span-new(4);
+         }
+         @if $break == early {
+            @include breakpoint($bp-medium) {
+               @include span-new(4);
+            }
+         } @else {
+            @include breakpoint(large) {
+               @include span-new(4);
+            }
+         }
+      }
+   } @else if $type == left-bar {
+      > ._left,
+      > ._right {
+         @include span(12);
+      }
+      @if $break == fixed {
+         > ._left {
+            @include span-new(5);
+         }
+         > ._right {
+            @include span-new(7);
+         }
+      }
+      @include breakpoint($bp-medium) {
+         > ._left {
+            @include span-new(5);
+         }
+         > ._right {
+            @include span-new(7);
+         }
+      }
+      @include breakpoint($bp-large) {
+         > ._left {
+            @include span-new(4);
+         }
+         > ._right {
+            @include span-new(8);
+         }
+      }
+      @include breakpoint($bp-x-large) {
+         > ._left {
+            @include span-new(3);
+         }
+         > ._right {
+            @include span-new(9);
+         }
+      }
+   }  @else if $type == right-bar {
+      > ._left,
+      > ._right {
+         @include span(12);
+      }
+      @if $break == fixed {
+         > ._left {
+            @include span-new(7);
+         }
+         > ._right {
+            @include span-new(5);
+         }
+      }
+      @include breakpoint($bp-medium) {
+         > ._left {
+            @include span-new(7);
+         }
+         > ._right {
+            @include span-new(5);
+         }
+      }
+      @include breakpoint($bp-large) {
+         > ._left {
+            @include span-new(8);
+         }
+         > ._right {
+            @include span-new(4);
+         }
+      }
+      @include breakpoint($bp-x-large) {
+         > ._left {
+            @include span-new(9);
+         }
+         > ._right {
+            @include span-new(3);
+         }
+      }
+   } @else {
+      > ._left,
+      > ._right {
+         @include span(12);
+         @if $break == fixed {
+            @include span-new(6);
+         }
+         @if $break == early {
+            @include breakpoint($bp-small) {
+               @include span-new(6);
+            }
+         } @else {
+            @include breakpoint(large) {
+               @include span-new(6);
+            }
+         }
+      }
+   }
+}

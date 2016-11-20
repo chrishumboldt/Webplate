@@ -1,0 +1,51 @@
+/**
+ * File: build/sass/css/_sizing.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+// Sizing mixin
+@mixin propel-sizing() {
+	._block-h-10 {
+		@include height(10px);
+	}
+	._block-h-20 {
+		@include height(20px);
+	}
+	._block-h-50 {
+		@include height(50px);
+	}
+	._block-h-100 {
+		@include height(100px);
+	}
+	._block-h-200 {
+		@include height(200px);
+	}
+	._block-h-500 {
+		@include height(500px);
+	}
+	._block-h-1000 {
+		@include height(1000px);
+	}
+	._block-w-10 {
+		@include width(10px);
+	}
+	._block-w-20 {
+		@include width(20px);
+	}
+	._block-w-50 {
+		@include width(50px);
+	}
+	._block-w-100 {
+		@include width(109px);
+	}
+	._block-w-200 {
+		@include width(200px);
+	}
+	._block-w-500 {
+		@include width(500px);
+	}
+	._block-w-1000 {
+		@include width(1000px);
+	}
+}

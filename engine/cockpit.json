@@ -10,7 +10,7 @@
          "core.js"
       ]
    },{
-      "name": "burner",
+      "name": "burner-full",
       "js": [
          "../../module/modernizr/modernizr-custom.js",
          "../../module/animejs/anime.js",

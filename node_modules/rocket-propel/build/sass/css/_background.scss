@@ -1,0 +1,57 @@
+/**
+ * File: build/sass/css/_background.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+// Background classes
+@mixin propel-background() {
+	._back-pos-l {
+		@include background-position(left);
+	}
+	._back-pos-r {
+		@include background-position(right);
+	}
+	._back-pos-t {
+		@include background-position(top);
+	}
+	._back-pos-b {
+		@include background-position(bottom);
+	}
+	._back-pos-c {
+		@include background-position(center);
+	}
+	._back-repeat-no {
+		@include background-repeat(no-repeat);
+	}
+	._back-repeat-y {
+		@include background-repeat(repeat-y);
+	}
+	._back-repeat-x {
+		@include background-repeat(repeat-x);
+	}
+	._back-single {
+		@include background-single();
+	}
+	._back-contain {
+		@include background-contain();
+	}
+	._back-cover {
+		@include background-cover();
+	}
+	._back-black {
+		@include background-colour($black);
+	}
+	._back-grey {
+		@include background-colour($grey);
+	}
+	._back-grey-light {
+		@include background-colour($grey-light);
+	}
+	._back-grey-x-light {
+		@include background-colour($grey-x-light);
+	}
+	._back-white {
+		@include background-colour($white);
+	}
+}

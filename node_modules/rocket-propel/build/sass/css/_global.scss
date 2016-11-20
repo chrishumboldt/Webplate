@@ -1,0 +1,13 @@
+/**
+ * File: build/sass/css/_global.scss
+ * Type: SASS CSS file
+ * Author: Chris Humboldt
+**/
+
+// Global classes
+@mixin propel-global() {
+	html._propel {
+		@include global-html();
+		@include global-model();
+	}
+}
