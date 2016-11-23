@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"outDir": "../js",
+		"target": "es5"
+	},
+	"include": [
+       "../js/mustach.js"
+    ]
+}

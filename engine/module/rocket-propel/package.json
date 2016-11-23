@@ -2,25 +2,25 @@
   "_args": [
     [
       {
-        "raw": "rocket-propel@^3.0.2",
+        "raw": "rocket-propel",
         "scope": null,
         "escapedName": "rocket-propel",
         "name": "rocket-propel",
-        "rawSpec": "^3.0.2",
-        "spec": ">=3.0.2 <4.0.0",
-        "type": "range"
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
       },
-      "/Users/user/Development/Sites/rocket/engine"
+      "/Users/user/Development/Sites/rocket"
     ]
   ],
-  "_from": "rocket-propel@>=3.0.2 <4.0.0",
-  "_id": "rocket-propel@3.0.2",
+  "_from": "rocket-propel@latest",
+  "_id": "rocket-propel@3.0.3",
   "_inCache": true,
   "_location": "/rocket-propel",
-  "_nodeVersion": "5.8.0",
+  "_nodeVersion": "4.4.0",
   "_npmOperationalInternal": {
-    "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/rocket-propel-3.0.2.tgz_1478725628612_0.4055688106454909"
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/rocket-propel-3.0.3.tgz_1479881309281_0.7599221284035593"
   },
   "_npmUser": {
     "name": "chrishumboldt",
@@ -29,30 +29,28 @@
   "_npmVersion": "3.10.9",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "rocket-propel@^3.0.2",
+    "raw": "rocket-propel",
     "scope": null,
     "escapedName": "rocket-propel",
     "name": "rocket-propel",
-    "rawSpec": "^3.0.2",
-    "spec": ">=3.0.2 <4.0.0",
-    "type": "range"
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
   },
   "_requiredBy": [
-    "/",
-    "/rocket-button",
-    "/rocket-flicker"
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/rocket-propel/-/rocket-propel-3.0.2.tgz",
-  "_shasum": "21115b47c6646586e781b78056b61551e9436d43",
+  "_resolved": "https://registry.npmjs.org/rocket-propel/-/rocket-propel-3.0.3.tgz",
+  "_shasum": "b313a0b5406c27d92e9e420af0c6ad9b764bab7e",
   "_shrinkwrap": null,
-  "_spec": "rocket-propel@^3.0.2",
-  "_where": "/Users/user/Development/Sites/rocket/engine",
+  "_spec": "rocket-propel",
+  "_where": "/Users/user/Development/Sites/rocket",
   "author": {
     "name": "Chris Humboldt",
     "email": "chrismodem@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/chrishumboldt/Blueplate/issues"
+    "url": "https://github.com/chrishumboldt/Rocket-Propel/issues"
   },
   "dependencies": {},
   "description": "A lightweight SASS mixin library and responsive CSS layout engine.",
@@ -61,15 +59,15 @@
   },
   "directories": {},
   "dist": {
-    "shasum": "21115b47c6646586e781b78056b61551e9436d43",
-    "tarball": "https://registry.npmjs.org/rocket-propel/-/rocket-propel-3.0.2.tgz"
+    "shasum": "b313a0b5406c27d92e9e420af0c6ad9b764bab7e",
+    "tarball": "https://registry.npmjs.org/rocket-propel/-/rocket-propel-3.0.3.tgz"
   },
-  "gitHead": "7a14a10dc73ffae05258c15faffb52438d204762",
-  "homepage": "https://github.com/chrishumboldt/Blueplate#readme",
+  "gitHead": "a4738c905995310aa2607a000f981ad85177a1df",
+  "homepage": "https://github.com/chrishumboldt/Rocket-Propel#readme",
   "keywords": [
     "Rocket",
     "Part",
-    "Component",
+    "Modules",
     "SASS",
     "Library",
     "Mixins",
@@ -87,16 +85,8 @@
   "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chrishumboldt/Blueplate.git"
-  },
-  "rocket": {
-    "build": [
-      "build/sass/_import.scss"
-    ],
-    "production": [
-      "css/propel.min.css"
-    ]
+    "url": "git+https://github.com/chrishumboldt/Rocket-Propel.git"
   },
   "scripts": {},
-  "version": "3.0.2"
+  "version": "3.0.3"
 }

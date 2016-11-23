@@ -34,9 +34,6 @@
 var Rocket = (function () {
 	// Defaults
 	var defaults = {
-		button: {
-			selector: '.button'
-		},
 		extensions: {
 			all: ['png', 'jpg', 'jpeg', 'json', 'gif', 'tif', 'tiff', 'bmp', 'doc', 'docx', 'xls', 'xlsx', 'pdf', 'txt', 'csv'],
 			images: ['jpg', 'jpeg', 'gif', 'tif', 'tiff', 'bmp', 'png']
@@ -66,11 +63,11 @@ var Rocket = (function () {
 			email: /([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i,
 			password: /^(?=.*\d).{6,}/,
 			selector: {
-				attribute: /([a-z])+\[([a-z])+(=)+([a-z"=]+)\]/,
+				attribute: /([a-z])+(\[)+([a-z])+(=")+([a-zA-Z])+("\])/,
 				tag: /^[a-zA-Z]+$/
 			},
 			time: /([01]\d|2[0-3]):([0-5]\d)/,
-			url: /(https?:\/\/[^\s]+)/g
+			url: /^(https?:\/\/[^\s]+)/
 		},
 		request: {
 			async: true,
@@ -791,6 +788,7 @@ var Rocket = (function () {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		},
 		string: function (stringLength, textOnly) {
+			var rNum;
 			var textOnly = (typeof textOnly === 'boolean') ? textOnly : false;
 			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 			var len = (typeof stringLength === 'number') ? stringLength : 5;

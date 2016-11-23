@@ -1,0 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+	font-family: 'Open Sans';
+	font-size: 22
+}
+
+pre {
+	color: #555;
+	font-size: 14px
+}
+
+#postload {
+	display: block;
+	margin-bottom: 50px;
+}

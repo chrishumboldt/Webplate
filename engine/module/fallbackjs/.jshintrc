@@ -1,0 +1,15 @@
+{
+    "maxerr"        : 50,       // {int} Maximum error before stopping
+    "bitwise"       : true,     // true: Prohibit bitwise operators (&, |, ^, etc.)
+    "curly"         : true,     // true: Require {} for every new block or scope
+    "eqeqeq"        : true,     // true: Require triple equals (===) for comparison
+    "forin"         : true,     // true: Require filtering for..in loops with obj.hasOwnProperty()
+    "indent"        : 4,        // {int} Number of spaces to use for indentation
+    "noarg"         : true,     // true: Prohibit use of `arguments.caller` and `arguments.callee`
+    "noempty"       : true,     // true: Prohibit use of empty blocks
+    "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+    "unused"        : true,     // true: Require all defined variables be used
+    "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+    "browser"       : true,     // Web Browser (window, document, etc)
+    "devel"         : true      // Development/debugging (alert, confirm, etc)
+}

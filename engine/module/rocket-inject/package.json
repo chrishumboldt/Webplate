@@ -1,0 +1,110 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "rocket-inject",
+        "scope": null,
+        "escapedName": "rocket-inject",
+        "name": "rocket-inject",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/user/Development/Sites/rocket"
+    ]
+  ],
+  "_from": "rocket-inject@latest",
+  "_id": "rocket-inject@4.0.2",
+  "_inCache": true,
+  "_location": "/rocket-inject",
+  "_nodeVersion": "4.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/rocket-inject-4.0.2.tgz_1479879275379_0.762725098291412"
+  },
+  "_npmUser": {
+    "name": "chrishumboldt",
+    "email": "chrismodem@gmail.com"
+  },
+  "_npmVersion": "3.10.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "rocket-inject",
+    "scope": null,
+    "escapedName": "rocket-inject",
+    "name": "rocket-inject",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/rocket-inject/-/rocket-inject-4.0.2.tgz",
+  "_shasum": "a714b6cc6a71a561d0f8b98d3fc0ef343e717865",
+  "_shrinkwrap": null,
+  "_spec": "rocket-inject",
+  "_where": "/Users/user/Development/Sites/rocket",
+  "author": {
+    "name": "Chris Humboldt"
+  },
+  "bugs": {
+    "url": "https://github.com/chrishumboldt/Rocket-Inject/issues"
+  },
+  "dependencies": {
+    "mustache": "^2.3.0"
+  },
+  "description": "A declare once Javascript component injector.",
+  "devDependencies": {
+    "rocket-demo": "^2.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "a714b6cc6a71a561d0f8b98d3fc0ef343e717865",
+    "tarball": "https://registry.npmjs.org/rocket-inject/-/rocket-inject-4.0.2.tgz"
+  },
+  "engines": {
+    "npm": "^3.0.0"
+  },
+  "gitHead": "b06cd90643f526f8d9e36ef59561b29ec586a768",
+  "homepage": "https://github.com/chrishumboldt/Rocket-Inject#readme",
+  "keywords": [
+    "Rocket",
+    "Part",
+    "Component",
+    "Injector",
+    "Javascript"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "chrishumboldt",
+      "email": "chrismodem@gmail.com"
+    }
+  ],
+  "name": "rocket-inject",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishumboldt/Rocket-Inject.git"
+  },
+  "scripts": {},
+  "version": "4.0.2",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-inject@4.0.2"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-inject@4.0.2"
+    }
+  ]
+}

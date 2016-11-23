@@ -6,20 +6,22 @@
       },
       "subExtension": "",
       "js": [
-         "../../module/requirejs/require.js",
+         "../../module/fallbackjs/fallback.js",
+			"../../module/modernizr/modernizr-custom.min.js",
+			"../../module/rocket-tools/build/js/tools.js",
          "core.js"
       ]
-   },{
-      "name": "burner-full",
-      "js": [
-         "../../module/modernizr/modernizr-custom.js",
-         "../../module/animejs/anime.js",
-         "../../module/rocket-tools/build/js/tools.js",
-         "../../module/rocket-button/build/js/button.js",
-         "../../module/rocket-flicker/build/js/flicker.js",
-         "../../module/rocket-form/build/js/form.js",
-         "overwrite.js"
-      ],
+   }, {
+		"name": "animejs",
+		"outputPath": {
+			"js": "module/animejs"
+		},
+		"js": ["../../module/animejs/anime.js"]
+	}, {
+		"name": "inject-wrapper",
+		"js": ["inject-wrapper.js"]
+	}, {
+      "name": "styles-full",
       "sass": [
          "import.scss",
          "../../module/normalize.css/normalize.scss",
@@ -30,11 +32,7 @@
          "overwrite.scss"
       ]
    }, {
-      "name": "burner-light",
-      "js": [
-         "../../module/modernizr/modernizr-custom.js",
-         "../../module/rocket-tools/build/js/tools.js"
-      ],
+      "name": "styles-light",
       "sass": [
          "import.scss",
          "../../module/normalize.css/normalize.scss",
@@ -43,7 +41,10 @@
          "setup/text.scss"
       ]
    }, {
-      "name": "touch",
+      "name": "fastclick",
+		"outputPath": {
+			"js": "module/fastclick"
+		},
       "js": ["../../module/fastclick/lib/fastclick.js"]
    }]
 }

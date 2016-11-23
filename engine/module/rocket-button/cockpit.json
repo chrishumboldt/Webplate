@@ -1,0 +1,7 @@
+{
+	"build": [{
+		"name": "button",
+		"js": ["button.js"],
+		"sass": ["button.scss"]
+	}]
+}

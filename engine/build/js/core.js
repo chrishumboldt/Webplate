@@ -6,166 +6,124 @@
 
 'use strict';
 
-// Global functions
-var globalDomHead = document.getElementsByTagName('head')[0];
-function requireCSS (urls, callback) {
-   // Catch
-   if (typeof urls !== 'object' || (urls instanceof Array === false)) {
-      return false;
-   }
-   // Continue
-   for (var i = 0, len = urls.length; i < len; i++) {
-      var link = document.createElement('link');
-      link.type = 'text/css';
-      link.rel = 'stylesheet';
-      link.href = urls[i];
-      globalDomHead.appendChild(link);
-
-      if ((i + 1) === len) {
-         if (typeof callback === 'function') {
-            return callback();
-         }
-      }
-   }
-};
-
-// Rocket core
+/*
+This function executes the entire Rocket library.
+It manages the main files, modules files and project files as set
+by the cockpit.json file.
+*/
 (function () {
    // Variables
+	var allowedFileTypes = ['css', 'js']
    var pathRoot = document.getElementById('rocket').getAttribute('src').replace('launch.js', '');
+   var cockpit = false;
+	var rocketContent = document.getElementById('rocket-content');
+
+	// Variables dependant
    var path = {
       cockpit: pathRoot + 'cockpit.json',
       css: pathRoot + 'css/',
+		engine: {
+			css: pathRoot + 'engine/css/',
+			js: pathRoot + 'engine/js/',
+			module: pathRoot + 'engine/module/',
+			root: pathRoot + 'engine/'
+		},
       js: pathRoot + 'js/',
-      modules: pathRoot + 'node_modules/',
+      module: pathRoot + 'node_modules/',
       root: pathRoot
    };
-   var cockpit = false;
-   var load = {
-		allowedFileTypes: ['css', 'js'],
-		css: [],
-      cssModules: [],
-		js: [],
-		iconFont: false
-	};
-	var rocketContent = document.getElementById('rocket-content');
+	var modules = {
+		animejs: {
+			js: path.engine.module + 'animejs/anime.js'
+		},
+		button: {
+			css: path.engine.module + 'rocket-button/css/button.min.css',
+			js: path.engine.module + 'rocket-button/js/button.min.js',
+		},
+		fastclick: {
+			js: path.engine.module + 'fastclick/fastclick.min.js'
+		},
+		flicker: {
+			css: path.engine.module + 'rocket-flicker/css/flicker.min.css',
+			js: path.engine.module + 'rocket-flicker/js/flicker.min.js'
+		},
+		form: {
+			css: path.engine.module + 'rocket-form/css/form.min.css',
+			js: path.engine.module + 'rocket-form/js/form.min.js'
+		},
+		inject: {
+			js: path.engine.module + 'rocket-inject/js/inject-lean.min.js',
+			deps: 'mustache'
+		},
+		mustache: {
+			js: path.engine.module + 'mustache/mustache.min.js'
+		},
+		propel: {
+			css: path.engine.module + 'rocket-propel/css/propel.min.css'
+		},
+		rocketStylesFull: {
+			css: path.engine.css + 'styles-full.min.css'
+		},
+		rocketStylesLight: {
+			css: path.engine.css + 'styles-light.min.css'
+		}
+	}
 
-   // Requires
-   var autoLoadIgnores = ['rocketBurnerFull', 'rocketBurnerLight', 'rocketTouch'];
-   var requireBaseUrl = './';
-   var requirePathsJS = {
-      rocketBurnerFull: 'engine/js/burner-full.min',
-      rocketBurnerLight: 'engine/js/burner-light.min',
-      rocketTouch: 'engine/js/touch.min'
-   };
-   var requirePathsCSS = {
-      rocketBurnerFull: 'engine/css/burner-full.min.css',
-      rocketBurnerLight: 'engine/css/burner-light.min.css',
-   };
-
-   // Functions
-   var core = {
-      addUserDefinedModules: function (modules) {
-         // Catch
-         if (typeof modules !== 'object') {
-            return false;
-         }
-         // Continue
-         for (var key in modules) {
-            if (modules.hasOwnProperty(key)) {
-               var thisModule = modules[key];
-               if (typeof thisModule.css === 'string') {
-                  load.cssModules.push(core.cleanPath(thisModule.css));
-               }
-               if (typeof thisModule.js === 'string') {
-                  requirePathsJS[key] = core.cleanPath(thisModule.js);
-               }
-            }
-         }
-      },
-      cleanPath: function (path) {
-         // Catch
-         if (typeof path !== 'string') {
-            return false;
-         }
-         // Continue
-         var ext = core.helper.getExtension(path);
-         switch (ext) {
-            case 'js':
-               return path.substring(0, path.length - 3);
-            case 'css':
-               return path;
-            default:
-               return path;
-         }
-      },
-      getFileLoads: function () {
-         if (!cockpit) {
-				return false;
-			}
-
-			// Variables
-			var pageMatch = false;
-			var queryString = '';
-			var urlData = core.getURL();
-
-			// Root config
-			load.css = core.helper.setDefault(cockpit.css, []);
-			load.js = core.helper.setDefault(cockpit.js, []);
-			load.iconFont = core.helper.setDefault(cockpit.iconFont);
-
-			// Page options
-			if (cockpit.page) {
-				for (var i = 0, len = cockpit.page.length; i < len; i++) {
-				   var page = cockpit.page[i];
-
-					// Page match
-					if (page.url.indexOf('*') > -1) {
-						if (urlData.current.indexOf(page.url.substring(0, page.url.length - 1)) > -1) {
-							pageMatch = true;
-						}
-					} else {
-						if (urlData.current === urlData.base + page.url) {
-							pageMatch = true;
-						}
+   // Core
+	var core = {
+		fbConfigCreate: function (loadModules) {
+			var newConfig = {};
+			for (var i = 0, len = loadModules.length; i < len; i++) {
+			   if (Rocket.exists(modules[loadModules[i]])) {
+					// newConfig[loadModules[i]] = modules[loadModules[i]];
+					var thisModule = modules[loadModules[i]];
+					// CSS
+					if (Rocket.is.string(thisModule.css)) {
+						newConfig['css$' + loadModules[i]] = {
+							urls: thisModule.css
+						};
 					}
-					if (pageMatch) {
-						load.iconFont = Rocket.helper.setDefault(page.iconFont, load.iconFont);
-						if (page.overwrite === true) {
-							// Overwrite
-							load.css = core.helper.setDefault(page.css, []);
-							load.js = core.helper.setDefault(page.js, []);
-						} else {
-							// Merge
-							if (core.helper.isArray(page.css)) {
-								load.css = load.css.concat(page.css);
-							}
-							if (core.helper.isArray(page.js)) {
-								load.js = load.js.concat(page.js);
-							}
+					// JS
+					if (Rocket.is.string(thisModule.js)) {
+						newConfig[loadModules[i]] = {
+							urls: thisModule.js
+						};
+						if (Rocket.is.string(thisModule.exports)) {
+							newConfig[loadModules[i]].exports = thisModule.exports;
 						}
-						break;
+						if (Rocket.is.string(thisModule.deps)) {
+							newConfig[loadModules[i]].deps = thisModule.deps;
+						}
 					}
 				}
 			}
-
-			// Set the query string & paths
-			if (cockpit.cache && cockpit.cache.bust) {
-				queryString = '?ts=' + cockpit.cache.bust;
-			}
-			if (load.css.length > 0) {
-				for (var i = 0, len = load.css.length; i < len; i++) {
-					load.css[i] = path.css + load.css[i] + queryString;
+			return newConfig;
+		},
+		load: {
+			modules: function (callback) {
+				var loadModules = [];
+				// Prefined modules
+				if (Rocket.is.object(cockpit.engine) && Rocket.is.boolean(cockpit.engine.light) && cockpit.engine.light === true) {
+					// Light version
+					loadModules = loadModules.concat(['rocketStylesLight']);
+				} else {
+					// Full version
+					loadModules = loadModules.concat([
+						'rocketStylesFull',
+						'animejs',
+						'button',
+						'flicker',
+						'form',
+						'inject',
+						'mustache'
+					]);
 				}
+				var fallbackLoad = core.fbConfigCreate(loadModules);
+				Rocket.log(fallbackLoad);
+				fallback.load(fallbackLoad);
 			}
-			if (load.js.length > 0) {
-				for (var i = 0, len = load.js.length; i < len; i++) {
-					load.js[i] = path.js + load.js[i] + queryString;
-				}
-			}
-			return true;
-      },
-      getJSON: function (url, callback) {
+		},
+		getJSON: function (url, callback) {
          var xhr = new XMLHttpRequest;
          xhr.onreadystatechange = function () {
             if (this.readyState === 4) {
@@ -180,47 +138,9 @@ function requireCSS (urls, callback) {
          xhr.open('GET', url);
          xhr.send();
       },
-      getURL: function () {
-         var windowLocation = window.location;
-			var fullUrl = windowLocation.href;
-
-			var currentUrl = fullUrl.split('#')[0];
-			var host = windowLocation.host;
-			var protocol = windowLocation.protocol + '//';
-
-			var baseUrl = '';
-			if (document.getElementsByTagName('base').length > 0) {
-				baseUrl = document.getElementsByTagName('base')[0].href;
-			} else {
-				baseUrl = protocol + host;
-			}
-
-			return {
-				base: baseUrl,
-				current: currentUrl
-			};
-      },
-      helper: {
-         getExtension: function (file) {
-   			return file.split('.').pop().toLowerCase();
-   		},
-         isArray: function (check) {
-   			return (typeof check === 'object' && check instanceof Array) ? true : false;
-   		},
-         setDefault: function (setValue, defaultValue) {
-   			if (typeof setValue == 'undefined' && typeof defaultValue == 'undefined') {
-   				return false;
-   			} else if (typeof setValue != 'undefined' && typeof defaultValue == 'undefined') {
-   				return setValue;
-   			} else if (typeof setValue === typeof defaultValue) {
-   				return setValue;
-   			} else {
-   				return defaultValue;
-   			}
-         }
-   	},
-      init: function () {
-         core.getJSON(path.cockpit, function (error, json) {
+		init: function () {
+			// Read cockpit file
+			core.getJSON(path.cockpit, function (error, json) {
             // Catch
 				if (error) {
 					throw new Error('Rocket: Not initialised because the cockpit.json file was not found.');
@@ -228,70 +148,14 @@ function requireCSS (urls, callback) {
 				}
 				// Continue
             cockpit = json;
-            core.getFileLoads();
-            core.addUserDefinedModules(cockpit.modules);
 
-            // Requirejs config
-            requirejs.config({
-               baseUrl: requireBaseUrl,
-               paths: requirePathsJS
-            });
-
-            // Require
-            var autoload = (typeof cockpit.modulesAutoLoad === 'boolean') ? cockpit.modulesAutoLoad : false;
-            var baseCSS = [requirePathsCSS.rocketBurnerFull];
-            var baseJS = ['rocketBurnerFull'];
-            if (typeof cockpit.engine === 'object' && typeof cockpit.engine.burner === 'string' && cockpit.engine.burner === 'light') {
-               baseCSS = [requirePathsCSS.rocketBurnerLight];
-               baseJS = ['rocketBurnerLight'];
-            }
-
-            // Auto load
-            if (autoload) {
-               baseCSS = baseCSS.concat(load.cssModules);
-               for (var key in requirePathsJS) {
-                  if (requirePathsJS.hasOwnProperty(key) && autoLoadIgnores.indexOf(key) < 0) {
-                     baseJS.push(key);
-                  }
-               }
-            }
-
-            // Start requires
-            requireCSS(baseCSS);
-            require(baseJS, function () {
-               // Project CSS
-               if (load.css.length > 0) {
-                  requireCSS(load.css);
-               }
-               // Project JS
-               if (load.js.length < 1) {
-                  core.showPage();
-               } else {
-                  require(load.js, function () {
-                     core.showPage();
-                  });
-               }
-            });
-         });
-      },
-      log: function (text) {
-			if (!window || !window.console || !cockpit) {
-				return false;
-			}
-			if (cockpit.engine && typeof cockpit.engine.log === 'boolean' && cockpit.engine.log) {
-				console.log(text);
-			}
-		},
-      showPage: function () {
-         if (rocketContent !== null) {
-				rocketContent.removeAttribute('style');
-				document.getElementById('rocket-page-loader').parentNode.removeChild(document.getElementById('rocket-page-loader'));
-			} else {
-				Rocket.dom.body.removeAttribute('style');
-			}
-			core.log('Rocket: Page show...successful');
-      }
-   };
+				// Load components
+				core.load.modules(function () {
+					Rocket.log('yay');
+				});
+			});
+		}
+	};
 
    // Execute
    core.init();

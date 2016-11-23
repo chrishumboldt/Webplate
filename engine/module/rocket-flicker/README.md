@@ -1,5 +1,5 @@
 # Rocket Flicker
-A component that lets you flick through content.
+A module that lets you flick through content.
 
 * [Getting Started](#getting-started)
 * [Basic Example](#basic-example)

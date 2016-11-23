@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "fallbackjs",
+        "scope": null,
+        "escapedName": "fallbackjs",
+        "name": "fallbackjs",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/user/Development/Sites/rocket"
+    ]
+  ],
+  "_from": "fallbackjs@latest",
+  "_id": "fallbackjs@1.1.8",
+  "_inCache": true,
+  "_location": "/fallbackjs",
+  "_nodeVersion": "4.2.3",
+  "_npmUser": {
+    "name": "sgarbesi",
+    "email": "sal@dolox.com"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "fallbackjs",
+    "scope": null,
+    "escapedName": "fallbackjs",
+    "name": "fallbackjs",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/fallbackjs/-/fallbackjs-1.1.8.tgz",
+  "_shasum": "a860c277ec0fa97bd222b00fe323d3d543506375",
+  "_shrinkwrap": null,
+  "_spec": "fallbackjs",
+  "_where": "/Users/user/Development/Sites/rocket",
+  "bugs": {
+    "url": "https://github.com/dolox/fallback/issues"
+  },
+  "dependencies": {},
+  "description": "JavaScript library for dynamically loading CSS and JS files. Also provides the ability to load multiple files from a CDN with multiple fallback options and shimming! http://fallback.io/",
+  "devDependencies": {
+    "connect-livereload": "~0.2.0",
+    "grunt": "~0.4.1",
+    "grunt-closure-compiler": "~0.0.21",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-connect": "~0.2.0",
+    "grunt-contrib-jshint": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-open": "~0.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "a860c277ec0fa97bd222b00fe323d3d543506375",
+    "tarball": "https://registry.npmjs.org/fallbackjs/-/fallbackjs-1.1.8.tgz"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "gitHead": "2ac7f64d126bda3474de916edf61bd291e589da1",
+  "homepage": "https://github.com/dolox/fallback#readme",
+  "maintainers": [
+    {
+      "name": "sgarbesi",
+      "email": "sal@dolox.com"
+    }
+  ],
+  "name": "fallbackjs",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolox/fallback.git"
+  },
+  "scripts": {},
+  "version": "1.1.8"
+}

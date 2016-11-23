@@ -2,49 +2,49 @@
   "_args": [
     [
       {
-        "raw": "rocket-button@^4.0.5",
+        "raw": "rocket-button",
         "scope": null,
         "escapedName": "rocket-button",
         "name": "rocket-button",
-        "rawSpec": "^4.0.5",
-        "spec": ">=4.0.5 <5.0.0",
-        "type": "range"
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
       },
-      "/Users/user/Development/Sites/rocket/engine"
+      "/Users/user/Development/Sites/rocket"
     ]
   ],
-  "_from": "rocket-button@>=4.0.5 <5.0.0",
-  "_id": "rocket-button@4.0.5",
+  "_from": "rocket-button@latest",
+  "_id": "rocket-button@4.1.0",
   "_inCache": true,
   "_location": "/rocket-button",
   "_nodeVersion": "4.4.0",
   "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/rocket-button-4.0.5.tgz_1478761712160_0.5690597416833043"
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/rocket-button-4.1.0.tgz_1479886109096_0.07635821192525327"
   },
   "_npmUser": {
     "name": "chrishumboldt",
     "email": "chrismodem@gmail.com"
   },
-  "_npmVersion": "3.10.9",
+  "_npmVersion": "4.0.3",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "rocket-button@^4.0.5",
+    "raw": "rocket-button",
     "scope": null,
     "escapedName": "rocket-button",
     "name": "rocket-button",
-    "rawSpec": "^4.0.5",
-    "spec": ">=4.0.5 <5.0.0",
-    "type": "range"
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
   },
   "_requiredBy": [
-    "/"
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/rocket-button/-/rocket-button-4.0.5.tgz",
-  "_shasum": "9a12adf1b2e7b7f2cf03ee9d20723f081a45c22e",
+  "_resolved": "https://registry.npmjs.org/rocket-button/-/rocket-button-4.1.0.tgz",
+  "_shasum": "ac3e043b95760894fd57357aca9150b3cba5b73e",
   "_shrinkwrap": null,
-  "_spec": "rocket-button@^4.0.5",
-  "_where": "/Users/user/Development/Sites/rocket/engine",
+  "_spec": "rocket-button",
+  "_where": "/Users/user/Development/Sites/rocket",
   "author": {
     "name": "Chris Humboldt",
     "email": "chrismodem@gmail.com"
@@ -55,24 +55,24 @@
   "dependencies": {
     "rocket-propel": "^3.0.0"
   },
-  "description": "A lightweight, universal button component.",
+  "description": "A lightweight, universal button module.",
   "devDependencies": {
     "rocket-demo": "^2.0.0"
   },
   "directories": {},
   "dist": {
-    "shasum": "9a12adf1b2e7b7f2cf03ee9d20723f081a45c22e",
-    "tarball": "https://registry.npmjs.org/rocket-button/-/rocket-button-4.0.5.tgz"
+    "shasum": "ac3e043b95760894fd57357aca9150b3cba5b73e",
+    "tarball": "https://registry.npmjs.org/rocket-button/-/rocket-button-4.1.0.tgz"
   },
   "engines": {
     "npm": "^3.0.0"
   },
-  "gitHead": "943a63afa918321a5ca531d693d67f049b3c7f9d",
+  "gitHead": "5b4639dbde62cd6858cbcb3ac21041a181b0b68d",
   "homepage": "https://github.com/chrishumboldt/Rocket-Button#readme",
   "keywords": [
     "Rocket",
-    "Component",
     "Part",
+    "Module",
     "Button",
     "Javascript",
     "SASS",
@@ -92,16 +92,22 @@
     "type": "git",
     "url": "git+https://github.com/chrishumboldt/Rocket-Button.git"
   },
-  "rocket": {
-    "build": [
-      "build/js/button.js",
-      "build/sass/_import.scss"
-    ],
-    "production": [
-      "css/button.min.css",
-      "js/button.min.js"
-    ]
-  },
   "scripts": {},
-  "version": "4.0.5"
+  "version": "4.1.0",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-button@4.1.0"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-button@4.1.0"
+    }
+  ]
 }

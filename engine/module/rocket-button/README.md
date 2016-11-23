@@ -1,5 +1,5 @@
 # Rocket Button
-A lightweight, universal button component.
+A lightweight, universal button module.
 
 * [Getting Started](#getting-started)
 * [CSS Implementation](#css-implementation)
@@ -10,7 +10,7 @@ A lightweight, universal button component.
 * [Buttonplate Deprecated](#buttonplate-deprecated)
 
 ## Getting Started
-You can either download a copy of the source files or install via NPM.
+You can either download a copy of the [source files](https://github.com/chrishumboldt/Rocket-Button/archive/master.zip) or install via NPM.
 
 ```
 npm install rocket-button
@@ -92,7 +92,7 @@ If you want to enable button drop downs then you will need to execute the follow
 	// Include the script
 	<script src="rocket-button/js/button.min.js"></script>
 	<script>
-	Rocket.button({
+	Rocket.button.dropdown({
 	   selector: '#btn-primary'
 	});
 	</script>
@@ -103,7 +103,7 @@ Each initialization will return an array of component objects (An array will alw
 
 ```javascript
 // By default the selector option is set to '.button'
-var buttons = Rocket.button();
+var buttons = Rocket.button.dropdown();
 
 // The buttons and all methods
 for (var i = 0, len = buttons.length; i < len; i++) {
@@ -116,7 +116,7 @@ for (var i = 0, len = buttons.length; i < len; i++) {
 Alternatively if you know the button selector is unique you can reference the button right away with the 0 index. For example:
 
 ```javascript
-var myButton = Rocket.button({
+var myButton = Rocket.button.dropdown({
 	selector: '#my-button'
 })[0]; // Reference the first item in the array right away.
 ```
@@ -125,7 +125,7 @@ var myButton = Rocket.button({
 You can also overwrite the component selector option globally by altering the Rocket defaults. To do so reference the defaults object property, for example:
 
 ```javascript
-Rocket.defaults.button.selector = '.new-button-class';
+Rocket.defaults.button.dropdown.selector = '.new-button-class';
 ```
 
 ## Rocket Tools

@@ -14,13 +14,13 @@
     ]
   ],
   "_from": "rocket-tools@latest",
-  "_id": "rocket-tools@1.6.0",
+  "_id": "rocket-tools@1.6.2",
   "_inCache": true,
   "_location": "/rocket-tools",
   "_nodeVersion": "4.4.0",
   "_npmOperationalInternal": {
-    "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/rocket-tools-1.6.0.tgz_1479387644846_0.1298355886247009"
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/rocket-tools-1.6.2.tgz_1479880647973_0.24023370048962533"
   },
   "_npmUser": {
     "name": "chrishumboldt",
@@ -40,8 +40,8 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.0.tgz",
-  "_shasum": "2e592b236973a8f8b315143cee846afde2f190f8",
+  "_resolved": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.2.tgz",
+  "_shasum": "938c4552a4e2f8899fb9f7e6b2b78995e279eb5b",
   "_shrinkwrap": null,
   "_spec": "rocket-tools",
   "_where": "/Users/user/Development/Sites/rocket",
@@ -56,13 +56,13 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "2e592b236973a8f8b315143cee846afde2f190f8",
-    "tarball": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.0.tgz"
+    "shasum": "938c4552a4e2f8899fb9f7e6b2b78995e279eb5b",
+    "tarball": "https://registry.npmjs.org/rocket-tools/-/rocket-tools-1.6.2.tgz"
   },
   "engines": {
     "npm": "^3.0.0"
   },
-  "gitHead": "205e6085e9365376c4fcfe579930ba2fc2e533ad",
+  "gitHead": "aa91cd43596650da84a08e186a8627aae3e3d674",
   "homepage": "https://github.com/chrishumboldt/Webplate-Tools#readme",
   "keywords": [
     "Rocket",
@@ -85,14 +85,22 @@
     "type": "git",
     "url": "git+https://github.com/chrishumboldt/Webplate-Tools.git"
   },
-  "rocket": {
-    "build": [
-      "build/js/tools.js"
-    ],
-    "production": [
-      "js/tools.min.js"
-    ]
-  },
   "scripts": {},
-  "version": "1.6.0"
+  "version": "1.6.2",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-tools@1.6.2"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-tools@1.6.2"
+    }
+  ]
 }

@@ -89,7 +89,7 @@ Property | Default
 `defaults.regexp.email` | `/([\w\.\-]+)@([\w\.\-]+)\.(\w+)/i`
 `defaults.regexp.password` | `/^(?=.*\d).{6,}/`
 `defaults.regexp.time` | `/([01]\d|2[0-3]):([0-5]\d)/`
-`defaults.regexp.url` | `/(https?:\/\/[^\s]+)/g`
+`defaults.regexp.url` | `/^(https?:\/\/[^\s]+)/`
 
 #### Request
 Property | Default
@@ -443,7 +443,7 @@ Method | Description
 `string.uppercase.last(str)` | Uppercase the last character of `str`.
 
 ```javascript
-var myString = 'hello bright world!'.
+var myString = 'hello bright world!';
 
 Rocket.string.remove.firstAndLast(myString); // Returns 'ello bright world'
 Rocket.string.uppercase.all(myString); // Returns 'HELLO BRIGHT WORLD!'

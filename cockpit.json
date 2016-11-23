@@ -1,15 +1,11 @@
 {
-	"modulesAutoLoad": true,
-	"modules": {
-		"angular": {
-			"js": "node_modules/angular/angular.min.js"
-		},
-		"jquery": {
-			"js": "node_modules/jquery/dist/jquery.min.js"
-		},
-		"propel": {
-			"css": "node_modules/rocket-propel/css/propel.min.css"
-		}
+	"engine": {
+		"light": false
+	},
+	"module": {
+		"load": [
+			"angular"
+		]
 	},
 	"css": ["app.css"],
 	"js": ["app.js"]

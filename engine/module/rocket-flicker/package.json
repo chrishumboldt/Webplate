@@ -2,25 +2,25 @@
   "_args": [
     [
       {
-        "raw": "rocket-flicker@^4.0.5",
+        "raw": "rocket-flicker",
         "scope": null,
         "escapedName": "rocket-flicker",
         "name": "rocket-flicker",
-        "rawSpec": "^4.0.5",
-        "spec": ">=4.0.5 <5.0.0",
-        "type": "range"
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
       },
-      "/Users/user/Development/Sites/rocket/engine"
+      "/Users/user/Development/Sites/rocket"
     ]
   ],
-  "_from": "rocket-flicker@>=4.0.5 <5.0.0",
-  "_id": "rocket-flicker@4.0.5",
+  "_from": "rocket-flicker@latest",
+  "_id": "rocket-flicker@4.0.6",
   "_inCache": true,
   "_location": "/rocket-flicker",
   "_nodeVersion": "4.4.0",
   "_npmOperationalInternal": {
-    "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/rocket-flicker-4.0.5.tgz_1478768268640_0.393833514302969"
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/rocket-flicker-4.0.6.tgz_1479880358733_0.552889501908794"
   },
   "_npmUser": {
     "name": "chrishumboldt",
@@ -29,22 +29,22 @@
   "_npmVersion": "3.10.9",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "rocket-flicker@^4.0.5",
+    "raw": "rocket-flicker",
     "scope": null,
     "escapedName": "rocket-flicker",
     "name": "rocket-flicker",
-    "rawSpec": "^4.0.5",
-    "spec": ">=4.0.5 <5.0.0",
-    "type": "range"
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
   },
   "_requiredBy": [
-    "/"
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/rocket-flicker/-/rocket-flicker-4.0.5.tgz",
-  "_shasum": "9cf4d4b758bf87588ab830924ec5ced093d13fd7",
+  "_resolved": "https://registry.npmjs.org/rocket-flicker/-/rocket-flicker-4.0.6.tgz",
+  "_shasum": "fa16d6fe4591cac2de303fbfbbbad0b09d68b653",
   "_shrinkwrap": null,
-  "_spec": "rocket-flicker@^4.0.5",
-  "_where": "/Users/user/Development/Sites/rocket/engine",
+  "_spec": "rocket-flicker",
+  "_where": "/Users/user/Development/Sites/rocket",
   "author": {
     "name": "Chris Humboldt",
     "email": "chrismodem@gmail.com"
@@ -55,24 +55,24 @@
   "dependencies": {
     "rocket-propel": "^3.0.0"
   },
-  "description": "A component that lets you flick through content.",
+  "description": "A module that lets you flick through content.",
   "devDependencies": {
     "rocket-demo": "^2.0.0"
   },
   "directories": {},
   "dist": {
-    "shasum": "9cf4d4b758bf87588ab830924ec5ced093d13fd7",
-    "tarball": "https://registry.npmjs.org/rocket-flicker/-/rocket-flicker-4.0.5.tgz"
+    "shasum": "fa16d6fe4591cac2de303fbfbbbad0b09d68b653",
+    "tarball": "https://registry.npmjs.org/rocket-flicker/-/rocket-flicker-4.0.6.tgz"
   },
   "engines": {
     "npm": "^3.0.0"
   },
-  "gitHead": "991f94cb0daff2de1c46e6f46383a61410889bc8",
+  "gitHead": "a3692903532e0c1a6a822ae7be6ce56d892932ea",
   "homepage": "https://github.com/chrishumboldt/Rocket-Flicker#readme",
   "keywords": [
     "Rocket",
     "Part",
-    "Component",
+    "Module",
     "Flicker",
     "Slider",
     "Javascript",
@@ -93,16 +93,22 @@
     "type": "git",
     "url": "git+https://github.com/chrishumboldt/Rocket-Flicker.git"
   },
-  "rocket": {
-    "build": [
-      "build/js/flicker.js",
-      "build/sass/_import.scss"
-    ],
-    "production": [
-      "css/flicker.min.css",
-      "js/flicker.min.js"
-    ]
-  },
   "scripts": {},
-  "version": "4.0.5"
+  "version": "4.0.6",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-flicker@4.0.6"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "npm": "^3.0.0"
+      },
+      "pkgid": "rocket-flicker@4.0.6"
+    }
+  ]
 }
