@@ -52,8 +52,8 @@ by the cockpit.json file.
 			js: path.engine.module + 'rocket-form/js/form.min.js'
 		},
 		inject: {
-			js: path.engine.module + 'rocket-inject/js/inject-lean.min.js',
-			deps: 'mustache'
+			requires: ['mustache'],
+			js: path.engine.module + 'rocket-inject/js/inject-lean.min.js'
 		},
 		mustache: {
 			js: path.engine.module + 'mustache/mustache.min.js'
@@ -71,34 +71,6 @@ by the cockpit.json file.
 
    // Core
 	var core = {
-		fbConfigCreate: function (loadModules) {
-			var newConfig = {};
-			for (var i = 0, len = loadModules.length; i < len; i++) {
-			   if (Rocket.exists(modules[loadModules[i]])) {
-					// newConfig[loadModules[i]] = modules[loadModules[i]];
-					var thisModule = modules[loadModules[i]];
-					// CSS
-					if (Rocket.is.string(thisModule.css)) {
-						newConfig['css$' + loadModules[i]] = {
-							urls: thisModule.css
-						};
-					}
-					// JS
-					if (Rocket.is.string(thisModule.js)) {
-						newConfig[loadModules[i]] = {
-							urls: thisModule.js
-						};
-						if (Rocket.is.string(thisModule.exports)) {
-							newConfig[loadModules[i]].exports = thisModule.exports;
-						}
-						if (Rocket.is.string(thisModule.deps)) {
-							newConfig[loadModules[i]].deps = thisModule.deps;
-						}
-					}
-				}
-			}
-			return newConfig;
-		},
 		load: {
 			modules: function (callback) {
 				var loadModules = [];
@@ -118,9 +90,6 @@ by the cockpit.json file.
 						'mustache'
 					]);
 				}
-				var fallbackLoad = core.fbConfigCreate(loadModules);
-				Rocket.log(fallbackLoad);
-				fallback.load(fallbackLoad);
 			}
 		},
 		getJSON: function (url, callback) {
@@ -158,5 +127,6 @@ by the cockpit.json file.
 	};
 
    // Execute
+	core.setupModules
    core.init();
 })();
