@@ -50,7 +50,7 @@ If you would like a page loader to display while your project files load, simply
 ## Go Into Orbit
 Before you have even started, Rocket has already loaded up [Modernizr](https://modernizr.com/), [Normalize.css](https://necolas.github.io/normalize.css/), [Typeplate](http://typeplate.com/), [Anime.js](http://anime-js.com/), [Rocket Tools](https://github.com/chrishumboldt/Rocket-Tools), [Rocket Require](https://github.com/chrishumboldt/Rocket-Require) and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
 
-This will get you up and running for most projects but if you want to delve into Rocket's automatic Bower and SASS integration then just read over some of the [online documentation](http://getrocket.io/documentation) and become a bonafide pro.
+This will get you up and running for most projects but if you want to delve into Rocket's automatic NPM and SASS integration then just read over some of the [online documentation](http://rocketrocks.io/documentation) and become a bonafide pro.
 
 ## Command-line Tool
 One of the best features of Rocket is the command-line tool. It will make building your project so much easier and helps with SASS building, Javascript minification and component development. While it is an advanced feature it has tons of uses like watching for file changes and updating your browser automatically.
@@ -63,7 +63,7 @@ While Webplate has many of the same core features as Rocket, it is not recommend
 If you wish to attempt a migration do so only for smaller projects as for larger projects it would be not be wise, even though it is technically possible.
 
 ## Documentation
-Rocket has many aspects to it so for more information view the comprehensive [online documentation](http://getrocket.io/documentation).
+Rocket has many aspects to it so for more information view the comprehensive [online documentation](http://rocketrocks.io/documentation).
 
 ## Author
 Created and maintained by Chris Humboldt<br>
