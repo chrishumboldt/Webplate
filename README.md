@@ -31,7 +31,7 @@ All projects include a combination of CSS and Javascript and Rocket makes it sup
 }
 ```
 
-You will notice that a comma delimited list allows you to load more than one file and that the Rocket path is not required. This is because Rocket automatically knows where to look inside the project directory. You can also load different files on different pages.
+You will notice that a comma delimited list allows you to load more than one file and that the Rocket path is not required. This is because Rocket automatically knows where to look within the directory. You can also load different files on different pages.
 
 #### Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id **rocket-content**. See an example below.
