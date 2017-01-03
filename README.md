@@ -53,7 +53,7 @@ Before you have even started, Rocket has already loaded up [Modernizr](https://m
 This will get you up and running for most projects but if you want to delve into Rocket's automatic NPM and SASS integration then just read over some of the [online documentation](http://rocketrocks.io/documentation) and become a bonafide pro.
 
 ## Command-line Tool
-One of the best features of Rocket is the command-line tool. It will make building your project so much easier and helps with SASS building, Javascript minification and component development. While it is an advanced feature it has tons of uses like watching for file changes and updating your browser automatically.
+One of the best features of Rocket is the command-line tool. It will make building your project so much easier and helps with SASS building, Javascript minification and module development. While it is an advanced feature it has tons of uses like watching for file changes and updating your browser automatically.
 
 https://github.com/chrishumboldt/Rocket-Command
 
