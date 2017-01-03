@@ -26,10 +26,8 @@ All projects include a combination of CSS and Javascript and Rocket makes it sup
 
 ```json
 {
-    "project": {
-        "css": ["welcome.css", "theme.css"],
-        "js": ["welcome.js"],
-    }
+   "css": ["welcome.css", "theme.css"],
+   "js": ["welcome.js"]
 }
 ```
 
@@ -50,7 +48,7 @@ If you would like a page loader to display while your project files load, simply
 **Browser Support:** IE9+, Chrome, Firefox, Safari, Opera
 
 ## Go Into Orbit
-Before you have even started, Rocket has already loaded up [Modernizr](https://modernizr.com/), [Normalize.css](https://necolas.github.io/normalize.css/), [Typeplate](http://typeplate.com/), [Anime.js](http://anime-js.com/) and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
+Before you have even started, Rocket has already loaded up [Modernizr](https://modernizr.com/), [Normalize.css](https://necolas.github.io/normalize.css/), [Typeplate](http://typeplate.com/), [Anime.js](http://anime-js.com/), , [Rocket Tools](https://github.com/chrishumboldt/Rocket-Tools), [Rocket Require](https://github.com/chrishumboldt/Rocket-Require) and icon font support at a minimal size. This takes away most of the set up time and acts like a kind of advanced boilerplate.
 
 This will get you up and running for most projects but if you want to delve into Rocket's automatic Bower and SASS integration then just read over some of the [online documentation](http://getrocket.io/documentation) and become a bonafide pro.
 
