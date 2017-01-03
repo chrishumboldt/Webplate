@@ -1,11 +1,10 @@
 /**
- * File: engine/sass/setup/_setup.scss
- * Type: SASS setup file
  * Author: Chris Humboldt
  */
 
 // Global
 @include global-setup();
+
 html, body {
 	@include text-font($font-family);
 	@include text-weight(400);

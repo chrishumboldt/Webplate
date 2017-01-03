@@ -1,6 +1,0 @@
-{
-	"compilerOptions": {
-		"outDir": "../js",
-		"target": "es5"
-	}
-}

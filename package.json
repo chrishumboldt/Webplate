@@ -1,28 +1,32 @@
 {
-   "name": "rocket-framework",
-   "version": "4.0.2",
-   "description": "Rocket is an awesome front-end framework and builder.",
-   "main": "launch.js",
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/chrishumboldt/Webplate.git"
-   },
-   "keywords": [
-      "Rocket",
-      "Framework",
-      "Responsive",
-      "SASS",
-      "Modernizr",
-      "Rocket Tools",
-      "Velocity.js",
-      "Rocket Propel",
-      "Rocket Button",
-      "Rocket Flicker"
-   ],
-   "author": "Chris Humboldt <chrismodem@gmail.com>",
-   "license": "Apache-2.0",
-   "bugs": {
-      "url": "https://github.com/chrishumboldt/Webplate/issues"
-   },
-   "homepage": "https://github.com/chrishumboldt/Webplate#readme"
+  "name": "rocket-framework",
+  "version": "4.0.3",
+  "description": "Rocket is an awesome front-end framework and builder.",
+  "main": "launch.js",
+  "scripts": {
+    "postinstall": "cd engine && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishumboldt/Webplate.git"
+  },
+  "keywords": [
+    "Rocket",
+    "Framework",
+    "Responsive",
+    "SASS",
+    "Modernizr",
+    "Rocket Tools",
+    "Animejs",
+    "Rocket Propel",
+    "Rocket Button",
+    "Rocket Flicker",
+    "Rocket Form"
+  ],
+  "author": "Chris Humboldt <chrismodem@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chrishumboldt/Webplate/issues"
+  },
+  "homepage": "https://github.com/chrishumboldt/Webplate#readme"
 }

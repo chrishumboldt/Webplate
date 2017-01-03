@@ -1,6 +1,0 @@
-{
-	"build": [{
-		"name": "tools",
-		"js": ["tools.js"]
-	}]
-}

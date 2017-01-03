@@ -1,12 +1,4 @@
 {
-	"engine": {
-		"light": false
-	},
-	"module": {
-		"load": [
-			"angular"
-		]
-	},
 	"css": ["app.css"],
 	"js": ["app.js"]
 }

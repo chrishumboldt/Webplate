@@ -46,3 +46,5 @@ build/sass/test.scss
 css/test.min.css
 build/js/test.js
 js/test.min.js
+node_modules
+engine/node_modules

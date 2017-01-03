@@ -53,7 +53,6 @@ h6 {
 	@include text-weight($weight-light);
 }
 p {
-	@include text-colour($grey-dark);
 	@include text-size(15px);
 	@include text-weight($weight-light);
 	@include breakpoint(large) {

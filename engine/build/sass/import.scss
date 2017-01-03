@@ -1,27 +1,14 @@
 /**
- * File: engine/sass/_import.scss
- * Type: SASS import file
  * Author: Chris Humboldt
  */
 
 // Variables
-$limit-width: 75em !default;
-$menu-width: 16.250em !default;
-$small-nav-back: #fff !default;
-$images-root: "../img" !default;
-$column-limit: 12 !default;
-$spacing-limit: 10 !default;
-$default-flex: 1 !default;
-$default-flex-percent-option: false !default;
-$break-main: 43.813em !default;
-$min-max: false !default;
-$font-family: 'Open Sans', Helvetica, Arial, sans-serif !default;
+$font-face-rocket-button: '../node_modules/rocket-button/css/icon-font-rocket-button' !default;
+$font-face-rocket-flicker: '../node_modules/rocket-flicker/css/icon-font-rocket-flicker' !default;
+$font-face-rocket-form: '../node_modules/rocket-form/css/icon-font-rocket-form' !default;
 
 // Modules
-@import "../../module/rocket-propel/build/sass/import";
-@import "../../module/rocket-button/build/sass/import";
-@import "../../module/rocket-flicker/build/sass/import";
-@import "../../module/rocket-form/build/sass/import";
-
-// Overwrites
-@import "overwrite";
+@import "../../node_modules/rocket-propel/build/sass/import";
+@import "../../node_modules/rocket-button/build/sass/import";
+@import "../../node_modules/rocket-flicker/build/sass/import";
+@import "../../node_modules/rocket-form/build/sass/import";
