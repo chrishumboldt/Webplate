@@ -2,10 +2,11 @@
  * Author: Chris Humboldt
 **/
 
+@include propel-css;
 @include rocket-button-css('.button');
-@include rocket-flicker-css();
-@include rocket-form-css();
-@include propel-css();
+@include rocket-flicker-css;
+@include rocket-form-css;
+@include rocket-loader-css;
 
 // Forms
 label {

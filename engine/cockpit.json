@@ -18,6 +18,7 @@
          "../../node_modules/rocket-flicker/js/flicker.min.js",
          "../../node_modules/rocket-form/js/form.min.js",
          "../../node_modules/rocket-inject/js/inject.min.js",
+         "../../node_modules/rocket-loader/js/loader.min.js",
          "overwrite.js"
       ]
    }, {
