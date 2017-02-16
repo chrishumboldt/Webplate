@@ -19,6 +19,7 @@
          "node_modules/rocket-form/js/form.min.js",
          "node_modules/rocket-inject/js/inject.min.js",
          "node_modules/rocket-loader/js/loader.min.js",
+         "node_modules/rocket-message/js/message.min.js",
          "~/overwrite.js"
       ]
    }, {
