@@ -6,39 +6,39 @@
       },
       "subExtension": "",
       "js": [
-			"modernizr-custom.min.js",
-			"../../node_modules/rocket-tools/js/tools.min.js",
-         "core.js"
+			"~/modernizr-custom.min.js",
+			"node_modules/rocket-tools/js/tools.min.js",
+         "~/core.js"
       ]
 	}, {
       "name": "scripts",
       "js": [
-         "../../node_modules/animejs/anime.js",
-         "../../node_modules/rocket-button/js/button.min.js",
-         "../../node_modules/rocket-flicker/js/flicker.min.js",
-         "../../node_modules/rocket-form/js/form.min.js",
-         "../../node_modules/rocket-inject/js/inject.min.js",
-         "../../node_modules/rocket-loader/js/loader.min.js",
-         "overwrite.js"
+         "node_modules/animejs/anime.js",
+         "node_modules/rocket-button/js/button.min.js",
+         "node_modules/rocket-flicker/js/flicker.min.js",
+         "node_modules/rocket-form/js/form.min.js",
+         "node_modules/rocket-inject/js/inject.min.js",
+         "node_modules/rocket-loader/js/loader.min.js",
+         "~/overwrite.js"
       ]
    }, {
       "name": "styles",
       "css": [
-         "import.scss",
-         "../../node_modules/normalize.css/normalize.css",
-         "setup/typeplate.scss",
-         "setup/setup.scss",
-         "setup/text.scss",
-         "module-css.scss"
+         "~/import.scss",
+         "node_modules/normalize.css/normalize.css",
+         "~/setup/typeplate.scss",
+         "~/setup/setup.scss",
+         "~/setup/text.scss",
+         "~/module-css.scss"
       ]
    }, {
       "name": "styles-light",
       "css": [
-         "import.scss",
-         "../../node_modules/normalize.css/normalize.css",
-         "setup/typeplate.scss",
-         "setup/setup.scss",
-         "setup/text.scss"
+         "~/import.scss",
+         "node_modules/normalize.css/normalize.css",
+         "~/setup/typeplate.scss",
+         "~/setup/setup.scss",
+         "~/setup/text.scss"
       ]
    }]
 }
