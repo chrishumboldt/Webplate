@@ -25,7 +25,8 @@ var RockMod_Module;
                 if (obj.hasOwnProperty(key)) {
                     if (validate.module(key, obj[key])) {
                         listModules[key] = {
-                            loaded: false
+                            loaded: false,
+                            loading: false
                         };
                         if (Rocket.is.string(obj[key].css) || Rocket.is.array(obj[key].css)) {
                             listModules[key].css = moduleMethods.sanitisePaths(obj[key].css);
@@ -88,6 +89,13 @@ var RockMod_Module;
             var thisModule = listModules[name];
             return (Rocket.is.object(thisModule)) ? thisModule.loaded : false;
         },
+        isLoading: function (name) {
+            if (!Rocket.is.string(name)) {
+                return false;
+            }
+            var thisModule = listModules[name];
+            return (Rocket.is.object(thisModule)) ? thisModule.loading : false;
+        },
         listLoaded: function () {
             var listLoaded = [];
             for (var key in listModules) {
@@ -146,6 +154,7 @@ var RockMod_Module;
     RockMod_Module.exists = moduleMethods.exists;
     RockMod_Module.get = moduleMethods.get;
     RockMod_Module.isLoaded = moduleMethods.isLoaded;
+    RockMod_Module.isLoading = moduleMethods.isLoading;
     RockMod_Module.dependencies = moduleMethods.dependencies;
     RockMod_Module.list = listModules;
     RockMod_Module.loaded = moduleMethods.listLoaded;
@@ -198,7 +207,7 @@ var RockMod_Require;
         };
         document.getElementsByTagName('head')[0].appendChild(theInclude);
     }
-    function loadModuleFiles(name, thisModule, callback) {
+    function loadModuleFiles(thisModule, callback) {
         var count = 0;
         var files = [];
         if (Rocket.is.string(thisModule.css)) {
@@ -215,14 +224,15 @@ var RockMod_Require;
         }
         count = files.length;
         if (count < 1) {
-            return callback(false);
+            return callback();
         }
         for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
             var file = files_1[_i];
             loadFile(file, function (response) {
                 count--;
                 if (count === 0) {
-                    return callback(true);
+                    thisModule.loaded = true;
+                    return callback();
                 }
             }, false);
         }
@@ -243,15 +253,48 @@ var RockMod_Require;
         };
         Require.prototype.load = function (callback) {
             var self = this;
-            var listModules = self.modules.reverse();
-            var modulesCount = self.modulesCount;
             function loadExecute() {
-                loadModules(listModules, function () {
+                loadModules(self.modules, function () {
                     self.modules = [];
                     if (Rocket.is.function(callback)) {
                         return callback();
                     }
                 });
+            }
+            function loadModule(name, callback) {
+                if (!Rocket.module.exists(name)) {
+                    if (Rocket.defaults.require.errors) {
+                        throw new Error('ROCKET REQUIRE: You are missing a required module: ' + name);
+                    }
+                }
+                else {
+                    var thisModule_1 = Rocket.module.get(name);
+                    if (thisModule_1.loaded || thisModule_1.loading) {
+                        if (thisModule_1.loaded) {
+                            return callback();
+                        }
+                        else {
+                            var modIntervalCheck_1 = setInterval(function () {
+                                if (thisModule_1.loaded) {
+                                    clearInterval(modIntervalCheck_1);
+                                    return callback();
+                                }
+                            }, 10);
+                        }
+                    }
+                    else {
+                        var dependencies = (Rocket.is.array(thisModule_1.requires) && thisModule_1.requires.length > 0) ? thisModule_1.requires : false;
+                        thisModule_1.loading = true;
+                        if (!dependencies) {
+                            return loadModuleFiles(thisModule_1, callback);
+                        }
+                        else {
+                            loadModules(dependencies, function () {
+                                return loadModuleFiles(thisModule_1, callback);
+                            });
+                        }
+                    }
+                }
             }
             function loadModules(modules, callback) {
                 var count = modules.length;
@@ -264,38 +307,6 @@ var RockMod_Require;
                         }
                     });
                 }
-            }
-            function loadModule(name, callback) {
-                if (!Rocket.module.exists(name)) {
-                    if (Rocket.defaults.require.errors) {
-                        throw new Error('ROCKET REQUIRE: You are missing a required module: ' + name);
-                    }
-                }
-                else {
-                    if (Rocket.module.isLoaded(name)) {
-                        return callback();
-                    }
-                    else {
-                        var thisModule_1 = Rocket.module.get(name);
-                        var dependencies = (Rocket.is.array(thisModule_1.requires) && thisModule_1.requires.length > 0) ? thisModule_1.requires : false;
-                        thisModule_1.loaded = true;
-                        if (!dependencies) {
-                            loadModuleFiles(name, thisModule_1, function () {
-                                return callback();
-                            });
-                        }
-                        else {
-                            loadModules(dependencies, function () {
-                                loadModuleFiles(name, thisModule_1, function () {
-                                    return callback();
-                                });
-                            });
-                        }
-                    }
-                }
-            }
-            function removeModule(name) {
-                listModules.splice(listModules.indexOf(name), 1);
             }
             loadExecute();
         };
@@ -514,7 +525,7 @@ by the cockpit.json file.
 				loaderDiv.style.fontFamily = 'Arial, Helvetica, sans-serif';
 				loaderDiv.style.textAlign = 'center';
 				document.getElementsByTagName('body')[0].appendChild(loaderDiv);
-            
+
 				var pageLoaderTimer = setInterval(function () {
 					i++;
 					if (document.getElementById('rocket-page-loader') !== null) {
