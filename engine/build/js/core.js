@@ -1,13 +1,13 @@
-/**
- * Author: Chris Humboldt
-**/
+/*
+Author: Chris Humboldt
+*/
 
 'use strict';
 
 /*
 Rocket require
 This module is baked directly into Rocket as it is a requirement.
-The same is true for the Rocket Tools.
+The same is true for Rocket Tools.
 */
 Rocket.defaults.require = {
     errors: true,
@@ -456,6 +456,7 @@ by the cockpit.json file.
 
             // Require
             core.log('Rocket: Modules load...started');
+            
             var require = Rocket.require();
             require.add('rocketLaunch');
             require.load(callback());
