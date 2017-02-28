@@ -19,6 +19,6 @@
     "rocket-loader": "^2.2.3",
     "rocket-message": "^2.0.0",
     "rocket-propel": "^3.0.3",
-    "rocket-tools": "^1.13.0"
+    "rocket-tools": "^1.13.2"
   }
 }
