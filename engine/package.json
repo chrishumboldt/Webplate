@@ -17,8 +17,8 @@
     "rocket-form": "^3.1.5",
     "rocket-inject": "^4.1.0",
     "rocket-loader": "^2.2.3",
-    "rocket-message": "^2.0.3",
-    "rocket-modal": "^4.0.2",
+    "rocket-message": "^2.1.0",
+    "rocket-modal": "^4.0.3",
     "rocket-propel": "^3.0.3",
     "rocket-tools": "^1.13.2"
   }
