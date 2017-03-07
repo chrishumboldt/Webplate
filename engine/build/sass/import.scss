@@ -1,6 +1,6 @@
-/**
- * Author: Chris Humboldt
- */
+/*
+Author: Chris Humboldt
+*/
 
 // Variables
 $font-face-rocket-button: '../node_modules/rocket-button/css/icon-font-rocket-button' !default;
@@ -14,3 +14,4 @@ $font-face-rocket-form: '../node_modules/rocket-form/css/icon-font-rocket-form' 
 @import "../../node_modules/rocket-form/build/sass/import";
 @import "../../node_modules/rocket-loader/build/sass/import";
 @import "../../node_modules/rocket-message/build/sass/import";
+@import "../../node_modules/rocket-modal/build/sass/import";
