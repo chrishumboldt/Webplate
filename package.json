@@ -28,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/chrishumboldt/Webplate/issues"
   },
-  "homepage": "https://github.com/chrishumboldt/Webplate#readme"
+  "homepage": "https://github.com/chrishumboldt/Webplate#readme",
+  "devDependencies": {
+    "rocket-demo": "^2.0.1",
+    "rocket-propel": "^3.0.3"
+  }
 }
