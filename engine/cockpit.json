@@ -13,7 +13,7 @@
    }, {
       "name": "scripts",
       "js": [
-         "node_modules/animejs/anime.js",
+         "node_modules/animejs/anime.min.js",
          "node_modules/rocket-button/js/button.min.js",
          "node_modules/rocket-flicker/js/flicker.min.js",
          "node_modules/rocket-form/js/form.min.js",

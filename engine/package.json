@@ -9,18 +9,18 @@
   "author": "Chris Humboldt",
   "license": "Apache-2.0",
   "dependencies": {
-    "animejs": "^1.1.3",
+    "animejs": "^2.0.2",
     "fastclick": "^1.0.6",
-    "normalize.css": "^5.0.0",
+    "normalize.css": "^6.0.0",
     "rocket-button": "^5.1.8",
     "rocket-flicker": "^4.4.0",
     "rocket-form": "^3.1.5",
     "rocket-inject": "^4.1.0",
-    "rocket-loader": "^2.2.3",
+    "rocket-loader": "^2.2.4",
     "rocket-menu": "^2.0.0",
-    "rocket-message": "^2.1.0",
+    "rocket-message": "^2.2.0",
     "rocket-modal": "^4.1.0",
     "rocket-propel": "^3.0.3",
-    "rocket-tools": "^1.13.2"
+    "rocket-tools": "^1.14.1"
   }
 }

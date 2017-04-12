@@ -1,6 +1,6 @@
-/*
-Author: Chris Humboldt
-*/
+/**
+@author Chris Humboldt
+**/
 
 'use strict';
 
@@ -456,7 +456,7 @@ by the cockpit.json file.
 
             // Require
             core.log('Rocket: Modules load...started');
-            
+
             var require = Rocket.require();
             require.add('rocketLaunch');
             require.load(callback());
