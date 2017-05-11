@@ -1,6 +1,6 @@
 {
   "name": "rocket-engine",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The main Rocket engine.",
   "keywords": [
     "Rocket",
@@ -14,7 +14,7 @@
     "normalize.css": "^6.0.0",
     "rocket-button": "^5.1.9",
     "rocket-flicker": "^4.4.0",
-    "rocket-form": "^3.1.6",
+    "rocket-form": "^3.1.7",
     "rocket-inject": "^4.1.0",
     "rocket-loader": "^2.2.4",
     "rocket-menu": "^2.0.1",
