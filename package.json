@@ -21,7 +21,13 @@
     "Rocket Propel",
     "Rocket Button",
     "Rocket Flicker",
-    "Rocket Form"
+    "Rocket Form",
+    "Rocket Inject",
+    "Rocket Loader",
+    "Rocket Menu",
+    "Rocket Message",
+    "Rocket Modal",
+    "Rocket Tab"
   ],
   "author": "Chris Humboldt <chrismodem@gmail.com>",
   "license": "Apache-2.0",

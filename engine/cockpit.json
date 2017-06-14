@@ -21,7 +21,8 @@
          "node_modules/rocket-loader/js/loader.min.js",
          "node_modules/rocket-menu/js/menu.min.js",
          "node_modules/rocket-message/js/message.min.js",
-         "node_modules/rocket-modal/js/modal.min.js"
+         "node_modules/rocket-modal/js/modal.min.js",
+         "node_modules/rocket-tab/js/tab.min.js"
       ]
    }, {
       "name": "styles",
