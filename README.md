@@ -13,7 +13,7 @@ Rocket is an configuration based front-end framework that lets you stay focused 
 Simply drop the Rocket directory into your project and include the launch.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
 
 ```html
-<body style="display:none;">
+<body style="display: none;">
     /* Your content goes here */
     <script id="rocket" src="rocket/launch.js"></script>
 </body>
@@ -31,17 +31,18 @@ All projects include a combination of CSS and Javascript and Rocket makes it sup
 }
 ```
 
-You will notice that a comma delimited list allows you to load more than one file and that the Rocket path is not required. This is because Rocket automatically knows where to look within the directory. You can also load different files on different pages.
+You will notice that the array allows you to load more than one file and that the Rocket path is not required. This is because Rocket automatically knows where to look within the directory. You can also load different files on different pages.
 
 #### Page Loader
 If you would like a page loader to display while your project files load, simply wrap your content in a div with id **rocket-content**. See an example below.
 
 ```html
 <body>
-    <div id="rocket-content" style="display:none;">
-        /* Your content goes here */
-    </div>
-    <script id="rocket" src="rocket/launch.js"></script>
+   <div id="rocket-content" style="display: none;">
+      /* Your content goes here */
+   </div>
+
+   <script id="rocket" src="rocket/launch.js"></script>
 </body>
 ```
 
@@ -55,7 +56,7 @@ This will get you up and running for most projects but if you want to delve into
 ## Command-line Tool
 One of the best features of Rocket is the command-line tool. It will make building your project so much easier and helps with SASS building, Javascript minification and module development. While it is an advanced feature it has tons of uses like watching for file changes and updating your browser automatically.
 
-https://github.com/chrishumboldt/Rocket-Command
+https://rocketrocks.io/documentation/command-line
 
 ## Webplate Migration
 While Webplate has many of the same core features as Rocket, it is not recommended that you try and migrate. Rocket has many philosophical and developmental differences, from the the altered Rocket namespace to the build tools. Webplate will however be branched and maintained for bug fixes.
@@ -77,7 +78,7 @@ GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><b
 <a href="https://github.com/digiltd">digiltd</a>
 
 ## Copyright and License
-Copyright 2016 Rocket Project
+Copyright 2017 Rocket Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
