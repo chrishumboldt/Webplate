@@ -1,6 +1,7 @@
 # Rocket Framework
 Rocket is an configuration based front-end framework that lets you stay focused on building.
 
+* [Getting Rocket](#getting-rocket)
 * [Launching](#launching)
    * [Cockpit File Loading](#cockpit-file-loading)
    * [Page Loader](#page-loader)
@@ -8,6 +9,13 @@ Rocket is an configuration based front-end framework that lets you stay focused 
 * [Command-line Tool](#command-line-tool)
 * [Webplate Migration](#webplate-migration)
 * [Documentation](#documentation)
+
+## Getting Rocket
+You can either [download](https://github.com/chrishumboldt/Rocket/archive/master.zip) a copy of the rocket framework right here from GitHub, else install the framework via npm. See an example below.
+
+```
+npm install rocket-framework
+```
 
 ## Launching
 Simply drop the Rocket directory into your project and include the launch.js file before your ending body tag. Below is an example of this and note that an id of **rocket** is required.
