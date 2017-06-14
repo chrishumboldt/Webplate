@@ -1,6 +1,6 @@
 {
   "name": "rocket-engine",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "The main Rocket engine.",
   "keywords": [
     "Rocket",
@@ -13,15 +13,15 @@
     "fastclick": "^1.0.6",
     "normalize.css": "^7.0.0",
     "rocket-button": "^5.1.9",
-    "rocket-flicker": "^4.4.0",
+    "rocket-flicker": "^4.4.1",
     "rocket-form": "^3.1.8",
-    "rocket-inject": "^4.1.0",
-    "rocket-loader": "^2.2.4",
+    "rocket-inject": "^4.1.1",
+    "rocket-loader": "^2.2.5",
     "rocket-menu": "^2.0.1",
     "rocket-message": "^2.2.1",
-    "rocket-modal": "^4.1.0",
+    "rocket-modal": "^4.1.1",
     "rocket-propel": "^3.0.3",
-    "rocket-tab": "^2.0.0",
+    "rocket-tab": "^2.0.2",
     "rocket-tools": "^1.14.3"
   }
 }
