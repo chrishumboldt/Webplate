@@ -8,6 +8,7 @@
       "js": [
          "~/modernizr-custom.min.js",
          "node_modules/rocket-tools/js/tools.min.js",
+         "node_modules/rocket-require/js/require.min.js",
          "~/core.js"
       ]
    }, {

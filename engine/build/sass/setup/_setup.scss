@@ -7,7 +7,7 @@
 
 html, body {
 	@include text-font($font-family);
-	@include text-weight(400);
+	@include text-weight($weight-base);
 }
 div {
   display: block;
@@ -15,24 +15,4 @@ div {
 }
 body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, select {
   @include text-colour(#333);
-}
-
-// Overlay
-#rocket-overlay {
-	@include display(block);
-	@include position(fixed, top 0 right 0 bottom 0 left 0);
-	@include background-colour(fade-out($black-base, 0.4));
-	@include level(1000);
-	@include visibility(hidden);
-	@include opacity(0);
-	@include animate(all, 0.4s);
-	.web-overlay-reveal & {
-		@include visibility(visible);
-		@include opacity(1);
-	}
-}
-
-// Wallpaper
-.wallpaper {
-	@include background-cover();
 }
