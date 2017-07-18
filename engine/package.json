@@ -20,9 +20,9 @@
     "rocket-menu": "^2.0.1",
     "rocket-message": "^2.2.1",
     "rocket-modal": "^4.1.1",
-    "rocket-require": "^1.1.5",
+    "rocket-require": "^1.2.2",
     "rocket-propel": "^3.0.3",
     "rocket-tab": "^2.0.2",
-    "rocket-tools": "^1.14.3"
+    "rocket-tools": "^1.14.4"
   }
 }

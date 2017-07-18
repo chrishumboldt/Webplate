@@ -113,7 +113,9 @@ by the cockpit.json file.
 
             // Fix the paths
             for (var i = 0, len = app.css.length; i < len; i++) {
-               app.css[i] = path.css + app.css[i];
+               if (app.css[i].substring(0, 4) !== 'http') {
+                  app.css[i] = path.css + app.css[i];
+               }
             }
             for (var i = 0, len = app.js.length; i < len; i++) {
                app.js[i] = path.js + app.js[i];
@@ -143,7 +145,7 @@ by the cockpit.json file.
 
             var require = Rocket.require();
             require.add('rocketLaunch');
-            require.load(callback());
+            require.load(callback);
 			}
 		},
 		getJSON: function (url, callback) {
