@@ -1,6 +1,6 @@
 {
 	"css": [
-      "app.css"
+      "app.min.css"
    ],
 	"js": [
       "app.js"

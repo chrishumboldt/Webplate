@@ -1,6 +1,6 @@
 {
   "name": "rocket-framework",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "description": "Rocket is an awesome front-end framework and builder.",
   "main": "launch.js",
   "scripts": {
