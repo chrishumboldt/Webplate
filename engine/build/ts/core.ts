@@ -181,6 +181,7 @@ by the cockpit.json file.
             }
 
 				// Load modules
+            if (rocketContent !== null) { rocketContent.removeAttribute('style') };
 				core.load.modules(() => {
                core.log('Rocket: Modules load...successful');
 					core.showPage();
@@ -228,7 +229,6 @@ by the cockpit.json file.
 		},
       showPage: () => {
          if (rocketContent !== null) {
-            rocketContent.removeAttribute('style');
             setTimeout(() => {
                anime({
                   targets: '#rocket-page-loader-container',
@@ -240,7 +240,7 @@ by the cockpit.json file.
                   Rocket.dom.remove('#rocket-page-loader-container');
                   Rocket.dom.remove('#rocket-page-loader-style-tag');
                }, 501);
-            }, 250);
+            }, 350);
 			} else {
 				Rocket.dom.body.removeAttribute('style');
 			}
