@@ -53,6 +53,18 @@ by the cockpit.json file.
 
    // Core
 	const core = {
+      fadeOut: (obj) => {
+         const fadeElm = Rocket.dom.element(obj.targets);
+         fadeElm.style.opacity = 1;
+
+         let fadeEffect = setInterval(() => {
+            if (fadeElm.style.opacity < 0.01) {
+               clearInterval(fadeEffect);
+            } else {
+               fadeElm.style.opacity -= 0.01;
+            }
+         }, (obj.duration / 100));
+      },
 		load: {
 			modules: (callback) => {
 				let rootModules = [];
@@ -230,21 +242,21 @@ by the cockpit.json file.
       showPage: () => {
          if (rocketContent !== null) {
             setTimeout(() => {
-               anime({
+               core.fadeOut({
                   targets: '#rocket-page-loader-container',
-                  opacity: 0,
-                  duration: 500,
-                  easing: 'easeOutQuad'
+                  duration: 500
                });
+
                setTimeout(() => {
                   Rocket.dom.remove('#rocket-page-loader-container');
                   Rocket.dom.remove('#rocket-page-loader-style-tag');
+         			core.log('Rocket: Page show...successful');
                }, 501);
             }, 350);
 			} else {
 				Rocket.dom.body.removeAttribute('style');
+   			core.log('Rocket: Page show...successful');
 			}
-			core.log('Rocket: Page show...successful');
       }
 	};
 

@@ -48,6 +48,18 @@ by the cockpit.json file.
     });
     // Core
     var core = {
+        fadeOut: function (obj) {
+            var fadeElm = Rocket.dom.element(obj.targets);
+            fadeElm.style.opacity = 1;
+            var fadeEffect = setInterval(function () {
+                if (fadeElm.style.opacity < 0.01) {
+                    clearInterval(fadeEffect);
+                }
+                else {
+                    fadeElm.style.opacity -= 0.01;
+                }
+            }, (obj.duration / 100));
+        },
         load: {
             modules: function (callback) {
                 var rootModules = [];
@@ -215,22 +227,21 @@ by the cockpit.json file.
         showPage: function () {
             if (rocketContent !== null) {
                 setTimeout(function () {
-                    anime({
+                    core.fadeOut({
                         targets: '#rocket-page-loader-container',
-                        opacity: 0,
-                        duration: 500,
-                        easing: 'easeOutQuad'
+                        duration: 500
                     });
                     setTimeout(function () {
                         Rocket.dom.remove('#rocket-page-loader-container');
                         Rocket.dom.remove('#rocket-page-loader-style-tag');
+                        core.log('Rocket: Page show...successful');
                     }, 501);
                 }, 350);
             }
             else {
                 Rocket.dom.body.removeAttribute('style');
+                core.log('Rocket: Page show...successful');
             }
-            core.log('Rocket: Page show...successful');
         }
     };
     // Execute
