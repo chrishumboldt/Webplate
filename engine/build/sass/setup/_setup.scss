@@ -14,5 +14,6 @@ div {
   direction: ltr;
 }
 body, ul, ol, dl, td, th, caption, pre, p, blockquote, input, textarea, label, select {
-  @include text-colour(#333);
+  // @include text-colour(#333);
+  @include text-colour($black-base);
 }

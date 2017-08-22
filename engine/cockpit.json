@@ -33,7 +33,8 @@
          "~/setup/typeplate.scss",
          "~/setup/setup.scss",
          "~/setup/text.scss",
-         "~/module-css.scss"
+         "~/module-css.scss",
+         "~/ui/import.scss"
       ]
    }, {
       "name": "styles-light",

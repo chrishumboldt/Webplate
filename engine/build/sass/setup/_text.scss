@@ -2,12 +2,15 @@
 @author Chris Humboldt
 **/
 
+// Variables
+$paragraph-margin: 1.15em;
+
 label {
 	@include text-font($font-family);
 }
 // Headings
 h1 {
-	@include margin-bottom(1.75rem);
+	@include margin-bottom(1.7rem);
 	@include text-line-height(66px);
 	@include text-weight($weight-base);
 	@include breakpoint(large) {
@@ -31,6 +34,7 @@ h3 {
 	}
 }
 h4 {
+   @include margin-bottom(1.3rem);
 	@include text-line-height(38px);
 	@include text-weight($weight-base);
 	@include breakpoint(large) {
@@ -45,23 +49,65 @@ h5 {
 	}
 }
 h6 {
-	@include margin-bottom(0.75rem);
+	@include margin-bottom(1rem);
 	@include text-line-height(26px);
 	@include text-size(20px);
 	@include text-weight($weight-base);
 }
 p {
+   @include margin-bottom($paragraph-margin);
 	@include text-size(15px);
 	@include text-weight($weight-base);
 	@include breakpoint(large) {
 		@include text-size(16px);
 	}
 }
-em {
-	@include margin-bottom(1.5em);
-	@include text-colour($grey);
-	@include text-size(14px);
-	@include text-style(italic);
+a {
+   @include text-colour($blue);
+   @include text-decoration(none);
+   @include animate(color);
+   .no-touchevents &:hover {
+      @include text-colour(darken($blue, 15%));
+      @include text-decoration(underline);
+   }
+}
+strong {
+   @include text-colour($black);
+}
+:not(pre)>code {
+   @include padding-horizontal($space-x-small);
+   @include background-colour($grey-blue-x-light);
+   @include border($grey-blue-light);
+   @include border-radius;
+}
+ins, mark {
+   @include text-decoration(none);
+   @include background-colour(#ffa);
+}
+q {
+   @include text-style(italic);
+}
+hr {
+   border-style: none;
+   @include border-bottom($grey-blue-light, 1px, solid);
+}
+blockquote {
+   @include margin-no;
+   @include margin-bottom($paragraph-margin);
+   @include padding-horizontal($space-base);
+   @include padding-vertical(1em);
+   @include text-colour($grey-dark);
+   @include text-style(italic);
+   @include border-left($blue, 3px);
+}
+pre {
+   @include margin-no;
+   @include margin-bottom($paragraph-margin);
+   @include padding(1em);
+   font-size: 14px;
+   @include text-colour($grey-blue-light);
+   @include background-colour($grey-blue-x-dark);
+   @include border-radius;
 }
 @include breakpoint(small) {
 	h1 { @include text-size(56px); }

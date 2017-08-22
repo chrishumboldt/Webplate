@@ -1,0 +1,13 @@
+/**
+@author Chris Humboldt
+**/
+
+.card {
+   @include background-color($white);
+   @include border-radius;
+   @include drop-shadow(fade-out($grey-blue-dark, 0.7), 8px, 2px);
+
+   > .inner {
+      @include spacing-base;
+   }
+}

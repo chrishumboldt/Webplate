@@ -1,0 +1,11 @@
+/**
+@author Chris Humboldt
+**/
+
+@mixin spacing-base {
+   @include padding($space-minor);
+
+   @include breakpoint($bp-large) {
+      @include padding($space-base);
+   }
+}
