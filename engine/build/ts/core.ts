@@ -115,11 +115,9 @@ by the cockpit.json file.
                         if (page.load) {
                            load = [...main.load, ...page.load]
                         }
-
                         if (page.css) {
                            main.css = [...main.css, ...page.css]
                         }
-
                         if (page.js) {
                            main.js = [...main.js, ...page.js]
                         }
@@ -140,7 +138,9 @@ by the cockpit.json file.
                }
             }
             for (let i = 0, len = main.js.length; i < len; i++) {
-               main.js[i] = path.js + main.js[i]
+               if (main.js[i].substring(0, 4) !== 'http') {
+                  main.js[i] = path.js + main.js[i]
+               }
             }
 
             // Add to root and main modules

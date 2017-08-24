@@ -128,7 +128,9 @@ by the cockpit.json file.
                     }
                 }
                 for (var i = 0, len = main.js.length; i < len; i++) {
-                    main.js[i] = path.js + main.js[i];
+                    if (main.js[i].substring(0, 4) !== 'http') {
+                        main.js[i] = path.js + main.js[i];
+                    }
                 }
                 // Add to root and main modules
                 if (iconFont !== '') {
