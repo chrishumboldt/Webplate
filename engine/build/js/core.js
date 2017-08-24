@@ -182,8 +182,8 @@ by the cockpit.json file.
                 // Continue
                 cockpit = json;
                 // Set loads
-                if (cockpit.modules) {
-                    Rocket.module.add(cockpit.modules);
+                if (cockpit.module) {
+                    Rocket.module.add(cockpit.module);
                 }
                 // Load modules
                 if (rocketContent !== null) {
