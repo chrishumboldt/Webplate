@@ -62,7 +62,7 @@ p {
 		@include text-size(16px);
 	}
 }
-a {
+a.link {
    @include text-colour($blue);
    @include text-decoration(none);
    @include animate(color);
