@@ -1,8 +1,6 @@
 {
-	"css": [
-      "app.css"
-   ],
-	"js": [
-      "app.js"
-   ]
+   "main": {
+   	"css": ["style.css"],
+   	"js": ["script.js"]
+   }
 }

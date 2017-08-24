@@ -75,12 +75,12 @@ by the cockpit.json file.
                     rootModules.push('fastclick');
                 }
                 // Load other modules
-                var app = {
-                    css: Rocket.helper.setDefault(cockpit.css, []),
-                    js: Rocket.helper.setDefault(cockpit.js, [])
+                var main = {
+                    css: Rocket.helper.setDefault(cockpit.main.css, []),
+                    js: Rocket.helper.setDefault(cockpit.main.js, [])
                 };
-                var iconFont = Rocket.helper.setDefault(cockpit.iconFont, '');
-                var load = Rocket.helper.setDefault(cockpit.load, []);
+                var iconFont = Rocket.helper.setDefault(cockpit.main.iconFont, '');
+                var load = Rocket.helper.setDefault(cockpit.main.load, []);
                 var pageMatch = false;
                 var queryString = '';
                 var urlData = Rocket.url.all();
@@ -100,31 +100,37 @@ by the cockpit.json file.
                             }
                         }
                         if (pageMatch) {
-                            if (page.overwrite === true) {
-                                iconFont = Rocket.helper.setDefault(page.iconFont, '');
-                                load = Rocket.helper.setDefault(page.load, []);
-                                app.css = Rocket.helper.setDefault(page.css, []);
-                                app.js = Rocket.helper.setDefault(page.js, []);
+                            if (page.extend === true) {
+                                iconFont = Rocket.helper.setDefault(page.iconFont, iconFont);
+                                if (page.load) {
+                                    load = main.load.concat(page.load);
+                                }
+                                if (page.css) {
+                                    main.css = main.css.concat(page.css);
+                                }
+                                if (page.js) {
+                                    main.js = main.js.concat(page.js);
+                                }
                             }
                             else {
-                                iconFont = Rocket.helper.setDefault(page.iconFont, iconFont);
-                                load = Rocket.helper.setDefault(page.load, load);
-                                app.css = Rocket.helper.setDefault(page.css, app.css);
-                                app.js = Rocket.helper.setDefault(page.js, app.js);
+                                iconFont = Rocket.helper.setDefault(page.iconFont, '');
+                                load = Rocket.helper.setDefault(page.load, []);
+                                main.css = Rocket.helper.setDefault(page.css, []);
+                                main.js = Rocket.helper.setDefault(page.js, []);
                             }
                         }
                     }
                 }
                 // Fix the paths
-                for (var i = 0, len = app.css.length; i < len; i++) {
-                    if (app.css[i].substring(0, 4) !== 'http') {
-                        app.css[i] = path.css + app.css[i];
+                for (var i = 0, len = main.css.length; i < len; i++) {
+                    if (main.css[i].substring(0, 4) !== 'http') {
+                        main.css[i] = path.css + main.css[i];
                     }
                 }
-                for (var i = 0, len = app.js.length; i < len; i++) {
-                    app.js[i] = path.js + app.js[i];
+                for (var i = 0, len = main.js.length; i < len; i++) {
+                    main.js[i] = path.js + main.js[i];
                 }
-                // Add to root and app modules
+                // Add to root and main modules
                 if (iconFont !== '') {
                     switch (iconFont) {
                         case 'font-awesome':
@@ -138,9 +144,9 @@ by the cockpit.json file.
                 if (Rocket.is.array(load) && load.length > 0) {
                     rootModules = rootModules.concat(load);
                 }
-                app.requires = rootModules;
+                main.requires = rootModules;
                 Rocket.module.add({
-                    rocketLaunch: app
+                    rocketLaunch: main
                 });
                 // Require
                 core.log('Rocket: Modules load...started');
@@ -169,10 +175,8 @@ by the cockpit.json file.
             core.pageLoader();
             // Read cockpit file
             core.getJSON(path.cockpit, function (error, json) {
-                // Catch
-                if (error) {
+                if (error)
                     throw new Error('Rocket: Not initialised because the cockpit.json file was not found.');
-                }
                 // Continue
                 cockpit = json;
                 // Set loads
@@ -183,7 +187,6 @@ by the cockpit.json file.
                 if (rocketContent !== null) {
                     rocketContent.removeAttribute('style');
                 }
-                ;
                 core.load.modules(function () {
                     core.log('Rocket: Modules load...successful');
                     core.showPage();
@@ -191,17 +194,15 @@ by the cockpit.json file.
             });
         },
         log: function (text) {
-            if (!window || !window.console || !cockpit) {
+            if (!window || !window.console || !cockpit)
                 return false;
-            }
-            if (cockpit.engine && typeof cockpit.engine.log === 'boolean' && cockpit.engine.log) {
+            if (cockpit.engine && typeof cockpit.engine.log === 'boolean' && cockpit.engine.log)
                 console.log(text);
-            }
         },
         pageLoader: function () {
             if (rocketContent !== null) {
                 // Loader CSS
-                var loaderCSS = "\n               #rocket-page-loader-container{position:fixed;top:0;right:0;bottom:0;left:0;background-color:#fff;z-index:10000}#rocket-page-loader{position:relative;margin:0 auto;margin-top:150px;width:150px;height:3px;background-color:#ccd1d9;overflow:hidden}#rocket-page-loader-slider{position:relative;left:-50px;width:50px;height:3px;background-color:#3498db;-webkit-animation-name:\"rocket-page-loader-slider\";-moz-animation-name:\"rocket-page-loader-slider\";-ms-animation-name:\"rocket-page-loader-slider\";animation-name:\"rocket-page-loader-slider\";-webkit-animation-duration:.7s;-moz-animation-duration:.7s;-ms-animation-duration:.7s;animation-duration:.7s;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;-moz-animation-direction:alternate;-ms-animation-direction:alternate;animation-direction:alternate}@-webkit-keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}@-moz-keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}@keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}\n            ";
+                var loaderCSS = "\n            #rocket-page-loader-container{position:fixed;top:0;right:0;bottom:0;left:0;background-color:#fff;z-index:10000}#rocket-page-loader{position:relative;margin:0 auto;margin-top:150px;width:150px;height:3px;background-color:#ccd1d9;overflow:hidden}#rocket-page-loader-slider{position:relative;left:-50px;width:50px;height:3px;background-color:#3498db;-webkit-animation-name:\"rocket-page-loader-slider\";-moz-animation-name:\"rocket-page-loader-slider\";-ms-animation-name:\"rocket-page-loader-slider\";animation-name:\"rocket-page-loader-slider\";-webkit-animation-duration:.7s;-moz-animation-duration:.7s;-ms-animation-duration:.7s;animation-duration:.7s;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;-moz-animation-direction:alternate;-ms-animation-direction:alternate;animation-direction:alternate}@-webkit-keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}@-moz-keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}@keyframes rocket-page-loader-slider{0%{left:-45px}100%{left:145px}}\n            ";
                 var loaderStyleTag = document.createElement('style');
                 loaderStyleTag.id = 'rocket-page-loader-style-tag';
                 loaderStyleTag.type = 'text/css';
