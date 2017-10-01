@@ -1,6 +1,6 @@
 {
   "name": "rocket-engine",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The main Rocket engine.",
   "keywords": [
     "Rocket",
@@ -23,6 +23,6 @@
     "rocket-require": "^1.2.2",
     "rocket-propel": "^3.0.3",
     "rocket-tab": "^2.0.2",
-    "rocket-tools": "^1.14.6"
+    "rocket-tools": "^1.15.0"
   }
 }
