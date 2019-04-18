@@ -45,7 +45,7 @@ This will get you up and running for most projects but if you want to include We
 
 
 ## Documentation
-Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://localhost/getwebplate.com/#/documentation/what-you-got/).
+Webplate has many aspects to it so for more information view the comprehensive [online documentation](http://getwebplate.com/#/documentation/what-you-got/).
 
 
 ## Author
