@@ -46,7 +46,6 @@ This will get you up and running for most projects but if you want to include We
 ## Author
 Created and maintained by Chris Humboldt<br>
 Website: <a href="http://chrishumboldt.com/">chrishumboldt.com</a><br>
-Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</a><br>
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
 
 
